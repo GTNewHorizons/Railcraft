@@ -87,10 +87,10 @@ public class ModuleFactory extends RailcraftModule {
                     'F', new ItemStack(Blocks.furnace),
                     'S', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
 
-        alpha = EnumMachineAlpha.BLAST_FURNACE;
-        if (alpha.register()) {
-            ItemStack stack = alpha.getItem(4);
-            CraftingPlugin.addShapedRecipe(stack,
+      /*   alpha = EnumMachineAlpha.BLAST_FURNACE;
+         if (alpha.register()) {
+           ItemStack stack = alpha.getItem(4);
+           CraftingPlugin.addShapedRecipe(stack,
                     "MBM",
                     "BPB",
                     "MBM",
@@ -132,7 +132,7 @@ public class ModuleFactory extends RailcraftModule {
             RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelAxe(), false, false, recycleTime * 2, RailcraftItem.ingot.getStack(2, steel));
             RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelShears(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
         }
-
+*/
         alpha = EnumMachineAlpha.ROCK_CRUSHER;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem(4);
