@@ -92,7 +92,7 @@ public class SteamBoiler {
     }
 
     public double getHeatLevel() {
-        return heat / getMaxHeat();
+        return heat / Steam.MAX_HEAT_LOW;
     }
 
     public void increaseHeat(int numTanks) {
