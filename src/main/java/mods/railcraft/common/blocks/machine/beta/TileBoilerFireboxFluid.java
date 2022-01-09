@@ -93,13 +93,6 @@ public class TileBoilerFireboxFluid extends TileBoilerFirebox {
     }
 
     @Override
-    protected void processBuckets() {
-        super.processBuckets();
-
-        FluidHelper.drainContainers(this, inventory, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT);
-    }
-
-    @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
         if (fluid == null) return false;
         if (FuelManager.getBoilerFuelValue(fluid) > 0) return true;

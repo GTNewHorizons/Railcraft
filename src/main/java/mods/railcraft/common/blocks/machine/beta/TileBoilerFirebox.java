@@ -28,6 +28,7 @@ import mods.railcraft.common.plugins.buildcraft.triggers.ITemperature;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
 import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
 import mods.railcraft.common.util.steam.Steam;
@@ -144,7 +145,10 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     protected abstract void process();
 
     protected void processBuckets() {
-        FluidHelper.drainContainers(this, inventory, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT);
+        FluidStack fluidStack = FluidItemHelper.getFluidStackInContainer(getStackInSlot(SLOT_LIQUID_INPUT));
+        if ( (fluidStack != null) && this.fill(ForgeDirection.UNKNOWN, fluidStack, false) > 0) {
+            FluidHelper.drainContainers(this, inventory, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT);
+        }
     }
 
     @Override

@@ -15,7 +15,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.slots.SlotFluidContainerFilled;
+import mods.railcraft.common.gui.slots.SlotBoilerFluidContainerFilled;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import mods.railcraft.common.fluids.TankManager;
@@ -38,7 +38,7 @@ public class ContainerBoilerFluid extends RailcraftContainer {
 
         addWidget(new IndicatorWidget(tile.boiler.heatIndicator, 40, 25, 176, 61, 6, 43));
 
-        addSlot(new SlotFluidContainerFilled(tile, 0, 143, 21));
+        addSlot(new SlotBoilerFluidContainerFilled(tile, 0, 143, 21));
         addSlot(new SlotOutput(tile, 1, 143, 56));
 
         for (int i = 0; i < 3; i++) {
