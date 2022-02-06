@@ -1,7 +1,7 @@
 // Add your dependencies here
 
 dependencies {
-    compile 'com.github.GTNewHorizons:BuildCraft:7.1.25:dev'
+    compile 'com.github.GTNewHorizons:BuildCraft:7.1.26:dev'
     compile 'net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev'
     compile 'thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev'
     compile 'curse.maven:cofh-lib-220333:2388748'
