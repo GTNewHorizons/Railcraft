@@ -10,5 +10,5 @@ dependencies {
     compileOnly 'curse.maven:craftguide-75557:2459320'
 
     runtime 'com.github.GTNewHorizons:Baubles:1.0.1.14:dev'
-    runtime 'com.github.GTNewHorizons:NotEnoughItems:2.2.5-GTNH:dev'
+    runtime 'com.github.GTNewHorizons:NotEnoughItems:2.2.6-GTNH:dev'
 }
