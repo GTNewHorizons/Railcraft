@@ -291,8 +291,8 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
         if (RailcraftConfig.printAnchorDebug() && hasActiveTicket())
             if (clock % 64 == 0) {
                 int numChunks = chunks == null ? 0 : chunks.size();
-                ChatPlugin.sendLocalizedChatToAllFromServer(worldObj, "%s has loaded %d chunks and is ticking at <%d,%d,%d> in dim:%d - logged on tick %d", getName(), numChunks, xCoord, yCoord, zCoord, worldObj.provider.dimensionId, worldObj.getWorldTime());
-                Game.log(Level.DEBUG, "{0} has loaded {1} chunks and is ticking at <{2},{3},{4}> in dim:{5} - logged on tick {6}", getName(), numChunks, xCoord, yCoord, zCoord, worldObj.provider.dimensionId, worldObj.getWorldTime());
+                ChatPlugin.sendLocalizedChatToAllFromServer(worldObj, "%s has loaded %d chunks and is ticking at <x%d y%d z%d> in dim:%d - logged on tick %d", getName(), numChunks, xCoord, yCoord, zCoord, worldObj.provider.dimensionId, worldObj.getWorldTime());
+                Game.log(Level.DEBUG, "{0} has loaded {1} chunks and is ticking at <x{2} y{3} z{4}> in dim:{5} - logged on tick {6}", getName(), numChunks, xCoord, yCoord, zCoord, worldObj.provider.dimensionId, worldObj.getWorldTime());
             }
     }
 
