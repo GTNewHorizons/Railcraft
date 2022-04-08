@@ -68,6 +68,7 @@ public final class FluidHelper {
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, drainReturn.container);
                         }
                         player.inventory.markDirty();
+                        player.inventoryContainer.detectAndSendChanges();
                     }
                     tank.fill(side, drainReturn.fluidDrained, true);
                     return true;
@@ -86,6 +87,7 @@ public final class FluidHelper {
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, fillReturn.container);
                         }
                         player.inventory.markDirty();
+                        player.inventoryContainer.detectAndSendChanges();
                         tank.drain(side, fillReturn.amount, true);
                         return true;
                     }
