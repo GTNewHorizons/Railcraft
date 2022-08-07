@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -181,11 +181,10 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        if (getPatternPositionY() - getPattern().getMasterOffsetY() != 1)
+        if (getPatternPositionY() - getPattern().getMasterOffsetY() > 1)
             return null;
         TankManager tMan = getTankManager();
         if (tMan != null)
-            //            maxDrain = Math.min(maxDrain, FLOW_RATE);
             return tMan.drain(0, maxDrain, doDrain);
         return null;
     }
