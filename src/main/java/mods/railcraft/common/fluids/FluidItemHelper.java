@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.fluids;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -52,20 +51,13 @@ public class FluidItemHelper {
         if (container == null) return new DrainReturn(null, null, false);
         container = container.copy();
         if (container.getItem() instanceof IFluidContainerItem) {
-            Item item = container.getItem();
             container.stackSize = 1;
-            IFluidContainerItem fluidCon = (IFluidContainerItem) item;
+            IFluidContainerItem fluidCon = (IFluidContainerItem) container.getItem();
             FluidStack drained = fluidCon.drain(container, maxDrain, true);
-            ItemStack returnStack;
-            if (container.getItem().hasContainerItem(container)) {
-                returnStack = container.getItem().getContainerItem(container);
-            } else {
-                returnStack = container;
-            }
-            return new DrainReturn(returnStack, drained, false);
+            return new DrainReturn(container, drained, false);
         }
         if (FluidContainerRegistry.isFilledContainer(container)) {
-            ItemStack emptyCon = container.getItem().getContainerItem(container);
+            ItemStack emptyCon = FluidContainerRegistry.drainFluidContainer(container);
             return new DrainReturn(emptyCon, FluidContainerRegistry.getFluidForFilledItem(container), true);
         }
         return new DrainReturn(container, null, false);
@@ -128,6 +120,10 @@ public class FluidItemHelper {
         if (stack == null) return false;
         if (stack.getItem() instanceof IFluidContainerItem) {
             IFluidContainerItem fluidCon = (IFluidContainerItem) stack.getItem();
+            FluidStack existing = fluidCon.getFluid(stack);
+            if (existing != null && existing.getFluid() != null && fluid != null && existing.getFluid() != fluid) {
+                return false;
+            }
             return fluidCon.fill(stack, new FluidStack(fluid, 1), false) > 0;
         }
         return FluidContainerRegistry.isEmptyContainer(stack);
@@ -137,6 +133,10 @@ public class FluidItemHelper {
         if (stack == null) return 0;
         if (stack.getItem() instanceof IFluidContainerItem) {
             IFluidContainerItem fluidCon = (IFluidContainerItem) stack.getItem();
+            FluidStack existing = fluidCon.getFluid(stack);
+            if (existing != null && existing.getFluid() != null && fluid != null && existing.getFluid() != fluid) {
+                return 0;
+            }
             return fluidCon.fill(stack, new FluidStack(fluid, Integer.MAX_VALUE), false);
         }
         ItemStack filled = FluidContainerRegistry.fillFluidContainer(new FluidStack(fluid, Integer.MAX_VALUE), stack);
