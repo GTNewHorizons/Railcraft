@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,7 +23,8 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderTunnelBore extends Render {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "tunnel_bore.png");
+    private static final ResourceLocation TEXTURE =
+            new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "tunnel_bore.png");
 
     public RenderTunnelBore() {
         shadowSize = 0.5F;
@@ -42,23 +43,27 @@ public class RenderTunnelBore extends Render {
 
         if (RenderManager.debugBoundingBox) {
             GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-//            GL11.glDepthMask(false);
+            //            GL11.glDepthMask(false);
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_CULL_FACE);
             GL11.glDisable(GL11.GL_BLEND);
             for (Entity part : bore.getParts()) {
                 GL11.glPushMatrix();
-                double posX = part.lastTickPosX + (part.posX - part.lastTickPosX) * (double) time - RenderManager.renderPosX;
-                double posY = part.lastTickPosY + (part.posY - part.lastTickPosY) * (double) time - RenderManager.renderPosY;
-                double posZ = part.lastTickPosZ + (part.posZ - part.lastTickPosZ) * (double) time - RenderManager.renderPosZ;
+                double posX =
+                        part.lastTickPosX + (part.posX - part.lastTickPosX) * (double) time - RenderManager.renderPosX;
+                double posY =
+                        part.lastTickPosY + (part.posY - part.lastTickPosY) * (double) time - RenderManager.renderPosY;
+                double posZ =
+                        part.lastTickPosZ + (part.posZ - part.lastTickPosZ) * (double) time - RenderManager.renderPosZ;
                 GL11.glTranslatef((float) posX, (float) posY, (float) posZ);
                 float halfWidth = part.width / 2.0F;
-                AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(-halfWidth, 0.0, -halfWidth, halfWidth, part.height, halfWidth);
+                AxisAlignedBB axisalignedbb =
+                        AxisAlignedBB.getBoundingBox(-halfWidth, 0.0, -halfWidth, halfWidth, part.height, halfWidth);
                 RenderGlobal.drawOutlinedBoundingBox(axisalignedbb, 16777215);
                 GL11.glPopMatrix();
             }
-//            GL11.glDepthMask(true);
+            //            GL11.glDepthMask(true);
             GL11.glPopAttrib();
         }
 
@@ -91,7 +96,6 @@ public class RenderTunnelBore extends Render {
         }
         float light = bore.getBrightness(time);
         light = light + ((1.0f - light) * 0.4f);
-
 
         int j = 0xffffff;
         float c1 = (float) (j >> 16 & 0xff) / 255F;

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,7 +34,8 @@ public class MultiBlockPattern {
         this(pattern, offsetX, offsetY, offsetZ, null);
     }
 
-    public MultiBlockPattern(char[][][] pattern, int offsetX, int offsetY, int offsetZ, AxisAlignedBB entityCheckBounds) {
+    public MultiBlockPattern(
+            char[][][] pattern, int offsetX, int offsetY, int offsetZ, AxisAlignedBB entityCheckBounds) {
         this.pattern = pattern;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
@@ -43,16 +44,13 @@ public class MultiBlockPattern {
     }
 
     public AxisAlignedBB getEntityCheckBounds(int masterX, int masterY, int masterZ) {
-        if (entityCheckBounds == null)
-            return null;
+        if (entityCheckBounds == null) return null;
         return entityCheckBounds.copy().offset(masterX, masterY, masterZ);
     }
 
     public char getPatternMarkerChecked(int x, int y, int z) {
-        if (x < 0 || y < 0 || z < 0)
-            return 'O';
-        if (x >= getPatternWidthX() || y >= getPatternHeight() || z >= getPatternWidthZ())
-            return 'O';
+        if (x < 0 || y < 0 || z < 0) return 'O';
+        if (x >= getPatternWidthX() || y >= getPatternHeight() || z >= getPatternWidthZ()) return 'O';
         return getPatternMarker(x, y, z);
     }
 
@@ -96,9 +94,9 @@ public class MultiBlockPattern {
         return (offsetZ - patternZ) + posZ;
     }
 
-    public TileEntity placeStructure(World world, int xCoord, int yCoord, int zCoord, Block block, Map<Character, Integer> blockMapping) {
-        if (block == null)
-            return null;
+    public TileEntity placeStructure(
+            World world, int xCoord, int yCoord, int zCoord, Block block, Map<Character, Integer> blockMapping) {
+        if (block == null) return null;
 
         int xWidth = getPatternWidthX();
         int zWidth = getPatternWidthZ();
@@ -117,8 +115,7 @@ public class MultiBlockPattern {
                     char marker = getPatternMarker(px, py, pz);
 
                     Integer metadata = blockMapping.get(marker);
-                    if (metadata == null)
-                        continue;
+                    if (metadata == null) continue;
 
                     int x = px + xOffset;
                     int y = py + yOffset;
@@ -133,5 +130,4 @@ public class MultiBlockPattern {
         }
         return master;
     }
-
 }

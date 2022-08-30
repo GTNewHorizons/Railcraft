@@ -26,5 +26,4 @@ public class TriggerTemp extends Trigger {
         }
         return false;
     }
-
 }

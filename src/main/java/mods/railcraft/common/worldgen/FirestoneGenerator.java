@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,8 +10,8 @@ package mods.railcraft.common.worldgen;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.util.EnumHelper;
@@ -25,7 +25,8 @@ import net.minecraftforge.event.terraingen.TerrainGen;
  */
 public class FirestoneGenerator {
 
-    public static final EventType EVENT_TYPE = EnumHelper.addEnum(EventType.class, "FIRESTONE", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE =
+            EnumHelper.addEnum(EventType.class, "FIRESTONE", new Class[0], new Object[0]);
     private final WorldGenerator firestone = new WorldGenFirestone();
 
     @SubscribeEvent
@@ -36,8 +37,7 @@ public class FirestoneGenerator {
         int worldX = event.chunkX;
         int worldZ = event.chunkZ;
 
-        if (!TerrainGen.decorate(world, rand, worldX, worldZ, EVENT_TYPE))
-            return;
+        if (!TerrainGen.decorate(world, rand, worldX, worldZ, EVENT_TYPE)) return;
 
         BiomeGenBase biome = world.getBiomeGenForCoords(worldX + 16, worldZ + 16);
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER) && rand.nextDouble() <= 0.1) {
@@ -48,5 +48,4 @@ public class FirestoneGenerator {
             firestone.generate(world, rand, x, y, z);
         }
     }
-
 }

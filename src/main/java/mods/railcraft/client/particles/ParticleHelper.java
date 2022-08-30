@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,7 +27,12 @@ public class ParticleHelper {
     private static final Random rand = new Random();
 
     @SideOnly(Side.CLIENT)
-    public static boolean addHitEffects(World world, Block block, MovingObjectPosition target, EffectRenderer effectRenderer, ParticleHelperCallback callback) {
+    public static boolean addHitEffects(
+            World world,
+            Block block,
+            MovingObjectPosition target,
+            EffectRenderer effectRenderer,
+            ParticleHelperCallback callback) {
         int x = target.blockX;
         int y = target.blockY;
         int z = target.blockZ;
@@ -38,32 +43,35 @@ public class ParticleHelper {
         int meta = world.getBlockMetadata(x, y, z);
 
         float b = 0.1F;
-        double px = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (b * 2.0F)) + b + block.getBlockBoundsMinX();
-        double py = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - (b * 2.0F)) + b + block.getBlockBoundsMinY();
-        double pz = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - (b * 2.0F)) + b + block.getBlockBoundsMinZ();
+        double px = x
+                + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (b * 2.0F))
+                + b
+                + block.getBlockBoundsMinX();
+        double py = y
+                + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - (b * 2.0F))
+                + b
+                + block.getBlockBoundsMinY();
+        double pz = z
+                + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - (b * 2.0F))
+                + b
+                + block.getBlockBoundsMinZ();
 
-        if (sideHit == 0)
-            py = (double) y + block.getBlockBoundsMinY() - (double) b;
+        if (sideHit == 0) py = (double) y + block.getBlockBoundsMinY() - (double) b;
 
-        if (sideHit == 1)
-            py = (double) y + block.getBlockBoundsMaxY() + (double) b;
+        if (sideHit == 1) py = (double) y + block.getBlockBoundsMaxY() + (double) b;
 
-        if (sideHit == 2)
-            pz = (double) z + block.getBlockBoundsMinZ() - (double) b;
+        if (sideHit == 2) pz = (double) z + block.getBlockBoundsMinZ() - (double) b;
 
-        if (sideHit == 3)
-            pz = (double) z + block.getBlockBoundsMaxZ() + (double) b;
+        if (sideHit == 3) pz = (double) z + block.getBlockBoundsMaxZ() + (double) b;
 
-        if (sideHit == 4)
-            px = (double) x + block.getBlockBoundsMinX() - (double) b;
+        if (sideHit == 4) px = (double) x + block.getBlockBoundsMinX() - (double) b;
 
-        if (sideHit == 5)
-            px = (double) x + block.getBlockBoundsMaxX() + (double) b;
+        if (sideHit == 5) px = (double) x + block.getBlockBoundsMaxX() + (double) b;
         EntityDiggingFX fx = new EntityDiggingFX(world, px, py, pz, 0.0D, 0.0D, 0.0D, block, sideHit, meta);
         fx.setParticleIcon(block.getIcon(world, x, y, z, 0));
-        if (callback != null)
-            callback.addHitEffects(fx, world, x, y, z, meta);
-        effectRenderer.addEffect(fx.applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+        if (callback != null) callback.addHitEffects(fx, world, x, y, z, meta);
+        effectRenderer.addEffect(
+                fx.applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
 
         return true;
     }
@@ -85,7 +93,15 @@ public class ParticleHelper {
      * @return True to prevent vanilla break particles from spawning.
      */
     @SideOnly(Side.CLIENT)
-    public static boolean addDestroyEffects(World world, Block block, int x, int y, int z, int meta, EffectRenderer effectRenderer, ParticleHelperCallback callback) {
+    public static boolean addDestroyEffects(
+            World world,
+            Block block,
+            int x,
+            int y,
+            int z,
+            int meta,
+            EffectRenderer effectRenderer,
+            ParticleHelperCallback callback) {
         if (block != WorldPlugin.getBlock(world, x, y, z)) return true;
         byte its = 4;
         for (int i = 0; i < its; ++i) {
@@ -95,15 +111,14 @@ public class ParticleHelper {
                     double py = y + (j + 0.5D) / (double) its;
                     double pz = z + (k + 0.5D) / (double) its;
                     int random = rand.nextInt(6);
-                    EntityDiggingFX fx = new EntityDiggingFX(world, px, py, pz, px - x - 0.5D, py - y - 0.5D, pz - z - 0.5D, block, random, meta);
+                    EntityDiggingFX fx = new EntityDiggingFX(
+                            world, px, py, pz, px - x - 0.5D, py - y - 0.5D, pz - z - 0.5D, block, random, meta);
                     fx.setParticleIcon(block.getIcon(world, x, y, z, 0));
-                    if (callback != null)
-                        callback.addDestroyEffects(fx, world, x, y, z, meta);
+                    if (callback != null) callback.addDestroyEffects(fx, world, x, y, z, meta);
                     effectRenderer.addEffect(fx.applyColourMultiplier(x, y, z));
                 }
             }
         }
         return true;
     }
-
 }

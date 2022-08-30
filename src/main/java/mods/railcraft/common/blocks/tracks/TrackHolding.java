@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -17,11 +17,8 @@ public class TrackHolding extends TrackLockingBase {
         return EnumTrack.HOLDING;
     }
 
-
     @Override
     public void updateEntity() {
-        if (Game.isHost(getWorld()))
-            migrateTrack(TrackNextGenLocking.LockingProfileType.HOLDING);
+        if (Game.isHost(getWorld())) migrateTrack(TrackNextGenLocking.LockingProfileType.HOLDING);
     }
-
 }

@@ -18,8 +18,7 @@ import net.minecraft.item.ItemStack;
  * having to specify each item individually.
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IStackFilter
-{
+public interface IStackFilter {
     /**
      * Railcraft adds the following IItemTypes during preInit: ALL, FUEL, TRACK, MINECART, BALLAST, FEED
      *

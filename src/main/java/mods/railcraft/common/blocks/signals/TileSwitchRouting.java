@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,7 +26,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileSwitchRouting extends TileSwitchSecured implements IRouter, IRoutingTile {
     private final StandaloneInventory inv = new StandaloneInventory(1, this);
-    private final MultiButtonController<RoutingButtonState> routingController = new MultiButtonController<RoutingButtonState>(0, RoutingButtonState.values());
+    private final MultiButtonController<RoutingButtonState> routingController =
+            new MultiButtonController<RoutingButtonState>(0, RoutingButtonState.values());
     private RoutingLogic logic;
 
     @Override
@@ -49,7 +50,8 @@ public class TileSwitchRouting extends TileSwitchSecured implements IRouter, IRo
                     copy.stackSize = 1;
                     inv.setInventorySlotContents(0, copy);
                     if (!player.capabilities.isCreativeMode) {
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, InvTools.depleteItem(current));
+                        player.inventory.setInventorySlotContents(
+                                player.inventory.currentItem, InvTools.depleteItem(current));
                         player.inventory.markDirty();
                     }
                     return true;
@@ -69,16 +71,14 @@ public class TileSwitchRouting extends TileSwitchSecured implements IRouter, IRo
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
         boolean power = isBeingPoweredByRedstone();
-        if (isPowered() != power)
-            setPowered(power);
+        if (isPowered() != power) setPowered(power);
     }
 
     @Override
     public void onBlockPlacedBy(EntityLivingBase entityliving, ItemStack stack) {
         super.onBlockPlacedBy(entityliving, stack);
         boolean power = isBeingPoweredByRedstone();
-        if (isPowered() != power)
-            setPowered(power);
+        if (isPowered() != power) setPowered(power);
     }
 
     @Override
@@ -99,8 +99,7 @@ public class TileSwitchRouting extends TileSwitchSecured implements IRouter, IRo
     }
 
     private void refreshLogic() {
-        if (logic == null && inv.getStackInSlot(0) != null)
-            logic = ItemRoutingTable.getLogic(inv.getStackInSlot(0));
+        if (logic == null && inv.getStackInSlot(0) != null) logic = ItemRoutingTable.getLogic(inv.getStackInSlot(0));
     }
 
     @Override
@@ -125,9 +124,7 @@ public class TileSwitchRouting extends TileSwitchSecured implements IRouter, IRo
     @Override
     public boolean shouldSwitch(ITrackSwitch switchTrack, EntityMinecart cart) {
         RoutingLogic logic = getLogic();
-        if (logic != null && logic.isValid())
-            return logic.matches(this, cart);
-        else
-            return false;
+        if (logic != null && logic.isValid()) return logic.matches(this, cart);
+        else return false;
     }
 }

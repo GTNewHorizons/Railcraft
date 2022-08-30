@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,11 +23,8 @@ public class BlinkTick {
 
     @SubscribeEvent
     public void tick(TickEvent.ClientTickEvent event) {
-        if(event.side != Side.CLIENT)
-            return;
+        if (event.side != Side.CLIENT) return;
         clock++;
-        if (clock % 16 == 0)
-            SignalAspect.invertBlinkState();
+        if (clock % 16 == 0) SignalAspect.invertBlinkState();
     }
-
 }

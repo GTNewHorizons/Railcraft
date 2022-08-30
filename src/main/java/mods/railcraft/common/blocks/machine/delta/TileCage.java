@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,8 +14,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.util.misc.Game;
@@ -25,6 +23,8 @@ import net.minecraft.entity.EntityBodyHelper;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityLookHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
@@ -48,21 +48,20 @@ public class TileCage extends TileMachineBase {
 
     @Override
     public IIcon getIcon(int side) {
-        if (side != 0 && side != 1 && isOpen)
-            return getMachineType().getTexture(6);
+        if (side != 0 && side != 1 && isOpen) return getMachineType().getTexture(6);
         return getMachineType().getTexture(side);
     }
 
     @Override
     public boolean blockActivated(EntityPlayer player, int side) {
-//        if (player.isSneaking()) {
+        //        if (player.isSneaking()) {
         if (Game.isHost(worldObj)) {
             isOpen = !isOpen;
             sendUpdateToClient();
         }
         return true;
-//        }
-//        return super.blockActivated(player, side);
+        //        }
+        //        return super.blockActivated(player, side);
     }
 
     @SideOnly(Side.CLIENT)
@@ -80,20 +79,25 @@ public class TileCage extends TileMachineBase {
         super.updateEntity();
         if (Game.isNotHost(worldObj))
             if (entity != null) {
-//                entity.onUpdate();
+                //                entity.onUpdate();
                 entity.setPosition(0, 0, 0);
                 entity.prevRotationYawHead = entity.rotationYawHead;
                 entity.prevRotationYaw = entity.rotationYaw;
                 entity.prevRotationPitch = entity.rotationPitch;
                 entity.prevRenderYawOffset = entity.renderYawOffset;
 
-
                 if (lookCounter > 0) {
                     lookCounter--;
                     if (lookTarget == null)
-                        lookHelper.setLookPosition(lookX, entity.getEyeHeight(), lookZ, 10, entity.getVerticalFaceSpeed());
+                        lookHelper.setLookPosition(
+                                lookX, entity.getEyeHeight(), lookZ, 10, entity.getVerticalFaceSpeed());
                     else
-                        lookHelper.setLookPosition(lookTarget.posX - (xCoord + 0.5), lookTarget.posY - (yCoord + entity.getEyeHeight()), lookTarget.posZ - (zCoord + 0.5), 10, entity.getVerticalFaceSpeed());
+                        lookHelper.setLookPosition(
+                                lookTarget.posX - (xCoord + 0.5),
+                                lookTarget.posY - (yCoord + entity.getEyeHeight()),
+                                lookTarget.posZ - (zCoord + 0.5),
+                                10,
+                                entity.getVerticalFaceSpeed());
                 }
 
                 lookHelper.onUpdateLook();
@@ -102,7 +106,8 @@ public class TileCage extends TileMachineBase {
                 if (lookCounter <= 0) {
                     lookTarget = null;
                     if (entity.getRNG().nextDouble() < 0.1) {
-                        List<EntityPlayer> nearby = MiscTools.getNearbyEntities(worldObj, EntityPlayer.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 5);
+                        List<EntityPlayer> nearby = MiscTools.getNearbyEntities(
+                                worldObj, EntityPlayer.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 5);
                         if (!nearby.isEmpty() && entity.getRNG().nextDouble() < 0.4) {
                             lookTarget = nearby.get(MiscTools.RANDOM.nextInt(nearby.size()));
                             lookCounter = 60 + entity.getRNG().nextInt(60);
@@ -133,5 +138,4 @@ public class TileCage extends TileMachineBase {
             markBlockForUpdate();
         }
     }
-
 }

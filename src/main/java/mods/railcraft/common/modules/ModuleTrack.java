@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,14 +12,13 @@ import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.util.misc.MiscTools;
 
-public class ModuleTrack extends RailcraftModule
-{
+public class ModuleTrack extends RailcraftModule {
 
     @Override
     public void initFirst() {
         RailcraftBlocks.registerBlockTrack();
 
-        if(RailcraftBlocks.getBlockTrack() != null) {
+        if (RailcraftBlocks.getBlockTrack() != null) {
             MiscTools.registerTrack(EnumTrack.LOCKING);
             MiscTools.registerTrack(EnumTrack.BOARDING);
             MiscTools.registerTrack(EnumTrack.HOLDING);
@@ -37,8 +36,8 @@ public class ModuleTrack extends RailcraftModule
             MiscTools.registerTrack(EnumTrack.DISPOSAL);
             MiscTools.registerTrack(EnumTrack.DETECTOR_DIRECTION);
 
-//            Block.blocksList[Block.fence.blockID] = null;
-//            Block fence = new BlockFenceReplacement(85);
+            //            Block.blocksList[Block.fence.blockID] = null;
+            //            Block fence = new BlockFenceReplacement(85);
         }
     }
 }

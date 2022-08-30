@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,6 +11,9 @@ package mods.railcraft.common.blocks.aesthetics.post;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -33,10 +36,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class BlockPost extends BlockPostBase implements IPostConnection {
 
     public static BlockPost block;
@@ -47,8 +46,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
     }
 
     public static void registerBlock() {
-        if (block != null)
-            return;
+        if (block != null) return;
 
         if (RailcraftConfig.isBlockEnabled("post")) {
             block = new BlockPost(Railcraft.getProxy().getRenderId());
@@ -62,7 +60,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
                 RailcraftRegistry.register(stack);
             }
 
-//            HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
+            //            HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
             HarvestPlugin.setHarvestLevel(block, EnumPost.WOOD.ordinal(), "axe", 0);
             HarvestPlugin.setHarvestLevel(block, EnumPost.STONE.ordinal(), "pickaxe", 1);
             HarvestPlugin.setHarvestLevel(block, EnumPost.METAL_UNPAINTED.ordinal(), "pickaxe", 2);
@@ -122,8 +120,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
             if (tile instanceof TilePostEmblem) {
                 TilePostEmblem post = (TilePostEmblem) tile;
                 EnumColor color = post.getColor();
-                if (color != null && BlockPostMetal.textures != null)
-                    return BlockPostMetal.textures[color.ordinal()];
+                if (color != null && BlockPostMetal.textures != null) return BlockPostMetal.textures[color.ordinal()];
             }
         }
         return super.getIcon(world, x, y, z, side);
@@ -155,8 +152,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {
-    }
+    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {}
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
@@ -170,15 +166,13 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
     @Override
     public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == EnumPost.EMBLEM.ordinal())
-            return false;
+        if (meta == EnumPost.EMBLEM.ordinal()) return false;
         return side == ForgeDirection.DOWN || side == ForgeDirection.UP;
     }
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        if (metadata == EnumPost.EMBLEM.ordinal())
-            return new TilePostEmblem();
+        if (metadata == EnumPost.EMBLEM.ordinal()) return new TilePostEmblem();
         return null;
     }
 
@@ -190,16 +184,14 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
     @Override
     public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
         int metadata = world.getBlockMetadata(x, y, z);
-        if (metadata == EnumPost.WOOD.ordinal())
-            return 300;
+        if (metadata == EnumPost.WOOD.ordinal()) return 300;
         return 0;
     }
 
     @Override
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
         int metadata = world.getBlockMetadata(x, y, z);
-        if (metadata == EnumPost.WOOD.ordinal())
-            return 5;
+        if (metadata == EnumPost.WOOD.ordinal()) return 5;
         return 0;
     }
 
@@ -233,8 +225,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TilePostEmblem) {
             TilePostEmblem tileEmblem = (TilePostEmblem) tile;
-            if (tileEmblem.getFacing() == side)
-                return ConnectStyle.NONE;
+            if (tileEmblem.getFacing() == side) return ConnectStyle.NONE;
         }
         return ConnectStyle.TWO_THIN;
     }
@@ -251,5 +242,4 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
             }
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,14 +10,14 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.ITankTile;
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.gui.slots.SlotOutput;
+import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import mods.railcraft.common.blocks.machine.ITankTile;
-import mods.railcraft.common.gui.slots.SlotOutput;
-import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.StandardTank;
 
 public class ContainerTank extends RailcraftContainer {
 
@@ -39,7 +39,6 @@ public class ContainerTank extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
@@ -73,5 +72,4 @@ public class ContainerTank extends RailcraftContainer {
             tMan.processGuiUpdate(id, data);
         }
     }
-
 }

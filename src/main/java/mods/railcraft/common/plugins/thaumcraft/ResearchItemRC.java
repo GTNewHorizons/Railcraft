@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,11 +26,25 @@ public class ResearchItemRC extends ResearchItem {
         super(key, catagory);
     }
 
-    public ResearchItemRC(String key, String category, AspectList aspects, int displayColumn, int displayRow, int complexity, ResourceLocation icon) {
+    public ResearchItemRC(
+            String key,
+            String category,
+            AspectList aspects,
+            int displayColumn,
+            int displayRow,
+            int complexity,
+            ResourceLocation icon) {
         super(key, category, aspects, displayColumn, displayRow, complexity, icon);
     }
 
-    public ResearchItemRC(String key, String category, AspectList aspects, int displayColumn, int displayRow, int complexity, ItemStack icon) {
+    public ResearchItemRC(
+            String key,
+            String category,
+            AspectList aspects,
+            int displayColumn,
+            int displayRow,
+            int complexity,
+            ItemStack icon) {
         super(key, category, aspects, displayColumn, displayRow, complexity, icon);
     }
 
@@ -45,5 +59,4 @@ public class ResearchItemRC extends ResearchItem {
     public String getText() {
         return LocalizationPlugin.translate(String.format("thaumcraft.research.%s.text", key));
     }
-
 }

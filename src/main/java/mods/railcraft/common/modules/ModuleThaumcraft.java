@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.common.modules;
 
-import mods.railcraft.common.plugins.thaumcraft.ItemCrowbarVoid;
-import org.apache.logging.log4j.Level;
 import mods.railcraft.common.plugins.thaumcraft.ItemCrowbarMagic;
+import mods.railcraft.common.plugins.thaumcraft.ItemCrowbarVoid;
 import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import mods.railcraft.common.util.misc.Game;
+import org.apache.logging.log4j.Level;
 
 /**
  *
@@ -37,8 +37,7 @@ public class ModuleThaumcraft extends RailcraftModule {
     }
 
     @Override
-    public void initSecond() {
-    }
+    public void initSecond() {}
 
     @Override
     public void postInit() {
@@ -48,5 +47,4 @@ public class ModuleThaumcraft extends RailcraftModule {
         ItemCrowbarMagic.registerResearch();
         ItemCrowbarVoid.registerResearch();
     }
-
 }

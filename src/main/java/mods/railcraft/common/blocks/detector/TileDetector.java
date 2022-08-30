@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.detector;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -20,11 +24,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
 
 public class TileDetector extends RailcraftTileEntity implements IGuiReturnHandler {
     public static final float SENSITIVITY = 0.2f;
@@ -86,8 +85,7 @@ public class TileDetector extends RailcraftTileEntity implements IGuiReturnHandl
         powerState = data.getByte("powerState");
         powerDelay = data.getByte("powerDelay");
 
-        if (data.hasKey("type"))
-            setDetector(EnumDetector.fromOrdinal(data.getByte("type")));
+        if (data.hasKey("type")) setDetector(EnumDetector.fromOrdinal(data.getByte("type")));
         detector.readFromNBT(data);
     }
 
@@ -120,29 +118,26 @@ public class TileDetector extends RailcraftTileEntity implements IGuiReturnHandl
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         if (!tested) {
             tested = true;
             int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
             if (meta != 0) {
                 worldObj.removeTileEntity(xCoord, yCoord, yCoord);
                 Block block = BlockDetector.getBlock();
-                if (block != null)
-                    worldObj.setBlock(xCoord, yCoord, yCoord, block, 0, 3);
+                if (block != null) worldObj.setBlock(xCoord, yCoord, yCoord, block, 0, 3);
             }
         }
-        if (powerDelay > 0)
-            powerDelay--;
+        if (powerDelay > 0) powerDelay--;
         else if (detector.updateInterval() == 0 || clock % detector.updateInterval() == 0) {
             int newPowerState = detector.shouldTest() ? detector.testCarts(getCarts()) : PowerPlugin.NO_POWER;
             if (newPowerState != powerState) {
                 powerState = newPowerState;
-                if (powerState > PowerPlugin.NO_POWER)
-                    powerDelay = POWER_DELAY;
+                if (powerState > PowerPlugin.NO_POWER) powerDelay = POWER_DELAY;
                 sendUpdateToClient();
                 worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, BlockDetector.getBlock());
-                WorldPlugin.notifyBlocksOfNeighborChangeOnSide(worldObj, xCoord, yCoord, zCoord, BlockDetector.getBlock(), direction);
+                WorldPlugin.notifyBlocksOfNeighborChangeOnSide(
+                        worldObj, xCoord, yCoord, zCoord, BlockDetector.getBlock(), direction);
             }
         }
     }

@@ -56,7 +56,11 @@ public final class TrackSpec {
      * TrackSpec
      * @see ITrackItemIconProvider
      */
-    public TrackSpec(short trackId, String tag, ITrackItemIconProvider iconProvider, Class<? extends ITrackInstance> instanceClass) {
+    public TrackSpec(
+            short trackId,
+            String tag,
+            ITrackItemIconProvider iconProvider,
+            Class<? extends ITrackInstance> instanceClass) {
         this(trackId, tag, iconProvider, instanceClass, null);
     }
 
@@ -73,7 +77,12 @@ public final class TrackSpec {
      * @param tooltip The tool tip for the Track Item
      * @see ITrackItemIconProvider
      */
-    public TrackSpec(short trackId, String tag, ITrackItemIconProvider iconProvider, Class<? extends ITrackInstance> instanceClass, List<String> tooltip) {
+    public TrackSpec(
+            short trackId,
+            String tag,
+            ITrackItemIconProvider iconProvider,
+            Class<? extends ITrackInstance> instanceClass,
+            List<String> tooltip) {
         this.trackId = trackId;
         this.tag = tag.toLowerCase(Locale.ENGLISH);
         this.iconProvider = iconProvider;
@@ -124,18 +133,16 @@ public final class TrackSpec {
     }
 
     public IIcon getItemIcon() {
-        if (iconProvider == null)
-            return Blocks.rail.getIcon(0, 0);
+        if (iconProvider == null) return Blocks.rail.getIcon(0, 0);
         return iconProvider.getTrackItemIcon(this);
     }
 
     public List<String> getItemToolTip() {
         return tooltip;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Track -> " + getTrackTag();
     }
-
 }

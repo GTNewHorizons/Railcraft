@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -70,8 +70,7 @@ public class ItemBucketRailcraft extends Item {
             int y = mop.blockY;
             int z = mop.blockZ;
 
-            if (!world.canMineBlock(player, x, y, z))
-                return stack;
+            if (!world.canMineBlock(player, x, y, z)) return stack;
 
             ForgeDirection sideHit = ForgeDirection.getOrientation(mop.sideHit);
 
@@ -79,8 +78,7 @@ public class ItemBucketRailcraft extends Item {
             y += sideHit.offsetY;
             z += sideHit.offsetZ;
 
-            if (!player.canPlayerEdit(x, y, z, mop.sideHit, stack))
-                return stack;
+            if (!player.canPlayerEdit(x, y, z, mop.sideHit, stack)) return stack;
 
             if (this.tryPlaceContainedLiquid(world, x, y, z) && !player.capabilities.isCreativeMode)
                 return getContainerItem(stack);
@@ -90,20 +88,16 @@ public class ItemBucketRailcraft extends Item {
     }
 
     private boolean tryPlaceContainedLiquid(World world, int x, int y, int z) {
-        if (fluid.getBlock() == null)
-            return false;
+        if (fluid.getBlock() == null) return false;
 
         Material material = world.getBlock(x, y, z).getMaterial();
 
-        if (!world.isAirBlock(x, y, z) && material.isSolid())
-            return false;
+        if (!world.isAirBlock(x, y, z) && material.isSolid()) return false;
 
-        if (!world.isRemote && !material.isSolid() && !material.isLiquid())
-            world.func_147480_a(x, y, z, true);
+        if (!world.isRemote && !material.isSolid() && !material.isLiquid()) world.func_147480_a(x, y, z, true);
 
         Block block = fluid.getBlock();
         world.setBlock(x, y, z, block, block instanceof BlockFluidFinite ? 15 : 0, 3);
         return true;
     }
-
 }

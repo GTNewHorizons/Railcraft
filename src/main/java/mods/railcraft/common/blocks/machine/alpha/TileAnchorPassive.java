@@ -9,13 +9,10 @@
 package mods.railcraft.common.blocks.machine.alpha;
 
 import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.collections.ItemMap;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeChunkManager;
 
 /**
@@ -34,15 +31,19 @@ public class TileAnchorPassive extends TileAnchorWorld {
 
     @Override
     protected ForgeChunkManager.Ticket getTicketFromForge() {
-        return ForgeChunkManager.requestPlayerTicket(Railcraft.getMod(), PlayerPlugin.getUsername(worldObj, getOwner()), worldObj, ForgeChunkManager.Type.NORMAL);
+        return ForgeChunkManager.requestPlayerTicket(
+                Railcraft.getMod(),
+                PlayerPlugin.getUsername(worldObj, getOwner()),
+                worldObj,
+                ForgeChunkManager.Type.NORMAL);
     }
 
-//    @Override
-//    protected boolean meetsTicketRequirements() {
-//        return isPlayerPresent() && super.meetsTicketRequirements();
-//    }
-//
-//    private boolean isPlayerPresent() {
-//        return MinecraftServer.getServer().getCurrentPlayerCount() > 0;
-//    }
+    //    @Override
+    //    protected boolean meetsTicketRequirements() {
+    //        return isPlayerPresent() && super.meetsTicketRequirements();
+    //    }
+    //
+    //    private boolean isPlayerPresent() {
+    //        return MinecraftServer.getServer().getCurrentPlayerCount() > 0;
+    //    }
 }

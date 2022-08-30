@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -18,16 +20,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.List;
-import java.util.Locale;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemIngot extends ItemRailcraft {
 
     public enum EnumIngot implements IItemMetaEnum {
-
         STEEL("ingotSteel"),
         COPPER("ingotCopper"),
         TIN("ingotTin"),
@@ -49,7 +47,6 @@ public class ItemIngot extends ItemRailcraft {
         public Class<? extends ItemRailcraft> getItemClass() {
             return ItemIngot.class;
         }
-
     }
 
     public ItemIngot() {
@@ -81,7 +78,8 @@ public class ItemIngot extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumIngot ingot : EnumIngot.VALUES) {
-            ingot.icon = iconRegister.registerIcon("railcraft:ingot." + ingot.name().toLowerCase(Locale.ENGLISH));
+            ingot.icon =
+                    iconRegister.registerIcon("railcraft:ingot." + ingot.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -94,16 +92,14 @@ public class ItemIngot extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage >= EnumIngot.VALUES.length)
-            return EnumIngot.STEEL.icon;
+        if (damage >= EnumIngot.VALUES.length) return EnumIngot.STEEL.icon;
         return EnumIngot.VALUES[damage].icon;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumIngot.VALUES.length)
-            return "item.railcraft.ingot";
+        if (damage < 0 || damage >= EnumIngot.VALUES.length) return "item.railcraft.ingot";
         switch (EnumIngot.VALUES[damage]) {
             case STEEL:
                 return "item.railcraft.ingot.steel";
@@ -117,5 +113,4 @@ public class ItemIngot extends ItemRailcraft {
                 return "item.railcraft.ingot";
         }
     }
-
 }

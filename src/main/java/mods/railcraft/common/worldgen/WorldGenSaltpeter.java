@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.worldgen;
 
-import net.minecraft.world.gen.feature.*;
 import java.util.Random;
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.BlockWorldLogic;
@@ -17,6 +16,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.*;
 
 public class WorldGenSaltpeter extends WorldGenerator {
 
@@ -24,10 +24,10 @@ public class WorldGenSaltpeter extends WorldGenerator {
      * The block ID of the ore to be placed using this generator.
      */
     private final Block minableBlock = BlockOre.getBlock();
+
     private final int minableBlockMeta = EnumOre.SALTPETER.ordinal();
 
-    public WorldGenSaltpeter() {
-    }
+    public WorldGenSaltpeter() {}
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -52,10 +52,9 @@ public class WorldGenSaltpeter extends WorldGenerator {
             return false;
         }
 
-//        if(world.isAirBlock(x, y + 1, z)){
-//            return false;
-//        }
+        //        if(world.isAirBlock(x, y + 1, z)){
+        //            return false;
+        //        }
         return true;
     }
-
 }

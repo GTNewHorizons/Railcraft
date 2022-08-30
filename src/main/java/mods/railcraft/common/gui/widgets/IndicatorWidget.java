@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,7 +26,8 @@ public class IndicatorWidget extends Widget {
         this(controller, x, y, u, v, w, h, true);
     }
 
-    public IndicatorWidget(IIndicatorController controller, int x, int y, int u, int v, int w, int h, boolean vertical) {
+    public IndicatorWidget(
+            IIndicatorController controller, int x, int y, int u, int v, int w, int h, boolean vertical) {
         super(x, y, u, v, w, h);
         this.controller = controller;
         this.vertical = vertical;
@@ -36,15 +37,12 @@ public class IndicatorWidget extends Widget {
     @SideOnly(Side.CLIENT)
     public void draw(GuiContainerRailcraft gui, int guiX, int guiY, int mouseX, int mouseY) {
         int scale = controller.getScaledLevel(vertical ? h : w);
-        if (vertical)
-            gui.drawTexturedModalRect(guiX + x, guiY + y + h - scale, u, v + h - scale, w, scale);
-        else
-            gui.drawTexturedModalRect(guiX + x, guiY + y, u, v, scale, h);
+        if (vertical) gui.drawTexturedModalRect(guiX + x, guiY + y + h - scale, u, v + h - scale, w, scale);
+        else gui.drawTexturedModalRect(guiX + x, guiY + y, u, v, scale, h);
     }
 
     @Override
     public ToolTip getToolTip() {
         return controller.getToolTip();
     }
-
 }

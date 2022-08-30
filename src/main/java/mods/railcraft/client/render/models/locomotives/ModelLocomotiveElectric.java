@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,7 +23,7 @@ public class ModelLocomotiveElectric extends ModelSimple {
         setTextureOffset("loco.engine", 67, 37);
         setTextureOffset("loco.sideA", 35, 45);
         setTextureOffset("loco.sideB", 35, 45);
-//        setTextureOffset("loco.lightA", 1, 45);
+        //        setTextureOffset("loco.lightA", 1, 45);
         setTextureOffset("loco.lightB", 1, 55);
 
         renderer.rotationPointX = 8F;
@@ -36,9 +36,7 @@ public class ModelLocomotiveElectric extends ModelSimple {
         loco.addBox("engine", -15F, -19F, -16F, 13, 9, 16);
         loco.addBox("sideA", -20F, -17F, -13F, 5, 7, 10);
         loco.addBox("sideB", -2F, -17F, -13F, 5, 7, 10);
-//        loco.addBox("lightA", -2F, -18F, -10F, 6, 4, 4);
+        //        loco.addBox("lightA", -2F, -18F, -10F, 6, 4, 4);
         loco.addBox("lightB", -21F, -18F, -10F, 6, 4, 4);
-
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,8 +32,7 @@ public class SolidFuelProvider implements IFuelProvider {
 
     @Override
     public double getHeatStep() {
-        if (lastItem instanceof ItemFirestoneRefined)
-            return Steam.HEAT_STEP * 30;
+        if (lastItem instanceof ItemFirestoneRefined) return Steam.HEAT_STEP * 30;
         return Steam.HEAT_STEP;
     }
 
@@ -48,5 +47,4 @@ public class SolidFuelProvider implements IFuelProvider {
         }
         return burn;
     }
-
 }

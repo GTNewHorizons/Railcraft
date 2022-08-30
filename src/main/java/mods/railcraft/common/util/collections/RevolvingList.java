@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,8 +20,7 @@ public class RevolvingList<T> extends ForwardingCollection<T> {
 
     private final Deque<T> list = new LinkedList<T>();
 
-    public RevolvingList() {
-    }
+    public RevolvingList() {}
 
     public RevolvingList(Collection<? extends T> collection) {
         list.addAll(collection);
@@ -33,26 +32,22 @@ public class RevolvingList<T> extends ForwardingCollection<T> {
     }
 
     public void rotateLeft() {
-        if (list.isEmpty())
-            return;
+        if (list.isEmpty()) return;
         list.addFirst(list.removeLast());
     }
 
     public void rotateRight() {
-        if (list.isEmpty())
-            return;
+        if (list.isEmpty()) return;
         list.addLast(list.removeFirst());
     }
 
     public T getCurrent() {
-        if (list.isEmpty())
-            return null;
+        if (list.isEmpty()) return null;
         return list.getFirst();
     }
 
     public void setCurrent(T e) {
-        if (!contains(e))
-            return;
+        if (!contains(e)) return;
 
         if (e == null)
             while (getCurrent() != null) {
@@ -63,5 +58,4 @@ public class RevolvingList<T> extends ForwardingCollection<T> {
                 rotateRight();
             }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.common.util.crafting;
 
+import javax.annotation.Nullable;
 import mods.railcraft.common.carts.EntityCartFiltered;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ICartType;
@@ -18,8 +19,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -47,11 +46,9 @@ public class CartFilterRecipe implements IRecipe {
 
         @Nullable
         public static FilterType fromCartType(ICartType cartType) {
-            if (cartType == null)
-                return null;
+            if (cartType == null) return null;
             for (FilterType t : VALUES) {
-                if (t.cartType == cartType)
-                    return t;
+                if (t.cartType == cartType) return t;
             }
             return null;
         }
@@ -69,7 +66,7 @@ public class CartFilterRecipe implements IRecipe {
         FilterType filterType = null;
         int cartSlot = -1;
         int itemCount = 0;
-        
+
         for (IInvSlot slot : InventoryIterator.getIterable(grid).notNull()) {
             itemCount++;
             ItemStack stack = slot.getStackInSlot();
@@ -82,11 +79,11 @@ public class CartFilterRecipe implements IRecipe {
             }
         }
         if (filterType == null || itemCount > 2) {
-        	return null;
+            return null;
         }
         for (IInvSlot slot : InventoryIterator.getIterable(grid).notNull()) {
             if (slot.getIndex() == cartSlot) {
-            	continue;
+                continue;
             }
             ItemStack stack = slot.getStackInSlot();
             if (filterType.isAllowedFilterItem(stack)) {
@@ -95,18 +92,17 @@ public class CartFilterRecipe implements IRecipe {
             }
         }
         if (cartItem == null || filterItem == null) {
-        	return null;
+            return null;
         }
 
         if (filterItem.getItem().hasContainerItem(filterItem)) {
-			/*System.out.println("Has container item."); 
-			System.out.println("Does Container Item Leave Crafting Grid: "+filterItem.getItem().doesContainerItemLeaveCraftingGrid(filterItem)); 
-			ItemStack cont = filterItem.getItem().getContainerItem(filterItem);
-			System.out.println("Container item: "+cont.getDisplayName()+" x"+cont.stackSize); */
+            /*System.out.println("Has container item.");
+            System.out.println("Does Container Item Leave Crafting Grid: "+filterItem.getItem().doesContainerItemLeaveCraftingGrid(filterItem));
+            ItemStack cont = filterItem.getItem().getContainerItem(filterItem);
+            System.out.println("Container item: "+cont.getDisplayName()+" x"+cont.stackSize); */
             return null;
-        }
-        else {
-            filterItem.stackSize = 1;       	
+        } else {
+            filterItem.stackSize = 1;
         }
         ItemStack output = EntityCartFiltered.addFilterToCartItem(cartItem, filterItem);
         return output;
@@ -121,5 +117,4 @@ public class CartFilterRecipe implements IRecipe {
     public ItemStack getRecipeOutput() {
         return null;
     }
-
 }

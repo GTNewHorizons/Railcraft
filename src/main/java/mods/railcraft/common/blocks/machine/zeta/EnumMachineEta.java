@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,15 +10,10 @@ package mods.railcraft.common.blocks.machine.zeta;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
@@ -29,29 +24,157 @@ import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 /**
  *
  * @author CovertJaguar
  */
 public enum EnumMachineEta implements IEnumMachine {
+    TANK_IRIDIUM_WALL(
+            Module.ADVTANKS,
+            "tank.iridium.wall",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM,
+            TileGenericMultiTankWall.class,
+            2,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1),
+    TANK_IRIDIUM_GAUGE(
+            Module.ADVTANKS,
+            "tank.iridium.gauge",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM,
+            TileGenericMultiTankGauge.class,
+            1,
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            4),
+    TANK_IRIDIUM_VALVE(
+            Module.ADVTANKS,
+            "tank.iridium.valve",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM,
+            TileGenericMultiTankValve.class,
+            4,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2,
+            3),
+    TANK_OSMIUM_WALL(
+            Module.ADVTANKS,
+            "tank.osmium.wall",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM,
+            TileGenericMultiTankWall.class,
+            2,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1),
+    TANK_OSMIUM_GAUGE(
+            Module.ADVTANKS,
+            "tank.osmium.gauge",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM,
+            TileGenericMultiTankGauge.class,
+            1,
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            4),
+    TANK_OSMIUM_VALVE(
+            Module.ADVTANKS,
+            "tank.osmium.valve",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM,
+            TileGenericMultiTankValve.class,
+            4,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2,
+            3),
+    TANK_NEUTRONIUM_WALL(
+            Module.ADVTANKS,
+            "tank.neutronium.wall",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM,
+            TileGenericMultiTankWall.class,
+            2,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1),
+    TANK_NEUTRONIUM_GAUGE(
+            Module.ADVTANKS,
+            "tank.neutronium.gauge",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM,
+            TileGenericMultiTankGauge.class,
+            1,
+            5,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            3,
+            4),
+    TANK_NEUTRONIUM_VALVE(
+            Module.ADVTANKS,
+            "tank.neutronium.valve",
+            ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM,
+            TileGenericMultiTankValve.class,
+            4,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2,
+            3);
 
-    
-    TANK_IRIDIUM_WALL(Module.ADVTANKS, "tank.iridium.wall", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM, TileGenericMultiTankWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
-    TANK_IRIDIUM_GAUGE(Module.ADVTANKS, "tank.iridium.gauge", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM, TileGenericMultiTankGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4),
-    TANK_IRIDIUM_VALVE(Module.ADVTANKS, "tank.iridium.valve", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_IRIDIUM, TileGenericMultiTankValve.class, 4, 1, 0, 0, 1, 1, 1, 1, 2, 3),
-    TANK_OSMIUM_WALL(Module.ADVTANKS, "tank.osmium.wall", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM, TileGenericMultiTankWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
-    TANK_OSMIUM_GAUGE(Module.ADVTANKS, "tank.osmium.gauge", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM, TileGenericMultiTankGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4),
-    TANK_OSMIUM_VALVE(Module.ADVTANKS, "tank.osmium.valve", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_OSMIUM, TileGenericMultiTankValve.class, 4, 1, 0, 0, 1, 1, 1, 1, 2, 3),
-    TANK_NEUTRONIUM_WALL(Module.ADVTANKS, "tank.neutronium.wall", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM, TileGenericMultiTankWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
-    TANK_NEUTRONIUM_GAUGE(Module.ADVTANKS, "tank.neutronium.gauge", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM, TileGenericMultiTankGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4),
-    TANK_NEUTRONIUM_VALVE(Module.ADVTANKS, "tank.neutronium.valve", ModuleAdvancedTanks.CAPACITY_PER_BLOCK_NEUTRONIUM, TileGenericMultiTankValve.class, 4, 1, 0, 0, 1, 1, 1, 1, 2, 3);
-	
     private final Module module;
     private final String tag;
     private final int capacity;
@@ -75,7 +198,8 @@ public enum EnumMachineEta implements IEnumMachine {
         creativeList.add(TANK_NEUTRONIUM_VALVE);
     }
 
-    private EnumMachineEta(Module module, String tag, int cap, Class<? extends TileMachineBase> tile, int... textureInfo) {
+    private EnumMachineEta(
+            Module module, String tag, int cap, Class<? extends TileMachineBase> tile, int... textureInfo) {
         this.module = module;
         this.tile = tile;
         this.tag = tag;
@@ -90,15 +214,15 @@ public enum EnumMachineEta implements IEnumMachine {
         }
         return false;
     }
-    
+
     public void setTankType(GenericMultiTankBase tankMaterial) {
-    	tankType = tankMaterial;
+        tankType = tankMaterial;
     }
-    
+
     public int getCapacity() {
-    	return capacity;
+        return capacity;
     }
-    
+
     @Override
     public boolean isDepreciated() {
         return module == null;
@@ -114,8 +238,7 @@ public enum EnumMachineEta implements IEnumMachine {
 
     @Override
     public IIcon getTexture(int index) {
-        if (index < 0 || index >= texture.length)
-            index = 0;
+        if (index < 0 || index >= texture.length) index = 0;
         return texture[index];
     }
 
@@ -134,8 +257,7 @@ public enum EnumMachineEta implements IEnumMachine {
     }
 
     public static EnumMachineEta fromId(int id) {
-        if (id < 0 || id >= VALUES.length)
-            id = 0;
+        if (id < 0 || id >= VALUES.length) id = 0;
         return VALUES[id];
     }
 
@@ -155,10 +277,11 @@ public enum EnumMachineEta implements IEnumMachine {
 
     public TileMachineBase getTileEntity() {
         try {
-        	Constructor<? extends TileMachineBase> cons = tile.getDeclaredConstructor(MetalTank.class, IEnumMachine.class);        	
+            Constructor<? extends TileMachineBase> cons =
+                    tile.getDeclaredConstructor(MetalTank.class, IEnumMachine.class);
             return (TileMachineBase) cons.newInstance(tankType, this);
         } catch (Exception ex) {
-        	ex.printStackTrace();
+            ex.printStackTrace();
         }
         return null;
     }
@@ -171,8 +294,7 @@ public enum EnumMachineEta implements IEnumMachine {
     @Override
     public ItemStack getItem(int qty) {
         Block block = getBlock();
-        if (block == null)
-            return null;
+        if (block == null) return null;
         return new ItemStack(block, qty, ordinal());
     }
 
@@ -195,12 +317,9 @@ public enum EnumMachineEta implements IEnumMachine {
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-        if (tip != null)
-            return tip;
+        if (tip != null) return tip;
         String tipTag = getTag() + ".tip";
-        if (LocalizationPlugin.hasTag(tipTag))
-            tip = ToolTip.buildToolTip(tipTag);
+        if (LocalizationPlugin.hasTag(tipTag)) tip = ToolTip.buildToolTip(tipTag);
         return tip;
     }
-
 }

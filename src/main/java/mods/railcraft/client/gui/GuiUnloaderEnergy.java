@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,27 +8,30 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.tileentity.TileEntity;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.machine.gamma.TileEnergyUnloader;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerEnergyLoader;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntity;
 
 public class GuiUnloaderEnergy extends TileGui {
 
     private final String label;
     private final String button1Label = LocalizationPlugin.translate("railcraft.gui.energy.unloader.wait");
-//    private final String BUTTON1 = "Wait till Empty";
+    //    private final String BUTTON1 = "Wait till Empty";
     private TileEnergyUnloader tile;
 
     public GuiUnloaderEnergy(InventoryPlayer inv, TileEnergyUnloader tile) {
-        super(tile, new ContainerEnergyLoader(inv, tile), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_energy_loader.png");
+        super(
+                tile,
+                new ContainerEnergyLoader(inv, tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_energy_loader.png");
         this.tile = tile;
         label = tile.getName();
     }
@@ -36,8 +39,7 @@ public class GuiUnloaderEnergy extends TileGui {
     @Override
     public void initGui() {
         super.initGui();
-        if (tile == null)
-            return;
+        if (tile == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
@@ -46,8 +48,7 @@ public class GuiUnloaderEnergy extends TileGui {
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (tile == null)
-            return;
+        if (tile == null) return;
         if (guibutton.id == 0) {
             tile.setWaitTillEmpty(!tile.waitTillEmpty());
             ((GuiToggleButton) guibutton).active = tile.waitTillEmpty();
@@ -65,7 +66,11 @@ public class GuiUnloaderEnergy extends TileGui {
         String capacity = "/" + tile.getCapacity();
         fontRendererObj.drawString(capacity, 28, 65, 0x404040);
 
-        fontRendererObj.drawString(LocalizationPlugin.translate("railcraft.gui.ic2.energy.rate", tile.getTransferRate()), 90, 67, 0x404040);
+        fontRendererObj.drawString(
+                LocalizationPlugin.translate("railcraft.gui.ic2.energy.rate", tile.getTransferRate()),
+                90,
+                67,
+                0x404040);
     }
 
     @Override
@@ -91,10 +96,7 @@ public class GuiUnloaderEnergy extends TileGui {
     public void updateScreen() {
         super.updateScreen();
         TileEntity t = tile.getWorld().getTileEntity(tile.getX(), tile.getY(), tile.getZ());
-        if (t instanceof TileEnergyUnloader)
-            tile = (TileEnergyUnloader) t;
-        else
-            mc.thePlayer.closeScreen();
+        if (t instanceof TileEnergyUnloader) tile = (TileEnergyUnloader) t;
+        else mc.thePlayer.closeScreen();
     }
-
 }

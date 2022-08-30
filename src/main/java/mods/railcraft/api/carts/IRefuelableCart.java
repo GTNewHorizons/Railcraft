@@ -16,5 +16,4 @@ package mods.railcraft.api.carts;
 public interface IRefuelableCart {
 
     boolean needsRefuel();
-
 }

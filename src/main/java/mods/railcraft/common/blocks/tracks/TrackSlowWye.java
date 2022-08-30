@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,17 +10,14 @@ package mods.railcraft.common.blocks.tracks;
 
 import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerSlow;
 
-public class TrackSlowWye extends TrackWye
-{
+public class TrackSlowWye extends TrackWye {
 
-    public TrackSlowWye()
-    {
+    public TrackSlowWye() {
         speedController = SpeedControllerSlow.getInstance();
     }
 
     @Override
-    public EnumTrack getTrackType()
-    {
+    public EnumTrack getTrackType() {
         return EnumTrack.SLOW_WYE;
     }
 }

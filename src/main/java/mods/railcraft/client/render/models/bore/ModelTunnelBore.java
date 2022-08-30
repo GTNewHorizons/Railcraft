@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,8 +13,7 @@ import net.minecraft.client.model.ModelRenderer;
 
 // Referenced classes of package net.minecraft.src:
 //            Modelbase, ModelRenderer
-public class ModelTunnelBore extends ModelBase
-{
+public class ModelTunnelBore extends ModelBase {
 
     private ModelRenderer base;
     private ModelRenderer rear;
@@ -27,8 +26,7 @@ public class ModelTunnelBore extends ModelBase
     private boolean active;
     private boolean renderBoreHead;
 
-    public ModelTunnelBore()
-    {
+    public ModelTunnelBore() {
         base = new ModelRenderer(this, 0, 0).setTextureSize(256, 256);
         rear = new ModelRenderer(this, 0, 18).setTextureSize(256, 256);
         furnaceBox = new ModelRenderer(this, 99, 112).setTextureSize(256, 256);
@@ -86,18 +84,83 @@ public class ModelTunnelBore extends ModelBase
         int headHeight = 32;
         int headYOffset = headHeight / 2 - frameHeight / 2 + offset;
 
-        base.addBox(-baseLength / 2 + baseXOffset, -baseHeight + offset + baseYOffset, -baseWidth / 2, baseLength, baseHeight, baseWidth, 0.0F);
-        rear.addBox(-rearLength / 2 + rearXOffset, -rearHeight + offset + rearYOffset, -rearWidth / 2, rearLength, rearHeight, rearWidth, 0.0F);
-        furnaceBox.addBox(-boxLength / 2 + boxXOffset, -boxHeight + offset, -boxWidth / 2, boxLength, boxHeight, boxWidth, 0.0F);
-        furnaceIdle.addBox(-furnaceLength / 2 + furnaceXOffset, -furnaceHeight + offset - furnaceYOffset, -furnaceWidth / 2 + furnace1ZOffset, furnaceLength, furnaceHeight, furnaceWidth, 0.0F);
-        furnaceIdle.addBox(-furnaceLength / 2 + furnaceXOffset, -furnaceHeight + offset - furnaceYOffset, -furnaceWidth / 2 + furnace2ZOffset, furnaceLength, furnaceHeight, furnaceWidth, 0.0F);
-        furnaceActive.addBox(-furnaceLength / 2 + furnaceXOffset, -furnaceHeight + offset - furnaceYOffset, -furnaceWidth / 2 + furnace1ZOffset, furnaceLength, furnaceHeight, furnaceWidth, 0.0F);
-        furnaceActive.addBox(-furnaceLength / 2 + furnaceXOffset, -furnaceHeight + offset - furnaceYOffset, -furnaceWidth / 2 + furnace2ZOffset, furnaceLength, furnaceHeight, furnaceWidth, 0.0F);
-        stack.addBox(-stackLength / 2 + stackXOffset, -stackHeight + offset - stackYOffset, -stackWidth / 2 + stack1ZOffset, stackLength, stackHeight, stackWidth, 0.0F);
-        stack.addBox(-stackLength / 2 + stackXOffset, -stackHeight + offset - stackYOffset, -stackWidth / 2 + stack2ZOffset, stackLength, stackHeight, stackWidth, 0.0F);
-        boreFrame.addBox(-frameLength + frameXOffset, -frameHeight + offset, -frameWidth / 2, frameLength, frameHeight, frameWidth, 0.0F);
+        base.addBox(
+                -baseLength / 2 + baseXOffset,
+                -baseHeight + offset + baseYOffset,
+                -baseWidth / 2,
+                baseLength,
+                baseHeight,
+                baseWidth,
+                0.0F);
+        rear.addBox(
+                -rearLength / 2 + rearXOffset,
+                -rearHeight + offset + rearYOffset,
+                -rearWidth / 2,
+                rearLength,
+                rearHeight,
+                rearWidth,
+                0.0F);
+        furnaceBox.addBox(
+                -boxLength / 2 + boxXOffset, -boxHeight + offset, -boxWidth / 2, boxLength, boxHeight, boxWidth, 0.0F);
+        furnaceIdle.addBox(
+                -furnaceLength / 2 + furnaceXOffset,
+                -furnaceHeight + offset - furnaceYOffset,
+                -furnaceWidth / 2 + furnace1ZOffset,
+                furnaceLength,
+                furnaceHeight,
+                furnaceWidth,
+                0.0F);
+        furnaceIdle.addBox(
+                -furnaceLength / 2 + furnaceXOffset,
+                -furnaceHeight + offset - furnaceYOffset,
+                -furnaceWidth / 2 + furnace2ZOffset,
+                furnaceLength,
+                furnaceHeight,
+                furnaceWidth,
+                0.0F);
+        furnaceActive.addBox(
+                -furnaceLength / 2 + furnaceXOffset,
+                -furnaceHeight + offset - furnaceYOffset,
+                -furnaceWidth / 2 + furnace1ZOffset,
+                furnaceLength,
+                furnaceHeight,
+                furnaceWidth,
+                0.0F);
+        furnaceActive.addBox(
+                -furnaceLength / 2 + furnaceXOffset,
+                -furnaceHeight + offset - furnaceYOffset,
+                -furnaceWidth / 2 + furnace2ZOffset,
+                furnaceLength,
+                furnaceHeight,
+                furnaceWidth,
+                0.0F);
+        stack.addBox(
+                -stackLength / 2 + stackXOffset,
+                -stackHeight + offset - stackYOffset,
+                -stackWidth / 2 + stack1ZOffset,
+                stackLength,
+                stackHeight,
+                stackWidth,
+                0.0F);
+        stack.addBox(
+                -stackLength / 2 + stackXOffset,
+                -stackHeight + offset - stackYOffset,
+                -stackWidth / 2 + stack2ZOffset,
+                stackLength,
+                stackHeight,
+                stackWidth,
+                0.0F);
+        boreFrame.addBox(
+                -frameLength + frameXOffset,
+                -frameHeight + offset,
+                -frameWidth / 2,
+                frameLength,
+                frameHeight,
+                frameWidth,
+                0.0F);
 
-        boreHead.addBox(-headLength + headXOffset, -headHeight / 2, -headWidth / 2, headLength, headHeight, headWidth, 0.0F);
+        boreHead.addBox(
+                -headLength + headXOffset, -headHeight / 2, -headWidth / 2, headLength, headHeight, headWidth, 0.0F);
         boreHead.setRotationPoint(0, -headHeight / 2 + headYOffset, 0);
 
         // boreHead.rotateAngleX = 1;
@@ -122,37 +185,32 @@ public class ModelTunnelBore extends ModelBase
         // sideModels[5].rotateAngleX = -1.570796F;
     }
 
-    public void render(float f, float f1, float f2, float f3, float f4, float f5)
-    {
+    public void render(float f, float f1, float f2, float f3, float f4, float f5) {
         // sideModels[5].rotationPointY = 4F - f2;
         base.render(f5);
         rear.render(f5);
-        if(renderBoreHead) {
+        if (renderBoreHead) {
             boreHead.render(f5);
         }
         boreFrame.render(f5);
         furnaceBox.render(f5);
-        if(active) {
+        if (active) {
             furnaceActive.render(f5);
         } else {
             furnaceIdle.render(f5);
         }
         stack.render(f5);
-
     }
 
-    public void setBoreHeadRotation(float rotation)
-    {
+    public void setBoreHeadRotation(float rotation) {
         boreHead.rotateAngleX = rotation;
     }
 
-    public void setBoreActive(boolean active)
-    {
+    public void setBoreActive(boolean active) {
         this.active = active;
     }
 
-    public void setRenderBoreHead(boolean render)
-    {
+    public void setRenderBoreHead(boolean render) {
         renderBoreHead = render;
     }
 }

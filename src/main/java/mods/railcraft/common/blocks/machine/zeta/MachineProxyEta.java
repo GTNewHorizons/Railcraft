@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,7 +32,6 @@ public class MachineProxyEta implements IMachineProxy, IComparatorOverride {
 
     @Override
     public void registerIcons(IIconRegister iconRegister) {
-    	EnumMachineEta.registerIcons(iconRegister);
+        EnumMachineEta.registerIcons(iconRegister);
     }
-
 }

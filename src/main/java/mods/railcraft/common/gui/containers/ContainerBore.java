@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,16 +10,14 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.carts.EntityTunnelBore;
 import mods.railcraft.common.gui.slots.SlotBallast;
 import mods.railcraft.common.gui.slots.SlotBore;
 import mods.railcraft.common.gui.slots.SlotFuel;
 import mods.railcraft.common.gui.slots.SlotTrack;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerBore extends RailcraftContainer {
 
@@ -99,44 +97,44 @@ public class ContainerBore extends RailcraftContainer {
         }
     }
 
-//    @Override
-//    public ItemStack transferStackInSlot(EntityPlayer player, int i) {
-//        ItemStack stackCopy = null;
-//        Slot slot = (Slot) inventorySlots.get(i);
-//        if (slot != null && slot.getHasStack()) {
-//            ItemStack stack = slot.getStack();
-//            stackCopy = stack.copy();
-//            if (i < 25) {
-//                if (!mergeItemStack(stack, 25, inventorySlots.size(), true)) {
-//                    return null;
-//                }
-//            } else {
-//                if (SlotBore.canPlaceItem(stack)) {
-//                    if (!mergeItemStack(stack, 0, 1, false)) {
-//                        return null;
-//                    }
-//                } else if (fuel.isItemValid(stack)) {
-//                    if (!mergeItemStack(stack, 1, 7, false)) {
-//                        return null;
-//                    }
-//                } else if (ballast.isItemValid(stack)) {
-//                    if (!mergeItemStack(stack, 7, 16, false)) {
-//                        return null;
-//                    }
-//                } else if (track.isItemValid(stack)) {
-//                    if (!mergeItemStack(stack, 16, 25, false)) {
-//                        return null;
-//                    }
-//                } else {
-//                    return null;
-//                }
-//            }
-//            if (stack.stackSize == 0) {
-//                slot.putStack(null);
-//            } else {
-//                slot.onSlotChanged();
-//            }
-//        }
-//        return stackCopy;
-//    }
+    //    @Override
+    //    public ItemStack transferStackInSlot(EntityPlayer player, int i) {
+    //        ItemStack stackCopy = null;
+    //        Slot slot = (Slot) inventorySlots.get(i);
+    //        if (slot != null && slot.getHasStack()) {
+    //            ItemStack stack = slot.getStack();
+    //            stackCopy = stack.copy();
+    //            if (i < 25) {
+    //                if (!mergeItemStack(stack, 25, inventorySlots.size(), true)) {
+    //                    return null;
+    //                }
+    //            } else {
+    //                if (SlotBore.canPlaceItem(stack)) {
+    //                    if (!mergeItemStack(stack, 0, 1, false)) {
+    //                        return null;
+    //                    }
+    //                } else if (fuel.isItemValid(stack)) {
+    //                    if (!mergeItemStack(stack, 1, 7, false)) {
+    //                        return null;
+    //                    }
+    //                } else if (ballast.isItemValid(stack)) {
+    //                    if (!mergeItemStack(stack, 7, 16, false)) {
+    //                        return null;
+    //                    }
+    //                } else if (track.isItemValid(stack)) {
+    //                    if (!mergeItemStack(stack, 16, 25, false)) {
+    //                        return null;
+    //                    }
+    //                } else {
+    //                    return null;
+    //                }
+    //            }
+    //            if (stack.stackSize == 0) {
+    //                slot.putStack(null);
+    //            } else {
+    //                slot.onSlotChanged();
+    //            }
+    //        }
+    //        return stackCopy;
+    //    }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,7 +24,14 @@ import net.minecraft.world.World;
 public class EntityItemFireproof extends EntityItem {
 
     public static void register() {
-        EntityRegistry.registerModEntity(EntityItemFireproof.class, "ItemFireproof", EntityIDs.ENTITY_ITEM_FIREPROOF, Railcraft.getMod(), 64, 20, true);
+        EntityRegistry.registerModEntity(
+                EntityItemFireproof.class,
+                "ItemFireproof",
+                EntityIDs.ENTITY_ITEM_FIREPROOF,
+                Railcraft.getMod(),
+                64,
+                20,
+                true);
     }
 
     public EntityItemFireproof(World world) {
@@ -50,14 +57,11 @@ public class EntityItemFireproof extends EntityItem {
     @Override
     public void onUpdate() {
         ItemStack stack = this.getDataWatcher().getWatchableObjectItemStack(10);
-        if (stack != null && stack.getItem() != null)
-            if (stack.getItem().onEntityItemUpdate(this))
-                return;
+        if (stack != null && stack.getItem() != null) if (stack.getItem().onEntityItemUpdate(this)) return;
 
         onEntityUpdate();
 
-        if (this.delayBeforeCanPickup > 0)
-            --this.delayBeforeCanPickup;
+        if (this.delayBeforeCanPickup > 0) --this.delayBeforeCanPickup;
 
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -68,23 +72,25 @@ public class EntityItemFireproof extends EntityItem {
         float f = 0.98F;
 
         if (this.onGround)
-            f = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.98F;
+            f = this.worldObj.getBlock(
+                                    MathHelper.floor_double(this.posX),
+                                    MathHelper.floor_double(this.boundingBox.minY) - 1,
+                                    MathHelper.floor_double(this.posZ))
+                            .slipperiness
+                    * 0.98F;
 
         this.motionX *= (double) f;
         this.motionY *= 0.9800000190734863D;
         this.motionZ *= (double) f;
 
-        if (this.onGround)
-            this.motionY *= -0.5D;
+        if (this.onGround) this.motionY *= -0.5D;
     }
 
     @Override
-    public void setFire(int par1) {
-    }
+    public void setFire(int par1) {}
 
     @Override
-    protected void dealFireDamage(int par1) {
-    }
+    protected void dealFireDamage(int par1) {}
 
     @Override
     public boolean handleLavaMovement() {
@@ -92,7 +98,5 @@ public class EntityItemFireproof extends EntityItem {
     }
 
     @Override
-    protected void setOnFireFromLava() {
-    }
-
+    protected void setOnFireFromLava() {}
 }

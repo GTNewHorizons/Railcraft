@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,15 +12,13 @@ import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.util.misc.MiscTools;
 
-public class ModuleTracksReinforced extends RailcraftModule
-{
+public class ModuleTracksReinforced extends RailcraftModule {
 
     @Override
-    public void initFirst()
-    {
+    public void initFirst() {
         RailcraftBlocks.registerBlockTrack();
 
-        if(RailcraftBlocks.getBlockTrack() != null) {
+        if (RailcraftBlocks.getBlockTrack() != null) {
             MiscTools.registerTrack(EnumTrack.REINFORCED);
             MiscTools.registerTrack(EnumTrack.REINFORCED_BOOSTER);
             MiscTools.registerTrack(EnumTrack.REINFORCED_JUNCTION);

@@ -9,5 +9,4 @@ import mods.railcraft.common.plugins.buildcraft.actions.IActionReceptor;
 public interface IHasCart extends IActionReceptor {
 
     boolean hasMinecart();
-
 }

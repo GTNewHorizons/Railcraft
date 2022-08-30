@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,14 +12,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.Slot;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.gui.EnumGui;
@@ -28,17 +20,28 @@ import mods.railcraft.common.util.inventory.*;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileItemLoader extends TileLoaderItemBase {
     private final Map<ItemStack, Short> transferredItems = new ItemStackMap<Short>();
     private final Set<ItemStack> checkedItems = new ItemStackSet();
-    private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(this, tileCache, new ITileFilter() {
-        @Override
-        public boolean matches(TileEntity tile) {
-            return !(tile instanceof TileItemLoader);
-        }
-    }, InventorySorter.SIZE_DECENDING);
+    private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(
+            this,
+            tileCache,
+            new ITileFilter() {
+                @Override
+                public boolean matches(TileEntity tile) {
+                    return !(tile instanceof TileItemLoader);
+                }
+            },
+            InventorySorter.SIZE_DECENDING);
     private final InventoryMapper invBuffer;
     private final LinkedList<IInventory> chests = new LinkedList<IInventory>();
 
@@ -95,8 +98,7 @@ public class TileItemLoader extends TileLoaderItemBase {
             return;
         }
 
-        if (isPaused())
-            return;
+        if (isPaused()) return;
 
         chests.clear();
         chests.addAll(invCache.getAdjacentInventories());
@@ -177,7 +179,9 @@ public class TileItemLoader extends TileLoaderItemBase {
                     }
                 }
                 if (!movedItemCart) {
-                    movedItemCart = InvTools.moveOneItemExcept(chests, cartInv, getItemFilters().getContents()) != null;
+                    movedItemCart = InvTools.moveOneItemExcept(
+                                    chests, cartInv, getItemFilters().getContents())
+                            != null;
                 }
                 break;
             }
@@ -218,11 +222,9 @@ public class TileItemLoader extends TileLoaderItemBase {
         }
     }
 
-
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof IInventory))
-            return true;
+        if (!(cart instanceof IInventory)) return true;
         IInventory cartInv = (IInventory) cart;
         EnumRedstoneMode state = getRedstoneModeController().getButtonState();
         if (!movedItemCart && state != EnumRedstoneMode.COMPLETE) {
@@ -233,15 +235,20 @@ public class TileItemLoader extends TileLoaderItemBase {
             } else {
                 return true;
             }
-        } else if (getMode() == EnumTransferMode.TRANSFER && isTransferComplete(getItemFilters().getContents())) {
+        } else if (getMode() == EnumTransferMode.TRANSFER
+                && isTransferComplete(getItemFilters().getContents())) {
             return true;
-        } else if (getMode() == EnumTransferMode.STOCK && isStockComplete(cartInv, getItemFilters().getContents())) {
+        } else if (getMode() == EnumTransferMode.STOCK
+                && isStockComplete(cartInv, getItemFilters().getContents())) {
             return true;
-        } else if (getMode() == EnumTransferMode.EXCESS && isExcessComplete(chests, getItemFilters().getContents())) {
+        } else if (getMode() == EnumTransferMode.EXCESS
+                && isExcessComplete(chests, getItemFilters().getContents())) {
             return true;
-        } else if (getMode() == EnumTransferMode.ALL && isAllComplete(cartInv, getItemFilters().getContents())) {
+        } else if (getMode() == EnumTransferMode.ALL
+                && isAllComplete(cartInv, getItemFilters().getContents())) {
             return true;
-        } else if (!movedItemCart && InvTools.isInventoryFull(cartInv, getOrientation().getOpposite())) {
+        } else if (!movedItemCart
+                && InvTools.isInventoryFull(cartInv, getOrientation().getOpposite())) {
             return true;
         }
         return false;

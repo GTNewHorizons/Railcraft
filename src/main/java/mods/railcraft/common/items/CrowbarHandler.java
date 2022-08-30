@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,7 @@ package mods.railcraft.common.items;
 
 import com.google.common.collect.MapMaker;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.util.Map;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.carts.EntityTunnelBore;
@@ -25,20 +26,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
-import java.util.Map;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @SuppressWarnings("unused")
 public class CrowbarHandler {
     public static final float SMACK_VELOCITY = 0.07f;
-    private static final Map<EntityPlayer, EntityMinecart> linkMap = new MapMaker().weakKeys().weakValues().makeMap();
+    private static final Map<EntityPlayer, EntityMinecart> linkMap =
+            new MapMaker().weakKeys().weakValues().makeMap();
     private static CrowbarHandler instance;
 
     public static CrowbarHandler instance() {
-        if (instance == null)
-            instance = new CrowbarHandler();
+        if (instance == null) instance = new CrowbarHandler();
         return instance;
     }
 
@@ -48,13 +47,10 @@ public class CrowbarHandler {
         Entity entity = event.target;
 
         ItemStack stack = thePlayer.getCurrentEquippedItem();
-        if (stack != null && stack.getItem() instanceof IToolCrowbar)
-            thePlayer.swingItem();
+        if (stack != null && stack.getItem() instanceof IToolCrowbar) thePlayer.swingItem();
 
-        if (Game.isNotHost(thePlayer.worldObj))
-            return;
-        if (!ModuleManager.isModuleLoaded(Module.TRAIN))
-            return;
+        if (Game.isNotHost(thePlayer.worldObj)) return;
+        if (!ModuleManager.isModuleLoaded(Module.TRAIN)) return;
 
         boolean used = false;
         if (stack != null && stack.getItem() instanceof IToolCrowbar) {
@@ -78,15 +74,13 @@ public class CrowbarHandler {
                                 if (used)
                                     ChatPlugin.sendLocalizedChatFromServer(thePlayer, "railcraft.gui.link.created");
                             }
-                            if (!used)
-                                ChatPlugin.sendLocalizedChatFromServer(thePlayer, "railcraft.gui.link.failed");
+                            if (!used) ChatPlugin.sendLocalizedChatFromServer(thePlayer, "railcraft.gui.link.failed");
                         } else {
                             linkMap.put(thePlayer, (EntityMinecart) entity);
                             ChatPlugin.sendLocalizedChatFromServer(thePlayer, "railcraft.gui.link.started");
                         }
                     }
-                    if (used)
-                        crowbar.onLink(thePlayer, stack, cart);
+                    if (used) crowbar.onLink(thePlayer, stack, cart);
                 } else if (crowbar.canBoost(thePlayer, stack, cart)) {
                     thePlayer.addExhaustion(1F);
 
@@ -94,25 +88,19 @@ public class CrowbarHandler {
                     if (thePlayer.ridingEntity != null) {
                         // NOOP
                     } else //noinspection StatementWithEmptyBody
-                        if (cart instanceof EntityTunnelBore) {
-                            // NOOP
-                        } else if (cart instanceof IDirectionalCart)
-                            ((IDirectionalCart) cart).reverse();
-                        else {
-                            if (cart.posX < thePlayer.posX)
-                                cart.motionX -= SMACK_VELOCITY;
-                            else
-                                cart.motionX += SMACK_VELOCITY;
-                            if (cart.posZ < thePlayer.posZ)
-                                cart.motionZ -= SMACK_VELOCITY;
-                            else
-                                cart.motionZ += SMACK_VELOCITY;
-                        }
+                    if (cart instanceof EntityTunnelBore) {
+                        // NOOP
+                    } else if (cart instanceof IDirectionalCart) ((IDirectionalCart) cart).reverse();
+                    else {
+                        if (cart.posX < thePlayer.posX) cart.motionX -= SMACK_VELOCITY;
+                        else cart.motionX += SMACK_VELOCITY;
+                        if (cart.posZ < thePlayer.posZ) cart.motionZ -= SMACK_VELOCITY;
+                        else cart.motionZ += SMACK_VELOCITY;
+                    }
                     crowbar.onBoost(thePlayer, stack, cart);
                 }
             }
         }
-        if (used)
-            event.setCanceled(true);
+        if (used) event.setCanceled(true);
     }
 }

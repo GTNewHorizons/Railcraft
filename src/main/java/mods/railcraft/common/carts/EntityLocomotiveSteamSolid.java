@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -46,7 +46,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
     private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
     private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
     private final IInventory invTicket = new InventoryMapper(this, SLOT_TICKET, 2, false);
-//    private boolean outOfWater = true;
+    //    private boolean outOfWater = true;
 
     public EntityLocomotiveSteamSolid(World world) {
         super(world);
@@ -72,8 +72,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
         boiler.setFuelProvider(new SolidFuelProvider(this, SLOT_BURN) {
             @Override
             public double getMoreFuel() {
-                if (isShutdown())
-                    return 0;
+                if (isShutdown()) return 0;
                 return super.getMoreFuel();
             }
         });
@@ -81,16 +80,18 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
 
     @Override
     public void onUpdate() {
-//        if (Game.isHost(worldObj)) {
-//            if (RailcraftConfig.printSignalDebug()) {
-//                if (outOfWater && !tankWater.isEmpty())
-//                    outOfWater = false;
-//                else if (!outOfWater && tankWater.isEmpty()) {
-//                    outOfWater = true;
-//                    Game.log(Level.INFO, "Solid Steam Locomotive ran out of water! [{0}, {1}, {2}] [locked:{3}] [idle:{4}] [mode:{5}]", posX, posY, posZ, Train.getTrain(this).isTrainLockedDown(), isIdle(), getMode().name());
-//                }
-//            }
-//        }
+        //        if (Game.isHost(worldObj)) {
+        //            if (RailcraftConfig.printSignalDebug()) {
+        //                if (outOfWater && !tankWater.isEmpty())
+        //                    outOfWater = false;
+        //                else if (!outOfWater && tankWater.isEmpty()) {
+        //                    outOfWater = true;
+        //                    Game.log(Level.INFO, "Solid Steam Locomotive ran out of water! [{0}, {1}, {2}]
+        // [locked:{3}] [idle:{4}] [mode:{5}]", posX, posY, posZ, Train.getTrain(this).isTrainLockedDown(), isIdle(),
+        // getMode().name());
+        //                }
+        //            }
+        //        }
         super.onUpdate();
 
         if (Game.isHost(worldObj)) {
@@ -98,8 +99,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
             InvTools.moveOneItem(invBurn, invWaterOutput, FluidContainerRegistry.EMPTY_BUCKET);
             if (InvTools.isEmptySlot(invStock)) {
                 ItemStack stack = CartTools.transferHelper.pullStack(this, StackFilter.FUEL);
-                if (stack != null)
-                    InvTools.moveItemStack(stack, invStock);
+                if (stack != null) InvTools.moveItemStack(stack, invStock);
             }
             if (isSafeToFill() && tankWater.getFluidAmount() < tankWater.getCapacity() / 2) {
                 FluidStack pulled = CartTools.transferHelper.pullFluid(this, Fluids.WATER.getB(1));
@@ -116,11 +116,9 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
     @Override
     public boolean needsRefuel() {
         FluidStack water = tankWater.getFluid();
-        if (water == null || water.amount < tankWater.getCapacity() / 3)
-            return true;
+        if (water == null || water.amount < tankWater.getCapacity() / 3) return true;
         int numItems = InvTools.countItems(invFuel);
-        if (numItems == 0)
-            return true;
+        if (numItems == 0) return true;
         int maxItems = InvTools.countMaxItemStackSize(invFuel);
         return (double) numItems / (double) maxItems < 0.25;
     }
@@ -160,8 +158,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
                 return StackFilter.FUEL.matches(stack);
             case SLOT_LIQUID_INPUT:
                 FluidStack fluidStack = FluidItemHelper.getFluidStackInContainer(stack);
-                if (fluidStack != null && fluidStack.amount > FluidHelper.BUCKET_VOLUME)
-                    return false;
+                if (fluidStack != null && fluidStack.amount > FluidHelper.BUCKET_VOLUME) return false;
                 return FluidItemHelper.containsFluid(stack, Fluids.WATER.get(1));
             case SLOT_TICKET:
                 return ItemTicket.FILTER.matches(stack);

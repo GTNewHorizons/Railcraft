@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,7 +11,6 @@ package mods.railcraft.client.util.textures;
 import java.awt.image.BufferedImage;
 import java.awt.image.RasterFormatException;
 import java.io.IOException;
-import org.apache.logging.log4j.Level;
 import javax.imageio.ImageIO;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.client.Minecraft;
@@ -22,6 +21,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.Level;
 
 /**
  *
@@ -64,11 +64,14 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
 
     @Override
     public boolean load(IResourceManager manager, ResourceLocation location) {
-        location = new ResourceLocation(location.getResourceDomain(), location.getResourcePath().replace("." + index, ""));
+        location = new ResourceLocation(
+                location.getResourceDomain(), location.getResourcePath().replace("." + index, ""));
         int split = location.getResourcePath().indexOf(':');
         if (split != -1)
-            location = new ResourceLocation(location.getResourceDomain(), location.getResourcePath().substring(0, split));
-        location = new ResourceLocation(location.getResourceDomain(), "textures/blocks/" + location.getResourcePath() + ".png");
+            location = new ResourceLocation(
+                    location.getResourceDomain(), location.getResourcePath().substring(0, split));
+        location = new ResourceLocation(
+                location.getResourceDomain(), "textures/blocks/" + location.getResourcePath() + ".png");
 
         BufferedImage image;
         IResource resource = null;
@@ -76,7 +79,11 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
             resource = manager.getResource(location);
             image = ImageIO.read(resource.getInputStream());
         } catch (IOException ex) {
-            Game.log(Level.WARN, "Failed to load sub-texture from {0}: {1}", location.getResourcePath(), ex.getLocalizedMessage());
+            Game.log(
+                    Level.WARN,
+                    "Failed to load sub-texture from {0}: {1}",
+                    location.getResourcePath(),
+                    ex.getLocalizedMessage());
             return true;
         } finally {
             if (resource != null)
@@ -96,7 +103,13 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
         try {
             subImage = image.getSubimage(x * size, y * size, size, size);
         } catch (RasterFormatException ex) {
-            Game.log(Level.WARN, "Failed to load sub-texture from {0} - {1}x{2}: {3}", location.getResourcePath(), image.getWidth(), image.getHeight(), ex.getLocalizedMessage());
+            Game.log(
+                    Level.WARN,
+                    "Failed to load sub-texture from {0} - {1}x{2}: {3}",
+                    location.getResourcePath(),
+                    image.getWidth(),
+                    image.getHeight(),
+                    ex.getLocalizedMessage());
             return true;
         }
         this.height = subImage.getHeight();
@@ -108,5 +121,4 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
         framesTextureData.add(imageData);
         return false;
     }
-
 }

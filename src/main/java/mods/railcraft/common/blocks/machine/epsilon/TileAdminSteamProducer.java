@@ -9,7 +9,6 @@ import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -39,8 +38,7 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
     }
 
     private void checkRedstone() {
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         boolean p = PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord);
         if (powered != p) {
             powered = p;
@@ -51,11 +49,9 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
-        if (!powered)
-            return;
+        if (!powered) return;
 
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
             TileEntity tile = tileCache.getTileOnSide(side);
@@ -67,7 +63,6 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
                 }
             }
         }
-
     }
 
     @Override
@@ -82,15 +77,13 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (!powered)
-            return null;
+        if (!powered) return null;
         return Fluids.STEAM.get(resource.amount);
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        if (!powered)
-            return null;
+        if (!powered) return null;
         return Fluids.STEAM.get(FluidHelper.BUCKET_VOLUME);
     }
 
@@ -107,9 +100,7 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
         FluidStack fluidStack = Fluids.STEAM.get(FluidHelper.BUCKET_VOLUME);
-        return new FluidTankInfo[]{
-            new FluidTankInfo(fluidStack, FluidHelper.BUCKET_VOLUME)
-        };
+        return new FluidTankInfo[] {new FluidTankInfo(fluidStack, FluidHelper.BUCKET_VOLUME)};
     }
 
     @Override
@@ -144,5 +135,4 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
             markBlockForUpdate();
         }
     }
-
 }

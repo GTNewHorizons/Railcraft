@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,24 +11,23 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.carts.CartUtils;
-import mods.railcraft.common.fluids.FluidItemHelper;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -70,8 +69,7 @@ public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInv
 
     public Fluid getFluidHandled() {
         Fluid fluid = getFilterFluid();
-        if (fluid != null)
-            return fluid;
+        if (fluid != null) return fluid;
         return loaderTank.getFluidType();
     }
 
@@ -81,10 +79,8 @@ public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInv
     }
 
     protected void sendCart(EntityMinecart cart) {
-        if (cart == null)
-            return;
-        if (isManualMode())
-            return;
+        if (cart == null) return;
+        if (isManualMode()) return;
         if (CartTools.cartVelocityIsLessThan(cart, STOP_VELOCITY)) {
             flow = 0;
             setPowered(true);
@@ -93,30 +89,26 @@ public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInv
 
     @Override
     protected void setPowered(boolean p) {
-        if (isManualMode())
-            p = false;
+        if (isManualMode()) p = false;
         super.setPowered(p);
     }
 
     @Override
     public boolean canHandleCart(EntityMinecart cart) {
-        if (isSendCartGateAction())
-            return false;
-        if (!(cart instanceof IFluidHandler))
-            return false;
+        if (isSendCartGateAction()) return false;
+        if (!(cart instanceof IFluidHandler)) return false;
         ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
         ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
         if (minecartSlot1 != null || minecartSlot2 != null)
-            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) && !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
-                return false;
+            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart)
+                    && !CartUtils.doesCartMatchFilter(minecartSlot2, cart)) return false;
         return true;
     }
 
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isHost(getWorld()) && clock % FluidHelper.NETWORK_UPDATE_INTERVAL == 0)
-            sendUpdateToClient();
+        if (Game.isHost(getWorld()) && clock % FluidHelper.NETWORK_UPDATE_INTERVAL == 0) sendUpdateToClient();
     }
 
     @Override
@@ -163,15 +155,13 @@ public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInv
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
 
-        if (data.getTag("tanks") instanceof NBTTagCompound)
-            data.setTag("tanks", new NBTTagList());
+        if (data.getTag("tanks") instanceof NBTTagCompound) data.setTag("tanks", new NBTTagList());
         tankManager.readTanksFromNBT(data);
 
         if (data.hasKey("filter")) {
             NBTTagCompound filter = data.getCompoundTag("filter");
             getFluidFilter().readFromNBT("Items", filter);
-        } else
-            getFluidFilter().readFromNBT("invFilter", data);
+        } else getFluidFilter().readFromNBT("invFilter", data);
     }
 
     @Override
@@ -195,5 +185,4 @@ public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInv
 
         tankManager.readPacketData(data);
     }
-
 }

@@ -28,7 +28,6 @@ import net.minecraft.nbt.NBTTagCompound;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum LocomotiveRenderType {
-
     STEAM_SOLID("cart.loco.steam.solid"),
     STEAM_MAGIC("cart.loco.steam.magic"),
     ELECTRIC("cart.loco.electric");
@@ -70,8 +69,7 @@ public enum LocomotiveRenderType {
      */
     public LocomotiveModelRenderer getRenderer(String tag) {
         LocomotiveModelRenderer renderer = renderers.get(tag);
-        if (renderer == null)
-            renderer = renderers.get("railcraft:default");
+        if (renderer == null) renderer = renderers.get("railcraft:default");
         return renderer;
     }
 
@@ -87,7 +85,6 @@ public enum LocomotiveRenderType {
         return getItemWithRenderer(rendererTag, stack);
     }
 
-
     /**
      * This function will return a Locomotive item with the skin identifier
      * saved in the NBT. Use it to create a recipe for your skin.
@@ -97,8 +94,7 @@ public enum LocomotiveRenderType {
      * @return
      */
     public ItemStack getItemWithRenderer(String rendererTag, ItemStack stack) {
-        if (stack == null)
-            return null;
+        if (stack == null) return null;
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setString("model", rendererTag);
         stack.setTagCompound(nbt);
@@ -113,5 +109,4 @@ public enum LocomotiveRenderType {
     public Set<String> getRendererTags() {
         return renderers.keySet();
     }
-
 }

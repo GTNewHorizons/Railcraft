@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -41,7 +41,7 @@ public class RenderBlockSignal extends BlockRenderer {
 
     public void addCombinedRenderer(EnumSignal type, ICombinedRenderer renderer) {
         addCombinedRenderer(type.ordinal(), renderer);
-        if(renderer instanceof TileEntitySpecialRenderer){
+        if (renderer instanceof TileEntitySpecialRenderer) {
             ClientRegistry.bindTileEntitySpecialRenderer(type.getTileClass(), (TileEntitySpecialRenderer) renderer);
         }
     }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -19,9 +21,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityCartChest extends CartContainerBase implements IItemCart {
     public EntityCartChest(World world) {
@@ -43,23 +42,20 @@ public class EntityCartChest extends CartContainerBase implements IItemCart {
         if (RailcraftConfig.doCartsBreakOnDrop()) {
             items.add(new ItemStack(Items.minecart));
             items.add(new ItemStack(Blocks.chest));
-        } else
-            items.add(getCartItem());
+        } else items.add(getCartItem());
         return items;
     }
 
     @Override
     public ItemStack getCartItem() {
         ItemStack stack = new ItemStack(Items.chest_minecart);
-        if (hasCustomInventoryName())
-            stack.setStackDisplayName(getCommandSenderName());
+        if (hasCustomInventoryName()) stack.setStackDisplayName(getCommandSenderName());
         return stack;
     }
 
     @Override
     public boolean doInteract(EntityPlayer player) {
-        if (Game.isHost(worldObj))
-            player.displayGUIChest(this);
+        if (Game.isHost(worldObj)) player.displayGUIChest(this);
         return true;
     }
 

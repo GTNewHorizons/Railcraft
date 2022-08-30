@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -41,7 +41,17 @@ public class ItemSlab extends ItemBlock {
      * false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (stack.stackSize == 0) {
             return false;
         }
@@ -63,7 +73,6 @@ public class ItemSlab extends ItemBlock {
             }
 
             return super.onItemUse(stack, player, world, x, y, z, side, hitX, hitY, hitZ);
-
         }
     }
 
@@ -99,15 +108,23 @@ public class ItemSlab extends ItemBlock {
         TileSlab slab = BlockRailcraftSlab.getSlabTile(world, x, y, z);
         if (slab != null) {
             Block block = BlockRailcraftSlab.getBlock();
-            if (world.checkNoEntityCollision(block.getCollisionBoundingBoxFromPool(world, x, y, z)) && slab.addSlab(EnumBlockMaterial.fromOrdinal(stack.getItemDamage()))) {
-                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+            if (world.checkNoEntityCollision(block.getCollisionBoundingBoxFromPool(world, x, y, z))
+                    && slab.addSlab(EnumBlockMaterial.fromOrdinal(stack.getItemDamage()))) {
+                world.playSoundEffect(
+                        x + 0.5F,
+                        y + 0.5F,
+                        z + 0.5F,
+                        block.stepSound.func_150496_b(),
+                        (block.stepSound.getVolume() + 1.0F) / 2.0F,
+                        block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
             }
         }
     }
 
     @Override
-    public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer par6EntityPlayer, ItemStack stack) {
+    public boolean func_150936_a(
+            World world, int x, int y, int z, int side, EntityPlayer par6EntityPlayer, ItemStack stack) {
         if (isSingleSlab(world, x, y, z, side)) {
             return true;
         }
@@ -128,26 +145,40 @@ public class ItemSlab extends ItemBlock {
      * @param side The side the player (or machine) right-clicked on.
      */
     @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
+    public boolean placeBlockAt(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ,
+            int metadata) {
         Block block = field_150939_a;
         if (!world.checkNoEntityCollision(block.getCollisionBoundingBoxFromPool(world, x, y, z))) {
             return false;
         }
 
-//        boolean shifted = world.getBlockId(x, y, z) != blockID;
-//        ForgeDirection s = ForgeDirection.getOrientation(side).getOpposite();
-//        int cx = shifted ? MiscTools.getXOnSide(x, s) : x;
-//        int cy = shifted ? MiscTools.getYOnSide(y, s) : y;
-//        int cz = shifted ? MiscTools.getZOnSide(z, s) : z;
-//        if (world.getBlockId(cx, cy, cz) == blockID) {
-//            int meta = world.getBlockMetadata(cx, cy, cz);
-//            if (!shifted && meta != DOUBLE_SLAB_META || meta == UP_SLAB_META && side == 0 || meta == DOWN_SLAB_META && side == 1) {
-//                world.setBlockMetadataWithNotify(cx, cy, cz, DOUBLE_SLAB_META, 3);
-//                world.playSoundEffect((double) ((float) cx + 0.5F), (double) ((float) cy + 0.5F), (double) ((float) cz + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-//                --stack.stackSize;
-//                return false;
-//            }
-//        }
+        //        boolean shifted = world.getBlockId(x, y, z) != blockID;
+        //        ForgeDirection s = ForgeDirection.getOrientation(side).getOpposite();
+        //        int cx = shifted ? MiscTools.getXOnSide(x, s) : x;
+        //        int cy = shifted ? MiscTools.getYOnSide(y, s) : y;
+        //        int cz = shifted ? MiscTools.getZOnSide(z, s) : z;
+        //        if (world.getBlockId(cx, cy, cz) == blockID) {
+        //            int meta = world.getBlockMetadata(cx, cy, cz);
+        //            if (!shifted && meta != DOUBLE_SLAB_META || meta == UP_SLAB_META && side == 0 || meta ==
+        // DOWN_SLAB_META && side == 1) {
+        //                world.setBlockMetadataWithNotify(cx, cy, cz, DOUBLE_SLAB_META, 3);
+        //                world.playSoundEffect((double) ((float) cx + 0.5F), (double) ((float) cy + 0.5F), (double)
+        // ((float) cz + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F,
+        // block.stepSound.getPitch() * 0.8F);
+        //                --stack.stackSize;
+        //                return false;
+        //            }
+        //        }
 
         if (!world.setBlock(x, y, z, field_150939_a)) {
             return false;

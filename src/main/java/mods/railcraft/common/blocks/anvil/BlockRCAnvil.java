@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -29,7 +29,8 @@ import net.minecraft.world.World;
  */
 public class BlockRCAnvil extends BlockAnvil {
 
-    private static final String[] anvilIconNames = new String[]{"anvil_top_damaged_0", "anvil_top_damaged_1", "anvil_top_damaged_2"};
+    private static final String[] anvilIconNames =
+            new String[] {"anvil_top_damaged_0", "anvil_top_damaged_1", "anvil_top_damaged_2"};
     private static Block block;
 
     public static Block getBlock() {
@@ -68,8 +69,7 @@ public class BlockRCAnvil extends BlockAnvil {
         if (this.anvilRenderSide == 3 && par1 == 1) {
             int k = (par2 >> 2) % this.iconArray.length;
             return this.iconArray[k];
-        } else
-            return this.blockIcon;
+        } else return this.blockIcon;
     }
 
     @Override
@@ -83,13 +83,12 @@ public class BlockRCAnvil extends BlockAnvil {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote)
-            return true;
+    public boolean onBlockActivated(
+            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) return true;
         else {
             GuiHandler.openGui(EnumGui.ANVIL, player, world, x, y, z);
             return true;
         }
     }
-
 }

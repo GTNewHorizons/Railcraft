@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -15,7 +15,6 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum LockButtonState implements IMultiButtonState {
-
     UNLOCKED(new ButtonTextureSet(224, 0, 16, 16)),
     LOCKED(new ButtonTextureSet(240, 0, 16, 16));
     public static final LockButtonState[] VALUES = values();
@@ -39,5 +38,4 @@ public enum LockButtonState implements IMultiButtonState {
     public ToolTip getToolTip() {
         return null;
     }
-
 }

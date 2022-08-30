@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -38,7 +38,8 @@ public class RenderTools {
         return renderblocks.renderStandardBlock(block, x, y, z);
     }
 
-    public static boolean renderStandardBlockWithColorMultiplier(RenderBlocks renderblocks, Block block, int x, int y, int z) {
+    public static boolean renderStandardBlockWithColorMultiplier(
+            RenderBlocks renderblocks, Block block, int x, int y, int z) {
         renderblocks.setRenderBoundsFromBlock(block);
         int mult = block.colorMultiplier(renderblocks.blockAccess, x, y, z);
         float r = (float) (mult >> 16 & 255) / 255.0F;
@@ -57,24 +58,19 @@ public class RenderTools {
         return renderblocks.renderStandardBlockWithColorMultiplier(block, x, y, z, r, g, b);
     }
 
-    public static void renderBlockSideWithBrightness(RenderBlocks renderblocks, IBlockAccess world, Block block, int i, int j, int k, int side, int brightness) {
+    public static void renderBlockSideWithBrightness(
+            RenderBlocks renderblocks, IBlockAccess world, Block block, int i, int j, int k, int side, int brightness) {
         renderblocks.setRenderBoundsFromBlock(block);
         renderblocks.enableAO = false;
         Tessellator tessellator = Tessellator.instance;
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         tessellator.setBrightness(brightness);
-        if (side == 0)
-            renderblocks.renderFaceYNeg(block, i, j, k, block.getIcon(world, i, j, k, 0));
-        else if (side == 1)
-            renderblocks.renderFaceYPos(block, i, j, k, block.getIcon(world, i, j, k, 1));
-        else if (side == 2)
-            renderblocks.renderFaceZNeg(block, i, j, k, block.getIcon(world, i, j, k, 2));
-        else if (side == 3)
-            renderblocks.renderFaceZPos(block, i, j, k, block.getIcon(world, i, j, k, 3));
-        else if (side == 4)
-            renderblocks.renderFaceXNeg(block, i, j, k, block.getIcon(world, i, j, k, 4));
-        else if (side == 5)
-            renderblocks.renderFaceXPos(block, i, j, k, block.getIcon(world, i, j, k, 5));
+        if (side == 0) renderblocks.renderFaceYNeg(block, i, j, k, block.getIcon(world, i, j, k, 0));
+        else if (side == 1) renderblocks.renderFaceYPos(block, i, j, k, block.getIcon(world, i, j, k, 1));
+        else if (side == 2) renderblocks.renderFaceZNeg(block, i, j, k, block.getIcon(world, i, j, k, 2));
+        else if (side == 3) renderblocks.renderFaceZPos(block, i, j, k, block.getIcon(world, i, j, k, 3));
+        else if (side == 4) renderblocks.renderFaceXNeg(block, i, j, k, block.getIcon(world, i, j, k, 4));
+        else if (side == 5) renderblocks.renderFaceXPos(block, i, j, k, block.getIcon(world, i, j, k, 5));
     }
 
     public static void renderBlockOnInventory(RenderBlocks renderblocks, Block block, int meta, float light) {
@@ -85,19 +81,20 @@ public class RenderTools {
         renderBlockOnInventory(renderblocks, block, meta, light, side, null);
     }
 
-    public static void renderBlockOnInventory(RenderBlocks renderblocks, Block block, int meta, float light, int side, IIcon iconOveride) {
+    public static void renderBlockOnInventory(
+            RenderBlocks renderblocks, Block block, int meta, float light, int side, IIcon iconOveride) {
         Tessellator tessellator = Tessellator.instance;
-//        boolean flag = block.blockID == Block.grass.blockID;
-//        if (renderblocks.useInventoryTint) {
-//            int j = block.getRenderColor(meta);
-//            if (flag) {
-//                j = 0xffffff;
-//            }
-//            float red = (float) (j >> 16 & 0xff) / 255F;
-//            float green = (float) (j >> 8 & 0xff) / 255F;
-//            float blue = (float) (j & 0xff) / 255F;
-//            GL11.glColor4f(red * light, green * light, blue * light, 1.0F);
-//        }
+        //        boolean flag = block.blockID == Block.grass.blockID;
+        //        if (renderblocks.useInventoryTint) {
+        //            int j = block.getRenderColor(meta);
+        //            if (flag) {
+        //                j = 0xffffff;
+        //            }
+        //            float red = (float) (j >> 16 & 0xff) / 255F;
+        //            float green = (float) (j >> 8 & 0xff) / 255F;
+        //            float blue = (float) (j & 0xff) / 255F;
+        //            GL11.glColor4f(red * light, green * light, blue * light, 1.0F);
+        //        }
         block.setBlockBoundsForItemRender();
         renderblocks.setRenderBoundsFromBlock(block);
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
@@ -105,71 +102,65 @@ public class RenderTools {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, -1F, 0.0F);
             IIcon icon = iconOveride == null ? block.getIcon(0, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
-//        if (flag && renderblocks.useInventoryTint) {
-//            int k1 = block.getRenderColor(meta);
-//            float f6 = (float) (k1 >> 16 & 0xff) / 255F;
-//            float f8 = (float) (k1 >> 8 & 0xff) / 255F;
-//            float f9 = (float) (k1 & 0xff) / 255F;
-//            GL11.glColor4f(f6 * light, f8 * light, f9 * light, 1.0F);
-//        }
+        //        if (flag && renderblocks.useInventoryTint) {
+        //            int k1 = block.getRenderColor(meta);
+        //            float f6 = (float) (k1 >> 16 & 0xff) / 255F;
+        //            float f8 = (float) (k1 >> 8 & 0xff) / 255F;
+        //            float f9 = (float) (k1 & 0xff) / 255F;
+        //            GL11.glColor4f(f6 * light, f8 * light, f9 * light, 1.0F);
+        //        }
         if (side == 1 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 1.0F, 0.0F);
             IIcon icon = iconOveride == null ? block.getIcon(1, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
-//        if (flag && renderblocks.useInventoryTint) {
-//            GL11.glColor4f(light, light, light, 1.0F);
-//        }
+        //        if (flag && renderblocks.useInventoryTint) {
+        //            GL11.glColor4f(light, light, light, 1.0F);
+        //        }
         if (side == 2 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 0.0F, -1F);
             IIcon icon = iconOveride == null ? block.getIcon(2, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
         if (side == 3 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 0.0F, 1.0F);
             IIcon icon = iconOveride == null ? block.getIcon(3, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
         if (side == 4 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(-1F, 0.0F, 0.0F);
             IIcon icon = iconOveride == null ? block.getIcon(4, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
         if (side == 5 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(1.0F, 0.0F, 0.0F);
             IIcon icon = iconOveride == null ? block.getIcon(5, meta) : iconOveride;
-            if (icon != null)
-                renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
+            if (icon != null) renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
     public static IIcon getSafeIcon(IIcon icon) {
-        if (icon == null)
-            return getMissingIcon();
+        if (icon == null) return getMissingIcon();
         return icon;
     }
 
     public static IIcon getMissingIcon() {
-        return ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
+        return ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture))
+                .getAtlasSprite("missingno");
     }
 
     public static void renderString(String name, double xOffset, double yOffset, double zOffset) {
@@ -209,5 +200,4 @@ public class RenderTools {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glPopMatrix();
     }
-
 }

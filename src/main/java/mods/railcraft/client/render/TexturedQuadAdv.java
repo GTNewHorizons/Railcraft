@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -56,7 +56,12 @@ public class TexturedQuadAdv extends TexturedQuad {
 
         for (int i = 0; i < 4; ++i) {
             PositionTextureVertex positiontexturevertex = this.vertexPositions[i];
-            tess.addVertexWithUV((double) ((float) positiontexturevertex.vector3D.xCoord * par2), (double) ((float) positiontexturevertex.vector3D.yCoord * par2), (double) ((float) positiontexturevertex.vector3D.zCoord * par2), (double) positiontexturevertex.texturePositionX, (double) positiontexturevertex.texturePositionY);
+            tess.addVertexWithUV(
+                    (double) ((float) positiontexturevertex.vector3D.xCoord * par2),
+                    (double) ((float) positiontexturevertex.vector3D.yCoord * par2),
+                    (double) ((float) positiontexturevertex.vector3D.zCoord * par2),
+                    (double) positiontexturevertex.texturePositionX,
+                    (double) positiontexturevertex.texturePositionY);
         }
         if (doTesselating) {
             tess.draw();

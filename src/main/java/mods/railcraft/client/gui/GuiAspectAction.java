@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -57,16 +57,45 @@ public class GuiAspectAction extends GuiContainerRailcraft {
     @Override
     public void initGui() {
         super.initGui();
-        if (actionManager == null)
-            return;
+        if (actionManager == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
-        buttonList.add(new GuiToggleButton(0, w + 7, h + 30, 50, LocalizationPlugin.translate(SignalAspect.GREEN.getLocalizationTag()), aspects[SignalAspect.GREEN.ordinal()]));
-        buttonList.add(new GuiToggleButton(1, w + 12, h + 55, 70, LocalizationPlugin.translate(SignalAspect.BLINK_YELLOW.getLocalizationTag()), aspects[SignalAspect.BLINK_YELLOW.ordinal()]));
-        buttonList.add(new GuiToggleButton(2, w + 63, h + 30, 50, LocalizationPlugin.translate(SignalAspect.YELLOW.getLocalizationTag()), aspects[SignalAspect.YELLOW.ordinal()]));
-        buttonList.add(new GuiToggleButton(3, w + 94, h + 55, 70, LocalizationPlugin.translate(SignalAspect.BLINK_RED.getLocalizationTag()), aspects[SignalAspect.BLINK_RED.ordinal()]));
-        buttonList.add(new GuiToggleButton(4, w + 119, h + 30, 50, LocalizationPlugin.translate(SignalAspect.RED.getLocalizationTag()), aspects[SignalAspect.RED.ordinal()]));
+        buttonList.add(new GuiToggleButton(
+                0,
+                w + 7,
+                h + 30,
+                50,
+                LocalizationPlugin.translate(SignalAspect.GREEN.getLocalizationTag()),
+                aspects[SignalAspect.GREEN.ordinal()]));
+        buttonList.add(new GuiToggleButton(
+                1,
+                w + 12,
+                h + 55,
+                70,
+                LocalizationPlugin.translate(SignalAspect.BLINK_YELLOW.getLocalizationTag()),
+                aspects[SignalAspect.BLINK_YELLOW.ordinal()]));
+        buttonList.add(new GuiToggleButton(
+                2,
+                w + 63,
+                h + 30,
+                50,
+                LocalizationPlugin.translate(SignalAspect.YELLOW.getLocalizationTag()),
+                aspects[SignalAspect.YELLOW.ordinal()]));
+        buttonList.add(new GuiToggleButton(
+                3,
+                w + 94,
+                h + 55,
+                70,
+                LocalizationPlugin.translate(SignalAspect.BLINK_RED.getLocalizationTag()),
+                aspects[SignalAspect.BLINK_RED.ordinal()]));
+        buttonList.add(new GuiToggleButton(
+                4,
+                w + 119,
+                h + 30,
+                50,
+                LocalizationPlugin.translate(SignalAspect.RED.getLocalizationTag()),
+                aspects[SignalAspect.RED.ordinal()]));
         buttonList.add(lockButton = new GuiMultiButton(5, w + 152, h + 8, 16, actionManager.getLockController()));
         lockButton.enabled = false;
     }
@@ -78,12 +107,9 @@ public class GuiAspectAction extends GuiContainerRailcraft {
 
     @Override
     protected final void actionPerformed(GuiButton button) {
-        if (actionManager == null)
-            return;
-        if (!button.enabled)
-            return;
-        if (!canChange())
-            return;
+        if (actionManager == null) return;
+        if (!button.enabled) return;
+        if (!canChange()) return;
         markChanged();
         onButtonPressed(button);
     }
@@ -100,7 +126,10 @@ public class GuiAspectAction extends GuiContainerRailcraft {
     public void updateScreen() {
         super.updateScreen();
         lockButton.enabled = ((ContainerAspectAction) container).canLock;
-        lockButton.setToolTip(actionManager.getLockController().getButtonState() == LockButtonState.LOCKED ? lockedToolTips : lockButton.enabled ? unlockedToolTips : notownedToolTips);
+        lockButton.setToolTip(
+                actionManager.getLockController().getButtonState() == LockButtonState.LOCKED
+                        ? lockedToolTips
+                        : lockButton.enabled ? unlockedToolTips : notownedToolTips);
         String username = ((ContainerAspectAction) container).ownerName;
         if (username != null && !username.equals(ownerName)) {
             ownerName = username;
@@ -130,7 +159,7 @@ public class GuiAspectAction extends GuiContainerRailcraft {
     }
 
     public boolean canChange() {
-        return actionManager.getLockController().getButtonState() == LockButtonState.UNLOCKED || ((ContainerAspectAction) container).canLock;
+        return actionManager.getLockController().getButtonState() == LockButtonState.UNLOCKED
+                || ((ContainerAspectAction) container).canLock;
     }
-
 }

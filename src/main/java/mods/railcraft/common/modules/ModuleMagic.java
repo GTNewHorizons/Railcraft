@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,16 +9,13 @@
 package mods.railcraft.common.modules;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import mods.railcraft.api.crafting.IRockCrusherRecipe;
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.items.firestone.FirestoneTickHandler;
 import mods.railcraft.common.items.firestone.*;
+import mods.railcraft.common.items.firestone.FirestoneTickHandler;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -44,31 +41,42 @@ public class ModuleMagic extends RailcraftModule {
         FMLCommonHandler.instance().bus().register(new FirestoneTickHandler());
 
         if (EnumOre.FIRESTONE.isEnabled() && ItemFirestoneRaw.item != null && ItemFirestoneCut.item != null) {
-            CraftingPlugin.addShapedRecipe(ItemFirestoneCut.getItem(),
+            CraftingPlugin.addShapedRecipe(
+                    ItemFirestoneCut.getItem(),
                     " P ",
                     "PFP",
                     " P ",
-                    'P', Items.diamond_pickaxe,
-                    'F', ItemFirestoneRaw.item);
+                    'P',
+                    Items.diamond_pickaxe,
+                    'F',
+                    ItemFirestoneRaw.item);
 
             for (ItemStack stack : FluidHelper.getContainersFilledWith(Fluids.LAVA.get(FluidHelper.BUCKET_VOLUME))) {
-                CraftingPlugin.addShapedRecipe(ItemFirestoneRefined.getItemEmpty(),
+                CraftingPlugin.addShapedRecipe(
+                        ItemFirestoneRefined.getItemEmpty(),
                         "LRL",
                         "RFR",
                         "LRL",
-                        'R', "blockRedstone",
-                        'L', stack,
-                        'F', ItemFirestoneCut.item);
-                CraftingPlugin.addShapedRecipe(ItemFirestoneRefined.getItemEmpty(),
+                        'R',
+                        "blockRedstone",
+                        'L',
+                        stack,
+                        'F',
+                        ItemFirestoneCut.item);
+                CraftingPlugin.addShapedRecipe(
+                        ItemFirestoneRefined.getItemEmpty(),
                         "LOL",
                         "RFR",
                         "LRL",
-                        'R', "blockRedstone",
-                        'L', stack,
-                        'O', ItemFirestoneRaw.item,
-                        'F', new ItemStack(ItemFirestoneCracked.item, 1, OreDictionary.WILDCARD_VALUE));
+                        'R',
+                        "blockRedstone",
+                        'L',
+                        stack,
+                        'O',
+                        ItemFirestoneRaw.item,
+                        'F',
+                        new ItemStack(ItemFirestoneCracked.item, 1, OreDictionary.WILDCARD_VALUE));
             }
         }
     }
-
 }

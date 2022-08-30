@@ -8,6 +8,7 @@
  */
 package mods.railcraft.common.commands;
 
+import java.util.List;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.*;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
@@ -24,8 +25,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFactory;
 import org.apache.logging.log4j.message.MessageFormatMessageFactory;
-
-import java.util.List;
 
 /**
  * Created by CovertJaguar on 3/12/2015.
@@ -51,14 +50,17 @@ public class CommandDebug extends SubCommand {
         int z = coord.z;
         Block block = world.getBlock(x, y, z);
         if (block != null)
-            printLine(sender, "Target block [{0}] = {1}, {2}", shortCoords(coord), block.getClass(), block.getUnlocalizedName());
-        else
-            printLine(sender, "Target block [{0}] = null", shortCoords(coord));
+            printLine(
+                    sender,
+                    "Target block [{0}] = {1}, {2}",
+                    shortCoords(coord),
+                    block.getClass(),
+                    block.getUnlocalizedName());
+        else printLine(sender, "Target block [{0}] = null", shortCoords(coord));
         TileEntity t = world.getTileEntity(x, y, z);
         if (t != null)
             printLine(sender, "Target tile [{0}, {1}, {2}] = {3}", t.xCoord, t.yCoord, t.zCoord, t.getClass());
-        else
-            printLine(sender, "Target tile [{0}, {1}, {2}] = null", x, y, z);
+        else printLine(sender, "Target tile [{0}, {1}, {2}] = null", x, y, z);
     }
 
     private static String shortCoords(WorldCoordinate coord) {
@@ -74,8 +76,7 @@ public class CommandDebug extends SubCommand {
 
         @Override
         public void processSubCommand(ICommandSender sender, String[] args) {
-            if (args.length != 3)
-                CommandHelpers.throwWrongUsage(sender, this);
+            if (args.length != 3) CommandHelpers.throwWrongUsage(sender, this);
 
             int x = 0, y = 0, z = 0;
             try {
@@ -107,8 +108,7 @@ public class CommandDebug extends SubCommand {
 
         @Override
         public void processSubCommand(ICommandSender sender, String[] args) {
-            if (args.length != 3)
-                CommandHelpers.throwWrongUsage(sender, this);
+            if (args.length != 3) CommandHelpers.throwWrongUsage(sender, this);
 
             int x = 0, y = 0, z = 0;
             try {
@@ -157,8 +157,7 @@ public class CommandDebug extends SubCommand {
 
         @Override
         public void processSubCommand(ICommandSender sender, String[] args) {
-            if (args.length != 3)
-                CommandHelpers.throwWrongUsage(sender, this);
+            if (args.length != 3) CommandHelpers.throwWrongUsage(sender, this);
 
             int x = 0, y = 0, z = 0;
             try {
@@ -177,7 +176,10 @@ public class CommandDebug extends SubCommand {
                 printLine(sender, "Railcraft Receiver Debug Start");
                 printLine(sender, "Target: {0} = {1}, {2}", shortCoords(rec.getCoords()), recTile, rec);
                 if (recTile instanceof TileBoxBase) {
-                    printLine(sender, "Rec Tile Aspect = {0}", ((TileBoxBase) recTile).getBoxSignalAspect(ForgeDirection.NORTH));
+                    printLine(
+                            sender,
+                            "Rec Tile Aspect = {0}",
+                            ((TileBoxBase) recTile).getBoxSignalAspect(ForgeDirection.NORTH));
                 }
                 for (WorldCoordinate pair : rec.getPairs()) {
                     printLine(sender, "Con at {0}", shortCoords(pair));

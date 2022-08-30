@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,10 @@
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
-
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityTameable;
 
-public class EntityAISitRandom extends EntityAIBase
-{
+public class EntityAISitRandom extends EntityAIBase {
 
     private static final int SIT_TICKS = 600;
     private final EntityTameable theAnimal;
@@ -32,7 +30,10 @@ public class EntityAISitRandom extends EntityAIBase
      */
     @Override
     public boolean shouldExecute() {
-        return this.theAnimal.isTamed() && !theAnimal.isInLove() && !this.theAnimal.isSitting() && this.theAnimal.getRNG().nextDouble() <= 0.015D;
+        return this.theAnimal.isTamed()
+                && !theAnimal.isInLove()
+                && !this.theAnimal.isSitting()
+                && this.theAnimal.getRNG().nextDouble() <= 0.015D;
     }
 
     /**
@@ -49,7 +50,8 @@ public class EntityAISitRandom extends EntityAIBase
     @Override
     public void startExecuting() {
         this.currentTick = 0;
-        this.maxSittingTicks = this.theAnimal.getRNG().nextInt(this.theAnimal.getRNG().nextInt(SIT_TICKS) + SIT_TICKS) + SIT_TICKS;
+        this.maxSittingTicks =
+                this.theAnimal.getRNG().nextInt(this.theAnimal.getRNG().nextInt(SIT_TICKS) + SIT_TICKS) + SIT_TICKS;
         this.theAnimal.func_70907_r().setSitting(false);
     }
 
@@ -69,7 +71,7 @@ public class EntityAISitRandom extends EntityAIBase
         this.currentTick++;
         this.theAnimal.func_70907_r().setSitting(false);
 
-        if(!this.theAnimal.isSitting()) {
+        if (!this.theAnimal.isSitting()) {
             this.theAnimal.setSitting(true);
         }
     }

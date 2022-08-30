@@ -1,6 +1,6 @@
 /*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,21 +23,17 @@ public class BoundingBoxManager {
     private static final Map<IEnumMachine, BoundingBox> selectionBoxes = new HashMap<IEnumMachine, BoundingBox>();
     public static final BoundingBox DEFAULT = new BoundingBox();
 
-    private BoundingBoxManager() {
-
-    }
+    private BoundingBoxManager() {}
 
     public static AxisAlignedBB getCollisionBox(World world, int x, int y, int z, IEnumMachine machine) {
         BoundingBox box = collisionBoxes.get(machine);
-        if (box == null)
-            box = DEFAULT;
+        if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
     public static AxisAlignedBB getSelectionBox(World world, int x, int y, int z, IEnumMachine machine) {
         BoundingBox box = selectionBoxes.get(machine);
-        if (box == null)
-            box = DEFAULT;
+        if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
@@ -71,7 +67,6 @@ public class BoundingBoxManager {
         public AxisAlignedBB getBox(World world, int x, int y, int z) {
             return AxisAlignedBB.getBoundingBox(x + min, y + min, z + min, x + max, y + max, z + max);
         }
-
     }
 
     public static class ReducedBoundingBox extends ScaledBoundingBox {
@@ -79,7 +74,6 @@ public class BoundingBoxManager {
         public ReducedBoundingBox(int pixels) {
             super(pixels * 2.0 / 16.0);
         }
-
     }
 
     public static class ScaledBoundingBox extends BoundingBox {
@@ -87,7 +81,5 @@ public class BoundingBoxManager {
         public ScaledBoundingBox(double scale) {
             super((1.0 - scale) / 2.0, 1.0 - ((1.0 - scale) / 2.0));
         }
-
     }
-
 }

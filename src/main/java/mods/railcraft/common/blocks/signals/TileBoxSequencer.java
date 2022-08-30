@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,14 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
+import static net.minecraftforge.common.util.ForgeDirection.*;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
@@ -22,9 +23,9 @@ import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import static net.minecraftforge.common.util.ForgeDirection.*;
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 public class TileBoxSequencer extends TileBoxBase {
 
@@ -33,8 +34,7 @@ public class TileBoxSequencer extends TileBoxBase {
     private boolean powerState = false;
     private boolean neighborState = false;
 
-    public TileBoxSequencer() {
-    }
+    public TileBoxSequencer() {}
 
     @Override
     public EnumSignal getSignalType() {
@@ -44,30 +44,24 @@ public class TileBoxSequencer extends TileBoxBase {
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (worldObj.isRemote)
-            return;
+        if (worldObj.isRemote) return;
         boolean p = PowerPlugin.isBlockBeingPoweredByRepeater(worldObj, xCoord, yCoord, zCoord);
         if (!powerState && p) {
             powerState = p;
             incrementSequencer(true, new HashSet<TileEntity>(), 0);
-        } else
-            powerState = p;
+        } else powerState = p;
     }
 
     @Override
     public void onNeighborStateChange(TileBoxBase neighbor, ForgeDirection side) {
-        if (worldObj.isRemote)
-            return;
-        if (neighbor instanceof TileBoxSequencer)
-            return;
-        if (neighbor instanceof TileBoxCapacitor)
-            return;
+        if (worldObj.isRemote) return;
+        if (neighbor instanceof TileBoxSequencer) return;
+        if (neighbor instanceof TileBoxCapacitor) return;
         boolean p = neighbor.isEmittingRedstone(side);
         if (!neighborState && p) {
             neighborState = p;
             incrementSequencer(true, new HashSet<TileEntity>(), 0);
-        } else
-            neighborState = p;
+        } else neighborState = p;
     }
 
     private void incrementSequencer(boolean firstPass, Set<TileEntity> visitedFirstPass, int numberOfIterations) {
@@ -88,8 +82,7 @@ public class TileBoxSequencer extends TileBoxBase {
         sideOutput = newSide;
         updateNeighbors();
 
-        if (numberOfIterations >= MAX_ITERATIONS)
-            return;
+        if (numberOfIterations >= MAX_ITERATIONS) return;
 
         TileEntity tile = tileCache.getTileOnSide(sideOutput);
         if (tile instanceof TileBoxSequencer) {
@@ -100,15 +93,13 @@ public class TileBoxSequencer extends TileBoxBase {
 
     private boolean canOutputToSide(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoxSequencer)
-            return true;
-        if (tile instanceof TileBoxBase)
-            return ((TileBoxBase) tile).canReceiveAspect();
+        if (tile instanceof TileBoxSequencer) return true;
+        if (tile instanceof TileBoxBase) return ((TileBoxBase) tile).canReceiveAspect();
         Block block = WorldPlugin.getBlockOnSide(worldObj, xCoord, yCoord, zCoord, side);
-        if (block == Blocks.redstone_wire)
-            return true;
+        if (block == Blocks.redstone_wire) return true;
         if (block == Blocks.unpowered_repeater || block == Blocks.powered_repeater) {
-            int facing = BlockDirectional.getDirection(WorldPlugin.getBlockMetadataOnSide(worldObj, xCoord, yCoord, zCoord, side));
+            int facing = BlockDirectional.getDirection(
+                    WorldPlugin.getBlockMetadataOnSide(worldObj, xCoord, yCoord, zCoord, side));
             switch (side) {
                 case NORTH:
                     return facing == 0;
@@ -132,8 +123,7 @@ public class TileBoxSequencer extends TileBoxBase {
     @Override
     public int getPowerOutput(int side) {
         TileEntity tile = tileCache.getTileOnSide(MiscTools.getOppositeSide(side));
-        if (tile instanceof TileBoxBase)
-            return NO_POWER;
+        if (tile instanceof TileBoxBase) return NO_POWER;
         return sideOutput.getOpposite().ordinal() == side ? FULL_POWER : NO_POWER;
     }
 
@@ -179,8 +169,7 @@ public class TileBoxSequencer extends TileBoxBase {
     @Override
     public boolean isConnected(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoxSequencer)
-            return true;
+        if (tile instanceof TileBoxSequencer) return true;
         if (tile instanceof TileBoxBase)
             return ((TileBoxBase) tile).canReceiveAspect() || ((TileBoxBase) tile).canTransferAspect();
         return false;
@@ -195,5 +184,4 @@ public class TileBoxSequencer extends TileBoxBase {
     public boolean canReceiveAspect() {
         return true;
     }
-
 }

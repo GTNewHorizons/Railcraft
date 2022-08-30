@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,8 +12,7 @@ package mods.railcraft.common.util.steam;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class Steam
-{
+public class Steam {
 
     public static final float COLD_TEMP = 20;
     public static final float BOILING_POINT = 100;

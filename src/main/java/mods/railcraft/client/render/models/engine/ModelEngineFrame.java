@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,11 +14,9 @@ import mods.railcraft.client.render.models.ModelSimple;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class ModelEngineFrame extends ModelSimple
-{
+public class ModelEngineFrame extends ModelSimple {
 
-    public ModelEngineFrame()
-    {
+    public ModelEngineFrame() {
         super("frame");
         renderer.setTextureSize(128, 128);
         setTextureOffset("frame.boxA", 65, 1);

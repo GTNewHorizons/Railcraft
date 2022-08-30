@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,27 +10,26 @@ package mods.railcraft.client.render.carts;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import mods.railcraft.client.render.models.carts.ModelLowSidesMinecart;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelMinecart;
 import mods.railcraft.client.render.models.ModelSimpleCube;
 import mods.railcraft.client.render.models.ModelTextured;
 import mods.railcraft.client.render.models.carts.ModelGift;
+import mods.railcraft.client.render.models.carts.ModelLowSidesMinecart;
 import mods.railcraft.client.render.models.carts.ModelMaintance;
 import mods.railcraft.common.carts.*;
 import mods.railcraft.common.core.RailcraftConstants;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelMinecart;
+import net.minecraft.entity.item.EntityMinecart;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class CartModelManager {
 
-    public final static ModelBase modelMinecart = new ModelMinecart();
-    public final static ModelTextured emptyModel = new ModelTextured("empty");
-    public final static Map<Class, ModelBase> modelsCore = new HashMap<Class, ModelBase>();
-    public final static Map<Class, ModelTextured> modelsContents = new HashMap<Class, ModelTextured>();
+    public static final ModelBase modelMinecart = new ModelMinecart();
+    public static final ModelTextured emptyModel = new ModelTextured("empty");
+    public static final Map<Class, ModelBase> modelsCore = new HashMap<Class, ModelBase>();
+    public static final Map<Class, ModelTextured> modelsContents = new HashMap<Class, ModelTextured>();
 
     static {
         ModelLowSidesMinecart lowSides = new ModelLowSidesMinecart();

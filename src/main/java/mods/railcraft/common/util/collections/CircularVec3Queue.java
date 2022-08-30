@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -37,19 +37,15 @@ public class CircularVec3Queue extends ForwardingQueue<Vec3> {
     }
 
     public boolean add(double x, double y, double z) {
-        if (maxSize == 0)
-            return true;
-        if (size() == maxSize)
-            queue.remove();
+        if (maxSize == 0) return true;
+        if (size() == maxSize) queue.remove();
         queue.add(getNextVec3(x, y, z));
         return true;
     }
 
     private Vec3 getNextVec3(double x, double y, double z) {
-        if (poolIndex >= pool.length)
-            poolIndex = 0;
-        if (pool[poolIndex] == null)
-            return pool[poolIndex++] = Vec3.createVectorHelper(x, y, z);
+        if (poolIndex >= pool.length) poolIndex = 0;
+        if (pool[poolIndex] == null) return pool[poolIndex++] = Vec3.createVectorHelper(x, y, z);
         else {
             pool[poolIndex].xCoord = x;
             pool[poolIndex].yCoord = y;
@@ -68,8 +64,6 @@ public class CircularVec3Queue extends ForwardingQueue<Vec3> {
             public Iterator<Vec3> iterator() {
                 return queue.descendingIterator();
             }
-
         };
     }
-
 }

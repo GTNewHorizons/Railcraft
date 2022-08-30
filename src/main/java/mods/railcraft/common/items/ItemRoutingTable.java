@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,10 @@ package mods.railcraft.common.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.client.gui.GuiRoutingTable;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
@@ -30,11 +34,6 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
@@ -43,11 +42,9 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     public static final IStackFilter FILTER = new IStackFilter() {
         @Override
         public boolean matches(ItemStack stack) {
-            if (stack == null || item == null)
-                return false;
+            if (stack == null || item == null) return false;
             return stack.getItem() == item;
         }
-
     };
     public static final int LINE_LENGTH = 37;
     public static final int LINES_PER_PAGE = 13;
@@ -68,8 +65,7 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
@@ -79,8 +75,7 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     public static boolean validBookTagContents(NBTTagCompound nbt) {
-        if (!validBookTagPages(nbt))
-            return false;
+        if (!validBookTagPages(nbt)) return false;
         else if (nbt.hasKey("title")) {
             String s = nbt.getString("title");
             return s != null && s.length() <= 16 ? nbt.hasKey("author") : false;
@@ -89,23 +84,18 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     public static boolean validBookTagPages(NBTTagCompound nbt) {
-        if (nbt == null)
-            return false;
-        else if (!nbt.hasKey("pages"))
-            return false;
+        if (nbt == null) return false;
+        else if (!nbt.hasKey("pages")) return false;
         else {
             NBTList<NBTTagList> pages = NBTPlugin.getNBTList(nbt, "pages", NBTPlugin.EnumNBTType.LIST);
             for (NBTTagList pageNBT : pages) {
                 NBTList<NBTTagString> page = new NBTList<NBTTagString>(pageNBT);
-                if (page.size() > LINES_PER_PAGE)
-                    return false;
+                if (page.size() > LINES_PER_PAGE) return false;
 
                 for (NBTTagString line : page) {
-                    if (line.func_150285_a_() == null)
-                        return false;
+                    if (line.func_150285_a_() == null) return false;
 
-                    if (line.func_150285_a_().length() > LINE_LENGTH)
-                        return false;
+                    if (line.func_150285_a_().length() > LINE_LENGTH) return false;
                 }
             }
 
@@ -119,18 +109,15 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     public static LinkedList<String> getContents(ItemStack routingTable) {
-        if (routingTable == null || routingTable.getItem() != item)
-            return null;
+        if (routingTable == null || routingTable.getItem() != item) return null;
         NBTTagCompound nbt = routingTable.getTagCompound();
-        if (nbt == null)
-            return null;
+        if (nbt == null) return null;
         LinkedList<String> contents = new LinkedList<String>();
         NBTList<NBTTagList> pages = NBTPlugin.getNBTList(nbt, "pages", NBTPlugin.EnumNBTType.LIST);
         for (NBTTagList page : pages) {
             NBTList<NBTTagString> lines = new NBTList<NBTTagString>(page);
             for (NBTTagString line : lines) {
-                if (line.func_150285_a_() == null)
-                    continue;
+                if (line.func_150285_a_() == null) continue;
                 contents.add(line.func_150285_a_());
             }
         }
@@ -138,11 +125,9 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     public static LinkedList<LinkedList<String>> getPages(ItemStack routingTable) {
-        if (routingTable == null || routingTable.getItem() != item)
-            return null;
+        if (routingTable == null || routingTable.getItem() != item) return null;
         NBTTagCompound nbt = routingTable.getTagCompound();
-        if (nbt == null)
-            return null;
+        if (nbt == null) return null;
 
         NBTList<NBTTagList> pagesList = NBTPlugin.getNBTList(nbt, "pages", NBTPlugin.EnumNBTType.LIST);
         LinkedList<LinkedList<String>> contents = new LinkedList<LinkedList<String>>();
@@ -151,8 +136,7 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
             LinkedList<String> page = new LinkedList<String>();
             contents.add(page);
             for (NBTTagString line : pageList) {
-                if (line.func_150285_a_() == null)
-                    continue;
+                if (line.func_150285_a_() == null) continue;
                 page.add(line.func_150285_a_());
             }
         }
@@ -186,19 +170,16 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
             Iterator<String> lineIt = page.iterator();
             while (lineIt.hasNext()) {
                 String line = lineIt.next();
-                if (!line.equals(""))
-                    return;
+                if (!line.equals("")) return;
             }
             pageIt.remove();
         }
     }
 
     public static String getOwner(ItemStack ticket) {
-        if (ticket == null || !(ticket.getItem() instanceof ItemTicket))
-            return "";
+        if (ticket == null || !(ticket.getItem() instanceof ItemTicket)) return "";
         NBTTagCompound nbt = ticket.getTagCompound();
-        if (nbt == null)
-            return "";
+        if (nbt == null) return "";
         return nbt.getString("author");
     }
 
@@ -218,8 +199,7 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
             NBTTagCompound nbt = stack.getTagCompound();
             NBTTagString title = (NBTTagString) nbt.getTag("title");
 
-            if (title != null)
-                return super.getItemStackDisplayName(stack) + " - " + title.toString();
+            if (title != null) return super.getItemStackDisplayName(stack) + " - " + title.toString();
         }
 
         return super.getItemStackDisplayName(stack);
@@ -237,15 +217,17 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
             NBTTagString author = (NBTTagString) nbt.getTag("author");
 
             if (author != null)
-                list.add(EnumChatFormatting.GRAY + String.format(LocalizationPlugin.translate("railcraft.gui.routing.table.editor"), author.func_150285_a_()));
+                list.add(EnumChatFormatting.GRAY
+                        + String.format(
+                                LocalizationPlugin.translate("railcraft.gui.routing.table.editor"),
+                                author.func_150285_a_()));
         }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        if (Game.isNotHost(world))
-            Minecraft.getMinecraft().displayGuiScreen(new GuiRoutingTable(player, stack));
+        if (Game.isNotHost(world)) Minecraft.getMinecraft().displayGuiScreen(new GuiRoutingTable(player, stack));
         return stack;
     }
 
@@ -259,5 +241,4 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     public boolean canPlayerEdit(EntityPlayer player, ItemStack stack) {
         return true;
     }
-
 }

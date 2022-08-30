@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,12 +10,12 @@ package mods.railcraft.common.util.inventory;
 
 import com.google.common.collect.Iterators;
 import java.util.Iterator;
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  * Creates a standalone instance of IInventory.
@@ -184,25 +184,21 @@ public class StandaloneInventory implements IInventory, Iterable<ItemStack> {
         return true;
     }
 
-    public static abstract class Callback {
+    public abstract static class Callback {
 
         public boolean isUseableByPlayer(EntityPlayer entityplayer) {
             return true;
         }
 
-        public void openInventory() {
-        }
+        public void openInventory() {}
 
-        public void closeInventory() {
-        }
+        public void closeInventory() {}
 
-        public void markDirty() {
-        }
+        public void markDirty() {}
 
         public String getInventoryName() {
             return "Standalone";
         }
-
     }
 
     private static class InventoryCallback extends Callback {
@@ -237,7 +233,6 @@ public class StandaloneInventory implements IInventory, Iterable<ItemStack> {
         public String getInventoryName() {
             return inv.getInventoryName();
         }
-
     }
 
     private static class TileCallback extends Callback {
@@ -257,6 +252,5 @@ public class StandaloneInventory implements IInventory, Iterable<ItemStack> {
         public String getInventoryName() {
             return inv.getName();
         }
-
     }
 }

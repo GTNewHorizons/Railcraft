@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -19,7 +19,8 @@ import net.minecraft.world.World;
  */
 public class EntityCartTNTWood extends CartExplosiveBase implements IAlternateCartTexture {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_wood.png");
+    private static final ResourceLocation TEXTURE =
+            new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_wood.png");
 
     public EntityCartTNTWood(World world) {
         super(world);
@@ -33,5 +34,4 @@ public class EntityCartTNTWood extends CartExplosiveBase implements IAlternateCa
     public ResourceLocation getTextureFile() {
         return TEXTURE;
     }
-
 }

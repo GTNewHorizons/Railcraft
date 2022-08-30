@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -18,13 +20,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.List;
-import java.util.Locale;
-
 public class ItemGear extends ItemRailcraft {
 
     public enum EnumGear implements IItemMetaEnum {
-
         GOLD_PLATE("ingotGold"),
         IRON("blockIron"),
         STEEL("blockSteel"),
@@ -46,7 +44,6 @@ public class ItemGear extends ItemRailcraft {
         public Class<? extends ItemRailcraft> getItemClass() {
             return ItemGear.class;
         }
-
     }
 
     public ItemGear() {
@@ -70,7 +67,8 @@ public class ItemGear extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumGear gear : EnumGear.VALUES) {
-            gear.icon = iconRegister.registerIcon("railcraft:part.gear." + gear.name().toLowerCase(Locale.ENGLISH).replace("_", "."));
+            gear.icon = iconRegister.registerIcon("railcraft:part.gear."
+                    + gear.name().toLowerCase(Locale.ENGLISH).replace("_", "."));
         }
     }
 
@@ -83,8 +81,7 @@ public class ItemGear extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage < 0 || damage >= EnumGear.VALUES.length)
-            return EnumGear.IRON.icon;
+        if (damage < 0 || damage >= EnumGear.VALUES.length) return EnumGear.IRON.icon;
         return EnumGear.VALUES[damage].icon;
     }
 
@@ -94,38 +91,22 @@ public class ItemGear extends ItemRailcraft {
 
         RailcraftItem gear = RailcraftItem.gear;
 
-        CraftingPlugin.addShapedRecipe(gear.getStack(2, EnumGear.BUSHING),
-                "TT",
-                "TT",
-                'T', "ingotTin");
+        CraftingPlugin.addShapedRecipe(gear.getStack(2, EnumGear.BUSHING), "TT", "TT", 'T', "ingotTin");
 
-        CraftingPlugin.addShapedRecipe(gear.getStack(EnumGear.GOLD_PLATE),
-                " G ",
-                "GBG",
-                " G ",
-                'G', "nuggetGold",
-                'B', bushing);
+        CraftingPlugin.addShapedRecipe(
+                gear.getStack(EnumGear.GOLD_PLATE), " G ", "GBG", " G ", 'G', "nuggetGold", 'B', bushing);
 
-        CraftingPlugin.addShapedRecipe(gear.getStack(EnumGear.IRON),
-                " I ",
-                "IBI",
-                " I ",
-                'I', "ingotIron",
-                'B', bushing);
+        CraftingPlugin.addShapedRecipe(
+                gear.getStack(EnumGear.IRON), " I ", "IBI", " I ", 'I', "ingotIron", 'B', bushing);
 
-        CraftingPlugin.addShapedRecipe(gear.getStack(EnumGear.STEEL),
-                " I ",
-                "IBI",
-                " I ",
-                'I', "ingotSteel",
-                'B', bushing);
+        CraftingPlugin.addShapedRecipe(
+                gear.getStack(EnumGear.STEEL), " I ", "IBI", " I ", 'I', "ingotSteel", 'B', bushing);
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumGear.VALUES.length)
-            return "";
+        if (damage < 0 || damage >= EnumGear.VALUES.length) return "";
         switch (EnumGear.VALUES[damage]) {
             case GOLD_PLATE:
                 return "item.railcraft.part.gear.gold.plate";
@@ -139,5 +120,4 @@ public class ItemGear extends ItemRailcraft {
                 return "";
         }
     }
-
 }

@@ -36,5 +36,4 @@ public interface IRoutingTrack {
      * Wipes the existing ticket.
      */
     void clearTicket();
-
 }

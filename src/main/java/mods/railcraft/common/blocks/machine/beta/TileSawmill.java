@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,7 +20,7 @@ import mods.railcraft.common.blocks.machine.TileMultiBlock;
  */
 public class TileSawmill extends TileMultiBlock {
 
-    private final static List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
+    private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
 
     static {
         char[][][] map1 = {
@@ -101,7 +101,6 @@ public class TileSawmill extends TileMultiBlock {
         };
         patterns.add(new MultiBlockPattern(map2));
 
-
         char[][][] map3 = {
             {
                 {'O', 'O', 'O', 'O', 'O'},
@@ -147,7 +146,8 @@ public class TileSawmill extends TileMultiBlock {
                 {'O', 'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O', 'O'}
-            },};
+            },
+        };
         patterns.add(new MultiBlockPattern(map3));
 
         char[][][] map4 = {
@@ -195,7 +195,8 @@ public class TileSawmill extends TileMultiBlock {
                 {'O', 'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O', 'O'}
-            },};
+            },
+        };
         patterns.add(new MultiBlockPattern(map4));
     }
 

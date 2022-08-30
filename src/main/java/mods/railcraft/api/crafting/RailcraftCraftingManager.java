@@ -14,8 +14,7 @@ package mods.railcraft.api.crafting;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class RailcraftCraftingManager
-{
+public abstract class RailcraftCraftingManager {
 
     public static ICokeOvenCraftingManager cokeOven;
     public static IBlastFurnaceCraftingManager blastFurnace;

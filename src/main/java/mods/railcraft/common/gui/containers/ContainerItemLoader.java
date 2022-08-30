@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
 import mods.railcraft.common.gui.slots.SlotFilter;
 import mods.railcraft.common.gui.slots.SlotMinecartFilter;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 
 public class ContainerItemLoader extends RailcraftContainer {
 
@@ -47,5 +47,4 @@ public class ContainerItemLoader extends RailcraftContainer {
             addSlot(new Slot(inventoryplayer, j, 8 + j * 18, 142));
         }
     }
-
 }

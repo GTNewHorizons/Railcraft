@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,7 +18,9 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class EffectManager {
 
-    @SidedProxy(clientSide = "mods.railcraft.client.util.effects.ClientEffectProxy", serverSide = "mods.railcraft.common.util.effects.CommonEffectProxy")
+    @SidedProxy(
+            clientSide = "mods.railcraft.client.util.effects.ClientEffectProxy",
+            serverSide = "mods.railcraft.common.util.effects.CommonEffectProxy")
     public static IEffectManager instance;
 
     public static interface IEffectSource {

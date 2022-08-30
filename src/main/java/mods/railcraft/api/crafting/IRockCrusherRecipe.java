@@ -22,7 +22,7 @@ public interface IRockCrusherRecipe {
 
     /**
      * Adds a new entry to the output list.
-     * 
+     *
      * @param output the stack to output
      * @param chance the change to output this stack
      */

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
@@ -19,9 +21,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import java.util.List;
-import java.util.Locale;
 
 public class ItemTie extends ItemRailcraft {
 
@@ -45,7 +44,6 @@ public class ItemTie extends ItemRailcraft {
         public Class<? extends ItemRailcraft> getItemClass() {
             return ItemTie.class;
         }
-
     }
 
     public ItemTie() {
@@ -56,7 +54,8 @@ public class ItemTie extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumTie tie : EnumTie.VALUES) {
-            tie.icon = iconRegister.registerIcon("railcraft:part.tie." + tie.name().toLowerCase(Locale.ENGLISH));
+            tie.icon =
+                    iconRegister.registerIcon("railcraft:part.tie." + tie.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -69,8 +68,7 @@ public class ItemTie extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage >= EnumTie.VALUES.length)
-            return EnumTie.WOOD.icon;
+        if (damage >= EnumTie.VALUES.length) return EnumTie.WOOD.icon;
         return EnumTie.VALUES[damage].icon;
     }
 
@@ -97,23 +95,15 @@ public class ItemTie extends ItemRailcraft {
     @Override
     public void defineRecipes() {
         ItemStack tieStone = RailcraftItem.tie.getStack(1, EnumTie.STONE);
-        CraftingPlugin.addShapedRecipe(tieStone,
-                " O ",
-                "###",
-                'O', RailcraftItem.rebar,
-                '#', new ItemStack(Blocks.stone_slab, 1, 0));
+        CraftingPlugin.addShapedRecipe(
+                tieStone, " O ", "###", 'O', RailcraftItem.rebar, '#', new ItemStack(Blocks.stone_slab, 1, 0));
     }
 
     @Override
     public void definePostRecipes() {
         ItemStack tieWood = RailcraftItem.tie.getStack(1, EnumTie.WOOD);
         for (ItemStack container : FluidHelper.getContainersFilledWith(Fluids.CREOSOTE.getB(1))) {
-            CraftingPlugin.addShapedRecipe(tieWood,
-                    " O ",
-                    "###",
-                    'O', container,
-                    '#', "slabWood");
+            CraftingPlugin.addShapedRecipe(tieWood, " O ", "###", 'O', container, '#', "slabWood");
         }
     }
-
 }

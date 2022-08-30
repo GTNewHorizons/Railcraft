@@ -9,16 +9,16 @@
 package mods.railcraft.api.tracks;
 
 import java.util.List;
+import mods.railcraft.api.core.INetworkedObject;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import mods.railcraft.api.core.INetworkedObject;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 
 /**
  * This interface defines a track.
@@ -39,7 +39,7 @@ import net.minecraft.item.ItemStack;
 public interface ITrackInstance extends INetworkedObject {
 
     public TrackSpec getTrackSpec();
-    
+
     public List<ItemStack> getDrops(int fortune);
 
     /**
@@ -143,5 +143,4 @@ public interface ITrackInstance extends INetworkedObject {
      * @return The max speed of the current rail.
      */
     public float getRailMaxSpeed(EntityMinecart cart);
-
 }

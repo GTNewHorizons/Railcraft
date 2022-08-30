@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,18 +12,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import mods.railcraft.common.blocks.aesthetics.brick.BlockBrick;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
@@ -31,7 +30,6 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumWallAlpha implements WallInfo {
-
     INFERNAL_BRICK,
     SANDY_BRICK,
     CONCRETE,
@@ -85,21 +83,19 @@ public enum EnumWallAlpha implements WallInfo {
 
         OBSIDIAN.source = Blocks.obsidian;
 
-//        QUARTZ.source = Block.blockNetherQuartz;
+        //        QUARTZ.source = Block.blockNetherQuartz;
         for (EnumWallAlpha wall : VALUES) {
             if (wall.isEnabled() && wall.source != null)
                 if (wall == NETHER_BRICK)
                     CraftingPlugin.addShapedRecipe(wall.getItem(5), "S S", "SSS", 'S', wall.getSourceItem());
-                else
-                    CraftingPlugin.addShapedRecipe(wall.getItem(6), "SSS", "SSS", 'S', wall.getSourceItem());
+                else CraftingPlugin.addShapedRecipe(wall.getItem(6), "SSS", "SSS", 'S', wall.getSourceItem());
         }
 
         creativeList.addAll(Arrays.asList(VALUES));
     }
 
     public static WallInfo fromMeta(int id) {
-        if (id < 0 || id >= VALUES.length)
-            return VALUES[0];
+        if (id < 0 || id >= VALUES.length) return VALUES[0];
         return VALUES[id];
     }
 
@@ -147,7 +143,9 @@ public enum EnumWallAlpha implements WallInfo {
 
     @Override
     public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(Module.STRUCTURES) && RailcraftConfig.isSubBlockEnabled(getTag()) && getBlock() != null;
+        return ModuleManager.isModuleLoaded(Module.STRUCTURES)
+                && RailcraftConfig.isSubBlockEnabled(getTag())
+                && getBlock() != null;
     }
 
     @Override
@@ -157,8 +155,7 @@ public enum EnumWallAlpha implements WallInfo {
                 return EnumCube.CONCRETE_BLOCK.getHardness();
             default:
                 Block block = getSource();
-                if (block == null)
-                    return Blocks.brick_block.getBlockHardness(world, x, y, z);
+                if (block == null) return Blocks.brick_block.getBlockHardness(world, x, y, z);
                 return block.getBlockHardness(world, x, y, z);
         }
     }
@@ -170,10 +167,8 @@ public enum EnumWallAlpha implements WallInfo {
                 return EnumCube.CONCRETE_BLOCK.getResistance() * 3f / 5f;
             default:
                 Block block = getSource();
-                if (block == null)
-                    return Blocks.brick_block.getExplosionResistance(entity);
+                if (block == null) return Blocks.brick_block.getExplosionResistance(entity);
                 return block.getExplosionResistance(entity);
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,13 +10,13 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
 import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.gui.slots.*;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
 
 public class ContainerLocomotiveSteamSolid extends ContainerLocomotive {
 
@@ -97,8 +97,7 @@ public class ContainerLocomotiveSteamSolid extends ContainerLocomotive {
     public void updateProgressBar(int id, int value) {
         super.updateProgressBar(id, value);
         TankManager tMan = loco.getTankManager();
-        if (tMan != null)
-            tMan.processGuiUpdate(id, value);
+        if (tMan != null) tMan.processGuiUpdate(id, value);
 
         switch (id) {
             case 20:
@@ -112,5 +111,4 @@ public class ContainerLocomotiveSteamSolid extends ContainerLocomotive {
                 break;
         }
     }
-
 }

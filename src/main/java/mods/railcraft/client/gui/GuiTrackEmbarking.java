@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -40,7 +40,10 @@ public class GuiTrackEmbarking extends GuiBasic {
     @Override
     protected void drawExtras(int x, int y, float f) {
         if (track != null) {
-            GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.track.embarking.radius") + " = " + radius, 25);
+            GuiTools.drawCenteredString(
+                    fontRendererObj,
+                    LocalizationPlugin.translate("railcraft.gui.track.embarking.radius") + " = " + radius,
+                    25);
         }
     }
 

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -44,8 +44,7 @@ public class ChatPlugin {
     }
 
     public static void sendLocalizedChatFromClient(EntityPlayer player, String msg, Object... args) {
-        if (Game.isNotHost(player.worldObj))
-            sendLocalizedChat(player, msg, args);
+        if (Game.isNotHost(player.worldObj)) sendLocalizedChat(player, msg, args);
     }
 
     public static void sendLocalizedChatFromServer(EntityPlayer player, String msg, Object... args) {
@@ -66,8 +65,7 @@ public class ChatPlugin {
         if (world instanceof WorldServer) {
             WorldServer worldServer = (WorldServer) world;
             for (Object obj : worldServer.playerEntities) {
-                if (obj instanceof EntityPlayer)
-                    sendLocalizedChat((EntityPlayer) obj, msg, args);
+                if (obj instanceof EntityPlayer) sendLocalizedChat((EntityPlayer) obj, msg, args);
             }
         }
     }

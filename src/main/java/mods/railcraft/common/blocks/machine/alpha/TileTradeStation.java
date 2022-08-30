@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -44,9 +44,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileTradeStation extends TileMachineItem implements IGuiReturnHandler, ISidedInventory {
 
     public static enum GuiPacketType {
-
-        NEXT_TRADE, SET_PROFESSION
+        NEXT_TRADE,
+        SET_PROFESSION
     };
+
     private static final int AREA = 6;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 16);
     private int profession;
@@ -68,10 +69,8 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
 
     @Override
     public IIcon getIcon(int side) {
-        if (side == direction.ordinal())
-            return getMachineType().getTexture(4);
-        if (side < 2)
-            return getMachineType().getTexture(0);
+        if (side == direction.ordinal()) return getMachineType().getTexture(4);
+        if (side < 2) return getMachineType().getTexture(0);
         return getMachineType().getTexture(2);
     }
 
@@ -93,20 +92,37 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     public void updateEntity() {
         super.updateEntity();
 
-        if (clock % 256 == 0)
-            modifyNearbyAI();
+        if (clock % 256 == 0) modifyNearbyAI();
 
-        List<EntityVillager> villagers = MiscTools.getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, AREA);
+        List<EntityVillager> villagers = MiscTools.getNearbyEntities(
+                worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, AREA);
         attemptTrade(villagers, 0);
         attemptTrade(villagers, 1);
         attemptTrade(villagers, 2);
     }
 
     private void modifyNearbyAI() {
-        List<EntityVillager> villagers = MiscTools.getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 20);
+        List<EntityVillager> villagers =
+                MiscTools.getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 20);
         for (EntityVillager villager : villagers) {
-            AIPlugin.addAITask(villager, 9, new EntityAIWatchBlock(villager, getMachineType().getBlock(), getMachineType().ordinal(), 4, 0.08F));
-            AIPlugin.addAITask(villager, 9, new EntityAIMoveToBlock(villager, getMachineType().getBlock(), getMachineType().ordinal(), 16, 0.002F));
+            AIPlugin.addAITask(
+                    villager,
+                    9,
+                    new EntityAIWatchBlock(
+                            villager,
+                            getMachineType().getBlock(),
+                            getMachineType().ordinal(),
+                            4,
+                            0.08F));
+            AIPlugin.addAITask(
+                    villager,
+                    9,
+                    new EntityAIMoveToBlock(
+                            villager,
+                            getMachineType().getBlock(),
+                            getMachineType().ordinal(),
+                            16,
+                            0.002F));
         }
     }
 
@@ -117,17 +133,16 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
         for (EntityVillager villager : villagers) {
             MerchantRecipeList recipes = villager.getRecipes(null);
             for (MerchantRecipe recipe : (List<MerchantRecipe>) recipes) {
-                if (recipe.isRecipeDisabled())
-                    continue;
+                if (recipe.isRecipeDisabled()) continue;
                 if (recipe.getItemToBuy() != null && !InvTools.isItemLessThanOrEqualTo(recipe.getItemToBuy(), buy1))
                     continue;
-                if (recipe.getSecondItemToBuy() != null && !InvTools.isItemLessThanOrEqualTo(recipe.getSecondItemToBuy(), buy2))
-                    continue;
-                if (!InvTools.isItemGreaterOrEqualThan(recipe.getItemToSell(), sell))
-                    continue;
-//                System.out.printf("Buying: %d %s Found: %d%n", recipe.getItemToBuy().stackSize, recipe.getItemToBuy().getDisplayName(), InvTools.countItems(invInput, recipe.getItemToBuy()));
+                if (recipe.getSecondItemToBuy() != null
+                        && !InvTools.isItemLessThanOrEqualTo(recipe.getSecondItemToBuy(), buy2)) continue;
+                if (!InvTools.isItemGreaterOrEqualThan(recipe.getItemToSell(), sell)) continue;
+                //                System.out.printf("Buying: %d %s Found: %d%n", recipe.getItemToBuy().stackSize,
+                // recipe.getItemToBuy().getDisplayName(), InvTools.countItems(invInput, recipe.getItemToBuy()));
                 if (canDoTrade(recipe)) {
-//                    System.out.println("Can do trade");
+                    //                    System.out.println("Can do trade");
                     doTrade(villager, recipe);
                     return true;
                 }
@@ -137,9 +152,10 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     }
 
     private boolean canDoTrade(MerchantRecipe recipe) {
-        if (recipe.getItemToBuy() != null && InvTools.countItems(invInput, recipe.getItemToBuy()) < recipe.getItemToBuy().stackSize)
-            return false;
-        if (recipe.getSecondItemToBuy() != null && InvTools.countItems(invInput, recipe.getSecondItemToBuy()) < recipe.getSecondItemToBuy().stackSize)
+        if (recipe.getItemToBuy() != null
+                && InvTools.countItems(invInput, recipe.getItemToBuy()) < recipe.getItemToBuy().stackSize) return false;
+        if (recipe.getSecondItemToBuy() != null
+                && InvTools.countItems(invInput, recipe.getSecondItemToBuy()) < recipe.getSecondItemToBuy().stackSize)
             return false;
         return InvTools.isRoomForStack(recipe.getItemToSell(), invOutput);
     }
@@ -161,10 +177,8 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (direction == axis)
-            direction = axis.getOpposite();
-        else
-            direction = axis;
+        if (direction == axis) direction = axis.getOpposite();
+        else direction = axis;
         markBlockForUpdate();
         return true;
     }
@@ -206,8 +220,7 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     }
 
     @Override
-    public void writeGuiData(DataOutputStream data) throws IOException {
-    }
+    public void writeGuiData(DataOutputStream data) throws IOException {}
 
     @Override
     public void readGuiData(DataInputStream data, EntityPlayer sender) throws IOException {
@@ -252,5 +265,4 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     public boolean canExtractItem(int slot, ItemStack stack, int side) {
         return slot >= 10;
     }
-
 }

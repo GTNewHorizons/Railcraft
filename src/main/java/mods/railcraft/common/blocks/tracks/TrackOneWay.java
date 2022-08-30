@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,11 +11,11 @@ package mods.railcraft.common.blocks.tracks;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import mods.railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.tracks.ITrackReversable;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import mods.railcraft.api.tracks.ITrackPowered;
-import mods.railcraft.api.tracks.ITrackReversable;
 
 public class TrackOneWay extends TrackBaseRailcraft implements ITrackPowered, ITrackReversable {
 
@@ -49,12 +49,13 @@ public class TrackOneWay extends TrackBaseRailcraft implements ITrackPowered, IT
             if (meta == 1 || meta == 2 || meta == 3) {
                 if ((isReversed() && cart.motionX > 0.0D) || (!isReversed() && cart.motionX < 0.0D)) {
                     double distX = cart.posX - (tileEntity.xCoord + 0.5D);
-//                    System.out.println("cartX=" + cart.posX + ", railX=" + (i + 0.5D) + ", railDir=" + isReversed());
+                    //                    System.out.println("cartX=" + cart.posX + ", railX=" + (i + 0.5D) + ",
+                    // railDir=" + isReversed());
                     if (!isReversed() && distX < -0.01 || isReversed() && distX > 0.01) {
-//                        System.out.println("Setting Position");
+                        //                        System.out.println("Setting Position");
                         cart.setPosition(tileEntity.xCoord + 0.5D, cart.posY, cart.posZ);
                     }
-//                    System.out.println("mX= " + cart.motionX + ", dist=" + distX);
+                    //                    System.out.println("mX= " + cart.motionX + ", dist=" + distX);
                     if (!isReversed()) {
                         cart.motionX = Math.abs(cart.motionX) * LOSS_FACTOR;
                     } else {
@@ -64,12 +65,13 @@ public class TrackOneWay extends TrackBaseRailcraft implements ITrackPowered, IT
             } else if (meta == 0 || meta == 4 || meta == 5) {
                 if ((isReversed() && cart.motionZ < 0.0D) || (!isReversed() && cart.motionZ > 0.0D)) {
                     double distZ = cart.posZ - (tileEntity.zCoord + 0.5D);
-//                    System.out.println("cartZ=" + cart.posZ + ", railZ=" + (k + 0.5D) + ", railDir=" + isReversed());
+                    //                    System.out.println("cartZ=" + cart.posZ + ", railZ=" + (k + 0.5D) + ",
+                    // railDir=" + isReversed());
                     if (isReversed() && distZ < -0.01 || !isReversed() && distZ > 0.01) {
-//                        System.out.println("Setting Position");
+                        //                        System.out.println("Setting Position");
                         cart.setPosition(cart.posX, cart.posY, tileEntity.zCoord + 0.5D);
                     }
-//                    System.out.println("mZ= " + cart.motionZ + ", dist=" + distZ);
+                    //                    System.out.println("mZ= " + cart.motionZ + ", dist=" + distZ);
                     if (isReversed()) {
                         cart.motionZ = Math.abs(cart.motionZ) * LOSS_FACTOR;
                     } else {

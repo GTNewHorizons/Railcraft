@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,8 +13,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
 
-public class EntityAIDespawn extends EntityAIBase
-{
+public class EntityAIDespawn extends EntityAIBase {
 
     private static final double CHILD_DESPAWN_CHANCE = 0.01;
     private static final double ADULT_DESPAWN_CHANCE = 0.005;
@@ -32,9 +31,10 @@ public class EntityAIDespawn extends EntityAIBase
     @Override
     public boolean shouldExecute() {
         double chance = ADULT_DESPAWN_CHANCE;
-        if(theAnimal.isChild()) chance = CHILD_DESPAWN_CHANCE;
-        if(theAnimal.getRNG().nextDouble() > chance) return false;
-        List nearbyEntites = theAnimal.worldObj.getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
+        if (theAnimal.isChild()) chance = CHILD_DESPAWN_CHANCE;
+        if (theAnimal.getRNG().nextDouble() > chance) return false;
+        List nearbyEntites =
+                theAnimal.worldObj.getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
         return nearbyEntites.size() > MAX_ANIMALS;
     }
 

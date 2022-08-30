@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,8 @@ package mods.railcraft.common.blocks.aesthetics.cube;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.carts.EntityTunnelBore;
@@ -32,12 +34,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.List;
-import java.util.Random;
-
 public class BlockCube extends Block {
 
     private static BlockCube instance;
+
     @SideOnly(Side.CLIENT)
     private RenderInfo override;
 
@@ -103,8 +103,7 @@ public class BlockCube extends Block {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
         for (EnumCube cube : EnumCube.VALUES) {
-            if (!cube.isEnabled() || cube == EnumCube.CONCRETE_BLOCK || cube == EnumCube.CREOSOTE_BLOCK)
-                continue;
+            if (!cube.isEnabled() || cube == EnumCube.CONCRETE_BLOCK || cube == EnumCube.CREOSOTE_BLOCK) continue;
             cube.setIcon(iconRegister.registerIcon("railcraft:" + MiscTools.cleanTag(cube.getTag())));
         }
         EnumCube.CONCRETE_BLOCK.setIcon(iconRegister.registerIcon("railcraft:concrete"));
@@ -118,11 +117,9 @@ public class BlockCube extends Block {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        if (override != null)
-            return override.getBlockTextureFromSide(side);
+        if (override != null) return override.getBlockTextureFromSide(side);
         IIcon icon = EnumCube.fromOrdinal(meta).getIcon();
-        if (icon == null)
-            return EnumCube.CONCRETE_BLOCK.getIcon();
+        if (icon == null) return EnumCube.CONCRETE_BLOCK.getIcon();
         return icon;
     }
 
@@ -187,13 +184,13 @@ public class BlockCube extends Block {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumCube type : EnumCube.getCreativeList()) {
-            if (type.isEnabled())
-                list.add(type.getItem());
+            if (type.isEnabled()) list.add(type.getItem());
         }
     }
 
     @Override
-    public float getExplosionResistance(Entity exploder, World world, int i, int j, int k, double srcX, double srcY, double srcZ) {
+    public float getExplosionResistance(
+            Entity exploder, World world, int i, int j, int k, double srcX, double srcY, double srcZ) {
         int meta = world.getBlockMetadata(i, j, k);
         return EnumCube.fromOrdinal(meta).getResistance() * 3f / 5f;
     }
@@ -215,5 +212,4 @@ public class BlockCube extends Block {
         int metadata = world.getBlockMetadata(x, y, z);
         return EnumCube.fromOrdinal(metadata).getBlockDef().isFlammable(world, x, y, z, face);
     }
-
 }

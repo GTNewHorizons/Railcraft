@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.api.signals.IReceiverTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalController;
@@ -22,11 +25,8 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-public class TileSwitchMotor extends TileSwitchSecured implements IAspectActionManager, IGuiReturnHandler, IReceiverTile {
+public class TileSwitchMotor extends TileSwitchSecured
+        implements IAspectActionManager, IGuiReturnHandler, IReceiverTile {
 
     private final SimpleSignalReceiver receiver = new SimpleSignalReceiver(getLocalizationTag(), this);
     private boolean[] switchOnAspects = new boolean[SignalAspect.values().length];
@@ -44,8 +44,7 @@ public class TileSwitchMotor extends TileSwitchSecured implements IAspectActionM
 
     @Override
     public boolean blockActivated(int side, EntityPlayer player) {
-        if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.SWITCH_MOTOR, player, worldObj, xCoord, yCoord, zCoord);
+        if (Game.isHost(worldObj)) GuiHandler.openGui(EnumGui.SWITCH_MOTOR, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 
@@ -64,8 +63,7 @@ public class TileSwitchMotor extends TileSwitchSecured implements IAspectActionM
     }
 
     @Override
-    public void onControllerAspectChange(SignalController con, SignalAspect aspect) {
-    }
+    public void onControllerAspectChange(SignalController con, SignalAspect aspect) {}
 
     @Override
     public void onNeighborBlockChange(Block block) {
@@ -115,8 +113,7 @@ public class TileSwitchMotor extends TileSwitchSecured implements IAspectActionM
 
         switchAspect = data.getBoolean("switchAspect");
 
-        if (data.hasKey("switchOnRedstone"))
-            switchOnRedstone = data.getBoolean("switchOnRedstone");
+        if (data.hasKey("switchOnRedstone")) switchOnRedstone = data.getBoolean("switchOnRedstone");
 
         receiver.readFromNBT(data);
     }

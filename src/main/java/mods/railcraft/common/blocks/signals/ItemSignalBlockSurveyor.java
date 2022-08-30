@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -47,14 +47,19 @@ public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, 
                 item = new ItemSignalBlockSurveyor().setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
                         " C ",
                         "BGB",
                         " R ",
-                        'G', "paneGlassColorless",
-                        'C', Items.compass,
-                        'B', Blocks.stone_button,
-                        'R', "dustRedstone");
+                        'G',
+                        "paneGlassColorless",
+                        'C',
+                        Items.compass,
+                        'B',
+                        Blocks.stone_button,
+                        'R',
+                        "dustRedstone");
 
                 LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, "tool.surveyor");
             }
@@ -62,14 +67,23 @@ public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, 
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
     @Override
-    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
-//        System.out.println("click");
+    public boolean onItemUse(
+            ItemStack item,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float par8,
+            float par9,
+            float par10) {
+        //        System.out.println("click");
         if (Game.isHost(world) && item.hasTagCompound() && player.isSneaking()) {
             WorldCoordinate pos = getSignalData(item);
             if (pos != null) {
@@ -85,20 +99,21 @@ public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, 
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile != null)
             if (tile instanceof ISignalBlockTile) {
-//            System.out.println("target found");
+                //            System.out.println("target found");
                 if (Game.isHost(world)) {
                     ISignalBlockTile signalTile = (ISignalBlockTile) tile;
                     SignalBlock signalBlock = signalTile.getSignalBlock();
                     WorldCoordinate pos = getSignalData(item);
                     SignalBlock.Status trackStatus = signalBlock.getTrackStatus();
                     if (trackStatus == SignalBlock.Status.INVALID)
-                        ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.track", signalTile.getLocalizationTag());
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player, "railcraft.gui.surveyor.track", signalTile.getLocalizationTag());
                     else if (pos == null) {
                         ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.begin");
                         setSignalData(item, tile);
                         signalBlock.startPairing();
                     } else if (x != pos.x || y != pos.y || z != pos.z) {
-//                System.out.println("attempt pairing");
+                        //                System.out.println("attempt pairing");
                         tile = world.getTileEntity(pos.x, pos.y, pos.z);
                         if (tile != null && tile instanceof ISignalBlockTile) {
                             ISignalBlockTile otherTile = (ISignalBlockTile) tile;
@@ -106,14 +121,12 @@ public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, 
                             if (signalBlock.createSignalBlock(otherSignal)) {
                                 ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.success");
                                 item.setTagCompound(null);
-                            } else
-                                ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.invalid");
+                            } else ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.invalid");
                         } else if (world.blockExists(pos.x, pos.y, pos.z)) {
                             ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.lost");
                             signalBlock.endPairing();
                             item.setTagCompound(null);
-                        } else
-                            ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.unloaded");
+                        } else ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.unloaded");
                     } else {
                         ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.surveyor.abandon");
                         signalBlock.endPairing();

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -35,7 +35,10 @@ public class GuiButtonRoutingTableNextPage extends GuiButton {
     @Override
     public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
         if (this.visible) {
-            boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
+            boolean flag = par2 >= this.xPosition
+                    && par3 >= this.yPosition
+                    && par2 < this.xPosition + this.width
+                    && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             par1Minecraft.renderEngine.bindTexture(GuiRoutingTable.TEXTURE);
             int k = 0;

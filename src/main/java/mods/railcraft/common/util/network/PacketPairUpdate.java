@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,23 +10,21 @@ package mods.railcraft.common.util.network;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
-
-import mods.railcraft.api.signals.ISignalBlockTile;
-import mods.railcraft.api.signals.SignalBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.AbstractPair;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalBlock;
 import mods.railcraft.api.signals.SignalController;
 import mods.railcraft.api.signals.SignalReceiver;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class PacketPairUpdate extends RailcraftPacket {
     private AbstractPair pairing;
@@ -67,14 +65,11 @@ public class PacketPairUpdate extends RailcraftPacket {
         TileEntity tile = world.getTileEntity(x, y, z);
 
         if (packetType == PacketType.CONTROLLER_UPDATE) {
-            if (tile instanceof IControllerTile)
-                pairing = ((IControllerTile) tile).getController();
+            if (tile instanceof IControllerTile) pairing = ((IControllerTile) tile).getController();
         } else if (packetType == PacketType.RECEIVER_UPDATE) {
-            if (tile instanceof IReceiverTile)
-                pairing = ((IReceiverTile) tile).getReceiver();
+            if (tile instanceof IReceiverTile) pairing = ((IReceiverTile) tile).getReceiver();
         } else if (packetType == PacketType.SIGNAL_UPDATE) {
-            if (tile instanceof ISignalBlockTile)
-                pairing = ((ISignalBlockTile) tile).getSignalBlock();
+            if (tile instanceof ISignalBlockTile) pairing = ((ISignalBlockTile) tile).getSignalBlock();
         }
         if (pairing != null) {
             try {
@@ -91,12 +86,9 @@ public class PacketPairUpdate extends RailcraftPacket {
 
     @Override
     public int getID() {
-        if (pairing instanceof SignalController)
-            return PacketType.CONTROLLER_UPDATE.ordinal();
-        if (pairing instanceof SignalReceiver)
-            return PacketType.RECEIVER_UPDATE.ordinal();
-        if (pairing instanceof SignalBlock)
-            return PacketType.SIGNAL_UPDATE.ordinal();
+        if (pairing instanceof SignalController) return PacketType.CONTROLLER_UPDATE.ordinal();
+        if (pairing instanceof SignalReceiver) return PacketType.RECEIVER_UPDATE.ordinal();
+        if (pairing instanceof SignalBlock) return PacketType.SIGNAL_UPDATE.ordinal();
         return -1;
     }
 }

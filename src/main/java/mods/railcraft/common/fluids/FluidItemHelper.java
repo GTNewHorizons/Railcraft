@@ -25,11 +25,9 @@ public class FluidItemHelper {
      * @return The modified container and the amount of Fluid filled.
      */
     public static FillReturn fillContainer(ItemStack container, FluidStack fluidStack) {
-        if (container == null)
-            return new FillReturn(null, 0);
+        if (container == null) return new FillReturn(null, 0);
         container = container.copy();
-        if (fluidStack == null)
-            return new FillReturn(container, 0);
+        if (fluidStack == null) return new FillReturn(container, 0);
         if (container.getItem() instanceof IFluidContainerItem) {
             container.stackSize = 1;
             IFluidContainerItem fluidCon = (IFluidContainerItem) container.getItem();
@@ -51,8 +49,7 @@ public class FluidItemHelper {
      * @return The modified container and any fluid drained.
      */
     public static DrainReturn drainContainer(ItemStack container, int maxDrain) {
-        if (container == null)
-            return new DrainReturn(null, null, false);
+        if (container == null) return new DrainReturn(null, null, false);
         container = container.copy();
         if (container.getItem() instanceof IFluidContainerItem) {
             Item item = container.getItem();

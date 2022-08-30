@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,7 +32,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class EntityCartTank extends EntityCartFiltered implements IFluidHandler, ILiquidTransfer, ISidedInventory, IMinecart, IFluidCart {
+public class EntityCartTank extends EntityCartFiltered
+        implements IFluidHandler, ILiquidTransfer, ISidedInventory, IMinecart, IFluidCart {
     private static final byte FLUID_ID_DATA_ID = 25;
     private static final byte FLUID_QTY_DATA_ID = 26;
     private static final byte FLUID_COLOR_DATA_ID = 27;
@@ -131,19 +132,13 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
         FluidStack fluidStack = tank.getFluid();
         if (fluidStack != null) {
             int fluidId = FluidHelper.getFluidId(fluidStack);
-            if (fluidId != getFluidId())
-                setFluidId(fluidId);
-            if (fluidStack.amount != getFluidQty())
-                setFluidQty(fluidStack.amount);
-            if (tank.getColor() != getFluidColor())
-                setFluidColor(tank.getColor());
+            if (fluidId != getFluidId()) setFluidId(fluidId);
+            if (fluidStack.amount != getFluidQty()) setFluidQty(fluidStack.amount);
+            if (tank.getColor() != getFluidColor()) setFluidColor(tank.getColor());
         } else {
-            if (getFluidId() != -1)
-                setFluidId(-1);
-            if (getFluidQty() != 0)
-                setFluidQty(0);
-            if (getFluidColor() != StandardTank.DEFAULT_COLOR)
-                setFluidColor(StandardTank.DEFAULT_COLOR);
+            if (getFluidId() != -1) setFluidId(-1);
+            if (getFluidQty() != 0) setFluidQty(0);
+            if (getFluidColor() != StandardTank.DEFAULT_COLOR) setFluidColor(StandardTank.DEFAULT_COLOR);
         }
 
         update++;
@@ -167,8 +162,7 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
     @Override
     public boolean doInteract(EntityPlayer player) {
         if (Game.isHost(worldObj)) {
-            if (FluidHelper.handleRightClick(this, ForgeDirection.UNKNOWN, player, true, true))
-                return true;
+            if (FluidHelper.handleRightClick(this, ForgeDirection.UNKNOWN, player, true, true)) return true;
             GuiHandler.openGui(EnumGui.CART_TANK, player, worldObj, this);
         }
         return true;
@@ -193,11 +187,9 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (resource == null)
-            return 0;
+        if (resource == null) return 0;
         Fluid filterFluid = getFilterFluid();
-        if (filterFluid == null || resource.getFluid() == filterFluid)
-            return tank.fill(resource, doFill);
+        if (filterFluid == null || resource.getFluid() == filterFluid) return tank.fill(resource, doFill);
         return 0;
     }
 
@@ -208,10 +200,8 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
-        if (tank.getFluidType() == resource.getFluid())
-            return tank.drain(resource.amount, doDrain);
+        if (resource == null) return null;
+        if (tank.getFluidType() == resource.getFluid()) return tank.drain(resource.amount, doDrain);
         return null;
     }
 
@@ -246,8 +236,7 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
 
     public Fluid getFilterFluid() {
         ItemStack filter = getFilterItem();
-        if (filter == null)
-            return null;
+        if (filter == null) return null;
         return FluidItemHelper.getFluidInContainer(filter);
     }
 
@@ -282,8 +271,7 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
         int used = fill(ForgeDirection.UNKNOWN, offer, true);
 
         offer.amount = qty - used;
-        if (offer.amount <= 0)
-            return used;
+        if (offer.amount <= 0) return used;
 
         LinkageManager lm = LinkageManager.instance();
 
@@ -292,8 +280,7 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
             used += ((ILiquidTransfer) linkedCart).offerLiquid(this, offer);
 
         offer.amount = qty - used;
-        if (offer.amount <= 0)
-            return used;
+        if (offer.amount <= 0) return used;
 
         linkedCart = lm.getLinkedCartB(this);
         if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
@@ -306,13 +293,11 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
     @Deprecated
     public int requestLiquid(Object source, FluidStack request) {
         FluidStack acquired = drain(ForgeDirection.UNKNOWN, request.amount, false);
-        if (acquired == null || !request.isFluidEqual(acquired))
-            return 0;
+        if (acquired == null || !request.isFluidEqual(acquired)) return 0;
 
         drain(ForgeDirection.UNKNOWN, request.amount, true);
 
-        if (acquired.amount >= request.amount)
-            return acquired.amount;
+        if (acquired.amount >= request.amount) return acquired.amount;
 
         FluidStack newRequest = request.copy();
         newRequest.amount = request.amount - acquired.amount;
@@ -323,8 +308,7 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
         if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
             acquired.amount += ((ILiquidTransfer) linkedCart).requestLiquid(this, newRequest);
 
-        if (acquired.amount >= request.amount)
-            return acquired.amount;
+        if (acquired.amount >= request.amount) return acquired.amount;
 
         newRequest.amount = request.amount - acquired.amount;
 
@@ -337,10 +321,8 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
 
     @Override
     public boolean canPassFluidRequests(Fluid fluid) {
-        if (hasFilter())
-            return getFilterFluid() == fluid;
-        if (!tank.isEmpty() && tank.getFluidType() != fluid)
-            return false;
+        if (hasFilter()) return getFilterFluid() == fluid;
+        if (!tank.isEmpty() && tank.getFluidType() != fluid) return false;
         return true;
     }
 
@@ -353,5 +335,4 @@ public class EntityCartTank extends EntityCartFiltered implements IFluidHandler,
     public boolean canProvidePulledFluid(EntityMinecart requester, Fluid fluid) {
         return canPassFluidRequests(fluid);
     }
-
 }

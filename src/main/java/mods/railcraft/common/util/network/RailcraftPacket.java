@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,10 +18,9 @@ import mods.railcraft.common.util.misc.Game;
 
 public abstract class RailcraftPacket {
 
-    public final static String CHANNEL_NAME = "RC";
+    public static final String CHANNEL_NAME = "RC";
 
     public enum PacketType {
-
         TILE_ENTITY,
         GUI_RETURN,
         TILE_EXTRA_DATA,
@@ -30,9 +29,12 @@ public abstract class RailcraftPacket {
         GUI_STRING,
         GUI_WIDGET,
         EFFECT,
-        CONTROLLER_REQUEST, CONTROLLER_UPDATE,
-        RECEIVER_REQUEST, RECEIVER_UPDATE,
-        SIGNAL_REQUEST, SIGNAL_UPDATE,
+        CONTROLLER_REQUEST,
+        CONTROLLER_UPDATE,
+        RECEIVER_REQUEST,
+        RECEIVER_UPDATE,
+        SIGNAL_REQUEST,
+        SIGNAL_UPDATE,
         ITEM_NBT,
         KEY_PRESS,
         GOLDEN_TICKET_GUI,
@@ -60,5 +62,4 @@ public abstract class RailcraftPacket {
     public String toString() {
         return getClass().getSimpleName();
     }
-
 }

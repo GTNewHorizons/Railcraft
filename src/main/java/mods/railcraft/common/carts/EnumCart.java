@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,8 @@
 package mods.railcraft.common.carts;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
+import java.lang.reflect.Constructor;
+import java.util.Locale;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.core.Railcraft;
@@ -26,11 +28,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.lang.reflect.Constructor;
-import java.util.Locale;
-
 public enum EnumCart implements ICartType {
-
     BASIC(0, EntityCartBasic.class, null),
     CHEST(0, EntityCartChest.class, new ItemStack(Blocks.chest)),
     FURNACE(0, EntityCartFurnace.class, new ItemStack(Blocks.furnace)),
@@ -103,11 +101,9 @@ public enum EnumCart implements ICartType {
     public ItemStack getContents() {
         switch (this) {
             case TANK:
-                if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable())
-                    return EnumMachineBeta.TANK_IRON_GAUGE.getItem();
+                if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable()) return EnumMachineBeta.TANK_IRON_GAUGE.getItem();
             default: {
-                if (contents == null)
-                    return null;
+                if (contents == null) return null;
                 return contents.copy();
             }
         }
@@ -116,10 +112,10 @@ public enum EnumCart implements ICartType {
     @Override
     public EntityMinecart makeCart(ItemStack stack, World world, double i, double j, double k) {
         try {
-            Constructor<? extends EntityMinecart> con = type.getConstructor(World.class, double.class, double.class, double.class);
+            Constructor<? extends EntityMinecart> con =
+                    type.getConstructor(World.class, double.class, double.class, double.class);
             EntityMinecart entity = con.newInstance(world, i, j, k);
-            if (entity instanceof IRailcraftCart)
-                ((IRailcraftCart) entity).initEntityFromItem(stack);
+            if (entity instanceof IRailcraftCart) ((IRailcraftCart) entity).initEntityFromItem(stack);
             return entity;
         } catch (Throwable ex) {
             Game.logThrowable("Failed to create cart entity!", ex);
@@ -132,8 +128,7 @@ public enum EnumCart implements ICartType {
      */
     @Override
     public ItemStack getCartItem() {
-        if (cartItem == null)
-            return null;
+        if (cartItem == null) return null;
         return cartItem.copy();
     }
 
@@ -167,14 +162,12 @@ public enum EnumCart implements ICartType {
 
     @SuppressWarnings("unchecked")
     public void registerEntity() {
-        if (id < 0)
-            return;
+        if (id < 0) return;
         EntityRegistry.registerModEntity(type, MiscTools.cleanTag(getTag()), id, Railcraft.getMod(), 256, 3, true);
 
         // Legacy stuff
         EntityList.stringToClassMapping.put("Railcraft." + getTag(), type);
-        if (this == LOCO_STEAM_SOLID)
-            EntityList.stringToClassMapping.put("Railcraft.railcraft.cart.loco.steam", type);
+        if (this == LOCO_STEAM_SOLID) EntityList.stringToClassMapping.put("Railcraft.railcraft.cart.loco.steam", type);
     }
 
     public boolean setup() {
@@ -201,8 +194,7 @@ public enum EnumCart implements ICartType {
 
     public static ICartType fromClass(Class<? extends EntityMinecart> cls) {
         for (EnumCart cart : VALUES) {
-            if (cls.equals(cart.type))
-                return cart;
+            if (cls.equals(cart.type)) return cart;
         }
         return BASIC;
     }
@@ -212,21 +204,13 @@ public enum EnumCart implements ICartType {
     }
 
     public static ICartType getCartType(ItemStack cart) {
-        if (cart == null)
-            return null;
-        if (cart.getItem() == Items.minecart)
-            return EnumCart.BASIC;
-        if (cart.getItem() == Items.chest_minecart)
-            return EnumCart.CHEST;
-        if (cart.getItem() == Items.tnt_minecart)
-            return EnumCart.TNT;
-        if (cart.getItem() == Items.furnace_minecart)
-            return EnumCart.FURNACE;
-        if (cart.getItem() == Items.hopper_minecart)
-            return EnumCart.HOPPER;
-        if (cart.getItem() instanceof ItemCart)
-            return ((ItemCart) cart.getItem()).getCartType();
+        if (cart == null) return null;
+        if (cart.getItem() == Items.minecart) return EnumCart.BASIC;
+        if (cart.getItem() == Items.chest_minecart) return EnumCart.CHEST;
+        if (cart.getItem() == Items.tnt_minecart) return EnumCart.TNT;
+        if (cart.getItem() == Items.furnace_minecart) return EnumCart.FURNACE;
+        if (cart.getItem() == Items.hopper_minecart) return EnumCart.HOPPER;
+        if (cart.getItem() instanceof ItemCart) return ((ItemCart) cart.getItem()).getCartType();
         return null;
     }
-
 }

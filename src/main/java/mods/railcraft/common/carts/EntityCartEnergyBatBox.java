@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -62,5 +62,4 @@ public final class EntityCartEnergyBatBox extends EntityCartEnergy {
     public ItemStack getIC2Item() {
         return IC2Plugin.getItem("batBox");
     }
-
 }

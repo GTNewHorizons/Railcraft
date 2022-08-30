@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -37,9 +37,19 @@ public class ItemMachine extends ItemBlockRailcraftMultiType {
     }
 
     @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-        if (!world.setBlock(x, y, z, machineBlock, metadata, 3))
-            return false;
+    public boolean placeBlockAt(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ,
+            int metadata) {
+        if (!world.setBlock(x, y, z, machineBlock, metadata, 3)) return false;
 
         if (world.getBlock(x, y, z) == machineBlock) {
             machineBlock.onBlockPlacedBy(world, x, y, z, player, stack);
@@ -54,5 +64,4 @@ public class ItemMachine extends ItemBlockRailcraftMultiType {
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
         return machineBlock.getMachineProxy().getMachine(stack.getItemDamage()).getToolTip(stack, player, adv);
     }
-
 }

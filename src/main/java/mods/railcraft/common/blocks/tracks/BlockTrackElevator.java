@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,25 +8,25 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * Implementation of the iron ladder blocks. Iron ladders act much like normal
@@ -72,12 +72,13 @@ public class BlockTrackElevator extends Block {
      * other data from a metadata value.
      */
     public static final int BLOCK_FACING_DATA_METADATA_MASK = 0x0007;
+
     private final int renderType;
     private IIcon[] texture;
 
     public BlockTrackElevator(int renderId) {
         super(new MaterialElevator());
-//		  setBlockName(name);
+        //		  setBlockName(name);
         setHardness(1.05F);
         setStepSound(soundTypeMetal);
         this.renderType = renderId;
@@ -95,14 +96,10 @@ public class BlockTrackElevator extends Block {
     public void setBlockBoundsBasedOnState(IBlockAccess world, int i, int j, int k) {
         int meta = getLadderFacingMetadata(world, i, j, k);
         float f = 0.125F;
-        if (meta == 2)
-            setBlockBounds(0.0F, 0.0F, 1.0F - f, 1.0F, 1.0F, 1.0F);
-        if (meta == 3)
-            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, f);
-        if (meta == 4)
-            setBlockBounds(1.0F - f, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        if (meta == 5)
-            setBlockBounds(0.0F, 0.0F, 0.0F, f, 1.0F, 1.0F);
+        if (meta == 2) setBlockBounds(0.0F, 0.0F, 1.0F - f, 1.0F, 1.0F, 1.0F);
+        if (meta == 3) setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, f);
+        if (meta == 4) setBlockBounds(1.0F - f, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        if (meta == 5) setBlockBounds(0.0F, 0.0F, 0.0F, f, 1.0F, 1.0F);
     }
 
     @Override
@@ -113,7 +110,13 @@ public class BlockTrackElevator extends Block {
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int i, int j, int k) {
         setBlockBoundsBasedOnState(world, i, j, k);
-        return AxisAlignedBB.getBoundingBox((double) i + minX, (double) j + minY, (double) k + minZ, (double) i + maxX, (double) j + maxY, (double) k + maxZ);
+        return AxisAlignedBB.getBoundingBox(
+                (double) i + minX,
+                (double) j + minY,
+                (double) k + minZ,
+                (double) i + maxX,
+                (double) j + maxY,
+                (double) k + maxZ);
     }
 
     @Override
@@ -143,8 +146,7 @@ public class BlockTrackElevator extends Block {
     @Override
     public IIcon getIcon(int side, int meta) {
         boolean powered = (meta & 8) != 0;
-        if (powered)
-            return texture[0];
+        if (powered) return texture[0];
         return texture[1];
     }
 
@@ -155,25 +157,18 @@ public class BlockTrackElevator extends Block {
 
     @Override
     public boolean canPlaceBlockAt(World world, int i, int j, int k) {
-        if (world.isSideSolid(i - 1, j, k, ForgeDirection.EAST))
-            return true;
-        if (world.isSideSolid(i + 1, j, k, ForgeDirection.WEST))
-            return true;
-        if (world.isSideSolid(i, j, k - 1, ForgeDirection.SOUTH))
-            return true;
+        if (world.isSideSolid(i - 1, j, k, ForgeDirection.EAST)) return true;
+        if (world.isSideSolid(i + 1, j, k, ForgeDirection.WEST)) return true;
+        if (world.isSideSolid(i, j, k - 1, ForgeDirection.SOUTH)) return true;
         return world.isSideSolid(i, j, k + 1, ForgeDirection.NORTH);
     }
 
     @Override
     public int onBlockPlaced(World world, int x, int y, int z, int side, float par6, float par7, float par8, int meta) {
-        if ((meta == 0 || side == 2) && world.isSideSolid(x, y, z + 1, ForgeDirection.NORTH))
-            meta = 2;
-        if ((meta == 0 || side == 3) && world.isSideSolid(x, y, z - 1, ForgeDirection.SOUTH))
-            meta = 3;
-        if ((meta == 0 || side == 4) && world.isSideSolid(x + 1, y, z, ForgeDirection.WEST))
-            meta = 4;
-        if ((meta == 0 || side == 5) && world.isSideSolid(x - 1, y, z, ForgeDirection.EAST))
-            meta = 5;
+        if ((meta == 0 || side == 2) && world.isSideSolid(x, y, z + 1, ForgeDirection.NORTH)) meta = 2;
+        if ((meta == 0 || side == 3) && world.isSideSolid(x, y, z - 1, ForgeDirection.SOUTH)) meta = 3;
+        if ((meta == 0 || side == 4) && world.isSideSolid(x + 1, y, z, ForgeDirection.WEST)) meta = 4;
+        if ((meta == 0 || side == 5) && world.isSideSolid(x - 1, y, z, ForgeDirection.EAST)) meta = 5;
         return meta;
     }
 
@@ -189,17 +184,12 @@ public class BlockTrackElevator extends Block {
                 int ladderMeta = getLadderFacingMetadata(world, x, y, z);
 
                 int outputMeta = 0;
-                if (trackMeta == 0 && ladderMeta == 2)
-                    outputMeta = 5;
-                else if (trackMeta == 0 && ladderMeta == 3)
-                    outputMeta = 4;
-                else if (trackMeta == 1 && ladderMeta == 4)
-                    outputMeta = 2;
-                else if (trackMeta == 1 && ladderMeta == 5)
-                    outputMeta = 3;
+                if (trackMeta == 0 && ladderMeta == 2) outputMeta = 5;
+                else if (trackMeta == 0 && ladderMeta == 3) outputMeta = 4;
+                else if (trackMeta == 1 && ladderMeta == 4) outputMeta = 2;
+                else if (trackMeta == 1 && ladderMeta == 5) outputMeta = 3;
                 if (outputMeta != 0) {
-                    if (railBlock.isPowered())
-                        outputMeta = outputMeta | (world.getBlockMetadata(x, y - 1, z) & 8);
+                    if (railBlock.isPowered()) outputMeta = outputMeta | (world.getBlockMetadata(x, y - 1, z) & 8);
                     world.setBlockMetadataWithNotify(x, y - 1, z, outputMeta, 3);
                 }
             }
@@ -207,14 +197,13 @@ public class BlockTrackElevator extends Block {
 
         meta = world.getBlockMetadata(x, y, z);
         boolean powered = (meta & 8) != 0;
-        if (powered ^ isPowered(world, x, y, z))
-            world.setBlockMetadataWithNotify(x, y, z, meta ^ 8, 3);
+        if (powered ^ isPowered(world, x, y, z)) world.setBlockMetadataWithNotify(x, y, z, meta ^ 8, 3);
         world.markBlockForUpdate(x, y, z);
     }
 
     @Override
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1) {
-//        System.out.println("dropping item");
+        //        System.out.println("dropping item");
         super.dropBlockAsItemWithChance(world, i, j, k, l, f, i1);
     }
 
@@ -223,21 +212,17 @@ public class BlockTrackElevator extends Block {
         int meta = world.getBlockMetadata(i, j, k);
         int ladderMeta = getLadderFacingMetadata(world, i, j, k);
         boolean valid = false;
-        if (ladderMeta == 2 && world.isSideSolid(i, j, k + 1, ForgeDirection.NORTH))
-            valid = true;
-        if (ladderMeta == 3 && world.isSideSolid(i, j, k - 1, ForgeDirection.SOUTH))
-            valid = true;
-        if (ladderMeta == 4 && world.isSideSolid(i + 1, j, k, ForgeDirection.WEST))
-            valid = true;
-        if (ladderMeta == 5 && world.isSideSolid(i - 1, j, k, ForgeDirection.EAST))
-            valid = true;
+        if (ladderMeta == 2 && world.isSideSolid(i, j, k + 1, ForgeDirection.NORTH)) valid = true;
+        if (ladderMeta == 3 && world.isSideSolid(i, j, k - 1, ForgeDirection.SOUTH)) valid = true;
+        if (ladderMeta == 4 && world.isSideSolid(i + 1, j, k, ForgeDirection.WEST)) valid = true;
+        if (ladderMeta == 5 && world.isSideSolid(i - 1, j, k, ForgeDirection.EAST)) valid = true;
         if (!valid) {
             dropBlockAsItem(world, i, j, k, ladderMeta, 0);
             world.setBlockToAir(i, j, k);
         } else {
             boolean powered = (meta & 8) != 0;
             if (powered ^ isPowered(world, i, j, k)) {
-//					 System.out.println("Power change");
+                //					 System.out.println("Power change");
                 world.setBlockMetadataWithNotify(i, j, k, meta ^ 8, 3);
                 world.markBlockForUpdate(i, j, k);
             }
@@ -247,8 +232,7 @@ public class BlockTrackElevator extends Block {
     @Override
     public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity) {
         entity.fallDistance = 0;
-        if (Game.isNotHost(world) || !(entity instanceof EntityMinecart))
-            return;
+        if (Game.isNotHost(world) || !(entity instanceof EntityMinecart)) return;
         minecartInteraction(world, (EntityMinecart) entity, i, j, k);
     }
 
@@ -266,11 +250,11 @@ public class BlockTrackElevator extends Block {
     protected boolean isPowered(World world, int x, int y, int z) {
         int meta = getLadderFacingMetadata(world, x, y, z);
         if (world.getBlock(x, y - 1, z) == this && meta == getLadderFacingMetadata(world, x, y - 1, z))
-            if (PowerPlugin.isBlockBeingPowered(world, x, y - 1, z))
-                return true;
-        if (PowerPlugin.isBlockBeingPowered(world, x, y, z))
-            return true;
-        return world.getBlock(x, y + 1, z) == this && meta == getLadderFacingMetadata(world, x, y + 1, z) && isPowered(world, x, y + 1, z);
+            if (PowerPlugin.isBlockBeingPowered(world, x, y - 1, z)) return true;
+        if (PowerPlugin.isBlockBeingPowered(world, x, y, z)) return true;
+        return world.getBlock(x, y + 1, z) == this
+                && meta == getLadderFacingMetadata(world, x, y + 1, z)
+                && isPowered(world, x, y + 1, z);
     }
 
     /**
@@ -292,50 +276,40 @@ public class BlockTrackElevator extends Block {
             if (world.getBlock(i, j + 1, k) == this || isOffloadRail(world, i, j + 1, k)) {
                 boolean empty = true;
                 for (EntityMinecart c : CartTools.getMinecartsAt(world, i, j + 1, k, 0.2f)) {
-                    if (c != cart)
-                        empty = false;
+                    if (c != cart) empty = false;
                 }
                 if ((getPoweredBit(world, i, j + 1, k) || isOffloadRail(world, i, j + 1, k)) && empty)
                     cart.motionY = RIDE_UP_VELOCITY + FALL_DOWN_CORRECTION;
-                else
-                    if (pushMinecartOntoRail(world, i, j, k, cart))
-                        return;
-                    else {
-                        cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
-                        cart.motionY = FALL_DOWN_CORRECTION;
-                    }
-            } else
-                cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
-        else
-            if (world.getBlock(i, j - 1, k) != this) {
-                pushMinecartOntoRail(world, i, j, k, cart);
-                return;
-            } else {
-                boolean empty = true;
-                for (EntityMinecart c : CartTools.getMinecartsAt(world, i, j - 1, k, 0.2f)) {
-                    if (c != cart)
-                        empty = false;
-                }
-                if (empty)
-                    cart.motionY = RIDE_DOWN_VELOCITY + FALL_DOWN_CORRECTION;
+                else if (pushMinecartOntoRail(world, i, j, k, cart)) return;
                 else {
                     cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
                     cart.motionY = FALL_DOWN_CORRECTION;
                 }
+            } else cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
+        else if (world.getBlock(i, j - 1, k) != this) {
+            pushMinecartOntoRail(world, i, j, k, cart);
+            return;
+        } else {
+            boolean empty = true;
+            for (EntityMinecart c : CartTools.getMinecartsAt(world, i, j - 1, k, 0.2f)) {
+                if (c != cart) empty = false;
             }
+            if (empty) cart.motionY = RIDE_DOWN_VELOCITY + FALL_DOWN_CORRECTION;
+            else {
+                cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
+                cart.motionY = FALL_DOWN_CORRECTION;
+            }
+        }
 
         if (powered || !TrackTools.isRailBlockAt(world, i, j - 1, k)) {
             if (TrackTools.isRailBlockAt(world, i, j - 1, k) || TrackTools.isRailBlockAt(world, i, j - 2, k))
                 cart.setCanUseRail(false);
-            else
-                cart.setCanUseRail(true);
+            else cart.setCanUseRail(true);
             keepMinecartConnected(world, i, j, k, cart);
-        } else
-            cart.setCanUseRail(true);
+        } else cart.setCanUseRail(true);
 
-//        RailcraftUtils.resetFallDistance(cart);
-        if (powered)
-            pushMinecartOnSupportingBlockIfPossible(world, i, j, k, cart);
+        //        RailcraftUtils.resetFallDistance(cart);
+        if (powered) pushMinecartOnSupportingBlockIfPossible(world, i, j, k, cart);
     }
 
     /**
@@ -370,18 +344,14 @@ public class BlockTrackElevator extends Block {
         switch (getLadderFacingMetadata(world, x, y, z)) {
             case FACING_NORTH_METADATA_VALUE:
             case FACING_SOUTH_METADATA_VALUE:
-                if (minecart.rotationYaw <= 90.0f || minecart.rotationYaw > 270.0f)
-                    minecart.rotationYaw = 0.0f;
-                else
-                    minecart.rotationYaw = 180.0f;
+                if (minecart.rotationYaw <= 90.0f || minecart.rotationYaw > 270.0f) minecart.rotationYaw = 0.0f;
+                else minecart.rotationYaw = 180.0f;
                 return;
 
             case FACING_EAST_METADATA_VALUE:
             case FACING_WEST_METADATA_VALUE:
-                if (minecart.rotationYaw > 180.0f)
-                    minecart.rotationYaw = 270.0f;
-                else
-                    minecart.rotationYaw = 90.0f;
+                if (minecart.rotationYaw > 180.0f) minecart.rotationYaw = 270.0f;
+                else minecart.rotationYaw = 90.0f;
         }
     }
 
@@ -389,26 +359,21 @@ public class BlockTrackElevator extends Block {
         if (world.getBlock(x, y, z) != this)
             switch (world.getBlockMetadata(x, y - 1, z) & BLOCK_FACING_DATA_METADATA_MASK) {
                 case FACING_EAST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x, y, z + 1))
-                        return true;
+                    if (TrackTools.isRailBlockAt(world, x, y, z + 1)) return true;
 
                 case FACING_WEST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x, y, z - 1))
-                        return true;
+                    if (TrackTools.isRailBlockAt(world, x, y, z - 1)) return true;
 
                 case FACING_NORTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x + 1, y, z))
-                        return true;
+                    if (TrackTools.isRailBlockAt(world, x + 1, y, z)) return true;
 
                 case FACING_SOUTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x - 1, y, z))
-                        return true;
+                    if (TrackTools.isRailBlockAt(world, x - 1, y, z)) return true;
 
                 default:
                     return false;
             }
-        else
-            return false;
+        else return false;
     }
 
     /**
@@ -460,8 +425,7 @@ public class BlockTrackElevator extends Block {
                 default:
                     return false;
             }
-        else
-            return false;
+        else return false;
     }
 
     private boolean pushMinecartOntoRail(World world, int i, int j, int k, EntityMinecart cart) {
@@ -509,5 +473,4 @@ public class BlockTrackElevator extends Block {
     public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
         return false;
     }
-
 }

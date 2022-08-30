@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,10 +8,9 @@
  */
 package mods.railcraft.common.plugins.forge;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import static mods.railcraft.common.util.misc.MiscTools.*;
 
+import mods.railcraft.api.core.WorldCoordinate;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -42,8 +41,7 @@ public class WorldPlugin {
     }
 
     public static boolean isBlockAt(World world, int x, int y, int z, Block block, int meta) {
-        if (getBlock(world, x, y, z) != block)
-            return false;
+        if (getBlock(world, x, y, z) != block) return false;
         return meta == -1 || getBlockMetadata(world, x, y, z) == meta;
     }
 
@@ -104,17 +102,16 @@ public class WorldPlugin {
     }
 
     public static void notifyBlocksOfNeighborChange(World world, int x, int y, int z, Block block) {
-        if (world != null && block != null)
-            world.notifyBlocksOfNeighborChange(x, y, z, block);
+        if (world != null && block != null) world.notifyBlocksOfNeighborChange(x, y, z, block);
     }
 
-    public static void notifyBlocksOfNeighborChangeOnSide(World world, int x, int y, int z, Block block, ForgeDirection side) {
+    public static void notifyBlocksOfNeighborChangeOnSide(
+            World world, int x, int y, int z, Block block, ForgeDirection side) {
         world.notifyBlocksOfNeighborChange(getXOnSide(x, side), getYOnSide(y, side), getZOnSide(z, side), block);
     }
 
     public static void addBlockEvent(World world, int x, int y, int z, Block block, int key, int value) {
-        if (world != null && block != null)
-            world.addBlockEvent(x, y, z, block, key, value);
+        if (world != null && block != null) world.addBlockEvent(x, y, z, block, key, value);
     }
 
     public static double getDistanceSq(WorldCoordinate a, WorldCoordinate b) {
@@ -142,5 +139,4 @@ public class WorldPlugin {
         }
         return null;
     }
-
 }

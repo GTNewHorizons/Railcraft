@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -37,11 +37,8 @@ public class ItemSteelShears extends ItemShears {
 
     @Override
     public float func_150893_a(ItemStack stack, Block block) {
-        if (block == Blocks.web || block instanceof IShearable)
-            return 15;
-        if (block == Blocks.wool)
-            return 5;
+        if (block == Blocks.web || block instanceof IShearable) return 15;
+        if (block == Blocks.wool) return 5;
         return super.func_150893_a(stack, block);
     }
-
 }

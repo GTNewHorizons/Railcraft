@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -19,8 +19,7 @@ public final class MatrixTransformations {
     /**
      * Deactivate constructor
      */
-    private MatrixTransformations() {
-    }
+    private MatrixTransformations() {}
 
     /**
      * Mirrors the array on the Y axis by calculating offsets from 0.5F
@@ -54,8 +53,7 @@ public final class MatrixTransformations {
      * @param direction
      */
     public static void transform(float[][] targetArray, ForgeDirection direction) {
-        if ((direction.ordinal() & 0x1) == 1)
-            mirrorY(targetArray);
+        if ((direction.ordinal() & 0x1) == 1) mirrorY(targetArray);
 
         for (int i = 0; i < (direction.ordinal() >> 1); i++) {
             rotate(targetArray);
@@ -75,5 +73,4 @@ public final class MatrixTransformations {
         }
         return target;
     }
-
 }

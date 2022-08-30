@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.Locale;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackInstance;
@@ -21,11 +25,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Locale;
 
 public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
     private EntityMinecart taggedCart;
@@ -87,8 +86,7 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
     @Override
     public IIcon getIcon() {
         int iconIndex = 0;
-        if (!isPowered())
-            iconIndex++;
+        if (!isPowered()) iconIndex++;
         iconIndex += mode.ordinal() * 2;
         return getIcon(iconIndex);
     }
@@ -100,15 +98,15 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
             if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
                 Mode m;
-                if (player.isSneaking())
-                    m = mode.previous();
-                else
-                    m = mode.next();
+                if (player.isSneaking()) m = mode.previous();
+                else m = mode.next();
                 crowbar.onWhack(player, current, getX(), getY(), getZ());
-                if (Game.isHost(getWorld()))
-                    setMode(m);
+                if (Game.isHost(getWorld())) setMode(m);
                 else
-                    ChatPlugin.sendLocalizedChat(player, "railcraft.gui.track.mode.change", "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.coupler.mode." + m.getTag()));
+                    ChatPlugin.sendLocalizedChat(
+                            player,
+                            "railcraft.gui.track.mode.change",
+                            "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.coupler.mode." + m.getTag()));
                 return true;
             }
         }
@@ -167,11 +165,9 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
 
         mode = Mode.fromOrdinal(data.getByte("mode"));
 
-        if (data.getBoolean("decouple"))
-            mode = Mode.DECOUPLER;
+        if (data.getBoolean("decouple")) mode = Mode.DECOUPLER;
 
-        if (data.getInteger("trackId") == EnumTrack.DECOUPLER.ordinal())
-            mode = Mode.DECOUPLER;
+        if (data.getInteger("trackId") == EnumTrack.DECOUPLER.ordinal()) mode = Mode.DECOUPLER;
     }
 
     @Override
@@ -199,8 +195,6 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
             needsUpdate = true;
         }
 
-        if (needsUpdate)
-            markBlockNeedsUpdate();
+        if (needsUpdate) markBlockNeedsUpdate();
     }
-
 }

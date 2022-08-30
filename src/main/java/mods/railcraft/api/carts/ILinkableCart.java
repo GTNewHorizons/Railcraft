@@ -17,8 +17,7 @@ import net.minecraft.entity.item.EntityMinecart;
  * it merely gives you more control over the process.
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ILinkableCart
-{
+public interface ILinkableCart {
 
     /**
      * To disable linking altogether, return false here.

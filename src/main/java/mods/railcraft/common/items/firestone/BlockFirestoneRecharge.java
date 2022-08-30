@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,13 +11,12 @@ package mods.railcraft.common.items.firestone;
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.Random;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -65,8 +65,7 @@ public class BlockFirestoneRecharge extends BlockContainer {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister iconRegister) {
-    }
+    public void registerBlockIcons(IIconRegister iconRegister) {}
 
     @Override
     public IIcon getIcon(int side, int meta) {
@@ -92,24 +91,20 @@ public class BlockFirestoneRecharge extends BlockContainer {
             TileFirestoneRecharge firestone = (TileFirestoneRecharge) tile;
             Item item = meta == 0 ? ItemFirestoneRefined.item : ItemFirestoneCracked.item;
             ItemStack drop = new ItemStack(item, 1, ItemFirestoneRefined.item.getMaxDamage() - firestone.charge);
-            if (firestone.getItemName() != null)
-                drop.setStackDisplayName(firestone.getItemName());
+            if (firestone.getItemName() != null) drop.setStackDisplayName(firestone.getItemName());
             drops.add(drop);
-        } else
-            drops.add(ItemFirestoneRefined.getItemEmpty());
+        } else drops.add(ItemFirestoneRefined.getItemEmpty());
         return drops;
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {
-    }
+    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {}
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
         player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
         player.addExhaustion(0.025F);
-        if (Game.isHost(world))
-            dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+        if (Game.isHost(world)) dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         return world.setBlockToAir(x, y, z);
     }
 
@@ -133,23 +128,24 @@ public class BlockFirestoneRecharge extends BlockContainer {
         return null;
     }
 
-//    @Override
-//    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity) {
-//    }
-//
-//    @Override
-//    public boolean canCollideCheck(int par1, boolean par2) {
-//        return false;
-//    }
-//    @Override
-//    public boolean isCollidable() {
-//        return false;
-//    }
-//
-//    @Override
-//    public int getMobilityFlag() {
-//        return 1;
-//    }
+    //    @Override
+    //    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB
+    // par5AxisAlignedBB, List par6List, Entity par7Entity) {
+    //    }
+    //
+    //    @Override
+    //    public boolean canCollideCheck(int par1, boolean par2) {
+    //        return false;
+    //    }
+    //    @Override
+    //    public boolean isCollidable() {
+    //        return false;
+    //    }
+    //
+    //    @Override
+    //    public int getMobilityFlag() {
+    //        return 1;
+    //    }
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
         return new TileFirestoneRecharge();
@@ -169,5 +165,4 @@ public class BlockFirestoneRecharge extends BlockContainer {
     public boolean addHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer) {
         return true;
     }
-
 }

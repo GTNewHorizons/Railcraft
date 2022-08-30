@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,9 +23,7 @@ public class SlotWoolFilter extends SlotRailcraft {
 
     @Override
     public boolean isItemValid(ItemStack itemstack) {
-        if (itemstack == null)
-            return false;
+        if (itemstack == null) return false;
         return InvTools.isStackEqualToBlock(itemstack, Blocks.wool);
     }
-
 }

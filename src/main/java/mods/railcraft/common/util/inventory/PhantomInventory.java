@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -17,38 +17,31 @@ import net.minecraft.inventory.IInventory;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class PhantomInventory extends StandaloneInventory
-{
+public class PhantomInventory extends StandaloneInventory {
 
-    public PhantomInventory(int size, String name, IInventory callback)
-    {
+    public PhantomInventory(int size, String name, IInventory callback) {
         super(size, name, callback);
     }
 
-    public PhantomInventory(int size, IInventory callback)
-    {
+    public PhantomInventory(int size, IInventory callback) {
         super(size, null, callback);
     }
 
-    public PhantomInventory(int size, String name)
-    {
+    public PhantomInventory(int size, String name) {
         super(size, name);
     }
 
-    public PhantomInventory(int size)
-    {
-        super(size, null, (IInventory)null);
+    public PhantomInventory(int size) {
+        super(size, null, (IInventory) null);
     }
 
     @Override
-    protected String invTypeName()
-    {
+    protected String invTypeName() {
         return "Phantom";
     }
 
     @Override
-    public int getInventoryStackLimit()
-    {
+    public int getInventoryStackLimit() {
         return 127;
     }
 }

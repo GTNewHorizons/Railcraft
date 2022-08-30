@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,11 @@ package mods.railcraft.common.modules;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.io.File;
+import java.util.EnumSet;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Set;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.util.misc.Game;
@@ -21,24 +26,21 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import org.apache.logging.log4j.Level;
 
-import java.io.File;
-import java.util.EnumSet;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Set;
-
 public class ModuleManager {
 
     public static final String MODULE_CONFIG_FILE_NAME = "modules.cfg";
     public static final String CATEGORY_MODULES = "modules";
 
     public enum Stage {
-
-        PRE_INIT, INIT_FIRST, INIT_SECOND, POST_INIT, POST_INIT_NOT_LOADED, FINISHED;
+        PRE_INIT,
+        INIT_FIRST,
+        INIT_SECOND,
+        POST_INIT,
+        POST_INIT_NOT_LOADED,
+        FINISHED;
     }
 
     public enum Module {
-
         CORE(ModuleCore.class),
         FACTORY(ModuleFactory.class),
         EXTRAS(ModuleExtras.class),
@@ -92,16 +94,13 @@ public class ModuleManager {
             }
             return moduleClass;
         }
+    };
 
-    }
-
-    ;
     private static final Set<Module> loadedModules = EnumSet.noneOf(Module.class);
     private static final Set<Module> unloadedModules = EnumSet.allOf(Module.class);
     private static Stage stage = Stage.PRE_INIT;
 
-    private ModuleManager() {
-    }
+    private ModuleManager() {}
 
     public static Stage getStage() {
         return stage;
@@ -112,21 +111,23 @@ public class ModuleManager {
         Locale locale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
 
-        Configuration config = new Configuration(new File(Railcraft.getMod().getConfigFolder(), MODULE_CONFIG_FILE_NAME));
+        Configuration config =
+                new Configuration(new File(Railcraft.getMod().getConfigFolder(), MODULE_CONFIG_FILE_NAME));
 
         config.load();
-        config.addCustomCategoryComment(CATEGORY_MODULES, "Disabling these modules can greatly change how the mod functions.\n"
-                + "For example, disabling the Train Module will prevent you from linking carts.\n"
-                + "Disabling the World Module will disable all world gen.\n"
-                + "Disabling the Energy Module will remove the energy requirement from machines, "
-                + "but will only do so if Forestry or Buildcraft are not installed.");
+        config.addCustomCategoryComment(
+                CATEGORY_MODULES,
+                "Disabling these modules can greatly change how the mod functions.\n"
+                        + "For example, disabling the Train Module will prevent you from linking carts.\n"
+                        + "Disabling the World Module will disable all world gen.\n"
+                        + "Disabling the Energy Module will remove the energy requirement from machines, "
+                        + "but will only do so if Forestry or Buildcraft are not installed.");
 
         Set<Module> toLoad = EnumSet.allOf(Module.class);
         Iterator<Module> it = toLoad.iterator();
         while (it.hasNext()) {
             Module m = it.next();
-            if (m == Module.CORE)
-                continue;
+            if (m == Module.CORE) continue;
             if (!isEnabled(config, m)) {
                 it.remove();
                 Game.log(Level.INFO, "Module disabled: {0}", m);
@@ -150,8 +151,7 @@ public class ModuleManager {
             it = toLoad.iterator();
             while (it.hasNext()) {
                 Module m = it.next();
-                if (m.instance == null)
-                    continue;
+                if (m.instance == null) continue;
                 Set<Module> deps = m.instance.getDependencies();
                 if (!toLoad.containsAll(deps)) {
                     it.remove();
@@ -165,8 +165,7 @@ public class ModuleManager {
         unloadedModules.removeAll(toLoad);
         loadedModules.addAll(toLoad);
 
-        if (config.hasChanged())
-            config.save();
+        if (config.hasChanged()) config.save();
 
         Locale.setDefault(locale);
 
@@ -202,7 +201,8 @@ public class ModuleManager {
 
     private static boolean isEnabled(Configuration config, Module m) {
         boolean defaultValue = true;
-        Property prop = config.get(CATEGORY_MODULES, m.toString().toLowerCase(Locale.ENGLISH).replace('_', '.'), defaultValue);
+        Property prop = config.get(
+                CATEGORY_MODULES, m.toString().toLowerCase(Locale.ENGLISH).replace('_', '.'), defaultValue);
         return prop.getBoolean(true);
     }
 
@@ -211,20 +211,20 @@ public class ModuleManager {
     }
 
     @SideOnly(Side.CLIENT)
-    public static GuiScreen getGuiScreen(EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static GuiScreen getGuiScreen(
+            EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         for (Module m : loadedModules) {
             GuiScreen gui = m.instance.getGuiScreen(guiType, inv, obj, world, x, y, z);
-            if (gui != null)
-                return gui;
+            if (gui != null) return gui;
         }
         return null;
     }
 
-    public static Container getGuiContainer(EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static Container getGuiContainer(
+            EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         for (Module m : loadedModules) {
             Container con = m.instance.getGuiContainer(guiType, inv, obj, world, x, y, z);
-            if (con != null)
-                return con;
+            if (con != null) return con;
         }
         return null;
     }
@@ -301,7 +301,8 @@ public class ModuleManager {
         if (instance != null) {
             boolean override = false;
             try {
-                override = instance.getClass().getMethod("postInitNotLoaded").getDeclaringClass() != RailcraftModule.class;
+                override =
+                        instance.getClass().getMethod("postInitNotLoaded").getDeclaringClass() != RailcraftModule.class;
             } catch (Exception ex) {
             }
             if (override) {
@@ -311,5 +312,4 @@ public class ModuleManager {
             }
         }
     }
-
 }

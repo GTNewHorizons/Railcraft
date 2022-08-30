@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,33 +11,33 @@ package mods.railcraft.common.blocks.machine.alpha;
 import java.util.ArrayList;
 import java.util.List;
 import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.MultiBlockPattern;
+import mods.railcraft.common.blocks.machine.TileMultiBlock;
+import mods.railcraft.common.blocks.machine.beta.TileBoilerFirebox;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.Fluids;
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.FakeTank;
+import mods.railcraft.common.fluids.tanks.FilteredTank;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.items.RailcraftPartItems;
+import mods.railcraft.common.plugins.buildcraft.triggers.INeedsMaintenance;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.plugins.ic2.IC2Plugin;
+import mods.railcraft.common.plugins.ic2.IMultiEmitterDelegate;
+import mods.railcraft.common.plugins.ic2.TileIC2MultiEmitterDelegate;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.StandaloneInventory;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.steam.ISteamUser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.MultiBlockPattern;
-import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.util.steam.ISteamUser;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFirebox;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.items.RailcraftPartItems;
-import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.plugins.buildcraft.triggers.INeedsMaintenance;
-import mods.railcraft.common.plugins.ic2.IC2Plugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.StandaloneInventory;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.FakeTank;
-import mods.railcraft.common.fluids.tanks.FilteredTank;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.plugins.ic2.IMultiEmitterDelegate;
-import mods.railcraft.common.plugins.ic2.TileIC2MultiEmitterDelegate;
-import mods.railcraft.common.util.misc.Game;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -47,11 +47,17 @@ import net.minecraftforge.fluids.IFluidHandler;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDelegate, IFluidHandler, INeedsMaintenance, ISteamUser, IElectricGrid {
+public class TileSteamTurbine extends TileMultiBlock
+        implements IMultiEmitterDelegate, IFluidHandler, INeedsMaintenance, ISteamUser, IElectricGrid {
 
     enum Texture {
-
-        END_TL(6), END_TR(7), END_BL(8), END_BR(9), SIDE_A(0), SIDE_B(10), GUAGE(11);
+        END_TL(6),
+        END_TR(7),
+        END_BL(8),
+        END_BR(9),
+        SIDE_A(0),
+        SIDE_B(10),
+        GUAGE(11);
         private final int index;
 
         private Texture(int index) {
@@ -61,8 +67,8 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
         public IIcon getIcon() {
             return EnumMachineAlpha.TURBINE.getTexture(index);
         }
-
     }
+
     private static final int DAMAGE_CHANCE = 200;
     private static final int IC2_OUTPUT = 200;
     private static final int BC_OUTPUT = 64;
@@ -72,8 +78,7 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
     private static ItemStack sampleRotor = null;
 
     public static ItemStack getSampleRotor() {
-        if (sampleRotor == null)
-            sampleRotor = RailcraftPartItems.getTurbineRotor();
+        if (sampleRotor == null) sampleRotor = RailcraftPartItems.getTurbineRotor();
         return sampleRotor;
     }
 
@@ -86,7 +91,7 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
     public static final int TANK_STEAM = 0;
     public static final int TANK_WATER = 1;
     private byte gaugeState = 0;
-    // mainGauge is a renderer field 
+    // mainGauge is a renderer field
     public double mainGauge;
     private double energy;
     private TileEntity emitterDelegate;
@@ -158,7 +163,6 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
         super(patterns);
         tankManager.add(tankSteam); // Steam
         tankManager.add(tankWater); // Water
-
     }
 
     @Override
@@ -177,18 +181,15 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
         if (Game.isHost(worldObj)) {
             if (isStructureValid()) {
-                if (isMaster())
-                    addToNet();
+                if (isMaster()) addToNet();
                 chargeHandler.tick();
-            } else
-                dropFromNet();
+            } else dropFromNet();
 
             double chargeNeeded = chargeHandler.getCapacity() - chargeHandler.getCharge();
             if (chargeNeeded > 0) {
                 double draw = (chargeNeeded / IC2_OUTPUT) * BC_OUTPUT;
                 double e = getEnergy();
-                if (e < draw)
-                    draw = e;
+                if (e < draw) draw = e;
                 removeEnergy(draw);
                 chargeHandler.addCharge((draw / BC_OUTPUT) * IC2_OUTPUT);
             }
@@ -197,16 +198,16 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
                 boolean addedEnergy = false;
                 if (energy < BC_OUTPUT * 2) {
                     FluidStack steam = tankManager.drain(TANK_STEAM, STEAM_USAGE, false);
-//                if(steam != null) System.out.println("steam=" + steam.amount);
+                    //                if(steam != null) System.out.println("steam=" + steam.amount);
                     if (steam != null && steam.amount >= STEAM_USAGE) {
                         ItemStack rotor = inv.getStackInSlot(0);
-                        if (InvTools.isItemEqual(rotor, getSampleRotor()) /*&& rotor.getItemDamage() < rotor.getMaxDamage() - 5*/) {
+                        if (InvTools.isItemEqual(
+                                rotor, getSampleRotor()) /*&& rotor.getItemDamage() < rotor.getMaxDamage() - 5*/) {
                             addedEnergy = true;
                             energy += BC_OUTPUT;
                             tankManager.drain(TANK_STEAM, STEAM_USAGE, true);
 
-                            if (worldObj.rand.nextInt(4) != 0)
-                                tankWater.fill(waterFilter, true);
+                            if (worldObj.rand.nextInt(4) != 0) tankWater.fill(waterFilter, true);
 
                             if (worldObj.rand.nextInt(DAMAGE_CHANCE) == 0)
                                 inv.setInventorySlotContents(0, InvTools.damageItem(rotor, 1));
@@ -216,8 +217,8 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
                 output = (float) ((output * 49D + (addedEnergy ? 100D : 0D)) / 50D);
 
-//                System.out.println("output=" + output);
-//                System.out.println("addedEnergy=" + addedEnergy);
+                //                System.out.println("output=" + output);
+                //                System.out.println("addedEnergy=" + addedEnergy);
                 if (clock % 4 == 0) {
                     gaugeState = (byte) getOutput();
                     WorldPlugin.addBlockEvent(worldObj, xCoord, yCoord, zCoord, getBlockType(), 1, gaugeState);
@@ -226,14 +227,12 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
         }
 
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            tMan.outputLiquid(getOutputs(), 0, WATER_OUTPUT);
+        if (tMan != null) tMan.outputLiquid(getOutputs(), 0, WATER_OUTPUT);
     }
 
     private IFluidHandler getOutputOnSide(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoilerFirebox)
-            return (IFluidHandler) tile;
+        if (tile instanceof TileBoilerFirebox) return (IFluidHandler) tile;
         return null;
     }
 
@@ -311,22 +310,19 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
     public double getEnergy() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-        if (mBlock == null)
-            return 0;
+        if (mBlock == null) return 0;
         return mBlock.energy;
     }
 
     public float getOutput() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-        if (mBlock == null)
-            return 0;
+        if (mBlock == null) return 0;
         return mBlock.output;
     }
 
     public float getMainGauge() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-        if (mBlock == null)
-            return 0;
+        if (mBlock == null) return 0;
         return mBlock.gaugeState * 0.01F;
     }
 
@@ -335,56 +331,45 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
         if (isStructureValid()) {
             int patIndex = patterns.indexOf(getPattern());
             if (side == 0 || side == 1) {
-                if (patIndex == 0)
-                    return Texture.SIDE_B.getIcon();
+                if (patIndex == 0) return Texture.SIDE_B.getIcon();
                 return Texture.SIDE_A.getIcon();
             }
 
-            if (getPatternMarker() == 'W')
-                return Texture.GUAGE.getIcon();
+            if (getPatternMarker() == 'W') return Texture.GUAGE.getIcon();
             if (patIndex == 0)
                 switch (side) {
                     case 2:
                         if (getPatternPositionY() == 2) {
-                            if (getPatternPositionX() == 2)
-                                return Texture.END_TL.getIcon();
+                            if (getPatternPositionX() == 2) return Texture.END_TL.getIcon();
                             return Texture.END_TR.getIcon();
                         }
-                        if (getPatternPositionX() == 2)
-                            return Texture.END_BL.getIcon();
+                        if (getPatternPositionX() == 2) return Texture.END_BL.getIcon();
                         return Texture.END_BR.getIcon();
                     case 3:
                         if (getPatternPositionY() == 2) {
-                            if (getPatternPositionX() == 1)
-                                return Texture.END_TL.getIcon();
+                            if (getPatternPositionX() == 1) return Texture.END_TL.getIcon();
                             return Texture.END_TR.getIcon();
                         }
-                        if (getPatternPositionX() == 1)
-                            return Texture.END_BL.getIcon();
+                        if (getPatternPositionX() == 1) return Texture.END_BL.getIcon();
                         return Texture.END_BR.getIcon();
                 }
             else
                 switch (side) {
                     case 4:
                         if (getPatternPositionY() == 2) {
-                            if (getPatternPositionZ() == 1)
-                                return Texture.END_TL.getIcon();
+                            if (getPatternPositionZ() == 1) return Texture.END_TL.getIcon();
                             return Texture.END_TR.getIcon();
                         }
-                        if (getPatternPositionZ() == 1)
-                            return Texture.END_BL.getIcon();
+                        if (getPatternPositionZ() == 1) return Texture.END_BL.getIcon();
                         return Texture.END_BR.getIcon();
                     case 5:
                         if (getPatternPositionY() == 2) {
-                            if (getPatternPositionZ() == 2)
-                                return Texture.END_TL.getIcon();
+                            if (getPatternPositionZ() == 2) return Texture.END_TL.getIcon();
                             return Texture.END_TR.getIcon();
                         }
-                        if (getPatternPositionZ() == 2)
-                            return Texture.END_BL.getIcon();
+                        if (getPatternPositionZ() == 2) return Texture.END_BL.getIcon();
                         return Texture.END_BR.getIcon();
                 }
-
         }
         return Texture.SIDE_A.getIcon();
     }
@@ -420,8 +405,7 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
     @Override
     public double getOfferedEnergy() {
-        if (hasEnergy())
-            return IC2_OUTPUT;
+        if (hasEnergy()) return IC2_OUTPUT;
         return 0;
     }
 
@@ -452,15 +436,13 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
     public StandaloneInventory getInventory() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.inv;
+        if (mBlock != null) return mBlock.inv;
         return inv;
     }
 
     public TankManager getTankManager() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager;
+        if (mBlock != null) return mBlock.tankManager;
         return null;
     }
 
@@ -480,8 +462,7 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (Fluids.WATER.is(resource))
-            return drain(from, resource.amount, doDrain);
+        if (Fluids.WATER.is(resource)) return drain(from, resource.amount, doDrain);
         return null;
     }
 
@@ -502,35 +483,31 @@ public class TileSteamTurbine extends TileMultiBlock implements IMultiEmitterDel
         return fluid == null || Fluids.WATER.is(fluid);
     }
 
-//    @Override
-//    public void onDisable(int duration) {
-//        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-//        if (mBlock != null) {
-//            mBlock.disabled = duration;
-//        }
-//    }
-//
-//    @Override
-//    public boolean isDisabled() {
-//        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-//        if (mBlock != null) {
-//            return mBlock.disabled <= 0;
-//        }
-//        return true;
-//    }
+    //    @Override
+    //    public void onDisable(int duration) {
+    //        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
+    //        if (mBlock != null) {
+    //            mBlock.disabled = duration;
+    //        }
+    //    }
+    //
+    //    @Override
+    //    public boolean isDisabled() {
+    //        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
+    //        if (mBlock != null) {
+    //            return mBlock.disabled <= 0;
+    //        }
+    //        return true;
+    //    }
     @Override
     public boolean needsMaintenance() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
         if (mBlock != null) {
             ItemStack rotor = mBlock.inv.getStackInSlot(0);
-            if (rotor == null)
-                return true;
-            if (!InvTools.isItemEqual(rotor, getSampleRotor()))
-                return true;
-            if (rotor.getItemDamage() / (double) rotor.getMaxDamage() > 0.75f)
-                return true;
+            if (rotor == null) return true;
+            if (!InvTools.isItemEqual(rotor, getSampleRotor())) return true;
+            if (rotor.getItemDamage() / (double) rotor.getMaxDamage() > 0.75f) return true;
         }
         return false;
     }
-
 }

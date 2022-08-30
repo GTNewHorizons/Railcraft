@@ -1,5 +1,7 @@
 package mods.railcraft.common.items;
 
+import java.util.HashSet;
+import java.util.Set;
 import mods.railcraft.api.signals.AbstractPair;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
@@ -13,9 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @author Vexatos
  */
@@ -27,7 +26,17 @@ public class ItemSignalLabel extends ItemRailcraft {
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (Game.isHost(world) && player.isSneaking() && stack.hasDisplayName()) {
             TileEntity tile = world.getTileEntity(x, y, z);
             Set<AbstractPair> pairs = new HashSet<AbstractPair>();
@@ -37,7 +46,7 @@ public class ItemSignalLabel extends ItemRailcraft {
             if (tile instanceof IControllerTile) {
                 pairs.add(((IControllerTile) tile).getController());
             }
-            if(tile instanceof ISignalBlockTile) {
+            if (tile instanceof ISignalBlockTile) {
                 pairs.add(((ISignalBlockTile) tile).getSignalBlock());
             }
             if (!pairs.isEmpty()) {

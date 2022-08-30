@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -22,9 +24,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
     private static final byte SLOTS_FILLED_DATA_ID = 25;
@@ -66,8 +65,7 @@ public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (Game.isHost(worldObj))
-            setSlotsFilled(InvTools.countStacks(this));
+        if (Game.isHost(worldObj)) setSlotsFilled(InvTools.countStacks(this));
     }
 
     @Override
@@ -76,8 +74,7 @@ public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
         if (RailcraftConfig.doCartsBreakOnDrop()) {
             items.add(new ItemStack(Items.minecart));
             items.add(new ItemStack(Blocks.trapped_chest));
-        } else
-            items.add(getCartItem());
+        } else items.add(getCartItem());
         return items;
     }
 
@@ -93,9 +90,9 @@ public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
     public Block func_145820_n() {
         return null;
     }
-//    public Block func_145820_n() {
-//        return Blocks.trapped_chest;
-//    }
+    //    public Block func_145820_n() {
+    //        return Blocks.trapped_chest;
+    //    }
 
     @Override
     public int getDefaultDisplayTileOffset() {
@@ -110,8 +107,7 @@ public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         ItemStack filter = getFilterItem();
-        if (!InvTools.isItemEqual(stack, filter))
-            return false;
+        if (!InvTools.isItemEqual(stack, filter)) return false;
         if (!RailcraftConfig.chestAllowLiquids())
             return getStackInSlot(slot) == null || !FluidItemHelper.isContainer(stack);
         return true;

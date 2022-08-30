@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,20 +12,13 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
-
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Timer;
@@ -33,7 +26,12 @@ import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketTileRequest;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileMultiBlock extends TileMachineBase {
     private static final int UNKNOWN_STATE_RECHECK = 256;
@@ -53,6 +51,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
     private TileMultiBlock masterBlock;
     private MultiBlockPattern currentPattern;
     private UUID uuidMaster;
+
     public TileMultiBlock(List<? extends MultiBlockPattern> patterns) {
         this.patterns = patterns;
         currentPattern = patterns.get(0);
@@ -67,20 +66,17 @@ public abstract class TileMultiBlock extends TileMachineBase {
         return componentsImmutable;
     }
 
-    protected void onMasterChanged() {
-    }
+    protected void onMasterChanged() {}
 
     private void setMaster(TileMultiBlock master) {
         this.masterBlock = master;
 
-        if (uuidMaster != null && !uuidMaster.equals(master.getUUID()))
-            onMasterChanged();
+        if (uuidMaster != null && !uuidMaster.equals(master.getUUID())) onMasterChanged();
 
         this.uuidMaster = master.getUUID();
     }
 
-    protected void onPatternLock(MultiBlockPattern pattern) {
-    }
+    protected void onPatternLock(MultiBlockPattern pattern) {}
 
     protected void onPatternChanged() {
         if (!isMaster && this instanceof IInventory)
@@ -88,8 +84,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     public final char getPatternMarker() {
-        if (currentPattern == null || !isStructureValid())
-            return 'O';
+        if (currentPattern == null || !isStructureValid()) return 'O';
         return currentPattern.getPatternMarker(patternX, patternY, patternZ);
     }
 
@@ -116,8 +111,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     public final void setPattern(MultiBlockPattern pattern) {
-        if (currentPattern != pattern)
-            onPatternChanged();
+        if (currentPattern != pattern) onPatternChanged();
         this.currentPattern = pattern;
         onPatternLock(pattern);
     }
@@ -152,16 +146,15 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     private void testIfMasterBlock() {
-//        System.out.println("testing structure");
+        //        System.out.println("testing structure");
         state = getMasterBlockState();
         tested = true;
         components.clear();
 
-        if (state == MultiBlockState.UNKNOWN)
-            tested = false;
+        if (state == MultiBlockState.UNKNOWN) tested = false;
         else if (state == MultiBlockState.VALID) {
             isMaster = true;
-//             System.out.println("structure complete");
+            //             System.out.println("structure complete");
 
             int xWidth = currentPattern.getPatternWidthX();
             int zWidth = currentPattern.getPatternWidthZ();
@@ -176,8 +169,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
                     for (byte pz = 0; pz < zWidth; pz++) {
 
                         char marker = currentPattern.getPatternMarker(px, py, pz);
-                        if (isMapPositionOtherBlock(marker))
-                            continue;
+                        if (isMapPositionOtherBlock(marker)) continue;
 
                         int x = px + xOffset;
                         int y = py + yOffset;
@@ -186,8 +178,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
                         TileEntity tile = worldObj.getTileEntity(x, y, z);
                         if (tile instanceof TileMultiBlock) {
                             TileMultiBlock multiBlock = (TileMultiBlock) tile;
-                            if (multiBlock != this)
-                                multiBlock.components.clear();
+                            if (multiBlock != this) multiBlock.components.clear();
                             components.add(multiBlock);
                             multiBlock.tested = true;
                             multiBlock.setMaster(this);
@@ -224,17 +215,14 @@ public abstract class TileMultiBlock extends TileMachineBase {
         Block block = WorldPlugin.getBlock(worldObj, x, y, z);
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata())
-                    return false;
+                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata()) return false;
                 break;
             case 'W': // Window
             case 'B': // Block
-                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata())
-                    return false;
+                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata()) return false;
                 break;
             case 'A': // Air
-                if (!worldObj.isAirBlock(x, y, z))
-                    return false;
+                if (!worldObj.isAirBlock(x, y, z)) return false;
                 break;
             case '*': // Anything
                 return true;
@@ -275,8 +263,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
                     int x = patX + xOffset;
                     int y = patY + yOffset;
                     int z = patZ + zOffset;
-                    if (!worldObj.blockExists(x, y, z))
-                        return MultiBlockStateReturn.NOT_LOADED;
+                    if (!worldObj.blockExists(x, y, z)) return MultiBlockStateReturn.NOT_LOADED;
                     if (!isMapPositionValid(x, y, z, map.getPatternMarker(patX, patY, patZ)))
                         return MultiBlockStateReturn.PATTERN_DOES_NOT_MATCH;
                 }
@@ -284,11 +271,12 @@ public abstract class TileMultiBlock extends TileMachineBase {
         }
 
         AxisAlignedBB entityCheckBounds = map.getEntityCheckBounds(xCoord, yCoord, zCoord);
-//                if(entityCheckBounds != null) {
-//                    System.out.println("test entitys: " + entityCheckBounds.toString());
-//                }
-        if (entityCheckBounds != null && !worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityCheckBounds).isEmpty())
-            return MultiBlockStateReturn.ENTITY_IN_WAY;
+        //                if(entityCheckBounds != null) {
+        //                    System.out.println("test entitys: " + entityCheckBounds.toString());
+        //                }
+        if (entityCheckBounds != null
+                && !worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityCheckBounds)
+                        .isEmpty()) return MultiBlockStateReturn.ENTITY_IN_WAY;
         return MultiBlockStateReturn.VALID;
     }
 
@@ -327,15 +315,13 @@ public abstract class TileMultiBlock extends TileMachineBase {
     private void onBlockChange() {
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
             TileEntity tile = tileCache.getTileOnSide(side);
-            if (isStructureTile(tile))
-                ((TileMultiBlock) tile).onBlockChange(getMaxRecursionDepth());
+            if (isStructureTile(tile)) ((TileMultiBlock) tile).onBlockChange(getMaxRecursionDepth());
         }
     }
 
     private void onBlockChange(int depth) {
         depth--;
-        if (depth < 0)
-            return;
+        if (depth < 0) return;
         if (tested) {
             tested = false;
 
@@ -347,8 +333,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
 
             for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
                 TileEntity tile = tileCache.getTileOnSide(side);
-                if (isStructureTile(tile))
-                    ((TileMultiBlock) tile).onBlockChange(depth);
+                if (isStructureTile(tile)) ((TileMultiBlock) tile).onBlockChange(depth);
             }
         }
     }
@@ -362,8 +347,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
         super.markDirty();
         if (!isMaster) {
             TileMultiBlock mBlock = getMasterBlock();
-            if (mBlock != null)
-                mBlock.markDirty();
+            if (mBlock != null) mBlock.markDirty();
         }
     }
 
@@ -385,7 +369,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
         try {
             currentPattern = patterns.get(data.getByte("pattern"));
         } catch (Exception ex) {
-            //NOOP
+            // NOOP
         }
 
         uuidMaster = MiscTools.readUUID(data, "uuidMaster");
@@ -440,27 +424,27 @@ public abstract class TileMultiBlock extends TileMachineBase {
             int masterZ = pat.getMasterRelativeZ(zCoord, pZ);
 
             TileEntity tile = null;
-            if (worldObj != null)
-                tile = worldObj.getTileEntity(masterX, masterY, masterZ);
+            if (worldObj != null) tile = worldObj.getTileEntity(masterX, masterY, masterZ);
             if (tile != null)
                 if (masterBlock != tile && isStructureTile(tile)) {
                     needsRenderUpdate = true;
                     masterBlock = (TileMultiBlock) tile;
                 }
-            if (getMasterBlock() == null)
-                requestPacket = true;
+            if (getMasterBlock() == null) requestPacket = true;
         } else if (masterBlock != null) {
             needsRenderUpdate = true;
             masterBlock = null;
             isMaster = false;
         }
 
-        if (needsRenderUpdate)
-            markBlockForUpdate();
+        if (needsRenderUpdate) markBlockForUpdate();
 
-//        System.out.printf("marker=%c, pattern=%d, x=%d, y=%d, z=%d%n", currentPattern.getPatternMarkerChecked(patternX, patternY, patternZ), patternIndex, patternX, patternY, patternZ);
-//        if(masterBlock != null)
-//        System.out.printf("tested=%b, invalid=%b, isMaster=%b%n" ,masterBlock.tested, masterBlock.isInvalid(), masterBlock.isMaster());
+        //        System.out.printf("marker=%c, pattern=%d, x=%d, y=%d, z=%d%n",
+        // currentPattern.getPatternMarkerChecked(patternX, patternY, patternZ), patternIndex, patternX, patternY,
+        // patternZ);
+        //        if(masterBlock != null)
+        //        System.out.printf("tested=%b, invalid=%b, isMaster=%b%n" ,masterBlock.tested, masterBlock.isInvalid(),
+        // masterBlock.isMaster());
     }
 
     public final boolean isMaster() {
@@ -472,10 +456,8 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     public final void scheduleMasterRetest() {
-        if (Game.isNotHost(worldObj))
-            return;
-        if (masterBlock != null)
-            masterBlock.tested = false;
+        if (Game.isNotHost(worldObj)) return;
+        if (masterBlock != null) masterBlock.tested = false;
     }
 
     public final boolean isStructureValid() {
@@ -496,12 +478,12 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     public enum MultiBlockState {
-
-        VALID, INVALID, UNKNOWN
+        VALID,
+        INVALID,
+        UNKNOWN
     }
 
     public enum MultiBlockStateReturn {
-
         VALID(MultiBlockState.VALID, "railcraft.multiblock.state.valid"),
         ENTITY_IN_WAY(MultiBlockState.INVALID, "railcraft.multiblock.state.invalid.entity"),
         PATTERN_DOES_NOT_MATCH(MultiBlockState.INVALID, "railcraft.multiblock.state.invalid.pattern"),
@@ -513,6 +495,5 @@ public abstract class TileMultiBlock extends TileMachineBase {
             this.type = type;
             this.message = msg;
         }
-
     }
 }

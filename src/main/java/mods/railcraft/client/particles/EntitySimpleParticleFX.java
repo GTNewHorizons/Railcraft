@@ -1,6 +1,6 @@
 /*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,7 +23,8 @@ public class EntitySimpleParticleFX extends EntityFX {
         this(par1World, x, y, z, 0, 0, 0, 3f);
     }
 
-    public EntitySimpleParticleFX(World par1World, double x, double y, double z, double velX, double velY, double velZ, float scale) {
+    public EntitySimpleParticleFX(
+            World par1World, double x, double y, double z, double velX, double velY, double velZ, float scale) {
         super(par1World, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.1;
         this.motionY *= 0.1;
@@ -47,8 +48,7 @@ public class EntitySimpleParticleFX extends EntityFX {
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
 
-        if (this.particleAge++ >= this.particleMaxAge)
-            this.setDead();
+        if (this.particleAge++ >= this.particleMaxAge) this.setDead();
 
         this.setParticleTextureIndex(7 - this.particleAge * 8 / this.particleMaxAge);
         this.motionY += gravity;
@@ -68,5 +68,4 @@ public class EntitySimpleParticleFX extends EntityFX {
             this.motionZ *= 0.67D;
         }
     }
-
 }

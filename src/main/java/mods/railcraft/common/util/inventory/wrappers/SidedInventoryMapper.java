@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -119,5 +119,4 @@ public class SidedInventoryMapper implements ISidedInventory {
     public boolean canExtractItem(int slot, ItemStack stack, int s) {
         return !checkItems || inv.canExtractItem(slot, stack, side);
     }
-
 }

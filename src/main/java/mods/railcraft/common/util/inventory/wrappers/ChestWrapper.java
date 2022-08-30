@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -164,7 +164,8 @@ public class ChestWrapper implements IInventory {
      */
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return this.upperChest.isUseableByPlayer(player) && (lowerChest == null || lowerChest.isUseableByPlayer(player));
+        return this.upperChest.isUseableByPlayer(player)
+                && (lowerChest == null || lowerChest.isUseableByPlayer(player));
     }
 
     @Override
@@ -187,5 +188,4 @@ public class ChestWrapper implements IInventory {
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         return true;
     }
-
 }

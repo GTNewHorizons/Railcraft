@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,25 +8,29 @@
  */
 package mods.railcraft.common.blocks.detector.types;
 
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import mods.railcraft.common.blocks.detector.Detector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.gui.EnumGui;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import mods.railcraft.common.gui.EnumGui;
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 public class DetectorVillager extends Detector {
 
     public static enum Mode {
-
-        ANY, NONE, NOT, EQUALS
+        ANY,
+        NONE,
+        NOT,
+        EQUALS
     }
+
     private int profession;
     private Mode mode = Mode.ANY;
 
@@ -37,8 +41,7 @@ public class DetectorVillager extends Detector {
 
     private boolean cartHasVillager(List<EntityMinecart> carts) {
         for (EntityMinecart cart : carts) {
-            if (cart.riddenByEntity instanceof EntityVillager)
-                return true;
+            if (cart.riddenByEntity instanceof EntityVillager) return true;
         }
         return false;
     }
@@ -47,8 +50,7 @@ public class DetectorVillager extends Detector {
         for (EntityMinecart cart : carts) {
             if (cart.riddenByEntity instanceof EntityVillager) {
                 EntityVillager villager = (EntityVillager) cart.riddenByEntity;
-                if (villager.getProfession() == profession)
-                    return true;
+                if (villager.getProfession() == profession) return true;
             }
         }
         return false;
@@ -135,5 +137,4 @@ public class DetectorVillager extends Detector {
         profession = data.readInt();
         mode = Mode.values()[data.readByte()];
     }
-
 }

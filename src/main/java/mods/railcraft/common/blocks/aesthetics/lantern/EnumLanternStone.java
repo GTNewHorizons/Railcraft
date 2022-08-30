@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import mods.railcraft.common.blocks.aesthetics.brick.BlockBrick;
 import mods.railcraft.common.blocks.aesthetics.brick.BrickVariant;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -31,7 +30,6 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumLanternStone implements LanternInfo {
-
     ABYSSAL,
     BLEACHEDBONE,
     BLOODSTAINED,
@@ -63,21 +61,20 @@ public enum EnumLanternStone implements LanternInfo {
             NAMES.put(lamp.name(), lamp);
 
             if (lamp.isEnabled() && lamp.source != null)
-                CraftingPlugin.addShapedRecipe(lamp.getItem(1), " S ", " T ", " S ", 'S', lamp.getSource(), 'T', new ItemStack(Blocks.torch));
+                CraftingPlugin.addShapedRecipe(
+                        lamp.getItem(1), " S ", " T ", " S ", 'S', lamp.getSource(), 'T', new ItemStack(Blocks.torch));
             creativeList.add(lamp);
         }
     }
 
     public static EnumLanternStone fromOrdinal(int id) {
-        if (id < 0 || id >= VALUES.length)
-            return VALUES[0];
+        if (id < 0 || id >= VALUES.length) return VALUES[0];
         return VALUES[id];
     }
 
     public static EnumLanternStone fromName(String name) {
         EnumLanternStone lamp = NAMES.get(name);
-        if (lamp != null)
-            return lamp;
+        if (lamp != null) return lamp;
         return ABYSSAL;
     }
 
@@ -116,7 +113,8 @@ public enum EnumLanternStone implements LanternInfo {
 
     @Override
     public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(ModuleManager.Module.STRUCTURES) && RailcraftConfig.isSubBlockEnabled(getTag()) && getBlock() != null;
+        return ModuleManager.isModuleLoaded(ModuleManager.Module.STRUCTURES)
+                && RailcraftConfig.isSubBlockEnabled(getTag())
+                && getBlock() != null;
     }
-
 }

@@ -8,9 +8,8 @@
 
 package mods.railcraft.api.signals;
 
-import net.minecraft.nbt.NBTTagCompound;
-
 import java.util.Locale;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * Represents a Signal state.
@@ -116,8 +115,7 @@ public enum SignalAspect {
      * @return the Signal Aspect with the specified Ordinal
      */
     public static SignalAspect fromOrdinal(int ordinal) {
-        if (ordinal < 0 || ordinal >= VALUES.length)
-            return SignalAspect.RED;
+        if (ordinal < 0 || ordinal >= VALUES.length) return SignalAspect.RED;
         return VALUES[ordinal];
     }
 
@@ -125,8 +123,7 @@ public enum SignalAspect {
      * Read an aspect from NBT.
      */
     public static SignalAspect readFromNBT(NBTTagCompound nbt, String tag) {
-        if (nbt.hasKey(tag, 1))
-            return fromOrdinal(nbt.getByte(tag));
+        if (nbt.hasKey(tag, 1)) return fromOrdinal(nbt.getByte(tag));
         return RED;
     }
 
@@ -149,14 +146,10 @@ public enum SignalAspect {
      * @return The most restrictive Aspect
      */
     public static SignalAspect mostRestrictive(SignalAspect first, SignalAspect second) {
-        if (first == null && second == null)
-            return RED;
-        if (first == null)
-            return second;
-        if (second == null)
-            return first;
-        if (first.ordinal() > second.ordinal())
-            return first;
+        if (first == null && second == null) return RED;
+        if (first == null) return second;
+        if (second == null) return first;
+        if (first.ordinal() > second.ordinal()) return first;
         return second;
     }
 
@@ -174,5 +167,4 @@ public enum SignalAspect {
         out = out.trim();
         return out;
     }
-
 }

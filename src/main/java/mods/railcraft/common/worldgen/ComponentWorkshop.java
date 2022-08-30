@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.worldgen;
 
+import java.util.List;
+import java.util.Random;
 import mods.railcraft.api.tracks.ITrackReversable;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
@@ -34,27 +36,27 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.List;
-import java.util.Random;
-
 public class ComponentWorkshop extends StructureVillagePieces.Village {
 
     private int averageGroundLevel = -1;
     private boolean hasMadeChest;
 
-    public ComponentWorkshop() {
-    }
+    public ComponentWorkshop() {}
 
-    public ComponentWorkshop(Start villagePiece, int par2, Random par3Random, StructureBoundingBox sbb, int coordBaseMode) {
+    public ComponentWorkshop(
+            Start villagePiece, int par2, Random par3Random, StructureBoundingBox sbb, int coordBaseMode) {
         super();
         this.coordBaseMode = coordBaseMode;
         this.boundingBox = sbb;
-
     }
 
-    public static ComponentWorkshop buildComponent(Start villagePiece, List pieces, Random random, int x, int y, int z, int coordBaseMode, int p5) {
-        StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 11, 6, 11, coordBaseMode);
-        return canVillageGoDeeper(box) && StructureComponent.findIntersecting(pieces, box) == null ? new ComponentWorkshop(villagePiece, p5, random, box, coordBaseMode) : null;
+    public static ComponentWorkshop buildComponent(
+            Start villagePiece, List pieces, Random random, int x, int y, int z, int coordBaseMode, int p5) {
+        StructureBoundingBox box =
+                StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 11, 6, 11, coordBaseMode);
+        return canVillageGoDeeper(box) && StructureComponent.findIntersecting(pieces, box) == null
+                ? new ComponentWorkshop(villagePiece, p5, random, box, coordBaseMode)
+                : null;
     }
 
     @Override
@@ -62,8 +64,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         if (this.averageGroundLevel < 0) {
             this.averageGroundLevel = this.getAverageGroundLevel(world, sbb);
 
-            if (this.averageGroundLevel < 0)
-                return true;
+            if (this.averageGroundLevel < 0) return true;
 
             this.boundingBox.offset(0, this.averageGroundLevel - this.boundingBox.maxY + 4, 0);
         }
@@ -71,11 +72,11 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         int y = this.boundingBox.minY;
         int z = this.boundingBox.minZ;
 
-        //Clear area
+        // Clear area
         fillWithBlocks(world, sbb, 1, 1, 2, 3, 3, 4, Blocks.air, Blocks.air, false);
         fillWithBlocks(world, sbb, 5, 1, 0, 9, 4, 10, Blocks.air, Blocks.air, false);
         // floor
-//        fillWithBlocks(world, sbb, 0, 0, 0, 11, 0, 11, Blocks.gravel, Blocks.gravel, false);
+        //        fillWithBlocks(world, sbb, 0, 0, 0, 11, 0, 11, Blocks.gravel, Blocks.gravel, false);
         fillWithBlocks(world, sbb, 4, 0, 0, 10, 0, 10, Blocks.double_stone_slab, Blocks.double_stone_slab, false);
         fillWithBlocks(world, sbb, 0, 0, 1, 3, 0, 5, Blocks.double_stone_slab, Blocks.double_stone_slab, false);
 
@@ -129,12 +130,12 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         placeBlockAtCurrentPosition(world, Blocks.stained_glass, 9, 7, 5, 8, sbb);
 
         // hall torches
-//        int meta = getMetadataWithOffset(Blocks.torch, 4);
+        //        int meta = getMetadataWithOffset(Blocks.torch, 4);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 9, 3, 1, sbb);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 9, 3, 5, sbb);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 9, 3, 9, sbb);
 
-//        meta = getMetadataWithOffset(Blocks.torch, 3);
+        //        meta = getMetadataWithOffset(Blocks.torch, 3);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 5, 3, 1, sbb);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 5, 3, 5, sbb);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 5, 3, 9, sbb);
@@ -169,18 +170,24 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         fillWithBlocks(world, sbb, 0, 2, 3, 0, 2, 3, Blocks.glass_pane, Blocks.glass_pane, false);
 
         // hut torches
-//        meta = getMetadataWithOffset(Blocks.torch, 1);
+        //        meta = getMetadataWithOffset(Blocks.torch, 1);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 2, 3, 2, sbb);
-//        meta = getMetadataWithOffset(Blocks.torch, 2);
+        //        meta = getMetadataWithOffset(Blocks.torch, 2);
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 2, 3, 4, sbb);
 
         // machines
         if (EnumMachineAlpha.ROLLING_MACHINE.isAvaliable()) {
-            placeBlockAtCurrentPosition(world, RailcraftBlocks.getBlockMachineAlpha(), EnumMachineAlpha.ROLLING_MACHINE.ordinal(), 9, 1, 5, sbb);
+            placeBlockAtCurrentPosition(
+                    world,
+                    RailcraftBlocks.getBlockMachineAlpha(),
+                    EnumMachineAlpha.ROLLING_MACHINE.ordinal(),
+                    9,
+                    1,
+                    5,
+                    sbb);
             if (EnumMachineBeta.ENGINE_STEAM_HOBBY.isAvaliable() && RailcraftConfig.machinesRequirePower())
                 placeEngine(world, 9, 1, 6, sbb);
         }
-
 
         // foundation
         for (int k = 0; k < 11; ++k) {
@@ -207,7 +214,8 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         return 456;
     }
 
-    private void placeTrack(EnumTrack track, World world, int x, int y, int z, StructureBoundingBox sbb, int meta, boolean reversed) {
+    private void placeTrack(
+            EnumTrack track, World world, int x, int y, int z, StructureBoundingBox sbb, int meta, boolean reversed) {
         if (!track.isEnabled()) {
             placeBlockAtCurrentPosition(world, Blocks.rail, 0, x, y, z, sbb);
             return;
@@ -216,10 +224,9 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         int yy = this.getYWithOffset(y);
         int zz = this.getZWithOffset(x, z);
 
-        if (!sbb.isVecInside(xx, yy, zz))
-            return;
+        if (!sbb.isVecInside(xx, yy, zz)) return;
 
-//        System.out.println("coordBaseMode = " + coordBaseMode);
+        //        System.out.println("coordBaseMode = " + coordBaseMode);
 
         TileTrack tile = TrackTools.placeTrack(track.getTrackSpec(), world, xx, yy, zz, meta);
         boolean r = false;
@@ -241,16 +248,17 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         int yy = this.getYWithOffset(y);
         int zz = this.getZWithOffset(x, z);
 
-        if (!sbb.isVecInside(xx, yy, zz))
-            return;
+        if (!sbb.isVecInside(xx, yy, zz)) return;
 
-        WorldPlugin.setBlock(world, xx, yy, zz, RailcraftBlocks.getBlockMachineBeta(), EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal());
+        WorldPlugin.setBlock(
+                world, xx, yy, zz, RailcraftBlocks.getBlockMachineBeta(), EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal());
         TileEntity tile = WorldPlugin.getBlockTile(world, xx, yy, zz);
         if (tile instanceof TileEngineSteamHobby) {
             TileEngineSteamHobby engine = (TileEngineSteamHobby) tile;
             engine.switchOrientation();
             engine.fill(ForgeDirection.UP, Fluids.WATER.getB(4), true);
-//            engine.setInventorySlotContents(TileEngineSteamHobby.SLOT_FUEL, new ItemStack(Items.coal, 16));
+            //            engine.setInventorySlotContents(TileEngineSteamHobby.SLOT_FUEL, new ItemStack(Items.coal,
+            // 16));
         }
     }
 
@@ -278,9 +286,12 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
                 TileEntityChest chest = (TileEntityChest) world.getTileEntity(xx, yy, zz);
 
                 if (chest != null)
-                    WeightedRandomChestContent.generateChestContents(rand, ChestGenHooks.getItems(LootPlugin.WORKSHOP, rand), chest, ChestGenHooks.getCount(LootPlugin.WORKSHOP, rand));
+                    WeightedRandomChestContent.generateChestContents(
+                            rand,
+                            ChestGenHooks.getItems(LootPlugin.WORKSHOP, rand),
+                            chest,
+                            ChestGenHooks.getCount(LootPlugin.WORKSHOP, rand));
             }
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -17,7 +17,6 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumPost {
-
     WOOD,
     STONE,
     METAL_UNPAINTED,
@@ -41,8 +40,7 @@ public enum EnumPost {
     }
 
     public ItemStack getItem(int qty) {
-        if (!isEnabled())
-            return null;
+        if (!isEnabled()) return null;
         return new ItemStack(BlockPost.block, qty, ordinal());
     }
 
@@ -51,13 +49,11 @@ public enum EnumPost {
     }
 
     public static EnumPost fromId(int id) {
-        if (id < 0 || id >= EnumPost.values().length)
-            id = 0;
+        if (id < 0 || id >= EnumPost.values().length) id = 0;
         return EnumPost.values()[id];
     }
 
     public String getTag() {
         return "tile.railcraft.post." + name().toLowerCase(Locale.ENGLISH).replace("_", ".");
     }
-
 }

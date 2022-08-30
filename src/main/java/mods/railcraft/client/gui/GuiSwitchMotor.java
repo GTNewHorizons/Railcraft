@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,7 +34,13 @@ public class GuiSwitchMotor extends GuiAspectAction {
         super.initGui();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
-        redstoneButton = new GuiToggleButton(6, w + 43, h + 80, 100, LocalizationPlugin.translate("railcraft.gui.switch.motor.redstone"), !shouldSwitchOnRedstone);
+        redstoneButton = new GuiToggleButton(
+                6,
+                w + 43,
+                h + 80,
+                100,
+                LocalizationPlugin.translate("railcraft.gui.switch.motor.redstone"),
+                !shouldSwitchOnRedstone);
         GuiTools.newButtonRowAuto(buttonList, w + 3, 171, Lists.newArrayList(redstoneButton));
     }
 

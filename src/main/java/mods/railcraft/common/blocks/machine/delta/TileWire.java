@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -17,8 +17,6 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager.ReducedBoundingBox;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
@@ -26,8 +24,10 @@ import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -38,17 +38,17 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileWire extends TileMachineBase implements IElectricGrid {
 
     public enum AddonType {
-
-        NONE, FRAME, PYLON;
+        NONE,
+        FRAME,
+        PYLON;
         public static final AddonType[] VALUES = values();
 
         public static AddonType fromOrdinal(int ordinal) {
-            if (ordinal < 0 || ordinal >= VALUES.length)
-                return NONE;
+            if (ordinal < 0 || ordinal >= VALUES.length) return NONE;
             return VALUES[ordinal];
         }
-
     }
+
     private final ChargeHandler chargeHandler = new ChargeHandler(this, ChargeHandler.ConnectType.WIRE, 0.25);
     private AddonType addon = AddonType.NONE;
 
@@ -67,8 +67,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null && InvTools.isStackEqualToBlock(current, BlockFrame.getBlock()))
             if (setAddon(AddonType.FRAME)) {
-                if (!player.capabilities.isCreativeMode)
-                    player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
+                if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
                 return true;
             }
         return super.blockActivated(player, side);
@@ -77,15 +76,13 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
     @Override
     public ArrayList<ItemStack> getDrops(int fortune) {
         ArrayList<ItemStack> drops = super.getDrops(fortune);
-        if (addon == AddonType.FRAME && BlockFrame.getBlock() != null)
-            drops.add(BlockFrame.getItem());
+        if (addon == AddonType.FRAME && BlockFrame.getBlock() != null) drops.add(BlockFrame.getItem());
         return drops;
     }
 
     @Override
     public boolean isSideSolid(ForgeDirection side) {
-        if (addon == AddonType.FRAME)
-            return side == ForgeDirection.UP;
+        if (addon == AddonType.FRAME) return side == ForgeDirection.UP;
         return false;
     }
 
@@ -93,8 +90,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         chargeHandler.tick();
     }
@@ -131,10 +127,9 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
     }
 
     public boolean setAddon(AddonType addon) {
-        if (this.addon == addon)
-            return false;
+        if (this.addon == addon) return false;
         if (this.addon != AddonType.NONE) {
-            //dropstuff
+            // dropstuff
         }
         this.addon = addon;
         sendUpdateToClient();
@@ -153,8 +148,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
 
     @Override
     public IPostConnection.ConnectStyle connectsToPost(ForgeDirection side) {
-        if (getAddon() == AddonType.FRAME)
-            return IPostConnection.ConnectStyle.TWO_THIN;
+        if (getAddon() == AddonType.FRAME) return IPostConnection.ConnectStyle.TWO_THIN;
         return IPostConnection.ConnectStyle.NONE;
     }
 
@@ -170,12 +164,9 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
             if (tile instanceof TileWire) {
                 TileWire wire = (TileWire) tile;
                 AddonType type = wire.getAddon();
-                if (type == AddonType.NONE)
-                    return super.getBox(world, x, y, z);
+                if (type == AddonType.NONE) return super.getBox(world, x, y, z);
             }
             return BoundingBoxManager.DEFAULT.getBox(world, x, y, z);
         }
-
     }
-
 }

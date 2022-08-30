@@ -24,8 +24,7 @@ import net.minecraft.world.World;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IMineable
-{
+public interface IMineable {
 
     /**
      * Called when the Bore attempts to mine the block. If it returns false,

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -15,8 +15,8 @@ import java.util.List;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.inventory.InvTools;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +36,6 @@ public class ItemTicket extends ItemRailcraft {
         public boolean matches(ItemStack stack) {
             return stack != null && stack.getItem() instanceof ItemTicket;
         }
-
     };
     public static final int LINE_LENGTH = 32;
     public static ItemTicket item;
@@ -53,46 +52,36 @@ public class ItemTicket extends ItemRailcraft {
     }
 
     public static ItemStack getTicket() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
     public static boolean isNBTValid(NBTTagCompound nbt) {
-        if (nbt == null)
-            return false;
-        else if (!nbt.hasKey("dest"))
-            return false;
+        if (nbt == null) return false;
+        else if (!nbt.hasKey("dest")) return false;
 
         NBTTagString dest = (NBTTagString) nbt.getTag("dest");
-        if (dest.func_150285_a_() == null)
-            return false;
+        if (dest.func_150285_a_() == null) return false;
 
         return dest.func_150285_a_().length() <= LINE_LENGTH;
     }
 
     public static ItemStack copyTicket(ItemStack source) {
-        if (item == null)
-            return null;
-        if (source == null)
-            return null;
+        if (item == null) return null;
+        if (source == null) return null;
         if (source.getItem() instanceof ItemTicket) {
             ItemStack ticket = getTicket();
             NBTTagCompound nbt = source.getTagCompound();
-            if (nbt != null)
-                ticket.setTagCompound((NBTTagCompound) nbt.copy());
+            if (nbt != null) ticket.setTagCompound((NBTTagCompound) nbt.copy());
             return ticket;
         }
         return null;
     }
 
     public static boolean setTicketData(ItemStack ticket, String dest, String title, GameProfile owner) {
-        if (ticket == null || !(ticket.getItem() instanceof ItemTicket))
-            return false;
-        if (dest.length() > LINE_LENGTH)
-            return false;
-        if (owner == null || owner.equals(""))
-            return false;
+        if (ticket == null || !(ticket.getItem() instanceof ItemTicket)) return false;
+        if (dest.length() > LINE_LENGTH) return false;
+        if (owner == null || owner.equals("")) return false;
         NBTTagCompound data = InvTools.getItemData(ticket);
         data.setString("dest", dest);
         data.setString("title", title);
@@ -101,26 +90,21 @@ public class ItemTicket extends ItemRailcraft {
     }
 
     public static String getDestination(ItemStack ticket) {
-        if (ticket == null || !(ticket.getItem() instanceof ItemTicket))
-            return "";
+        if (ticket == null || !(ticket.getItem() instanceof ItemTicket)) return "";
         NBTTagCompound nbt = ticket.getTagCompound();
-        if (nbt == null)
-            return "";
+        if (nbt == null) return "";
         return nbt.getString("dest");
     }
 
     public static boolean matchesOwnerOrOp(ItemStack ticket, GameProfile player) {
-        if (!(item instanceof ItemTicket))
-            return false;
+        if (!(item instanceof ItemTicket)) return false;
         return PlayerPlugin.isOwnerOrOp(getOwner(ticket), player);
     }
 
     public static GameProfile getOwner(ItemStack ticket) {
-        if (ticket == null || !(ticket.getItem() instanceof ItemTicket))
-            return new GameProfile(null, "[Unknown]");
+        if (ticket == null || !(ticket.getItem() instanceof ItemTicket)) return new GameProfile(null, "[Unknown]");
         NBTTagCompound nbt = ticket.getTagCompound();
-        if (nbt == null)
-            return new GameProfile(null, "[Unknown]");
+        if (nbt == null) return new GameProfile(null, "[Unknown]");
         return PlayerPlugin.readOwnerFromNBT(nbt);
     }
 
@@ -135,16 +119,16 @@ public class ItemTicket extends ItemRailcraft {
         itemIcon = iconRegister.registerIcon("railcraft:ticket");
     }
 
-//    @Override
-//    public String getItemDisplayName(ItemStack stack) {
-//        String dest = getDestination(stack);
-//
-//        if (!dest.equals("")) {
-//            return super.getItemDisplayName(stack) + " - " + dest.substring(dest.lastIndexOf("/") + 1);
-//        }
-//
-//        return super.getItemDisplayName(stack);
-//    }
+    //    @Override
+    //    public String getItemDisplayName(ItemStack stack) {
+    //        String dest = getDestination(stack);
+    //
+    //        if (!dest.equals("")) {
+    //            return super.getItemDisplayName(stack) + " - " + dest.substring(dest.lastIndexOf("/") + 1);
+    //        }
+    //
+    //        return super.getItemDisplayName(stack);
+    //    }
     /**
      * allows items to add custom lines of information to the mouseover
      * description
@@ -155,17 +139,17 @@ public class ItemTicket extends ItemRailcraft {
         if (stack.hasTagCompound()) {
             GameProfile owner = getOwner(stack);
             if (owner.getId() != null) {
-                list.add(EnumChatFormatting.WHITE + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.issuer"));
+                list.add(EnumChatFormatting.WHITE
+                        + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.issuer"));
                 list.add(EnumChatFormatting.GRAY + PlayerPlugin.getUsername(player.worldObj, owner));
             }
 
             String dest = getDestination(stack);
             if (!dest.equals("")) {
-                list.add(EnumChatFormatting.WHITE + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.dest"));
+                list.add(EnumChatFormatting.WHITE
+                        + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.dest"));
                 list.add(EnumChatFormatting.GRAY + dest);
             }
-        } else
-            list.add(LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.blank"));
+        } else list.add(LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.blank"));
     }
-
 }

@@ -8,8 +8,6 @@
 
 package mods.railcraft.api.tracks;
 
-import net.minecraft.util.AxisAlignedBB;
-
 public interface ITrackSwitch extends ITrackInstance {
     /**
      * Returns whether the switch track should "appear" switched.

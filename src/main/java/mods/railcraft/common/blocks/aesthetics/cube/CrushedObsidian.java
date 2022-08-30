@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -58,9 +58,16 @@ public class CrushedObsidian extends SimpleCube {
         if (canFallBelow(par1World, x, y - 1, z) && y >= 0) {
             byte var8 = 32;
 
-            if (!BlockSand.fallInstantly && par1World.checkChunksExist(x - var8, y - var8, z - var8, x + var8, y + var8, z + var8)) {
+            if (!BlockSand.fallInstantly
+                    && par1World.checkChunksExist(x - var8, y - var8, z - var8, x + var8, y + var8, z + var8)) {
                 if (!par1World.isRemote) {
-                    EntityFallingBlock entity = new EntityFallingBlock(par1World, (double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), BlockCube.getBlock(), EnumCube.CRUSHED_OBSIDIAN.ordinal());
+                    EntityFallingBlock entity = new EntityFallingBlock(
+                            par1World,
+                            (double) ((float) x + 0.5F),
+                            (double) ((float) y + 0.5F),
+                            (double) ((float) z + 0.5F),
+                            BlockCube.getBlock(),
+                            EnumCube.CRUSHED_OBSIDIAN.ordinal());
                     par1World.spawnEntityInWorld(entity);
                 }
             } else {
@@ -70,8 +77,7 @@ public class CrushedObsidian extends SimpleCube {
                     --y;
                 }
 
-                if (y > 0)
-                    par1World.setBlock(x, y, z, BlockCube.getBlock(), EnumCube.CRUSHED_OBSIDIAN.ordinal(), 3);
+                if (y > 0) par1World.setBlock(x, y, z, BlockCube.getBlock(), EnumCube.CRUSHED_OBSIDIAN.ordinal(), 3);
             }
         }
     }
@@ -80,14 +86,11 @@ public class CrushedObsidian extends SimpleCube {
      * Checks to see if the sand can fall into the block below it
      */
     public static boolean canFallBelow(World world, int x, int y, int z) {
-        if (world.isAirBlock(x, y, z))
-            return true;
+        if (world.isAirBlock(x, y, z)) return true;
 
         Block block = WorldPlugin.getBlock(world, x, y, z);
-        if (block == Blocks.fire)
-            return true;
+        if (block == Blocks.fire) return true;
 
         return block.getMaterial().isLiquid();
     }
-
 }

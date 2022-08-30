@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -42,16 +42,14 @@ public class EssentiaTank {
     }
 
     public int fill(int amount, boolean doAdd) {
-        if (amount < 0)
-            return 0;
+        if (amount < 0) return 0;
         int remainder = 0;
         int contents = getAmount() + amount;
         if (contents > capacity) {
             remainder = contents - capacity;
             contents = capacity;
         }
-        if (doAdd)
-            setAmount(contents);
+        if (doAdd) setAmount(contents);
         return remainder;
     }
 
@@ -60,8 +58,7 @@ public class EssentiaTank {
     }
 
     public boolean remove(int amount, boolean doRemove) {
-        if (amount < 0)
-            return false;
+        if (amount < 0) return false;
         if (contains(amount)) {
             if (doRemove) {
                 int contents = getAmount() - amount;
@@ -71,5 +68,4 @@ public class EssentiaTank {
         }
         return false;
     }
-
 }

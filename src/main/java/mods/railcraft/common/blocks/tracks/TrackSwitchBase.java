@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.*;
 import mods.railcraft.api.tracks.ISwitchDevice;
 import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
 import mods.railcraft.api.tracks.ITrackSwitch;
@@ -22,11 +26,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -66,8 +65,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
 
     @Override
     public boolean isVisuallySwitched() {
-        if (Game.isHost(getWorld()))
-            return !isLocked() && (shouldSwitch || isSprung());
+        if (Game.isHost(getWorld())) return !isLocked() && (shouldSwitch || isSprung());
         return clientSwitched;
     }
 
@@ -79,8 +77,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
      * that to updateEntity().
      */
     protected boolean shouldSwitchForCart(EntityMinecart cart) {
-        if (cart == null || Game.isNotHost(getWorld()))
-            return isVisuallySwitched();
+        if (cart == null || Game.isNotHost(getWorld())) return isVisuallySwitched();
 
         if (springingCarts.contains(cart.getPersistentID()))
             return true; // Carts at the spring entrance always are on switched tracks
@@ -158,7 +155,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
         if (TrackTools.isRailBlockAt(getWorld(), x + 1, y, z) && TrackTools.isRailBlockAt(getWorld(), x - 1, y, z)) {
             if (meta != EnumTrackMeta.EAST_WEST.ordinal())
                 getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.EAST_WEST.ordinal(), 3);
-        } else if (TrackTools.isRailBlockAt(getWorld(), x, y, z + 1) && TrackTools.isRailBlockAt(getWorld(), x, y, z - 1)) {
+        } else if (TrackTools.isRailBlockAt(getWorld(), x, y, z + 1)
+                && TrackTools.isRailBlockAt(getWorld(), x, y, z - 1)) {
             if (meta != EnumTrackMeta.NORTH_SOUTH.ordinal())
                 getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.NORTH_SOUTH.ordinal(), 3);
         } else if (meta != EnumTrackMeta.NORTH_SOUTH.ordinal())
@@ -188,8 +186,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
         } else if (meta == EnumTrackMeta.EAST_WEST.ordinal())
             mirrored = TrackTools.isRailBlockAt(getWorld(), x, y, z - 1);
 
-        if (prevValue != isMirrored())
-            sendUpdateToClient();
+        if (prevValue != isMirrored()) sendUpdateToClient();
     }
 
     @Override
@@ -204,8 +201,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
     private void writeCartsToNBT(String key, Set<UUID> carts, NBTTagCompound data) {
         data.setByte(key + "Size", (byte) carts.size());
         int i = 0;
-        for (UUID uuid : carts)
-            MiscTools.writeUUID(data, key + i++, uuid);
+        for (UUID uuid : carts) MiscTools.writeUUID(data, key + i++, uuid);
     }
 
     private Set<UUID> readCartsFromNBT(String key, NBTTagCompound data) {
@@ -215,8 +211,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
             byte size = data.getByte(sizeKey);
             for (int i = 0; i < size; i++) {
                 UUID id = MiscTools.readUUID(data, key + i);
-                if (id != null)
-                    cartUUIDs.add(id);
+                if (id != null) cartUUIDs.add(id);
             }
         }
         return cartUUIDs;
@@ -272,8 +267,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
 
         if (changed) {
             switchDevice = getSwitchDevice();
-            if (switchDevice != null)
-                switchDevice.updateArrows();
+            if (switchDevice != null) switchDevice.updateArrows();
             markBlockNeedsUpdate();
         }
     }
@@ -292,10 +286,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
 
         boolean wasSwitched = isVisuallySwitched();
 
-        if (locked > 0)
-            locked--;
-        if (sprung > 0)
-            sprung--;
+        if (locked > 0) locked--;
+        if (sprung > 0) sprung--;
 
         if (locked == 0 && sprung == 0) {
             lockingCarts.clear(); // Clear out our sets so we don't keep
@@ -313,9 +305,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
         // We only set sprung/locked when a cart enters our track, this is
         // mainly for visual purposes as the subclass's getBasicRailMetadata()
         // determines which direction the carts actually take.
-        List<UUID> cartsOnTrack = CartUtils.getMinecartUUIDsAt(
-                getWorld(), tileEntity.xCoord, tileEntity.yCoord,
-                tileEntity.zCoord, 0.3f);
+        List<UUID> cartsOnTrack =
+                CartUtils.getMinecartUUIDsAt(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0.3f);
 
         EntityMinecart bestCart = getBestCartForVisualState(cartsOnTrack);
 
@@ -372,8 +363,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
                     EntityMinecart testCart = LinkageManager.instance().getCartFromUUID(testCartUUID);
                     if (testCart != null) {
                         double testDist = crudeDistance(testCart);
-                        if (testDist < closestDist)
-                            closestCart = testCart;
+                        if (testDist < closestDist) closestCart = testCart;
                     }
                 }
             }
@@ -394,7 +384,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
     public abstract ArrowDirection getWhiteSignDirection();
 
     public ISwitchDevice getSwitchDevice() {
-        TileEntity entity = ((RailcraftTileEntity) this.tileEntity).getTileCache().getTileOnSide(getActuatorLocation());
+        TileEntity entity =
+                ((RailcraftTileEntity) this.tileEntity).getTileCache().getTileOnSide(getActuatorLocation());
         if (entity instanceof ISwitchDevice) {
             return (ISwitchDevice) entity;
         }

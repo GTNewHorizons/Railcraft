@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -86,8 +86,7 @@ public class InventoryCopy implements IInventory {
     }
 
     @Override
-    public void markDirty() {
-    }
+    public void markDirty() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
@@ -95,12 +94,10 @@ public class InventoryCopy implements IInventory {
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {

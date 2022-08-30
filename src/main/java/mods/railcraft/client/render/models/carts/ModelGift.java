@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.client.render.models.carts;
 
-import mods.railcraft.client.render.RenderTools;
 import mods.railcraft.client.render.models.ModelTextured;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

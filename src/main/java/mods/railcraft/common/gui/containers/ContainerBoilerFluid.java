@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,15 +10,15 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.gui.slots.SlotBoilerFluidContainerFilled;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerBoilerFluid extends RailcraftContainer {
 
@@ -104,8 +104,7 @@ public class ContainerBoilerFluid extends RailcraftContainer {
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int value) {
         TankManager tMan = tile.getTankManager();
-        if (tMan != null)
-            tMan.processGuiUpdate(id, value);
+        if (tMan != null) tMan.processGuiUpdate(id, value);
 
         switch (id) {
             case 10:
@@ -122,5 +121,4 @@ public class ContainerBoilerFluid extends RailcraftContainer {
                 break;
         }
     }
-
 }

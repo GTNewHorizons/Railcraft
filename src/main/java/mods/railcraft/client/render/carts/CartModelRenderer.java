@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,19 +27,17 @@ public class CartModelRenderer {
         GL11.glPushMatrix();
         GL11.glScalef(-1F, -1F, 1.0F);
 
-//        int j = 0xffffff;
-//        float c1 = (float) (j >> 16 & 0xff) / 255F;
-//        float c2 = (float) (j >> 8 & 0xff) / 255F;
-//        float c3 = (float) (j & 0xff) / 255F;
-//
-//        GL11.glColor4f(c1 * light, c2 * light, c3 * light, 1.0F);
+        //        int j = 0xffffff;
+        //        float c1 = (float) (j >> 16 & 0xff) / 255F;
+        //        float c2 = (float) (j >> 8 & 0xff) / 255F;
+        //        float c3 = (float) (j & 0xff) / 255F;
+        //
+        //        GL11.glColor4f(c1 * light, c2 * light, c3 * light, 1.0F);
 
         ResourceLocation texture = null;
-        if (cart instanceof IAlternateCartTexture)
-            texture = ((IAlternateCartTexture) cart).getTextureFile();
+        if (cart instanceof IAlternateCartTexture) texture = ((IAlternateCartTexture) cart).getTextureFile();
 
-        if (texture == null)
-            texture = minecartTextures;
+        if (texture == null) texture = minecartTextures;
         renderer.bindTex(texture);
 
         ModelBase core = CartModelManager.getCoreModel(cart.getClass());
@@ -47,5 +45,4 @@ public class CartModelRenderer {
         GL11.glPopMatrix();
         return true;
     }
-
 }

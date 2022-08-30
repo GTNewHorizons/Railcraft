@@ -20,7 +20,6 @@ public interface IRoutableCart {
     String getDestination();
 
     boolean setDestination(ItemStack ticket);
-    
-    GameProfile getOwner();
 
+    GameProfile getOwner();
 }

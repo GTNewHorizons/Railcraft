@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,9 +8,6 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.tracks.TrackRouting;
@@ -21,7 +18,10 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
 
 public class GuiTrackRouting extends TileGui {
 
@@ -34,7 +34,10 @@ public class GuiTrackRouting extends TileGui {
     private String ownerName = "[Unknown]";
 
     public GuiTrackRouting(InventoryPlayer inv, TrackRouting track) {
-        super((RailcraftTileEntity) track.getTile(), new ContainerTrackRouting(inv, track), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_track_routing.png");
+        super(
+                (RailcraftTileEntity) track.getTile(),
+                new ContainerTrackRouting(inv, track),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_track_routing.png");
         ySize = 140;
         this.track = track;
         this.player = inv.player;
@@ -46,8 +49,7 @@ public class GuiTrackRouting extends TileGui {
     @Override
     public void initGui() {
         super.initGui();
-        if (track == null)
-            return;
+        if (track == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
@@ -58,10 +60,9 @@ public class GuiTrackRouting extends TileGui {
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (track == null)
-            return;
+        if (track == null) return;
         updateButtons();
-//        sendUpdatePacket();
+        //        sendUpdatePacket();
     }
 
     @Override
@@ -79,7 +80,10 @@ public class GuiTrackRouting extends TileGui {
             unlockedToolTips = ToolTip.buildToolTip("railcraft.gui.tip.button.lock.unlocked", "{owner}=" + username);
             notownedToolTips = ToolTip.buildToolTip("railcraft.gui.tip.button.lock.notowner", "{owner}=" + username);
         }
-        lockButton.setToolTip(track.getLockController().getButtonState() == LockButtonState.LOCKED ? lockedToolTips : lockButton.enabled ? unlockedToolTips : notownedToolTips);
+        lockButton.setToolTip(
+                track.getLockController().getButtonState() == LockButtonState.LOCKED
+                        ? lockedToolTips
+                        : lockButton.enabled ? unlockedToolTips : notownedToolTips);
     }
 
     @Override
@@ -94,8 +98,9 @@ public class GuiTrackRouting extends TileGui {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         GuiTools.drawCenteredString(fontRendererObj, track.getName(), 6);
-        fontRendererObj.drawString(LocalizationPlugin.translate("railcraft.gui.routing.track.slot.label"), 64, 29, 0x404040);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
+        fontRendererObj.drawString(
+                LocalizationPlugin.translate("railcraft.gui.routing.track.slot.label"), 64, 29, 0x404040);
+        fontRendererObj.drawString(
+                StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
     }
-
 }

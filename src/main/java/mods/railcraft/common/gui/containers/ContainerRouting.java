@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,19 +10,18 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.UUID;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
-import mods.railcraft.common.gui.widgets.Widget;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.gui.slots.*;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.gui.widgets.Widget;
 import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerRouting extends RailcraftContainer {
 
@@ -48,7 +47,6 @@ public class ContainerRouting extends RailcraftContainer {
                     return router.getLogic().getError().getToolTip();
                 return null;
             }
-
         };
         errorElement.hidden = true;
         addWidget(errorElement);
@@ -59,7 +57,6 @@ public class ContainerRouting extends RailcraftContainer {
                 super.onSlotChanged();
                 router.resetLogic();
             }
-
         };
         slotTicket.setToolTips(ToolTip.buildToolTip("routing.tip.slot"));
         addSlot(slotTicket);
@@ -99,12 +96,10 @@ public class ContainerRouting extends RailcraftContainer {
             ICrafting var2 = (ICrafting) this.crafters.get(var1);
 
             int lock = router.getLockController().getCurrentState();
-            if (this.lastLockState != lock)
-                var2.sendProgressBarUpdate(this, 0, lock);
+            if (this.lastLockState != lock) var2.sendProgressBarUpdate(this, 0, lock);
 
             int railwayType = router.getRoutingController().getCurrentState();
-            if (this.lastRoutingState != railwayType)
-                var2.sendProgressBarUpdate(this, 1, railwayType);
+            if (this.lastRoutingState != railwayType) var2.sendProgressBarUpdate(this, 1, railwayType);
         }
 
         this.lastLockState = router.getLockController().getCurrentState();
@@ -138,5 +133,4 @@ public class ContainerRouting extends RailcraftContainer {
                 break;
         }
     }
-
 }

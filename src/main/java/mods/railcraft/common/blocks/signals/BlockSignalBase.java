@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -37,7 +37,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
         setStepSound(Block.soundTypeMetal);
         setResistance(50);
         setCreativeTab(CreativeTabs.tabTransport);
-//        setHarvestLevel("pickaxe", 2);
+        //        setHarvestLevel("pickaxe", 2);
         setHarvestLevel("crowbar", 0);
     }
 
@@ -52,30 +52,26 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     }
 
     @Override
-    public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2, float u3) {
+    public boolean onBlockActivated(
+            World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2, float u3) {
         ItemStack current = player.getCurrentEquippedItem();
-        if (current != null)
-            if (current.getItem() instanceof IActivationBlockingItem)
-                return false;
+        if (current != null) if (current.getItem() instanceof IActivationBlockingItem) return false;
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).blockActivated(side, player);
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).blockActivated(side, player);
         return false;
     }
 
     @Override
     public boolean rotateBlock(World world, int x, int y, int z, ForgeDirection axis) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).rotateBlock(axis);
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).rotateBlock(axis);
         return false;
     }
 
     @Override
     public ForgeDirection[] getValidRotations(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).getValidRotations();
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).getValidRotations();
         return super.getValidRotations(world, x, y, z);
     }
 
@@ -86,8 +82,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
             Game.logTrace(Level.INFO, 10, "Signal Block onPostBlockPlaced. [{0}, {1}, {2}]", x, y, y);
         }
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            ((TileSignalFoundation) tile).onBlockPlaced();
+        if (tile instanceof TileSignalFoundation) ((TileSignalFoundation) tile).onBlockPlaced();
     }
 
     @Override
@@ -96,8 +91,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
             Game.logTrace(Level.INFO, 10, "Signal Block onBlockPlacedBy. [{0}, {1}, {2}]", x, y, z);
         }
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            ((TileSignalFoundation) tile).onBlockPlacedBy(entityliving, stack);
+        if (tile instanceof TileSignalFoundation) ((TileSignalFoundation) tile).onBlockPlacedBy(entityliving, stack);
     }
 
     @Override
@@ -108,8 +102,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
                 TileSignalFoundation structure = (TileSignalFoundation) tile;
                 if (structure.getSignalType().needsSupport() && !world.isSideSolid(x, y - 1, z, ForgeDirection.UP))
                     world.func_147480_a(x, y, z, true);
-                else
-                    structure.onNeighborBlockChange(block);
+                else structure.onNeighborBlockChange(block);
             }
         } catch (StackOverflowError error) {
             Game.logThrowable(Level.ERROR, "Error in BlockSignalBase.onNeighborBlockChange()", 10, error);
@@ -123,8 +116,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
             Game.logTrace(Level.INFO, 10, "Signal Block breakBlock. [{0}, {1}, {2}]", x, y, z);
         }
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            ((TileSignalFoundation) tile).onBlockRemoval();
+        if (tile instanceof TileSignalFoundation) ((TileSignalFoundation) tile).onBlockRemoval();
         super.breakBlock(world, x, y, z, block, meta);
     }
 
@@ -133,8 +125,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
         TileEntity tile = world.getTileEntity(i, j, k);
         if (tile instanceof TileSignalFoundation)
             ((TileSignalFoundation) tile).setBlockBoundsBasedOnState(world, i, j, k);
-        else
-            setBlockBounds(0, 0, 0, 1, 1, 1);
+        else setBlockBounds(0, 0, 0, 1, 1, 1);
     }
 
     @Override
@@ -151,24 +142,27 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileSignalFoundation)
             return ((TileSignalFoundation) tile).getSelectedBoundingBoxFromPool(world, x, y, z);
-        return AxisAlignedBB.getBoundingBox((double) x + minX, (double) y + minY, (double) z + minZ, (double) x + maxX, (double) y + maxY, (double) z + maxZ);
+        return AxisAlignedBB.getBoundingBox(
+                (double) x + minX,
+                (double) y + minY,
+                (double) z + minZ,
+                (double) x + maxX,
+                (double) y + maxY,
+                (double) z + maxZ);
     }
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
-        if (y < 0)
-            return 0;
+        if (y < 0) return 0;
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof ISignalTile)
-            return ((ISignalTile) tile).getLightValue();
+        if (tile instanceof ISignalTile) return ((ISignalTile) tile).getLightValue();
         return 0;
     }
 
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).getHardness();
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).getHardness();
         return 3;
     }
 
@@ -181,11 +175,12 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     }
 
     //    @Override
-//    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side) {
-//        int md = world.getBlockMetadata(x, y, z);
-//        EnumSignal type = EnumSignal.fromId(md);
-//        return super.canPlaceBlockOnSide(world, x, y, z, side) && (!type.needsSupport() || world.isSideSolid(x, y - 1, z, ForgeDirection.UP));
-//    }
+    //    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side) {
+    //        int md = world.getBlockMetadata(x, y, z);
+    //        EnumSignal type = EnumSignal.fromId(md);
+    //        return super.canPlaceBlockOnSide(world, x, y, z, side) && (!type.needsSupport() || world.isSideSolid(x, y
+    // - 1, z, ForgeDirection.UP));
+    //    }
     @Override
     public boolean isOpaqueCube() {
         return false;
@@ -217,8 +212,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     @Override
     public boolean canConnectRedstone(IBlockAccess world, int i, int j, int k, int dir) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).canConnectRedstone(dir);
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).canConnectRedstone(dir);
         return false;
     }
 
@@ -235,8 +229,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     @Override
     public int isProvidingWeakPower(IBlockAccess world, int i, int j, int k, int side) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileSignalFoundation)
-            return ((TileSignalFoundation) tile).getPowerOutput(side);
+        if (tile instanceof TileSignalFoundation) return ((TileSignalFoundation) tile).getPowerOutput(side);
         return PowerPlugin.NO_POWER;
     }
 
@@ -258,8 +251,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     @Override
     public ConnectStyle connectsToPost(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
         TileEntity t = world.getTileEntity(x, y, z);
-        if (t instanceof ISignalTile)
-            return ConnectStyle.TWO_THIN;
+        if (t instanceof ISignalTile) return ConnectStyle.TWO_THIN;
         return ConnectStyle.NONE;
     }
 }

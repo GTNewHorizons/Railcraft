@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,9 +14,9 @@ import mods.railcraft.common.blocks.aesthetics.slab.TileSlab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  *
@@ -29,7 +29,8 @@ public class RenderSlab extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderBlocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderBlocks) {
         boolean rendered = false;
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileSlab) {
@@ -75,5 +76,4 @@ public class RenderSlab extends BlockRenderer {
         int meta = item.getItemDamage();
         RenderTools.renderBlockOnInventory(renderBlocks, block, meta, 1);
     }
-
 }

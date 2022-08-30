@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,13 +9,6 @@
 package mods.railcraft.common.carts;
 
 import java.util.EnumSet;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.ITrackTile;
 import mods.railcraft.common.blocks.tracks.TrackSuspended;
@@ -26,6 +19,12 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
@@ -58,8 +57,7 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         stockItems(SLOT_REPLACE, SLOT_STOCK);
         replace();
@@ -70,8 +68,7 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
         int j = MathHelper.floor_double(this.posY);
         int k = MathHelper.floor_double(this.posZ);
 
-        if (TrackTools.isRailBlockAt(this.worldObj, i, j - 1, k))
-            --j;
+        if (TrackTools.isRailBlockAt(this.worldObj, i, j - 1, k)) --j;
 
         Block block = this.worldObj.getBlock(i, j, k);
 
@@ -80,7 +77,8 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
             ItemStack trackStock = getStackInSlot(SLOT_STOCK);
 
             boolean nextToSuspended = false;
-            for (ForgeDirection side : EnumSet.of(ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH)) {
+            for (ForgeDirection side :
+                    EnumSet.of(ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH)) {
                 TileEntity tile = WorldPlugin.getTileEntityOnSide(worldObj, i, j, k, side);
                 if (tile instanceof ITrackTile) {
                     ITrackTile track = (ITrackTile) tile;
@@ -91,8 +89,7 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
                 }
             }
 
-            if (nextToSuspended)
-                return;
+            if (nextToSuspended) return;
 
             if (trackExist != null && trackStock != null)
                 if (trackExist.getItem() instanceof ITrackItem) {
@@ -101,22 +98,19 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
                         TileEntity tile = worldObj.getTileEntity(i, j, k);
                         if (trackItem.isPlacedTileEntity(trackExist, tile)) {
                             int meta = removeOldTrack(i, j, k, block);
-                            if (meta != -1)
-                                placeNewTrack(i, j, k, SLOT_STOCK, meta);
+                            if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
                         }
                     }
                 } else if (InvTools.isStackEqualToBlock(trackExist, block)) {
                     int meta = removeOldTrack(i, j, k, block);
-                    if (meta != -1)
-                        placeNewTrack(i, j, k, SLOT_STOCK, meta);
+                    if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
                 }
         }
     }
 
     @Override
     public boolean doInteract(EntityPlayer player) {
-        if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.CART_TRACK_RELAYER, player, worldObj, this);
+        if (Game.isHost(worldObj)) GuiHandler.openGui(EnumGui.CART_TRACK_RELAYER, player, worldObj, this);
         return true;
     }
 
@@ -135,5 +129,4 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
         ItemStack trackReplace = patternInv.getStackInSlot(SLOT_REPLACE);
         return InvTools.isItemEqual(stack, trackReplace);
     }
-
 }

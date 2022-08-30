@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,10 +8,10 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 
 /**
  *

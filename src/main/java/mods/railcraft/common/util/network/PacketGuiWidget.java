@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -52,5 +52,4 @@ public class PacketGuiWidget extends RailcraftPacket {
     public int getID() {
         return PacketType.GUI_WIDGET.ordinal();
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,16 +9,19 @@
 package mods.railcraft.client.gui;
 
 import mods.railcraft.common.carts.IIC2EnergyCart;
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerCartEnergy;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiCartEnergy extends EntityGui {
 
     private final IIC2EnergyCart device;
 
     public GuiCartEnergy(InventoryPlayer inv, IIC2EnergyCart cart) {
-        super(cart.getEntity(), new ContainerCartEnergy(inv, cart), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_energy.png");
+        super(
+                cart.getEntity(),
+                new ContainerCartEnergy(inv, cart),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_energy.png");
         this.device = cart;
     }
 
@@ -46,5 +49,4 @@ public class GuiCartEnergy extends EntityGui {
             drawTexturedModalRect(x + 79, y + 34, 176, 14, energy, 17);
         }
     }
-
 }

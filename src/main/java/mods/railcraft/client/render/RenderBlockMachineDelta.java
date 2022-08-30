@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -48,10 +48,8 @@ public class RenderBlockMachineDelta extends BlockRenderer {
         private RenderFakeBlock.RenderInfo info = new RenderFakeBlock.RenderInfo();
 
         public WireRenderer() {
-            if (BlockFrame.getBlock() != null)
-                renderFrame = new RenderBlockFrame();
-            else
-                renderFrame = null;
+            if (BlockFrame.getBlock() != null) renderFrame = new RenderBlockFrame();
+            else renderFrame = null;
             info.template = getBlock();
         }
 
@@ -61,8 +59,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
                 TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, dir);
-                if (tile instanceof TileWire)
-                    wireCons.add(dir);
+                if (tile instanceof TileWire) wireCons.add(dir);
             }
 
             EnumSet<ForgeDirection> plugCons = EnumSet.noneOf(ForgeDirection.class);
@@ -73,8 +70,8 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             for (ForgeDirection dir : search) {
                 TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, dir);
-                if (tile instanceof IElectricGrid && ((IElectricGrid) tile).getChargeHandler().getType() == ConnectType.BLOCK)
-                    plugCons.add(dir);
+                if (tile instanceof IElectricGrid
+                        && ((IElectricGrid) tile).getChargeHandler().getType() == ConnectType.BLOCK) plugCons.add(dir);
             }
 
             wireCons.addAll(plugCons);
@@ -84,7 +81,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             if (above != null && TrackTools.isRailBlockAt(world, x, y + 1, z)) {
                 wireCons.add(ForgeDirection.UP);
                 plugCons.add(ForgeDirection.UP);
-//                renderPlatform(renderblocks, world, x, y, z, block);
+                //                renderPlatform(renderblocks, world, x, y, z, block);
                 powered = true;
             }
 
@@ -106,7 +103,14 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
         private void renderFrame(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
             if (renderFrame != null)
-                renderFrame.renderWorldBlock(world, x, y, z, BlockFrame.getBlock(), BlockFrame.getBlock().getRenderType(), renderblocks);
+                renderFrame.renderWorldBlock(
+                        world,
+                        x,
+                        y,
+                        z,
+                        BlockFrame.getBlock(),
+                        BlockFrame.getBlock().getRenderType(),
+                        renderblocks);
         }
 
         private void renderPlatform(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
@@ -114,7 +118,14 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
         }
 
-        private void renderWire(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block, EnumSet<ForgeDirection> wireCons) {
+        private void renderWire(
+                RenderBlocks renderblocks,
+                IBlockAccess world,
+                int x,
+                int y,
+                int z,
+                Block block,
+                EnumSet<ForgeDirection> wireCons) {
             float pix = RenderTools.PIXEL;
             float max = 0.999F;
             float min = 0.001F;
@@ -136,21 +147,39 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             boolean north = wireCons.contains(ForgeDirection.NORTH);
             boolean south = wireCons.contains(ForgeDirection.SOUTH);
             if (north || south) {
-                block.setBlockBounds(6 * pix - 0.0001f, 6 * pix - 0.0001f, north ? min : 6 * pix - 0.0001f, 10 * pix + 0.0001f, 10 * pix + 0.0001f, south ? max : 10 * pix + 0.0001f);
+                block.setBlockBounds(
+                        6 * pix - 0.0001f,
+                        6 * pix - 0.0001f,
+                        north ? min : 6 * pix - 0.0001f,
+                        10 * pix + 0.0001f,
+                        10 * pix + 0.0001f,
+                        south ? max : 10 * pix + 0.0001f);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
             }
 
             boolean west = wireCons.contains(ForgeDirection.WEST);
             boolean east = wireCons.contains(ForgeDirection.EAST);
             if (west || east) {
-                block.setBlockBounds(west ? min : 6 * pix - 0.0002f, 6 * pix - 0.0002f, 6 * pix - 0.0002f, east ? max : 10 * pix + 0.0002f, 10 * pix + 0.0002f, 10 * pix + 0.0002f);
+                block.setBlockBounds(
+                        west ? min : 6 * pix - 0.0002f,
+                        6 * pix - 0.0002f,
+                        6 * pix - 0.0002f,
+                        east ? max : 10 * pix + 0.0002f,
+                        10 * pix + 0.0002f,
+                        10 * pix + 0.0002f);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
             }
         }
 
-        private void renderPlug(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block, EnumSet<ForgeDirection> plugCons) {
-            if (plugCons.isEmpty())
-                return;
+        private void renderPlug(
+                RenderBlocks renderblocks,
+                IBlockAccess world,
+                int x,
+                int y,
+                int z,
+                Block block,
+                EnumSet<ForgeDirection> plugCons) {
+            if (plugCons.isEmpty()) return;
 
             float pix = RenderTools.PIXEL;
 
@@ -185,12 +214,14 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             for (ForgeDirection dir : plugCons) {
                 rotated = MatrixTransformations.deepClone(plugA);
                 MatrixTransformations.transform(rotated, dir);
-                block.setBlockBounds(rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
+                block.setBlockBounds(
+                        rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
 
                 rotated = MatrixTransformations.deepClone(plugB);
                 MatrixTransformations.transform(rotated, dir);
-                block.setBlockBounds(rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
+                block.setBlockBounds(
+                        rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
             }
         }
@@ -209,9 +240,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             info.setBlockBounds(min, 6 * pix - 0.0002f, 6 * pix - 0.0002f, max, 10 * pix + 0.0002f, 10 * pix + 0.0002f);
             RenderFakeBlock.renderBlockOnInventory(renderblocks, info, 1);
-
         }
-
     }
 
     private class CageRenderer extends DefaultRenderer {
@@ -224,8 +253,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             tessellator.setColorOpaque_F(c, c, c);
 
             IIcon icon = renderblocks.getBlockIcon(block, world, x, y, z, 2);
-            if (renderblocks.hasOverrideBlockTexture())
-                icon = renderblocks.overrideBlockTexture;
+            if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
 
             double minU = (double) icon.getMinU();
             double minV = (double) icon.getMinV();
@@ -236,75 +264,85 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             double[][] vertices;
 
-            if (WorldPlugin.getBlock(world, x - 1, y, z) != block || world.getBlockMetadata(x - 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][]{
+            if (WorldPlugin.getBlock(world, x - 1, y, z) != block
+                    || world.getBlockMetadata(x - 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
+                vertices = new double[][] {
                     {x + offset, (y + 1) + border, (z + 1) + border, minU, minV},
                     {x + offset, (y + 0) - border, (z + 1) + border, minU, maxV},
                     {x + offset, (y + 0) - border, (z + 0) - border, maxU, maxV},
-                    {x + offset, (y + 1) + border, (z + 0) - border, maxU, minV},};
+                    {x + offset, (y + 1) + border, (z + 0) - border, maxU, minV},
+                };
                 renderFace(tessellator, vertices);
             }
 
-            if (WorldPlugin.getBlock(world, x + 1, y, z) != block || world.getBlockMetadata(x + 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][]{
+            if (WorldPlugin.getBlock(world, x + 1, y, z) != block
+                    || world.getBlockMetadata(x + 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
+                vertices = new double[][] {
                     {(x + 1) - offset, (y + 0) - border, (z + 1) + border, maxU, maxV},
                     {(x + 1) - offset, (y + 1) + border, (z + 1) + border, maxU, minV},
                     {(x + 1) - offset, (y + 1) + border, (z + 0) - border, minU, minV},
-                    {(x + 1) - offset, (y + 0) - border, (z + 0) - border, minU, maxV},};
+                    {(x + 1) - offset, (y + 0) - border, (z + 0) - border, minU, maxV},
+                };
                 renderFace(tessellator, vertices);
             }
 
-            if (WorldPlugin.getBlock(world, x, y, z - 1) != block || world.getBlockMetadata(x, y, z - 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][]{
+            if (WorldPlugin.getBlock(world, x, y, z - 1) != block
+                    || world.getBlockMetadata(x, y, z - 1) != EnumMachineDelta.CAGE.ordinal()) {
+                vertices = new double[][] {
                     {(x + 1) + border, (y + 0) - border, z + offset, maxU, maxV},
                     {(x + 1) + border, (y + 1) + border, z + offset, maxU, minV},
                     {(x + 0) - border, (y + 1) + border, z + offset, minU, minV},
-                    {(x + 0) - border, (y + 0) - border, z + offset, minU, maxV},};
+                    {(x + 0) - border, (y + 0) - border, z + offset, minU, maxV},
+                };
                 renderFace(tessellator, vertices);
             }
 
-            if (WorldPlugin.getBlock(world, x, y, z + 1) != block || world.getBlockMetadata(x, y, z + 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][]{
+            if (WorldPlugin.getBlock(world, x, y, z + 1) != block
+                    || world.getBlockMetadata(x, y, z + 1) != EnumMachineDelta.CAGE.ordinal()) {
+                vertices = new double[][] {
                     {(x + 1) + border, (y + 1) + border, (z + 1) - offset, minU, minV},
                     {(x + 1) + border, (y + 0) - border, (z + 1) - offset, minU, maxV},
                     {(x + 0) - border, (y + 0) - border, (z + 1) - offset, maxU, maxV},
-                    {(x + 0) - border, (y + 1) + border, (z + 1) - offset, maxU, minV},};
+                    {(x + 0) - border, (y + 1) + border, (z + 1) - offset, maxU, minV},
+                };
                 renderFace(tessellator, vertices);
             }
 
-            if (WorldPlugin.getBlock(world, x, y - 1, z) != block || world.getBlockMetadata(x, y - 1, z) != EnumMachineDelta.CAGE.ordinal()) {
+            if (WorldPlugin.getBlock(world, x, y - 1, z) != block
+                    || world.getBlockMetadata(x, y - 1, z) != EnumMachineDelta.CAGE.ordinal()) {
                 icon = renderblocks.getBlockIcon(block, world, x, y, z, 0);
-                if (renderblocks.hasOverrideBlockTexture())
-                    icon = renderblocks.overrideBlockTexture;
+                if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
 
                 minU = (double) icon.getMinU();
                 minV = (double) icon.getMinV();
                 maxU = (double) icon.getMaxU();
                 maxV = (double) icon.getMaxV();
 
-                vertices = new double[][]{
+                vertices = new double[][] {
                     {(x + 1) + border, y + offset, (z + 1) + border, minU, minV},
                     {(x + 0) - border, y + offset, (z + 1) + border, minU, maxV},
                     {(x + 0) - border, y + offset, (z + 0) - border, maxU, maxV},
-                    {(x + 1) + border, y + offset, (z + 0) - border, maxU, minV},};
+                    {(x + 1) + border, y + offset, (z + 0) - border, maxU, minV},
+                };
                 renderFace(tessellator, vertices);
             }
 
-            if (WorldPlugin.getBlock(world, x, y + 1, z) != block || world.getBlockMetadata(x, y + 1, z) != EnumMachineDelta.CAGE.ordinal()) {
+            if (WorldPlugin.getBlock(world, x, y + 1, z) != block
+                    || world.getBlockMetadata(x, y + 1, z) != EnumMachineDelta.CAGE.ordinal()) {
                 icon = renderblocks.getBlockIcon(block, world, x, y, z, 1);
-                if (renderblocks.hasOverrideBlockTexture())
-                    icon = renderblocks.overrideBlockTexture;
+                if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
 
                 minU = (double) icon.getMinU();
                 minV = (double) icon.getMinV();
                 maxU = (double) icon.getMaxU();
                 maxV = (double) icon.getMaxV();
 
-                vertices = new double[][]{
+                vertices = new double[][] {
                     {(x + 0) - border, (y + 1) - offset, (z + 1) + border, maxU, maxV},
                     {(x + 1) + border, (y + 1) - offset, (z + 1) + border, maxU, minV},
                     {(x + 1) + border, (y + 1) - offset, (z + 0) - border, minU, minV},
-                    {(x + 0) - border, (y + 1) - offset, (z + 0) - border, minU, maxV},};
+                    {(x + 0) - border, (y + 1) - offset, (z + 0) - border, minU, maxV},
+                };
                 renderFace(tessellator, vertices);
             }
         }
@@ -315,10 +353,9 @@ public class RenderBlockMachineDelta extends BlockRenderer {
                 tess.addVertexWithUV(vertices[i][0], vertices[i][1], vertices[i][2], vertices[i][3], vertices[i][4]);
             }
             for (int i = 0; i < 4; i++) {
-                tess.addVertexWithUV(vertices[3 - i][0], vertices[3 - i][1], vertices[3 - i][2], vertices[i][3], vertices[i][4]);
+                tess.addVertexWithUV(
+                        vertices[3 - i][0], vertices[3 - i][1], vertices[3 - i][2], vertices[i][3], vertices[i][4]);
             }
-
         }
-
     }
 }

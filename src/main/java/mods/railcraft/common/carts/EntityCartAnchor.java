@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.api.carts.IMinecart;
@@ -41,10 +44,6 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 import org.apache.logging.log4j.Level;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class EntityCartAnchor extends CartContainerBase implements ICartContentsTextureProvider, IAnchor, IMinecart {
     public static final byte TICKET_FLAG = 6;
@@ -91,10 +90,8 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
         super.onUpdate();
         if (Game.isNotHost(worldObj)) {
             if (getFlag(TICKET_FLAG))
-                if (chunks != null)
-                    EffectManager.instance.chunkLoaderEffect(worldObj, this, chunks);
-                else
-                    setupChunks(chunkCoordX, chunkCoordZ);
+                if (chunks != null) EffectManager.instance.chunkLoaderEffect(worldObj, this, chunks);
+                else setupChunks(chunkCoordX, chunkCoordZ);
             return;
         }
 
@@ -103,12 +100,10 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
             return;
         }
 
-        if (disabled > 0)
-            disabled--;
+        if (disabled > 0) disabled--;
 
         if (needsFuel()) {
-            if (ticket != null && anchorFuel > 0)
-                anchorFuel--;
+            if (ticket != null && anchorFuel > 0) anchorFuel--;
             if (anchorFuel <= 0) {
                 stockFuel();
                 ItemStack stack = getStackInSlot(0);
@@ -122,14 +117,29 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
             }
         }
 
-        if (ticket == null)
-            requestTicket();
+        if (ticket == null) requestTicket();
 
         if (RailcraftConfig.printAnchorDebug() && ticket != null) {
             clock++;
             if (clock % 64 == 0) {
-                ChatPlugin.sendLocalizedChatToAllFromServer(worldObj, "%s has a ticket and is ticking at <%.0f,%.0f,%.0f> in dim:%d - logged on tick %d", getCommandSenderName(), posX, posY, posZ, worldObj.provider.dimensionId, worldObj.getWorldTime());
-                Game.log(Level.DEBUG, "{0} has a ticket and is ticking at <{1},{2},{3}> in dim:{4} - logged on tick {5}", getCommandSenderName(), posX, posY, posZ, worldObj.provider.dimensionId, worldObj.getWorldTime());
+                ChatPlugin.sendLocalizedChatToAllFromServer(
+                        worldObj,
+                        "%s has a ticket and is ticking at <%.0f,%.0f,%.0f> in dim:%d - logged on tick %d",
+                        getCommandSenderName(),
+                        posX,
+                        posY,
+                        posZ,
+                        worldObj.provider.dimensionId,
+                        worldObj.getWorldTime());
+                Game.log(
+                        Level.DEBUG,
+                        "{0} has a ticket and is ticking at <{1},{2},{3}> in dim:{4} - logged on tick {5}",
+                        getCommandSenderName(),
+                        posX,
+                        posY,
+                        posZ,
+                        worldObj.provider.dimensionId,
+                        worldObj.getWorldTime());
             }
         }
     }
@@ -143,9 +153,9 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
         }
         stack = getStackInSlot(0);
         if (stack == null) {
-            ItemStack found = CartTools.transferHelper.pullStack(this, getFuelMap().getStackFilter());
-            if (found != null)
-                InvTools.moveItemStack(found, this);
+            ItemStack found =
+                    CartTools.transferHelper.pullStack(this, getFuelMap().getStackFilter());
+            if (found != null) InvTools.moveItemStack(found, this);
         }
     }
 
@@ -176,7 +186,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
         if (meetsTicketRequirements()) {
             Ticket chunkTicket = getTicketFromForge();
             if (chunkTicket != null) {
-//                System.out.println("Request Ticket: " + worldObj.getClass().getSimpleName());
+                //                System.out.println("Request Ticket: " + worldObj.getClass().getSimpleName());
                 chunkTicket.getModData();
                 chunkTicket.setChunkListDepth(MAX_CHUNKS);
                 chunkTicket.bindEntity(this);
@@ -189,21 +199,19 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
     }
 
     public void setChunkTicket(Ticket tick) {
-        if (this.ticket != tick)
-            ForgeChunkManager.releaseTicket(this.ticket);
+        if (this.ticket != tick) ForgeChunkManager.releaseTicket(this.ticket);
         this.ticket = tick;
         setFlag(TICKET_FLAG, ticket != null);
     }
 
     public void forceChunkLoading(int xChunk, int zChunk) {
-        if (ticket == null)
-            return;
+        if (ticket == null) return;
 
         setupChunks(xChunk, zChunk);
 
         Set<ChunkCoordIntPair> innerChunks = ChunkManager.getInstance().getChunksAround(xChunk, zChunk, 1);
 
-//        System.out.println("Chunks Loaded = " + Arrays.toString(chunks.toArray()));
+        //        System.out.println("Chunks Loaded = " + Arrays.toString(chunks.toArray()));
         for (ChunkCoordIntPair chunk : chunks) {
             ForgeChunkManager.forceChunk(ticket, chunk);
             ForgeChunkManager.reorderChunk(ticket, chunk);
@@ -213,17 +221,14 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
             ForgeChunkManager.reorderChunk(ticket, chunk);
         }
 
-
         ChunkCoordIntPair myChunk = new ChunkCoordIntPair(xChunk, zChunk);
         ForgeChunkManager.forceChunk(ticket, myChunk);
         ForgeChunkManager.reorderChunk(ticket, myChunk);
     }
 
     public void setupChunks(int xChunk, int zChunk) {
-        if (getFlag(TICKET_FLAG))
-            chunks = ChunkManager.getInstance().getChunksAround(xChunk, zChunk, ANCHOR_RADIUS);
-        else
-            chunks = null;
+        if (getFlag(TICKET_FLAG)) chunks = ChunkManager.getInstance().getChunksAround(xChunk, zChunk, ANCHOR_RADIUS);
+        else chunks = null;
     }
 
     @Override
@@ -237,8 +242,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
     protected void readEntityFromNBT(NBTTagCompound data) {
         super.readEntityFromNBT(data);
 
-        if (needsFuel())
-            anchorFuel = data.getLong("anchorFuel");
+        if (needsFuel()) anchorFuel = data.getLong("anchorFuel");
     }
 
     @Override
@@ -255,8 +259,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public boolean doInteract(EntityPlayer player) {
-        if (Game.isHost(worldObj) && needsFuel())
-            GuiHandler.openGui(EnumGui.CART_ANCHOR, player, worldObj, this);
+        if (Game.isHost(worldObj) && needsFuel()) GuiHandler.openGui(EnumGui.CART_ANCHOR, player, worldObj, this);
         return true;
     }
 
@@ -310,8 +313,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG))
-            return EnumMachineAlpha.WORLD_ANCHOR.getTexture(6);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.WORLD_ANCHOR.getTexture(6);
         return EnumMachineAlpha.WORLD_ANCHOR.getTexture(side);
     }
 
@@ -326,8 +328,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (!RailcraftConfig.anchorsCanInteractWithPipes())
-            return false;
+        if (!RailcraftConfig.anchorsCanInteractWithPipes()) return false;
         return getFuelMap().containsKey(stack);
     }
 

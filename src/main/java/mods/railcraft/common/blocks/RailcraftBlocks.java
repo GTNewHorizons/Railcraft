@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.common.blocks;
 
+import java.util.Arrays;
 import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
@@ -39,8 +40,6 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-
-import java.util.Arrays;
 
 public class RailcraftBlocks {
 
@@ -74,13 +73,21 @@ public class RailcraftBlocks {
             RailcraftRegistry.register(blockRailElevator, ItemBlockRailcraft.class);
             blockRailElevator.setHarvestLevel("crowbar", 0);
             ItemStack stackElevator = new ItemStack(blockRailElevator, 8);
-            CraftingPlugin.addShapedRecipe(stackElevator,
+            CraftingPlugin.addShapedRecipe(
+                    stackElevator,
                     "IRI",
                     "ISI",
                     "IRI",
-                    'I', RailcraftConfig.useOldRecipes() ? "ingotGold" : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED),
-                    'S', RailcraftConfig.useOldRecipes() ? "ingotIron" : RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
-                    'R', "dustRedstone");
+                    'I',
+                    RailcraftConfig.useOldRecipes()
+                            ? "ingotGold"
+                            : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED),
+                    'S',
+                    RailcraftConfig.useOldRecipes()
+                            ? "ingotIron"
+                            : RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
+                    'R',
+                    "dustRedstone");
         }
     }
 
@@ -92,7 +99,8 @@ public class RailcraftBlocks {
         if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineAlpha = new BlockMachine(0, new MachineProxyAlpha(), true, lightOpacity).setBlockName("railcraft.machine.alpha");
+            blockMachineAlpha = new BlockMachine(0, new MachineProxyAlpha(), true, lightOpacity)
+                    .setBlockName("railcraft.machine.alpha");
             RailcraftRegistry.register(blockMachineAlpha, ItemMachine.class);
 
             for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
@@ -100,16 +108,16 @@ public class RailcraftBlocks {
                     case FEED_STATION:
                     case TANK_WATER:
                         blockMachineAlpha.setHarvestLevel("axe", 1, type.ordinal());
-//                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     case WORLD_ANCHOR:
                     case PERSONAL_ANCHOR:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
-//                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     default:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());
-//                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -140,18 +148,19 @@ public class RailcraftBlocks {
             lightOpacity[EnumMachineBeta.SENTINEL.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
-            blockMachineBeta = new BlockMachine(renderId, new MachineProxyBeta(), false, lightOpacity).setBlockName("railcraft.machine.beta");
+            blockMachineBeta = new BlockMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
+                    .setBlockName("railcraft.machine.beta");
             RailcraftRegistry.register(blockMachineBeta, ItemMachine.class);
 
             for (EnumMachineBeta type : EnumMachineBeta.values()) {
                 switch (type) {
                     case SENTINEL:
                         blockMachineBeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-//                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     default:
                         blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-//                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -169,7 +178,8 @@ public class RailcraftBlocks {
             Arrays.fill(lightOpacity, 255);
             lightOpacity[EnumMachineGamma.FLUID_LOADER.ordinal()] = 0;
             lightOpacity[EnumMachineGamma.FLUID_UNLOADER.ordinal()] = 0;
-            blockMachineGamma = new BlockMachine(0, new MachineProxyGamma(), false, lightOpacity).setBlockName("railcraft.machine.gamma");
+            blockMachineGamma = new BlockMachine(0, new MachineProxyGamma(), false, lightOpacity)
+                    .setBlockName("railcraft.machine.gamma");
             blockMachineGamma.setCreativeTab(CreativeTabs.tabTransport);
             RailcraftRegistry.register(blockMachineGamma, ItemMachine.class);
 
@@ -177,7 +187,7 @@ public class RailcraftBlocks {
                 switch (type) {
                     default:
                         blockMachineGamma.setHarvestLevel("pickaxe", 2, type.ordinal());
-//                        blockMachineGamma.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineGamma.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -195,7 +205,8 @@ public class RailcraftBlocks {
             Arrays.fill(lightOpacity, 255);
             lightOpacity[EnumMachineDelta.WIRE.ordinal()] = 0;
             lightOpacity[EnumMachineDelta.CAGE.ordinal()] = 0;
-            blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity).setBlockName("railcraft.machine.delta");
+            blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity)
+                    .setBlockName("railcraft.machine.delta");
             blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
             RailcraftRegistry.register(blockMachineDelta, ItemMachine.class);
 
@@ -203,7 +214,7 @@ public class RailcraftBlocks {
                 switch (type) {
                     default:
                         blockMachineDelta.setHarvestLevel("pickaxe", 2, type.ordinal());
-//                        blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -218,14 +229,15 @@ public class RailcraftBlocks {
         if (blockMachineEpsilon == null && RailcraftConfig.isBlockEnabled("machine.epsilon")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineEpsilon = new BlockMachine(0, new MachineProxyEpsilon(), true, lightOpacity).setBlockName("railcraft.machine.epsilon");
+            blockMachineEpsilon = new BlockMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
+                    .setBlockName("railcraft.machine.epsilon");
             RailcraftRegistry.register(blockMachineEpsilon, ItemMachine.class);
 
             for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
                 switch (type) {
                     default:
                         blockMachineEpsilon.setHarvestLevel("pickaxe", 2, type.ordinal());
-//                        blockMachineEpsilon.setHarvestLevel("crowbar", 0, type.ordinal());
+                        //                        blockMachineEpsilon.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -247,20 +259,21 @@ public class RailcraftBlocks {
     public static Block getBlockSignal() {
         return blockSignal;
     }
-    
+
     public static Block registerBlockMachineZeta() {
         if (blockMachineZeta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
             int renderId = Railcraft.getProxy().getRenderId();
             int[] lightOpacity = new int[EnumMachineZeta.values().length];
-            Arrays.fill(lightOpacity, 255);            
-            for (int i=0; i<EnumMachineZeta.values().length;i++) {
-                lightOpacity[i] = 0;            	
+            Arrays.fill(lightOpacity, 255);
+            for (int i = 0; i < EnumMachineZeta.values().length; i++) {
+                lightOpacity[i] = 0;
             }
-            blockMachineZeta = new BlockMachine(renderId, new MachineProxyZeta(), false, lightOpacity).setBlockName("railcraft.machine.zeta");
+            blockMachineZeta = new BlockMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
+                    .setBlockName("railcraft.machine.zeta");
             RailcraftRegistry.register(blockMachineZeta, ItemMachine.class);
 
             for (EnumMachineZeta type : EnumMachineZeta.values()) {
-                switch (type) {                    
+                switch (type) {
                     default:
                         blockMachineZeta.setHarvestLevel("pickaxe", 3, type.ordinal());
                 }
@@ -272,22 +285,23 @@ public class RailcraftBlocks {
     public static Block getBlockMachineZeta() {
         return blockMachineZeta;
     }
-    
+
     public static Block registerBlockMachineEta() {
         if (blockMachineEta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
             int renderId = Railcraft.getProxy().getRenderId();
             int[] lightOpacity = new int[EnumMachineEta.values().length];
-            Arrays.fill(lightOpacity, 255);            
-            for (int i=0; i<EnumMachineEta.values().length;i++) {
-                lightOpacity[i] = 0;            	
+            Arrays.fill(lightOpacity, 255);
+            for (int i = 0; i < EnumMachineEta.values().length; i++) {
+                lightOpacity[i] = 0;
             }
-            blockMachineEta = new BlockMachine(renderId, new MachineProxyEta(), false, lightOpacity).setBlockName("railcraft.machine.eta");
+            blockMachineEta = new BlockMachine(renderId, new MachineProxyEta(), false, lightOpacity)
+                    .setBlockName("railcraft.machine.eta");
             RailcraftRegistry.register(blockMachineEta, ItemMachine.class);
 
             for (EnumMachineEta type : EnumMachineEta.values()) {
-                switch (type) {                    
+                switch (type) {
                     default:
-                    	blockMachineEta.setHarvestLevel("pickaxe", 4, type.ordinal());
+                        blockMachineEta.setHarvestLevel("pickaxe", 4, type.ordinal());
                 }
             }
         }
@@ -297,5 +311,4 @@ public class RailcraftBlocks {
     public static Block getBlockMachineEta() {
         return blockMachineEta;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,14 +8,14 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.gui.slots.SlotSmelting;
+import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
-import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
-import mods.railcraft.common.gui.slots.SlotSmelting;
-import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.fluids.TankManager;
 
 public class ContainerSteamOven extends RailcraftContainer {
 
@@ -50,7 +50,6 @@ public class ContainerSteamOven extends RailcraftContainer {
         for (int j = 0; j < 9; j++) {
             addSlot(new Slot(invPlayer, j, 8 + j * 18, 142));
         }
-
     }
 
     @Override
@@ -65,7 +64,6 @@ public class ContainerSteamOven extends RailcraftContainer {
 
         for (int i = 0; i < crafters.size(); i++) {
             ICrafting icrafting = (ICrafting) crafters.get(i);
-
 
             if (lastCookTime != cookTime) {
                 icrafting.sendProgressBarUpdate(this, 10, cookTime);

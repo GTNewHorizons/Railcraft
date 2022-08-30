@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,15 +11,15 @@ package mods.railcraft.common.gui.containers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.tracks.TrackRouting;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.gui.slots.*;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemTicketGold;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerTrackRouting extends RailcraftContainer {
 
@@ -73,8 +73,7 @@ public class ContainerTrackRouting extends RailcraftContainer {
             ICrafting var2 = (ICrafting) this.crafters.get(var1);
 
             int lock = track.getLockController().getCurrentState();
-            if (this.lastLockState != lock)
-                var2.sendProgressBarUpdate(this, 0, lock);
+            if (this.lastLockState != lock) var2.sendProgressBarUpdate(this, 0, lock);
         }
 
         this.lastLockState = track.getLockController().getCurrentState();
@@ -104,5 +103,4 @@ public class ContainerTrackRouting extends RailcraftContainer {
                 break;
         }
     }
-
 }

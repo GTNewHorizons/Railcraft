@@ -8,10 +8,6 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.blocks.machine.IComparatorValueProvider;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -22,6 +18,10 @@ import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
 import mods.railcraft.common.util.misc.MiscTools;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -33,18 +33,15 @@ import net.minecraftforge.fluids.IFluidHandler;
  */
 public class TileTankIronValve extends TileTankBase implements IFluidHandler, IComparatorValueProvider {
 
-    private final static ITileFilter FLUID_OUTPUT_FILTER = new ITileFilter() {
+    private static final ITileFilter FLUID_OUTPUT_FILTER = new ITileFilter() {
         @Override
         public boolean matches(TileEntity tile) {
-            if (tile instanceof TileTankBase)
-                return false;
-            else if (tile instanceof IFluidHandler)
-                return true;
+            if (tile instanceof TileTankBase) return false;
+            else if (tile instanceof IFluidHandler) return true;
             return false;
         }
-
     };
-    private final static ForgeDirection[] FLUID_OUTPUTS = {ForgeDirection.DOWN};
+    private static final ForgeDirection[] FLUID_OUTPUTS = {ForgeDirection.DOWN};
     private static final int FLOW_RATE = FluidHelper.BUCKET_VOLUME;
     private static final byte FILL_INCREMENT = 1;
     private final StandardTank fillTank = new StandardTank(20);
@@ -63,15 +60,13 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
         resource.amount = 20;
         fillTank.fill(resource, true);
 
-        if (needsUpdate)
-            sendUpdateToClient();
+        if (needsUpdate) sendUpdateToClient();
     }
 
     private void decrementFilling() {
         if (!fillTank.isEmpty()) {
             fillTank.drain(FILL_INCREMENT, true);
-            if (fillTank.isEmpty())
-                sendUpdateToClient();
+            if (fillTank.isEmpty()) sendUpdateToClient();
         }
     }
 
@@ -88,8 +83,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
         decrementFilling();
 
         if (isMaster) {
@@ -114,8 +108,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
                             }
                         }
                     }
-                } else
-                    valveBelow = null;
+                } else valveBelow = null;
             }
 
             if (valveBelow != null) {
@@ -129,8 +122,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
 
         if (getPatternPositionY() - getPattern().getMasterOffsetY() == 0) {
             TankManager tMan = getTankManager();
-            if (tMan != null)
-                tMan.outputLiquid(tileCache, FLUID_OUTPUT_FILTER, FLUID_OUTPUTS, 0, FLOW_RATE);
+            if (tMan != null) tMan.outputLiquid(tileCache, FLUID_OUTPUT_FILTER, FLUID_OUTPUTS, 0, FLOW_RATE);
         }
 
         TileMultiBlock masterBlock = getMasterBlock();
@@ -143,17 +135,19 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
             }
         }
 
-        if (previousStructureValidity != isStructureValid())
-            getWorld().func_147453_f(getX(), getY(), getZ(), null);
+        if (previousStructureValidity != isStructureValid()) getWorld().func_147453_f(getX(), getY(), getZ(), null);
         previousStructureValidity = isStructureValid();
     }
 
     @Override
     public IIcon getIcon(int side) {
-        if (!isStructureValid() || getPattern() == null)
-            return getMachineType().getTexture(side);
+        if (!isStructureValid() || getPattern() == null) return getMachineType().getTexture(side);
         ForgeDirection s = ForgeDirection.getOrientation(side);
-        char markerSide = getPattern().getPatternMarkerChecked(MiscTools.getXOnSide(getPatternPositionX(), s), MiscTools.getYOnSide(getPatternPositionY(), s), MiscTools.getZOnSide(getPatternPositionZ(), s));
+        char markerSide = getPattern()
+                .getPatternMarkerChecked(
+                        MiscTools.getXOnSide(getPatternPositionX(), s),
+                        MiscTools.getYOnSide(getPatternPositionY(), s),
+                        MiscTools.getZOnSide(getPatternPositionZ(), s));
 
         if (!isMapPositionOtherBlock(markerSide)) {
             if (side == ForgeDirection.UP.ordinal() || side == ForgeDirection.DOWN.ordinal())
@@ -165,34 +159,28 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (!canFill(from, null))
-            return 0;
+        if (!canFill(from, null)) return 0;
         if (resource == null || resource.amount <= 0) return 0;
         TankManager tMan = getTankManager();
-        if (tMan == null)
-            return 0;
+        if (tMan == null) return 0;
         resource = resource.copy();
-//        resource.amount = Math.min(resource.amount, FLOW_RATE);
+        //        resource.amount = Math.min(resource.amount, FLOW_RATE);
         int filled = tMan.fill(0, resource, doFill);
-        if (filled > 0 && doFill)
-            setFilling(resource.copy());
+        if (filled > 0 && doFill) setFilling(resource.copy());
         return filled;
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        if (getPatternPositionY() - getPattern().getMasterOffsetY() > 1)
-            return null;
+        if (getPatternPositionY() - getPattern().getMasterOffsetY() > 1) return null;
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            return tMan.drain(0, maxDrain, doDrain);
+        if (tMan != null) return tMan.drain(0, maxDrain, doDrain);
         return null;
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
+        if (resource == null) return null;
         TankManager tMan = getTankManager();
         if (tMan != null && tMan.get(0).getFluidType() == resource.getFluid())
             return drain(from, resource.amount, doDrain);
@@ -212,17 +200,14 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection side) {
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            return tMan.getTankInfo();
+        if (tMan != null) return tMan.getTankInfo();
         return FakeTank.INFO;
     }
 
     @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
         TileMultiBlock masterBlock = getMasterBlock();
-        if (masterBlock instanceof TileTankBase)
-            return ((TileTankBase) masterBlock).getComparatorValue();
+        if (masterBlock instanceof TileTankBase) return ((TileTankBase) masterBlock).getComparatorValue();
         return 0;
     }
-
 }

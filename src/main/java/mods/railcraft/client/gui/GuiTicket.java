@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -35,12 +35,14 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiTicket extends GuiScreen {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(RailcraftConstants.GUI_TEXTURE_FOLDER + "ticket_gold.png");
+    public static final ResourceLocation TEXTURE =
+            new ResourceLocation(RailcraftConstants.GUI_TEXTURE_FOLDER + "ticket_gold.png");
     public static final int WRAP_WIDTH = 226;
     /**
      * The player editing the book
      */
     private final EntityPlayer player;
+
     private final ItemStack ticket;
     private boolean modified;
     private boolean readingManual;
@@ -48,6 +50,7 @@ public class GuiTicket extends GuiScreen {
      * Update ticks since the gui was opened
      */
     private int updateCount;
+
     private final int imageWidth = 256;
     private final int imageHeight = 136;
     private String dest = "";
@@ -79,9 +82,15 @@ public class GuiTicket extends GuiScreen {
         Keyboard.enableRepeatEvents(true);
 
         List<GuiBetterButton> buttons = new ArrayList<GuiBetterButton>();
-        buttons.add(buttonDone = new GuiBetterButton(0, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.done")));
-        buttons.add(buttonHelp = new GuiBetterButton(1, 0, imageHeight + 25, 65, LocalizationPlugin.translate("railcraft.gui.help")));
-        buttons.add(buttonCancel = new GuiBetterButton(2, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.cancel")));
+        buttons.add(
+                buttonDone =
+                        new GuiBetterButton(0, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.done")));
+        buttons.add(
+                buttonHelp = new GuiBetterButton(
+                        1, 0, imageHeight + 25, 65, LocalizationPlugin.translate("railcraft.gui.help")));
+        buttons.add(
+                buttonCancel =
+                        new GuiBetterButton(2, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.cancel")));
         GuiTools.newButtonRowAuto(buttonList, width / 2 - 100, 200, buttons);
         updateButtons();
     }
@@ -96,7 +105,9 @@ public class GuiTicket extends GuiScreen {
     }
 
     private void updateButtons() {
-        buttonHelp.displayString = readingManual ? StatCollector.translateToLocal("gui.back") : LocalizationPlugin.translate("railcraft.gui.help");
+        buttonHelp.displayString = readingManual
+                ? StatCollector.translateToLocal("gui.back")
+                : LocalizationPlugin.translate("railcraft.gui.help");
     }
 
     private void sendToServer() {
@@ -152,7 +163,9 @@ public class GuiTicket extends GuiScreen {
                         }
                         return;
                     default:
-                        if (!Character.isWhitespace(c) && ChatAllowedCharacters.isAllowedCharacter(c) && dest.length() + 1 < ItemTicket.LINE_LENGTH) {
+                        if (!Character.isWhitespace(c)
+                                && ChatAllowedCharacters.isAllowedCharacter(c)
+                                && dest.length() + 1 < ItemTicket.LINE_LENGTH) {
                             dest += c;
                             modified = true;
                         }
@@ -172,19 +185,36 @@ public class GuiTicket extends GuiScreen {
         this.drawTexturedModalRect(xOffset, yOffset, 0, 0, this.imageWidth, this.imageHeight);
 
         if (readingManual) {
-            GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.routing.ticket.manual.title"), yOffset + 14, width);
+            GuiTools.drawCenteredString(
+                    fontRendererObj,
+                    LocalizationPlugin.translate("railcraft.gui.routing.ticket.manual.title"),
+                    yOffset + 14,
+                    width);
 
             String text = LocalizationPlugin.translate("railcraft.gui.routing.ticket.manual");
             this.fontRendererObj.drawSplitString(text, xOffset + 16, yOffset + 30, WRAP_WIDTH, 0);
         } else {
             GL11.glPushMatrix();
             GL11.glScalef(2F, 2F, 2F);
-            GuiTools.drawCenteredString(fontRendererObj, EnumChatFormatting.BOLD + LocalizationPlugin.translate("railcraft.gui.routing.ticket.title"), yOffset - 2, width / 2, 0xFFFFFF, true);
+            GuiTools.drawCenteredString(
+                    fontRendererObj,
+                    EnumChatFormatting.BOLD + LocalizationPlugin.translate("railcraft.gui.routing.ticket.title"),
+                    yOffset - 2,
+                    width / 2,
+                    0xFFFFFF,
+                    true);
             GL11.glPopMatrix();
 
-
-            GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.routing.ticket.line1"), yOffset + 50, width);
-            GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.routing.ticket.line2"), yOffset + 65, width);
+            GuiTools.drawCenteredString(
+                    fontRendererObj,
+                    LocalizationPlugin.translate("railcraft.gui.routing.ticket.line1"),
+                    yOffset + 50,
+                    width);
+            GuiTools.drawCenteredString(
+                    fontRendererObj,
+                    LocalizationPlugin.translate("railcraft.gui.routing.ticket.line2"),
+                    yOffset + 65,
+                    width);
             String text = EnumChatFormatting.BLACK + "Dest=" + dest;
             if (fontRendererObj.getBidiFlag()) {
                 text = text + "_";
@@ -198,5 +228,4 @@ public class GuiTicket extends GuiScreen {
 
         super.drawScreen(par1, par2, par3);
     }
-
 }

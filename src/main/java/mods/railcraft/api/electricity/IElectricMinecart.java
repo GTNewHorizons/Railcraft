@@ -8,13 +8,12 @@
 
 package mods.railcraft.api.electricity;
 
+import java.util.Random;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.Random;
 
 /**
  * This interface provides a simple means of using or producing Electricity
@@ -104,14 +103,12 @@ public interface IElectricMinecart {
         }
 
         public void setCharge(double charge) {
-            if (type == Type.USER)
-                return;
+            if (type == Type.USER) return;
             this.charge = charge;
         }
 
         public void addCharge(double charge) {
-            if (type == Type.USER)
-                return;
+            if (type == Type.USER) return;
             this.charge += charge;
         }
 
@@ -123,8 +120,7 @@ public interface IElectricMinecart {
          * @return charge removed
          */
         public double removeCharge(double request) {
-            if (request <= 0.0)
-                return 0.0;
+            if (request <= 0.0) return 0.0;
             if (charge >= request) {
                 charge -= request;
                 lastTickDraw += request;
@@ -138,10 +134,8 @@ public interface IElectricMinecart {
 
         private void removeLosses() {
             if (lossPerTick > 0.0)
-                if (charge >= lossPerTick)
-                    charge -= lossPerTick;
-                else
-                    charge = 0.0;
+                if (charge >= lossPerTick) charge -= lossPerTick;
+                else charge = 0.0;
         }
 
         /**
@@ -172,8 +166,7 @@ public interface IElectricMinecart {
             draw = (draw * 49.0 + lastTickDraw) / 50.0;
             lastTickDraw = 0.0;
 
-            if (drewFromTrack > 0)
-                drewFromTrack--;
+            if (drewFromTrack > 0) drewFromTrack--;
             else if (type == Type.USER && charge < (capacity / 2.0) && clock % DRAW_INTERVAL == 0) {
                 ILinkageManager lm = CartTools.getLinkageManager(minecart.worldObj);
                 for (EntityMinecart cart : lm.getCartsInTrain(minecart)) {
@@ -207,11 +200,11 @@ public interface IElectricMinecart {
          */
         public void tickOnTrack(int trackX, int trackY, int trackZ) {
             if (type == Type.USER && charge < capacity && clock % DRAW_INTERVAL == 0) {
-                IElectricGrid track = RailTools.getTrackObjectAt(minecart.worldObj, trackX, trackY, trackZ, IElectricGrid.class);
+                IElectricGrid track =
+                        RailTools.getTrackObjectAt(minecart.worldObj, trackX, trackY, trackZ, IElectricGrid.class);
                 if (track != null) {
                     double drawnFromTrack = track.getChargeHandler().removeCharge(capacity - charge);
-                    if (drawnFromTrack > 0.0)
-                        drewFromTrack = DRAW_INTERVAL * 4;
+                    if (drawnFromTrack > 0.0) drewFromTrack = DRAW_INTERVAL * 4;
                     charge += drawnFromTrack;
                 }
             }
@@ -255,6 +248,5 @@ public interface IElectricMinecart {
             NBTTagCompound tag = nbt.getCompoundTag("chargeHandler");
             charge = tag.getDouble("charge");
         }
-
     }
 }

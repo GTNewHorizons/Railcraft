@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,18 +9,10 @@
 package mods.railcraft.common.blocks.machine.alpha;
 
 import buildcraft.api.statements.IActionExternal;
-import java.util.*;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import java.util.*;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import net.minecraft.inventory.Container;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -38,15 +30,23 @@ import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileRollingMachine extends TileMachineBase implements IEnergyHandler, ISidedInventory, IHasWork {
 
-    private final static int PROCESS_TIME = 100;
-    private final static int ACTIVATION_POWER = 50;
-    private final static int MAX_RECEIVE = 1000;
-    private final static int MAX_ENERGY = ACTIVATION_POWER * PROCESS_TIME;
-    private final static int SLOT_RESULT = 0;
+    private static final int PROCESS_TIME = 100;
+    private static final int ACTIVATION_POWER = 50;
+    private static final int MAX_RECEIVE = 1000;
+    private static final int MAX_ENERGY = ACTIVATION_POWER * PROCESS_TIME;
+    private static final int SLOT_RESULT = 0;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 10);
     private final InventoryCrafting craftMatrix = new InventoryCrafting(new RollingContainer(), 3, 3);
     private final StandaloneInventory invResult = new StandaloneInventory(1, "invResult", (IInventory) this);
@@ -56,7 +56,8 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     private boolean isWorking, paused;
     private ItemStack currentReceipe;
     private int progress;
-    private final AdjacentInventoryCache cache = new AdjacentInventoryCache(this, tileCache, null, InventorySorter.SIZE_DECENDING);
+    private final AdjacentInventoryCache cache =
+            new AdjacentInventoryCache(this, tileCache, null, InventorySorter.SIZE_DECENDING);
     private final Set<IActionExternal> actions = new HashSet<IActionExternal>();
 
     private static class RollingContainer extends Container {
@@ -65,12 +66,10 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
         public boolean canInteractWith(EntityPlayer entityplayer) {
             return true;
         }
-
     }
 
     public TileRollingMachine() {
-        if (RailcraftConfig.machinesRequirePower())
-            energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE);
+        if (RailcraftConfig.machinesRequirePower()) energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE);
     }
 
     @Override
@@ -89,8 +88,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
         data.setInteger("progress", progress);
 
-        if (energyStorage != null)
-            energyStorage.writeToNBT(data);
+        if (energyStorage != null) energyStorage.writeToNBT(data);
 
         invResult.writeToNBT("invResult", data);
         InvTools.writeInvToNBT(craftMatrix, "Crafting", data);
@@ -102,8 +100,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
         progress = data.getInteger("progress");
 
-        if (energyStorage != null)
-            energyStorage.readFromNBT(data);
+        if (energyStorage != null) energyStorage.readFromNBT(data);
 
         invResult.readFromNBT("invResult", data);
         InvTools.readInvFromNBT(craftMatrix, "Crafting", data);
@@ -111,8 +108,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
     @Override
     public boolean openGui(EntityPlayer player) {
-        if (player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) > 64D)
-            return false;
+        if (player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) > 64D) return false;
         GuiHandler.openGui(EnumGui.ROLLING_MACHINE, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
@@ -153,28 +149,25 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         balanceSlots();
 
-        if (clock % 16 == 0)
-            processActions();
+        if (clock % 16 == 0) processActions();
 
-        if (paused)
-            return;
+        if (paused) return;
 
         if (clock % 8 == 0) {
             currentReceipe = RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj);
-            if (currentReceipe != null)
-                findMoreStuff();
+            if (currentReceipe != null) findMoreStuff();
         }
 
         if (currentReceipe != null && canMakeMore())
             if (progress >= PROCESS_TIME) {
                 isWorking = false;
                 if (InvTools.isRoomForStack(currentReceipe, invResult)) {
-                    currentReceipe = RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj);
+                    currentReceipe =
+                            RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj);
                     if (currentReceipe != null) {
                         for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
                             craftMatrix.decrStackSize(i, 1);
@@ -192,8 +185,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
                         progress++;
                         energyStorage.extractEnergy(ACTIVATION_POWER, false);
                     }
-                } else
-                    progress++;
+                } else progress++;
             }
         else {
             progress = 0;
@@ -207,14 +199,11 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     private void balanceSlots() {
         for (IInvSlot slotA : InventoryIterator.getIterable(craftMatrix)) {
             ItemStack stackA = slotA.getStackInSlot();
-            if (stackA == null)
-                continue;
+            if (stackA == null) continue;
             for (IInvSlot slotB : InventoryIterator.getIterable(craftMatrix)) {
-                if (slotA.getIndex() == slotB.getIndex())
-                    continue;
+                if (slotA.getIndex() == slotB.getIndex()) continue;
                 ItemStack stackB = slotB.getStackInSlot();
-                if (stackB == null)
-                    continue;
+                if (stackB == null) continue;
                 if (InvTools.isItemEqual(stackA, stackB))
                     if (stackA.stackSize > stackB.stackSize + 1) {
                         stackA.stackSize--;
@@ -235,8 +224,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
                     stack.stackSize++;
                     break;
                 }
-                if (stack.stackSize > 1)
-                    break;
+                if (stack.stackSize > 1) break;
             }
         }
     }
@@ -253,8 +241,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     private void processActions() {
         paused = false;
         for (IActionExternal action : actions) {
-            if (action == Actions.PAUSE)
-                paused = true;
+            if (action == Actions.PAUSE) paused = true;
         }
         actions.clear();
     }
@@ -265,14 +252,11 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     }
 
     public boolean canMakeMore() {
-        if (RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj) == null)
-            return false;
-        if (useLast)
-            return true;
+        if (RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj) == null) return false;
+        if (useLast) return true;
         for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
             ItemStack slot = craftMatrix.getStackInSlot(i);
-            if (slot != null && slot.stackSize <= 1)
-                return false;
+            if (slot != null && slot.stackSize <= 1) return false;
         }
         return true;
     }
@@ -294,16 +278,11 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (slot == SLOT_RESULT)
-            return false;
-        if (stack == null)
-            return false;
-        if (!stack.isStackable())
-            return false;
-        if (stack.getItem().hasContainerItem(stack))
-            return false;
-        if (getStackInSlot(slot) == null)
-            return false;
+        if (slot == SLOT_RESULT) return false;
+        if (stack == null) return false;
+        if (!stack.isStackable()) return false;
+        if (stack.getItem().hasContainerItem(stack)) return false;
+        if (getStackInSlot(slot) == null) return false;
         return true;
     }
 
@@ -333,12 +312,10 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public boolean hasCustomInventoryName() {
@@ -371,8 +348,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.receiveEnergy(maxReceive, simulate);
     }
 
@@ -383,16 +359,13 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
     @Override
     public int getEnergyStored(ForgeDirection from) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(ForgeDirection from) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.getMaxEnergyStored();
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,10 @@
  */
 package mods.railcraft.common.util.misc;
 
+import java.util.*;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.*;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -99,17 +98,21 @@ public final class AdjacentTileCache {
         }
         int s = side.ordinal();
         if (cache[s] != null)
-            if (cache[s].isInvalid() || !MiscTools.areCoordinatesOnSide(source.xCoord, source.yCoord, source.zCoord, side, cache[s].xCoord, cache[s].yCoord, cache[s].zCoord))
-                setTile(side, null);
-            else
-                return cache[s];
+            if (cache[s].isInvalid()
+                    || !MiscTools.areCoordinatesOnSide(
+                            source.xCoord,
+                            source.yCoord,
+                            source.zCoord,
+                            side,
+                            cache[s].xCoord,
+                            cache[s].yCoord,
+                            cache[s].zCoord)) setTile(side, null);
+            else return cache[s];
 
         if (timer[s].hasTriggered(source.getWorldObj(), delay[s])) {
             setTile(side, searchSide(side));
-            if (cache[s] == null)
-                incrementDelay(s);
-            else
-                delay[s] = DELAY_MIN;
+            if (cache[s] == null) incrementDelay(s);
+            else delay[s] = DELAY_MIN;
         }
 
         return cache[s];
@@ -117,8 +120,7 @@ public final class AdjacentTileCache {
 
     private void incrementDelay(int side) {
         delay[side] += DELAY_STEP;
-        if (delay[side] > DELAY_MAX)
-            delay[side] = DELAY_MAX;
+        if (delay[side] > DELAY_MAX) delay[side] = DELAY_MAX;
     }
 
     public List<String> getDebugOutput() {

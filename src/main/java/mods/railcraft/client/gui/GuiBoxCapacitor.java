@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,13 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.client.gui.GuiButton;
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.common.blocks.signals.TileBoxCapacitor;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
 
 public class GuiBoxCapacitor extends GuiBasic {
 
@@ -41,12 +41,17 @@ public class GuiBoxCapacitor extends GuiBasic {
         buttonList.add(new GuiButton(1, w + 53, h + 38, 30, 20, "-1"));
         buttonList.add(new GuiButton(2, w + 93, h + 38, 30, 20, "+1"));
         buttonList.add(new GuiButton(3, w + 133, h + 38, 30, 20, "+10"));
-        buttonList.add(stateMode = new GuiMultiButton(4, w + 23, h + 65, 130, tile.getStateModeController().copy()));
+        buttonList.add(
+                stateMode = new GuiMultiButton(
+                        4, w + 23, h + 65, 130, tile.getStateModeController().copy()));
     }
 
     @Override
     protected void drawExtras(int x, int y, float f) {
-        GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.box.capacitor.duration", ticksToPower / 20), 25);
+        GuiTools.drawCenteredString(
+                fontRendererObj,
+                LocalizationPlugin.translate("railcraft.gui.box.capacitor.duration", ticksToPower / 20),
+                25);
     }
 
     @Override
@@ -74,7 +79,8 @@ public class GuiBoxCapacitor extends GuiBasic {
     public void onGuiClosed() {
         if (Game.isNotHost(tile.getWorld())) {
             tile.ticksToPower = ticksToPower;
-            tile.getStateModeController().setCurrentState(stateMode.getController().getCurrentState());
+            tile.getStateModeController()
+                    .setCurrentState(stateMode.getController().getCurrentState());
             PacketGuiReturn pkt = new PacketGuiReturn(tile);
             PacketDispatcher.sendToServer(pkt);
         }

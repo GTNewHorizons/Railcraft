@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,13 @@
  */
 package mods.railcraft.common.blocks.aesthetics.lantern;
 
-import net.minecraft.block.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -54,7 +54,7 @@ public class BlockLantern extends Block {
         setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
         setHardness(5);
         setResistance(15);
-//        useNeighborBrightness[id] = false;
+        //        useNeighborBrightness[id] = false;
         opaque = false;
         lightOpacity = 0;
         setLightLevel(0.9375F);
@@ -70,14 +70,14 @@ public class BlockLantern extends Block {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (LanternInfo lantern : proxy.getCreativeList()) {
-            if (lantern.isEnabled())
-                list.add(lantern.getItem());
+            if (lantern.isEnabled()) list.add(lantern.getItem());
         }
     }
 
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
-        return AxisAlignedBB.getBoundingBox(x + SELECT, y + 2 * 0.0625f, z + SELECT, x + 1 - SELECT, y + 1.0F - 1 * 0.0625f, z + 1 - SELECT);
+        return AxisAlignedBB.getBoundingBox(
+                x + SELECT, y + 2 * 0.0625f, z + SELECT, x + 1 - SELECT, y + 1.0F - 1 * 0.0625f, z + 1 - SELECT);
     }
 
     @Override
@@ -123,9 +123,8 @@ public class BlockLantern extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
-        if (useCandleIcon)
-            return candleIcon;
-        //BlockLantern block = this;
+        if (useCandleIcon) return candleIcon;
+        // BlockLantern block = this;
         return this.proxy.fromOrdinal(meta).getTexture(side);
     }
 
@@ -146,5 +145,4 @@ public class BlockLantern extends Block {
     public void registerBlockIcons(IIconRegister iconRegister) {
         candleIcon = iconRegister.registerIcon("railcraft:stonelamp.candle");
     }
-
 }

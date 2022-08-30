@@ -31,8 +31,7 @@ public class CommandHelpers {
             try {
                 int dim = Integer.parseInt(args[worldArgIndex]);
                 World world = MinecraftServer.getServer().worldServerForDimension(dim);
-                if (world != null)
-                    return world;
+                if (world != null) return world;
             } catch (Exception ex) {
                 throwWrongUsage(sender, command);
             }
@@ -55,28 +54,30 @@ public class CommandHelpers {
         sender.addChatMessage(new ChatComponentTranslation(locTag, args));
     }
 
-    public static void sendLocalizedChatMessage(ICommandSender sender, ChatStyle chatStyle, String locTag, Object... args) {
+    public static void sendLocalizedChatMessage(
+            ICommandSender sender, ChatStyle chatStyle, String locTag, Object... args) {
         ChatComponentTranslation chat = new ChatComponentTranslation(locTag, args);
         chat.setChatStyle(chatStyle);
         sender.addChatMessage(chat);
     }
 
     /**
-     Avoid using this function if at all possible. Commands are processed on the server,
-     which has no localization information.
-
-     StringUtil.localize() is NOT a valid alternative for sendLocalizedChatMessage().
-     Messages will not be localized properly if you use StringUtil.localize().
-
-     @param sender
-     @param message
+     * Avoid using this function if at all possible. Commands are processed on the server,
+     * which has no localization information.
+     *
+     * StringUtil.localize() is NOT a valid alternative for sendLocalizedChatMessage().
+     * Messages will not be localized properly if you use StringUtil.localize().
+     *
+     * @param sender
+     * @param message
      */
     public static void sendChatMessage(ICommandSender sender, String message) {
         sender.addChatMessage(new ChatComponentText(message));
     }
 
     public static void throwWrongUsage(ICommandSender sender, IModCommand command) throws WrongUsageException {
-        throw new WrongUsageException((LocalizationPlugin.translate("command.railcraft.help", command.getCommandUsage(sender))));
+        throw new WrongUsageException(
+                (LocalizationPlugin.translate("command.railcraft.help", command.getCommandUsage(sender))));
     }
 
     public static void processChildCommand(ICommandSender sender, SubCommand child, String[] args) {
@@ -90,16 +91,30 @@ public class CommandHelpers {
     public static void printHelp(ICommandSender sender, IModCommand command) {
         ChatStyle header = new ChatStyle();
         header.setColor(EnumChatFormatting.BLUE);
-        sendLocalizedChatMessage(sender, header, "command.railcraft." + command.getFullCommandString().replace(" ", ".") + ".format", command.getFullCommandString());
+        sendLocalizedChatMessage(
+                sender,
+                header,
+                "command.railcraft." + command.getFullCommandString().replace(" ", ".") + ".format",
+                command.getFullCommandString());
         ChatStyle body = new ChatStyle();
         body.setColor(EnumChatFormatting.GRAY);
-        sendLocalizedChatMessage(sender, body, "command.railcraft.aliases", command.getCommandAliases().toString().replace("[", "").replace("]", ""));
+        sendLocalizedChatMessage(
+                sender,
+                body,
+                "command.railcraft.aliases",
+                command.getCommandAliases().toString().replace("[", "").replace("]", ""));
         sendLocalizedChatMessage(sender, body, "command.railcraft.permlevel", command.getRequiredPermissionLevel());
-        sendLocalizedChatMessage(sender, body, "command.railcraft." + command.getFullCommandString().replace(" ", ".") + ".help");
+        sendLocalizedChatMessage(
+                sender,
+                body,
+                "command.railcraft." + command.getFullCommandString().replace(" ", ".") + ".help");
         if (!command.getChildren().isEmpty()) {
             sendLocalizedChatMessage(sender, "command.railcraft.list");
             for (SubCommand child : command.getChildren()) {
-                sendLocalizedChatMessage(sender, "command.railcraft." + child.getFullCommandString().replace(" ", ".") + ".desc", child.getCommandName());
+                sendLocalizedChatMessage(
+                        sender,
+                        "command.railcraft." + child.getFullCommandString().replace(" ", ".") + ".desc",
+                        child.getCommandName());
             }
         }
     }
@@ -121,12 +136,10 @@ public class CommandHelpers {
     }
 
     public static boolean matches(String commandName, IModCommand command) {
-        if (commandName.equals(command.getCommandName()))
-            return true;
+        if (commandName.equals(command.getCommandName())) return true;
         else if (command.getCommandAliases() != null)
             for (String alias : command.getCommandAliases()) {
-                if (commandName.equals(alias))
-                    return true;
+                if (commandName.equals(alias)) return true;
             }
         return false;
     }

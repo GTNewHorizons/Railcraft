@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,7 +34,8 @@ public class TileAnchorPersonal extends TileAnchorWorld {
 
     @Override
     protected Ticket getTicketFromForge() {
-        return ForgeChunkManager.requestPlayerTicket(Railcraft.getMod(), PlayerPlugin.getUsername(worldObj, getOwner()), worldObj, Type.NORMAL);
+        return ForgeChunkManager.requestPlayerTicket(
+                Railcraft.getMod(), PlayerPlugin.getUsername(worldObj, getOwner()), worldObj, Type.NORMAL);
     }
 
     @Override
@@ -50,14 +51,10 @@ public class TileAnchorPersonal extends TileAnchorWorld {
     @Override
     public void updateEntity() {
         if (Game.isHost(worldObj) && hasActiveTicket()) {
-            if (PlayerPlugin.isPlayerConnected(getOwner()))
-                ticksSincePlayerLogged = 0;
-            else
-                ticksSincePlayerLogged++;
-            if (ticksSincePlayerLogged > RailcraftConstants.TICKS_PER_MIN * MINUTES_BEFORE_DISABLE)
-                releaseTicket();
+            if (PlayerPlugin.isPlayerConnected(getOwner())) ticksSincePlayerLogged = 0;
+            else ticksSincePlayerLogged++;
+            if (ticksSincePlayerLogged > RailcraftConstants.TICKS_PER_MIN * MINUTES_BEFORE_DISABLE) releaseTicket();
         }
         super.updateEntity();
     }
-
 }

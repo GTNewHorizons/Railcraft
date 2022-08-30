@@ -7,5 +7,4 @@ public interface LanternProxy {
     List<? extends LanternInfo> getCreativeList();
 
     LanternInfo fromOrdinal(int id);
-
 }

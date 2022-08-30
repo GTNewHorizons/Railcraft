@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.util.misc.EnumColor;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -15,10 +18,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -34,10 +33,8 @@ public class TilePostEmblem extends RailcraftTileEntity {
         setFacing(MiscTools.getHorizontalSideClosestToPlayer(worldObj, xCoord, yCoord, zCoord, entityliving));
         NBTTagCompound nbt = stack.getTagCompound();
         if (nbt != null) {
-            if (nbt.hasKey("color"))
-                setColor(EnumColor.fromId(nbt.getByte("color")));
-            if (nbt.hasKey("emblem"))
-                setEmblem(nbt.getString("emblem"));
+            if (nbt.hasKey("color")) setColor(EnumColor.fromId(nbt.getByte("color")));
+            if (nbt.hasKey("emblem")) setEmblem(nbt.getString("emblem"));
         }
     }
 
@@ -91,8 +88,7 @@ public class TilePostEmblem extends RailcraftTileEntity {
         data.setString("emblem", emblem);
         data.setByte("facing", (byte) facing.ordinal());
 
-        if (color != null)
-            data.setByte("color", (byte) color.ordinal());
+        if (color != null) data.setByte("color", (byte) color.ordinal());
     }
 
     @Override
@@ -101,8 +97,7 @@ public class TilePostEmblem extends RailcraftTileEntity {
         emblem = data.getString("emblem");
         facing = ForgeDirection.getOrientation(data.getByte("facing"));
 
-        if (data.hasKey("color"))
-            color = EnumColor.fromId(data.getByte("color"));
+        if (data.hasKey("color")) color = EnumColor.fromId(data.getByte("color"));
     }
 
     @Override
@@ -140,8 +135,7 @@ public class TilePostEmblem extends RailcraftTileEntity {
 
         emblem = data.readUTF();
 
-        if (needsUpdate)
-            markBlockForUpdate();
+        if (needsUpdate) markBlockForUpdate();
     }
 
     @Override

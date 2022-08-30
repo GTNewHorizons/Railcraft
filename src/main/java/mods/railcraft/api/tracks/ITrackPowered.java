@@ -17,8 +17,7 @@ package mods.railcraft.api.tracks;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackPowered extends ITrackInstance
-{
+public interface ITrackPowered extends ITrackInstance {
 
     public boolean isPowered();
 

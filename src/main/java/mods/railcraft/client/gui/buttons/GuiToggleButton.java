@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -58,5 +58,4 @@ public class GuiToggleButton extends GuiBetterButton {
             return 0xe0e0e0;
         }
     }
-
 }

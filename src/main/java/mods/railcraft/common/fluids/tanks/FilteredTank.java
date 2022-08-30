@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -33,8 +33,7 @@ public class FilteredTank extends StandardTank {
 
     @Override
     public int fill(FluidStack resource, boolean doFill) {
-        if (liquidMatchesFilter(resource))
-            return super.fill(resource, doFill);
+        if (liquidMatchesFilter(resource)) return super.fill(resource, doFill);
         return 0;
     }
 
@@ -43,8 +42,7 @@ public class FilteredTank extends StandardTank {
     }
 
     public boolean liquidMatchesFilter(FluidStack resource) {
-        if (resource == null || filter == null)
-            return false;
+        if (resource == null || filter == null) return false;
         return resource.getFluid() == filter;
     }
 
@@ -54,15 +52,12 @@ public class FilteredTank extends StandardTank {
         int amount = 0;
         if (filter != null) {
             EnumRarity rarity = filter.getRarity();
-            if (rarity == null)
-                rarity = EnumRarity.common;
+            if (rarity == null) rarity = EnumRarity.common;
             ToolTipLine name = new ToolTipLine(filter.getLocalizedName(getFluid()), rarity.rarityColor);
             name.setSpacing(2);
             toolTip.add(name);
-            if (renderData.fluid != null && renderData.amount > 0)
-                amount = renderData.amount;
+            if (renderData.fluid != null && renderData.amount > 0) amount = renderData.amount;
         }
         toolTip.add(new ToolTipLine(String.format("%,d", amount) + " / " + String.format("%,d", getCapacity())));
     }
-
 }

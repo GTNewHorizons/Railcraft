@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,37 +12,36 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import mods.railcraft.api.carts.CartTools;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 import mods.railcraft.api.carts.IExplosiveCart;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public abstract class CartExplosiveBase extends CartBase implements IExplosiveCart, IGuiReturnHandler {
 
     private static final byte FUSE_DATA_ID = 25;
     private static final byte BLAST_DATA_ID = 26;
     private static final byte PRIMED_DATA_ID = 27;
-    private final static float BLAST_RADIUS_BYTE_MULTIPLIER = 0.5f;
-    private final static float BLAST_RADIUS_MIN = 2;
-    private final static float BLAST_RADIUS_MAX = 6;
-    private final static float BLAST_RADIUS_MAX_BONUS = 5;
+    private static final float BLAST_RADIUS_BYTE_MULTIPLIER = 0.5f;
+    private static final float BLAST_RADIUS_MIN = 2;
+    private static final float BLAST_RADIUS_MAX = 6;
+    private static final float BLAST_RADIUS_MAX_BONUS = 5;
     public static final short MAX_FUSE = 500;
     public static final short MIN_FUSE = 0;
     private boolean isExploding;
 
     public CartExplosiveBase(World world) {
         super(world);
-
     }
 
     public CartExplosiveBase(World world, double x, double y, double z) {
@@ -139,8 +138,7 @@ public abstract class CartExplosiveBase extends CartBase implements IExplosiveCa
     public boolean doInteract(EntityPlayer player) {
         ItemStack stack = player.inventory.getCurrentItem();
         if (stack != null) {
-            if (stack.getItem() == Items.flint_and_steel
-                    || stack.getItem() instanceof ItemFirestoneRefined) {
+            if (stack.getItem() == Items.flint_and_steel || stack.getItem() instanceof ItemFirestoneRefined) {
                 setPrimed(true);
                 stack.damageItem(1, player);
             } else if (stack.getItem() == Items.string) {

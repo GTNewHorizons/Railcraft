@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,25 +8,25 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
+import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
+import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  *
@@ -34,7 +34,7 @@ import static net.minecraftforge.common.util.ForgeDirection.UP;
  */
 public abstract class TileChestRailcraft extends TileMachineItem {
 
-    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[]{UP, DOWN};
+    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] {UP, DOWN};
     private static final int TICK_PER_SYNC = 64;
     private ForgeDirection facing = ForgeDirection.EAST;
     public float lidAngle;
@@ -57,12 +57,9 @@ public abstract class TileChestRailcraft extends TileMachineItem {
 
     @Override
     public final boolean rotateBlock(ForgeDirection axis) {
-        if (axis == UP || axis == DOWN)
-            return false;
-        if (facing == axis)
-            facing = axis.getOpposite();
-        else
-            facing = axis;
+        if (axis == UP || axis == DOWN) return false;
+        if (facing == axis) facing = axis.getOpposite();
+        else facing = axis;
         markBlockForUpdate();
         return true;
     }
@@ -74,12 +71,9 @@ public abstract class TileChestRailcraft extends TileMachineItem {
 
     @Override
     public final boolean openGui(EntityPlayer player) {
-        if (worldObj.isSideSolid(xCoord, yCoord + 1, zCoord, ForgeDirection.DOWN))
-            return false;
-        else if (isCatOnChest())
-            return false;
-        if (Game.isHost(worldObj))
-            player.displayGUIChest((IInventory) this);
+        if (worldObj.isSideSolid(xCoord, yCoord + 1, zCoord, ForgeDirection.DOWN)) return false;
+        else if (isCatOnChest()) return false;
+        if (Game.isHost(worldObj)) player.displayGUIChest((IInventory) this);
         return true;
     }
 
@@ -87,11 +81,12 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         int x = xCoord;
         int y = yCoord;
         int z = zCoord;
-        Iterator it = worldObj.getEntitiesWithinAABB(EntityOcelot.class, AxisAlignedBB.getBoundingBox(x, (y + 1), z, (x + 1), (y + 2), (z + 1))).iterator();
+        Iterator it = worldObj.getEntitiesWithinAABB(
+                        EntityOcelot.class, AxisAlignedBB.getBoundingBox(x, (y + 1), z, (x + 1), (y + 2), (z + 1)))
+                .iterator();
         EntityOcelot cat;
         do {
-            if (!it.hasNext())
-                return false;
+            if (!it.hasNext()) return false;
             EntityOcelot entityocelot = (EntityOcelot) it.next();
             cat = (EntityOcelot) entityocelot;
         } while (!cat.isSitting());
@@ -109,26 +104,34 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         float angleChange = 0.1F;
 
         if (this.numUsingPlayers > 0 && this.lidAngle == 0.0F)
-            this.worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestopen", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            this.worldObj.playSoundEffect(
+                    xCoord + 0.5D,
+                    yCoord + 0.5D,
+                    zCoord + 0.5D,
+                    "random.chestopen",
+                    0.5F,
+                    this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
         if (this.numUsingPlayers == 0 && this.lidAngle > 0.0F || this.numUsingPlayers > 0 && this.lidAngle < 1.0F) {
             float angle = this.lidAngle;
 
-            if (this.numUsingPlayers > 0)
-                this.lidAngle += angleChange;
-            else
-                this.lidAngle -= angleChange;
+            if (this.numUsingPlayers > 0) this.lidAngle += angleChange;
+            else this.lidAngle -= angleChange;
 
-            if (this.lidAngle > 1.0F)
-                this.lidAngle = 1.0F;
+            if (this.lidAngle > 1.0F) this.lidAngle = 1.0F;
 
             float openAngle = 0.5F;
 
             if (this.lidAngle < openAngle && angle >= openAngle)
-                this.worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.worldObj.playSoundEffect(
+                        xCoord + 0.5D,
+                        yCoord + 0.5D,
+                        zCoord + 0.5D,
+                        "random.chestclosed",
+                        0.5F,
+                        this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
-            if (this.lidAngle < 0.0F)
-                this.lidAngle = 0.0F;
+            if (this.lidAngle < 0.0F) this.lidAngle = 0.0F;
         }
     }
 
@@ -176,5 +179,4 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         super.readPacketData(data);
         facing = ForgeDirection.getOrientation(data.readByte());
     }
-
 }

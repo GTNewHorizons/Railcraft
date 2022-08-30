@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.common.carts.EntityCartRF;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -17,10 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public abstract class TileRFLoaderBase extends TileLoaderBase {
     protected static final int TRANSFER_RATE = 8000;
@@ -36,8 +35,7 @@ public abstract class TileRFLoaderBase extends TileLoaderBase {
 
     @Override
     public IIcon getIcon(int side) {
-        if (side == direction.ordinal())
-            return getMachineType().getTexture(isProcessing() ? 7 : 8);
+        if (side == direction.ordinal()) return getMachineType().getTexture(isProcessing() ? 7 : 8);
         return getMachineType().getTexture(isProcessing() ? 0 : 6);
     }
 
@@ -68,21 +66,16 @@ public abstract class TileRFLoaderBase extends TileLoaderBase {
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         int capacity = getMaxRF();
-        if (amountRF > capacity)
-            amountRF = capacity;
+        if (amountRF > capacity) amountRF = capacity;
 
         boolean wasProcessing = isProcessing();
-        if (processCart())
-            ticksSinceTransfer = TRANSFER_FADE;
-        else if (ticksSinceTransfer > 0)
-            ticksSinceTransfer--;
+        if (processCart()) ticksSinceTransfer = TRANSFER_FADE;
+        else if (ticksSinceTransfer > 0) ticksSinceTransfer--;
 
-        if (isProcessing() != wasProcessing)
-            sendUpdateToClient();
+        if (isProcessing() != wasProcessing) sendUpdateToClient();
     }
 
     protected abstract boolean processCart();
@@ -124,41 +117,32 @@ public abstract class TileRFLoaderBase extends TileLoaderBase {
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (direction == axis)
-            direction = axis.getOpposite();
-        else
-            direction = axis;
+        if (direction == axis) direction = axis.getOpposite();
+        else direction = axis;
         markBlockForUpdate();
         return true;
     }
 
     public int addRF(int rf, boolean simulate) {
-        if (rf <= 0)
-            return 0;
-        if (amountRF >= RF_CAP)
-            return 0;
+        if (rf <= 0) return 0;
+        if (amountRF >= RF_CAP) return 0;
         if (RF_CAP - amountRF >= rf) {
-            if (!simulate)
-                amountRF += rf;
+            if (!simulate) amountRF += rf;
             return rf;
         }
         int used = RF_CAP - amountRF;
-        if (!simulate)
-            amountRF = RF_CAP;
+        if (!simulate) amountRF = RF_CAP;
         return used;
     }
 
     public int removeRF(int request, boolean simulate) {
-        if (request <= 0)
-            return 0;
+        if (request <= 0) return 0;
         if (amountRF >= request) {
-            if (!simulate)
-                amountRF -= request;
+            if (!simulate) amountRF -= request;
             return request;
         }
         int ret = amountRF;
-        if (!simulate)
-            amountRF = 0;
+        if (!simulate) amountRF = 0;
         return ret;
     }
 
@@ -173,5 +157,4 @@ public abstract class TileRFLoaderBase extends TileLoaderBase {
     public int getMaxRF() {
         return RF_CAP;
     }
-
 }

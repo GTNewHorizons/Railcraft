@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.util.inventory;
 
+import java.util.*;
+import javax.annotation.Nonnull;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -42,21 +44,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 
-import javax.annotation.Nonnull;
-import java.util.*;
-
 public abstract class InvTools {
     private static final String TAG_SLOT = "Slot";
 
     public static ItemStack makeStack(Item item, int qty, int meta) {
-        if (item != null)
-            return new ItemStack(item, qty, meta);
+        if (item != null) return new ItemStack(item, qty, meta);
         return null;
     }
 
     public static ItemStack makeStack(Block block, int qty, int meta) {
-        if (block != null)
-            return new ItemStack(block, qty, meta);
+        if (block != null) return new ItemStack(block, qty, meta);
         return null;
     }
 
@@ -64,12 +61,12 @@ public abstract class InvTools {
         return getAdjacentInventories(world, i, j, k, null);
     }
 
-    public static List<IInventory> getAdjacentInventories(World world, int i, int j, int k, Class<? extends IInventory> type) {
+    public static List<IInventory> getAdjacentInventories(
+            World world, int i, int j, int k, Class<? extends IInventory> type) {
         List<IInventory> list = new ArrayList<IInventory>(5);
         for (int side = 0; side < 6; side++) {
             IInventory inv = getInventoryFromSide(world, i, j, k, ForgeDirection.getOrientation(side), type, null);
-            if (inv != null)
-                list.add(inv);
+            if (inv != null) list.add(inv);
         }
         return list;
     }
@@ -78,40 +75,45 @@ public abstract class InvTools {
         return getAdjacentInventoryMap(world, i, j, k, null);
     }
 
-    public static Map<Integer, IInventory> getAdjacentInventoryMap(World world, int i, int j, int k, Class<? extends IInventory> type) {
+    public static Map<Integer, IInventory> getAdjacentInventoryMap(
+            World world, int i, int j, int k, Class<? extends IInventory> type) {
         Map<Integer, IInventory> map = new TreeMap<Integer, IInventory>();
         for (int side = 0; side < 6; side++) {
             IInventory inv = getInventoryFromSide(world, i, j, k, ForgeDirection.getOrientation(side), type, null);
-            if (inv != null)
-                map.put(side, inv);
+            if (inv != null) map.put(side, inv);
         }
         return map;
     }
 
-    public static IInventory getInventoryFromSide(World world, int x, int y, int z, ForgeDirection side, final Class<? extends IInventory> type, final Class<? extends IInventory> exclude) {
+    public static IInventory getInventoryFromSide(
+            World world,
+            int x,
+            int y,
+            int z,
+            ForgeDirection side,
+            final Class<? extends IInventory> type,
+            final Class<? extends IInventory> exclude) {
         return getInventoryFromSide(world, x, y, z, side, new ITileFilter() {
             @Override
             public boolean matches(TileEntity tile) {
-                if (type != null && !type.isAssignableFrom(tile.getClass()))
-                    return false;
+                if (type != null && !type.isAssignableFrom(tile.getClass())) return false;
                 return exclude == null || !exclude.isAssignableFrom(tile.getClass());
             }
         });
     }
 
-    public static IInventory getInventoryFromSide(World world, int x, int y, int z, ForgeDirection side, ITileFilter filter) {
+    public static IInventory getInventoryFromSide(
+            World world, int x, int y, int z, ForgeDirection side, ITileFilter filter) {
         TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, side);
-        if (tile == null || !(tile instanceof IInventory) || !filter.matches(tile))
-            return null;
+        if (tile == null || !(tile instanceof IInventory) || !filter.matches(tile)) return null;
         return getInventoryFromTile(tile, side.getOpposite());
     }
 
     public static IInventory getInventoryFromTile(TileEntity tile, ForgeDirection side) {
-        if (tile == null || !(tile instanceof IInventory))
-            return null;
+        if (tile == null || !(tile instanceof IInventory)) return null;
 
-//        if (!PipeManager.canExtractItems(null, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord))
-//            return null;
+        //        if (!PipeManager.canExtractItems(null, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord))
+        //            return null;
 
         if (tile instanceof TileEntityChest) {
             TileEntityChest chest = (TileEntityChest) tile;
@@ -121,13 +123,11 @@ public abstract class InvTools {
     }
 
     public static IInventory getInventory(IInventory inv, ForgeDirection side) {
-        if (inv == null)
-            return null;
+        if (inv == null) return null;
 
-//        if (inv instanceof ISpecialInventory)
-//            inv = new SpecialInventoryMapper((ISpecialInventory) inv, side);
-        else if (inv instanceof ISidedInventory)
-            inv = new SidedInventoryMapper((ISidedInventory) inv, side);
+        //        if (inv instanceof ISpecialInventory)
+        //            inv = new SpecialInventoryMapper((ISpecialInventory) inv, side);
+        else if (inv instanceof ISidedInventory) inv = new SidedInventoryMapper((ISidedInventory) inv, side);
         return inv;
     }
 
@@ -140,15 +140,11 @@ public abstract class InvTools {
     }
 
     public static EnumColor getItemColor(ItemStack stack) {
-        if (stack == null)
-            return null;
-        if (isStackEqualToBlock(stack, Blocks.wool))
-            return EnumColor.fromId(15 - stack.getItemDamage());
-        if (stack.getItem() == Items.dye)
-            return EnumColor.fromId(stack.getItemDamage());
+        if (stack == null) return null;
+        if (isStackEqualToBlock(stack, Blocks.wool)) return EnumColor.fromId(15 - stack.getItemDamage());
+        if (stack.getItem() == Items.dye) return EnumColor.fromId(stack.getItemDamage());
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt != null && nbt.hasKey("color"))
-            return EnumColor.fromId(nbt.getByte("color"));
+        if (nbt != null && nbt.hasKey("color")) return EnumColor.fromId(nbt.getByte("color"));
         return null;
     }
 
@@ -197,8 +193,7 @@ public abstract class InvTools {
     public static NBTTagCompound getItemDataRailcraft(ItemStack stack) {
         NBTTagCompound nbt = getItemData(stack);
         NBTTagCompound railcraftTag;
-        if (nbt.hasKey(Railcraft.getModId()))
-            railcraftTag = nbt.getCompoundTag(Railcraft.getModId());
+        if (nbt.hasKey(Railcraft.getModId())) railcraftTag = nbt.getCompoundTag(Railcraft.getModId());
         else {
             railcraftTag = new NBTTagCompound();
             nbt.setTag(Railcraft.getModId(), railcraftTag);
@@ -217,8 +212,7 @@ public abstract class InvTools {
     }
 
     public static ItemStack depleteItem(ItemStack stack) {
-        if (stack.stackSize == 1)
-            return stack.getItem().getContainerItem(stack);
+        if (stack.stackSize == 1) return stack.getItem().getContainerItem(stack);
         else {
             stack.splitStack(1);
             return stack;
@@ -234,14 +228,12 @@ public abstract class InvTools {
             stack.stackSize--;
             stack.setItemDamage(0);
         }
-        if (stack.stackSize <= 0)
-            stack = null;
+        if (stack.stackSize <= 0) stack = null;
         return stack;
     }
 
     public static void dropItem(ItemStack stack, World world, double x, double y, double z) {
-        if (stack == null || stack.stackSize < 1)
-            return;
+        if (stack == null || stack.stackSize < 1) return;
         EntityItem entityItem = new EntityItem(world, x, y + 1.5, z, stack);
         entityItem.delayBeforeCanPickup = 10;
         world.spawnEntityInWorld(entityItem);
@@ -269,12 +261,12 @@ public abstract class InvTools {
             float zOffset = MiscTools.getRand().nextFloat() * 0.8F + 0.1F;
             while (stack.stackSize > 0) {
                 int numToDrop = MiscTools.getRand().nextInt(21) + 10;
-                if (numToDrop > stack.stackSize)
-                    numToDrop = stack.stackSize;
+                if (numToDrop > stack.stackSize) numToDrop = stack.stackSize;
                 ItemStack newStack = stack.copy();
                 newStack.stackSize = numToDrop;
                 stack.stackSize -= numToDrop;
-                EntityItem entityItem = new EntityItem(world, (float) x + xOffset, (float) y + yOffset, (float) z + zOffset, newStack);
+                EntityItem entityItem =
+                        new EntityItem(world, (float) x + xOffset, (float) y + yOffset, (float) z + zOffset, newStack);
                 float variance = 0.05F;
                 entityItem.motionX = (float) MiscTools.getRand().nextGaussian() * variance;
                 entityItem.motionY = (float) MiscTools.getRand().nextGaussian() * variance + 0.2F;
@@ -292,8 +284,7 @@ public abstract class InvTools {
         ItemStack stack = null;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             stack = slot.getStackInSlot();
-            if (stack != null)
-                break;
+            if (stack != null) break;
         }
         return stack == null;
     }
@@ -305,8 +296,7 @@ public abstract class InvTools {
     public static boolean isAccessibleInventoryEmpty(IInventory inv) {
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null && slot.canTakeStackFromSlot(stack))
-                return false;
+            if (stack != null && slot.canTakeStackFromSlot(stack)) return false;
         }
         return true;
     }
@@ -319,8 +309,7 @@ public abstract class InvTools {
         ItemStack stack = null;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             stack = slot.getStackInSlot();
-            if (stack == null)
-                break;
+            if (stack == null) break;
         }
         return stack != null;
     }
@@ -328,8 +317,7 @@ public abstract class InvTools {
     public static boolean isEmptySlot(IInventory inv) {
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack == null)
-                return true;
+            if (stack == null) return true;
         }
         return false;
     }
@@ -341,8 +329,7 @@ public abstract class InvTools {
         int count = 0;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null)
-                count += stack.stackSize;
+            if (stack != null) count += stack.stackSize;
         }
         return count;
     }
@@ -351,8 +338,7 @@ public abstract class InvTools {
         int count = 0;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null)
-                count += stack.getMaxStackSize();
+            if (stack != null) count += stack.getMaxStackSize();
         }
         return count;
     }
@@ -361,8 +347,7 @@ public abstract class InvTools {
         int count = 0;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null && filter.matches(stack))
-                count += stack.stackSize;
+            if (stack != null && filter.matches(stack)) count += stack.stackSize;
         }
         return count;
     }
@@ -371,10 +356,8 @@ public abstract class InvTools {
         int count = 0;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null)
-                count += stack.stackSize;
-            if (count >= amount)
-                return true;
+            if (stack != null) count += stack.stackSize;
+            if (count >= amount) return true;
         }
         return false;
     }
@@ -398,8 +381,7 @@ public abstract class InvTools {
         int count = 0;
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack != null)
-                count++;
+            if (stack != null) count++;
         }
         return count;
     }
@@ -430,8 +412,7 @@ public abstract class InvTools {
             ItemStack slot = inv.getStackInSlot(i);
             if (slot != null) {
                 Integer count = manifest.get(slot);
-                if (count == null)
-                    count = 0;
+                if (count == null) count = 0;
                 count += slot.stackSize;
                 manifest.put(slot, count);
             }
@@ -477,8 +458,7 @@ public abstract class InvTools {
     public static ItemStack moveOneItem(Collection<IInventory> sources, IInventory dest, ItemStack... filters) {
         for (IInventory inv : sources) {
             ItemStack moved = InvTools.moveOneItem(inv, dest, filters);
-            if (moved != null)
-                return moved;
+            if (moved != null) return moved;
         }
         return null;
     }
@@ -491,8 +471,7 @@ public abstract class InvTools {
     public static ItemStack moveOneItem(Collection<IInventory> sources, IInventory dest, IStackFilter filter) {
         for (IInventory inv : sources) {
             ItemStack moved = InvTools.moveOneItem(inv, dest, filter);
-            if (moved != null)
-                return moved;
+            if (moved != null) return moved;
         }
         return null;
     }
@@ -505,8 +484,7 @@ public abstract class InvTools {
     public static ItemStack moveOneItem(IInventory source, Collection<IInventory> destinations, ItemStack... filters) {
         for (IInventory dest : destinations) {
             ItemStack moved = InvTools.moveOneItem(source, dest, filters);
-            if (moved != null)
-                return moved;
+            if (moved != null) return moved;
         }
         return null;
     }
@@ -529,8 +507,7 @@ public abstract class InvTools {
     public static ItemStack moveOneItemExcept(Collection<IInventory> sources, IInventory dest, ItemStack... filters) {
         for (IInventory inv : sources) {
             ItemStack moved = InvTools.moveOneItemExcept(inv, dest, filters);
-            if (moved != null)
-                return moved;
+            if (moved != null) return moved;
         }
         return null;
     }
@@ -538,11 +515,11 @@ public abstract class InvTools {
     /**
      * Attempts to move one item to a collection of inventories.
      */
-    public static ItemStack moveOneItemExcept(IInventory source, Collection<IInventory> destinations, ItemStack... filters) {
+    public static ItemStack moveOneItemExcept(
+            IInventory source, Collection<IInventory> destinations, ItemStack... filters) {
         for (IInventory dest : destinations) {
             ItemStack moved = InvTools.moveOneItemExcept(source, dest, filters);
-            if (moved != null)
-                return moved;
+            if (moved != null) return moved;
         }
         return null;
     }
@@ -570,16 +547,11 @@ public abstract class InvTools {
      * @return True if equal
      */
     public static boolean isItemEqualStrict(ItemStack a, ItemStack b) {
-        if (a == null && b == null)
-            return true;
-        if (a == null || b == null)
-            return false;
-        if (a.getItem() != b.getItem())
-            return false;
-        if (a.stackSize != b.stackSize)
-            return false;
-        if (a.getItemDamage() != b.getItemDamage())
-            return false;
+        if (a == null && b == null) return true;
+        if (a == null || b == null) return false;
+        if (a.getItem() != b.getItem()) return false;
+        if (a.stackSize != b.stackSize) return false;
+        if (a.getItemDamage() != b.getItemDamage()) return false;
         return a.stackTagCompound == null || a.stackTagCompound.equals(b.stackTagCompound);
     }
 
@@ -598,14 +570,10 @@ public abstract class InvTools {
      * @return True if equal
      */
     public static boolean isItemEqualSemiStrict(ItemStack a, ItemStack b) {
-        if (a == null && b == null)
-            return true;
-        if (a == null || b == null)
-            return false;
-        if (a.getItem() != b.getItem())
-            return false;
-        if (a.getItemDamage() != b.getItemDamage())
-            return false;
+        if (a == null && b == null) return true;
+        if (a == null || b == null) return false;
+        if (a.getItem() != b.getItem()) return false;
+        if (a.getItemDamage() != b.getItemDamage()) return false;
         return a.stackTagCompound == null || a.stackTagCompound.equals(b.stackTagCompound);
     }
 
@@ -633,27 +601,21 @@ public abstract class InvTools {
         return isItemEqual(a, b, true, false);
     }
 
-    public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchDamage, final boolean matchNBT) {
-        if (a == null || b == null)
-            return false;
-        if (a.getItem() != b.getItem())
-            return false;
-        if (matchNBT && !ItemStack.areItemStackTagsEqual(a, b))
-            return false;
+    public static boolean isItemEqual(
+            final ItemStack a, final ItemStack b, final boolean matchDamage, final boolean matchNBT) {
+        if (a == null || b == null) return false;
+        if (a.getItem() != b.getItem()) return false;
+        if (matchNBT && !ItemStack.areItemStackTagsEqual(a, b)) return false;
         if (matchDamage && a.getHasSubtypes()) {
-            if (isWildcard(a) || isWildcard(b))
-                return true;
-            if (a.getItemDamage() != b.getItemDamage())
-                return false;
+            if (isWildcard(a) || isWildcard(b)) return true;
+            if (a.getItemDamage() != b.getItemDamage()) return false;
         }
         return true;
     }
 
     public static boolean isCartItemEqual(final ItemStack a, final ItemStack b, final boolean matchDamage) {
-        if (!isItemEqual(a, b, matchDamage, false))
-            return false;
-        if (a.hasDisplayName() && !a.getDisplayName().equals(b.getDisplayName()))
-            return false;
+        if (!isItemEqual(a, b, matchDamage, false)) return false;
+        if (a.hasDisplayName() && !a.getDisplayName().equals(b.getDisplayName())) return false;
         return true;
     }
 
@@ -662,8 +624,7 @@ public abstract class InvTools {
      */
     public static boolean isItemEqual(ItemStack stack, ItemStack... matches) {
         for (ItemStack match : matches) {
-            if (isItemEqual(stack, match))
-                return true;
+            if (isItemEqual(stack, match)) return true;
         }
         return false;
     }
@@ -673,21 +634,18 @@ public abstract class InvTools {
      */
     public static boolean isItemEqual(ItemStack stack, Collection<ItemStack> matches) {
         for (ItemStack match : matches) {
-            if (isItemEqual(stack, match))
-                return true;
+            if (isItemEqual(stack, match)) return true;
         }
         return false;
     }
 
     public static boolean isItemGreaterOrEqualThan(ItemStack stackA, ItemStack stackB) {
-        if (!isItemEqual(stackA, stackB))
-            return false;
+        if (!isItemEqual(stackA, stackB)) return false;
         return stackA.stackSize >= stackB.stackSize;
     }
 
     public static boolean isItemLessThanOrEqualTo(ItemStack stackA, ItemStack stackB) {
-        if (!isItemEqual(stackA, stackB))
-            return false;
+        if (!isItemEqual(stackA, stackB)) return false;
         return stackA.stackSize <= stackB.stackSize;
     }
 
@@ -717,8 +675,7 @@ public abstract class InvTools {
     public static ItemStack moveItemStack(ItemStack stack, Collection<IInventory> dest) {
         for (IInventory inv : dest) {
             stack = moveItemStack(stack, inv);
-            if (stack == null)
-                return null;
+            if (stack == null) return null;
         }
         return stack;
     }
@@ -731,8 +688,7 @@ public abstract class InvTools {
      * @return true if room for stack
      */
     public static boolean isRoomForStack(ItemStack stack, IInventory dest) {
-        if (stack == null || dest == null)
-            return false;
+        if (stack == null || dest == null) return false;
         InventoryManipulator im = InventoryManipulator.get(dest);
         return im.canAddStack(stack);
     }
@@ -742,15 +698,13 @@ public abstract class InvTools {
      * about what the items are.
      */
     public static ItemStack[] removeItems(IInventory inv, int numItems) {
-//        if (inv instanceof ISpecialInventory)
-//            return ((ISpecialInventory) inv).extractItem(true, ForgeDirection.UNKNOWN, numItems);
+        //        if (inv instanceof ISpecialInventory)
+        //            return ((ISpecialInventory) inv).extractItem(true, ForgeDirection.UNKNOWN, numItems);
         StandaloneInventory output = new StandaloneInventory(27);
         for (int i = 0; i < inv.getSizeInventory(); i++) {
-            if (numItems <= 0)
-                break;
+            if (numItems <= 0) break;
             ItemStack slot = inv.getStackInSlot(i);
-            if (slot == null)
-                continue;
+            if (slot == null) continue;
             ItemStack removed = inv.decrStackSize(i, numItems);
             numItems -= removed.stackSize;
             ItemStack remainder = moveItemStack(removed, output);
@@ -763,8 +717,7 @@ public abstract class InvTools {
 
         List<ItemStack> list = new LinkedList<ItemStack>();
         for (ItemStack stack : output.getContents()) {
-            if (stack != null)
-                list.add(stack);
+            if (stack != null) list.add(stack);
         }
         return list.toArray(new ItemStack[0]);
     }
@@ -815,8 +768,7 @@ public abstract class InvTools {
     public static ItemStack removeOneItem(Collection<IInventory> invs, IStackFilter filter) {
         for (IInventory inv : invs) {
             ItemStack stack = removeOneItem(inv, filter);
-            if (stack != null)
-                return stack;
+            if (stack != null) return stack;
         }
         return null;
     }
@@ -912,10 +864,8 @@ public abstract class InvTools {
     }
 
     public static void writeItemToNBT(ItemStack stack, NBTTagCompound data) {
-        if (stack == null || stack.stackSize <= 0)
-            return;
-        if (stack.stackSize > 127)
-            stack.stackSize = 127;
+        if (stack == null || stack.stackSize <= 0) return;
+        if (stack.stackSize > 127) stack.stackSize = 127;
         stack.writeToNBT(data);
     }
 
@@ -924,25 +874,22 @@ public abstract class InvTools {
     }
 
     public static boolean isStackEqualToBlock(ItemStack stack, Block block) {
-        if (stack == null || block == null)
-            return false;
-        if (stack.getItem() instanceof ItemBlock)
-            return ((ItemBlock) stack.getItem()).field_150939_a == block;
+        if (stack == null || block == null) return false;
+        if (stack.getItem() instanceof ItemBlock) return ((ItemBlock) stack.getItem()).field_150939_a == block;
         return false;
     }
 
     public static Block getBlockFromStack(ItemStack stack) {
-        if (stack.getItem() instanceof ItemBlock)
-            return ((ItemBlock) stack.getItem()).field_150939_a;
+        if (stack.getItem() instanceof ItemBlock) return ((ItemBlock) stack.getItem()).field_150939_a;
         return null;
     }
-    
+
     public static ItemStack getItemFromOreDict(String oreName, int quantity) {
-    	if (OreDictionary.doesOreNameExist(oreName)) {
-    		ItemStack stack = OreDictionary.getOres(oreName).get(0).copy();
-    		stack.stackSize = quantity;
-    		return stack;    		
-    	}
-    	return null;
+        if (OreDictionary.doesOreNameExist(oreName)) {
+            ItemStack stack = OreDictionary.getOres(oreName).get(0).copy();
+            stack.stackSize = quantity;
+            return stack;
+        }
+        return null;
     }
 }

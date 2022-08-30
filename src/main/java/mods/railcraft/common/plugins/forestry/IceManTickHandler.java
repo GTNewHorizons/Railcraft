@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -22,15 +22,14 @@ public class IceManTickHandler {
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event) {
-        if (event.side == Side.CLIENT)
-            return;
+        if (event.side == Side.CLIENT) return;
         EntityPlayer player = event.player;
         if (player.openContainer != player.inventoryContainer) return;
         for (ItemStack stack : player.inventory.mainInventory) {
             if (stack == null || stack.getItem() == null) continue;
-            if (stack.getItem() == ForestryPlugin.icemanBackpackT1 || stack.getItem() == ForestryPlugin.icemanBackpackT2)
+            if (stack.getItem() == ForestryPlugin.icemanBackpackT1
+                    || stack.getItem() == ForestryPlugin.icemanBackpackT2)
                 IcemanBackpack.getInstance().compactInventory(stack);
         }
     }
-
 }

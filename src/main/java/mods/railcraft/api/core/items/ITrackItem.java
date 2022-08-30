@@ -21,8 +21,7 @@ import net.minecraft.world.World;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackItem
-{
+public interface ITrackItem {
 
     /**
      * Attempts to place a track.

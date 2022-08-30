@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,12 +11,6 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -26,6 +20,11 @@ import mods.railcraft.common.plugins.ic2.IEmitterDelegate;
 import mods.railcraft.common.plugins.ic2.TileIC2EmitterDelegate;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitterDelegate, IGuiReturnHandler {
@@ -40,10 +39,8 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
 
     @Override
     public IIcon getIcon(int side) {
-        if (direction.ordinal() == side)
-            return getMachineType().getTexture(3);
-        if (side != 0 && side != 1)
-            return getMachineType().getTexture(2);
+        if (direction.ordinal() == side) return getMachineType().getTexture(3);
+        if (side != 0 && side != 1) return getMachineType().getTexture(2);
         return getMachineType().getTexture(1);
     }
 
@@ -57,8 +54,7 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         transferredEnergy = false;
         transferRate = 0;
@@ -71,16 +67,14 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
             cartWasSent();
         }
 
-        if (cart == null)
-            return;
+        if (cart == null) return;
 
         if (!canHandleCart(cart)) {
             sendCart(cart);
             return;
         }
 
-        if (isPaused())
-            return;
+        if (isPaused()) return;
 
         IEnergyTransfer energyCart = (IEnergyTransfer) cart;
 
@@ -108,27 +102,22 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
             transferredEnergy = extract > 0;
         }
 
-        if (!transferredEnergy && !isPowered() && shouldSendCart(cart))
-            sendCart(cart);
+        if (!transferredEnergy && !isPowered() && shouldSendCart(cart)) sendCart(cart);
     }
 
     @Override
     public boolean canHandleCart(EntityMinecart cart) {
-        if (!super.canHandleCart(cart))
-            return false;
+        if (!super.canHandleCart(cart)) return false;
         IEnergyTransfer energyCart = (IEnergyTransfer) cart;
         return energyCart.canExtractEnergy();
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof IEnergyTransfer))
-            return true;
+        if (!(cart instanceof IEnergyTransfer)) return true;
         IEnergyTransfer energyCart = (IEnergyTransfer) cart;
-        if (!waitTillEmpty)
-            return true;
-        else if (energyCart.getEnergy() == 0)
-            return true;
+        if (!waitTillEmpty) return true;
+        else if (energyCart.getEnergy() == 0) return true;
         return false;
     }
 
@@ -194,8 +183,7 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
 
     @Override
     public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
-        if (this.direction == direction)
-            return false;
+        if (this.direction == direction) return false;
         return true;
     }
 

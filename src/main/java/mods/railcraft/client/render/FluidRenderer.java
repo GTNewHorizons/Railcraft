@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,13 +13,12 @@ import java.util.Map;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.util.IIcon;
-import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
+import org.lwjgl.opengl.GL11;
 
 /**
  *
@@ -38,8 +37,7 @@ public class FluidRenderer {
     }
 
     public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
-        if (fluid == null)
-            return RenderTools.getMissingIcon();
+        if (fluid == null) return RenderTools.getMissingIcon();
         IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
         icon = RenderTools.getSafeIcon(icon);
         return icon;
@@ -50,8 +48,7 @@ public class FluidRenderer {
     }
 
     public static ResourceLocation setupFlowingLiquidTexture(Fluid fluid, IIcon[] texArray) {
-        if (fluid == null)
-            return null;
+        if (fluid == null) return null;
         IIcon top = RenderTools.getSafeIcon(fluid.getStillIcon());
         IIcon side = RenderTools.getSafeIcon(fluid.getFlowingIcon());
         texArray[0] = top;
@@ -64,8 +61,7 @@ public class FluidRenderer {
     }
 
     public static void setColorForTank(StandardTank tank) {
-        if (tank == null)
-            return;
+        if (tank == null) return;
 
         RenderTools.setColor(tank.renderData.color);
     }
@@ -75,12 +71,10 @@ public class FluidRenderer {
     }
 
     public static int[] getLiquidDisplayLists(Fluid fluid, boolean flowing) {
-        if (fluid == null)
-            return null;
+        if (fluid == null) return null;
         Map<Fluid, int[]> cache = flowing ? flowingRenderCache : stillRenderCache;
         int[] diplayLists = cache.get(fluid);
-        if (diplayLists != null)
-            return diplayLists;
+        if (diplayLists != null) return diplayLists;
 
         diplayLists = new int[DISPLAY_STAGES];
 
@@ -123,5 +117,4 @@ public class FluidRenderer {
 
         return diplayLists;
     }
-
 }

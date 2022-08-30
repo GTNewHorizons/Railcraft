@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,23 +8,23 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import mods.railcraft.common.util.steam.ISteamUser;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.Fluids;
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.FilteredTank;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.util.effects.EffectManager;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.sounds.SoundHelper;
+import mods.railcraft.common.util.steam.ISteamUser;
+import mods.railcraft.common.util.steam.Steam;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.util.effects.EffectManager;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.FilteredTank;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.sounds.SoundHelper;
-import mods.railcraft.common.util.steam.Steam;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -36,8 +36,8 @@ import net.minecraftforge.fluids.IFluidHandler;
  */
 public abstract class TileEngineSteam extends TileEngine implements IFluidHandler, ISteamUser {
 
-    private final static int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
-    public final static int TANK_STEAM = 0;
+    private static final int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
+    public static final int TANK_STEAM = 0;
     private final FilteredTank steamTank;
     private final TankManager tankManager = new TankManager();
     private int steamUsed;
@@ -49,12 +49,14 @@ public abstract class TileEngineSteam extends TileEngine implements IFluidHandle
 
     @Override
     protected void playSoundOut() {
-        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float) (0.5F + MiscTools.getRand().nextGaussian() * 0.1));
+        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float)
+                (0.5F + MiscTools.getRand().nextGaussian() * 0.1));
     }
 
     @Override
     protected void playSoundIn() {
-        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float) (1 + MiscTools.getRand().nextGaussian() * 0.1));
+        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float)
+                (1 + MiscTools.getRand().nextGaussian() * 0.1));
     }
 
     private int getParticleRate() {
@@ -102,13 +104,11 @@ public abstract class TileEngineSteam extends TileEngine implements IFluidHandle
                 FluidStack steam = steamTank.getFluid();
                 if (steam != null && steam.amount >= steamTank.getCapacity() / 2 - Steam.STEAM_PER_UNIT_WATER) {
                     steam = tankManager.drain(0, steamUsedPerTick() - 1, true);
-                    if (steam != null)
-                        steamUsed += steam.amount;
+                    if (steam != null) steamUsed += steam.amount;
                 }
             }
             FluidStack steam = tankManager.drain(0, 1, true);
-            if (steam != null)
-                steamUsed += steam.amount;
+            if (steam != null) steamUsed += steam.amount;
 
             if (isPowered()) {
                 if (steamUsed >= steamUsedPerTick()) {
@@ -170,8 +170,7 @@ public abstract class TileEngineSteam extends TileEngine implements IFluidHandle
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (!isPowered())
-            return 0;
+        if (!isPowered()) return 0;
         return tankManager.fill(0, resource, doFill);
     }
 
@@ -182,20 +181,17 @@ public abstract class TileEngineSteam extends TileEngine implements IFluidHandle
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        if (getOrientation() == from)
-            return false;
+        if (getOrientation() == from) return false;
         return Fluids.STEAM.is(fluid);
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-        if (getOrientation() == from)
-            return null;
+        if (getOrientation() == from) return null;
         return tankManager.getTankInfo();
     }
 
     public TankManager getTankManager() {
         return tankManager;
     }
-
 }

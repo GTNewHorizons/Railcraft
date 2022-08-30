@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.common.util.network;
 
-import net.minecraft.world.WorldServer;
 import mods.railcraft.api.signals.AbstractPair;
 import mods.railcraft.api.signals.ISignalPacketBuilder;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.util.network.PacketKeyPress.EnumKeyBinding;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.WorldServer;
 
 /**
  *
@@ -24,13 +24,11 @@ public class PacketBuilder implements ISignalPacketBuilder {
     private static PacketBuilder instance;
 
     public static PacketBuilder instance() {
-        if (instance == null)
-            instance = new PacketBuilder();
+        if (instance == null) instance = new PacketBuilder();
         return instance;
     }
 
-    private PacketBuilder() {
-    }
+    private PacketBuilder() {}
 
     public void sendTileEntityPacket(RailcraftTileEntity tile) {
         if (tile.getWorldObj() instanceof WorldServer) {
@@ -86,5 +84,4 @@ public class PacketBuilder implements ISignalPacketBuilder {
         PacketTicketGui pkt = new PacketTicketGui();
         PacketDispatcher.sendToPlayer(pkt, player);
     }
-
 }

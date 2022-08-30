@@ -85,8 +85,7 @@ public abstract class LocomotiveModelRenderer {
      *
      * @param iconRegister
      */
-    public void registerItemIcons(IIconRegister iconRegister) {
-    }
+    public void registerItemIcons(IIconRegister iconRegister) {}
 
     /**
      * This is the core of the renderer. Here is where you do the actual
@@ -110,6 +109,12 @@ public abstract class LocomotiveModelRenderer {
      * @param light
      * @param time
      */
-    public abstract void renderLocomotive(IRenderer renderer, EntityMinecart cart, int primaryColor, int secondaryColor, ResourceLocation emblemTexture, float light, float time);
-
+    public abstract void renderLocomotive(
+            IRenderer renderer,
+            EntityMinecart cart,
+            int primaryColor,
+            int secondaryColor,
+            ResourceLocation emblemTexture,
+            float light,
+            float time);
 }

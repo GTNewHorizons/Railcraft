@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -45,25 +45,19 @@ public class ToolTip extends ForwardingList<ToolTipLine> {
     }
 
     public void onTick(boolean mouseOver) {
-        if (delay == 0)
-            return;
+        if (delay == 0) return;
         if (mouseOver) {
-            if (mouseOverStart == 0)
-                mouseOverStart = System.currentTimeMillis();
-        } else
-            mouseOverStart = 0;
+            if (mouseOverStart == 0) mouseOverStart = System.currentTimeMillis();
+        } else mouseOverStart = 0;
     }
 
     public boolean isReady() {
-        if (delay == 0)
-            return true;
-        if (mouseOverStart == 0)
-            return false;
+        if (delay == 0) return true;
+        if (mouseOverStart == 0) return false;
         return System.currentTimeMillis() - mouseOverStart >= delay;
     }
 
-    public void refresh() {
-    }
+    public void refresh() {}
 
     public List<String> convertToStrings() {
         List<String> tips = new ArrayList<String>(size());
@@ -74,8 +68,7 @@ public class ToolTip extends ForwardingList<ToolTipLine> {
     }
 
     public static ToolTip buildToolTip(String tipTag, String... vars) {
-        if (!LocalizationPlugin.hasTag(tipTag))
-            return null;
+        if (!LocalizationPlugin.hasTag(tipTag)) return null;
         try {
             ToolTip toolTip = new ToolTip(750);
             String text = LocalizationPlugin.translate(tipTag);
@@ -92,5 +85,4 @@ public class ToolTip extends ForwardingList<ToolTipLine> {
             throw ex;
         }
     }
-
 }

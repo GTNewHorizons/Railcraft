@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import mods.railcraft.client.sounds.RailcraftSound;
-import mods.railcraft.common.blocks.aesthetics.brick.BlockBrick;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -30,7 +29,6 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumBlockMaterial implements IDerivedBlock {
-
     SANDY_BRICK,
     INFERNAL_BRICK,
     CONCRETE,
@@ -87,8 +85,7 @@ public enum EnumBlockMaterial implements IDerivedBlock {
     private int toolLevel = 0;
 
     public static void initialize() {
-        if (!needsInit)
-            return;
+        if (!needsInit) return;
         needsInit = false;
         INFERNAL_BRICK.source = EnumBrick.INFERNAL.getBlock();
         SANDY_BRICK.source = EnumBrick.SANDY.getBlock();
@@ -196,8 +193,7 @@ public enum EnumBlockMaterial implements IDerivedBlock {
                 default:
                     mat.sound = mat.source.stepSound;
             }
-            if (mat.sound == RailcraftSound.getInstance())
-                throw new RuntimeException("Invalid Sound Defined!");
+            if (mat.sound == RailcraftSound.getInstance()) throw new RuntimeException("Invalid Sound Defined!");
         }
 
         creativeList.add(SNOW);
@@ -247,15 +243,13 @@ public enum EnumBlockMaterial implements IDerivedBlock {
     }
 
     public static EnumBlockMaterial fromOrdinal(int id) {
-        if (id < 0 || id >= VALUES.length)
-            return VALUES[0];
+        if (id < 0 || id >= VALUES.length) return VALUES[0];
         return VALUES[id];
     }
 
     public static EnumBlockMaterial fromName(String name) {
         EnumBlockMaterial stair = NAMES.get(name);
-        if (stair != null)
-            return stair;
+        if (stair != null) return stair;
         return SANDY_BRICK;
     }
 
@@ -311,8 +305,7 @@ public enum EnumBlockMaterial implements IDerivedBlock {
                 return EnumCube.STEEL_BLOCK.getHardness();
             default:
                 Block block = getSourceBlock();
-                if (block == null)
-                    return Blocks.brick_block.getBlockHardness(world, x, y, z);
+                if (block == null) return Blocks.brick_block.getBlockHardness(world, x, y, z);
                 return block.getBlockHardness(world, x, y, z);
         }
     }
@@ -331,10 +324,8 @@ public enum EnumBlockMaterial implements IDerivedBlock {
                 return EnumCube.STEEL_BLOCK.getResistance() * 3f / 5f;
             default:
                 Block block = getSourceBlock();
-                if (block == null)
-                    return Blocks.brick_block.getExplosionResistance(entity);
+                if (block == null) return Blocks.brick_block.getExplosionResistance(entity);
                 return block.getExplosionResistance(entity);
         }
     }
-
 }

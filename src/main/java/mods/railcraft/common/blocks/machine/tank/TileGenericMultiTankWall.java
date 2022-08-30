@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -19,21 +19,18 @@ import net.minecraft.nbt.NBTTagCompound;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileGenericMultiTankWall extends TileTankIronWall {
- 
+
     private MetalTank tankType;
-	private IEnumMachine wallType;
+    private IEnumMachine wallType;
 
+    public TileGenericMultiTankWall() {}
 
-	public TileGenericMultiTankWall() {
-		
-	}
-	
-	public TileGenericMultiTankWall(MetalTank thisTankType, IEnumMachine thisWallType) {
-		tankType = thisTankType;
-		wallType = thisWallType;
-		markDirty();
-	}
-	
+    public TileGenericMultiTankWall(MetalTank thisTankType, IEnumMachine thisWallType) {
+        tankType = thisTankType;
+        wallType = thisWallType;
+        markDirty();
+    }
+
     @Override
     public IEnumMachine getMachineType() {
         return wallType;
@@ -49,19 +46,18 @@ public class TileGenericMultiTankWall extends TileTankIronWall {
         return wallType.getCapacity();
     }
 
-	@Override
-	public void writeToNBT(NBTTagCompound data) {
-		super.writeToNBT(data);
-		if (wallType != null && !data.hasKey("Machine.Type")) {
-			data.setString("Machine.Type", wallType.getTag());
-		}
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound data) {
+        super.writeToNBT(data);
+        if (wallType != null && !data.hasKey("Machine.Type")) {
+            data.setString("Machine.Type", wallType.getTag());
+        }
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound data) {
-		wallType = ModuleAdvancedTanks.cacheTankType.get(data.getString("Machine.Type"));
-		tankType = ModuleAdvancedTanks.cacheTankMaterial.get(data.getString("Machine.Type"));
-		super.readFromNBT(data);
-	}
-	
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        wallType = ModuleAdvancedTanks.cacheTankType.get(data.getString("Machine.Type"));
+        tankType = ModuleAdvancedTanks.cacheTankMaterial.get(data.getString("Machine.Type"));
+        super.readFromNBT(data);
+    }
 }

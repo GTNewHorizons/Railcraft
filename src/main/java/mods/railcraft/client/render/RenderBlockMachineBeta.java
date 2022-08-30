@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -38,9 +38,13 @@ public class RenderBlockMachineBeta extends BlockRenderer {
         addCombinedRenderer(EnumMachineBeta.SENTINEL.ordinal(), new RenderSentinel());
 
         addBlockRenderer(EnumMachineBeta.VOID_CHEST.ordinal(), new DoNothingRenderer());
-        addItemRenderer(EnumMachineBeta.VOID_CHEST.ordinal(), new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_void.png", new TileChestVoid()));
+        addItemRenderer(
+                EnumMachineBeta.VOID_CHEST.ordinal(),
+                new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_void.png", new TileChestVoid()));
 
         addBlockRenderer(EnumMachineBeta.METALS_CHEST.ordinal(), new DoNothingRenderer());
-        addItemRenderer(EnumMachineBeta.METALS_CHEST.ordinal(), new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_metals.png", new TileChestMetals()));
+        addItemRenderer(
+                EnumMachineBeta.METALS_CHEST.ordinal(),
+                new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_metals.png", new TileChestMetals()));
     }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -59,11 +59,9 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
             int mX = mouseX - left;
             int mY = mouseY - top;
             for (Widget element : container.getElements()) {
-                if (element.hidden)
-                    continue;
+                if (element.hidden) continue;
                 ToolTip tips = element.getToolTip();
-                if (tips == null)
-                    continue;
+                if (tips == null) continue;
                 boolean mouseOver = element.isMouseOver(mX, mY);
                 tips.onTick(mouseOver);
                 if (mouseOver && tips.isReady()) {
@@ -72,14 +70,11 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
                 }
             }
             for (Object button : buttonList) {
-                if (!(button instanceof GuiBetterButton))
-                    continue;
+                if (!(button instanceof GuiBetterButton)) continue;
                 GuiBetterButton betterButton = (GuiBetterButton) button;
-                if (!betterButton.visible)
-                    continue;
+                if (!betterButton.visible) continue;
                 ToolTip tips = betterButton.getToolTip();
-                if (tips == null)
-                    continue;
+                if (tips == null) continue;
                 boolean mouseOver = betterButton.isMouseOverButton(mouseX, mouseY);
                 tips.onTick(mouseOver);
                 if (mouseOver && tips.isReady()) {
@@ -88,14 +83,11 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
                 }
             }
             for (Object obj : inventorySlots.inventorySlots) {
-                if (!(obj instanceof SlotRailcraft))
-                    continue;
+                if (!(obj instanceof SlotRailcraft)) continue;
                 SlotRailcraft slot = (SlotRailcraft) obj;
-                if (slot.getStack() != null)
-                    continue;
+                if (slot.getStack() != null) continue;
                 ToolTip tips = slot.getToolTip();
-                if (tips == null)
-                    continue;
+                if (tips == null) continue;
                 boolean mouseOver = isMouseOverSlot(slot, mouseX, mouseY);
                 tips.onTick(mouseOver);
                 if (mouseOver && tips.isReady()) {
@@ -122,8 +114,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         int mY = mouseY - guiTop;
 
         for (Widget element : container.getElements()) {
-            if (element.hidden)
-                continue;
+            if (element.hidden) continue;
             element.draw(this, x, y, mX, mY);
         }
     }
@@ -133,47 +124,47 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         super.drawGradientRect(x1, y1, x2, y2, c1, c2);
     }
 
-//    @Override
-//    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
-//        super.mouseClicked(mouseX, mouseY, mouseButton);
+    //    @Override
+    //    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    //        super.mouseClicked(mouseX, mouseY, mouseButton);
     // TODO: Fix button mouse mode passing
-//        for (Object obj : buttonList) {
-//            if (obj instanceof GuiBetterButton && ((GuiBetterButton)obj).mousePressed(this.mc, mouseX, mouseY, mouseButton)) {
-//                this.selectedButton = guibutton;
-//                this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
-//                this.actionPerformed((GuiBetterButton)obj);
-//            }
-//
-//            if () {
-//            }
-//        }
-//        if (mouseButton == 2) {
-//            Slot var4 = this.getSlotAtPosition(par1, par2);
-//            int var5 = this.guiLeft;
-//            int var6 = this.guiTop;
-//            boolean var7 = par1 < var5 || par2 < var6 || par1 >= var5 + this.xSize || par2 >= var6 + this.ySize;
-//            int var8 = -1;
-//
-//            if (var4 != null) {
-//                var8 = var4.slotNumber;
-//            }
-//
-//            if (var7) {
-//                var8 = -999;
-//            }
-//
-//            if (var8 != -1) {
-//                boolean var9 = var8 != -999 && (Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54));
-//                this.handleMouseClick(var4, var8, mouseButton, var9 ? 1 : 0);
-//            }
-//        }
-//    }
+    //        for (Object obj : buttonList) {
+    //            if (obj instanceof GuiBetterButton && ((GuiBetterButton)obj).mousePressed(this.mc, mouseX, mouseY,
+    // mouseButton)) {
+    //                this.selectedButton = guibutton;
+    //                this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+    //                this.actionPerformed((GuiBetterButton)obj);
+    //            }
+    //
+    //            if () {
+    //            }
+    //        }
+    //        if (mouseButton == 2) {
+    //            Slot var4 = this.getSlotAtPosition(par1, par2);
+    //            int var5 = this.guiLeft;
+    //            int var6 = this.guiTop;
+    //            boolean var7 = par1 < var5 || par2 < var6 || par1 >= var5 + this.xSize || par2 >= var6 + this.ySize;
+    //            int var8 = -1;
+    //
+    //            if (var4 != null) {
+    //                var8 = var4.slotNumber;
+    //            }
+    //
+    //            if (var7) {
+    //                var8 = -999;
+    //            }
+    //
+    //            if (var8 != -1) {
+    //                boolean var9 = var8 != -999 && (Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54));
+    //                this.handleMouseClick(var4, var8, mouseButton, var9 ? 1 : 0);
+    //            }
+    //        }
+    //    }
     private Slot getSlotAtPosition(int par1, int par2) {
         for (int var3 = 0; var3 < this.inventorySlots.inventorySlots.size(); ++var3) {
             Slot var4 = (Slot) this.inventorySlots.inventorySlots.get(var3);
 
-            if (this.isMouseOverSlot(var4, par1, par2))
-                return var4;
+            if (this.isMouseOverSlot(var4, par1, par2)) return var4;
         }
         return null;
     }
@@ -186,7 +177,10 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         int var5 = this.guiTop;
         par2 -= var4;
         par3 -= var5;
-        return par2 >= par1Slot.xDisplayPosition - 1 && par2 < par1Slot.xDisplayPosition + 16 + 1 && par3 >= par1Slot.yDisplayPosition - 1 && par3 < par1Slot.yDisplayPosition + 16 + 1;
+        return par2 >= par1Slot.xDisplayPosition - 1
+                && par2 < par1Slot.xDisplayPosition + 16 + 1
+                && par3 >= par1Slot.yDisplayPosition - 1
+                && par3 < par1Slot.yDisplayPosition + 16 + 1;
     }
 
     @Override
@@ -196,12 +190,9 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         int mY = mouseY - guiTop;
 
         for (Widget element : container.getElements()) {
-            if (element.hidden)
-                continue;
-            if (!element.isMouseOver(mX, mY))
-                continue;
-            if (element.mouseClicked(mX, mY, button))
-                return;
+            if (element.hidden) continue;
+            if (!element.isMouseOver(mX, mY)) continue;
+            if (element.mouseClicked(mX, mY, button)) return;
         }
         super.mouseClicked(mouseX, mouseY, button);
     }
@@ -209,8 +200,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
     @Override
     protected void mouseClickMove(int x, int y, int mouseButton, long time) {
         Slot slot = getSlotAtPosition(x, y);
-        if (mouseButton == 1 && slot instanceof SlotRailcraft && ((SlotRailcraft)slot).isPhantom())
-            return;
+        if (mouseButton == 1 && slot instanceof SlotRailcraft && ((SlotRailcraft) slot).isPhantom()) return;
         super.mouseClickMove(x, y, mouseButton, time);
     }
 
@@ -225,16 +215,14 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
             for (ToolTipLine tip : toolTips) {
                 y = this.fontRendererObj.getStringWidth(tip.text);
 
-                if (y > lenght)
-                    lenght = y;
+                if (y > lenght) lenght = y;
             }
 
             x = mouseX - left + 12;
             y = mouseY - top - 12;
             int var14 = 8;
 
-            if (toolTips.size() > 1)
-                var14 += 2 + (toolTips.size() - 1) * 10;
+            if (toolTips.size() > 1) var14 += 2 + (toolTips.size() - 1) * 10;
 
             this.zLevel = 300.0F;
             itemRender.zLevel = 300.0F;
@@ -253,13 +241,11 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
 
             for (ToolTipLine tip : toolTips) {
                 String line = tip.text;
-                
+
                 line = line.replace('\u00A0', ' ');
 
-                if (tip.format == null)
-                    line = "\u00a77" + line;
-                else
-                    line = tip.format.toString() + line;
+                if (tip.format == null) line = "\u00a77" + line;
+                else line = tip.format.toString() + line;
 
                 this.fontRendererObj.drawStringWithShadow(line, x, y, -1);
 
@@ -284,5 +270,4 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         tessellator.addVertexWithUV(x + 0, y + 0, zLevel, uMin, vMin);
         tessellator.draw();
     }
-
 }

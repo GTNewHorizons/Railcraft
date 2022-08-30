@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,12 @@
  */
 package mods.railcraft.api.signals;
 
+import java.util.HashMap;
+import java.util.Map;
 import mods.railcraft.api.core.WorldCoordinate;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

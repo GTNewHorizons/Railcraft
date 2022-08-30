@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,8 @@
 package mods.railcraft.common.blocks.detector;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -36,9 +38,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BlockDetector extends BlockContainer {
 
     private static BlockDetector block;
@@ -48,7 +47,7 @@ public class BlockDetector extends BlockContainer {
             block = new BlockDetector();
             RailcraftRegistry.register(block, ItemDetector.class);
 
-//            HarvestPlugin.setHarvestLevel(block, "pickaxe", 2);
+            //            HarvestPlugin.setHarvestLevel(block, "pickaxe", 2);
             HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
 
             for (EnumDetector d : EnumDetector.VALUES) {
@@ -110,18 +109,15 @@ public class BlockDetector extends BlockContainer {
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {
-    }
+    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {}
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
         player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
         player.addExhaustion(0.025F);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileDetector)
-            ((TileDetector) tile).getDetector().onBlockRemoved();
-        if (Game.isHost(world) && !player.capabilities.isCreativeMode)
-            dropBlockAsItem(world, x, y, z, 0, 0);
+        if (tile instanceof TileDetector) ((TileDetector) tile).getDetector().onBlockRemoved();
+        if (Game.isHost(world) && !player.capabilities.isCreativeMode) dropBlockAsItem(world, x, y, z, 0, 0);
         return world.setBlockToAir(x, y, z);
     }
 
@@ -146,20 +142,17 @@ public class BlockDetector extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float u1, float u2, float u3) {
-        if (player.isSneaking())
-            return false;
+    public boolean onBlockActivated(
+            World world, int x, int y, int z, EntityPlayer player, int side, float u1, float u2, float u3) {
+        if (player.isSneaking()) return false;
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null) {
             Item item = current.getItem();
-            if (item instanceof IActivationBlockingItem)
-                return false;
-            else if (TrackTools.isRailItem(item))
-                return false;
+            if (item instanceof IActivationBlockingItem) return false;
+            else if (TrackTools.isRailItem(item)) return false;
         }
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileDetector)
-            return ((TileDetector) tile).blockActivated(player);
+        if (tile instanceof TileDetector) return ((TileDetector) tile).blockActivated(player);
         return false;
     }
 
@@ -178,10 +171,8 @@ public class BlockDetector extends BlockContainer {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileDetector) {
             TileDetector detector = (TileDetector) tile;
-            if (detector.direction == axis)
-                detector.direction = axis.getOpposite();
-            else
-                detector.direction = axis;
+            if (detector.direction == axis) detector.direction = axis.getOpposite();
+            else detector.direction = axis;
             world.markBlockForUpdate(x, y, z);
             return true;
         }
@@ -208,8 +199,7 @@ public class BlockDetector extends BlockContainer {
             TileDetector detectorTile = (TileDetector) tile;
             EnumDetector det = detectorTile.getDetector().getType();
             if (detectorTile.direction.ordinal() == side) {
-                if (detectorTile.powerState != PowerPlugin.NO_POWER)
-                    return det.textures[2];
+                if (detectorTile.powerState != PowerPlugin.NO_POWER) return det.textures[2];
                 return det.textures[1];
             }
             return det.textures[0];
@@ -220,8 +210,7 @@ public class BlockDetector extends BlockContainer {
     @Override
     public IIcon getIcon(int side, int meta) {
         EnumDetector det = EnumDetector.fromOrdinal(meta);
-        if (side == 3)
-            return det.textures[2];
+        if (side == 3) return det.textures[2];
         return det.textures[0];
     }
 
@@ -250,8 +239,7 @@ public class BlockDetector extends BlockContainer {
         TileEntity t = world.getTileEntity(x, y, z);
         if (t instanceof TileDetector) {
             TileDetector tile = (TileDetector) t;
-            if (tile.direction == MiscTools.getOppositeSide(side))
-                return tile.powerState;
+            if (tile.direction == MiscTools.getOppositeSide(side)) return tile.powerState;
         }
         return PowerPlugin.NO_POWER;
     }
@@ -270,8 +258,7 @@ public class BlockDetector extends BlockContainer {
     public void onBlockAdded(World world, int i, int j, int k) {
         super.onBlockAdded(world, i, j, k);
         world.markBlockForUpdate(i, j, k);
-        if (Game.isNotHost(world))
-            return;
+        if (Game.isNotHost(world)) return;
         world.notifyBlocksOfNeighborChange(i + 1, j, k, this);
         world.notifyBlocksOfNeighborChange(i - 1, j, k, this);
         world.notifyBlocksOfNeighborChange(i, j, k + 1, this);
@@ -283,8 +270,7 @@ public class BlockDetector extends BlockContainer {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
         super.breakBlock(world, x, y, z, this, metadata);
-        if (Game.isNotHost(world))
-            return;
+        if (Game.isNotHost(world)) return;
         world.notifyBlocksOfNeighborChange(x + 1, y, z, this);
         world.notifyBlocksOfNeighborChange(x - 1, y, z, this);
         world.notifyBlocksOfNeighborChange(x, y, z + 1, this);
@@ -298,14 +284,10 @@ public class BlockDetector extends BlockContainer {
         TileEntity t = world.getTileEntity(i, j, k);
         if (t instanceof TileDetector) {
             TileDetector tile = (TileDetector) t;
-            if (dir == 1 && tile.direction.ordinal() == 5)
-                return true;
-            if (dir == 3 && tile.direction.ordinal() == 4)
-                return true;
-            if (dir == 2 && tile.direction.ordinal() == 3)
-                return true;
-            if (dir == 0 && tile.direction.ordinal() == 2)
-                return true;
+            if (dir == 1 && tile.direction.ordinal() == 5) return true;
+            if (dir == 3 && tile.direction.ordinal() == 4) return true;
+            if (dir == 2 && tile.direction.ordinal() == 3) return true;
+            if (dir == 0 && tile.direction.ordinal() == 2) return true;
         }
         return false;
     }
@@ -313,9 +295,7 @@ public class BlockDetector extends BlockContainer {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumDetector detector : EnumDetector.VALUES) {
-            if (detector.isEnabled())
-                list.add(detector.getItem());
+            if (detector.isEnabled()) list.add(detector.getItem());
         }
     }
-
 }

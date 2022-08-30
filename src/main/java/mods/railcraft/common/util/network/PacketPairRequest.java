@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,18 +11,17 @@ package mods.railcraft.common.util.network;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import mods.railcraft.api.signals.ISignalBlockTile;
-import mods.railcraft.api.signals.SignalBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import mods.railcraft.api.signals.AbstractPair;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalBlock;
 import mods.railcraft.api.signals.SignalController;
 import mods.railcraft.api.signals.SignalReceiver;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 
 public class PacketPairRequest extends RailcraftPacket {
     private AbstractPair pairing;
@@ -51,8 +50,7 @@ public class PacketPairRequest extends RailcraftPacket {
     @Override
     public void readData(DataInputStream data) throws IOException {
         World world = DimensionManager.getWorld(data.readInt());
-        if (world == null)
-            return;
+        if (world == null) return;
 
         int x = data.readInt();
         int y = data.readInt();
@@ -62,16 +60,13 @@ public class PacketPairRequest extends RailcraftPacket {
 
         switch (packetType) {
             case CONTROLLER_REQUEST:
-                if (tile instanceof IControllerTile)
-                    pairing = ((IControllerTile) tile).getController();
+                if (tile instanceof IControllerTile) pairing = ((IControllerTile) tile).getController();
                 break;
             case RECEIVER_REQUEST:
-                if (tile instanceof IReceiverTile)
-                    pairing = ((IReceiverTile) tile).getReceiver();
+                if (tile instanceof IReceiverTile) pairing = ((IReceiverTile) tile).getReceiver();
                 break;
             case SIGNAL_REQUEST:
-                if (tile instanceof ISignalBlockTile)
-                    pairing = ((ISignalBlockTile) tile).getSignalBlock();
+                if (tile instanceof ISignalBlockTile) pairing = ((ISignalBlockTile) tile).getSignalBlock();
                 break;
         }
         if (pairing != null && player != null) {
@@ -82,12 +77,9 @@ public class PacketPairRequest extends RailcraftPacket {
 
     @Override
     public int getID() {
-        if (pairing instanceof SignalController)
-            return PacketType.CONTROLLER_REQUEST.ordinal();
-        if (pairing instanceof SignalReceiver)
-            return PacketType.RECEIVER_REQUEST.ordinal();
-        if (pairing instanceof SignalBlock)
-            return PacketType.SIGNAL_REQUEST.ordinal();
+        if (pairing instanceof SignalController) return PacketType.CONTROLLER_REQUEST.ordinal();
+        if (pairing instanceof SignalReceiver) return PacketType.RECEIVER_REQUEST.ordinal();
+        if (pairing instanceof SignalBlock) return PacketType.SIGNAL_REQUEST.ordinal();
         return -1;
     }
 }

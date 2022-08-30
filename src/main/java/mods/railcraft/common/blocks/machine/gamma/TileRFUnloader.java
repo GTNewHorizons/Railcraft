@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,9 @@
 package mods.railcraft.common.blocks.machine.gamma;
 
 import cofh.api.energy.IEnergyProvider;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.carts.EntityCartRF;
@@ -21,10 +24,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider, IGuiReturnHandler {
     private boolean waitTillEmpty = true;
@@ -44,8 +43,7 @@ public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider,
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         RedstoneFluxPlugin.pushToTiles(this, tileCache, AMOUNT_TO_PUSH_TO_TILES);
     }
@@ -62,16 +60,14 @@ public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider,
             cartWasSent();
         }
 
-        if (cart == null)
-            return false;
+        if (cart == null) return false;
 
         if (!canHandleCart(cart)) {
             sendCart(cart);
             return false;
         }
 
-        if (isPaused())
-            return false;
+        if (isPaused()) return false;
 
         EntityCartRF rfCart = (EntityCartRF) cart;
 
@@ -88,20 +84,16 @@ public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider,
             transferred = extracted > 0;
         }
 
-        if (!transferred && !isPowered() && shouldSendCart(cart))
-            sendCart(cart);
+        if (!transferred && !isPowered() && shouldSendCart(cart)) sendCart(cart);
         return transferred;
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof EntityCartRF))
-            return true;
+        if (!(cart instanceof EntityCartRF)) return true;
         EntityCartRF rfCart = (EntityCartRF) cart;
-        if (!waitTillEmpty)
-            return true;
-        else if (rfCart.getRF() <= 0)
-            return true;
+        if (!waitTillEmpty) return true;
+        else if (rfCart.getRF() <= 0) return true;
         return false;
     }
 

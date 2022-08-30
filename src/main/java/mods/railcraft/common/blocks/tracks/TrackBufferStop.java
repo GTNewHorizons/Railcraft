@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,14 +11,14 @@ package mods.railcraft.common.blocks.tracks;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import mods.railcraft.api.tracks.ITrackCustomShape;
+import mods.railcraft.api.tracks.ITrackReversable;
+import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-import mods.railcraft.api.tracks.ITrackCustomShape;
-import mods.railcraft.api.tracks.ITrackReversable;
-import mods.railcraft.common.util.misc.MiscTools;
 
 public class TrackBufferStop extends TrackBaseRailcraft implements ITrackReversable, ITrackCustomShape {
 
@@ -42,7 +42,13 @@ public class TrackBufferStop extends TrackBaseRailcraft implements ITrackReversa
 
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool() {
-        return AxisAlignedBB.getBoundingBox(tileEntity.xCoord + SBOX, tileEntity.yCoord, tileEntity.zCoord + SBOX, tileEntity.xCoord + 1 - SBOX, tileEntity.yCoord + 1 - SBOXY, tileEntity.zCoord + 1 - SBOX);
+        return AxisAlignedBB.getBoundingBox(
+                tileEntity.xCoord + SBOX,
+                tileEntity.yCoord,
+                tileEntity.zCoord + SBOX,
+                tileEntity.xCoord + 1 - SBOX,
+                tileEntity.yCoord + 1 - SBOXY,
+                tileEntity.zCoord + 1 - SBOX);
     }
 
     @Override
@@ -52,7 +58,13 @@ public class TrackBufferStop extends TrackBaseRailcraft implements ITrackReversa
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool() {
-        return AxisAlignedBB.getBoundingBox(tileEntity.xCoord + CBOX, tileEntity.yCoord, tileEntity.zCoord + CBOX, tileEntity.xCoord + 1 - CBOX, tileEntity.yCoord + 1, tileEntity.zCoord + 1 - CBOX);
+        return AxisAlignedBB.getBoundingBox(
+                tileEntity.xCoord + CBOX,
+                tileEntity.yCoord,
+                tileEntity.zCoord + CBOX,
+                tileEntity.xCoord + 1 - CBOX,
+                tileEntity.yCoord + 1,
+                tileEntity.zCoord + 1 - CBOX);
     }
 
     @Override

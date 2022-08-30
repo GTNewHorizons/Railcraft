@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,22 +27,15 @@ public abstract class LockingProfile {
         this.track = track;
     }
 
-    public void onLock(EntityMinecart cart) {
-    }
+    public void onLock(EntityMinecart cart) {}
 
-    public void onRelease(EntityMinecart cart) {
-    }
+    public void onRelease(EntityMinecart cart) {}
 
-    public void writeToNBT(NBTTagCompound data) {
-    }
+    public void writeToNBT(NBTTagCompound data) {}
 
-    public void readFromNBT(NBTTagCompound data) {
-    }
+    public void readFromNBT(NBTTagCompound data) {}
 
-    public void writePacketData(DataOutputStream data) throws IOException {
-    }
+    public void writePacketData(DataOutputStream data) throws IOException {}
 
-    public void readPacketData(DataInputStream data) throws IOException {
-    }
-
+    public void readPacketData(DataInputStream data) throws IOException {}
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,9 +9,9 @@
 package mods.railcraft.common.blocks.ore;
 
 import java.util.List;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.EntityItemFireproof;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,8 +41,7 @@ public class ItemOre extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumOre.values().length)
-            return "";
+        if (damage < 0 || damage >= EnumOre.values().length) return "";
         return EnumOre.values()[damage].getTag();
     }
 
@@ -68,8 +67,7 @@ public class ItemOre extends ItemBlock {
      */
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
-        if (stack != null && stack.getItemDamage() == EnumOre.FIRESTONE.ordinal())
-            return true;
+        if (stack != null && stack.getItemDamage() == EnumOre.FIRESTONE.ordinal()) return true;
         return false;
     }
 
@@ -86,8 +84,7 @@ public class ItemOre extends ItemBlock {
      */
     @Override
     public Entity createEntity(World world, Entity location, ItemStack stack) {
-        if (!hasCustomEntity(stack))
-            return null;
+        if (!hasCustomEntity(stack)) return null;
         EntityItemFireproof entity = new EntityItemFireproof(world, location.posX, location.posY, location.posZ, stack);
         entity.motionX = location.motionX;
         entity.motionY = location.motionY;
@@ -95,5 +92,4 @@ public class ItemOre extends ItemBlock {
         entity.delayBeforeCanPickup = 10;
         return entity;
     }
-
 }

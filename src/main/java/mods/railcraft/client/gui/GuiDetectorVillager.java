@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,18 +9,18 @@
 package mods.railcraft.client.gui;
 
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.passive.EntityVillager;
 import mods.railcraft.client.gui.buttons.GuiToggleButtonSmall;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.detector.types.DetectorVillager;
 import mods.railcraft.common.blocks.detector.types.DetectorVillager.Mode;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.collections.RevolvingList;
+import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.passive.EntityVillager;
 
 public class GuiDetectorVillager extends GuiBasic {
 
@@ -62,10 +62,38 @@ public class GuiDetectorVillager extends GuiBasic {
         buttonList.add(new GuiButton(0, w + 10, h + 25, 30, 20, "<"));
         buttonList.add(new GuiButton(1, w + 135, h + 25, 30, 20, ">"));
 
-        buttonList.add(any = new GuiToggleButtonSmall(2, w + 10, h + 55, 45, LocalizationPlugin.translate("railcraft.gui.detector.villager.any"), mode == Mode.ANY));
-        buttonList.add(none = new GuiToggleButtonSmall(3, w + 10, h + 75, 45, LocalizationPlugin.translate("railcraft.gui.detector.villager.none"), mode == Mode.NONE));
-        buttonList.add(equals = new GuiToggleButtonSmall(4, w + 122, h + 55, 45, LocalizationPlugin.translate("railcraft.gui.detector.villager.equals"), mode == Mode.EQUALS));
-        buttonList.add(not = new GuiToggleButtonSmall(5, w + 122, h + 75, 45, LocalizationPlugin.translate("railcraft.gui.detector.villager.not"), mode == Mode.NOT));
+        buttonList.add(
+                any = new GuiToggleButtonSmall(
+                        2,
+                        w + 10,
+                        h + 55,
+                        45,
+                        LocalizationPlugin.translate("railcraft.gui.detector.villager.any"),
+                        mode == Mode.ANY));
+        buttonList.add(
+                none = new GuiToggleButtonSmall(
+                        3,
+                        w + 10,
+                        h + 75,
+                        45,
+                        LocalizationPlugin.translate("railcraft.gui.detector.villager.none"),
+                        mode == Mode.NONE));
+        buttonList.add(
+                equals = new GuiToggleButtonSmall(
+                        4,
+                        w + 122,
+                        h + 55,
+                        45,
+                        LocalizationPlugin.translate("railcraft.gui.detector.villager.equals"),
+                        mode == Mode.EQUALS));
+        buttonList.add(
+                not = new GuiToggleButtonSmall(
+                        5,
+                        w + 122,
+                        h + 75,
+                        45,
+                        LocalizationPlugin.translate("railcraft.gui.detector.villager.not"),
+                        mode == Mode.NOT));
     }
 
     @Override
@@ -118,5 +146,4 @@ public class GuiDetectorVillager extends GuiBasic {
             PacketDispatcher.sendToServer(pkt);
         }
     }
-
 }

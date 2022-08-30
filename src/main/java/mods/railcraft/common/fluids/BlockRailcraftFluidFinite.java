@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,13 +32,15 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
     protected float particleRed;
     protected float particleGreen;
     protected float particleBlue;
+
     @SideOnly(Side.CLIENT)
     protected IIcon[] theIcon;
+
     protected boolean flammable;
     protected int flammability = 0;
     private boolean hasFlowIcon = true;
 
-    public BlockRailcraftFluidFinite( Fluid fluid, Material material) {
+    public BlockRailcraftFluidFinite(Fluid fluid, Material material) {
         super(fluid, material);
         setDensity(fluid.getDensity());
     }
@@ -58,9 +60,8 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
     public void registerBlockIcons(IIconRegister iconRegister) {
         IIcon still = iconRegister.registerIcon("railcraft:fluids/" + fluidName + "_still");
         IIcon flowing = still;
-        if (hasFlowIcon)
-            flowing = iconRegister.registerIcon("railcraft:fluids/" + fluidName + "_flow");
-        this.theIcon = new IIcon[]{still, flowing};
+        if (hasFlowIcon) flowing = iconRegister.registerIcon("railcraft:fluids/" + fluidName + "_flow");
+        this.theIcon = new IIcon[] {still, flowing};
     }
 
     public BlockRailcraftFluidFinite setFlammable(boolean flammable) {
@@ -79,7 +80,7 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
     }
 
     @Override
-    public int getFlammability(IBlockAccess world, int x, int y, int z,  ForgeDirection face) {
+    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
         return flammability;
     }
 
@@ -89,7 +90,7 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
     }
 
     @Override
-    public boolean isFireSource(World world, int x, int y, int z,  ForgeDirection side) {
+    public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
         return flammable && flammability == 0;
     }
 
@@ -105,7 +106,9 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
     public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
         super.randomDisplayTick(world, x, y, z, rand);
 
-        if (rand.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && !world.getBlock(x, y - 2, z).getMaterial().blocksMovement()) {
+        if (rand.nextInt(10) == 0
+                && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)
+                && !world.getBlock(x, y - 2, z).getMaterial().blocksMovement()) {
             double px = (double) ((float) x + rand.nextFloat());
             double py = (double) y - 1.05D;
             double pz = (double) ((float) z + rand.nextFloat());
@@ -114,5 +117,4 @@ public class BlockRailcraftFluidFinite extends BlockFluidFinite {
             FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
-
 }

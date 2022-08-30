@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,11 +12,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -24,6 +23,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
@@ -58,8 +58,7 @@ public class BlockHidden extends BlockContainer {
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister iconRegister) {
-    }
+    public void registerBlockIcons(IIconRegister iconRegister) {}
 
     @Override
     public IIcon getIcon(int side, int meta) {
@@ -101,8 +100,14 @@ public class BlockHidden extends BlockContainer {
     }
 
     @Override
-    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity) {
-    }
+    public void addCollisionBoxesToList(
+            World par1World,
+            int par2,
+            int par3,
+            int par4,
+            AxisAlignedBB par5AxisAlignedBB,
+            List par6List,
+            Entity par7Entity) {}
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
@@ -125,13 +130,13 @@ public class BlockHidden extends BlockContainer {
     }
 
     @Override
-    public MovingObjectPosition collisionRayTrace(World par1World, int par2, int par3, int par4, Vec3 par5Vec3, Vec3 par6Vec3) {
+    public MovingObjectPosition collisionRayTrace(
+            World par1World, int par2, int par3, int par4, Vec3 par5Vec3, Vec3 par6Vec3) {
         return null;
     }
 
     @Override
-    public final void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-    }
+    public final void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {}
 
     @Override
     public int getMobilityFlag() {
@@ -157,5 +162,4 @@ public class BlockHidden extends BlockContainer {
     public boolean addHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer) {
         return true;
     }
-
 }

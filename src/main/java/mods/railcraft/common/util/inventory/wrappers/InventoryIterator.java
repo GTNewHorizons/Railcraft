@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,12 @@
  */
 package mods.railcraft.common.util.inventory.wrappers;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -22,8 +21,7 @@ import java.util.List;
 public class InventoryIterator implements Iterable<IInvSlot> {
 
     public static InventoryIterator getIterable(IInventory inv) {
-        if (inv instanceof ISidedInventory)
-            return new SidedInventoryIterator((ISidedInventory) inv);
+        if (inv instanceof ISidedInventory) return new SidedInventoryIterator((ISidedInventory) inv);
         return new InventoryIterator(inv);
     }
 
@@ -38,8 +36,7 @@ public class InventoryIterator implements Iterable<IInvSlot> {
     public Iterable<IInvSlot> notNull() {
         List<IInvSlot> filledSlots = new ArrayList<IInvSlot>(invSize);
         for (IInvSlot slot : this) {
-            if (slot.getStackInSlot() != null)
-                filledSlots.add(slot);
+            if (slot.getStackInSlot() != null) filledSlots.add(slot);
         }
         return filledSlots;
     }
@@ -63,7 +60,6 @@ public class InventoryIterator implements Iterable<IInvSlot> {
             public void remove() {
                 throw new UnsupportedOperationException("Remove not supported.");
             }
-
         };
     }
 
@@ -108,8 +104,8 @@ public class InventoryIterator implements Iterable<IInvSlot> {
         @Override
         public String toString() {
             ItemStack stack = getStackInSlot();
-            return "SlotNum = " + slot + " Stack = " + (stack == null ? "null" : getStackInSlot().toString());
+            return "SlotNum = " + slot + " Stack = "
+                    + (stack == null ? "null" : getStackInSlot().toString());
         }
-
     }
 }

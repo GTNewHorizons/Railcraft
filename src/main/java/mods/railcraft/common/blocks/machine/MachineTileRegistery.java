@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -134,12 +134,10 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileFluxTransformer.class, "RCFluxTransformerTile");
         GameRegistry.registerTileEntity(TileForceTrackEmitter.class, "RCForceTrackEmitterTile");
         GameRegistry.registerTileEntity(TileEngravingBench.class, "RCEngravingBenchTile");
-        
+
         // Advanced Tanks
         GameRegistry.registerTileEntity(TileGenericMultiTankWall.class, "RCAdvTankWallTile");
         GameRegistry.registerTileEntity(TileGenericMultiTankGauge.class, "RCAdvTankGaugeTile");
         GameRegistry.registerTileEntity(TileGenericMultiTankValve.class, "RCAdvTankValveTile");
-
     }
-
 }

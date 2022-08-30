@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,17 +10,17 @@ package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionHelper;
-import net.minecraft.world.World;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.items.RailcraftToolItems;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionHelper;
+import net.minecraft.world.World;
 
 public class EntityCartGift extends EntityCartTNTWood {
 
@@ -37,7 +37,6 @@ public class EntityCartGift extends EntityCartTNTWood {
             this.stack = stack;
             this.chance = chance;
         }
-
     }
 
     static {
@@ -158,14 +157,12 @@ public class EntityCartGift extends EntityCartTNTWood {
         for (int meta = 0; meta <= 32767; ++meta) {
             List effects = PotionHelper.getPotionEffects(meta, false);
 
-            if (effects != null && !effects.isEmpty())
-                potions.add(meta);
+            if (effects != null && !effects.isEmpty()) potions.add(meta);
         }
     }
 
     public static void addGift(ItemStack gift, int chance) {
-        if (gift != null)
-            gifts.add(new Gift(gift, chance));
+        if (gift != null) gifts.add(new Gift(gift, chance));
     }
 
     public EntityCartGift(World world) {
@@ -190,8 +187,7 @@ public class EntityCartGift extends EntityCartTNTWood {
         if (RailcraftConfig.doCartsBreakOnDrop()) {
             items.add(new ItemStack(Items.minecart));
             items.add(new ItemStack(Blocks.pumpkin));
-        } else
-            items.add(getCartItem());
+        } else items.add(getCartItem());
         return items;
     }
 
@@ -224,8 +220,7 @@ public class EntityCartGift extends EntityCartTNTWood {
             if (rand.nextInt(100) >= 50) {
                 spawnGift();
                 spawnGift();
-            } else
-                spawnCoal();
+            } else spawnCoal();
         }
     }
 
@@ -234,8 +229,7 @@ public class EntityCartGift extends EntityCartTNTWood {
             int index = rand.nextInt(gifts.size());
             Gift gift = gifts.get(index);
             int weight = rand.nextInt(100);
-            if (gift.chance >= weight)
-                return gift;
+            if (gift.chance >= weight) return gift;
         }
     }
 
@@ -269,5 +263,4 @@ public class EntityCartGift extends EntityCartTNTWood {
         double z = posZ + (rand.nextDouble() - rand.nextDouble()) * SPAWN_DIST;
         InvTools.dropItem(potion, worldObj, x, y, z);
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.common.carts;
 
+import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *
@@ -51,9 +51,7 @@ public class EntityCartAnchorAdmin extends EntityCartAnchor {
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG))
-            return EnumMachineAlpha.ADMIN_ANCHOR.getTexture(6);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.ADMIN_ANCHOR.getTexture(6);
         return EnumMachineAlpha.ADMIN_ANCHOR.getTexture(side);
     }
-
 }

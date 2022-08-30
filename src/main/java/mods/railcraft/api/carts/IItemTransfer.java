@@ -7,8 +7,8 @@
  */
 package mods.railcraft.api.carts;
 
-import net.minecraft.item.ItemStack;
 import mods.railcraft.api.core.items.IStackFilter;
+import net.minecraft.item.ItemStack;
 
 /**
  * This interface allows items to be passed around with out needing

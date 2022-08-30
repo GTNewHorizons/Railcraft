@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -23,8 +23,7 @@ public class SlotWaterLimited extends SlotWater {
     @Override
     public boolean isItemValid(ItemStack stack) {
         FluidStack fluidStack = FluidItemHelper.getFluidStackInContainer(stack);
-        if (fluidStack != null && fluidStack.amount > FluidHelper.BUCKET_VOLUME)
-            return false;
+        if (fluidStack != null && fluidStack.amount > FluidHelper.BUCKET_VOLUME) return false;
         return super.isItemValid(stack);
     }
 

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -51,17 +51,21 @@ public class BlockFrame extends Block implements IPostConnection {
                 instance = new BlockFrame(Railcraft.proxy.getRenderId());
                 RailcraftRegistry.register(instance, ItemBlockRailcraft.class);
 
-//                HarvestPlugin.setHarvestLevel(instance, "crowbar", 0);
+                //                HarvestPlugin.setHarvestLevel(instance, "crowbar", 0);
                 HarvestPlugin.setHarvestLevel(instance, "pickaxe", 1);
 
                 ForestryPlugin.addBackpackItem("builder", instance);
 
-                CraftingPlugin.addShapedRecipe(getItem(6),
+                CraftingPlugin.addShapedRecipe(
+                        getItem(6),
                         "PPP",
                         "I I",
                         "III",
-                        'P', RailcraftItem.plate, EnumPlate.IRON,
-                        'I', RailcraftItem.rebar);
+                        'P',
+                        RailcraftItem.plate,
+                        EnumPlate.IRON,
+                        'I',
+                        RailcraftItem.rebar);
             }
     }
 
@@ -108,12 +112,10 @@ public class BlockFrame extends Block implements IPostConnection {
     @Override
     public IIcon getIcon(int side, int meta) {
         if (ForgeDirection.UP.ordinal() == side) {
-            if (flipTextures)
-                return icons[1];
+            if (flipTextures) return icons[1];
             return poweredTexture ? icons[2] : icons[0];
         }
-        if (flipTextures && ForgeDirection.DOWN.ordinal() == side)
-            return icons[0];
+        if (flipTextures && ForgeDirection.DOWN.ordinal() == side) return icons[0];
         return icons[1];
     }
 
@@ -143,17 +145,18 @@ public class BlockFrame extends Block implements IPostConnection {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(
+            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null && InvTools.isItemEqualIgnoreNBT(current, EnumMachineDelta.WIRE.getItem()))
-            if (WorldPlugin.setBlock(world, x, y, z, EnumMachineDelta.WIRE.getBlock(), EnumMachineDelta.WIRE.ordinal(), 2)) {
+            if (WorldPlugin.setBlock(
+                    world, x, y, z, EnumMachineDelta.WIRE.getBlock(), EnumMachineDelta.WIRE.ordinal(), 2)) {
                 TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
                 if (tile instanceof TileWire) {
                     TileWire wire = (TileWire) tile;
                     wire.setAddon(AddonType.FRAME);
                 }
-                if (!player.capabilities.isCreativeMode)
-                    player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
+                if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
                 return true;
             }
         return false;
@@ -163,5 +166,4 @@ public class BlockFrame extends Block implements IPostConnection {
     public ConnectStyle connectsToPost(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
         return ConnectStyle.TWO_THIN;
     }
-
 }

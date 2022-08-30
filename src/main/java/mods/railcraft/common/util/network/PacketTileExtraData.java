@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,30 +14,26 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import mods.railcraft.common.util.misc.Game;
 
-public class PacketTileExtraData extends RailcraftPacket
-{
+public class PacketTileExtraData extends RailcraftPacket {
 
     private ITileExtraDataHandler tile;
     private ByteArrayOutputStream bytes;
     private DataOutputStream data;
 
-    public PacketTileExtraData()
-    {
+    public PacketTileExtraData() {
         super();
     }
 
-    public PacketTileExtraData(ITileExtraDataHandler tile)
-    {
+    public PacketTileExtraData(ITileExtraDataHandler tile) {
         this.tile = tile;
     }
 
-    public DataOutputStream getDataStream()
-    {
-        if(data == null) {
+    public DataOutputStream getDataStream() {
+        if (data == null) {
             bytes = new ByteArrayOutputStream();
             data = new DataOutputStream(bytes);
         }
@@ -45,8 +41,7 @@ public class PacketTileExtraData extends RailcraftPacket
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException
-    {
+    public void writeData(DataOutputStream data) throws IOException {
         data.writeInt(tile.getX());
         data.writeInt(tile.getY());
         data.writeInt(tile.getZ());
@@ -55,8 +50,7 @@ public class PacketTileExtraData extends RailcraftPacket
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void readData(DataInputStream data) throws IOException
-    {
+    public void readData(DataInputStream data) throws IOException {
         World world = Game.getWorld();
         int x = data.readInt();
         int y = data.readInt();
@@ -64,14 +58,13 @@ public class PacketTileExtraData extends RailcraftPacket
 
         TileEntity t = world.getTileEntity(x, y, z);
 
-        if(t instanceof ITileExtraDataHandler) {
-            ((ITileExtraDataHandler)t).onUpdatePacket(data);
+        if (t instanceof ITileExtraDataHandler) {
+            ((ITileExtraDataHandler) t).onUpdatePacket(data);
         }
     }
 
     @Override
-    public int getID()
-    {
+    public int getID() {
         return PacketType.TILE_EXTRA_DATA.ordinal();
     }
 }

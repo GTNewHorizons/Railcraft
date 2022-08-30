@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,12 +13,10 @@ import cpw.mods.fml.common.network.FMLEventChannel;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Arrays;
-
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.RailcraftPacket.PacketType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,7 +50,7 @@ public class PacketHandler {
         byte[] data = new byte[event.packet.payload().readableBytes()];
         event.packet.payload().readBytes(data);
 
-//        System.out.println("Packet Received!");
+        //        System.out.println("Packet Received!");
 
         onPacketData(data, null);
     }
@@ -64,10 +62,9 @@ public class PacketHandler {
 
             byte packetID = data.readByte();
 
-            if (packetID < 0)
-                return;
+            if (packetID < 0) return;
 
-//            System.out.println("Packet Received: " + packetID);
+            //            System.out.println("Packet Received: " + packetID);
             PacketType type = packetTypes[packetID];
             switch (type) {
                 case TILE_ENTITY:
@@ -105,7 +102,8 @@ public class PacketHandler {
                     pkt = new PacketPairRequest(player, type);
                     break;
                 case ITEM_NBT:
-                    pkt = new PacketCurrentItemNBT((EntityPlayer) player, ((EntityPlayer) player).getCurrentEquippedItem());
+                    pkt = new PacketCurrentItemNBT(
+                            (EntityPlayer) player, ((EntityPlayer) player).getCurrentEquippedItem());
                     break;
                 case KEY_PRESS:
                     pkt = new PacketKeyPress(player);
@@ -116,8 +114,7 @@ public class PacketHandler {
                 default:
                     return;
             }
-            if (pkt != null)
-                pkt.readData(data);
+            if (pkt != null) pkt.readData(data);
         } catch (IOException e) {
             Game.logThrowable("Exception in PacketHandler.onPacketData: {0}", e, Arrays.toString(bData));
         }

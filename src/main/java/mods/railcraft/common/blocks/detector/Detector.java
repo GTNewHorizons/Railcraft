@@ -1,12 +1,15 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
  * license page at http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector;
+
+import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
+import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,9 +23,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
-import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 /**
  *
@@ -54,23 +54,17 @@ public class Detector implements IGuiReturnHandler {
         return false;
     }
 
-    public void onBlockRemoved() {
-    }
+    public void onBlockRemoved() {}
 
-    public void onNeighborBlockChange(Block block) {
-    }
+    public void onNeighborBlockChange(Block block) {}
 
-    public void writeToNBT(NBTTagCompound data) {
-    }
+    public void writeToNBT(NBTTagCompound data) {}
 
-    public void readFromNBT(NBTTagCompound data) {
-    }
+    public void readFromNBT(NBTTagCompound data) {}
 
-    public void writePacketData(DataOutputStream data) throws IOException {
-    }
+    public void writePacketData(DataOutputStream data) throws IOException {}
 
-    public void readPacketData(DataInputStream data) throws IOException {
-    }
+    public void readPacketData(DataInputStream data) throws IOException {}
 
     protected boolean shouldTest() {
         return true;
@@ -94,11 +88,8 @@ public class Detector implements IGuiReturnHandler {
     }
 
     @Override
-    public void writeGuiData(DataOutputStream data) throws IOException {
-    }
+    public void writeGuiData(DataOutputStream data) throws IOException {}
 
     @Override
-    public void readGuiData(DataInputStream data, EntityPlayer sender) throws IOException {
-    }
-
+    public void readGuiData(DataInputStream data, EntityPlayer sender) throws IOException {}
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,19 +11,18 @@ package mods.railcraft.common.util.crafting;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.api.crafting.IBlastFurnaceCraftingManager;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.items.RailcraftToolItems;
 import mods.railcraft.common.items.firestone.ItemFirestoneCracked;
+import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager {
@@ -41,11 +40,9 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
             List<ItemStack> fuel = new ArrayList<ItemStack>() {
                 @Override
                 public boolean add(ItemStack e) {
-                    if (e == null)
-                        return false;
+                    if (e == null) return false;
                     return super.add(e);
                 }
-
             };
             fuel.add(ThaumcraftPlugin.getItem("itemResource", 0));
             fuel.add(RailcraftToolItems.getCoalCoke());
@@ -73,7 +70,8 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
         private final int cookTime;
         private final ItemStack output;
 
-        public BlastFurnaceRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, ItemStack output) {
+        public BlastFurnaceRecipe(
+                ItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, ItemStack output) {
             this.input = input.copy();
             this.matchDamage = matchDamage;
             this.matchNBT = matchNBT;
@@ -83,8 +81,10 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
 
         @Override
         public boolean isRoomForOutput(ItemStack outputSlot) {
-            if ((outputSlot == null || output == null || (InvTools.isItemEqual(outputSlot, output) && outputSlot.stackSize + output.stackSize <= output.getMaxStackSize())))
-                return true;
+            if ((outputSlot == null
+                    || output == null
+                    || (InvTools.isItemEqual(outputSlot, output)
+                            && outputSlot.stackSize + output.stackSize <= output.getMaxStackSize()))) return true;
             return false;
         }
 
@@ -108,8 +108,7 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
 
         @Override
         public int getOutputStackSize() {
-            if (output == null)
-                return 0;
+            if (output == null) return 0;
             return output.stackSize;
         }
 
@@ -117,7 +116,6 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
         public int getCookTime() {
             return cookTime;
         }
-
     }
 
     @Override
@@ -131,14 +129,11 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
         if (input == null) return null;
         for (BlastFurnaceRecipe r : recipes) {
             if (!r.matchDamage || InvTools.isWildcard(r.input)) continue;
-            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT))
-                return r;
+            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT)) return r;
         }
         for (BlastFurnaceRecipe r : recipes) {
-            if (InvTools.isItemEqual(input, r.input, r.matchDamage, r.matchNBT))
-                return r;
+            if (InvTools.isItemEqual(input, r.input, r.matchDamage, r.matchNBT)) return r;
         }
         return null;
     }
-
 }

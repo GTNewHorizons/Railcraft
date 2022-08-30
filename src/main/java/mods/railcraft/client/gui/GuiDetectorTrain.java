@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,10 +11,10 @@ package mods.railcraft.client.gui;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.detector.types.DetectorTrain;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import net.minecraft.client.gui.GuiButton;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
 
 public class GuiDetectorTrain extends GuiBasic {
 
@@ -26,8 +26,7 @@ public class GuiDetectorTrain extends GuiBasic {
         super(t.getName());
         this.tile = t;
         this.detector = (DetectorTrain) tile.getDetector();
-        if (tile != null)
-            trainSize = detector.getTrainSize();
+        if (tile != null) trainSize = detector.getTrainSize();
     }
 
     @Override
@@ -43,24 +42,19 @@ public class GuiDetectorTrain extends GuiBasic {
 
     @Override
     protected void drawExtras(int x, int y, float f) {
-        GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.detector.train.size", trainSize), 25);
+        GuiTools.drawCenteredString(
+                fontRendererObj, LocalizationPlugin.translate("railcraft.gui.detector.train.size", trainSize), 25);
     }
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
         short f = trainSize;
-        if (guibutton.id == 0)
-            f += -10;
-        if (guibutton.id == 1)
-            f += -1;
-        if (guibutton.id == 2)
-            f += 1;
-        if (guibutton.id == 3)
-            f += 10;
-        if (f < 1)
-            f = 1;
-        if (f > 100)
-            f = 100;
+        if (guibutton.id == 0) f += -10;
+        if (guibutton.id == 1) f += -1;
+        if (guibutton.id == 2) f += 1;
+        if (guibutton.id == 3) f += 10;
+        if (f < 1) f = 1;
+        if (f > 100) f = 100;
         trainSize = f;
     }
 
@@ -72,5 +66,4 @@ public class GuiDetectorTrain extends GuiBasic {
             PacketDispatcher.sendToServer(pkt);
         }
     }
-
 }

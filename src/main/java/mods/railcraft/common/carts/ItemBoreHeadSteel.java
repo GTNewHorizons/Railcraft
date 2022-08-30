@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,7 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class ItemBoreHeadSteel extends ItemBoreHead {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "tunnel_bore_steel.png");
+    public static final ResourceLocation TEXTURE =
+            new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "tunnel_bore_steel.png");
 
     public ItemBoreHeadSteel() {
         setMaxDamage(3000);
@@ -34,5 +35,4 @@ public class ItemBoreHeadSteel extends ItemBoreHead {
     public float getDigModifier() {
         return 1.2f;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,17 +13,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import net.minecraft.world.World;
 import mods.railcraft.common.util.effects.EffectManager;
+import net.minecraft.world.World;
 
 public class PacketEffect extends RailcraftPacket {
 
     public enum Effect {
-
         TELEPORT,
         FIRESPARK,
         FORCE_SPAWN
     };
+
     private Effect effect;
     private ByteArrayOutputStream bytes;
     private DataOutputStream outStream;
@@ -45,7 +45,8 @@ public class PacketEffect extends RailcraftPacket {
     }
 
     public void sendPacket(World world, double x, double y, double z) {
-        PacketDispatcher.sendToAllAround(this, new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 80));
+        PacketDispatcher.sendToAllAround(
+                this, new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 80));
     }
 
     @Override
@@ -63,5 +64,4 @@ public class PacketEffect extends RailcraftPacket {
     public int getID() {
         return PacketType.EFFECT.ordinal();
     }
-
 }

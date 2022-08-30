@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,33 +11,31 @@ package mods.railcraft.common.util.misc;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.carts.EntityCartAnchor;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.OrderedLoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.event.entity.EntityEvent;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorPersonal;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
-import mods.railcraft.common.carts.EntityCartAnchor;
-import mods.railcraft.common.core.RailcraftConfig;
 import org.apache.logging.log4j.Level;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
+public class ChunkManager
+        implements LoadingCallback, OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
     private static ChunkManager instance;
 
@@ -53,18 +51,18 @@ public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, Fo
         Entity entity = event.entity;
         if (entity instanceof EntityCartAnchor) {
             if (Game.isHost(entity.worldObj)) {
-//                System.out.println("Anchor Entering Chunk: " + event.newChunkX + ", " + event.newChunkZ);
+                //                System.out.println("Anchor Entering Chunk: " + event.newChunkX + ", " +
+                // event.newChunkZ);
                 ((EntityCartAnchor) entity).forceChunkLoading(event.newChunkX, event.newChunkZ);
             } else {
                 ((EntityCartAnchor) entity).setupChunks(event.newChunkX, event.newChunkZ);
-
             }
         }
-//        if (entity instanceof EntityTunnelBore) {
-//            if (Game.isHost(entity.worldObj)) {
-//                System.out.println("Bore Entering Chunk: " + event.newChunkX + ", " + event.newChunkZ);
-//            }
-//        }
+        //        if (entity instanceof EntityTunnelBore) {
+        //            if (Game.isHost(entity.worldObj)) {
+        //                System.out.println("Bore Entering Chunk: " + event.newChunkX + ", " + event.newChunkZ);
+        //            }
+        //        }
     }
 
     /**
@@ -157,10 +155,9 @@ public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, Fo
 
     @Override
     public void ticketsLoaded(List<Ticket> tickets, World world) {
-//        System.out.println("Callback 2");
+        //        System.out.println("Callback 2");
         for (Ticket ticket : tickets) {
-            if (ticket.isPlayerTicket())
-                continue;
+            if (ticket.isPlayerTicket()) continue;
             Entity entity = ticket.getEntity();
             if (entity == null) {
                 int x = ticket.getModData().getInteger("xCoord");
@@ -179,7 +176,7 @@ public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, Fo
                 if (entity instanceof EntityCartAnchor) {
                     EntityCartAnchor anchor = (EntityCartAnchor) entity;
                     anchor.setChunkTicket(ticket);
-//                    System.out.println("Load Cart Chunks");
+                    //                    System.out.println("Load Cart Chunks");
                     anchor.forceChunkLoading(anchor.chunkCoordX, anchor.chunkCoordZ);
                     printAnchor(anchor.getCommandSenderName(), (int) entity.posX, (int) entity.posY, (int) entity.posZ);
                 }
@@ -189,7 +186,7 @@ public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, Fo
 
     @Override
     public List<Ticket> ticketsLoaded(List<Ticket> tickets, World world, int maxTicketCount) {
-//        System.out.println("Callback 1");
+        //        System.out.println("Callback 1");
         Set<Ticket> adminTickets = new HashSet<Ticket>();
         Set<Ticket> worldTickets = new HashSet<Ticket>();
         Set<Ticket> cartTickets = new HashSet<Ticket>();
@@ -202,16 +199,13 @@ public class ChunkManager implements LoadingCallback, OrderedLoadingCallback, Fo
                 String type = ticket.getModData().getString("type");
 
                 if (y >= 0) {
-                    if (type.equals(EnumMachineAlpha.ADMIN_ANCHOR.getTag()))
-                        adminTickets.add(ticket);
-                    else if (type.equals(EnumMachineAlpha.WORLD_ANCHOR.getTag()))
-                        worldTickets.add(ticket);
-                    else if(type.isEmpty())
-                        worldTickets.add(ticket);
+                    if (type.equals(EnumMachineAlpha.ADMIN_ANCHOR.getTag())) adminTickets.add(ticket);
+                    else if (type.equals(EnumMachineAlpha.WORLD_ANCHOR.getTag())) worldTickets.add(ticket);
+                    else if (type.isEmpty()) worldTickets.add(ticket);
                 }
             } else {
                 if (entity instanceof EntityCartAnchor) {
-//                    System.out.println("Claim Cart Ticket");
+                    //                    System.out.println("Claim Cart Ticket");
                     cartTickets.add(ticket);
                 }
             }

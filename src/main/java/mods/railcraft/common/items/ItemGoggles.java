@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,7 @@
 package mods.railcraft.common.items;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import java.util.List;
 import mods.railcraft.common.blocks.hidden.BlockHidden;
 import mods.railcraft.common.blocks.hidden.TrailTicker;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -24,8 +25,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -48,14 +47,21 @@ public class ItemGoggles extends ItemArmor {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item), true,
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
+                        true,
                         "GCG",
                         "I I",
                         "LLL",
-                        'C', RailcraftItem.circuit, ItemCircuit.EnumCircuit.RECEIVER,
-                        'I', "ingotSteel",
-                        'L', Items.leather,
-                        'G', "paneGlassColorless");
+                        'C',
+                        RailcraftItem.circuit,
+                        ItemCircuit.EnumCircuit.RECEIVER,
+                        'I',
+                        "ingotSteel",
+                        'L',
+                        Items.leather,
+                        'G',
+                        "paneGlassColorless");
 
                 BlockHidden.registerBlock();
                 if (BlockHidden.getBlock() != null && RailcraftConfig.isTrackingAuraEnabled())
@@ -67,8 +73,7 @@ public class ItemGoggles extends ItemArmor {
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
@@ -76,8 +81,7 @@ public class ItemGoggles extends ItemArmor {
         GoggleAura aura = GoggleAura.NONE;
         if (goggles != null && goggles.getItem() instanceof ItemGoggles) {
             NBTTagCompound data = goggles.getTagCompound();
-            if (data != null)
-                aura = GoggleAura.VALUES[data.getByte("aura")];
+            if (data != null) aura = GoggleAura.VALUES[data.getByte("aura")];
         }
         return aura;
     }
@@ -91,8 +95,7 @@ public class ItemGoggles extends ItemArmor {
             }
             byte aura = data.getByte("aura");
             aura++;
-            if (aura >= GoggleAura.VALUES.length)
-                aura = 0;
+            if (aura >= GoggleAura.VALUES.length) aura = 0;
             data.setByte("aura", aura);
 
             if (getCurrentAura(goggles) == GoggleAura.TRACKING && !RailcraftConfig.isTrackingAuraEnabled())
@@ -105,11 +108,9 @@ public class ItemGoggles extends ItemArmor {
     }
 
     public static ItemStack getGoggles(EntityPlayer player) {
-        if (player == null)
-            return null;
+        if (player == null) return null;
         ItemStack helm = player.getCurrentArmor(MiscTools.ArmorSlots.HELM.ordinal());
-        if (helm != null && helm.getItem() instanceof ItemGoggles)
-            return helm;
+        if (helm != null && helm.getItem() instanceof ItemGoggles) return helm;
         return null;
     }
 
@@ -155,7 +156,6 @@ public class ItemGoggles extends ItemArmor {
     }
 
     public enum GoggleAura {
-
         NONE("railcraft.gui.goggles.aura.none"),
         ANCHOR("railcraft.gui.goggles.aura.anchor"),
         TRACKING("railcraft.gui.goggles.aura.tracking"),
@@ -173,6 +173,5 @@ public class ItemGoggles extends ItemArmor {
         public String toString() {
             return LocalizationPlugin.translate(locTag);
         }
-
     }
 }

@@ -44,6 +44,11 @@ public interface ISwitchDevice {
     void updateArrows();
 
     enum ArrowDirection {
-        NORTH, SOUTH, EAST, WEST, NORTH_SOUTH, EAST_WEST
+        NORTH,
+        SOUTH,
+        EAST,
+        WEST,
+        NORTH_SOUTH,
+        EAST_WEST
     }
 }

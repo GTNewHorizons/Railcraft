@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,5 +26,4 @@ public class SlotPassThrough extends SlotRailcraft {
     public boolean isItemValid(ItemStack stack) {
         return inventory.isItemValidForSlot(slotNumber, stack);
     }
-
 }

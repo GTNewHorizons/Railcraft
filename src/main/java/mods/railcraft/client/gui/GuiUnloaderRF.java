@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
@@ -19,9 +21,6 @@ import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.tileentity.TileEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiUnloaderRF extends TileGui {
 
@@ -37,8 +36,7 @@ public class GuiUnloaderRF extends TileGui {
     @Override
     public void initGui() {
         super.initGui();
-        if (tile == null)
-            return;
+        if (tile == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
@@ -49,8 +47,7 @@ public class GuiUnloaderRF extends TileGui {
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (tile == null)
-            return;
+        if (tile == null) return;
         if (guibutton.id == 0) {
             tile.setWaitTillEmpty(!tile.waitTillEmpty());
             ((GuiToggleButton) guibutton).active = tile.waitTillEmpty();
@@ -74,10 +71,7 @@ public class GuiUnloaderRF extends TileGui {
     public void updateScreen() {
         super.updateScreen();
         TileEntity t = tile.getWorld().getTileEntity(tile.getX(), tile.getY(), tile.getZ());
-        if (t instanceof TileRFUnloader)
-            tile = (TileRFUnloader) t;
-        else
-            mc.thePlayer.closeScreen();
+        if (t instanceof TileRFUnloader) tile = (TileRFUnloader) t;
+        else mc.thePlayer.closeScreen();
     }
-
 }

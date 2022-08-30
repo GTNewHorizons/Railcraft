@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,8 +24,7 @@ public class TrackElectric extends TrackBaseRailcraft implements IElectricGrid {
     @Override
     public IIcon getIcon() {
         int meta = tileEntity.getBlockMetadata();
-        if (meta >= 6)
-            return getIcon(1);
+        if (meta >= 6) return getIcon(1);
         return getIcon(0);
     }
 
@@ -61,5 +60,4 @@ public class TrackElectric extends TrackBaseRailcraft implements IElectricGrid {
         super.readFromNBT(data);
         chargeHandler.readFromNBT(data);
     }
-
 }

@@ -34,17 +34,24 @@ public class FuelManager {
         ModContainer mod = Loader.instance().activeModContainer();
         String modName = mod != null ? mod.getName() : "An Unknown Mod";
         if (fluid == null) {
-            FMLLog.log("Railcraft", Level.WARN, String.format("An error occured while %s was registering a Boiler fuel source", modName));
+            FMLLog.log(
+                    "Railcraft",
+                    Level.WARN,
+                    String.format("An error occured while %s was registering a Boiler fuel source", modName));
             return;
         }
         boilerFuel.put(fluid, heatValuePerBucket);
-        FMLLog.log("Railcraft", Level.DEBUG, String.format("%s registered \"%s\" as a valid Boiler fuel source with %d heat.", modName, fluid.getName(), heatValuePerBucket));
+        FMLLog.log(
+                "Railcraft",
+                Level.DEBUG,
+                String.format(
+                        "%s registered \"%s\" as a valid Boiler fuel source with %d heat.",
+                        modName, fluid.getName(), heatValuePerBucket));
     }
 
     public static int getBoilerFuelValue(Fluid fluid) {
         Integer value = boilerFuel.get(fluid);
-        if(value != null) return value.intValue();
+        if (value != null) return value.intValue();
         else return 0;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,12 +12,12 @@ import com.google.common.collect.Maps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.api.crafting.IRockCrusherCraftingManager;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
+import net.minecraft.item.ItemStack;
 
 public class RockCrusherCraftingManager implements IRockCrusherCraftingManager {
 
@@ -107,7 +107,7 @@ public class RockCrusherCraftingManager implements IRockCrusherCraftingManager {
      * @param input
      * @param matchDamage
      * @param matchNBT
-     * @return 
+     * @return
      */
     @Override
     public IRockCrusherRecipe createNewRecipe(ItemStack input, boolean matchDamage, boolean matchNBT) {
@@ -121,12 +121,10 @@ public class RockCrusherCraftingManager implements IRockCrusherCraftingManager {
         if (input == null) return null;
         for (CrusherRecipe r : recipes) {
             if (!r.matchDamage || InvTools.isWildcard(r.input)) continue;
-            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT))
-                return r;
+            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT)) return r;
         }
         for (CrusherRecipe r : recipes) {
-            if (InvTools.isItemEqual(input, r.input, r.matchDamage, r.matchNBT))
-                return r;
+            if (InvTools.isItemEqual(input, r.input, r.matchDamage, r.matchNBT)) return r;
         }
         return null;
     }

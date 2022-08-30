@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,9 +18,8 @@ import net.minecraft.util.ResourceLocation;
 public interface IEmblemPackageManager {
 
     Texture getEmblemTexture(String ident);
-    
+
     ResourceLocation getEmblemTextureLocation(String ident);
 
     Emblem getEmblem(String ident);
-
 }

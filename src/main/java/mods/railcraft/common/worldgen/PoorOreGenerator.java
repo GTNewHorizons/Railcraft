@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -40,7 +40,16 @@ public abstract class PoorOreGenerator {
         this(eventType, ore, 0.0025, 0.85, 0.65, density, yLevel, yRange, noiseSeed);
     }
 
-    public PoorOreGenerator(EventType eventType, EnumOre ore, double scale, double denseArea, double fringeArea, int density, int yLevel, int yRange, int noiseSeed) {
+    public PoorOreGenerator(
+            EventType eventType,
+            EnumOre ore,
+            double scale,
+            double denseArea,
+            double fringeArea,
+            int density,
+            int yLevel,
+            int yRange,
+            int noiseSeed) {
         this.eventType = eventType;
         this.scale = scale;
         this.denseArea = denseArea;
@@ -48,10 +57,8 @@ public abstract class PoorOreGenerator {
         this.yLevel = yLevel;
         this.yRange = yRange;
         this.noiseSeed = noiseSeed;
-        if (density >= 4)
-            oreGen = new WorldGenMinable(BlockOre.getBlock(), ore.ordinal(), density, Blocks.stone);
-        else
-            oreGen = new WorldGenSmallDeposits(BlockOre.getBlock(), ore.ordinal(), density, Blocks.stone);
+        if (density >= 4) oreGen = new WorldGenMinable(BlockOre.getBlock(), ore.ordinal(), density, Blocks.stone);
+        else oreGen = new WorldGenSmallDeposits(BlockOre.getBlock(), ore.ordinal(), density, Blocks.stone);
     }
 
     @SubscribeEvent
@@ -62,8 +69,7 @@ public abstract class PoorOreGenerator {
         int worldX = event.worldX;
         int worldZ = event.worldZ;
 
-        if (!TerrainGen.generateOre(world, rand, oreGen, worldX, worldZ, eventType))
-            return;
+        if (!TerrainGen.generateOre(world, rand, oreGen, worldX, worldZ, eventType)) return;
 
         NoiseGen noise = noiseMap.get(world);
         if (noise == null) {
@@ -89,5 +95,4 @@ public abstract class PoorOreGenerator {
     protected boolean canGen(World world, Random rand, int x, int z) {
         return true;
     }
-
 }

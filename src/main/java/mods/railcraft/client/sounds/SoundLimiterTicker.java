@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,15 +25,12 @@ public class SoundLimiterTicker {
     @SubscribeEvent
     public void tick(ServerTickEvent event) {
         clockServer++;
-        if (clockServer % 8 == 0)
-            SoundHelper.decrementLimiters();
+        if (clockServer % 8 == 0) SoundHelper.decrementLimiters();
     }
 
     @SubscribeEvent
     public void tick(ClientTickEvent event) {
         clockClient++;
-        if (clockClient % 8 == 0)
-            SoundHelper.decrementLimiters();
+        if (clockClient % 8 == 0) SoundHelper.decrementLimiters();
     }
-
 }

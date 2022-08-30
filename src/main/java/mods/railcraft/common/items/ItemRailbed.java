@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.items.ItemTie.EnumTie;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -17,9 +19,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import java.util.List;
-import java.util.Locale;
 
 public class ItemRailbed extends ItemRailcraft {
 
@@ -61,7 +60,8 @@ public class ItemRailbed extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumRailbed railbed : EnumRailbed.VALUES) {
-            railbed.icon = iconRegister.registerIcon("railcraft:part.railbed." + railbed.name().toLowerCase(Locale.ENGLISH));
+            railbed.icon = iconRegister.registerIcon(
+                    "railcraft:part.railbed." + railbed.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -74,8 +74,7 @@ public class ItemRailbed extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage >= EnumRailbed.VALUES.length)
-            return EnumRailbed.WOOD.icon;
+        if (damage >= EnumRailbed.VALUES.length) return EnumRailbed.WOOD.icon;
         return EnumRailbed.VALUES[damage].icon;
     }
 
@@ -94,12 +93,9 @@ public class ItemRailbed extends ItemRailcraft {
         RailcraftItem item = RailcraftItem.railbed;
 
         Object tieWood = RailcraftItem.tie.getRecipeObject(EnumTie.WOOD);
-        CraftingPlugin.addShapelessRecipe(item.getStack(1, EnumRailbed.WOOD),
-                tieWood, tieWood, tieWood, tieWood);
+        CraftingPlugin.addShapelessRecipe(item.getStack(1, EnumRailbed.WOOD), tieWood, tieWood, tieWood, tieWood);
 
         Object tieStone = RailcraftItem.tie.getRecipeObject(EnumTie.STONE);
-        CraftingPlugin.addShapelessRecipe(item.getStack(1, EnumRailbed.STONE),
-                tieStone, tieStone, tieStone, tieStone);
+        CraftingPlugin.addShapelessRecipe(item.getStack(1, EnumRailbed.STONE), tieStone, tieStone, tieStone, tieStone);
     }
-
 }

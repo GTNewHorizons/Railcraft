@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,8 +24,7 @@ public class GuiTrackLauncher extends GuiBasic {
     public GuiTrackLauncher(TrackLauncher t) {
         super(((TileTrack) t.getTile()).getName());
         track = t;
-        if (track != null)
-            force = track.getLaunchForce();
+        if (track != null) force = track.getLaunchForce();
     }
 
     @Override
@@ -42,25 +41,20 @@ public class GuiTrackLauncher extends GuiBasic {
     @Override
     protected void actionPerformed(GuiButton guibutton) {
         int f = force;
-        if (guibutton.id == 0)
-            f += -10;
-        if (guibutton.id == 1)
-            f += -1;
-        if (guibutton.id == 2)
-            f += 1;
-        if (guibutton.id == 3)
-            f += 10;
-        if (f < TrackLauncher.MIN_LAUNCH_FORCE)
-            f = TrackLauncher.MIN_LAUNCH_FORCE;
-        if (f > RailcraftConfig.getLaunchRailMaxForce())
-            f = RailcraftConfig.getLaunchRailMaxForce();
+        if (guibutton.id == 0) f += -10;
+        if (guibutton.id == 1) f += -1;
+        if (guibutton.id == 2) f += 1;
+        if (guibutton.id == 3) f += 10;
+        if (f < TrackLauncher.MIN_LAUNCH_FORCE) f = TrackLauncher.MIN_LAUNCH_FORCE;
+        if (f > RailcraftConfig.getLaunchRailMaxForce()) f = RailcraftConfig.getLaunchRailMaxForce();
         force = f;
     }
 
     @Override
     public void drawExtras(int x, int y, float f) {
         if (track != null)
-            fontRendererObj.drawString(LocalizationPlugin.translate("railcraft.gui.track.launcher.force", force), 61, 25, 0x404040);
+            fontRendererObj.drawString(
+                    LocalizationPlugin.translate("railcraft.gui.track.launcher.force", force), 61, 25, 0x404040);
     }
 
     @Override

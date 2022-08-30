@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,10 +8,10 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
 import mods.railcraft.common.gui.containers.ContainerLocomotiveSteamSolid;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiLocomotiveSteamSolid extends GuiLocomotive {
 
@@ -35,5 +35,4 @@ public class GuiLocomotiveSteamSolid extends GuiLocomotive {
             this.drawTexturedModalRect(x + 62, y + 34 - scale, 176, 59 - scale, 14, scale + 2);
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -29,6 +29,7 @@ public class EntityAIWatchBlock extends EntityAIBase {
      * This is the Maximum distance that the AI will look for the Entity
      */
     private final int maxDist;
+
     private int lookTime;
     private final float weight;
     private final Block searchedBlock;
@@ -54,21 +55,27 @@ public class EntityAIWatchBlock extends EntityAIBase {
      */
     @Override
     public boolean shouldExecute() {
-        if (this.theWatcher.getRNG().nextFloat() >= this.weight)
-            return false;
-//            if (this.theWatcher.getAttackTarget() != null)
-//                return false;
+        if (this.theWatcher.getRNG().nextFloat() >= this.weight) return false;
+        //            if (this.theWatcher.getAttackTarget() != null)
+        //                return false;
 
         if (watchedBlock == null || !isBlockValid())
-            watchedBlock = WorldPlugin.findBlock(theWatcher.worldObj, (int) theWatcher.posX, (int) theWatcher.posY, (int) theWatcher.posZ, maxDist, searchedBlock, searchedMeta);
+            watchedBlock = WorldPlugin.findBlock(
+                    theWatcher.worldObj,
+                    (int) theWatcher.posX,
+                    (int) theWatcher.posY,
+                    (int) theWatcher.posZ,
+                    maxDist,
+                    searchedBlock,
+                    searchedMeta);
 
         return watchedBlock != null;
     }
 
     private boolean isBlockValid() {
-        if (searchedBlock != WorldPlugin.getBlock(theWatcher.worldObj, watchedBlock))
-            return false;
-        return WorldPlugin.getDistanceSq(watchedBlock, theWatcher.posX, theWatcher.posY, theWatcher.posZ) <= maxDist * maxDist;
+        if (searchedBlock != WorldPlugin.getBlock(theWatcher.worldObj, watchedBlock)) return false;
+        return WorldPlugin.getDistanceSq(watchedBlock, theWatcher.posX, theWatcher.posY, theWatcher.posZ)
+                <= maxDist * maxDist;
     }
 
     /**
@@ -78,8 +85,7 @@ public class EntityAIWatchBlock extends EntityAIBase {
      */
     @Override
     public boolean continueExecuting() {
-        if (!isBlockValid())
-            return false;
+        if (!isBlockValid()) return false;
         return lookTime > 0;
     }
 
@@ -104,8 +110,10 @@ public class EntityAIWatchBlock extends EntityAIBase {
      */
     @Override
     public void updateTask() {
-        this.theWatcher.getLookHelper().setLookPosition(watchedBlock.x + 0.5, watchedBlock.y + 0.5, watchedBlock.z + 0.5, 10.0F, (float) this.theWatcher.getVerticalFaceSpeed());
+        this.theWatcher
+                .getLookHelper()
+                .setLookPosition(watchedBlock.x + 0.5, watchedBlock.y + 0.5, watchedBlock.z + 0.5, 10.0F, (float)
+                        this.theWatcher.getVerticalFaceSpeed());
         --this.lookTime;
     }
-
 }

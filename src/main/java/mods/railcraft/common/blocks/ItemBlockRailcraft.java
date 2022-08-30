@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -35,15 +35,13 @@ public class ItemBlockRailcraft extends ItemBlock {
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int pass) {
         EnumColor color = InvTools.getItemColor(stack);
-        if (color != null)
-            return color.getHexColor();
+        if (color != null) return color.getHexColor();
         return super.getColorFromItemStack(stack, pass);
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
         String tipTag = getUnlocalizedName(stack) + ".tip";
-        if (LocalizationPlugin.hasTag(tipTag))
-            return ToolTip.buildToolTip(tipTag);
+        if (LocalizationPlugin.hasTag(tipTag)) return ToolTip.buildToolTip(tipTag);
         return null;
     }
 
@@ -55,5 +53,4 @@ public class ItemBlockRailcraft extends ItemBlock {
                 info.add(line.text);
             }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.client.render;
 
+import mods.railcraft.common.blocks.machine.beta.TileBoilerTank;
 import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerTank;
+import net.minecraft.world.IBlockAccess;
 
 /**
  *
@@ -22,8 +22,7 @@ public class RenderBoilerTank implements IBlockRenderer {
 
     private static final float BORDER = RenderTools.PIXEL;
 
-    public RenderBoilerTank() {
-    }
+    public RenderBoilerTank() {}
 
     @Override
     public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {

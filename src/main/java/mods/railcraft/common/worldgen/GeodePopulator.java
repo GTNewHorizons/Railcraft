@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,18 +9,15 @@
 package mods.railcraft.common.worldgen;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import java.util.Locale;
 import java.util.Random;
-
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
@@ -33,14 +30,14 @@ import net.minecraftforge.event.terraingen.TerrainGen;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class GeodePopulator {
-    public static final EventType EVENT_TYPE = EnumHelper.addEnum(EventType.class, "RAILCRAFT_GEODE", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE =
+            EnumHelper.addEnum(EventType.class, "RAILCRAFT_GEODE", new Class[0], new Object[0]);
     public static final int MIN_DEPTH = 16;
     public static final int MIN_FLOOR = 24;
     private static GeodePopulator instance;
     private final WorldGenerator geode = new WorldGenGeode(BlockCube.getBlock(), EnumCube.ABYSSAL_STONE.ordinal());
 
-    private GeodePopulator() {
-    }
+    private GeodePopulator() {}
 
     public static GeodePopulator instance() {
         if (instance == null) {
@@ -51,7 +48,14 @@ public class GeodePopulator {
 
     @SubscribeEvent
     public void generate(PopulateChunkEvent.Pre event) {
-        if (!TerrainGen.populate(event.chunkProvider, event.world, event.rand, event.chunkX, event.chunkZ, event.hasVillageGenerated, EVENT_TYPE)) {
+        if (!TerrainGen.populate(
+                event.chunkProvider,
+                event.world,
+                event.rand,
+                event.chunkX,
+                event.chunkZ,
+                event.hasVillageGenerated,
+                EVENT_TYPE)) {
             return;
         }
         generateGeode(event.world, event.rand, event.chunkX, event.chunkZ);
@@ -74,7 +78,8 @@ public class GeodePopulator {
         if (!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.WATER)) {
             return false;
         }
-        if (biome.biomeName == null || biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river")) {
+        if (biome.biomeName == null
+                || biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river")) {
             return false;
         }
         return rand.nextDouble() <= 0.3;
@@ -90,12 +95,9 @@ public class GeodePopulator {
         int depth = 0;
         for (; y > 0; --y) {
             Block block = chunk.getBlock(trimmedX, y, trimmedZ);
-            if (block == null || block == Blocks.air)
-                continue;
-            else if (block.getMaterial() == Material.water)
-                depth++;
-            else
-                break;
+            if (block == null || block == Blocks.air) continue;
+            else if (block.getMaterial() == Material.water) depth++;
+            else break;
         }
 
         return new OceanFloor(y, depth);

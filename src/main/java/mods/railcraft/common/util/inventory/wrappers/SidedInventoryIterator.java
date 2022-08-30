@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,10 +8,9 @@
  */
 package mods.railcraft.common.util.inventory.wrappers;
 
+import java.util.Iterator;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-
-import java.util.Iterator;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -45,7 +44,6 @@ public class SidedInventoryIterator extends InventoryIterator {
             public void remove() {
                 throw new UnsupportedOperationException("Remove not supported.");
             }
-
         };
     }
 
@@ -64,6 +62,5 @@ public class SidedInventoryIterator extends InventoryIterator {
         public boolean canTakeStackFromSlot(ItemStack stack) {
             return inv.canExtractItem(slot, stack, 0);
         }
-
     }
 }

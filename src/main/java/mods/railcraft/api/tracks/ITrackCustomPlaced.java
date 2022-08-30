@@ -17,8 +17,7 @@ import net.minecraft.world.World;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackCustomPlaced extends ITrackInstance
-{
+public interface ITrackCustomPlaced extends ITrackInstance {
 
     /**
      * Used to override normal track placement.

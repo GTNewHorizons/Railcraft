@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -47,15 +47,20 @@ public class TamingInteractHandler {
     protected void playTameEffect(EntityTameable tameable, boolean par1) {
         String var2 = "heart";
 
-        if (!par1)
-            var2 = "smoke";
+        if (!par1) var2 = "smoke";
 
         for (int var3 = 0; var3 < 7; ++var3) {
             double var4 = rand.nextGaussian() * 0.02D;
             double var6 = rand.nextGaussian() * 0.02D;
             double var8 = rand.nextGaussian() * 0.02D;
-            tameable.worldObj.spawnParticle(var2, tameable.posX + (double) (rand.nextFloat() * tameable.width * 2.0F) - (double) tameable.width, tameable.posY + 0.5D + (double) (rand.nextFloat() * tameable.height), tameable.posZ + (double) (rand.nextFloat() * tameable.width * 2.0F) - (double) tameable.width, var4, var6, var8);
+            tameable.worldObj.spawnParticle(
+                    var2,
+                    tameable.posX + (double) (rand.nextFloat() * tameable.width * 2.0F) - (double) tameable.width,
+                    tameable.posY + 0.5D + (double) (rand.nextFloat() * tameable.height),
+                    tameable.posZ + (double) (rand.nextFloat() * tameable.width * 2.0F) - (double) tameable.width,
+                    var4,
+                    var6,
+                    var8);
         }
     }
-
 }

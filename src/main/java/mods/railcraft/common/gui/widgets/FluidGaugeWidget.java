@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,10 +10,9 @@ package mods.railcraft.common.gui.widgets;
 
 import mods.railcraft.client.gui.GuiContainerRailcraft;
 import mods.railcraft.client.render.FluidRenderer;
-import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.gui.tooltips.ToolTip;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -36,15 +35,12 @@ public class FluidGaugeWidget extends Widget {
 
     @Override
     public void draw(GuiContainerRailcraft gui, int guiX, int guiY, int mouseX, int mouseY) {
-        if (tank == null)
-            return;
-        if (tank.renderData.fluid == null || tank.renderData.amount <= 0)
-            return;
+        if (tank == null) return;
+        if (tank.renderData.fluid == null || tank.renderData.amount <= 0) return;
 
         IIcon fluidIcon = FluidRenderer.getFluidTexture(tank.renderData.fluid, false);
 
-        if (fluidIcon == null)
-            return;
+        if (fluidIcon == null) return;
 
         float scale = Math.min(tank.renderData.amount, tank.getCapacity()) / (float) tank.getCapacity();
 
@@ -63,5 +59,4 @@ public class FluidGaugeWidget extends Widget {
         gui.drawTexturedModalRect(guiX + x, guiY + y - 1, x, y - 1, w, h - (int) Math.floor(h * scale) + 1);
         gui.drawTexturedModalRect(guiX + x, guiY + y, u, v, w, h);
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.Map.Entry;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -32,8 +33,6 @@ import net.minecraftforge.fluids.FluidStack;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
-
-import java.util.Map.Entry;
 
 /**
  *
@@ -90,11 +89,9 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
         boiler.setFuelProvider(new EssentiaFuelProvider(fireAspect) {
             @Override
             public double getMoreFuel() {
-                if (isShutdown())
-                    return 0;
+                if (isShutdown()) return 0;
                 return super.getMoreFuel();
             }
-
         });
     }
 
@@ -116,14 +113,11 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     @Override
     public boolean needsRefuel() {
         FluidStack water = tankWater.getFluid();
-        if (water == null || water.amount < tankWater.getCapacity() / 2)
-            return true;
-        if (InvTools.countItems(invFuel) < 16)
-            return true;
+        if (water == null || water.amount < tankWater.getCapacity() / 2) return true;
+        if (InvTools.countItems(invFuel) < 16) return true;
         for (IInvSlot slot : InventoryIterator.getIterable(invFuel)) {
             ItemStack stack = slot.getStackInSlot();
-            if (stack == null || stack.stackSize < stack.getMaxStackSize() / 4)
-                return true;
+            if (stack == null || stack.stackSize < stack.getMaxStackSize() / 4) return true;
         }
         return false;
     }
@@ -184,24 +178,19 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
-    public void setAspects(AspectList aspects) {
-    }
+    public void setAspects(AspectList aspects) {}
 
     @Override
     public int addToContainer(Aspect tag, int amount) {
-        if (tag == Aspect.FIRE)
-            return fireAspect.fill(amount, true);
-        if (tag == Aspect.WATER)
-            return waterAspect.fill(amount, true);
+        if (tag == Aspect.FIRE) return fireAspect.fill(amount, true);
+        if (tag == Aspect.WATER) return waterAspect.fill(amount, true);
         return amount;
     }
 
     @Override
     public boolean takeFromContainer(Aspect tag, int amount) {
-        if (tag == Aspect.FIRE)
-            return fireAspect.remove(amount, true);
-        if (tag == Aspect.WATER)
-            return waterAspect.remove(amount, true);
+        if (tag == Aspect.FIRE) return fireAspect.remove(amount, true);
+        if (tag == Aspect.WATER) return waterAspect.remove(amount, true);
         return false;
     }
 
@@ -212,29 +201,23 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
 
     @Override
     public boolean doesContainerContainAmount(Aspect tag, int amount) {
-        if (tag == Aspect.FIRE)
-            return fireAspect.contains(amount);
-        if (tag == Aspect.WATER)
-            return waterAspect.contains(amount);
+        if (tag == Aspect.FIRE) return fireAspect.contains(amount);
+        if (tag == Aspect.WATER) return waterAspect.contains(amount);
         return false;
     }
 
     @Override
     public boolean doesContainerContain(AspectList ot) {
         for (Entry<Aspect, Integer> entry : ot.aspects.entrySet()) {
-            if (!doesContainerContainAmount(entry.getKey(), entry.getValue()))
-                return false;
+            if (!doesContainerContainAmount(entry.getKey(), entry.getValue())) return false;
         }
         return true;
     }
 
     @Override
     public int containerContains(Aspect tag) {
-        if (tag == Aspect.FIRE)
-            return fireAspect.getAmount();
-        if (tag == Aspect.WATER)
-            return waterAspect.getAmount();
+        if (tag == Aspect.FIRE) return fireAspect.getAmount();
+        if (tag == Aspect.WATER) return waterAspect.getAmount();
         return 0;
     }
-
 }

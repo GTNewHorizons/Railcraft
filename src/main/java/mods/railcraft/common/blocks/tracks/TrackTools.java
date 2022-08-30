@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.TrackSpec;
@@ -24,9 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -51,16 +50,13 @@ public class TrackTools {
 
     public static boolean isRailBlock(ItemStack stack) {
         Block block = InvTools.getBlockFromStack(stack);
-        if (block == null)
-            return false;
+        if (block == null) return false;
         return BlockRailBase.func_150051_a(block);
     }
 
     public static boolean isRailItem(Item item) {
-        if (item instanceof ITrackItem)
-            return true;
-        if (item instanceof ItemBlock)
-            return BlockRailBase.func_150051_a(((ItemBlock) item).field_150939_a);
+        if (item instanceof ITrackItem) return true;
+        if (item instanceof ItemBlock) return BlockRailBase.func_150051_a(((ItemBlock) item).field_150939_a);
         return false;
     }
 
@@ -76,25 +72,24 @@ public class TrackTools {
         return EnumTrackMeta.fromMeta(getTrackMeta(world, cart, x, y, z));
     }
 
-    public static EnumTrackMeta getTrackMetaEnum(IBlockAccess world, Block block, EntityMinecart cart, int x, int y, int z) {
+    public static EnumTrackMeta getTrackMetaEnum(
+            IBlockAccess world, Block block, EntityMinecart cart, int x, int y, int z) {
         return EnumTrackMeta.fromMeta(getTrackMeta(world, block, cart, x, y, z));
     }
 
     public static ITrackInstance getTrackInstanceAt(IBlockAccess world, int x, int y, int z) {
-        if (WorldPlugin.getBlock(world, x, y, z) != RailcraftBlocks.getBlockTrack())
-            return null;
+        if (WorldPlugin.getBlock(world, x, y, z) != RailcraftBlocks.getBlockTrack()) return null;
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
-        if (tile instanceof TileTrack)
-            return ((TileTrack) tile).getTrackInstance();
+        if (tile instanceof TileTrack) return ((TileTrack) tile).getTrackInstance();
         return null;
     }
 
     @Nullable
-    public static <T extends ITrackInstance> T getTrackInstance(@Nullable TileEntity tile, @Nonnull Class<T> instanceClass) {
+    public static <T extends ITrackInstance> T getTrackInstance(
+            @Nullable TileEntity tile, @Nonnull Class<T> instanceClass) {
         if (tile instanceof TileTrack) {
             ITrackInstance trackInstance = ((TileTrack) tile).getTrackInstance();
-            if (instanceClass.isAssignableFrom(trackInstance.getClass()))
-                return instanceClass.cast(trackInstance);
+            if (instanceClass.isAssignableFrom(trackInstance.getClass())) return instanceClass.cast(trackInstance);
         }
         return null;
     }
@@ -107,9 +102,9 @@ public class TrackTools {
         return isTrackSpecAt(world, x, y, z, track.getTrackSpec());
     }
 
-    public static boolean isTrackSpecAt(IBlockAccess world, int x, int y, int z, @Nonnull TrackSpec trackSpec, Block block) {
-        if (block != RailcraftBlocks.getBlockTrack())
-            return false;
+    public static boolean isTrackSpecAt(
+            IBlockAccess world, int x, int y, int z, @Nonnull TrackSpec trackSpec, Block block) {
+        if (block != RailcraftBlocks.getBlockTrack()) return false;
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
         return isTrackSpec(tile, trackSpec);
     }
@@ -119,22 +114,26 @@ public class TrackTools {
     }
 
     public static boolean isTrackSpec(TileEntity tile, @Nonnull TrackSpec trackSpec) {
-        return (tile instanceof TileTrack) && ((TileTrack) tile).getTrackInstance().getTrackSpec() == trackSpec;
+        return (tile instanceof TileTrack)
+                && ((TileTrack) tile).getTrackInstance().getTrackSpec() == trackSpec;
     }
 
-    public static boolean isTrackClassAt(IBlockAccess world, int x, int y, int z, @Nonnull Class<? extends ITrackInstance> trackClass, Block block) {
-        if (block != RailcraftBlocks.getBlockTrack())
-            return false;
+    public static boolean isTrackClassAt(
+            IBlockAccess world, int x, int y, int z, @Nonnull Class<? extends ITrackInstance> trackClass, Block block) {
+        if (block != RailcraftBlocks.getBlockTrack()) return false;
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
         return isTrackClass(tile, trackClass);
     }
 
-    public static boolean isTrackClassAt(IBlockAccess world, int x, int y, int z, @Nonnull Class<? extends ITrackInstance> trackClass) {
+    public static boolean isTrackClassAt(
+            IBlockAccess world, int x, int y, int z, @Nonnull Class<? extends ITrackInstance> trackClass) {
         return isTrackClassAt(world, x, y, z, trackClass, WorldPlugin.getBlock(world, x, y, z));
     }
 
     public static boolean isTrackClass(TileEntity tile, @Nonnull Class<? extends ITrackInstance> trackClass) {
-        return (tile instanceof TileTrack) && trackClass.isAssignableFrom(((TileTrack) tile).getTrackInstance().getClass());
+        return (tile instanceof TileTrack)
+                && trackClass.isAssignableFrom(
+                        ((TileTrack) tile).getTrackInstance().getClass());
     }
 
     public static boolean isHighSpeedTrackAt(IBlockAccess world, int x, int y, int z) {
@@ -150,5 +149,4 @@ public class TrackTools {
         world.setTileEntity(x, y, z, tile);
         return tile;
     }
-
 }

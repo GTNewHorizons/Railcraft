@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,12 +24,12 @@ public abstract class TileGui extends GuiContainerRailcraft {
         this.tile = tile;
     }
 
-//    @Override
-//    public void updateScreen() {
-//        super.updateScreen();
-//        TileEntity t = tile.getWorld().getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord);
-//        if (t != tile) {
-//            mc.thePlayer.closeScreen();
-//        }
-//    }
+    //    @Override
+    //    public void updateScreen() {
+    //        super.updateScreen();
+    //        TileEntity t = tile.getWorld().getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord);
+    //        if (t != tile) {
+    //            mc.thePlayer.closeScreen();
+    //        }
+    //    }
 }

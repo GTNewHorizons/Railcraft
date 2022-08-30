@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,8 +8,6 @@
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
-import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMateBreeding;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +16,20 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
-import org.apache.logging.log4j.Level;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.TileMachineItem;
+import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMateBreeding;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.filters.StackFilter;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.network.ITileExtraDataHandler;
+import mods.railcraft.common.util.network.PacketDispatcher;
+import mods.railcraft.common.util.network.PacketTileExtraData;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,19 +38,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.util.inventory.filters.StackFilter;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.network.ITileExtraDataHandler;
-import mods.railcraft.common.util.network.PacketDispatcher;
-import mods.railcraft.common.util.network.PacketTileExtraData;
-import net.minecraft.block.Block;
+import org.apache.logging.log4j.Level;
 
 public class TileFeedStation extends TileMachineItem implements ITileExtraDataHandler {
 
@@ -103,7 +102,8 @@ public class TileFeedStation extends TileMachineItem implements ITileExtraDataHa
         if (!powered && feed != null && feed.stackSize > 0 && feedTime <= 0) {
             feedTime = MIN_FEED_INTERVAL + rand.nextInt(FEED_VARIANCE);
 
-            AxisAlignedBB box = AxisAlignedBB.getBoundingBox(xCoord, yCoord - 1, zCoord, xCoord + 1, yCoord + 3, zCoord + 1);
+            AxisAlignedBB box =
+                    AxisAlignedBB.getBoundingBox(xCoord, yCoord - 1, zCoord, xCoord + 1, yCoord + 3, zCoord + 1);
             box = box.expand(AREA, 0, AREA);
             List<EntityAnimal> animals = (List<EntityAnimal>) worldObj.getEntitiesWithinAABB(EntityAnimal.class, box);
 
@@ -127,7 +127,8 @@ public class TileFeedStation extends TileMachineItem implements ITileExtraDataHa
             DataOutputStream data = pkt.getDataStream();
             data.writeInt(animal.getEntityId());
 
-            PacketDispatcher.sendToAllAround(pkt, new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 80));
+            PacketDispatcher.sendToAllAround(
+                    pkt, new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 80));
         } catch (IOException ex) {
         }
     }
@@ -157,7 +158,14 @@ public class TileFeedStation extends TileMachineItem implements ITileExtraDataHa
                     double d = rand.nextGaussian() * 0.02D;
                     double d1 = rand.nextGaussian() * 0.02D;
                     double d2 = rand.nextGaussian() * 0.02D;
-                    worldObj.spawnParticle("heart", (animal.posX + (double) (rand.nextFloat() * animal.width * 2.0F)) - animal.width, animal.posY + 0.5D + (double) (rand.nextFloat() * animal.height), (animal.posZ + (double) (rand.nextFloat() * animal.width * 2.0F)) - animal.width, d, d1, d2);
+                    worldObj.spawnParticle(
+                            "heart",
+                            (animal.posX + (double) (rand.nextFloat() * animal.width * 2.0F)) - animal.width,
+                            animal.posY + 0.5D + (double) (rand.nextFloat() * animal.height),
+                            (animal.posZ + (double) (rand.nextFloat() * animal.width * 2.0F)) - animal.width,
+                            d,
+                            d1,
+                            d2);
                 }
 
                 return true;

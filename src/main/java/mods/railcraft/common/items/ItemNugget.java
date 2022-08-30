@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -18,16 +20,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.List;
-import java.util.Locale;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemNugget extends ItemRailcraft {
 
     public enum EnumNugget implements IItemMetaEnum {
-
         IRON("nuggetIron"),
         STEEL("nuggetSteel"),
         COPPER("nuggetCopper"),
@@ -50,7 +48,6 @@ public class ItemNugget extends ItemRailcraft {
         public Class<? extends ItemRailcraft> getItemClass() {
             return ItemNugget.class;
         }
-
     }
 
     public ItemNugget() {
@@ -80,18 +77,15 @@ public class ItemNugget extends ItemRailcraft {
         for (EnumNugget n : EnumNugget.VALUES) {
             Metal m = Metal.get(n);
             CraftingPlugin.addShapelessRecipe(m.getNugget(9), m.getIngot());
-            CraftingPlugin.addShapedRecipe(m.getIngot(),
-                    "NNN",
-                    "NNN",
-                    "NNN",
-                    'N', m.getNuggetTag());
+            CraftingPlugin.addShapedRecipe(m.getIngot(), "NNN", "NNN", "NNN", 'N', m.getNuggetTag());
         }
     }
 
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumNugget nugget : EnumNugget.VALUES) {
-            nugget.icon = iconRegister.registerIcon("railcraft:nugget." + nugget.name().toLowerCase(Locale.ENGLISH));
+            nugget.icon = iconRegister.registerIcon(
+                    "railcraft:nugget." + nugget.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -104,16 +98,14 @@ public class ItemNugget extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage >= EnumNugget.values().length)
-            return EnumNugget.IRON.icon;
+        if (damage >= EnumNugget.values().length) return EnumNugget.IRON.icon;
         return EnumNugget.VALUES[damage].icon;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumNugget.VALUES.length)
-            return "";
+        if (damage < 0 || damage >= EnumNugget.VALUES.length) return "";
         switch (EnumNugget.VALUES[damage]) {
             case IRON:
                 return "item.railcraft.nugget.iron";
@@ -129,5 +121,4 @@ public class ItemNugget extends ItemRailcraft {
                 return "";
         }
     }
-
 }

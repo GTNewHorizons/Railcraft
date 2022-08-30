@@ -1,6 +1,6 @@
 /*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -17,5 +17,4 @@ import buildcraft.api.statements.IActionExternal;
 public interface IActionReceptor {
 
     void actionActivated(IActionExternal action);
-
 }

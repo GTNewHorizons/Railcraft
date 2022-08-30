@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,8 +20,8 @@ import net.minecraftforge.fluids.IFluidTank;
 public final class FakeTank extends FluidTank {
 
     public static final IFluidTank INSTANCE = new FakeTank();
-    public static final IFluidTank[] ARRAY = new IFluidTank[]{INSTANCE};
-    public static final FluidTankInfo[] INFO = new FluidTankInfo[]{INSTANCE.getInfo()};
+    public static final IFluidTank[] ARRAY = new IFluidTank[] {INSTANCE};
+    public static final FluidTankInfo[] INFO = new FluidTankInfo[] {INSTANCE.getInfo()};
 
     private FakeTank() {
         super(1);
@@ -36,5 +36,4 @@ public final class FakeTank extends FluidTank {
     public FluidStack drain(int maxDrain, boolean doDrain) {
         return null;
     }
-
 }

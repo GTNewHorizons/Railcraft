@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,7 +18,6 @@ import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.items.ItemTicketGold;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.RoutingTableCopyRecipe;
@@ -52,19 +51,21 @@ public class ModuleRouting extends RailcraftModule {
 
         MiscTools.registerTrack(EnumTrack.ROUTING);
 
-        if (ItemRoutingTable.item != null)
-            CraftingPlugin.addRecipe(new RoutingTableCopyRecipe());
+        if (ItemRoutingTable.item != null) CraftingPlugin.addRecipe(new RoutingTableCopyRecipe());
 
         if (ItemTicket.item != null && ItemTicketGold.item != null)
             CraftingPlugin.addRecipe(new RoutingTicketCopyRecipe());
 
         if (EnumDetector.ROUTING.isEnabled()) {
-            CraftingPlugin.addShapedRecipe(EnumDetector.ROUTING.getItem(),
+            CraftingPlugin.addShapedRecipe(
+                    EnumDetector.ROUTING.getItem(),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.quartz_block, 1, 1),
-                    'P', Blocks.stone_pressure_plate);
+                    'X',
+                    new ItemStack(Blocks.quartz_block, 1, 1),
+                    'P',
+                    Blocks.stone_pressure_plate);
 
             RailcraftBlocks.registerBlockSignal();
             if (RailcraftBlocks.getBlockSignal() != null)
@@ -72,9 +73,9 @@ public class ModuleRouting extends RailcraftModule {
                 if (EnumSignal.SWITCH_ROUTING.isEnabled() && EnumSignal.SWITCH_MOTOR.isEnabled()) {
 
                     ItemStack stack = EnumSignal.SWITCH_ROUTING.getItem();
-                    CraftingPlugin.addShapelessRecipe(stack, EnumSignal.SWITCH_MOTOR.getItem(), EnumDetector.ROUTING.getItem());
+                    CraftingPlugin.addShapelessRecipe(
+                            stack, EnumSignal.SWITCH_MOTOR.getItem(), EnumDetector.ROUTING.getItem());
                 }
         }
     }
-
 }

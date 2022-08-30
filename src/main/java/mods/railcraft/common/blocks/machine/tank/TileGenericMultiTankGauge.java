@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,20 +20,17 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileGenericMultiTankGauge extends TileTankIronGauge {
 
-	private MetalTank tankType;
-	private IEnumMachine gaugeType;
+    private MetalTank tankType;
+    private IEnumMachine gaugeType;
 
+    public TileGenericMultiTankGauge() {}
 
-	public TileGenericMultiTankGauge() {
-		
-	}
-	
-	public TileGenericMultiTankGauge(MetalTank thisTankType, IEnumMachine thisGaugeType) {
-		tankType = thisTankType;
-		gaugeType = thisGaugeType;
-		markDirty();
-	}
-	
+    public TileGenericMultiTankGauge(MetalTank thisTankType, IEnumMachine thisGaugeType) {
+        tankType = thisTankType;
+        gaugeType = thisGaugeType;
+        markDirty();
+    }
+
     @Override
     public IEnumMachine getMachineType() {
         return gaugeType;
@@ -46,22 +43,21 @@ public class TileGenericMultiTankGauge extends TileTankIronGauge {
 
     @Override
     public int getCapacityPerBlock() {
-    	return gaugeType.getCapacity();
+        return gaugeType.getCapacity();
     }
 
-	@Override
-	public void writeToNBT(NBTTagCompound data) {
-		super.writeToNBT(data);
-		if (gaugeType != null && !data.hasKey("Machine.Type")) {
-			data.setString("Machine.Type", gaugeType.getTag());
-		}
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound data) {
+        super.writeToNBT(data);
+        if (gaugeType != null && !data.hasKey("Machine.Type")) {
+            data.setString("Machine.Type", gaugeType.getTag());
+        }
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound data) {
-		gaugeType = ModuleAdvancedTanks.cacheTankType.get(data.getString("Machine.Type"));
-		tankType = ModuleAdvancedTanks.cacheTankMaterial.get(data.getString("Machine.Type"));
-		super.readFromNBT(data);
-	}
-	
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        gaugeType = ModuleAdvancedTanks.cacheTankType.get(data.getString("Machine.Type"));
+        tankType = ModuleAdvancedTanks.cacheTankMaterial.get(data.getString("Machine.Type"));
+        super.readFromNBT(data);
+    }
 }

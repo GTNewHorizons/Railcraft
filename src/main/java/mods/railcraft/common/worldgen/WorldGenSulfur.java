@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,11 +11,11 @@ package mods.railcraft.common.worldgen;
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.util.misc.MiscTools;
-import net.minecraft.init.Blocks;
 
 /**
  *
@@ -39,19 +39,15 @@ public class WorldGenSulfur extends WorldGenSmallDeposits {
 
             if (world.blockExists(i, j, k)) {
                 Block block = WorldPlugin.getBlock(world, i, j, k);
-                if (block == Blocks.lava || block == Blocks.flowing_lava)
-                    return true;
+                if (block == Blocks.lava || block == Blocks.flowing_lava) return true;
             }
         }
         for (int j = 0; j < 4; j++) {
             Block block = WorldPlugin.getBlock(world, x, y - j, z);
 
-            if (block == Blocks.lava || block == Blocks.flowing_lava)
-                return true;
-            else if (block != Blocks.air)
-                return false;
+            if (block == Blocks.lava || block == Blocks.flowing_lava) return true;
+            else if (block != Blocks.air) return false;
         }
         return false;
     }
-
 }

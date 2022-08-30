@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Level;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum ModItems {
-
     cellEmpty(Mod.IC2, "cell"),
     canEmpty(Mod.FORESTRY, "canEmpty"),
     waxCapsule(Mod.FORESTRY, "waxCapsule"),
@@ -44,16 +43,13 @@ public enum ModItems {
     }
 
     protected void init() {
-        if (mod == Mod.IC2)
-            stack = IC2Plugin.getItem(itemTag);
-        else if (mod == Mod.FORESTRY)
-            stack = ForestryPlugin.getItem(itemTag);
-        if(stack == null)
-           Game.log(Level.DEBUG, "Searched for but failed to find {0} item {1}", mod.name(), itemTag);
+        if (mod == Mod.IC2) stack = IC2Plugin.getItem(itemTag);
+        else if (mod == Mod.FORESTRY) stack = ForestryPlugin.getItem(itemTag);
+        if (stack == null) Game.log(Level.DEBUG, "Searched for but failed to find {0} item {1}", mod.name(), itemTag);
     }
 
     private static enum Mod {
-
-        FORESTRY, IC2;
+        FORESTRY,
+        IC2;
     };
 }

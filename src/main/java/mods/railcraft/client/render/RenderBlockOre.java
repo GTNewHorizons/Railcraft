@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.client.render;
 
+import mods.railcraft.common.blocks.ore.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,7 +17,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import org.lwjgl.opengl.GL11;
-import mods.railcraft.common.blocks.ore.BlockOre;
 
 /**
  *
@@ -29,7 +29,8 @@ public class RenderBlockOre extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         block.setBlockBounds(0, 0, 0, 1, 1, 1);
         if (renderblocks.overrideBlockTexture != null) {
             BlockOre.renderPass = 0;
@@ -49,14 +50,13 @@ public class RenderBlockOre extends BlockRenderer {
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        
+
         BlockOre.renderPass = 0;
         renderItem(renderBlocks, item, getBlock().getIcon(0, item.getItemDamage()));
         BlockOre.renderPass = 1;
         renderItem(renderBlocks, item, getBlock().getIcon(0, item.getItemDamage()));
-        
-        GL11.glPopAttrib();
 
+        GL11.glPopAttrib();
     }
 
     private void renderItem(RenderBlocks renderBlocks, ItemStack item, IIcon texture) {
@@ -104,5 +104,4 @@ public class RenderBlockOre extends BlockRenderer {
         tess.draw();
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
-
 }

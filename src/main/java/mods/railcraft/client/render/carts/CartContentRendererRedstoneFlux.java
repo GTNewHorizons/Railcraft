@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,8 +24,7 @@ public class CartContentRendererRedstoneFlux extends CartContentRenderer {
     private final RenderInfo redBlock = new RenderInfo();
     private final RenderInfo leadFrame = new RenderInfo();
 
-    private CartContentRendererRedstoneFlux() {
-    }
+    private CartContentRendererRedstoneFlux() {}
 
     public static CartContentRendererRedstoneFlux instance() {
         return instance;

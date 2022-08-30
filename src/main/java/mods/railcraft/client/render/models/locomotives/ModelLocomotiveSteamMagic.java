@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -54,7 +54,5 @@ public class ModelLocomotiveSteamMagic extends ModelSimple {
         loco.addBox("pipe2", -9F, -16F, -15F, 2, 3, 2);
         loco.addBox("pipe3", -14F, -16F, -3F, 2, 3, 2);
         loco.addBox("pipe4", -14F, -16F, -15F, 2, 3, 2);
-
     }
-
 }

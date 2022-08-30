@@ -44,8 +44,7 @@ public class TrackScanner {
     public static ScanResult scanStraightTrackSection(World world, int x1, int y1, int z1, int x2, int y2, int z2) {
         int minY = Math.min(y1, y2);
         int maxY = Math.max(y1, y2);
-        if (x1 != x2 && z1 != z2)
-            return new ScanResult(ScanResult.Verdict.NOT_ALIGNED, minY, maxY);
+        if (x1 != x2 && z1 != z2) return new ScanResult(ScanResult.Verdict.NOT_ALIGNED, minY, maxY);
         if (x1 != x2) {
             int min;
             int max;
@@ -60,20 +59,17 @@ public class TrackScanner {
                 yy = y2;
             }
             for (int xx = min; xx <= max; xx++) {
-//                if (world.blockExists(xx, yy, z1))
+                //                if (world.blockExists(xx, yy, z1))
                 if (RailTools.isRailBlockAt(world, xx, yy, z1)) {
                 } else if (RailTools.isRailBlockAt(world, xx, yy - 1, z1)) {
                     yy--;
-                    if (yy < minY)
-                        minY = yy;
+                    if (yy < minY) minY = yy;
                 } else if (RailTools.isRailBlockAt(world, xx, yy + 1, z1)) {
                     yy++;
-                    if (yy > maxY)
-                        maxY = yy;
+                    if (yy > maxY) maxY = yy;
                 } else if (!world.blockExists(xx, yy, z1)) {
                     return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
-                } else
-                    return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
+                } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
             }
         } else if (z1 != z2) {
             int min;
@@ -89,25 +85,21 @@ public class TrackScanner {
                 yy = y2;
             }
             for (int zz = min; zz <= max; zz++) {
-//                if (world.blockExists(x1, yy, zz))
+                //                if (world.blockExists(x1, yy, zz))
                 if (RailTools.isRailBlockAt(world, x1, yy, zz)) {
                 } else if (RailTools.isRailBlockAt(world, x1, yy - 1, zz)) {
                     yy--;
-                    if (yy < minY)
-                        minY = yy;
+                    if (yy < minY) minY = yy;
                 } else if (RailTools.isRailBlockAt(world, x1, yy + 1, zz)) {
                     yy++;
-                    if (yy > maxY)
-                        maxY = yy;
+                    if (yy > maxY) maxY = yy;
                 } else if (!world.blockExists(x1, yy, zz)) {
                     return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
-                } else
-                    return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
+                } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
             }
         }
         return new ScanResult(ScanResult.Verdict.VALID, minY, maxY);
     }
-
 
     public static class ScanResult {
         public final Verdict verdict;

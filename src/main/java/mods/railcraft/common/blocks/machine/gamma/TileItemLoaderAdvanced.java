@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,13 +11,13 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileItemLoaderAdvanced extends TileItemLoader {
 
@@ -64,10 +64,8 @@ public class TileItemLoaderAdvanced extends TileItemLoader {
 
     @Override
     public IIcon getIcon(int side) {
-        if (direction.ordinal() == side)
-            return getMachineType().getTexture(3);
-        if (side != 0 && side != 1)
-            return getMachineType().getTexture(2);
+        if (direction.ordinal() == side) return getMachineType().getTexture(3);
+        if (side != 0 && side != 1) return getMachineType().getTexture(2);
         return getMachineType().getTexture(1);
     }
 
@@ -81,10 +79,8 @@ public class TileItemLoaderAdvanced extends TileItemLoader {
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (direction == axis)
-            direction = axis.getOpposite();
-        else
-            direction = axis;
+        if (direction == axis) direction = axis.getOpposite();
+        else direction = axis;
         markBlockForUpdate();
         return true;
     }
@@ -93,5 +89,4 @@ public class TileItemLoaderAdvanced extends TileItemLoader {
     public ForgeDirection getOrientation() {
         return direction;
     }
-
 }

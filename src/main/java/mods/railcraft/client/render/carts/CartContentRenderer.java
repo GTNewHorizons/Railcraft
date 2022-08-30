@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -60,17 +60,14 @@ public class CartContentRenderer {
         }
 
         ModelTextured contents = CartModelManager.getContentModel(cart.getClass());
-        if (contents == CartModelManager.emptyModel)
-            return;
+        if (contents == CartModelManager.emptyModel) return;
 
         ResourceLocation texture = contents.getTexture();
-        if (texture == null)
-            return;
+        if (texture == null) return;
         renderer.bindTex(texture);
 
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-        if (!contents.cullBackFaces())
-            GL11.glDisable(GL11.GL_CULL_FACE);
+        if (!contents.cullBackFaces()) GL11.glDisable(GL11.GL_CULL_FACE);
         GL11.glPushMatrix();
         GL11.glTranslatef(-0.5F, blockOffset / 16.0F - 0.5F, -0.5F);
         contents.render(cart, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
@@ -78,5 +75,4 @@ public class CartContentRenderer {
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
-
 }

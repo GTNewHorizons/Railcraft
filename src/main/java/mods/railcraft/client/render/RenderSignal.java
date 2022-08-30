@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,12 +9,6 @@
 package mods.railcraft.client.render;
 
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
-import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.RailcraftBlocks;
@@ -23,8 +17,14 @@ import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.TileSignalBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
@@ -44,12 +44,10 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
     @Override
     public void renderBlock(RenderBlocks renderblocks, IBlockAccess iBlockAccess, int x, int y, int z, Block block) {
         TileSignalBase tile = (TileSignalBase) iBlockAccess.getTileEntity(x, y, z);
-        if (tile == null)
-            return;
+        if (tile == null) return;
         float pix = RenderTools.PIXEL;
         int facing = tile.getFacing().ordinal();
-        if (facing >= info.texture.length)
-            facing = 0;
+        if (facing >= info.texture.length) facing = 0;
 
         // Main
         float min = 3 * pix;
@@ -79,8 +77,7 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
         // Hood
         if (facing == 2 || facing == 3) {
             float size = 13 * pix;
-            if (facing == 2)
-                size = pix;
+            if (facing == 2) size = pix;
             info.setBlockBounds(6 * pix, 13 * pix, size, 10 * pix, 14 * pix, size + 2 * pix);
             RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
             info.setBlockBounds(5 * pix, 10 * pix, size, 6 * pix, 14 * pix, size + 2 * pix);
@@ -89,8 +86,7 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
             RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
         } else if (facing == 4 || facing == 5) {
             float size = 13 * pix;
-            if (facing == 4)
-                size = pix;
+            if (facing == 4) size = pix;
             info.setBlockBounds(size, 13 * pix, 6 * pix, size + 2 * pix, 14 * pix, 10 * pix);
             RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
             info.setBlockBounds(size, 10 * pix, 5 * pix, size + 2 * pix, 14 * pix, 6 * pix);
@@ -124,12 +120,9 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
         boolean east = PostConnectionHelper.connect(iBlockAccess, x, y, z, ForgeDirection.EAST) != ConnectStyle.NONE;
         boolean north = PostConnectionHelper.connect(iBlockAccess, x, y, z, ForgeDirection.NORTH) != ConnectStyle.NONE;
         boolean south = PostConnectionHelper.connect(iBlockAccess, x, y, z, ForgeDirection.SOUTH) != ConnectStyle.NONE;
-        if (east || west)
-            east_west = true;
-        if (north || south)
-            north_south = true;
-        if (!east_west && !north_south)
-            east_west = true;
+        if (east || west) east_west = true;
+        if (north || south) north_south = true;
+        if (!east_west && !north_south) east_west = true;
         float f = 0.4375F;
         float f1 = 0.5625F;
         float f2 = 11 * pix;
@@ -206,7 +199,7 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f) {
         super.renderTileEntityAt(te, x, y, z, f);
-        if(!(te instanceof TileSignalBase)){
+        if (!(te instanceof TileSignalBase)) {
             return;
         }
         RenderInfo info = tesrInfo;
@@ -214,12 +207,10 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
         TileSignalBase tile = (TileSignalBase) te;
 
         int facing = tile.getFacing().ordinal();
-        if (facing >= info.texture.length)
-            facing = 0;
+        if (facing >= info.texture.length) facing = 0;
 
         SignalAspect aspect = tile.getSignalAspect();
-        if (!aspect.isLit())
-            aspect = SignalAspect.OFF;
+        if (!aspect.isLit()) aspect = SignalAspect.OFF;
         info.texture[facing] = BlockSignalRailcraft.texturesLampTop[aspect.getTextureIndex()];
         info.setRenderSingleSide(facing);
         info.brightness = aspect.getTextureBrightness();

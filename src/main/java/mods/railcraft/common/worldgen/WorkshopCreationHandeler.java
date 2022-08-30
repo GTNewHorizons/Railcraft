@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,8 +27,16 @@ public class WorkshopCreationHandeler implements IVillageCreationHandler {
     }
 
     @Override
-    public Object buildComponent(PieceWeight villagePiece, Start startPiece, List pieces, Random random, int x, int y, int z, int coordBaseMode, int p5) {
+    public Object buildComponent(
+            PieceWeight villagePiece,
+            Start startPiece,
+            List pieces,
+            Random random,
+            int x,
+            int y,
+            int z,
+            int coordBaseMode,
+            int p5) {
         return ComponentWorkshop.buildComponent(startPiece, pieces, random, x, y, z, coordBaseMode, p5);
     }
-
 }

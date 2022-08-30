@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,16 +11,16 @@ package mods.railcraft.common.carts;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.entity.item.EntityMinecartFurnace;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.FuelPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+import net.minecraft.entity.item.EntityMinecartFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public class EntityCartFurnace extends EntityMinecartFurnace {
 
@@ -37,8 +37,7 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
         if (RailcraftConfig.doCartsBreakOnDrop()) {
             items.add(new ItemStack(Items.minecart));
             items.add(new ItemStack(Blocks.furnace));
-        } else
-            items.add(getCartItem());
+        } else items.add(getCartItem());
         return items;
     }
 
@@ -46,8 +45,7 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
     public void killMinecart(DamageSource par1DamageSource) {
         setDead();
         List<ItemStack> drops = getItemsDropped();
-        if (this.func_95999_t() != null)
-            drops.get(0).setStackDisplayName(this.func_95999_t());
+        if (this.func_95999_t() != null) drops.get(0).setStackDisplayName(this.func_95999_t());
         for (ItemStack item : drops) {
             entityDropItem(item, 0.0F);
         }
@@ -56,8 +54,7 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
     @Override
     public ItemStack getCartItem() {
         ItemStack stack = new ItemStack(Items.furnace_minecart);
-        if (hasCustomInventoryName())
-            stack.setStackDisplayName(getCommandSenderName());
+        if (hasCustomInventoryName()) stack.setStackDisplayName(getCommandSenderName());
         return stack;
     }
 
@@ -75,7 +72,8 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
 
                 if (burnTime > 0) {
                     if (!player.capabilities.isCreativeMode)
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, InvTools.depleteItem(stack));
+                        player.inventory.setInventorySlotContents(
+                                player.inventory.currentItem, InvTools.depleteItem(stack));
                     fuel += burnTime;
                     ReflectionHelper.setPrivateValue(EntityMinecartFurnace.class, this, fuel, 0);
 

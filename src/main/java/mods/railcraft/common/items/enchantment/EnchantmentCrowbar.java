@@ -1,9 +1,9 @@
 package mods.railcraft.common.items.enchantment;
 
 import mods.railcraft.common.items.ItemCrowbar;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.enchantment.Enchantment;
 
 public class EnchantmentCrowbar extends Enchantment {
 
@@ -16,5 +16,4 @@ public class EnchantmentCrowbar extends Enchantment {
     public boolean canApply(ItemStack stack) {
         return stack.getItem() instanceof ItemCrowbar;
     }
-
 }

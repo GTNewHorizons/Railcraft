@@ -18,7 +18,13 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public interface ICokeOvenCraftingManager {
 
-    void addRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, ItemStack output, FluidStack liquidOutput, int cookTime);
+    void addRecipe(
+            ItemStack input,
+            boolean matchDamage,
+            boolean matchNBT,
+            ItemStack output,
+            FluidStack liquidOutput,
+            int cookTime);
 
     ICokeOvenRecipe getRecipe(ItemStack stack);
 

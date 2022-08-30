@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,15 +8,11 @@
  */
 package mods.railcraft.common.items.waterstone;
 
-import mods.railcraft.common.items.firestone.*;
-import cpw.mods.fml.common.registry.GameRegistry;
-
 import java.util.List;
-
 import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemRailcraft;
+import mods.railcraft.common.items.firestone.*;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
@@ -65,7 +61,7 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     @Override
     public void getSubItems(Item id, CreativeTabs tab, List list) {
         list.add(new ItemStack(item, 1, 5000));
-//        list.add(new ItemStack(item, 1, 0));
+        //        list.add(new ItemStack(item, 1, 0));
     }
 
     @Override
@@ -85,15 +81,23 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
         super.addInformation(stack, player, info, adv);
         String tipTag = getUnlocalizedName() + ".tip.charged";
-        if (stack.getItemDamage() >= stack.getMaxDamage() - 5)
-            tipTag = getUnlocalizedName() + ".tip.empty";
+        if (stack.getItemDamage() >= stack.getMaxDamage() - 5) tipTag = getUnlocalizedName() + ".tip.empty";
         ToolTip tip = ToolTip.buildToolTip(tipTag);
-        if (tip != null)
-            info.addAll(tip.convertToStrings());
+        if (tip != null) info.addAll(tip.convertToStrings());
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         if (player.canPlayerEdit(x, y, z, side, stack)) {
             Block block = WorldPlugin.getBlock(world, x, y, z);
             if (block != null && block != Blocks.stone) {
@@ -101,9 +105,12 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
                 if (drops.size() == 1 && drops.get(0) != null && drops.get(0).getItem() instanceof ItemBlock) {
                     ItemStack cooked = FurnaceRecipes.smelting().getSmeltingResult(drops.get(0));
                     if (cooked != null && cooked.getItem() instanceof ItemBlock) {
-                        int meta = !cooked.getItem().getHasSubtypes() ? 0 : cooked.getItem().getMetadata(cooked.getItemDamage());
+                        int meta = !cooked.getItem().getHasSubtypes()
+                                ? 0
+                                : cooked.getItem().getMetadata(cooked.getItemDamage());
                         world.setBlock(x, y, z, InvTools.getBlockFromStack(cooked), meta, 3);
-                        world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+                        world.playSoundEffect(
+                                x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                         stack.damageItem(1, player);
                         return true;
                     }
@@ -111,26 +118,21 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
             }
         }
 
-        if (side == 0)
-            --y;
+        if (side == 0) --y;
 
-        if (side == 1)
-            ++y;
+        if (side == 1) ++y;
 
-        if (side == 2)
-            --z;
+        if (side == 2) --z;
 
-        if (side == 3)
-            ++z;
+        if (side == 3) ++z;
 
-        if (side == 4)
-            --x;
+        if (side == 4) --x;
 
-        if (side == 5)
-            ++x;
+        if (side == 5) ++x;
 
         if (player.canPlayerEdit(x, y, z, side, stack) && world.isAirBlock(x, y, z)) {
-            world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+            world.playSoundEffect(
+                    x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
             world.setBlock(x, y, z, Blocks.fire);
             stack.damageItem(1, player);
             return true;
@@ -173,5 +175,4 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
         entity.delayBeforeCanPickup = 10;
         return entity;
     }
-
 }

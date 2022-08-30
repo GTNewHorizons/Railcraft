@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import org.apache.logging.log4j.Level;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.common.util.misc.Game;
+import org.apache.logging.log4j.Level;
 
 /**
  *
@@ -35,5 +35,4 @@ public class TrackFactory {
         }
         return new TileTrack(track);
     }
-
 }

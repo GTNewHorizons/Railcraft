@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,22 +8,22 @@
  */
 package mods.railcraft.client.render;
 
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import static net.minecraftforge.common.util.ForgeDirection.*;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.TileBoxBase;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
-
-import static net.minecraftforge.common.util.ForgeDirection.*;
 
 public class RenderSignalBox extends RenderTESRSignals implements ICombinedRenderer {
 
@@ -33,8 +33,8 @@ public class RenderSignalBox extends RenderTESRSignals implements ICombinedRende
     public RenderSignalBox(IIconProvider iconProvider) {
         info.texture = new IIcon[6];
         info.template = RailcraftBlocks.getBlockSignal();
-		tesrInfo.texture = new IIcon[6];
-		tesrInfo.template = RailcraftBlocks.getBlockSignal();
+        tesrInfo.texture = new IIcon[6];
+        tesrInfo.template = RailcraftBlocks.getBlockSignal();
         this.iconProvider = iconProvider;
     }
 
@@ -43,10 +43,8 @@ public class RenderSignalBox extends RenderTESRSignals implements ICombinedRende
         TileBoxBase tile = (TileBoxBase) iBlockAccess.getTileEntity(x, y, z);
         float pix = RenderTools.PIXEL;
 
-        if (renderblocks.hasOverrideBlockTexture())
-            info.override = renderblocks.overrideBlockTexture;
-        else
-            info.override = null;
+        if (renderblocks.hasOverrideBlockTexture()) info.override = renderblocks.overrideBlockTexture;
+        else info.override = null;
 
         info.texture[0] = BlockSignalRailcraft.texturesBox[2];
         info.texture[1] = iconProvider.getIcon();
@@ -55,38 +53,30 @@ public class RenderSignalBox extends RenderTESRSignals implements ICombinedRende
         info.texture[4] = BlockSignalRailcraft.texturesBox[0];
         info.texture[5] = BlockSignalRailcraft.texturesBox[0];
 
-//        info.setBlockBounds(pix, 13 * pix, pix, 15 * pix, 15 * pix, 15 * pix);
-//        RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
+        //        info.setBlockBounds(pix, 13 * pix, pix, 15 * pix, 15 * pix, 15 * pix);
+        //        RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
 
         boolean eastWest = false;
         boolean northSouth = false;
-        if (tile.isConnected(EAST) || tile.isConnected(WEST))
-            eastWest = true;
-        if (tile.isConnected(NORTH) || tile.isConnected(SOUTH))
-            northSouth = true;
+        if (tile.isConnected(EAST) || tile.isConnected(WEST)) eastWest = true;
+        if (tile.isConnected(NORTH) || tile.isConnected(SOUTH)) northSouth = true;
         boolean side2 = tile.isConnected(NORTH);
         boolean side3 = tile.isConnected(SOUTH);
         boolean side4 = tile.isConnected(WEST);
         boolean side5 = tile.isConnected(EAST);
-        if (!eastWest && !northSouth)
-            eastWest = true;
+        if (!eastWest && !northSouth) eastWest = true;
 
-
-        if (side2)
-            info.texture[2] = BlockSignalRailcraft.texturesBox[1];
-        if (side3)
-            info.texture[3] = BlockSignalRailcraft.texturesBox[1];
-        if (side4)
-            info.texture[4] = BlockSignalRailcraft.texturesBox[1];
-        if (side5)
-            info.texture[5] = BlockSignalRailcraft.texturesBox[1];
+        if (side2) info.texture[2] = BlockSignalRailcraft.texturesBox[1];
+        if (side3) info.texture[3] = BlockSignalRailcraft.texturesBox[1];
+        if (side4) info.texture[4] = BlockSignalRailcraft.texturesBox[1];
+        if (side5) info.texture[5] = BlockSignalRailcraft.texturesBox[1];
         info.setBlockBounds(2 * pix, 0, 2 * pix, 14 * pix, 15 * pix, 14 * pix);
         RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
 
         info.renderSide[0] = false;
         info.renderSide[1] = false;
 
-      /*  // Aspect
+        /*  // Aspect
         for (int side = 2; side < 6; side++) {
             SignalAspect aspect = tile.getBoxSignalAspect(ForgeDirection.getOrientation(side));
             if (!aspect.isLit())
@@ -184,33 +174,32 @@ public class RenderSignalBox extends RenderTESRSignals implements ICombinedRende
         GL11.glPopAttrib();
     }
 
-	private static final RenderInfo tesrInfo = new RenderInfo();
+    private static final RenderInfo tesrInfo = new RenderInfo();
 
-	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f) {
-		super.renderTileEntityAt(te, x, y, z, f);
-		if(!(te instanceof TileBoxBase)){
-			return;
-		}
-		RenderInfo info = tesrInfo;
+    @Override
+    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f) {
+        super.renderTileEntityAt(te, x, y, z, f);
+        if (!(te instanceof TileBoxBase)) {
+            return;
+        }
+        RenderInfo info = tesrInfo;
 
-		TileBoxBase tile = (TileBoxBase) te;
+        TileBoxBase tile = (TileBoxBase) te;
 
-		info.renderSide[0] = false;
-		info.renderSide[1] = false;
-		info.renderSide[2] = !tile.isConnected(NORTH);
-		info.renderSide[3] = !tile.isConnected(SOUTH);
-		info.renderSide[4] = !tile.isConnected(WEST);
-		info.renderSide[5] = !tile.isConnected(EAST);
+        info.renderSide[0] = false;
+        info.renderSide[1] = false;
+        info.renderSide[2] = !tile.isConnected(NORTH);
+        info.renderSide[3] = !tile.isConnected(SOUTH);
+        info.renderSide[4] = !tile.isConnected(WEST);
+        info.renderSide[5] = !tile.isConnected(EAST);
 
-		// Aspect
-		for (int side = 2; side < 6; side++) {
-			SignalAspect aspect = tile.getBoxSignalAspect(ForgeDirection.getOrientation(side));
-			if (!aspect.isLit())
-				aspect = SignalAspect.OFF;
-			info.texture[side] = BlockSignalRailcraft.texturesLampBox[aspect.getTextureIndex()];
-			info.brightness = aspect.getTextureBrightness();
-		}
-		doRenderAspect(info, tile, x, y, z);
-	}
+        // Aspect
+        for (int side = 2; side < 6; side++) {
+            SignalAspect aspect = tile.getBoxSignalAspect(ForgeDirection.getOrientation(side));
+            if (!aspect.isLit()) aspect = SignalAspect.OFF;
+            info.texture[side] = BlockSignalRailcraft.texturesLampBox[aspect.getTextureIndex()];
+            info.brightness = aspect.getTextureBrightness();
+        }
+        doRenderAspect(info, tile, x, y, z);
+    }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,17 +8,17 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.item.crafting.CraftingManager;
+import mods.railcraft.common.carts.EntityCartWork;
+import mods.railcraft.common.gui.slots.SlotUnshiftable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
-import mods.railcraft.common.carts.EntityCartWork;
-import mods.railcraft.common.gui.slots.SlotUnshiftable;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 
 public final class ContainerCartWork extends RailcraftContainer {
 
@@ -26,6 +26,7 @@ public final class ContainerCartWork extends RailcraftContainer {
      * The crafting matrix inventory (3x3).
      */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+
     public IInventory craftResult = new InventoryCraftResult();
     private EntityCartWork cart;
 
@@ -59,7 +60,8 @@ public final class ContainerCartWork extends RailcraftContainer {
      */
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory) {
-        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, cart.worldObj));
+        this.craftResult.setInventorySlotContents(
+                0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, cart.worldObj));
     }
 
     /**
@@ -73,9 +75,7 @@ public final class ContainerCartWork extends RailcraftContainer {
             for (int var2 = 0; var2 < 9; ++var2) {
                 ItemStack var3 = this.craftMatrix.getStackInSlotOnClosing(var2);
 
-                if (var3 != null)
-                    par1EntityPlayer.dropPlayerItemWithRandomChoice(var3, false);
+                if (var3 != null) par1EntityPlayer.dropPlayerItemWithRandomChoice(var3, false);
             }
     }
-
 }

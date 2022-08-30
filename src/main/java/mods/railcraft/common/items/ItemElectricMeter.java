@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,22 +9,22 @@
 package mods.railcraft.common.items;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.api.electricity.GridTools;
+import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.api.electricity.IElectricMinecart;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import mods.railcraft.api.electricity.GridTools;
-import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.api.electricity.IElectricMinecart;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.misc.Game;
-import net.minecraft.init.Blocks;
 
 /**
  *
@@ -41,24 +41,28 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
                 item = new ItemElectricMeter().setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
                         "T T",
                         "BGB",
                         " C ",
-                        'B', Blocks.stone_button,
-                        'G', "paneGlassColorless",
-                        'C', "ingotCopper",
-                        'T', "ingotTin");
+                        'B',
+                        Blocks.stone_button,
+                        'G',
+                        "paneGlassColorless",
+                        'C',
+                        "ingotCopper",
+                        'T',
+                        "ingotTin");
 
                 LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, tag);
             }
-//            CreeperPlugin.fixCreepers();
+            //            CreeperPlugin.fixCreepers();
         }
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
@@ -77,11 +81,9 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
         Entity entity = event.target;
 
         ItemStack stack = player.getCurrentEquippedItem();
-        if (stack != null && stack.getItem() instanceof ItemElectricMeter)
-            player.swingItem();
+        if (stack != null && stack.getItem() instanceof ItemElectricMeter) player.swingItem();
 
-        if (Game.isNotHost(player.worldObj))
-            return;
+        if (Game.isNotHost(player.worldObj)) return;
 
         if (stack != null && stack.getItem() instanceof ItemElectricMeter)
             try {
@@ -89,7 +91,12 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
                     IElectricMinecart cart = (IElectricMinecart) entity;
                     IElectricMinecart.ChargeHandler ch = cart.getChargeHandler();
                     if (ch != null) {
-                        ChatPlugin.sendLocalizedChat(player, "railcraft.gui.electric.meter.charge", ch.getCharge(), ch.getDraw(), ch.getLosses());
+                        ChatPlugin.sendLocalizedChat(
+                                player,
+                                "railcraft.gui.electric.meter.charge",
+                                ch.getCharge(),
+                                ch.getDraw(),
+                                ch.getLosses());
                         event.setCanceled(true);
                     }
                 }
@@ -100,16 +107,30 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (Game.isNotHost(world))
-            return false;
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
+        if (Game.isNotHost(world)) return false;
         boolean returnValue = false;
         try {
             IElectricGrid gridObject = GridTools.getGridObjectAt(world, x, y, z);
             if (gridObject != null) {
                 IElectricGrid.ChargeHandler ch = gridObject.getChargeHandler();
                 if (ch != null) {
-                    ChatPlugin.sendLocalizedChat(player, "railcraft.gui.electric.meter.charge", ch.getCharge(), ch.getDraw(), ch.getLosses());
+                    ChatPlugin.sendLocalizedChat(
+                            player,
+                            "railcraft.gui.electric.meter.charge",
+                            ch.getCharge(),
+                            ch.getDraw(),
+                            ch.getLosses());
                     returnValue = true;
                 }
             }
@@ -119,5 +140,4 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
         }
         return returnValue;
     }
-
 }

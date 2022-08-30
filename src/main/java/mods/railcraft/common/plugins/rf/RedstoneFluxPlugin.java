@@ -16,8 +16,7 @@ public class RedstoneFluxPlugin {
     public static int pushToTile(TileEntity tile, ForgeDirection side, int powerToTransfer) {
         if (canTileReceivePower(tile, side)) {
             IEnergyReceiver handler = (IEnergyReceiver) tile;
-            if (powerToTransfer > 0)
-                return handler.receiveEnergy(side, powerToTransfer, false);
+            if (powerToTransfer > 0) return handler.receiveEnergy(side, powerToTransfer, false);
         }
         return 0;
     }

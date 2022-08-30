@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,7 +9,6 @@
 package mods.railcraft.common.util.collections;
 
 import java.util.HashMap;
-
 import mods.railcraft.api.core.items.IStackFilter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,8 +32,7 @@ public class ItemMap<V> extends HashMap<ItemKey, V> {
 
     public V get(Item item, int meta) {
         V value = get(new ItemKey(item, meta));
-        if (value != null)
-            return value;
+        if (value != null) return value;
         return get(new ItemKey(item));
     }
 
@@ -43,14 +41,12 @@ public class ItemMap<V> extends HashMap<ItemKey, V> {
     }
 
     public boolean containsKey(Item item, int meta) {
-        if (containsKey(new ItemKey(item, meta)))
-            return true;
+        if (containsKey(new ItemKey(item, meta))) return true;
         return containsKey(new ItemKey(item));
     }
 
     public boolean containsKey(ItemStack stack) {
-        if (stack == null)
-            return false;
+        if (stack == null) return false;
         return containsKey(stack.getItem(), stack.getItemDamage());
     }
 

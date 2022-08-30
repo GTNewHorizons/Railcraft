@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -38,7 +38,5 @@ public class ModelLocomotiveSteamSolid extends ModelSimple {
         loco.addBox("cowcatcher", -22F, -8F, -14F, 3, 5, 12);
         loco.addBox("stack", -17F, -24F, -10F, 4, 6, 4);
         loco.addBox("dome", -11F, -20F, -11F, 6, 2, 6);
-
     }
-
 }

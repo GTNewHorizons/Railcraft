@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,13 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerHighSpeed;
 import mods.railcraft.common.carts.CartUtils;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 public class TrackSpeed extends TrackBaseRailcraft {
 
@@ -71,13 +71,21 @@ public class TrackSpeed extends TrackBaseRailcraft {
             return false;
         }
         if (meta.isNorthSouthTrack()) {
-            if ((isTrackHighSpeedCapable(world, x, y, z + 1) || isTrackHighSpeedCapable(world, x, y + 1, z + 1) || isTrackHighSpeedCapable(world, x, y - 1, z + 1))
-                    && (isTrackHighSpeedCapable(world, x, y, z - 1) || isTrackHighSpeedCapable(world, x, y + 1, z - 1) || isTrackHighSpeedCapable(world, x, y - 1, z - 1))) {
+            if ((isTrackHighSpeedCapable(world, x, y, z + 1)
+                            || isTrackHighSpeedCapable(world, x, y + 1, z + 1)
+                            || isTrackHighSpeedCapable(world, x, y - 1, z + 1))
+                    && (isTrackHighSpeedCapable(world, x, y, z - 1)
+                            || isTrackHighSpeedCapable(world, x, y + 1, z - 1)
+                            || isTrackHighSpeedCapable(world, x, y - 1, z - 1))) {
                 return true;
             }
         } else if (meta.isEastWestTrack()) {
-            if ((isTrackHighSpeedCapable(world, x + 1, y, z) || isTrackHighSpeedCapable(world, x + 1, y + 1, z) || isTrackHighSpeedCapable(world, x + 1, y - 1, z))
-                    && (isTrackHighSpeedCapable(world, x - 1, y, z) || isTrackHighSpeedCapable(world, x - 1, y + 1, z) || isTrackHighSpeedCapable(world, x - 1, y - 1, z))) {
+            if ((isTrackHighSpeedCapable(world, x + 1, y, z)
+                            || isTrackHighSpeedCapable(world, x + 1, y + 1, z)
+                            || isTrackHighSpeedCapable(world, x + 1, y - 1, z))
+                    && (isTrackHighSpeedCapable(world, x - 1, y, z)
+                            || isTrackHighSpeedCapable(world, x - 1, y + 1, z)
+                            || isTrackHighSpeedCapable(world, x - 1, y - 1, z))) {
                 return true;
             }
         }

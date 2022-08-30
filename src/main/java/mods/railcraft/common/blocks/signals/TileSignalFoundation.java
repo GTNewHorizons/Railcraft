@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,8 +34,7 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         // Check and fix invalid block ids and metadata
         if (!checkedBlock) {
@@ -47,7 +46,15 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
             }
 
             if (getBlockType() != getSignalType().getBlock()) {
-                Game.log(Level.INFO, "Updating Machine Tile Block: {0} {1}->{2}, [{3}, {4}, {5}]", getClass().getSimpleName(), getBlockType(), getSignalType().getBlock(), xCoord, yCoord, zCoord);
+                Game.log(
+                        Level.INFO,
+                        "Updating Machine Tile Block: {0} {1}->{2}, [{3}, {4}, {5}]",
+                        getClass().getSimpleName(),
+                        getBlockType(),
+                        getSignalType().getBlock(),
+                        xCoord,
+                        yCoord,
+                        zCoord);
                 worldObj.setBlock(xCoord, yCoord, zCoord, getSignalType().getBlock(), getId(), 3);
                 validate();
                 worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
@@ -55,11 +62,24 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
             }
 
             int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-            if (getBlockType() != null && getClass() != ((BlockSignalBase) getBlockType()).getSignalType(meta).getTileClass()) {
-                worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getSignalType().getMeta(), 3);
+            if (getBlockType() != null
+                    && getClass()
+                            != ((BlockSignalBase) getBlockType())
+                                    .getSignalType(meta)
+                                    .getTileClass()) {
+                worldObj.setBlockMetadataWithNotify(
+                        xCoord, yCoord, zCoord, getSignalType().getMeta(), 3);
                 validate();
                 worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
-                Game.log(Level.INFO, "Updating Machine Tile Metadata: {0} {1}->{2}, [{3}, {4}, {5}]", getClass().getSimpleName(), meta, getSignalType().getMeta(), xCoord, yCoord, zCoord);
+                Game.log(
+                        Level.INFO,
+                        "Updating Machine Tile Metadata: {0} {1}->{2}, [{3}, {4}, {5}]",
+                        getClass().getSimpleName(),
+                        meta,
+                        getSignalType().getMeta(),
+                        xCoord,
+                        yCoord,
+                        zCoord);
                 updateContainingBlockInfo();
             }
         }
@@ -77,11 +97,9 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
         return ForgeDirection.VALID_DIRECTIONS;
     }
 
-    public void onBlockPlaced() {
-    }
+    public void onBlockPlaced() {}
 
-    public void onBlockRemoval() {
-    }
+    public void onBlockRemoval() {}
 
     public void setBlockBoundsBasedOnState(IBlockAccess world, int i, int j, int k) {
         RailcraftBlocks.getBlockSignal().setBlockBounds(0, 0, 0, 1, 1, 1);

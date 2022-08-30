@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,12 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
 import mods.railcraft.common.util.misc.Game;
@@ -21,16 +27,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
 public abstract class TileSignalBase extends TileSignalFoundation implements ISignalTile, IAspectProvider {
 
-    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[]{UP, DOWN};
+    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] {UP, DOWN};
     protected static final float BOUNDS = 0.15f;
     private ForgeDirection facing = ForgeDirection.NORTH;
     private int prevLightValue;
@@ -77,7 +76,7 @@ public abstract class TileSignalBase extends TileSignalFoundation implements ISi
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if(Game.isNotHost(worldObj)){
+        if (Game.isNotHost(worldObj)) {
             boolean needsUpdate = false;
             int lightValue = getLightValue();
             if (prevLightValue != lightValue) {
@@ -96,7 +95,7 @@ public abstract class TileSignalBase extends TileSignalFoundation implements ISi
     }
 
     protected boolean isLit() {
-      return isLit(getSignalAspect());
+        return isLit(getSignalAspect());
     }
 
     protected boolean isBlinking() {
@@ -108,7 +107,7 @@ public abstract class TileSignalBase extends TileSignalFoundation implements ISi
         if (isLit()) {
             return 5;
         }
-        if(isBlinking()) {
+        if (isBlinking()) {
             return 3;
         }
         return 0;

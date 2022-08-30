@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -57,13 +57,13 @@ public abstract class CartMaintenancePatternBase extends CartMaintenanceBase imp
             setInventorySlotContents(slotStock, null);
         }
 
-        if (stackReplace == null)
-            return;
+        if (stackReplace == null) return;
 
         stackStock = getStackInSlot(slotStock);
 
         if (stackStock == null)
-            setInventorySlotContents(slotStock, CartTools.transferHelper.pullStack(this, new ArrayStackFilter(stackReplace)));
+            setInventorySlotContents(
+                    slotStock, CartTools.transferHelper.pullStack(this, new ArrayStackFilter(stackReplace)));
     }
 
     @Override

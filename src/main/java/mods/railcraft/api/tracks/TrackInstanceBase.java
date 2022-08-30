@@ -8,6 +8,11 @@
 
 package mods.railcraft.api.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
@@ -22,12 +27,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * All ITrackInstances should extend this class. It contains a number of default
@@ -45,8 +44,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     public TileEntity tileEntity;
 
     private Block getBlock() {
-        if (block == null)
-            block = getWorld().getBlock(getX(), getY(), getZ());
+        if (block == null) block = getWorld().getBlock(getX(), getY(), getZ());
         return block;
     }
 
@@ -73,8 +71,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     @Override
-    public void onMinecartPass(EntityMinecart cart) {
-    }
+    public void onMinecartPass(EntityMinecart cart) {}
 
     @Override
     public boolean blockActivated(EntityPlayer player) {
@@ -103,8 +100,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
 
     @Override
     public void onBlockPlacedBy(EntityLivingBase entityliving) {
-        if (entityliving == null)
-            return;
+        if (entityliving == null) return;
         if (this instanceof ITrackReversable) {
             int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
             ((ITrackReversable) this).setReversed(dir == 0 || dir == 1);
@@ -113,8 +109,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     @Override
-    public void onBlockRemoved() {
-    }
+    public void onBlockRemoved() {}
 
     public void sendUpdateToClient() {
         ((ITrackTile) tileEntity).sendUpdateToClient();
@@ -126,16 +121,11 @@ public abstract class TrackInstanceBase implements ITrackInstance {
 
     protected boolean isRailValid(World world, int x, int y, int z, int meta) {
         boolean valid = true;
-        if (!world.isSideSolid(x, y - 1, z, ForgeDirection.UP))
-            valid = false;
-        if (meta == 2 && !world.isSideSolid(x + 1, y, z, ForgeDirection.UP))
-            valid = false;
-        else if (meta == 3 && !world.isSideSolid(x - 1, y, z, ForgeDirection.UP))
-            valid = false;
-        else if (meta == 4 && !world.isSideSolid(x, y, z - 1, ForgeDirection.UP))
-            valid = false;
-        else if (meta == 5 && !world.isSideSolid(x, y, z + 1, ForgeDirection.UP))
-            valid = false;
+        if (!world.isSideSolid(x, y - 1, z, ForgeDirection.UP)) valid = false;
+        if (meta == 2 && !world.isSideSolid(x + 1, y, z, ForgeDirection.UP)) valid = false;
+        else if (meta == 3 && !world.isSideSolid(x - 1, y, z, ForgeDirection.UP)) valid = false;
+        else if (meta == 4 && !world.isSideSolid(x, y, z - 1, ForgeDirection.UP)) valid = false;
+        else if (meta == 5 && !world.isSideSolid(x, y, z + 1, ForgeDirection.UP)) valid = false;
         return valid;
     }
 
@@ -150,9 +140,11 @@ public abstract class TrackInstanceBase implements ITrackInstance {
             return;
         }
 
-        if (blockChanged != null && blockChanged.canProvidePower()
-                && isFlexibleRail() && RailTools.countAdjecentTracks(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord) == 3)
-            switchTrack(false);
+        if (blockChanged != null
+                && blockChanged.canProvidePower()
+                && isFlexibleRail()
+                && RailTools.countAdjecentTracks(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord)
+                        == 3) switchTrack(false);
         testPower();
     }
 
@@ -161,18 +153,19 @@ public abstract class TrackInstanceBase implements ITrackInstance {
         int y = tileEntity.yCoord;
         int z = tileEntity.zCoord;
         BlockRailBase blockTrack = (BlockRailBase) getBlock();
-        blockTrack.new Rail(getWorld(), x, y, z).func_150655_a(getWorld().isBlockIndirectlyGettingPowered(x, y, z), flag);
+        blockTrack.new Rail(getWorld(), x, y, z)
+                .func_150655_a(getWorld().isBlockIndirectlyGettingPowered(x, y, z), flag);
     }
 
     protected void testPower() {
-        if (!(this instanceof ITrackPowered))
-            return;
+        if (!(this instanceof ITrackPowered)) return;
         int i = tileEntity.xCoord;
         int j = tileEntity.yCoord;
         int k = tileEntity.zCoord;
         ITrackPowered r = (ITrackPowered) this;
         int meta = tileEntity.getBlockMetadata();
-        boolean powered = getWorld().isBlockIndirectlyGettingPowered(i, j, k) || testPowerPropagation(getWorld(), i, j, k, getTrackSpec(), meta, r.getPowerPropagation());
+        boolean powered = getWorld().isBlockIndirectlyGettingPowered(i, j, k)
+                || testPowerPropagation(getWorld(), i, j, k, getTrackSpec(), meta, r.getPowerPropagation());
         if (powered != r.isPowered()) {
             r.setPowered(powered);
             Block blockTrack = getBlock();
@@ -186,31 +179,27 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     protected boolean testPowerPropagation(World world, int i, int j, int k, TrackSpec spec, int meta, int maxDist) {
-        return isConnectedRailPowered(world, i, j, k, spec, meta, true, 0, maxDist) || isConnectedRailPowered(world, i, j, k, spec, meta, false, 0, maxDist);
+        return isConnectedRailPowered(world, i, j, k, spec, meta, true, 0, maxDist)
+                || isConnectedRailPowered(world, i, j, k, spec, meta, false, 0, maxDist);
     }
 
-    protected boolean isConnectedRailPowered(World world, int i, int j, int k, TrackSpec spec, int meta, boolean dir, int dist, int maxDist) {
-        if (dist >= maxDist)
-            return false;
+    protected boolean isConnectedRailPowered(
+            World world, int i, int j, int k, TrackSpec spec, int meta, boolean dir, int dist, int maxDist) {
+        if (dist >= maxDist) return false;
         boolean powered = true;
         switch (meta) {
             case 0: // '\0'
-                if (dir)
-                    k++;
-                else
-                    k--;
+                if (dir) k++;
+                else k--;
                 break;
 
             case 1: // '\001'
-                if (dir)
-                    i--;
-                else
-                    i++;
+                if (dir) i--;
+                else i++;
                 break;
 
             case 2: // '\002'
-                if (dir)
-                    i--;
+                if (dir) i--;
                 else {
                     i++;
                     j++;
@@ -224,14 +213,12 @@ public abstract class TrackInstanceBase implements ITrackInstance {
                     i--;
                     j++;
                     powered = false;
-                } else
-                    i++;
+                } else i++;
                 meta = 1;
                 break;
 
             case 4: // '\004'
-                if (dir)
-                    k++;
+                if (dir) k++;
                 else {
                     k--;
                     j++;
@@ -245,17 +232,16 @@ public abstract class TrackInstanceBase implements ITrackInstance {
                     k++;
                     j++;
                     powered = false;
-                } else
-                    k--;
+                } else k--;
                 meta = 0;
                 break;
         }
-        if (testPowered(world, i, j, k, spec, dir, dist, maxDist, meta))
-            return true;
+        if (testPowered(world, i, j, k, spec, dir, dist, maxDist, meta)) return true;
         return powered && testPowered(world, i, j - 1, k, spec, dir, dist, maxDist, meta);
     }
 
-    protected boolean testPowered(World world, int i, int j, int k, TrackSpec spec, boolean dir, int dist, int maxDist, int orientation) {
+    protected boolean testPowered(
+            World world, int i, int j, int k, TrackSpec spec, boolean dir, int dist, int maxDist, int orientation) {
         // System.out.println("Testing Power at <" + i + ", " + j + ", " + k + ">");
         Block blockToTest = world.getBlock(i, j, k);
         Block blockTrack = getBlock();
@@ -266,15 +252,12 @@ public abstract class TrackInstanceBase implements ITrackInstance {
                 ITrackInstance track = ((ITrackTile) tile).getTrackInstance();
                 if (!(track instanceof ITrackPowered) || track.getTrackSpec() != spec || !canPropagatePowerTo(track))
                     return false;
-                if (orientation == 1 && (meta == 0 || meta == 4 || meta == 5))
-                    return false;
-                if (orientation == 0 && (meta == 1 || meta == 2 || meta == 3))
-                    return false;
+                if (orientation == 1 && (meta == 0 || meta == 4 || meta == 5)) return false;
+                if (orientation == 0 && (meta == 1 || meta == 2 || meta == 3)) return false;
                 if (((ITrackPowered) track).isPowered())
-                    if (world.isBlockIndirectlyGettingPowered(i, j, k) || world.isBlockIndirectlyGettingPowered(i, j + 1, k))
-                        return true;
-                    else
-                        return isConnectedRailPowered(world, i, j, k, spec, meta, dir, dist + 1, maxDist);
+                    if (world.isBlockIndirectlyGettingPowered(i, j, k)
+                            || world.isBlockIndirectlyGettingPowered(i, j + 1, k)) return true;
+                    else return isConnectedRailPowered(world, i, j, k, spec, meta, dir, dist + 1, maxDist);
             }
         }
         return false;
@@ -291,12 +274,10 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound data) {
-    }
+    public void writeToNBT(NBTTagCompound data) {}
 
     @Override
-    public void readFromNBT(NBTTagCompound data) {
-    }
+    public void readFromNBT(NBTTagCompound data) {}
 
     @Override
     public boolean canUpdate() {
@@ -304,8 +285,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     @Override
-    public void updateEntity() {
-    }
+    public void updateEntity() {}
 
     @Override
     public float getHardness() {
@@ -318,12 +298,10 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     @Override
-    public void writePacketData(DataOutputStream data) throws IOException {
-    }
+    public void writePacketData(DataOutputStream data) throws IOException {}
 
     @Override
-    public void readPacketData(DataInputStream data) throws IOException {
-    }
+    public void readPacketData(DataInputStream data) throws IOException {}
 
     @Override
     public World getWorld() {
@@ -376,5 +354,4 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     public float getRailMaxSpeed(EntityMinecart cart) {
         return 0.4f;
     }
-
 }

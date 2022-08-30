@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -45,109 +45,154 @@ public class ModuleAutomation extends RailcraftModule {
         Block blockDetector = BlockDetector.getBlock();
 
         if (blockDetector != null) {
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.ITEM.ordinal()),
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.ITEM.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "plankWood",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.ANY.ordinal()),
+                    'X',
+                    "plankWood",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.ANY.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "stone",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.EMPTY.ordinal()),
+                    'X',
+                    "stone",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.EMPTY.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.stonebrick, 1, 0),
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.MOB.ordinal()),
+                    'X',
+                    new ItemStack(Blocks.stonebrick, 1, 0),
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.MOB.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.stonebrick, 1, 1),
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.MOB.ordinal()),
+                    'X',
+                    new ItemStack(Blocks.stonebrick, 1, 1),
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.MOB.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', Blocks.mossy_cobblestone,
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.POWERED.ordinal()),
+                    'X',
+                    Blocks.mossy_cobblestone,
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.POWERED.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "cobblestone",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.PLAYER.ordinal()),
+                    'X',
+                    "cobblestone",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.PLAYER.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.stone_slab, 1, 0),
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.EXPLOSIVE.ordinal()),
+                    'X',
+                    new ItemStack(Blocks.stone_slab, 1, 0),
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.EXPLOSIVE.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "slabWood",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.ANIMAL.ordinal()),
+                    'X',
+                    "slabWood",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.ANIMAL.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.log, 1, 0),
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.AGE.ordinal()),
+                    'X',
+                    new ItemStack(Blocks.log, 1, 0),
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.AGE.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', new ItemStack(Blocks.log, 1, 1),
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.ADVANCED.ordinal()),
+                    'X',
+                    new ItemStack(Blocks.log, 1, 1),
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.ADVANCED.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "ingotSteel",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.TANK.ordinal()),
+                    'X',
+                    "ingotSteel",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.TANK.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', "ingotBrick",
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.SHEEP.ordinal()),
+                    'X',
+                    "ingotBrick",
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.SHEEP.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', Blocks.wool,
-                    'P', Blocks.stone_pressure_plate);
-            CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.VILLAGER.ordinal()),
+                    'X',
+                    Blocks.wool,
+                    'P',
+                    Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(blockDetector, 1, EnumDetector.VILLAGER.ordinal()),
                     "XXX",
                     "XPX",
                     "XXX",
-                    'X', Items.leather,
-                    'P', Blocks.stone_pressure_plate);
+                    'X',
+                    Items.leather,
+                    'P',
+                    Blocks.stone_pressure_plate);
         }
 
         EnumMachineGamma gamma = EnumMachineGamma.DISPENSER_CART;
         if (gamma.register())
-            CraftingPlugin.addShapedRecipe(gamma.getItem(),
-                    "ML",
-                    'M', Items.minecart,
-                    'L', Blocks.dispenser);
+            CraftingPlugin.addShapedRecipe(gamma.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
 
         EnumMachineAlpha alpha = EnumMachineAlpha.FEED_STATION;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem();
-            CraftingPlugin.addShapedRecipe(stack,
+            CraftingPlugin.addShapedRecipe(
+                    stack,
                     "PCP",
                     "CSC",
                     "PCP",
-                    'P', "plankWood",
-                    'S', ModuleManager.isModuleLoaded(ModuleManager.Module.FACTORY) ? RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL) : "blockIron",
-                    'C', new ItemStack(Items.golden_carrot));
+                    'P',
+                    "plankWood",
+                    'S',
+                    ModuleManager.isModuleLoaded(ModuleManager.Module.FACTORY)
+                            ? RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL)
+                            : "blockIron",
+                    'C',
+                    new ItemStack(Items.golden_carrot));
 
             MinecraftForge.EVENT_BUS.register(new TamingInteractHandler());
         }
@@ -155,118 +200,146 @@ public class ModuleAutomation extends RailcraftModule {
         alpha = EnumMachineAlpha.TRADE_STATION;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem();
-            CraftingPlugin.addShapedRecipe(stack,
+            CraftingPlugin.addShapedRecipe(
+                    stack,
                     "SGS",
                     "EDE",
                     "SGS",
-                    'D', new ItemStack(Blocks.dispenser),
-                    'G', "paneGlass",
-                    'E', "gemEmerald",
-                    'S', ModuleManager.isModuleLoaded(ModuleManager.Module.FACTORY) ? RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL) : "blockIron");
+                    'D',
+                    new ItemStack(Blocks.dispenser),
+                    'G',
+                    "paneGlass",
+                    'E',
+                    "gemEmerald",
+                    'S',
+                    ModuleManager.isModuleLoaded(ModuleManager.Module.FACTORY)
+                            ? RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL)
+                            : "blockIron");
         }
 
         // Define Bore
         EnumCart cart = EnumCart.BORE;
         if (cart.setup()) {
-            CraftingPlugin.addShapedRecipe(cart.getCartItem(),
+            CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
                     "ICI",
                     "FCF",
                     " S ",
-                    'I', "blockSteel",
-                    'S', Items.chest_minecart,
-                    'F', Blocks.furnace,
-                    'C', Items.minecart);
+                    'I',
+                    "blockSteel",
+                    'S',
+                    Items.chest_minecart,
+                    'F',
+                    Blocks.furnace,
+                    'C',
+                    Items.minecart);
 
             String tag = "tool.bore.head.diamond";
             if (RailcraftConfig.isItemEnabled(tag)) {
                 Item item = new ItemBoreHeadDiamond();
                 RailcraftRegistry.register(item);
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
-                        "III",
-                        "IDI",
-                        "III",
-                        'I', "ingotSteel",
-                        'D', "blockDiamond");
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockDiamond");
             }
 
             tag = "tool.bore.head.steel";
             if (RailcraftConfig.isItemEnabled(tag)) {
                 Item item = new ItemBoreHeadSteel();
                 RailcraftRegistry.register(item);
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
-                        "III",
-                        "IDI",
-                        "III",
-                        'I', "ingotSteel",
-                        'D', "blockSteel");
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockSteel");
             }
 
             tag = "tool.bore.head.iron";
             if (RailcraftConfig.isItemEnabled(tag)) {
                 Item item = new ItemBoreHeadIron();
                 RailcraftRegistry.register(item);
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
-                        "III",
-                        "IDI",
-                        "III",
-                        'I', "ingotSteel",
-                        'D', "blockIron");
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockIron");
             }
         }
 
         // Define Track Relayer Cart
         cart = EnumCart.TRACK_RELAYER;
         if (cart.setup())
-            CraftingPlugin.addShapedRecipe(cart.getCartItem(),
+            CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
                     "YLY",
                     "RSR",
                     "DMD",
-                    'L', new ItemStack(Blocks.redstone_lamp),
-                    'Y', "dyeYellow",
-                    'R', new ItemStack(Items.blaze_rod),
-                    'D', new ItemStack(Items.diamond_pickaxe),
-                    'S', "blockSteel",
-                    'M', new ItemStack(Items.minecart));
+                    'L',
+                    new ItemStack(Blocks.redstone_lamp),
+                    'Y',
+                    "dyeYellow",
+                    'R',
+                    new ItemStack(Items.blaze_rod),
+                    'D',
+                    new ItemStack(Items.diamond_pickaxe),
+                    'S',
+                    "blockSteel",
+                    'M',
+                    new ItemStack(Items.minecart));
 
         // Define Undercutter Cart
         cart = EnumCart.UNDERCUTTER;
         if (cart.setup())
-            CraftingPlugin.addShapedRecipe(cart.getCartItem(),
+            CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
                     "YLY",
                     "RSR",
                     "DMD",
-                    'L', new ItemStack(Blocks.redstone_lamp),
-                    'Y', "dyeYellow",
-                    'R', new ItemStack(Blocks.piston),
-                    'D', new ItemStack(Items.diamond_shovel),
-                    'S', "blockSteel",
-                    'M', new ItemStack(Items.minecart));
+                    'L',
+                    new ItemStack(Blocks.redstone_lamp),
+                    'Y',
+                    "dyeYellow",
+                    'R',
+                    new ItemStack(Blocks.piston),
+                    'D',
+                    new ItemStack(Items.diamond_shovel),
+                    'S',
+                    "blockSteel",
+                    'M',
+                    new ItemStack(Items.minecart));
 
         cart = EnumCart.TRACK_LAYER;
         if (cart.setup())
-            CraftingPlugin.addShapedRecipe(cart.getCartItem(),
+            CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
                     "YLY",
                     "ESE",
                     "DMD",
-                    'Y', "dyeYellow",
-                    'L', new ItemStack(Blocks.redstone_lamp),
-                    'E', new ItemStack(Blocks.anvil),
-                    'S', "blockSteel",
-                    'D', new ItemStack(Blocks.dispenser),
-                    'M', new ItemStack(Items.minecart));
+                    'Y',
+                    "dyeYellow",
+                    'L',
+                    new ItemStack(Blocks.redstone_lamp),
+                    'E',
+                    new ItemStack(Blocks.anvil),
+                    'S',
+                    "blockSteel",
+                    'D',
+                    new ItemStack(Blocks.dispenser),
+                    'M',
+                    new ItemStack(Items.minecart));
 
         cart = EnumCart.TRACK_REMOVER;
         if (cart.setup())
-            CraftingPlugin.addShapedRecipe(cart.getCartItem(),
+            CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
                     "YLY",
                     "PSP",
                     "CMC",
-                    'Y', "dyeYellow",
-                    'L', new ItemStack(Blocks.redstone_lamp),
-                    'P', new ItemStack(Blocks.sticky_piston),
-                    'S', "blockSteel",
-                    'C', ItemCrowbarReinforced.getItem(),
-                    'M', new ItemStack(Items.minecart));
+                    'Y',
+                    "dyeYellow",
+                    'L',
+                    new ItemStack(Blocks.redstone_lamp),
+                    'P',
+                    new ItemStack(Blocks.sticky_piston),
+                    'S',
+                    "blockSteel",
+                    'C',
+                    ItemCrowbarReinforced.getItem(),
+                    'M',
+                    new ItemStack(Items.minecart));
     }
 
     @Override
@@ -275,11 +348,14 @@ public class ModuleAutomation extends RailcraftModule {
 
         if (blockDetector != null)
             if (EnumBrick.INFERNAL.getBlock() != null)
-                CraftingPlugin.addShapedRecipe(new ItemStack(blockDetector, 1, EnumDetector.LOCOMOTIVE.ordinal()),
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(blockDetector, 1, EnumDetector.LOCOMOTIVE.ordinal()),
                         "XXX",
                         "XPX",
                         "XXX",
-                        'X', EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
-                        'P', Blocks.stone_pressure_plate);
+                        'X',
+                        EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
+                        'P',
+                        Blocks.stone_pressure_plate);
     }
 }

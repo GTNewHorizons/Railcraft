@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,20 +8,27 @@
  */
 package mods.railcraft.common.fluids;
 
+import java.util.Locale;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.Locale;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum Fluids {
-
-    WATER, LAVA, FUEL, BIOFUEL, CREOSOTE, STEAM, BIOETHANOL, COAL, PYROTHEUM, FRESHWATER;
+    WATER,
+    LAVA,
+    FUEL,
+    BIOFUEL,
+    CREOSOTE,
+    STEAM,
+    BIOETHANOL,
+    COAL,
+    PYROTHEUM,
+    FRESHWATER;
     private final String tag;
 
     private Fluids() {
@@ -29,8 +36,7 @@ public enum Fluids {
     }
 
     public static boolean areEqual(Fluid fluid, FluidStack fluidStack) {
-        if (fluidStack != null && fluid == fluidStack.getFluid())
-            return true;
+        if (fluidStack != null && fluid == fluidStack.getFluid()) return true;
         return fluid == null && fluidStack == null;
     }
 
@@ -73,5 +79,4 @@ public enum Fluids {
     public boolean isContained(ItemStack containerStack) {
         return containerStack != null && FluidItemHelper.containsFluid(containerStack, get());
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,11 +9,11 @@
 package mods.railcraft.common.blocks.detector;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class ItemDetector extends ItemBlock {
@@ -58,9 +58,19 @@ public class ItemDetector extends ItemBlock {
      * @return
      */
     @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-        if (!world.setBlock(x, y, z, blockDetector, metadata, 3))
-            return false;
+    public boolean placeBlockAt(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ,
+            int metadata) {
+        if (!world.setBlock(x, y, z, blockDetector, metadata, 3)) return false;
 
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileDetector)
@@ -73,5 +83,4 @@ public class ItemDetector extends ItemBlock {
 
         return true;
     }
-
 }

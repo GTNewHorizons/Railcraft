@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,18 +9,12 @@
 package mods.railcraft.common.blocks.machine.epsilon;
 
 import buildcraft.api.statements.IActionExternal;
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyHandler;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -36,23 +30,33 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEngravingBench extends TileMachineItem implements IEnergyHandler, ISidedInventory, IHasWork, IGuiReturnHandler {
+public class TileEngravingBench extends TileMachineItem
+        implements IEnergyHandler, ISidedInventory, IHasWork, IGuiReturnHandler {
 
     public static enum GuiPacketType {
-
-        START_CRAFTING, NORMAL_RETURN, OPEN_UNLOCK, OPEN_NORMAL, UNLOCK_EMBLEM
+        START_CRAFTING,
+        NORMAL_RETURN,
+        OPEN_UNLOCK,
+        OPEN_NORMAL,
+        UNLOCK_EMBLEM
     };
-    private final static int PROCESS_TIME = 100;
-    private final static int ACTIVATION_POWER = 50;
-    private final static int MAX_RECEIVE = 1000;
-    private final static int MAX_ENERGY = ACTIVATION_POWER * (PROCESS_TIME + (PROCESS_TIME / 2));
-    private final static int SLOT_INPUT = 0;
-    private final static int SLOT_RESULT = 1;
+
+    private static final int PROCESS_TIME = 100;
+    private static final int ACTIVATION_POWER = 50;
+    private static final int MAX_RECEIVE = 1000;
+    private static final int MAX_ENERGY = ACTIVATION_POWER * (PROCESS_TIME + (PROCESS_TIME / 2));
+    private static final int SLOT_INPUT = 0;
+    private static final int SLOT_RESULT = 1;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 2);
     private final IInventory invResult = new InventoryMapper(this, SLOT_RESULT, 1, false);
     private EnergyStorage energyStorage;
@@ -63,8 +67,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
 
     public TileEngravingBench() {
         super(2);
-        if (RailcraftConfig.machinesRequirePower())
-            energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE);
+        if (RailcraftConfig.machinesRequirePower()) energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE);
     }
 
     @Override
@@ -75,8 +78,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
     @Override
     public IIcon getIcon(int side) {
         if (side == ForgeDirection.UP.ordinal()) {
-            if (flippedAxis)
-                return getMachineType().getTexture(6);
+            if (flippedAxis) return getMachineType().getTexture(6);
             return getMachineType().getTexture(1);
         }
         return getMachineType().getTexture(side);
@@ -91,8 +93,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
         data.setInteger("progress", progress);
         data.setString("currentEmblem", currentEmblem);
 
-        if (energyStorage != null)
-            energyStorage.writeToNBT(data);
+        if (energyStorage != null) energyStorage.writeToNBT(data);
     }
 
     @Override
@@ -104,8 +105,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
         progress = data.getInteger("progress");
         currentEmblem = data.getString("currentEmblem");
 
-        if (energyStorage != null)
-            energyStorage.readFromNBT(data);
+        if (energyStorage != null) energyStorage.readFromNBT(data);
     }
 
     @Override
@@ -122,8 +122,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
     }
 
     @Override
-    public void writeGuiData(DataOutputStream data) throws IOException {
-    }
+    public void writeGuiData(DataOutputStream data) throws IOException {}
 
     @Override
     public void readGuiData(DataInputStream data, EntityPlayer sender) throws IOException {
@@ -152,8 +151,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
 
     @Override
     public boolean openGui(EntityPlayer player) {
-        if (player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) > 64D)
-            return false;
+        if (player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) > 64D) return false;
         GuiHandler.openGui(EnumGui.ENGRAVING_BENCH, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
@@ -179,22 +177,18 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
-        if (clock % 16 == 0)
-            processActions();
+        if (clock % 16 == 0) processActions();
 
-        if (paused)
-            return;
+        if (paused) return;
 
         if (startCrafting) {
             startCrafting = false;
             isCrafting = true;
         }
 
-        if (getStackInSlot(SLOT_RESULT) != null)
-            isCrafting = false;
+        if (getStackInSlot(SLOT_RESULT) != null) isCrafting = false;
 
         if (!isCrafting) {
             progress = 0;
@@ -202,8 +196,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
         }
 
         ItemStack emblem = makeEmblem();
-        if (emblem == null)
-            return;
+        if (emblem == null) return;
 
         if (!isItemValidForSlot(SLOT_INPUT, getStackInSlot(SLOT_INPUT))) {
             progress = 0;
@@ -223,13 +216,11 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
                 progress++;
                 energyStorage.extractEnergy(ACTIVATION_POWER, false);
             }
-        } else
-            progress++;
+        } else progress++;
     }
 
     private ItemStack makeEmblem() {
-        if (currentEmblem == null || currentEmblem.isEmpty() || EmblemToolsServer.manager == null)
-            return null;
+        if (currentEmblem == null || currentEmblem.isEmpty() || EmblemToolsServer.manager == null) return null;
         return EmblemToolsServer.manager.getEmblemItemStack(currentEmblem);
     }
 
@@ -245,8 +236,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
     private void processActions() {
         paused = false;
         for (IActionExternal action : actions) {
-            if (action == Actions.PAUSE)
-                paused = true;
+            if (action == Actions.PAUSE) paused = true;
         }
         actions.clear();
     }
@@ -273,25 +263,20 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (slot == SLOT_RESULT)
-            return false;
-        if (stack == null)
-            return false;
-        if (stack.stackSize <= 0)
-            return false;
-        if (OreDictPlugin.isOreType("ingotSteel", stack))
-            return true;
-        if (OreDictPlugin.isOreType("ingotBronze", stack))
-            return true;
+        if (slot == SLOT_RESULT) return false;
+        if (stack == null) return false;
+        if (stack.stackSize <= 0) return false;
+        if (OreDictPlugin.isOreType("ingotSteel", stack)) return true;
+        if (OreDictPlugin.isOreType("ingotBronze", stack)) return true;
         return Items.gold_ingot == stack.getItem();
     }
 
     @Override
     public void onBlockPlacedBy(EntityLivingBase entityliving, ItemStack stack) {
         super.onBlockPlacedBy(entityliving, stack);
-        ForgeDirection facing = MiscTools.getHorizontalSideClosestToPlayer(worldObj, xCoord, yCoord, zCoord, entityliving);
-        if (facing == ForgeDirection.EAST || facing == ForgeDirection.WEST)
-            flippedAxis = true;
+        ForgeDirection facing =
+                MiscTools.getHorizontalSideClosestToPlayer(worldObj, xCoord, yCoord, zCoord, entityliving);
+        if (facing == ForgeDirection.EAST || facing == ForgeDirection.WEST) flippedAxis = true;
     }
 
     @Override
@@ -312,8 +297,7 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
 
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.receiveEnergy(maxReceive, simulate);
     }
 
@@ -324,16 +308,13 @@ public class TileEngravingBench extends TileMachineItem implements IEnergyHandle
 
     @Override
     public int getEnergyStored(ForgeDirection from) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(ForgeDirection from) {
-        if (energyStorage == null)
-            return 0;
+        if (energyStorage == null) return 0;
         return energyStorage.getMaxEnergyStored();
     }
-
 }

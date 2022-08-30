@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -70,10 +70,8 @@ public class SlotRailcraft extends Slot {
 
     @Override
     public int getSlotStackLimit() {
-        if (stackLimit < 0)
-            return super.getSlotStackLimit();
-        else
-            return stackLimit;
+        if (stackLimit < 0) return super.getSlotStackLimit();
+        else return stackLimit;
     }
 
     public boolean isPhantom() {
@@ -92,5 +90,4 @@ public class SlotRailcraft extends Slot {
     public boolean canShift() {
         return canShift;
     }
-
 }

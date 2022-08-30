@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,9 @@ package mods.railcraft.common.blocks.machine.beta;
 
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.energy.IEnergyConnection;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
@@ -21,10 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -41,8 +40,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     //    public int outputDebug, genDebug, cycleTick;
     private EnergyStage energyStage = EnergyStage.BLUE;
 
-    public TileEngine() {
-    }
+    public TileEngine() {}
 
     public float getCurrentOutput() {
         return currentOutput;
@@ -52,11 +50,9 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
         return energy;
     }
 
-    protected void playSoundIn() {
-    }
+    protected void playSoundIn() {}
 
-    protected void playSoundOut() {
-    }
+    protected void playSoundOut() {}
 
     @Override
     public void updateEntity() {
@@ -72,8 +68,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
                     pistonProgress = 0;
                     playSoundIn();
                 }
-            } else if (this.isActive)
-                pistonStage = 1;
+            } else if (this.isActive) pistonStage = 1;
 
             return;
         }
@@ -83,12 +78,9 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
             checkPower();
         }
 
-        if (!powered)
-            if (energy > 1)
-                energy--;
+        if (!powered) if (energy > 1) energy--;
 
-        if (getEnergyStage() == EnergyStage.OVERHEAT)
-            overheat();
+        if (getEnergyStage() == EnergyStage.OVERHEAT) overheat();
         else if (pistonStage != 0) {
             pistonProgress += getPistonSpeed();
 
@@ -103,10 +95,11 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
             } else if (pistonProgress >= 1) {
                 pistonProgress = 0;
                 pistonStage = 0;
-//                ChatPlugin.sendLocalizedChatToAllFromServer(worldObj, "Ticks=%d, Gen=%d, Out=%d", clock - cycleTick, genDebug, outputDebug);
-//                outputDebug = 0;
-//                genDebug = 0;
-//                cycleTick = clock;
+                //                ChatPlugin.sendLocalizedChatToAllFromServer(worldObj, "Ticks=%d, Gen=%d, Out=%d",
+                // clock - cycleTick, genDebug, outputDebug);
+                //                outputDebug = 0;
+                //                genDebug = 0;
+                //                cycleTick = clock;
             }
         } else if (powered) {
             TileEntity tile = tileCache.getTileOnSide(direction);
@@ -115,12 +108,9 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
                 if (energy > 0) {
                     pistonStage = 1;
                     setActive(true);
-                } else
-                    setActive(false);
-            else
-                setActive(false);
-        } else
-            setActive(false);
+                } else setActive(false);
+            else setActive(false);
+        } else setActive(false);
 
         burn();
     }
@@ -143,8 +133,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     }
 
     public double getPistonSpeed() {
-        if (Game.isHost(worldObj))
-            return Math.max(0.16 * getEnergyLevel(), 0.01);
+        if (Game.isHost(worldObj)) return Math.max(0.16 * getEnergyLevel(), 0.01);
         switch (getEnergyStage()) {
             case BLUE:
                 return 0.01;
@@ -179,8 +168,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (getEnergyStage() == EnergyStage.OVERHEAT)
-            return false;
+        if (getEnergyStage() == EnergyStage.OVERHEAT) return false;
         return switchOrientation();
     }
 
@@ -194,8 +182,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         checkPower();
     }
 
@@ -226,8 +213,7 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
                 direction = dir;
                 notifyBlocksOfNeighborChange();
                 sendUpdateToClient();
-                if (Game.isNotHost(worldObj))
-                    markBlockForUpdate();
+                if (Game.isNotHost(worldObj)) markBlockForUpdate();
                 return true;
             }
         }
@@ -249,24 +235,17 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
 
     protected EnergyStage computeEnergyStage() {
         double energyLevel = getEnergyLevel();
-        if (energyLevel < 0.2)
-            return EnergyStage.BLUE;
-        else if (energyLevel < 0.4)
-            return EnergyStage.GREEN;
-        else if (energyLevel < 0.6)
-            return EnergyStage.YELLOW;
-        else if (energyLevel < 0.8)
-            return EnergyStage.ORANGE;
-        else if (energyLevel < 1)
-            return EnergyStage.RED;
-        else
-            return EnergyStage.OVERHEAT;
+        if (energyLevel < 0.2) return EnergyStage.BLUE;
+        else if (energyLevel < 0.4) return EnergyStage.GREEN;
+        else if (energyLevel < 0.6) return EnergyStage.YELLOW;
+        else if (energyLevel < 0.8) return EnergyStage.ORANGE;
+        else if (energyLevel < 1) return EnergyStage.RED;
+        else return EnergyStage.OVERHEAT;
     }
 
     public final EnergyStage getEnergyStage() {
         if (Game.isHost(worldObj)) {
-            if (energyStage == EnergyStage.OVERHEAT)
-                return energyStage;
+            if (energyStage == EnergyStage.OVERHEAT) return energyStage;
             EnergyStage newStage = computeEnergyStage();
 
             if (energyStage != newStage) {
@@ -289,21 +268,17 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
 
     public void addEnergy(int addition) {
         energy += addition;
-//        genDebug += addition;
+        //        genDebug += addition;
 
-        if (energy > maxEnergy())
-            energy = maxEnergy();
-        if (energy < 0)
-            energy = 0;
+        if (energy > maxEnergy()) energy = maxEnergy();
+        if (energy < 0) energy = 0;
     }
 
     public void subtractEnergy(int subtraction) {
         energy -= subtraction;
 
-        if (energy > maxEnergy())
-            energy = maxEnergy();
-        if (energy < 0)
-            energy = 0;
+        if (energy > maxEnergy()) energy = maxEnergy();
+        if (energy < 0) energy = 0;
     }
 
     public int extractEnergy() {
@@ -318,31 +293,31 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     }
 
     //    public int extractEnergy(int min, int max, boolean doExtract) {
-//        if (energy < min)
-//            return 0;
-//
-//        int actualMax;
-//
-//        int engineMax = maxEnergyExtracted();// + extraEnergy * 0.5;
-//        if (max > engineMax)
-//            actualMax = engineMax;
-//        else
-//            actualMax = max;
-//
-//        int extracted;
-//
-//        if (energy >= actualMax) {
-//            extracted = actualMax;
-//            if (doExtract)
-//                energy -= actualMax; //extraEnergy -= Math.min(actualMax, extraEnergy);
-//        } else {
-//            extracted = energy;
-//            if (doExtract)
-//                energy = 0; //extraEnergy = 0;
-//        }
-//
-//        return extracted;
-//    }
+    //        if (energy < min)
+    //            return 0;
+    //
+    //        int actualMax;
+    //
+    //        int engineMax = maxEnergyExtracted();// + extraEnergy * 0.5;
+    //        if (max > engineMax)
+    //            actualMax = engineMax;
+    //        else
+    //            actualMax = max;
+    //
+    //        int extracted;
+    //
+    //        if (energy >= actualMax) {
+    //            extracted = actualMax;
+    //            if (doExtract)
+    //                energy -= actualMax; //extraEnergy -= Math.min(actualMax, extraEnergy);
+    //        } else {
+    //            extracted = energy;
+    //            if (doExtract)
+    //                energy = 0; //extraEnergy = 0;
+    //        }
+    //
+    //        return extracted;
+    //    }
     public float getProgress() {
         return pistonProgress;
     }
@@ -399,15 +374,17 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     }
 
     public enum EnergyStage {
-
-        BLUE, GREEN, YELLOW, ORANGE, RED, OVERHEAT;
+        BLUE,
+        GREEN,
+        YELLOW,
+        ORANGE,
+        RED,
+        OVERHEAT;
         public static final EnergyStage[] VALUES = values();
 
         public static EnergyStage fromOrdinal(int ordinal) {
-            if (ordinal < 0 || ordinal >= VALUES.length)
-                return BLUE;
+            if (ordinal < 0 || ordinal >= VALUES.length) return BLUE;
             return VALUES[ordinal];
         }
-
     }
 }

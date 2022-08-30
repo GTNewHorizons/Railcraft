@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.core;
 
+import java.io.File;
+import java.util.*;
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -44,9 +46,6 @@ import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import org.apache.logging.log4j.Level;
-
-import java.io.File;
-import java.util.*;
 
 public class RailcraftConfig {
     public static final ItemMap<Float> anchorFuelWorld = new ItemMap<Float>();
@@ -168,14 +167,11 @@ public class RailcraftConfig {
         loadFluids();
         loadEnchantment();
 
-        if (configMain.hasChanged())
-            configMain.save();
+        if (configMain.hasChanged()) configMain.save();
 
-        if (configBlock.hasChanged())
-            configBlock.save();
+        if (configBlock.hasChanged()) configBlock.save();
 
-        if (configItems.hasChanged())
-            configItems.save();
+        if (configItems.hasChanged()) configItems.save();
 
         Locale.setDefault(locale);
     }
@@ -183,10 +179,25 @@ public class RailcraftConfig {
     public static void postInit() {
         Game.log(Level.TRACE, "Railcraft Config: Doing post init configuration");
 
-        anchorFuelWorld.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(anchorFuelWorldString, "Adding World Anchor Fuel = {0}", BlockItemListParser.ParseType.ITEM, BlockItemListParser.ValueType.FLOAT));
-        anchorFuelPersonal.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(anchorFuelPersonalString, "Adding Personal Anchor Fuel = {0}", BlockItemListParser.ParseType.ITEM, BlockItemListParser.ValueType.FLOAT));
-        anchorFuelPassive.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(anchorFuelPassiveString, "Adding Passive Anchor Fuel = {0}", BlockItemListParser.ParseType.ITEM, BlockItemListParser.ValueType.FLOAT));
-        EntityTunnelBore.mineableBlocks.addAll(BlockItemListParser.<BlockKey>parseList(boreMineableBlocksString, "Tunnel Bore: Adding block to mineable list: {0}", BlockItemListParser.ParseType.BLOCK));
+        anchorFuelWorld.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
+                anchorFuelWorldString,
+                "Adding World Anchor Fuel = {0}",
+                BlockItemListParser.ParseType.ITEM,
+                BlockItemListParser.ValueType.FLOAT));
+        anchorFuelPersonal.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
+                anchorFuelPersonalString,
+                "Adding Personal Anchor Fuel = {0}",
+                BlockItemListParser.ParseType.ITEM,
+                BlockItemListParser.ValueType.FLOAT));
+        anchorFuelPassive.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
+                anchorFuelPassiveString,
+                "Adding Passive Anchor Fuel = {0}",
+                BlockItemListParser.ParseType.ITEM,
+                BlockItemListParser.ValueType.FLOAT));
+        EntityTunnelBore.mineableBlocks.addAll(BlockItemListParser.<BlockKey>parseList(
+                boreMineableBlocksString,
+                "Tunnel Bore: Adding block to mineable list: {0}",
+                BlockItemListParser.ParseType.BLOCK));
     }
 
     private static void loadEnchantment() {
@@ -197,114 +208,296 @@ public class RailcraftConfig {
     }
 
     private static void loadAnchorSettings() {
-        deleteAnchors = get(CAT_ANCHORS, "delete.anchors", false, true, "change to '{t}=true' to delete every World Anchor or Anchor Cart in the world.\nValue resets to false after each session.\nTo disable Anchors completely, disable the ChunkLoading Module from 'modules.cfg'");
-        anchorCrafting = get(CAT_ANCHORS, "craftable", true, "change to {t}=false to disable World Anchor crafting, they will still be available via Creative");
-        anchorCraftingPersonal = get(CAT_ANCHORS, "personal.craftable", true, "change to {t}=false to disable Personal Anchor crafting, they will still be available via Creative");
-        anchorCraftingPassive = get(CAT_ANCHORS, "passive.craftable", true, "change to {t}=false to disable Passive Anchor crafting, they will still be available via Creative");
-        printAnchors = get(CAT_ANCHORS, "print.locations", false, "change to {t}=true to print Anchor locations to the log on startup");
+        deleteAnchors = get(
+                CAT_ANCHORS,
+                "delete.anchors",
+                false,
+                true,
+                "change to '{t}=true' to delete every World Anchor or Anchor Cart in the world.\nValue resets to false after each session.\nTo disable Anchors completely, disable the ChunkLoading Module from 'modules.cfg'");
+        anchorCrafting = get(
+                CAT_ANCHORS,
+                "craftable",
+                true,
+                "change to {t}=false to disable World Anchor crafting, they will still be available via Creative");
+        anchorCraftingPersonal = get(
+                CAT_ANCHORS,
+                "personal.craftable",
+                true,
+                "change to {t}=false to disable Personal Anchor crafting, they will still be available via Creative");
+        anchorCraftingPassive = get(
+                CAT_ANCHORS,
+                "passive.craftable",
+                true,
+                "change to {t}=false to disable Passive Anchor crafting, they will still be available via Creative");
+        printAnchors = get(
+                CAT_ANCHORS,
+                "print.locations",
+                false,
+                "change to {t}=true to print Anchor locations to the log on startup");
         printAnchorDebug = get(CAT_ANCHORS, "print.debug", false, "change to '{t}=true' to log debug info for Anchors");
 
-        Property fuelProp = get(CAT_ANCHORS, "world.fuel", "minecraft:ender_pearl=12", "the number of hours that an item will power a World Anchor or World Anchor Cart\n"
-                + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
-                + "if the list is empty, World Anchors will not require fuel, default = 12\n"
-                + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
-                + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
+        Property fuelProp = get(
+                CAT_ANCHORS,
+                "world.fuel",
+                "minecraft:ender_pearl=12",
+                "the number of hours that an item will power a World Anchor or World Anchor Cart\n"
+                        + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
+                        + "if the list is empty, World Anchors will not require fuel, default = 12\n"
+                        + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
+                        + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
         anchorFuelWorldString = fuelProp.getString();
 
-        fuelProp = get(CAT_ANCHORS, "personal.fuel", "minecraft:ender_pearl=12", "the number of hours that an item will power a Personal Anchor or Personal Anchor Cart\n"
-                + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
-                + "if the list is empty, Personal Anchors will not require fuel, default = 12\n"
-                + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
-                + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
+        fuelProp = get(
+                CAT_ANCHORS,
+                "personal.fuel",
+                "minecraft:ender_pearl=12",
+                "the number of hours that an item will power a Personal Anchor or Personal Anchor Cart\n"
+                        + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
+                        + "if the list is empty, Personal Anchors will not require fuel, default = 12\n"
+                        + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
+                        + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
         anchorFuelPersonalString = fuelProp.getString();
 
-        fuelProp = get(CAT_ANCHORS, "passive.fuel", "minecraft:ender_pearl=12", "the number of hours that an item will power a Passive Anchor\n"
-                + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
-                + "if the list is empty, Passive Anchors will not require fuel, default = 12\n"
-                + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
-                + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
+        fuelProp = get(
+                CAT_ANCHORS,
+                "passive.fuel",
+                "minecraft:ender_pearl=12",
+                "the number of hours that an item will power a Passive Anchor\n"
+                        + "this is an approximation only, actual duration is affected by number of chunks loaded and tick rate\n"
+                        + "if the list is empty, Passive Anchors will not require fuel, default = 12\n"
+                        + "Entry Format: <modid>:<itemname>#<metadata>=<value>\n"
+                        + "Example: personal.fuel= minecraft:ender_pearl=12, minecraft:coal#0=4");
         anchorFuelPassiveString = fuelProp.getString();
 
-        anchorsCanInteractWithPipes = get(CAT_ANCHORS, "interact.with.pipes", true, "change to {t}=false to prevent pipes, tubes, or various other things from interacting with Anchors");
+        anchorsCanInteractWithPipes = get(
+                CAT_ANCHORS,
+                "interact.with.pipes",
+                true,
+                "change to {t}=false to prevent pipes, tubes, or various other things from interacting with Anchors");
     }
 
     private static void loadBlockTweaks() {
-        cartDispenserDelay = get(CAT_TWEAKS_BLOCKS + ".cartdispenser", "delay", 0, 0, Integer.MAX_VALUE, "set the minimum number of seconds between cart dispensing, default=0");
+        cartDispenserDelay = get(
+                CAT_TWEAKS_BLOCKS + ".cartdispenser",
+                "delay",
+                0,
+                0,
+                Integer.MAX_VALUE,
+                "set the minimum number of seconds between cart dispensing, default=0");
 
-        maxTankSize = get(CAT_TWEAKS_BLOCKS + ".irontank", "maxsize", 3, 9, 9, "Allows you to set the max Iron Tank base dimension, valid values are 3, 5, 7, and 9");
+        maxTankSize = get(
+                CAT_TWEAKS_BLOCKS + ".irontank",
+                "maxsize",
+                3,
+                9,
+                9,
+                "Allows you to set the max Iron Tank base dimension, valid values are 3, 5, 7, and 9");
 
-        allowTankStacking = get(CAT_TWEAKS_BLOCKS + ".irontank", "allow.stacking", true, "Change to '{t}=false' to disable the stacking of Iron Tanks");
+        allowTankStacking = get(
+                CAT_TWEAKS_BLOCKS + ".irontank",
+                "allow.stacking",
+                true,
+                "Change to '{t}=false' to disable the stacking of Iron Tanks");
 
-        SignalTools.printSignalDebug = get(CAT_TWEAKS_BLOCKS + ".signals", "printDebug", false, "change to '{t}=true' to log debug info for Signal Blocks");
-        SignalTools.signalUpdateInterval = get(CAT_TWEAKS_BLOCKS + ".signals", "update.interval", 4, "measured in tick, smaller numbers update more often, resulting in more sensitive signals, but cost more cpu power, default = 4");
+        SignalTools.printSignalDebug = get(
+                CAT_TWEAKS_BLOCKS + ".signals",
+                "printDebug",
+                false,
+                "change to '{t}=true' to log debug info for Signal Blocks");
+        SignalTools.signalUpdateInterval = get(
+                CAT_TWEAKS_BLOCKS + ".signals",
+                "update.interval",
+                4,
+                "measured in tick, smaller numbers update more often, resulting in more sensitive signals, but cost more cpu power, default = 4");
 
-        machinesRequirePower = get(CAT_TWEAKS_BLOCKS + ".machines", "requirePower", true, "change to '{t}=false' to disable the Power Requirements for most machines");
+        machinesRequirePower = get(
+                CAT_TWEAKS_BLOCKS + ".machines",
+                "requirePower",
+                true,
+                "change to '{t}=false' to disable the Power Requirements for most machines");
 
-        biolerMultiplierFuel = get(CAT_TWEAKS_BLOCKS + ".boiler", "fuelMultiplier", 0.0F, 1.0F, 10F, "adjust the heat value of Fuel in a Boiler");
-        biolerMultiplierBiofuel = get(CAT_TWEAKS_BLOCKS + ".boiler", "biofuelMultiplier", 0.0F, 1.0F, 10F, "adjust the heat value of BioFuel in a Boiler");
+        biolerMultiplierFuel = get(
+                CAT_TWEAKS_BLOCKS + ".boiler",
+                "fuelMultiplier",
+                0.0F,
+                1.0F,
+                10F,
+                "adjust the heat value of Fuel in a Boiler");
+        biolerMultiplierBiofuel = get(
+                CAT_TWEAKS_BLOCKS + ".boiler",
+                "biofuelMultiplier",
+                0.0F,
+                1.0F,
+                10F,
+                "adjust the heat value of BioFuel in a Boiler");
 
-        fuelPerSteamMultiplier = get(CAT_TWEAKS + ".steam", "fuelPerSteamMultiplier", 0.2F, 1.0F, 6.0F, "adjust the amount of fuel used to create Steam, min=0.2, default=1.0, max=6.0");
+        fuelPerSteamMultiplier = get(
+                CAT_TWEAKS + ".steam",
+                "fuelPerSteamMultiplier",
+                0.2F,
+                1.0F,
+                6.0F,
+                "adjust the amount of fuel used to create Steam, min=0.2, default=1.0, max=6.0");
     }
 
     private static void loadItemTweaks() {
-        trackingAuraEnabled = get(CAT_TWEAKS_ITEMS + ".goggles", "trackingAura", true, "Change to '{t}=false' to disable the Tracking Aura");
+        trackingAuraEnabled = get(
+                CAT_TWEAKS_ITEMS + ".goggles",
+                "trackingAura",
+                true,
+                "Change to '{t}=false' to disable the Tracking Aura");
     }
 
     private static void loadTrackTweaks() {
-        maxHighSpeed = get(CAT_TWEAKS_TRACKS + ".speed", "max.speed", 0.6f, 0.8f, 1.2f, "change '{t}' to limit max speed on high speed rails, useful if your computer can't keep up with chunk loading, min=0.6, default=0.8, max=1.2");
+        maxHighSpeed = get(
+                CAT_TWEAKS_TRACKS + ".speed",
+                "max.speed",
+                0.6f,
+                0.8f,
+                1.2f,
+                "change '{t}' to limit max speed on high speed rails, useful if your computer can't keep up with chunk loading, min=0.6, default=0.8, max=1.2");
 
-        launchRailMaxForce = get(CAT_TWEAKS_TRACKS + ".launch", "force.max", 5, 30, 50, "change the value to your desired max launch rail force, min=5, default=30, max=50");
+        launchRailMaxForce = get(
+                CAT_TWEAKS_TRACKS + ".launch",
+                "force.max",
+                5,
+                30,
+                50,
+                "change the value to your desired max launch rail force, min=5, default=30, max=50");
 
-        String[] strings = get(CAT_TWEAKS_TRACKS + ".speed", "entities.excluded", new String[0], "add entity names to exclude them from explosions caused by high speed collisions");
+        String[] strings = get(
+                CAT_TWEAKS_TRACKS + ".speed",
+                "entities.excluded",
+                new String[0],
+                "add entity names to exclude them from explosions caused by high speed collisions");
         Collections.addAll(entitiesExcludedFromHighSpeedExplosions, strings);
     }
 
     private static void loadRoutingTweaks() {
-        routingOpsOnly = get(CAT_TWEAKS_ROUTING, "ops.only", false, "change to '{t}=true' to limit the editing of Golden Tickets to server admins only");
+        routingOpsOnly = get(
+                CAT_TWEAKS_ROUTING,
+                "ops.only",
+                false,
+                "change to '{t}=true' to limit the editing of Golden Tickets to server admins only");
     }
 
     private static void loadCartTweaks() {
-        registerCollisionHandler = get(CAT_TWEAKS_CARTS + ".general", "register.collision.handler", true, "change to '{t}=false' to use a minecart collision handler from a different mod or vanilla behavior");
-        cartsAreSolid = get(CAT_TWEAKS_CARTS + ".general", "solid.carts", true,
+        registerCollisionHandler = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "register.collision.handler",
+                true,
+                "change to '{t}=false' to use a minecart collision handler from a different mod or vanilla behavior");
+        cartsAreSolid = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "solid.carts",
+                true,
                 "change to '{t}=false' to return minecarts to vanilla player vs cart collision behavior\n"
                         + "in vanilla minecarts are ghost like can be walked through\n"
                         + "but making carts solid also makes them hard to push by hand\n"
                         + "this setting is ignored if aren't using the Railcraft Collision Handler");
 
-        minecartStackSize = get(CAT_TWEAKS_CARTS + ".general", "maxStackSize", 1, 3, 64, "change the value to your desired minecart stack size, vanilla=1, default=3, max=64");
+        minecartStackSize = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "maxStackSize",
+                1,
+                3,
+                64,
+                "change the value to your desired minecart stack size, vanilla=1, default=3, max=64");
 
-        minecartsBreakOnDrop = get(CAT_TWEAKS_CARTS + ".general", "breakOnDrop", false, "change to '{t}=true' to restore vanilla behavior");
-        minecartsCollideWithItems = get(CAT_TWEAKS_CARTS + ".general", "collideWithItems", false, "change to '{t}=true' to restore minecart collisions with dropped items, ignored if 'register.collision.handler=false'");
+        minecartsBreakOnDrop = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "breakOnDrop",
+                false,
+                "change to '{t}=true' to restore vanilla behavior");
+        minecartsCollideWithItems = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "collideWithItems",
+                false,
+                "change to '{t}=true' to restore minecart collisions with dropped items, ignored if 'register.collision.handler=false'");
 
-        printLinkingDebug = get(CAT_TWEAKS_CARTS + ".general", "printLinkingDebug", false, "change to '{t}=true' to log debug info for Cart Linking");
+        printLinkingDebug = get(
+                CAT_TWEAKS_CARTS + ".general",
+                "printLinkingDebug",
+                false,
+                "change to '{t}=true' to log debug info for Cart Linking");
 
-        adjustBasicCartDrag = get(CAT_TWEAKS_CARTS + ".basic", "adjustDrag", true, "change to '{t}=false' to give basic carts the original vanilla drag values, after changing you may need to replace the carts to see any change in game");
+        adjustBasicCartDrag = get(
+                CAT_TWEAKS_CARTS + ".basic",
+                "adjustDrag",
+                true,
+                "change to '{t}=false' to give basic carts the original vanilla drag values, after changing you may need to replace the carts to see any change in game");
 
-        chestAllowLiquids = get(CAT_TWEAKS_CARTS + ".chest", "allowLiquids", false, "change to '{t}=true' to allow you put cans/capsules in Chest Carts");
+        chestAllowLiquids = get(
+                CAT_TWEAKS_CARTS + ".chest",
+                "allowLiquids",
+                false,
+                "change to '{t}=true' to allow you put cans/capsules in Chest Carts");
 
-        boreDestroysBlocks = get(CAT_TWEAKS_CARTS + ".bore", "destroyBlocks", false, "change to '{t}=true' to cause the Bore to destroy the blocks it mines instead of dropping them");
-        boreMinesAllBlocks = get(CAT_TWEAKS_CARTS + ".bore", "mineAllBlocks", true, "change to '{t}=false' to enable mining checks, use true setting with caution, especially on servers");
-        boreMiningSpeedMultiplier = get(CAT_TWEAKS_CARTS + ".bore", "miningSpeed", 0.1f, 1.0f, 50.0f, "adjust the speed at which the Bore mines blocks, min=0.1, default=1.0, max=50.0");
+        boreDestroysBlocks = get(
+                CAT_TWEAKS_CARTS + ".bore",
+                "destroyBlocks",
+                false,
+                "change to '{t}=true' to cause the Bore to destroy the blocks it mines instead of dropping them");
+        boreMinesAllBlocks = get(
+                CAT_TWEAKS_CARTS + ".bore",
+                "mineAllBlocks",
+                true,
+                "change to '{t}=false' to enable mining checks, use true setting with caution, especially on servers");
+        boreMiningSpeedMultiplier = get(
+                CAT_TWEAKS_CARTS + ".bore",
+                "miningSpeed",
+                0.1f,
+                1.0f,
+                50.0f,
+                "adjust the speed at which the Bore mines blocks, min=0.1, default=1.0, max=50.0");
 
-        steamLocomotiveEfficiencyMultiplier = get(CAT_TWEAKS_CARTS + ".locomotive.steam", "efficiencyMulitplier", 0.2F, 3.0F, 12.0F, "adjust the multiplier used when calculating fuel use, min=0.2, default=3.0, max=12.0");
+        steamLocomotiveEfficiencyMultiplier = get(
+                CAT_TWEAKS_CARTS + ".locomotive.steam",
+                "efficiencyMulitplier",
+                0.2F,
+                3.0F,
+                12.0F,
+                "adjust the multiplier used when calculating fuel use, min=0.2, default=3.0, max=12.0");
 
-        locomotiveDamageMobs = get(CAT_TWEAKS_CARTS + ".locomotive", "damageMobs", true, "change to '{t}=false' to disable Locomotive damage on mobs, they will still knockback mobs");
-        locomotiveHorsepower = get(CAT_TWEAKS_CARTS + ".locomotive", "horsepower", 15, 15, 45,
+        locomotiveDamageMobs = get(
+                CAT_TWEAKS_CARTS + ".locomotive",
+                "damageMobs",
+                true,
+                "change to '{t}=false' to disable Locomotive damage on mobs, they will still knockback mobs");
+        locomotiveHorsepower = get(
+                CAT_TWEAKS_CARTS + ".locomotive",
+                "horsepower",
+                15,
+                15,
+                45,
                 "controls how much power locomotives have and how many carts they can pull\n"
                         + "be warned, longer trains have a greater chance for glitches\n"
                         + "as such it HIGHLY recommended you do not change this");
 
-        boolean minecartTankCustomize = get(CAT_TWEAKS_CARTS + ".tank", "useCustomValues", false, "change to '{t}=true' to adjust the Tank Cart's capacity and fill rate");
+        boolean minecartTankCustomize = get(
+                CAT_TWEAKS_CARTS + ".tank",
+                "useCustomValues",
+                false,
+                "change to '{t}=true' to adjust the Tank Cart's capacity and fill rate");
 
-        int capacity = get(CAT_TWEAKS_CARTS + ".tank", "capacity", 4, 32, 64, "change the value to your desired Tank Cart capacity in buckets, min=4, default=32, max=64, ignored if 'tweaks.minecarts.tank.useCustomValues=false'");
-        if (minecartTankCustomize)
-            minecartTankCapacity = capacity;
+        int capacity = get(
+                CAT_TWEAKS_CARTS + ".tank",
+                "capacity",
+                4,
+                32,
+                64,
+                "change the value to your desired Tank Cart capacity in buckets, min=4, default=32, max=64, ignored if 'tweaks.minecarts.tank.useCustomValues=false'");
+        if (minecartTankCustomize) minecartTankCapacity = capacity;
 
-        int fillrate = get(CAT_TWEAKS_CARTS + ".tank", "fillrate", 4, 32, 64,
+        int fillrate = get(
+                CAT_TWEAKS_CARTS + ".tank",
+                "fillrate",
+                4,
+                32,
+                64,
                 "change the value to your desired Tank Cart fill rate in milli-buckets per tick, min=4, default=32, max=64\n"
                         + "there are 1000 milli-buckets in a bucket, ignored if 'tweaks.minecarts.tank.useCustomValues=false'");
-        if (minecartTankCustomize)
-            minecartTankFillRate = fillrate;
+        if (minecartTankCustomize) minecartTankFillRate = fillrate;
     }
 
     private static void loadRecipeOption() {
@@ -314,33 +507,98 @@ public class RailcraftConfig {
         Iterator<String> keys = cat.keySet().iterator();
         while (keys.hasNext()) {
             String key = keys.next();
-            if (key.startsWith("recipe"))
-                keys.remove();
+            if (key.startsWith("recipe")) keys.remove();
         }
 
-        loadRecipeProperty("minecraft.furnace", "creosote", false, "change to '{t}=true' to add smelting recipes for Creosote Oil to the vanilla furnace");
-        loadRecipeProperty("railcraft.track", "useAltRecipes", false, "change to '{t}=true' to use track recipes more similar to vanilla minecraft");
-        loadRecipeProperty("railcraft.misc", "gunpowder", true, "change to '{t}=false' to disable the sulfur, saltpeter, charcoal dust recipe for gunpowder");
-        creosoteTorchOutput = get(CAT_RECIPES + ".railcraft.misc", "creosote.torches", 0, 6, 16, "set the output of the creosote and woool recipe for torches, setting to 0 will disable'\nmin=0, default=6, max=16");
-        coalcokeTorchOutput = get(CAT_RECIPES + ".railcraft.misc", "coalcoke.torches", 0, 8, 32, "set the output of the coalcoke and stick recipe for torches, setting to 0 will disable'\nmin=0, default=8, max=32");
-        loadRecipeProperty("railcraft.cart", "bronze", true, "change to '{t}=false' to disable the bronze recipe for minecarts");
-        loadRecipeProperty("railcraft.cart", "steel", true, "change to '{t}=false' to disable the steel recipe for minecarts");
-        loadRecipeProperty("railcraft.cart", "furnace", false, "change to '{t}=true' to enable the Furnace Minecart recipe");
-        loadRecipeProperty("ic2.macerator", "obsidian", false, "change to '{t}=false' to disable the IC2 Macerator recipes for Cushed Obsidian and Obsidian Dust");
-        loadRecipeProperty("ic2.macerator", "charcoal", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Charcoal Dust");
-        loadRecipeProperty("ic2.macerator", "ores", true, "change to '{t}=false' to disable the IC2 Macerator recipes for Ore Dusts");
-        loadRecipeProperty("ic2.macerator", "bones", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Bonemeal");
-        loadRecipeProperty("ic2.macerator", "blaze", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Blaze Powder");
-        loadRecipeProperty("ic2.macerator", "cobble", true, "change to '{t}=false' to disable the IC2 Macerator recipes for Cobblestone");
-        loadRecipeProperty("ic2.macerator", "dirt", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Dirt");
-        loadRecipeProperty("forestry.misc", "fertilizer", true, "change to '{t}=false' to disable the saltpeter recipe for Forestry Fertilizer");
-        loadRecipeProperty("forestry.carpenter", "ties", true, "change to '{t}=false' to disable the Carptenter Tie recipe");
-        loadRecipeProperty("forestry.carpenter", "torches", true, "change to '{t}=false' to disable the Carptenter Creosote Torch recipe");
-        loadRecipeProperty("forestry.carpenter", "creosote.block", true, "change to '{t}=false' to disable the Carptenter Creosote Block recipe");
+        loadRecipeProperty(
+                "minecraft.furnace",
+                "creosote",
+                false,
+                "change to '{t}=true' to add smelting recipes for Creosote Oil to the vanilla furnace");
+        loadRecipeProperty(
+                "railcraft.track",
+                "useAltRecipes",
+                false,
+                "change to '{t}=true' to use track recipes more similar to vanilla minecraft");
+        loadRecipeProperty(
+                "railcraft.misc",
+                "gunpowder",
+                true,
+                "change to '{t}=false' to disable the sulfur, saltpeter, charcoal dust recipe for gunpowder");
+        creosoteTorchOutput = get(
+                CAT_RECIPES + ".railcraft.misc",
+                "creosote.torches",
+                0,
+                6,
+                16,
+                "set the output of the creosote and woool recipe for torches, setting to 0 will disable'\nmin=0, default=6, max=16");
+        coalcokeTorchOutput = get(
+                CAT_RECIPES + ".railcraft.misc",
+                "coalcoke.torches",
+                0,
+                8,
+                32,
+                "set the output of the coalcoke and stick recipe for torches, setting to 0 will disable'\nmin=0, default=8, max=32");
+        loadRecipeProperty(
+                "railcraft.cart", "bronze", true, "change to '{t}=false' to disable the bronze recipe for minecarts");
+        loadRecipeProperty(
+                "railcraft.cart", "steel", true, "change to '{t}=false' to disable the steel recipe for minecarts");
+        loadRecipeProperty(
+                "railcraft.cart", "furnace", false, "change to '{t}=true' to enable the Furnace Minecart recipe");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "obsidian",
+                false,
+                "change to '{t}=false' to disable the IC2 Macerator recipes for Cushed Obsidian and Obsidian Dust");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "charcoal",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipe for Charcoal Dust");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "ores",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipes for Ore Dusts");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "bones",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipe for Bonemeal");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "blaze",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipe for Blaze Powder");
+        loadRecipeProperty(
+                "ic2.macerator",
+                "cobble",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipes for Cobblestone");
+        loadRecipeProperty(
+                "ic2.macerator", "dirt", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Dirt");
+        loadRecipeProperty(
+                "forestry.misc",
+                "fertilizer",
+                true,
+                "change to '{t}=false' to disable the saltpeter recipe for Forestry Fertilizer");
+        loadRecipeProperty(
+                "forestry.carpenter", "ties", true, "change to '{t}=false' to disable the Carptenter Tie recipe");
+        loadRecipeProperty(
+                "forestry.carpenter",
+                "torches",
+                true,
+                "change to '{t}=false' to disable the Carptenter Creosote Torch recipe");
+        loadRecipeProperty(
+                "forestry.carpenter",
+                "creosote.block",
+                true,
+                "change to '{t}=false' to disable the Carptenter Creosote Block recipe");
     }
 
     private static void loadWorldGen() {
-        configMain.addCustomCategoryComment(CAT_WORLD_GEN + ".generate",
+        configMain.addCustomCategoryComment(
+                CAT_WORLD_GEN + ".generate",
                 "You can control which Ores/Features generate in the world here.\n"
                         + "If wish to disable world gen entirely it is recommended\n"
                         + "that you disable the World Module in 'modules.cfg' instead.");
@@ -363,7 +621,8 @@ public class RailcraftConfig {
     }
 
     private static void loadFluids() {
-        configMain.addCustomCategoryComment(CAT_FLUIDS,
+        configMain.addCustomCategoryComment(
+                CAT_FLUIDS,
                 "You can control whether Railcraft defines specific Fluids here.\n"
                         + "However, be aware that if you disable a Fluid that is not defined by another mod,"
                         + "you may suffer errors and unexpected behavior.");
@@ -373,13 +632,15 @@ public class RailcraftConfig {
     }
 
     private static void loadLoot() {
-        configMain.addCustomCategoryComment(CAT_LOOT, "Loot chances are defined here.\n"
-                + "Smaller values are rarer.\n"
-                + "Example Loot:\n"
-                + "   Bread = 100\n"
-                + "   Redstone = 50\n"
-                + "   Record = 5\n"
-                + "   Golden Apple = 1");
+        configMain.addCustomCategoryComment(
+                CAT_LOOT,
+                "Loot chances are defined here.\n"
+                        + "Smaller values are rarer.\n"
+                        + "Example Loot:\n"
+                        + "   Bread = 100\n"
+                        + "   Redstone = 50\n"
+                        + "   Record = 5\n"
+                        + "   Golden Apple = 1");
 
         loadLootProperty("tie.wood", 20);
         loadLootProperty("tie.stone", 10);
@@ -444,7 +705,8 @@ public class RailcraftConfig {
     }
 
     private static void loadBlocks() {
-        configBlock.addCustomCategoryComment(CAT_BLOCKS,
+        configBlock.addCustomCategoryComment(
+                CAT_BLOCKS,
                 "Here you can disable entire blocks.\n"
                         + "Changing these will have adverse effects on existing worlds.\n"
                         + "For the list of which sub-blocks are on each ID see the sub-block section below.");
@@ -495,12 +757,14 @@ public class RailcraftConfig {
 
         loadBlockProperty("worldlogic");
 
-        configBlock.addCustomCategoryComment(CAT_SUBBLOCKS, "Here is were you can enable/disable various sub-blocks.\n"
-                + "Railcraft will attemtpt to compensate for any missing component by providing alternatives (usually).");
+        configBlock.addCustomCategoryComment(
+                CAT_SUBBLOCKS,
+                "Here is were you can enable/disable various sub-blocks.\n"
+                        + "Railcraft will attemtpt to compensate for any missing component by providing alternatives (usually).");
 
         for (EnumTrack type : EnumTrack.VALUES) {
-//            if (type.isDepreciated())
-//                continue;
+            //            if (type.isDepreciated())
+            //                continue;
             loadBlockFeature(type.getTag());
         }
 
@@ -533,8 +797,7 @@ public class RailcraftConfig {
         }
 
         for (EnumOre type : EnumOre.values()) {
-            if (!type.isDepecriated())
-                loadBlockFeature(type.getTag());
+            if (!type.isDepecriated()) loadBlockFeature(type.getTag());
         }
 
         for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
@@ -566,8 +829,7 @@ public class RailcraftConfig {
         }
 
         for (EnumSignal type : EnumSignal.values()) {
-            if (type.getModule() != null)
-                loadBlockFeature(type.getTag());
+            if (type.getModule() != null) loadBlockFeature(type.getTag());
         }
     }
 
@@ -583,9 +845,11 @@ public class RailcraftConfig {
     }
 
     private static void loadItems() {
-        configItems.addCustomCategoryComment(CAT_ITEMS, "Many items can be disabled by setting them to 'false'.\n"
-                + "This is not true for all items, so some experimentation may be needed.\n"
-                + "Some disabled items will cause a substitute to be used in crafting recipes.");
+        configItems.addCustomCategoryComment(
+                CAT_ITEMS,
+                "Many items can be disabled by setting them to 'false'.\n"
+                        + "This is not true for all items, so some experimentation may be needed.\n"
+                        + "Some disabled items will cause a substitute to be used in crafting recipes.");
 
         loadItemProperty("tool.crowbar");
         loadItemProperty("tool.crowbar.reinforced");
@@ -717,17 +981,20 @@ public class RailcraftConfig {
 
     public static void loadBoreMineableBlocks() {
         String tag = "mineableBlocks";
-        Property prop = get(CAT_TWEAKS_CARTS + ".bore", tag, "{}", "add block ids to '{t}' in a common seperated list to define non-vanilla blocks mineable by the tunnel bore \n"
-                + "ignored if 'tweaks.carts.bore.mineAllBlocks=true' \n"
-                + "metadata sensative entries can be defined in the form 'modid:blockname#metadata' \n"
-                + "Example:{t}= { minecraft:stone, minecraft:stonebrick#3 }");
+        Property prop = get(
+                CAT_TWEAKS_CARTS + ".bore",
+                tag,
+                "{}",
+                "add block ids to '{t}' in a common seperated list to define non-vanilla blocks mineable by the tunnel bore \n"
+                        + "ignored if 'tweaks.carts.bore.mineAllBlocks=true' \n"
+                        + "metadata sensative entries can be defined in the form 'modid:blockname#metadata' \n"
+                        + "Example:{t}= { minecraft:stone, minecraft:stonebrick#3 }");
         boreMineableBlocksString = prop.getString();
     }
 
     public static boolean getRecipeConfig(String tag) {
         Boolean recipe = recipes.get(tag);
-        if (recipe == null)
-            throw new RuntimeException("Railcraft Recipe Config Entry does not exist: " + tag);
+        if (recipe == null) throw new RuntimeException("Railcraft Recipe Config Entry does not exist: " + tag);
         return recipe;
     }
 
@@ -918,8 +1185,7 @@ public class RailcraftConfig {
     public static boolean isItemEnabled(String tag) {
         tag = MiscTools.cleanTag(tag);
         Boolean b = enabledItems.get(tag);
-        if (b == null)
-            throw new IllegalArgumentException("RailcraftConfig: item tag not found: " + tag);
+        if (b == null) throw new IllegalArgumentException("RailcraftConfig: item tag not found: " + tag);
         return b;
     }
 
@@ -927,48 +1193,42 @@ public class RailcraftConfig {
         tag = MiscTools.cleanTag(tag);
         tag = tag.replaceFirst("^block\\.", "");
         Boolean b = enabledBlocks.get(tag);
-        if (b == null)
-            throw new IllegalArgumentException("RailcraftConfig: block tag not found: " + tag);
+        if (b == null) throw new IllegalArgumentException("RailcraftConfig: block tag not found: " + tag);
         return b;
     }
 
     public static boolean isSubBlockEnabled(String tag) {
         tag = MiscTools.cleanTag(tag);
         Boolean b = enabledSubBlocks.get(tag);
-        if (b == null)
-            throw new IllegalArgumentException("RailcraftConfig: sub-block tag not found: " + tag);
+        if (b == null) throw new IllegalArgumentException("RailcraftConfig: sub-block tag not found: " + tag);
         return b;
     }
 
     public static boolean isCartEnabled(String tag) {
         tag = MiscTools.cleanTag(tag);
         Boolean enabled = carts.get(tag);
-        if (enabled == null)
-            throw new IllegalArgumentException("RailcraftConfig: cart tag not found: " + tag);
+        if (enabled == null) throw new IllegalArgumentException("RailcraftConfig: cart tag not found: " + tag);
         return enabled;
     }
 
     public static int getLootChance(String tag) {
         tag = MiscTools.cleanTag(tag);
         Integer chance = lootChances.get(tag);
-        if (chance == null)
-            throw new RuntimeException("Railcraft Loot Chance Entry does not exist: " + tag);
+        if (chance == null) throw new RuntimeException("Railcraft Loot Chance Entry does not exist: " + tag);
         return chance;
     }
 
     public static boolean isWorldGenEnabled(String tag) {
         tag = MiscTools.cleanTag(tag);
         Boolean gen = worldGen.get(tag);
-        if (gen == null)
-            throw new RuntimeException("Railcraft World Gen Entry does not exist: " + tag);
+        if (gen == null) throw new RuntimeException("Railcraft World Gen Entry does not exist: " + tag);
         return gen;
     }
 
     public static boolean isFluidEnabled(String tag) {
         tag = MiscTools.cleanTag(tag);
         Boolean gen = fluids.get(tag);
-        if (gen == null)
-            throw new RuntimeException("Railcraft Fluid Entry does not exist: " + tag);
+        if (gen == null) throw new RuntimeException("Railcraft Fluid Entry does not exist: " + tag);
         return gen;
     }
 
@@ -990,16 +1250,14 @@ public class RailcraftConfig {
     private static List<Integer> getIntegerList(String cat, String tag, int maxEntries) {
         Property prop = configMain.get(cat, tag, "");
         String value = prop.getString();
-        if (value.equals(""))
-            return Collections.EMPTY_LIST;
+        if (value.equals("")) return Collections.EMPTY_LIST;
         String[] tokens = value.split(",");
         List<Integer> list = new ArrayList<Integer>(maxEntries);
         int count = 0;
         for (String token : tokens) {
             list.add(Integer.valueOf(token));
             count++;
-            if (count >= maxEntries)
-                break;
+            if (count >= maxEntries) break;
         }
         return list;
     }
@@ -1022,8 +1280,7 @@ public class RailcraftConfig {
         Property prop = configMain.get(cat, tag, defaultValue);
         decorateComment(prop, tag, comment);
         boolean ret = prop.getBoolean(defaultValue);
-        if (reset)
-            prop.set(defaultValue);
+        if (reset) prop.set(defaultValue);
         return ret;
     }
 
@@ -1053,8 +1310,7 @@ public class RailcraftConfig {
         int parsed = parseInteger(prop, defaultValue);
         int clamped = Math.max(parsed, min);
         clamped = Math.min(clamped, max);
-        if (clamped != parsed)
-            prop.set(clamped);
+        if (clamped != parsed) prop.set(clamped);
         return clamped;
     }
 
@@ -1064,8 +1320,7 @@ public class RailcraftConfig {
         double parsed = parseDouble(prop, defaultValue);
         double clamped = Math.max(parsed, min);
         clamped = Math.min(clamped, max);
-        if (clamped != parsed)
-            prop.set(clamped);
+        if (clamped != parsed) prop.set(clamped);
         return (float) clamped;
     }
 
@@ -1081,7 +1336,8 @@ public class RailcraftConfig {
         try {
             parsed = Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            Game.logThrowable(Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
+            Game.logThrowable(
+                    Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
             prop.set(defaultValue);
             return defaultValue;
         }
@@ -1094,7 +1350,8 @@ public class RailcraftConfig {
         try {
             parsed = Double.parseDouble(value);
         } catch (NumberFormatException ex) {
-            Game.logThrowable(Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
+            Game.logThrowable(
+                    Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
             prop.set(defaultValue);
             return defaultValue;
         }

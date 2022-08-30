@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,42 +11,26 @@ package mods.railcraft.common.blocks.machine.alpha;
 import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
-import mods.railcraft.api.crafting.IRockCrusherRecipe;
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import java.util.*;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
-import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.TileMultiBlockInventory;
 import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.plugins.buildcraft.actions.Actions;
 import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
-import mods.railcraft.common.util.inventory.wrappers.InventoryCopy;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.misc.RailcraftDamageSource;
-import mods.railcraft.common.util.sounds.SoundHelper;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.*;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -54,79 +38,81 @@ import java.util.*;
 public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyHandler, IHasWork, ISidedInventory {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 9;
-    private final static int PROCESS_TIME = 100;
-    private final static int CRUSHING_POWER_COST_PER_TICK = 160;
-    private final static int SUCKING_POWER_COST = 5000;
-    private final static int KILLING_POWER_COST = 10000;
-    private final static int MAX_RECEIVE = 5000;
-    private final static int MAX_ENERGY = CRUSHING_POWER_COST_PER_TICK * PROCESS_TIME;
-    private final static int[] SLOTS_INPUT = InvTools.buildSlotArray(SLOT_INPUT, 9);
-    private final static int[] SLOTS_OUTPUT = InvTools.buildSlotArray(SLOT_OUTPUT, 9);
-    private final static List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
+    private static final int PROCESS_TIME = 100;
+    private static final int CRUSHING_POWER_COST_PER_TICK = 160;
+    private static final int SUCKING_POWER_COST = 5000;
+    private static final int KILLING_POWER_COST = 10000;
+    private static final int MAX_RECEIVE = 5000;
+    private static final int MAX_ENERGY = CRUSHING_POWER_COST_PER_TICK * PROCESS_TIME;
+    private static final int[] SLOTS_INPUT = InvTools.buildSlotArray(SLOT_INPUT, 9);
+    private static final int[] SLOTS_OUTPUT = InvTools.buildSlotArray(SLOT_OUTPUT, 9);
+    private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final IInventory invInput = new InventoryMapper(this, 0, 9);
     private final IInventory invOutput = new InventoryMapper(this, 9, 9, false);
     private final Set<IActionExternal> actions = new HashSet<IActionExternal>();
+
     static {
         char[][][] map1 = {
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'B', 'D', 'B', 'O'},
-                        {'O', 'B', 'D', 'B', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'a', 'd', 'f', 'O'},
-                        {'O', 'c', 'e', 'h', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                }
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'D', 'B', 'O'},
+                {'O', 'B', 'D', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'a', 'd', 'f', 'O'},
+                {'O', 'c', 'e', 'h', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            }
         };
         patterns.add(new MultiBlockPattern(map1));
 
         char[][][] map2 = {
-                {
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'B', 'B', 'O'},
-                        {'O', 'D', 'D', 'O'},
-                        {'O', 'B', 'B', 'O'},
-                        {'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'a', 'f', 'O'},
-                        {'O', 'b', 'g', 'O'},
-                        {'O', 'c', 'h', 'O'},
-                        {'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'}
-                }
+            {
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'O'},
+                {'O', 'D', 'D', 'O'},
+                {'O', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O'},
+                {'O', 'a', 'f', 'O'},
+                {'O', 'b', 'g', 'O'},
+                {'O', 'c', 'h', 'O'},
+                {'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'}
+            }
         };
         patterns.add(new MultiBlockPattern(map2));
     }
+
     private int processTime;
     private EnergyStorage energyStorage;
     private boolean isWorking = false;
@@ -139,7 +125,8 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE, KILLING_POWER_COST);
     }
 
-    public static void placeRockCrusher(World world, int x, int y, int z, int patternIndex, List<ItemStack> input, List<ItemStack> output) {
+    public static void placeRockCrusher(
+            World world, int x, int y, int z, int patternIndex, List<ItemStack> input, List<ItemStack> output) {
         MultiBlockPattern pattern = TileRockCrusher.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
         blockMapping.put('B', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
@@ -173,8 +160,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         Block block = WorldPlugin.getBlock(worldObj, x, y, z);
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata())
-                    return false;
+                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata()) return false;
                 break;
             case 'D': // Window
             case 'B': // Block
@@ -186,12 +172,10 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             case 'f': // Block
             case 'g': // Block
             case 'h': // Block
-                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata())
-                    return false;
+                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata()) return false;
                 break;
             case 'A': // Air
-                if (!worldObj.isAirBlock(x, y, z))
-                    return false;
+                if (!worldObj.isAirBlock(x, y, z)) return false;
                 break;
         }
         return true;
@@ -200,10 +184,8 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     private boolean useMasterEnergy(int amount, boolean doRemove) {
         TileRockCrusher mBlock = (TileRockCrusher) getMasterBlock();
         if (mBlock != null)
-            if (mBlock.energyStorage == null)
-                return true;
-            else
-                return mBlock.energyStorage.extractEnergy(amount, !doRemove) == amount;
+            if (mBlock.energyStorage == null) return true;
+            else return mBlock.energyStorage.extractEnergy(amount, !doRemove) == amount;
         return false;
     }
 
@@ -221,15 +203,13 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     @Override
     public IIcon getIcon(int side) {
         if (isStructureValid()) {
-            if (side > 1 && getPatternMarker() == 'D')
-                return getMachineType().getTexture(6);
+            if (side > 1 && getPatternMarker() == 'D') return getMachineType().getTexture(6);
             if (side == 1) {
                 char m = getPatternMarker();
                 return getMachineType().getTexture(m - 'a' + 7);
             }
         }
-        if (side > 1)
-            return getMachineType().getTexture(0);
+        if (side > 1) return getMachineType().getTexture(0);
         return getMachineType().getTexture(side);
     }
 
@@ -238,8 +218,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         super.writeToNBT(data);
         data.setInteger("processTime", processTime);
 
-        if (energyStorage != null)
-            energyStorage.writeToNBT(data);
+        if (energyStorage != null) energyStorage.writeToNBT(data);
     }
 
     @Override
@@ -247,8 +226,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         super.readFromNBT(data);
         processTime = data.getInteger("processTime");
 
-        if (energyStorage != null)
-            energyStorage.readFromNBT(data);
+        if (energyStorage != null) energyStorage.readFromNBT(data);
     }
 
     public int getProcessTime() {
@@ -279,8 +257,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
 
     @Override
     public int[] getAccessibleSlotsFromSide(int side) {
-        if (side == ForgeDirection.UP.ordinal())
-            return SLOTS_INPUT;
+        if (side == ForgeDirection.UP.ordinal()) return SLOTS_INPUT;
         return SLOTS_OUTPUT;
     }
 
@@ -301,8 +278,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
 
     public EnergyStorage getEnergyStorage() {
         TileRockCrusher mBlock = (TileRockCrusher) getMasterBlock();
-        if (mBlock != null && mBlock.energyStorage != null)
-            return mBlock.energyStorage;
+        if (mBlock != null && mBlock.energyStorage != null) return mBlock.energyStorage;
         return energyStorage;
     }
 

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,7 +18,8 @@ import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType
  */
 public class PoorIronGenerator extends PoorOreGenerator {
 
-    public static final EventType EVENT_TYPE = EnumHelper.addEnum(EventType.class, "RC_POOR_IRON", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE =
+            EnumHelper.addEnum(EventType.class, "RC_POOR_IRON", new Class[0], new Object[0]);
     private static final int Y_LEVEL = 40;
     private static final int Y_RANGE = 4;
     private static final int DENSITY = 16;
@@ -27,5 +28,4 @@ public class PoorIronGenerator extends PoorOreGenerator {
     public PoorIronGenerator() {
         super(EVENT_TYPE, EnumOre.POOR_IRON, DENSITY, Y_LEVEL, Y_RANGE, SEED);
     }
-
 }

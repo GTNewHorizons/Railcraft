@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,12 +9,12 @@
 package mods.railcraft.common.blocks.machine;
 
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileMachineItem extends TileMachineBase implements IInventory {
 
@@ -41,12 +41,10 @@ public abstract class TileMachineItem extends TileMachineBase implements IInvent
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public int getSizeInventory() {
@@ -109,5 +107,4 @@ public abstract class TileMachineItem extends TileMachineBase implements IInvent
     public boolean isUseableByPlayer(EntityPlayer player) {
         return RailcraftTileEntity.isUseableByPlayerHelper(this, player);
     }
-
 }

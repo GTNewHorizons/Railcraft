@@ -22,7 +22,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 public interface IPostConnection {
 
     public enum ConnectStyle {
-
         NONE,
         SINGLE_THICK,
         TWO_THIN,
@@ -40,5 +39,4 @@ public interface IPostConnection {
      * @return true if connect
      */
     public ConnectStyle connectsToPost(IBlockAccess world, int x, int y, int z, ForgeDirection side);
-
 }

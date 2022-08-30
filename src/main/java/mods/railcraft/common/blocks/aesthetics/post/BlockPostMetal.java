@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -24,9 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -60,7 +59,7 @@ public class BlockPostMetal extends BlockPostBase {
         block.setBlockName("railcraft." + tag);
         RailcraftRegistry.register(block, ItemPostMetal.class);
 
-//        HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
+        //        HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
         HarvestPlugin.setHarvestLevel(block, "pickaxe", 2);
 
         ForestryPlugin.addBackpackItem("builder", block);
@@ -110,17 +109,14 @@ public class BlockPostMetal extends BlockPostBase {
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> list = new ArrayList<ItemStack>();
-        if (isPlatform)
-            list.add(EnumPost.METAL_PLATFORM_UNPAINTED.getItem());
-        else
-            list.add(EnumPost.METAL_UNPAINTED.getItem());
+        if (isPlatform) list.add(EnumPost.METAL_PLATFORM_UNPAINTED.getItem());
+        else list.add(EnumPost.METAL_UNPAINTED.getItem());
         return list;
     }
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        if (!isPlatform)
-            textures = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:post.metal.painted", 16);
+        if (!isPlatform) textures = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:post.metal.painted", 16);
     }
 
     @Override
@@ -138,5 +134,4 @@ public class BlockPostMetal extends BlockPostBase {
         }
         return false;
     }
-
 }

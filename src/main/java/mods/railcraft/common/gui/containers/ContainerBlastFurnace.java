@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,15 +10,14 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
+import mods.railcraft.common.gui.slots.SlotStackFilter;
+import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
-import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
-import mods.railcraft.common.gui.slots.SlotStackFilter;
-import mods.railcraft.common.util.network.PacketBuilder;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class ContainerBlastFurnace extends RailcraftContainer {
 
@@ -51,7 +50,8 @@ public class ContainerBlastFurnace extends RailcraftContainer {
         super.addCraftingToCrafters(player);
         player.sendProgressBarUpdate(this, 0, furnace.getCookTime());
         PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 1, furnace.burnTime);
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
+        PacketBuilder.instance()
+                .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
     }
 
     /**
@@ -64,14 +64,14 @@ public class ContainerBlastFurnace extends RailcraftContainer {
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting player = (ICrafting) crafters.get(i);
 
-            if (lastCookTime != furnace.getCookTime())
-                player.sendProgressBarUpdate(this, 0, furnace.getCookTime());
+            if (lastCookTime != furnace.getCookTime()) player.sendProgressBarUpdate(this, 0, furnace.getCookTime());
 
             if (lastBurnTime != furnace.burnTime)
                 PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 1, furnace.burnTime);
 
             if (lastItemBurnTime != furnace.currentItemBurnTime)
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
+                PacketBuilder.instance()
+                        .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
         }
 
         lastCookTime = furnace.getCookTime();
@@ -82,14 +82,10 @@ public class ContainerBlastFurnace extends RailcraftContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data) {
-        if (id == 0)
-            this.furnace.setCookTime(data);
+        if (id == 0) this.furnace.setCookTime(data);
 
-        if (id == 1)
-            this.furnace.burnTime = data;
+        if (id == 1) this.furnace.burnTime = data;
 
-        if (id == 2)
-            this.furnace.currentItemBurnTime = data;
+        if (id == 2) this.furnace.currentItemBurnTime = data;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,20 +13,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
-
 import mods.railcraft.common.items.ItemGoggles;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketEffect;
 import mods.railcraft.common.util.network.PacketEffect.Effect;
 import mods.railcraft.common.util.sounds.SoundHelper;
-import net.minecraft.util.MathHelper;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.World;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -36,8 +32,7 @@ public class CommonEffectProxy implements IEffectManager {
 
     @Override
     public void teleportEffect(Entity entity, double destX, double destY, double destZ) {
-        if (Game.isNotHost(entity.worldObj))
-            return;
+        if (Game.isNotHost(entity.worldObj)) return;
 
         try {
             PacketEffect pkt = new PacketEffect(Effect.TELEPORT);
@@ -57,8 +52,7 @@ public class CommonEffectProxy implements IEffectManager {
 
     @Override
     public void forceTrackSpawnEffect(World world, int x, int y, int z) {
-        if (Game.isNotHost(world))
-            return;
+        if (Game.isNotHost(world)) return;
 
         try {
             PacketEffect pkt = new PacketEffect(Effect.FORCE_SPAWN);
@@ -74,9 +68,9 @@ public class CommonEffectProxy implements IEffectManager {
     }
 
     @Override
-    public void fireSparkEffect(World world, double startX, double startY, double startZ, double endX, double endY, double endZ) {
-        if (Game.isNotHost(world))
-            return;
+    public void fireSparkEffect(
+            World world, double startX, double startY, double startZ, double endX, double endY, double endZ) {
+        if (Game.isNotHost(world)) return;
 
         try {
             PacketEffect pkt = new PacketEffect(Effect.FIRESPARK);
@@ -103,33 +97,25 @@ public class CommonEffectProxy implements IEffectManager {
     }
 
     @Override
-    public void tuningEffect(TileEntity start, TileEntity dest) {
-    }
+    public void tuningEffect(TileEntity start, TileEntity dest) {}
 
     @Override
-    public void trailEffect(int startX, int startY, int startZ, TileEntity dest, long colorSeed) {
-    }
+    public void trailEffect(int startX, int startY, int startZ, TileEntity dest, long colorSeed) {}
 
     @Override
-    public void chunkLoaderEffect(World world, Object source, Set<ChunkCoordIntPair> chunks) {
-    }
+    public void chunkLoaderEffect(World world, Object source, Set<ChunkCoordIntPair> chunks) {}
 
     @Override
-    public void handleEffectPacket(DataInputStream data) throws IOException {
-    }
+    public void handleEffectPacket(DataInputStream data) throws IOException {}
 
-    protected void spawnParticle(EntityFX particle) {
-    }
+    protected void spawnParticle(EntityFX particle) {}
 
     @Override
-    public void steamEffect(World world, Object source, double yOffset) {
-    }
+    public void steamEffect(World world, Object source, double yOffset) {}
 
     @Override
-    public void steamJetEffect(World world, Object source, double vecX, double vecY, double vecZ) {
-    }
+    public void steamJetEffect(World world, Object source, double vecX, double vecY, double vecZ) {}
 
     @Override
-    public void chimneyEffect(World world, double x, double y, double z) {
-    }
+    public void chimneyEffect(World world, double x, double y, double z) {}
 }

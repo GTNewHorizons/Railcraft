@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -41,5 +41,4 @@ public class ItemLantern extends ItemBlock {
         BlockLantern block = (BlockLantern) field_150939_a;
         return "tile." + block.proxy.fromOrdinal(stack.getItemDamage()).getTag();
     }
-
 }

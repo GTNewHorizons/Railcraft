@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -72,11 +72,16 @@ public class RenderCartItemFiltered implements IItemRenderer {
         ItemStack filter = EntityCartFiltered.getFilterFromCartItem(stack);
         if (filter != null) {
             rendererType.setupRender();
-            RenderItem.getInstance().renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), filter, 0, 0);
+            RenderItem.getInstance()
+                    .renderItemAndEffectIntoGUI(
+                            Minecraft.getMinecraft().fontRenderer,
+                            Minecraft.getMinecraft().getTextureManager(),
+                            filter,
+                            0,
+                            0);
         }
 
         GL11.glPopAttrib();
         GL11.glPopMatrix();
     }
-
 }

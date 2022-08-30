@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,9 +11,9 @@ package mods.railcraft.common.util.misc;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.core.Railcraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
-import mods.railcraft.common.core.Railcraft;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.message.Message;
@@ -35,7 +35,9 @@ public class Game {
         }
         IS_BUKKIT = foundBukkit;
         if (IS_BUKKIT)
-            log(Level.INFO, "Bukkit detected, disabling Tile Entity caching because Bukkit doesn't seem to invalid Tile Entities properly!");
+            log(
+                    Level.INFO,
+                    "Bukkit detected, disabling Tile Entity caching because Bukkit doesn't seem to invalid Tile Entities properly!");
     }
 
     public static boolean isHost(final World world) {
@@ -49,8 +51,7 @@ public class Game {
     @SideOnly(Side.CLIENT)
     public static World getWorld() {
         Minecraft mc = FMLClientHandler.instance().getClient();
-        if (mc != null)
-            return mc.theWorld;
+        if (mc != null) return mc.theWorld;
         return null;
     }
 
@@ -59,8 +60,7 @@ public class Game {
     }
 
     public static void log(Level level, String msg, Object... args) {
-        if (msg != null)
-            log(level, new MessageFormatMessage(msg, args));
+        if (msg != null) log(level, new MessageFormatMessage(msg, args));
     }
 
     public static void log(Level level, Message msg) {
@@ -92,14 +92,12 @@ public class Game {
 
     public static void logThrowable(Level level, String msg, int lines, Throwable error, Object... args) {
         log(level, msg, args);
-        if (error.getMessage() != null)
-            log(level, error.getMessage());
+        if (error.getMessage() != null) log(level, error.getMessage());
         logTrace(level, lines, 0, error.getStackTrace());
     }
 
     public static void logDebug(String msg, Object... args) {
-        if (!IS_DEBUG)
-            return;
+        if (!IS_DEBUG) return;
         log(Level.DEBUG, msg, args);
     }
 
@@ -111,7 +109,10 @@ public class Game {
         for (Class classFile : classFiles) {
             if (classFile != null) {
                 msg = new StringBuilder(mod);
-                msg.append(" API error: ").append(classFile.getSimpleName()).append(" is loaded from ").append(classFile.getProtectionDomain().getCodeSource().getLocation());
+                msg.append(" API error: ")
+                        .append(classFile.getSimpleName())
+                        .append(" is loaded from ")
+                        .append(classFile.getProtectionDomain().getCodeSource().getLocation());
                 log(Level.ERROR, msg.toString());
             }
         }

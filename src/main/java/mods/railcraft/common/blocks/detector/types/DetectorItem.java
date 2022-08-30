@@ -1,12 +1,14 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
  * license page at http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
+
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,15 +21,11 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.slots.ISlotController;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
-
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
@@ -37,26 +35,32 @@ import net.minecraft.nbt.NBTTagCompound;
 public class DetectorItem extends DetectorFilter {
 
     public enum PrimaryMode {
-
-        EMPTY, FULL, ANYTHING, FILTERED, NOT_EMPTY, ANALOG;
+        EMPTY,
+        FULL,
+        ANYTHING,
+        FILTERED,
+        NOT_EMPTY,
+        ANALOG;
 
         @Override
         public String toString() {
             return LocalizationPlugin.translate("railcraft.gui.detector.item." + name().toLowerCase(Locale.ENGLISH));
         }
-
     };
 
     public enum FilterMode {
-
-        AT_LEAST, AT_MOST, EXACTLY, LESS_THAN, GREATER_THAN;
+        AT_LEAST,
+        AT_MOST,
+        EXACTLY,
+        LESS_THAN,
+        GREATER_THAN;
 
         @Override
         public String toString() {
             return LocalizationPlugin.translate("railcraft.gui.detector.item." + name().toLowerCase(Locale.ENGLISH));
         }
-
     };
+
     private PrimaryMode primaryMode = PrimaryMode.ANYTHING;
     private FilterMode filterMode = FilterMode.AT_LEAST;
 
@@ -68,27 +72,22 @@ public class DetectorItem extends DetectorFilter {
     public int testCarts(List<EntityMinecart> carts) {
         for (EntityMinecart cart : carts) {
             IInventory cartInv = null;
-            if (cart instanceof IInventory)
-                cartInv = (IInventory) cart;
+            if (cart instanceof IInventory) cartInv = (IInventory) cart;
             if (cartInv != null && cartInv.getSizeInventory() > 0)
                 switch (primaryMode) {
                     case ANYTHING:
                         return FULL_POWER;
                     case EMPTY:
-                        if (InvTools.isInventoryEmpty(cartInv))
-                            return FULL_POWER;
+                        if (InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
                         continue;
                     case FULL:
-                        if (InvTools.isInventoryFull(cartInv))
-                            return FULL_POWER;
+                        if (InvTools.isInventoryFull(cartInv)) return FULL_POWER;
                         continue;
                     case FILTERED:
-                        if (matchesFilter(cartInv))
-                            return FULL_POWER;
+                        if (matchesFilter(cartInv)) return FULL_POWER;
                         continue;
                     case NOT_EMPTY:
-                        if (!InvTools.isInventoryEmpty(cartInv))
-                            return FULL_POWER;
+                        if (!InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
                         continue;
                     case ANALOG:
                         return Container.calcRedstoneFromInventory(cartInv);
@@ -100,31 +99,25 @@ public class DetectorItem extends DetectorFilter {
     private boolean matchesFilter(IInventory cartInv) {
         for (int i = 0; i < getFilters().getSizeInventory(); i++) {
             ItemStack filter = getFilters().getStackInSlot(i);
-            if (filter == null)
-                continue;
+            if (filter == null) continue;
             int amountFilter = InvTools.countItems(getFilters(), filter);
             int amountCart = InvTools.countItems(cartInv, filter);
 
             switch (filterMode) {
                 case EXACTLY:
-                    if (amountCart != amountFilter)
-                        return false;
+                    if (amountCart != amountFilter) return false;
                     break;
                 case AT_LEAST:
-                    if (amountCart < amountFilter)
-                        return false;
+                    if (amountCart < amountFilter) return false;
                     break;
                 case AT_MOST:
-                    if (amountCart > amountFilter)
-                        return false;
+                    if (amountCart > amountFilter) return false;
                     break;
                 case GREATER_THAN:
-                    if (amountCart <= amountFilter)
-                        return false;
+                    if (amountCart <= amountFilter) return false;
                     break;
                 case LESS_THAN:
-                    if (amountCart >= amountFilter)
-                        return false;
+                    if (amountCart >= amountFilter) return false;
                     break;
             }
         }
@@ -203,7 +196,6 @@ public class DetectorItem extends DetectorFilter {
             public boolean isSlotEnabled() {
                 return getPrimaryMode() == PrimaryMode.FILTERED;
             }
-
         };
     }
 
@@ -211,5 +203,4 @@ public class DetectorItem extends DetectorFilter {
     public EnumDetector getType() {
         return EnumDetector.ITEM;
     }
-
 }

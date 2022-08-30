@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,13 @@
  */
 package mods.railcraft.common.plugins.forge;
 
+import static net.minecraftforge.common.util.ForgeDirection.*;
+
+import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.util.misc.MiscTools;
-import net.minecraft.init.Blocks;
-import static net.minecraftforge.common.util.ForgeDirection.*;
 
 /**
  *
@@ -35,12 +36,12 @@ public class PowerPlugin {
         z = MiscTools.getZOnSide(z, from);
         return world.getIndirectPowerOutput(x, y, z, from.ordinal());
     }
-    
+
     public static int getBlockPowerLevel(World world, int x, int y, int z, ForgeDirection from) {
-    	x = MiscTools.getXOnSide(x, from);
-    	y = MiscTools.getYOnSide(y, from);
-    	z = MiscTools.getZOnSide(z, from);
-    	return world.getIndirectPowerLevelTo(x, y, z, from.ordinal());
+        x = MiscTools.getXOnSide(x, from);
+        y = MiscTools.getYOnSide(y, from);
+        z = MiscTools.getZOnSide(z, from);
+        return world.getIndirectPowerLevelTo(x, y, z, from.ordinal());
     }
 
     public static boolean isBlockBeingPoweredByRepeater(World world, int x, int y, int z, ForgeDirection from) {
@@ -50,8 +51,7 @@ public class PowerPlugin {
 
     public static boolean isBlockBeingPoweredByRepeater(World world, int x, int y, int z) {
         for (ForgeDirection side : SIDES) {
-            if (isBlockBeingPoweredByRepeater(world, x, y, z, side))
-                return true;
+            if (isBlockBeingPoweredByRepeater(world, x, y, z, side)) return true;
         }
         return false;
     }
@@ -68,10 +68,8 @@ public class PowerPlugin {
         Block block = WorldPlugin.getBlockOnSide(world, x, y + yOffset, z, side);
         if (block == Blocks.redstone_wire) {
             int meta = WorldPlugin.getBlockMetadataOnSide(world, x, y + yOffset, z, side);
-            if (meta > 0)
-                return true;
+            if (meta > 0) return true;
         }
         return false;
     }
-
 }

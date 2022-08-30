@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.tracks.TrackInstanceBase;
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedController;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.util.IIcon;
 
 /**
  *
@@ -37,9 +37,9 @@ public abstract class TrackBaseRailcraft extends TrackInstanceBase {
     public TrackSpec getTrackSpec() {
         return TrackRegistry.getTrackSpec(getTrackType().getTag());
     }
-    
+
     @Override
-    public IIcon getIcon(){
+    public IIcon getIcon() {
         return getIcon(0);
     }
 

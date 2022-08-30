@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,13 +13,13 @@ import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  *
@@ -40,8 +40,7 @@ public class IcemanBackpack extends BaseBackpack implements IBackpackDefinition 
         return instance;
     }
 
-    protected IcemanBackpack() {
-    }
+    protected IcemanBackpack() {}
 
     public void setup() {
         addItem(Blocks.snow);

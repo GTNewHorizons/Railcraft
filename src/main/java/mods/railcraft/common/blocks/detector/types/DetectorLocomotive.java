@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,14 +8,13 @@
  */
 package mods.railcraft.common.blocks.detector.types;
 
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
+
 import java.util.List;
 import mods.railcraft.common.blocks.detector.DetectorFilter;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.carts.EntityLocomotive;
 import mods.railcraft.common.gui.EnumGui;
-
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
-
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
 import net.minecraft.entity.item.EntityMinecart;
@@ -63,5 +62,4 @@ public class DetectorLocomotive extends DetectorFilter {
     public EnumDetector getType() {
         return EnumDetector.LOCOMOTIVE;
     }
-
 }

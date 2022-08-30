@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -68,15 +68,15 @@ public class PostConnectionHelper {
 
     public static ConnectStyle connect(IBlockAccess world, int x1, int y1, int z1, ForgeDirection side) {
         Block block = WorldPlugin.getBlock(world, x1, y1, z1);
-        if (block instanceof IPostConnection && ((IPostConnection) block).connectsToPost(world, x1, y1, z1, side) == ConnectStyle.NONE)
+        if (block instanceof IPostConnection
+                && ((IPostConnection) block).connectsToPost(world, x1, y1, z1, side) == ConnectStyle.NONE)
             return ConnectStyle.NONE;
 
         int x2 = MiscTools.getXOnSide(x1, side);
         int y2 = MiscTools.getYOnSide(y1, side);
         int z2 = MiscTools.getZOnSide(z1, side);
 
-        if (world.isAirBlock(x2, y2, z2))
-            return ConnectStyle.NONE;
+        if (world.isAirBlock(x2, y2, z2)) return ConnectStyle.NONE;
 
         Block otherBlock = WorldPlugin.getBlock(world, x2, y2, z2);
         ForgeDirection oppositeSide = side.getOpposite();
@@ -88,36 +88,30 @@ public class PostConnectionHelper {
             Game.logErrorAPI("Railcraft", error, IPostConnection.class);
         }
 
-        if (otherBlock instanceof BlockPostBase)
-            return ConnectStyle.TWO_THIN;
+        if (otherBlock instanceof BlockPostBase) return ConnectStyle.TWO_THIN;
 
-        if (noConnect.contains(otherBlock))
-            return ConnectStyle.NONE;
+        if (noConnect.contains(otherBlock)) return ConnectStyle.NONE;
 
-        if (canConnect.contains(otherBlock))
-            return ConnectStyle.TWO_THIN;
+        if (canConnect.contains(otherBlock)) return ConnectStyle.TWO_THIN;
 
         if (otherBlock instanceof BlockSign) {
             int meta = world.getBlockMetadata(x2, y2, z2);
             return meta == side.ordinal() ? ConnectStyle.SINGLE_THICK : ConnectStyle.NONE;
         }
 
-        if (otherBlock instanceof BlockLantern)
-            return ConnectStyle.SINGLE_THICK;
+        if (otherBlock instanceof BlockLantern) return ConnectStyle.SINGLE_THICK;
 
         TileEntity otherTile = world.getTileEntity(x2, y2, z2);
-        if (otherTile instanceof ISignalTile)
-            return ConnectStyle.TWO_THIN;
+        if (otherTile instanceof ISignalTile) return ConnectStyle.TWO_THIN;
 
-        if (world.isSideSolid(x2, y2, z2, oppositeSide, false))
-            return ConnectStyle.TWO_THIN;
+        if (world.isSideSolid(x2, y2, z2, oppositeSide, false)) return ConnectStyle.TWO_THIN;
 
         // RedPower 2 compat
-//        if (Blocks.blocksList[id] != null && Blocks.blocksList[id].getClass().getSimpleName().equals("BlockShapedLamp")) {
-//            return true;
-//        }
+        //        if (Blocks.blocksList[id] != null &&
+        // Blocks.blocksList[id].getClass().getSimpleName().equals("BlockShapedLamp")) {
+        //            return true;
+        //        }
 
         return ConnectStyle.NONE;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,16 +12,16 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.inventory.Slot;
-import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.gui.slots.SlotLiquidContainer;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.FakeTank;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.gui.slots.SlotLiquidContainer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -86,8 +86,7 @@ public abstract class TileTank extends TileMultiBlockInventory implements IFluid
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
+        if (resource == null) return null;
         TankManager tMan = getTankManager();
         if (tMan != null) {
             return tMan.drain(from, resource, doDrain);
@@ -107,9 +106,9 @@ public abstract class TileTank extends TileMultiBlockInventory implements IFluid
     @Override
     public int[] getAccessibleSlotsFromSide(int side) {
         if (side == 1) {
-            return new int[]{0};
+            return new int[] {0};
         }
-        return new int[]{1};
+        return new int[] {1};
     }
 
     @Override
@@ -145,5 +144,4 @@ public abstract class TileTank extends TileMultiBlockInventory implements IFluid
         super.readPacketData(data);
         tankManager.readPacketData(data);
     }
-
 }

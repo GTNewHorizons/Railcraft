@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,8 +10,8 @@ package mods.railcraft.common.gui.slots;
 
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class SlotEnergy extends Slot {
 

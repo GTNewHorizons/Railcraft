@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,8 +20,7 @@ public class CommonProxy {
     }
 
     public String getItemDisplayName(ItemStack stack) {
-        if (stack == null)
-            return "";
+        if (stack == null) return "";
         return stack.getDisplayName();
     }
 
@@ -33,11 +32,9 @@ public class CommonProxy {
         return 0;
     }
 
-    public void preInitClient() {
-    }
+    public void preInitClient() {}
 
-    public void initClient() {
-    }
+    public void initClient() {}
 
     public UUID getPlayerIdentifier(EntityPlayer player) {
         return player.getGameProfile().getId();
@@ -54,5 +51,4 @@ public class CommonProxy {
     public String getCurrentLanguage() {
         return "en_US";
     }
-
 }

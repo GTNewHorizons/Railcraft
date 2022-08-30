@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -43,22 +43,27 @@ public class ItemCrowbarMagic extends ItemCrowbar implements IRepairable {
     }
 
     public static void registerResearch() {
-        if (item == null)
-            return;
+        if (item == null) return;
         try {
-            IArcaneRecipe recipe = ThaumcraftApi.addArcaneCraftingRecipe(RESEARCH_TAG, new ItemStack(item),
+            IArcaneRecipe recipe = ThaumcraftApi.addArcaneCraftingRecipe(
+                    RESEARCH_TAG,
+                    new ItemStack(item),
                     new AspectList().add(Aspect.ORDER, 8),
                     " RI",
                     "RIR",
                     "IR ",
-                    'I', ThaumcraftPlugin.getItem("itemResource", 2),
-                    'R', "dyeRed");
+                    'I',
+                    ThaumcraftPlugin.getItem("itemResource", 2),
+                    'R',
+                    "dyeRed");
 
             AspectList aspects = new AspectList();
             aspects.add(Aspect.TOOL, 1).add(Aspect.MECHANISM, 2).add(Aspect.TRAVEL, 1);
 
-            ResearchItem thaumiumCrowbar = new ResearchItemRC(RESEARCH_TAG, ThaumcraftPlugin.RESEARCH_CATEGORY, aspects, 0, 0, 3, new ItemStack(item));
-            thaumiumCrowbar.setPages(ThaumcraftPlugin.getResearchPage(RESEARCH_TAG), new ResearchPage(recipe))
+            ResearchItem thaumiumCrowbar = new ResearchItemRC(
+                    RESEARCH_TAG, ThaumcraftPlugin.RESEARCH_CATEGORY, aspects, 0, 0, 3, new ItemStack(item));
+            thaumiumCrowbar
+                    .setPages(ThaumcraftPlugin.getResearchPage(RESEARCH_TAG), new ResearchPage(recipe))
                     .setParentsHidden("THAUMIUM")
                     .registerResearchItem();
         } catch (Throwable error) {
@@ -67,8 +72,7 @@ public class ItemCrowbarMagic extends ItemCrowbar implements IRepairable {
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 }

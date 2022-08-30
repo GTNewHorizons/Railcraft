@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,6 +11,7 @@ package mods.railcraft.common.carts;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.client.emblems.Emblem;
@@ -27,8 +28,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-
-import java.util.List;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -89,11 +88,9 @@ public class ItemLocomotive extends ItemCart {
     public IIcon getIcon(ItemStack stack, int pass) {
         String rendererTag = getModel(stack);
         LocomotiveModelRenderer renderer = renderType.getRenderer(rendererTag);
-        if (renderer == null)
-            return RenderTools.getMissingIcon();
+        if (renderer == null) return RenderTools.getMissingIcon();
         IIcon[] icons = renderer.getItemIcons();
-        if (pass >= icons.length || icons[pass] == null)
-            return blankIcon;
+        if (pass >= icons.length || icons[pass] == null) return blankIcon;
         return renderer.getItemIcons()[pass];
     }
 
@@ -110,10 +107,8 @@ public class ItemLocomotive extends ItemCart {
         String model = getModel(stack);
         LocomotiveModelRenderer renderer = renderType.getRenderer(model);
         String modelName;
-        if (renderer != null)
-            modelName = renderer.getDisplayName();
-        else
-            modelName = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.model.default");
+        if (renderer != null) modelName = renderer.getDisplayName();
+        else modelName = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.model.default");
         String format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.model");
         info.add(String.format(format, modelName));
 
@@ -144,12 +139,10 @@ public class ItemLocomotive extends ItemCart {
     }
 
     public static void setItemColorData(ItemStack stack, int primaryColor, int secondaryColor) {
-        if (primaryColor < 0 || secondaryColor < 0)
-            return;
+        if (primaryColor < 0 || secondaryColor < 0) return;
         NBTTagCompound nbt = InvTools.getItemData(stack);
         nbt.setByte("primaryColor", (byte) primaryColor);
         nbt.setByte("secondaryColor", (byte) secondaryColor);
-
     }
 
     public static void setItemWhistleData(ItemStack stack, float whistlePitch) {
@@ -159,8 +152,7 @@ public class ItemLocomotive extends ItemCart {
 
     public static float getWhistlePitch(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt == null || !nbt.hasKey("whistlePitch"))
-            return -1;
+        if (nbt == null || !nbt.hasKey("whistlePitch")) return -1;
         return nbt.getFloat("whistlePitch");
     }
 
@@ -171,8 +163,7 @@ public class ItemLocomotive extends ItemCart {
 
     public static GameProfile getOwner(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt == null)
-            return new GameProfile(null, "[Unknown]");
+        if (nbt == null) return new GameProfile(null, "[Unknown]");
         return PlayerPlugin.readOwnerFromNBT(nbt);
     }
 
@@ -183,8 +174,7 @@ public class ItemLocomotive extends ItemCart {
 
     public static String getEmblem(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt == null || !nbt.hasKey("emblem"))
-            return "";
+        if (nbt == null || !nbt.hasKey("emblem")) return "";
         return nbt.getString("emblem");
     }
 
@@ -195,8 +185,7 @@ public class ItemLocomotive extends ItemCart {
 
     public static String getModel(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt == null || !nbt.hasKey("model"))
-            return "default";
+        if (nbt == null || !nbt.hasKey("model")) return "default";
         return nbt.getString("model");
     }
 
@@ -215,5 +204,4 @@ public class ItemLocomotive extends ItemCart {
         }
         return EnumColor.fromId(nbt.getByte("secondaryColor"));
     }
-
 }

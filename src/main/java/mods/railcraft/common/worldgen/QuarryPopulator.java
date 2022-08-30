@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,8 +14,8 @@ import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
@@ -28,7 +28,8 @@ import net.minecraftforge.event.terraingen.TerrainGen;
  */
 public class QuarryPopulator {
 
-    public static final EventType EVENT_TYPE = EnumHelper.addEnum(EventType.class, "RAILCRAFT_QUARRY", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE =
+            EnumHelper.addEnum(EventType.class, "RAILCRAFT_QUARRY", new Class[0], new Object[0]);
     private static QuarryPopulator instance;
     private final WorldGenQuarry quarry = new WorldGenQuarry(BlockCube.getBlock(), EnumCube.QUARRIED_STONE.ordinal());
 
@@ -39,12 +40,18 @@ public class QuarryPopulator {
         return instance;
     }
 
-    private QuarryPopulator() {
-    }
+    private QuarryPopulator() {}
 
     @SubscribeEvent
     public void generate(PopulateChunkEvent.Pre event) {
-        if (!TerrainGen.populate(event.chunkProvider, event.world, event.rand, event.chunkX, event.chunkZ, event.hasVillageGenerated, EVENT_TYPE)) {
+        if (!TerrainGen.populate(
+                event.chunkProvider,
+                event.world,
+                event.rand,
+                event.chunkX,
+                event.chunkZ,
+                event.hasVillageGenerated,
+                EVENT_TYPE)) {
             return;
         }
         generateQuarry(event.world, event.rand, event.chunkX, event.chunkZ);
@@ -71,5 +78,4 @@ public class QuarryPopulator {
         }
         return rand.nextDouble() <= 0.025;
     }
-
 }

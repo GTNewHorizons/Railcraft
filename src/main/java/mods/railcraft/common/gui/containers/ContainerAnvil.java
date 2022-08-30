@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -58,8 +58,7 @@ public class ContainerAnvil extends ContainerRepair {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        if (!(WorldPlugin.getBlock(world, x, y, z) instanceof BlockAnvil))
-            return false;
+        if (!(WorldPlugin.getBlock(world, x, y, z) instanceof BlockAnvil)) return false;
         return player.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) <= 64.0D;
     }
 
@@ -91,7 +90,8 @@ public class ContainerAnvil extends ContainerRepair {
 
             if (inputB != null) {
                 if (!ForgeHooks.onAnvilChange(this, inputA, inputB, outputSlot, repairedItemName, baseCost)) return;
-                isBook = inputB.getItem() == Items.enchanted_book && Items.enchanted_book.func_92110_g(inputB).tagCount() > 0;
+                isBook = inputB.getItem() == Items.enchanted_book
+                        && Items.enchanted_book.func_92110_g(inputB).tagCount() > 0;
 
                 if (inputACopy.isItemStackDamageable() && inputACopy.getItem().getIsRepairable(inputA, inputB)) {
                     l = Math.min(inputACopy.getItemDamageForDisplay(), inputACopy.getMaxDamage() / 4);
@@ -124,8 +124,7 @@ public class ContainerAnvil extends ContainerRepair {
                         int i2 = l + j1;
                         k1 = inputACopy.getMaxDamage() - i2;
 
-                        if (k1 < 0)
-                            k1 = 0;
+                        if (k1 < 0) k1 = 0;
 
                         if (k1 < inputACopy.getItemDamage()) {
                             inputACopy.setItemDamage(k1);
@@ -139,15 +138,16 @@ public class ContainerAnvil extends ContainerRepair {
                     while (iterator.hasNext()) {
                         j1 = ((Integer) iterator.next()).intValue();
                         enchantment = Enchantment.enchantmentsList[j1];
-                        k1 = enchantments.containsKey(Integer.valueOf(j1)) ? ((Integer) enchantments.get(Integer.valueOf(j1))).intValue() : 0;
+                        k1 = enchantments.containsKey(Integer.valueOf(j1))
+                                ? ((Integer) enchantments.get(Integer.valueOf(j1))).intValue()
+                                : 0;
                         l1 = ((Integer) map1.get(Integer.valueOf(j1))).intValue();
                         int j2;
 
                         if (k1 == l1) {
                             ++l1;
                             j2 = l1;
-                        } else
-                            j2 = Math.max(l1, k1);
+                        } else j2 = Math.max(l1, k1);
 
                         l1 = j2;
                         int k2 = l1 - k1;
@@ -168,8 +168,7 @@ public class ContainerAnvil extends ContainerRepair {
                         }
 
                         if (isEnchantmentValid) {
-                            if (l1 > enchantment.getMaxLevel())
-                                l1 = enchantment.getMaxLevel();
+                            if (l1 > enchantment.getMaxLevel()) l1 = enchantment.getMaxLevel();
 
                             enchantments.put(Integer.valueOf(j1), Integer.valueOf(l1));
                             int i3 = 0;
@@ -195,8 +194,7 @@ public class ContainerAnvil extends ContainerRepair {
                                     i3 = 1;
                             }
 
-                            if (isBook)
-                                i3 = Math.max(1, i3 / 2);
+                            if (isBook) i3 = Math.max(1, i3 / 2);
 
                             i += i3 * k2;
                         }
@@ -214,8 +212,7 @@ public class ContainerAnvil extends ContainerRepair {
                 j = inputA.isItemStackDamageable() ? 7 : inputA.stackSize * 5;
                 i += j;
 
-                if (inputA.hasDisplayName())
-                    baseCost += j / 2;
+                if (inputA.hasDisplayName()) baseCost += j / 2;
 
                 inputACopy.setStackDisplayName(this.repairedItemName);
             }
@@ -250,40 +247,32 @@ public class ContainerAnvil extends ContainerRepair {
                         l1 = 1;
                 }
 
-                if (isBook)
-                    l1 = Math.max(1, l1 / 2);
+                if (isBook) l1 = Math.max(1, l1 / 2);
             }
 
-            if (isBook)
-                baseCost = Math.max(1, baseCost / 2);
+            if (isBook) baseCost = Math.max(1, baseCost / 2);
 
             if (isBook && inputACopy != null && !inputACopy.getItem().isBookEnchantable(inputACopy, inputB))
                 inputACopy = null;
 
             this.maximumCost = baseCost + i;
 
-            if (i <= 0)
-                inputACopy = null;
+            if (i <= 0) inputACopy = null;
 
             // Railcraft changes max cost from 39 to 50
-            if (j == i && j > 0 && this.maximumCost > 50)
-                this.maximumCost = 50;
+            if (j == i && j > 0 && this.maximumCost > 50) this.maximumCost = 50;
 
             // Here too
-            if (this.maximumCost > 50 && !player.capabilities.isCreativeMode)
-                inputACopy = null;
+            if (this.maximumCost > 50 && !player.capabilities.isCreativeMode) inputACopy = null;
 
             if (inputACopy != null) {
                 int repairCost = inputACopy.getRepairCost();
 
-                if (inputB != null && repairCost < inputB.getRepairCost())
-                    repairCost = inputB.getRepairCost();
+                if (inputB != null && repairCost < inputB.getRepairCost()) repairCost = inputB.getRepairCost();
 
-                if (inputACopy.hasDisplayName())
-                    repairCost -= 9;
+                if (inputACopy.hasDisplayName()) repairCost -= 9;
 
-                if (repairCost < 0)
-                    repairCost = 0;
+                if (repairCost < 0) repairCost = 0;
 
                 repairCost += 2;
                 inputACopy.setRepairCost(repairCost);
@@ -305,10 +294,8 @@ public class ContainerAnvil extends ContainerRepair {
         if (this.getSlot(2).getHasStack()) {
             ItemStack itemstack = this.getSlot(2).getStack();
 
-            if (StringUtils.isBlank(par1Str))
-                itemstack.func_135074_t();
-            else
-                itemstack.setStackDisplayName(this.repairedItemName);
+            if (StringUtils.isBlank(par1Str)) itemstack.func_135074_t();
+            else itemstack.setStackDisplayName(this.repairedItemName);
         }
 
         this.updateRepairOutput();
@@ -322,7 +309,16 @@ public class ContainerAnvil extends ContainerRepair {
         final int z;
         final ContainerAnvil repairContainer;
 
-        SlotAnvil(ContainerAnvil container, IInventory inv, int index, int slotX, int slotY, World world, int x, int y, int z) {
+        SlotAnvil(
+                ContainerAnvil container,
+                IInventory inv,
+                int index,
+                int slotX,
+                int slotY,
+                World world,
+                int x,
+                int y,
+                int z) {
             super(inv, index, slotX, slotY);
             this.repairContainer = container;
             this.world = world;
@@ -345,15 +341,21 @@ public class ContainerAnvil extends ContainerRepair {
          */
         @Override
         public boolean canTakeStack(EntityPlayer par1EntityPlayer) {
-            return (par1EntityPlayer.capabilities.isCreativeMode || par1EntityPlayer.experienceLevel >= this.repairContainer.maximumCost) && this.repairContainer.maximumCost > 0 && this.getHasStack();
+            return (par1EntityPlayer.capabilities.isCreativeMode
+                            || par1EntityPlayer.experienceLevel >= this.repairContainer.maximumCost)
+                    && this.repairContainer.maximumCost > 0
+                    && this.getHasStack();
         }
 
         @Override
         public void onPickupFromSlot(EntityPlayer player, ItemStack stackInSlot) {
-            if (!player.capabilities.isCreativeMode)
-                player.addExperienceLevel(-this.repairContainer.maximumCost);
-            
-            float breakChance = ForgeHooks.onAnvilRepair(player, stackInSlot, repairContainer.inputSlots.getStackInSlot(0), repairContainer.inputSlots.getStackInSlot(1));
+            if (!player.capabilities.isCreativeMode) player.addExperienceLevel(-this.repairContainer.maximumCost);
+
+            float breakChance = ForgeHooks.onAnvilRepair(
+                    player,
+                    stackInSlot,
+                    repairContainer.inputSlots.getStackInSlot(0),
+                    repairContainer.inputSlots.getStackInSlot(1));
 
             repairContainer.inputSlots.setInventorySlotContents(0, (ItemStack) null);
 
@@ -363,15 +365,16 @@ public class ContainerAnvil extends ContainerRepair {
                 if (itemstack1 != null && itemstack1.stackSize > repairContainer.stackSizeToBeUsedInRepair) {
                     itemstack1.stackSize -= repairContainer.stackSizeToBeUsedInRepair;
                     repairContainer.inputSlots.setInventorySlotContents(1, itemstack1);
-                } else
-                    repairContainer.inputSlots.setInventorySlotContents(1, (ItemStack) null);
-            } else
-                repairContainer.inputSlots.setInventorySlotContents(1, (ItemStack) null);
+                } else repairContainer.inputSlots.setInventorySlotContents(1, (ItemStack) null);
+            } else repairContainer.inputSlots.setInventorySlotContents(1, (ItemStack) null);
 
             this.repairContainer.maximumCost = 0;
 
             // Only Railcraft change is the random chance of damage
-            if (!player.capabilities.isCreativeMode && !this.world.isRemote && WorldPlugin.getBlock(world, x, y, z) instanceof BlockAnvil && player.getRNG().nextFloat() < breakChance) {
+            if (!player.capabilities.isCreativeMode
+                    && !this.world.isRemote
+                    && WorldPlugin.getBlock(world, x, y, z) instanceof BlockAnvil
+                    && player.getRNG().nextFloat() < breakChance) {
                 int i = this.world.getBlockMetadata(this.x, this.y, this.z);
                 int j = i & 3;
                 int k = i >> 2;
@@ -384,9 +387,7 @@ public class ContainerAnvil extends ContainerRepair {
                     this.world.setBlockMetadataWithNotify(this.x, this.y, this.z, j | k << 2, 2);
                     this.world.playAuxSFX(1021, this.x, this.y, this.z, 0);
                 }
-            } else if (!this.world.isRemote)
-                this.world.playAuxSFX(1021, this.x, this.y, this.z, 0);
+            } else if (!this.world.isRemote) this.world.playAuxSFX(1021, this.x, this.y, this.z, 0);
         }
-
     }
 }

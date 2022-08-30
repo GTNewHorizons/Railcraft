@@ -5,7 +5,6 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.blocks.signals.TileBoxAnalogController;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -15,17 +14,17 @@ import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiBoxAnalogController extends GuiBasic {
 
     private final TileBoxAnalogController tile;
-    private final static Pattern patternRange = Pattern.compile("(\\d+)-(\\d+)|(\\d+)");
-    //When doing Pattern.matcher, these are the groups:           ^ 1    ^ 2    ^ 3
+    private static final Pattern patternRange = Pattern.compile("(\\d+)-(\\d+)|(\\d+)");
+    // When doing Pattern.matcher, these are the groups:           ^ 1    ^ 2    ^ 3
 
     private final EnumMap<SignalAspect, BitSet> aspects = new EnumMap<SignalAspect, BitSet>(SignalAspect.class);
-    private final EnumMap<SignalAspect, GuiTextField> textbox = new EnumMap<SignalAspect, GuiTextField>(SignalAspect.class);
+    private final EnumMap<SignalAspect, GuiTextField> textbox =
+            new EnumMap<SignalAspect, GuiTextField>(SignalAspect.class);
 
     public GuiBoxAnalogController(TileBoxAnalogController tile) {
         super(tile.getName(), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic_large.png", 176, 113);
@@ -46,7 +45,7 @@ public class GuiBoxAnalogController extends GuiBasic {
     @Override
     public void keyTyped(char c, int i) {
         super.keyTyped(c, i);
-        //Disallow any PRINTABLE characters that are not digits, commas, or dashes
+        // Disallow any PRINTABLE characters that are not digits, commas, or dashes
         if (c < ' ' || (c >= '0' && c <= '9') || c == '-' || c == ',' || c > '~')
             for (GuiTextField t : textbox.values()) {
                 t.textboxKeyTyped(c, i);
@@ -63,10 +62,8 @@ public class GuiBoxAnalogController extends GuiBasic {
                     start = i;
                 }
             } else if (start != -1) {
-                if (i - 1 == start)
-                    s += ",";
-                else
-                    s += "-" + (i - 1) + ",";
+                if (i - 1 == start) s += ",";
+                else s += "-" + (i - 1) + ",";
                 start = -1;
             }
         }
@@ -75,10 +72,8 @@ public class GuiBoxAnalogController extends GuiBasic {
             start = 15;
         }
 
-        if (s.isEmpty() || start == 15)
-            return s;
-        else
-            return s.substring(0, s.length() - 1);	//Remove trailing comma
+        if (s.isEmpty() || start == 15) return s;
+        else return s.substring(0, s.length() - 1); // Remove trailing comma
     }
 
     private void parseRegex(String regex, BitSet bits) {
@@ -87,8 +82,7 @@ public class GuiBoxAnalogController extends GuiBasic {
         while (m.find()) {
             if (m.groupCount() >= 3 && m.group(3) != null) {
                 int i = Integer.parseInt(m.group(3));
-                if (i >= 0 && i <= 15)
-                    bits.set(i);
+                if (i >= 0 && i <= 15) bits.set(i);
             } else {
                 int start = Integer.parseInt(m.group(1));
                 int end = Integer.parseInt(m.group(2));
@@ -102,18 +96,17 @@ public class GuiBoxAnalogController extends GuiBasic {
 
     @Override
     public void initGui() {
-        if (tile == null)
-            return;
+        if (tile == null) return;
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
 
         for (Map.Entry<SignalAspect, BitSet> entry : aspects.entrySet()) {
-            GuiTextField textField = new GuiTextField(fontRendererObj, w + 72, h + getYPosFromIndex(entry.getKey().ordinal()), 95, 10);
+            GuiTextField textField = new GuiTextField(
+                    fontRendererObj, w + 72, h + getYPosFromIndex(entry.getKey().ordinal()), 95, 10);
             textField.setMaxStringLength(37);
             textField.setText(rangeToString(entry.getValue()));
             textbox.put(entry.getKey(), textField);
         }
-
     }
 
     @Override
@@ -128,7 +121,12 @@ public class GuiBoxAnalogController extends GuiBasic {
     @Override
     protected void drawExtras(int x, int y, float f) {
         for (SignalAspect aspect : SignalAspect.VALUES) {
-            drawAlignedString(fontRendererObj, LocalizationPlugin.translate(aspect.getLocalizationTag()), 10, getYPosFromIndex(aspect.ordinal()) + 1, 50);
+            drawAlignedString(
+                    fontRendererObj,
+                    LocalizationPlugin.translate(aspect.getLocalizationTag()),
+                    10,
+                    getYPosFromIndex(aspect.ordinal()) + 1,
+                    50);
         }
     }
 
@@ -160,5 +158,4 @@ public class GuiBoxAnalogController extends GuiBasic {
     private static int getYPosFromIndex(int i) {
         return 22 + i * 14;
     }
-
 }

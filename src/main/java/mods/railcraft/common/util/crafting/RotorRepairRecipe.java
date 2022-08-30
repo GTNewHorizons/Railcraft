@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.common.util.crafting;
 
+import mods.railcraft.common.items.RailcraftPartItems;
+import mods.railcraft.common.util.inventory.InvTools;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-import mods.railcraft.common.items.RailcraftPartItems;
-import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  *

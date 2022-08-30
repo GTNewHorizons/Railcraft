@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -46,5 +46,4 @@ public class RFEnergyIndicator extends IndicatorController {
     public void updateEnergy(int energy) {
         this.energy = (int) ((this.energy * 9 + energy) / 10.0);
     }
-
 }

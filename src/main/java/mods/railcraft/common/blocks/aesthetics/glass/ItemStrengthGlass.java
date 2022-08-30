@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,8 +32,7 @@ public class ItemStrengthGlass extends ItemBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int pass) {
-        if (BlockStrengthGlass.renderingHighlight)
-            return super.getColorFromItemStack(stack, pass);
+        if (BlockStrengthGlass.renderingHighlight) return super.getColorFromItemStack(stack, pass);
         return EnumColor.fromId(15 - stack.getItemDamage()).getHexColor();
     }
 
@@ -42,9 +41,9 @@ public class ItemStrengthGlass extends ItemBlock {
         return meta;
     }
 
-//    @Override
-//    public String getUnlocalizedName(ItemStack stack) {
-//        return getUnlocalizedName() + "." + EnumColor.fromId(15 - stack.getItemDamage()).getBasicTag();
-//    }
+    //    @Override
+    //    public String getUnlocalizedName(ItemStack stack) {
+    //        return getUnlocalizedName() + "." + EnumColor.fromId(15 - stack.getItemDamage()).getBasicTag();
+    //    }
 
 }

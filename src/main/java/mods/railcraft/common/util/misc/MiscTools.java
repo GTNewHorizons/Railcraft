@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,29 +11,28 @@ package mods.railcraft.common.util.misc;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.tracks.EnumTrack;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import net.minecraft.command.IEntitySelector;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.tracks.EnumTrack;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.core.RailcraftConfig;
-import net.minecraft.command.IEntitySelector;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 
 public abstract class MiscTools {
 
     public enum ArmorSlots {
-
         BOOTS,
         LEGS,
         CHEST,
@@ -63,12 +62,13 @@ public abstract class MiscTools {
     }
 
     public static String cleanTag(String tag) {
-        return tag.replaceAll("[Rr]ailcraft\\p{Punct}", "").replaceFirst("^tile\\.", "").replaceFirst("^item\\.", "");
+        return tag.replaceAll("[Rr]ailcraft\\p{Punct}", "")
+                .replaceFirst("^tile\\.", "")
+                .replaceFirst("^item\\.", "");
     }
 
     public static void writeUUID(NBTTagCompound data, String tag, UUID uuid) {
-        if (uuid == null)
-            return;
+        if (uuid == null) return;
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setLong("most", uuid.getMostSignificantBits());
         nbtTag.setLong("least", uuid.getLeastSignificantBits());
@@ -84,24 +84,19 @@ public abstract class MiscTools {
     }
 
     public static AxisAlignedBB addCoordToAABB(AxisAlignedBB box, double x, double y, double z) {
-        if (x < box.minX)
-            box.minX = x;
-        else if (x > box.maxX)
-            box.maxX = x;
+        if (x < box.minX) box.minX = x;
+        else if (x > box.maxX) box.maxX = x;
 
-        if (y < box.minY)
-            box.minY = y;
-        else if (y > box.maxY)
-            box.maxY = y;
+        if (y < box.minY) box.minY = y;
+        else if (y > box.maxY) box.maxY = y;
 
-        if (z < box.minZ)
-            box.minZ = z;
-        else if (z > box.maxZ)
-            box.maxZ = z;
+        if (z < box.minZ) box.minZ = z;
+        else if (z > box.maxZ) box.maxZ = z;
         return box;
     }
 
-    public static <T extends Entity> List<T> getNearbyEntities(World world, Class<T> entityClass, float x, float minY, float maxY, float z, float radius) {
+    public static <T extends Entity> List<T> getNearbyEntities(
+            World world, Class<T> entityClass, float x, float minY, float maxY, float z, float radius) {
         AxisAlignedBB box = AxisAlignedBB.getBoundingBox(x, minY, z, x + 1, maxY, z + 1);
         box = box.expand(radius, 0, radius);
         return (List<T>) world.getEntitiesWithinAABB(entityClass, box);
@@ -115,8 +110,7 @@ public abstract class MiscTools {
     public static <T extends Entity> T getEntityAt(World world, Class<T> entityClass, int x, int y, int z) {
         AxisAlignedBB box = AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1);
         List<T> entities = (List<T>) world.selectEntitiesWithinAABB(entityClass, box, IEntitySelector.selectAnything);
-        if (!entities.isEmpty())
-            return entities.get(0);
+        if (!entities.isEmpty()) return entities.get(0);
         return null;
     }
 
@@ -129,68 +123,43 @@ public abstract class MiscTools {
         Vec3 vec3d5 = vec3d.getIntermediateWithYValue(vec3d1, 1);
         Vec3 vec3d6 = vec3d.getIntermediateWithZValue(vec3d1, 0);
         Vec3 vec3d7 = vec3d.getIntermediateWithZValue(vec3d1, 1);
-        if (!isVecInsideYZBounds(vec3d2))
-            vec3d2 = null;
-        if (!isVecInsideYZBounds(vec3d3))
-            vec3d3 = null;
-        if (!isVecInsideXZBounds(vec3d4))
-            vec3d4 = null;
-        if (!isVecInsideXZBounds(vec3d5))
-            vec3d5 = null;
-        if (!isVecInsideXYBounds(vec3d6))
-            vec3d6 = null;
-        if (!isVecInsideXYBounds(vec3d7))
-            vec3d7 = null;
+        if (!isVecInsideYZBounds(vec3d2)) vec3d2 = null;
+        if (!isVecInsideYZBounds(vec3d3)) vec3d3 = null;
+        if (!isVecInsideXZBounds(vec3d4)) vec3d4 = null;
+        if (!isVecInsideXZBounds(vec3d5)) vec3d5 = null;
+        if (!isVecInsideXYBounds(vec3d6)) vec3d6 = null;
+        if (!isVecInsideXYBounds(vec3d7)) vec3d7 = null;
         Vec3 vec3d8 = null;
-        if (vec3d2 != null && (vec3d8 == null || vec3d.distanceTo(vec3d2) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d2;
-        if (vec3d3 != null && (vec3d8 == null || vec3d.distanceTo(vec3d3) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d3;
-        if (vec3d4 != null && (vec3d8 == null || vec3d.distanceTo(vec3d4) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d4;
-        if (vec3d5 != null && (vec3d8 == null || vec3d.distanceTo(vec3d5) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d5;
-        if (vec3d6 != null && (vec3d8 == null || vec3d.distanceTo(vec3d6) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d6;
-        if (vec3d7 != null && (vec3d8 == null || vec3d.distanceTo(vec3d7) < vec3d.distanceTo(vec3d8)))
-            vec3d8 = vec3d7;
-        if (vec3d8 == null)
-            return null;
+        if (vec3d2 != null && (vec3d8 == null || vec3d.distanceTo(vec3d2) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d2;
+        if (vec3d3 != null && (vec3d8 == null || vec3d.distanceTo(vec3d3) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d3;
+        if (vec3d4 != null && (vec3d8 == null || vec3d.distanceTo(vec3d4) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d4;
+        if (vec3d5 != null && (vec3d8 == null || vec3d.distanceTo(vec3d5) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d5;
+        if (vec3d6 != null && (vec3d8 == null || vec3d.distanceTo(vec3d6) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d6;
+        if (vec3d7 != null && (vec3d8 == null || vec3d.distanceTo(vec3d7) < vec3d.distanceTo(vec3d8))) vec3d8 = vec3d7;
+        if (vec3d8 == null) return null;
         byte byte0 = -1;
-        if (vec3d8 == vec3d2)
-            byte0 = 4;
-        if (vec3d8 == vec3d3)
-            byte0 = 5;
-        if (vec3d8 == vec3d4)
-            byte0 = 0;
-        if (vec3d8 == vec3d5)
-            byte0 = 1;
-        if (vec3d8 == vec3d6)
-            byte0 = 2;
-        if (vec3d8 == vec3d7)
-            byte0 = 3;
+        if (vec3d8 == vec3d2) byte0 = 4;
+        if (vec3d8 == vec3d3) byte0 = 5;
+        if (vec3d8 == vec3d4) byte0 = 0;
+        if (vec3d8 == vec3d5) byte0 = 1;
+        if (vec3d8 == vec3d6) byte0 = 2;
+        if (vec3d8 == vec3d7) byte0 = 3;
         return new MovingObjectPosition(i, j, k, byte0, vec3d8.addVector(i, j, k));
     }
 
     private static boolean isVecInsideYZBounds(Vec3 vec3d) {
-        if (vec3d == null)
-            return false;
-        else
-            return vec3d.yCoord >= 0 && vec3d.yCoord <= 1 && vec3d.zCoord >= 0 && vec3d.zCoord <= 1;
+        if (vec3d == null) return false;
+        else return vec3d.yCoord >= 0 && vec3d.yCoord <= 1 && vec3d.zCoord >= 0 && vec3d.zCoord <= 1;
     }
 
     private static boolean isVecInsideXZBounds(Vec3 vec3d) {
-        if (vec3d == null)
-            return false;
-        else
-            return vec3d.xCoord >= 0 && vec3d.xCoord <= 1 && vec3d.zCoord >= 0 && vec3d.zCoord <= 1;
+        if (vec3d == null) return false;
+        else return vec3d.xCoord >= 0 && vec3d.xCoord <= 1 && vec3d.zCoord >= 0 && vec3d.zCoord <= 1;
     }
 
     private static boolean isVecInsideXYBounds(Vec3 vec3d) {
-        if (vec3d == null)
-            return false;
-        else
-            return vec3d.xCoord >= 0 && vec3d.xCoord <= 1 && vec3d.yCoord >= 0 && vec3d.yCoord <= 1;
+        if (vec3d == null) return false;
+        else return vec3d.xCoord >= 0 && vec3d.xCoord <= 1 && vec3d.yCoord >= 0 && vec3d.yCoord <= 1;
     }
 
     public static MovingObjectPosition rayTracePlayerLook(EntityPlayer player) {
@@ -211,8 +180,7 @@ public abstract class MiscTools {
      */
     public static ForgeDirection getCurrentMousedOverSide(EntityPlayer player) {
         MovingObjectPosition mouseOver = rayTracePlayerLook(player);
-        if (mouseOver != null)
-            return ForgeDirection.getOrientation(mouseOver.sideHit);
+        if (mouseOver != null) return ForgeDirection.getOrientation(mouseOver.sideHit);
         return ForgeDirection.UNKNOWN;
     }
 
@@ -227,13 +195,13 @@ public abstract class MiscTools {
      * @param entityplayer
      * @return a side
      */
-    public static ForgeDirection getSideClosestToPlayer(World world, int i, int j, int k, EntityLivingBase entityplayer) {
-        if (MathHelper.abs((float) entityplayer.posX - (float) i) < 2.0F && MathHelper.abs((float) entityplayer.posZ - (float) k) < 2.0F) {
+    public static ForgeDirection getSideClosestToPlayer(
+            World world, int i, int j, int k, EntityLivingBase entityplayer) {
+        if (MathHelper.abs((float) entityplayer.posX - (float) i) < 2.0F
+                && MathHelper.abs((float) entityplayer.posZ - (float) k) < 2.0F) {
             double d = (entityplayer.posY + 1.82D) - (double) entityplayer.yOffset;
-            if (d - (double) j > 2D)
-                return ForgeDirection.UP;
-            if ((double) j - d > 0.0D)
-                return ForgeDirection.DOWN;
+            if (d - (double) j > 2D) return ForgeDirection.UP;
+            if ((double) j - d > 0.0D) return ForgeDirection.DOWN;
         }
         int dir = MathHelper.floor_double((double) ((entityplayer.rotationYaw * 4F) / 360F) + 0.5D) & 3;
         switch (dir) {
@@ -249,7 +217,8 @@ public abstract class MiscTools {
 
     public static ForgeDirection getSideFacingTrack(World world, int x, int y, int z) {
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-            if (TrackTools.isRailBlockAt(world, MiscTools.getXOnSide(x, dir), MiscTools.getYOnSide(y, dir), MiscTools.getZOnSide(z, dir)))
+            if (TrackTools.isRailBlockAt(
+                    world, MiscTools.getXOnSide(x, dir), MiscTools.getYOnSide(y, dir), MiscTools.getZOnSide(z, dir)))
                 return dir;
         }
         return ForgeDirection.UNKNOWN;
@@ -266,7 +235,8 @@ public abstract class MiscTools {
      * @param player
      * @return a side
      */
-    public static ForgeDirection getHorizontalSideClosestToPlayer(World world, int x, int y, int z, EntityLivingBase player) {
+    public static ForgeDirection getHorizontalSideClosestToPlayer(
+            World world, int x, int y, int z, EntityLivingBase player) {
         int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4.0F) / 360.0F) + 0.5) & 3;
         switch (dir) {
             case 0:
@@ -299,16 +269,14 @@ public abstract class MiscTools {
         return z + side.offsetZ;
     }
 
-    public static boolean areCoordinatesOnSide(int x, int y, int z, ForgeDirection side, int xCoord, int yCoord, int zCoord) {
+    public static boolean areCoordinatesOnSide(
+            int x, int y, int z, ForgeDirection side, int xCoord, int yCoord, int zCoord) {
         return x + side.offsetX == xCoord && y + side.offsetY == yCoord && z + side.offsetZ == zCoord;
     }
 
     public static boolean isKillabledEntity(Entity entity) {
-        if (entity.ridingEntity instanceof EntityMinecart)
-            return false;
-        if (!(entity instanceof EntityLivingBase))
-            return false;
+        if (entity.ridingEntity instanceof EntityMinecart) return false;
+        if (!(entity instanceof EntityLivingBase)) return false;
         return ((EntityLivingBase) entity).getMaxHealth() < 100;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,9 +8,9 @@
  */
 package mods.railcraft.client.render.carts;
 
+import mods.railcraft.common.carts.CartExplosiveBase;
 import net.minecraft.entity.item.EntityMinecart;
 import org.lwjgl.opengl.GL11;
-import mods.railcraft.common.carts.CartExplosiveBase;
 
 /**
  *
@@ -21,8 +21,8 @@ public class CartContentRendererTNT extends CartContentRenderer {
     @Override
     public void render(RenderCart renderer, EntityMinecart cart, float light, float time) {
         GL11.glPushMatrix();
-//        GL11.glTranslatef(0.0F, 0.3125F, 0.0F);
-//        GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
+        //        GL11.glTranslatef(0.0F, 0.3125F, 0.0F);
+        //        GL11.glRotatef(90F, 0.0F, 1.0F, 0.0F);
         CartExplosiveBase tnt = (CartExplosiveBase) cart;
         if (tnt.isPrimed() && ((float) tnt.getFuse() - time) + 1.0F < 10F) {
             float scale = 1.0F - (((float) tnt.getFuse() - time) + 1.0F) / 10F;

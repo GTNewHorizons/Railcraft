@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -61,10 +61,8 @@ public class WorldGenGeode extends WorldGenerator {
             for (int j = -8; j < 8; j++) {
                 for (int k = -8; k < 8; k++) {
                     int distSq = i * i + j * j + k * k;
-                    if (distSq <= DISTANCE_INNER_SQ)
-                        placeAir(world, rand, x + i, y + j, z + k);
-                    else if (distSq <= DISTANCE_OUTER_SQ)
-                        placeStone(world, rand, x + i, y + j, z + k);
+                    if (distSq <= DISTANCE_INNER_SQ) placeAir(world, rand, x + i, y + j, z + k);
+                    else if (distSq <= DISTANCE_OUTER_SQ) placeStone(world, rand, x + i, y + j, z + k);
                     if (blockOre != null && distSq > DISTANCE_INNER_SQ && distSq <= DISTANCE_ORE_SQ)
                         placeOre(world, rand, x + i, y + j, z + k);
                 }
@@ -74,25 +72,23 @@ public class WorldGenGeode extends WorldGenerator {
     }
 
     private void placeAir(World world, Random rand, int x, int y, int z) {
-//        if (!world.blockExists(x, y, z)) {
-//            return;
-//        }
-        if (isReplaceable(world, x, y, z))
-            world.setBlock(x, y, z, Blocks.air, 0, 2);
+        //        if (!world.blockExists(x, y, z)) {
+        //            return;
+        //        }
+        if (isReplaceable(world, x, y, z)) world.setBlock(x, y, z, Blocks.air, 0, 2);
     }
 
     private void placeStone(World world, Random rand, int x, int y, int z) {
-//        if (!world.blockExists(x, y, z)) {
-//            return;
-//        }
-        if (isReplaceable(world, x, y, z))
-            world.setBlock(x, y, z, blockStone, meta, 2);
+        //        if (!world.blockExists(x, y, z)) {
+        //            return;
+        //        }
+        if (isReplaceable(world, x, y, z)) world.setBlock(x, y, z, blockStone, meta, 2);
     }
 
     private void placeOre(World world, Random rand, int x, int y, int z) {
-//        if (!world.blockExists(x, y, z)) {
-//            return;
-//        }
+        //        if (!world.blockExists(x, y, z)) {
+        //            return;
+        //        }
         if (WorldPlugin.getBlock(world, x, y, z) == blockStone) {
             double chance = rand.nextDouble();
             if (chance <= 0.002 && EnumOre.DARK_DIAMOND.isEnabled())
@@ -106,21 +102,13 @@ public class WorldGenGeode extends WorldGenerator {
 
     private boolean isReplaceable(World world, int x, int y, int z) {
         Block existing = WorldPlugin.getBlock(world, x, y, z);
-        if (existing == null)
-            return false;
-        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.stone))
-            return true;
-        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.dirt))
-            return true;
-        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.gravel))
-            return true;
-        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.sand))
-            return true;
-        if (existing.getMaterial() == Material.water)
-            return true;
-        if (ores.contains(existing))
-            return true;
+        if (existing == null) return false;
+        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.stone)) return true;
+        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.dirt)) return true;
+        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.gravel)) return true;
+        if (existing.isReplaceableOreGen(world, x, y, z, Blocks.sand)) return true;
+        if (existing.getMaterial() == Material.water) return true;
+        if (ores.contains(existing)) return true;
         return false;
     }
-
 }

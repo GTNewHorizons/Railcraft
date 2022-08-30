@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -29,25 +29,18 @@ public class ItemCrowbarReinforced extends ItemCrowbar {
             item.setUnlocalizedName(ITEM_TAG);
             RailcraftRegistry.register(item);
 
-            CraftingPlugin.addShapedRecipe(new ItemStack(item),
-                    " RI",
-                    "RIR",
-                    "IR ",
-                    'I', "ingotSteel",
-                    'R', "dyeRed");
+            CraftingPlugin.addShapedRecipe(new ItemStack(item), " RI", "RIR", "IR ", 'I', "ingotSteel", 'R', "dyeRed");
 
-//                LootPlugin.addLootTool(new ItemStack(item), 1, 1, ITEM_TAG);
+            //                LootPlugin.addLootTool(new ItemStack(item), 1, 1, ITEM_TAG);
         }
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
     public ItemCrowbarReinforced() {
         super(ItemMaterials.STEEL_TOOL);
     }
-
 }

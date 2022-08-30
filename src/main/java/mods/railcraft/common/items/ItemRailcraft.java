@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,17 +10,15 @@ package mods.railcraft.common.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
-
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemRailcraft extends Item {
     private float smeltingExperience = -1;
@@ -70,17 +68,14 @@ public class ItemRailcraft extends Item {
     public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
         super.addInformation(stack, player, info, adv);
         ToolTip tip = ToolTip.buildToolTip(stack.getUnlocalizedName() + ".tip");
-        if (tip != null)
-            info.addAll(tip.convertToStrings());
+        if (tip != null) info.addAll(tip.convertToStrings());
     }
 
     public Object getRecipeObject(IItemMetaEnum meta) {
         assertMeta(meta);
         String oreTag = getOreTag(meta);
-        if (oreTag != null)
-            return oreTag;
-        if (meta != null && getHasSubtypes())
-            return new ItemStack(this, 1, meta.ordinal());
+        if (oreTag != null) return oreTag;
+        if (meta != null && getHasSubtypes()) return new ItemStack(this, 1, meta.ordinal());
         return this;
     }
 
@@ -93,12 +88,9 @@ public class ItemRailcraft extends Item {
             throw new RuntimeException("Incorrect Item Meta object used.");
     }
 
-    public void defineRecipes() {
-    }
+    public void defineRecipes() {}
 
-    public void definePostRecipes() {
-    }
+    public void definePostRecipes() {}
 
-    public void initItem() {
-    }
+    public void initItem() {}
 }

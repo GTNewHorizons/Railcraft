@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -31,9 +31,9 @@ public class RenderTESRFirestone extends TileEntitySpecialRenderer {
 
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-//            GL11.glDisable(GL11.GL_LIGHTING);
+        //            GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
-//        GL11.glEnable(GL11.GL_CULL_FACE);
+        //        GL11.glEnable(GL11.GL_CULL_FACE);
 
         float pix = RenderTools.PIXEL;
         float shift = 0.5F;
@@ -42,17 +42,18 @@ public class RenderTESRFirestone extends TileEntitySpecialRenderer {
         float yOffset = firestoneTile.preYOffset + (firestoneTile.yOffset - firestoneTile.preYOffset) * time;
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F + yOffset, (float) z + 0.5F);
 
+        //        GL11.glTranslatef(shift, shift, shift);
+        //        GL11.glScalef(scale, scale, scale);
+        //        GL11.glTranslatef(-shift, -shift, -shift);
 
-//        GL11.glTranslatef(shift, shift, shift);
-//        GL11.glScalef(scale, scale, scale);
-//        GL11.glTranslatef(-shift, -shift, -shift);
-
-//        GL11.glTranslatef(0, 0, 1 - 0.02F);
+        //        GL11.glTranslatef(0, 0, 1 - 0.02F);
 
         float yaw = firestoneTile.preRotationYaw + (firestoneTile.rotationYaw - firestoneTile.preRotationYaw) * time;
         GL11.glRotatef(yaw, 0, 1, 0);
 
-        ItemStack firestone = tile.getBlockMetadata() == 0 ? ItemFirestoneRefined.getItemCharged() : ItemFirestoneCracked.getItemCharged();
+        ItemStack firestone = tile.getBlockMetadata() == 0
+                ? ItemFirestoneRefined.getItemCharged()
+                : ItemFirestoneCracked.getItemCharged();
         EntityItem entityitem = new EntityItem(null, 0.0D, 0.0D, 0.0D, firestone);
         entityitem.getEntityItem().stackSize = 1;
         entityitem.hoverStart = 0.0F;
@@ -69,5 +70,4 @@ public class RenderTESRFirestone extends TileEntitySpecialRenderer {
         GL11.glPopAttrib();
         GL11.glPopMatrix();
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -32,24 +36,19 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler {
     public static final int TANK_WATER = 0;
     public static final int TANK_STEAM = 1;
-    public final static int TRANSFER_RATE = FluidHelper.BUCKET_VOLUME;
-    public final static int TICKS_LOW = 16;
-    public final static int TICKS_HIGH = 8;
-    public final static int STEAM_LOW = 16;
-    public final static int STEAM_HIGH = 32;
-    public final static float HEAT_LOW = Steam.MAX_HEAT_LOW;
-    public final static float HEAT_HIGH = Steam.MAX_HEAT_HIGH;
+    public static final int TRANSFER_RATE = FluidHelper.BUCKET_VOLUME;
+    public static final int TICKS_LOW = 16;
+    public static final int TICKS_HIGH = 8;
+    public static final int STEAM_LOW = 16;
+    public static final int STEAM_HIGH = 32;
+    public static final float HEAT_LOW = Steam.MAX_HEAT_LOW;
+    public static final float HEAT_HIGH = Steam.MAX_HEAT_HIGH;
     protected static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private static final Set<Integer> boilerBlocks = new HashSet<Integer>();
     private static final Set<Integer> fireboxBlocks = new HashSet<Integer>();
@@ -95,7 +94,8 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
         tankManager.add(tankSteam);
     }
 
-    private static MultiBlockPattern buildMap(int width, int tankHeight, int offset, char tank, int ticks, float heat, int capacity) {
+    private static MultiBlockPattern buildMap(
+            int width, int tankHeight, int offset, char tank, int ticks, float heat, int capacity) {
         char[][][] map = new char[tankHeight + 3][width + 2][width + 2];
 
         for (int x = 0; x < width + 2; x++) {
@@ -135,11 +135,8 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
         if (current != null && current.getItem() != Items.bucket)
             if (Game.isHost(worldObj)) {
                 TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-                if (mBlock != null)
-                    if (mBlock.handleClick(player, side))
-                        return true;
-            } else if (FluidItemHelper.isContainer(current))
-                return true;
+                if (mBlock != null) if (mBlock.handleClick(player, side)) return true;
+            } else if (FluidItemHelper.isContainer(current)) return true;
         return super.blockActivated(player, side);
     }
 
@@ -169,8 +166,7 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
 
     public TankManager getTankManager() {
         TileBoiler mBlock = (TileBoiler) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager;
+        if (mBlock != null) return mBlock.tankManager;
         return null;
     }
 
@@ -188,7 +184,8 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
                 StandardTank tank = mBlock.tankManager.get(TANK_STEAM);
                 FluidStack steam = tank.getFluid();
                 if (steam != null && (!mBlock.boiler.isBoiling() || steam.amount >= tank.getCapacity() / 2))
-                    mBlock.tankManager.outputLiquid(tileCache, getOutputFilter(), ForgeDirection.VALID_DIRECTIONS, TANK_STEAM, TRANSFER_RATE);
+                    mBlock.tankManager.outputLiquid(
+                            tileCache, getOutputFilter(), ForgeDirection.VALID_DIRECTIONS, TANK_STEAM, TRANSFER_RATE);
             }
         }
     }
@@ -198,8 +195,7 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     @Override
     public boolean openGui(EntityPlayer player) {
         TileMultiBlock mBlock = getMasterBlock();
-        if (mBlock != null)
-            return mBlock.openGui(player);
+        if (mBlock != null) return mBlock.openGui(player);
         return false;
     }
 
@@ -215,12 +211,10 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
 
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && boilerBlocks.contains(meta))
-                    return false;
+                if (block == getBlockType() && boilerBlocks.contains(meta)) return false;
                 break;
             case 'L': // Tank
-                if (block != getBlockType() || meta != EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal())
-                    return false;
+                if (block != getBlockType() || meta != EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()) return false;
                 break;
             case 'H': // Tank
                 if (block != getBlockType() || meta != EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal())
@@ -231,8 +225,7 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
                     return false;
                 break;
             case 'A': // Air
-                if (!worldObj.isAirBlock(x, y, z))
-                    return false;
+                if (!worldObj.isAirBlock(x, y, z)) return false;
                 break;
         }
         return true;
@@ -246,15 +239,13 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock == null)
-            return null;
+        if (mBlock == null) return null;
         return mBlock.tankManager.get(TANK_STEAM).drain(maxDrain, doDrain);
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (Fluids.STEAM.is(resource))
-            return drain(from, resource.amount, doDrain);
+        if (Fluids.STEAM.is(resource)) return drain(from, resource.amount, doDrain);
         return null;
     }
 
@@ -264,13 +255,10 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     }
 
     protected int fill(int tankIndex, FluidStack resource, boolean doFill) {
-        if (tankIndex == TANK_STEAM)
-            return 0;
+        if (tankIndex == TANK_STEAM) return 0;
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock == null)
-            return 0;
-        if (doFill && Fluids.WATER.is(resource))
-            onFillWater();
+        if (mBlock == null) return 0;
+        if (doFill && Fluids.WATER.is(resource)) onFillWater();
         return mBlock.tankManager.fill(tankIndex, resource, doFill);
     }
 
@@ -299,8 +287,7 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection dir) {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager.getTankInfo();
+        if (mBlock != null) return mBlock.tankManager.getTankInfo();
         return FakeTank.INFO;
     }
 
@@ -310,7 +297,8 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
         public final float maxHeat;
         public final int steamCapacity;
 
-        public BoilerPattern(char[][][] pattern, int tanks, int ticks, float heat, int capacity, int xOffset, int yOffset) {
+        public BoilerPattern(
+                char[][][] pattern, int tanks, int ticks, float heat, int capacity, int xOffset, int yOffset) {
             super(pattern, xOffset, 1, yOffset);
             numTanks = tanks;
             ticksPerCycle = ticks;

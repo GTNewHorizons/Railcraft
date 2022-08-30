@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -39,24 +39,20 @@ public class TrailTicker {
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event) {
-        if (event.side == Side.CLIENT)
-            return;
+        if (event.side == Side.CLIENT) return;
 
         EntityPlayer player = event.player;
-        if (player.worldObj == null)
-            return;
+        if (player.worldObj == null) return;
 
         Timer timer = timers.get(player);
         if (timer == null) {
             timer = new Timer();
             timers.put(player, timer);
         }
-        if (!timer.hasTriggered(player.worldObj, TICKS_PER_MARKER))
-            return;
+        if (!timer.hasTriggered(player.worldObj, TICKS_PER_MARKER)) return;
 
         String username = Railcraft.proxy.getPlayerUsername(player);
-        if (username == null || username.startsWith("["))
-            return;
+        if (username == null || username.startsWith("[")) return;
 
         int x = MathHelper.floor_double(player.posX);
         int y = MathHelper.floor_double(player.posY);
@@ -85,8 +81,7 @@ public class TrailTicker {
                 hidden.timestamp = System.currentTimeMillis();
                 hidden.colorSeed = Railcraft.proxy.getPlayerUsername(player).hashCode() * 50021L;
                 WorldCoordinate last = lastPosition.get(player);
-                if (last != null)
-                    hidden.lastMarker = last;
+                if (last != null) hidden.lastMarker = last;
                 hidden.sendUpdateToClient();
                 lastPosition.put(player, new WorldCoordinate(world.provider.dimensionId, x, y, z));
                 return true;
@@ -94,5 +89,4 @@ public class TrailTicker {
         }
         return block == BlockHidden.getBlock();
     }
-
 }

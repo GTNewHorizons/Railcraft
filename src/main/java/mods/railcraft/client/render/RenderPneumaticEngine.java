@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,28 +8,31 @@
  */
 package mods.railcraft.client.render;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import net.minecraftforge.common.util.ForgeDirection;
-import org.lwjgl.opengl.GL11;
-import mods.railcraft.common.blocks.machine.beta.TileEngine;
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 import mods.railcraft.client.render.models.engine.ModelEngineBase;
 import mods.railcraft.client.render.models.engine.ModelEngineFrame;
 import mods.railcraft.client.render.models.engine.ModelEnginePiston;
 import mods.railcraft.client.render.models.engine.ModelEngineTrunk;
+import mods.railcraft.common.blocks.machine.beta.TileEngine;
+import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 import mods.railcraft.common.core.RailcraftConstants;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import net.minecraftforge.common.util.ForgeDirection;
+import org.lwjgl.opengl.GL11;
 
 public class RenderPneumaticEngine extends TileEntitySpecialRenderer implements IInvRenderer {
 
-    public static final RenderPneumaticEngine renderHobby = new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_hobby.png");
-    public static final RenderPneumaticEngine renderLow = new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_low.png");
-    public static final RenderPneumaticEngine renderHigh = new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_high.png");
+    public static final RenderPneumaticEngine renderHobby =
+            new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_hobby.png");
+    public static final RenderPneumaticEngine renderLow =
+            new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_low.png");
+    public static final RenderPneumaticEngine renderHigh =
+            new RenderPneumaticEngine(RailcraftConstants.TESR_TEXTURE_FOLDER + "steam_high.png");
     private static final float[] angleMap = new float[6];
     private static final ModelEngineFrame frame = new ModelEngineFrame();
     private static final ModelEngineBase base = new ModelEngineBase();
@@ -127,5 +130,4 @@ public class RenderPneumaticEngine extends TileEntitySpecialRenderer implements 
         GL11.glPopAttrib();
         GL11.glPopMatrix();
     }
-
 }

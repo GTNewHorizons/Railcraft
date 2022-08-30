@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,7 @@ package mods.railcraft.common.plugins.forge;
 
 import com.google.common.collect.Lists;
 import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.List;
 import mods.railcraft.common.items.IItemMetaEnum;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.util.misc.Game;
@@ -20,8 +21,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
 
-import java.util.List;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
@@ -29,15 +28,23 @@ public class CraftingPlugin {
 
     public static void addFurnaceRecipe(ItemStack input, ItemStack output, float xp) {
         if (input == null && output == null) {
-            Game.logTrace(Level.WARN, "Tried to define invalid furnace recipe, the input and output were both null. Skipping");
+            Game.logTrace(
+                    Level.WARN,
+                    "Tried to define invalid furnace recipe, the input and output were both null. Skipping");
             return;
         }
         if (input == null) {
-            Game.logTrace(Level.WARN, "Tried to define invalid furnace recipe for {0}, the input was null. Skipping", output.getUnlocalizedName());
+            Game.logTrace(
+                    Level.WARN,
+                    "Tried to define invalid furnace recipe for {0}, the input was null. Skipping",
+                    output.getUnlocalizedName());
             return;
         }
         if (output == null) {
-            Game.logTrace(Level.WARN, "Tried to define invalid furnace recipe for {0}, the output was null. Skipping", input.getUnlocalizedName());
+            Game.logTrace(
+                    Level.WARN,
+                    "Tried to define invalid furnace recipe for {0}, the output was null. Skipping",
+                    input.getUnlocalizedName());
             return;
         }
         FurnaceRecipes.smelting().func_151394_a(input, output, xp);
@@ -69,20 +76,20 @@ public class CraftingPlugin {
         boolean oreRecipe = false;
         for (Object obj : recipeArray) {
             if (obj instanceof String) {
-                if (((String) obj).length() > 3)
-                    oreRecipe = true;
-            } else if (obj instanceof Boolean)
-                oreRecipe = true;
+                if (((String) obj).length() > 3) oreRecipe = true;
+            } else if (obj instanceof Boolean) oreRecipe = true;
             else if (obj == null) {
-                Game.logTrace(Level.WARN, "Tried to define invalid shaped recipe for {0}, a necessary item was probably disabled. Skipping", result.getUnlocalizedName());
+                Game.logTrace(
+                        Level.WARN,
+                        "Tried to define invalid shaped recipe for {0}, a necessary item was probably disabled. Skipping",
+                        result.getUnlocalizedName());
                 return;
             }
         }
         if (oreRecipe) {
             IRecipe recipe = new ShapedOreRecipe(result, recipeArray);
             addRecipe(recipe);
-        } else
-            GameRegistry.addRecipe(result, recipeArray);
+        } else GameRegistry.addRecipe(result, recipeArray);
     }
 
     /**
@@ -91,28 +98,29 @@ public class CraftingPlugin {
      */
     public static void addShapelessRecipe(ItemStack result, Object... recipeArray) {
         if (result == null || result.stackSize <= 0) {
-            Game.logTrace(Level.WARN, "Tried to define invalid shapeless recipe, the result was null or zero. Skipping");
+            Game.logTrace(
+                    Level.WARN, "Tried to define invalid shapeless recipe, the result was null or zero. Skipping");
             return;
         }
         recipeArray = cleanRecipeArray(recipeArray);
         boolean oreRecipe = false;
         for (Object obj : recipeArray) {
-            if (obj instanceof String)
-                oreRecipe = true;
+            if (obj instanceof String) oreRecipe = true;
             else if (obj == null) {
-                Game.logTrace(Level.WARN, "Tried to define invalid shapeless recipe for {0}, a necessary item was probably disabled. Skipping", result.getUnlocalizedName());
+                Game.logTrace(
+                        Level.WARN,
+                        "Tried to define invalid shapeless recipe for {0}, a necessary item was probably disabled. Skipping",
+                        result.getUnlocalizedName());
                 return;
             }
         }
         if (oreRecipe) {
             IRecipe recipe = new ShapelessOreRecipe(result, recipeArray);
             addRecipe(recipe);
-        } else
-            GameRegistry.addShapelessRecipe(result, recipeArray);
+        } else GameRegistry.addShapelessRecipe(result, recipeArray);
     }
 
     public static void addRecipe(IRecipe recipe) {
         GameRegistry.addRecipe(recipe);
     }
-
 }

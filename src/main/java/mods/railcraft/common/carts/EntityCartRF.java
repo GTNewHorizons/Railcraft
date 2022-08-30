@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -17,9 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class EntityCartRF extends CartBase implements ICartContentsTextureProvider {
     private static final int DATA_ID_RF = 25;
@@ -47,10 +46,8 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
     }
 
     public int addRF(int amount) {
-        if (amount <= 0)
-            return 0;
-        if (getRF() >= RF_CAP)
-            return 0;
+        if (amount <= 0) return 0;
+        if (getRF() >= RF_CAP) return 0;
         if (RF_CAP - getRF() >= amount) {
             setRF(getRF() + amount);
             return amount;
@@ -61,8 +58,7 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
     }
 
     public int removeRF(int request) {
-        if (request <= 0)
-            return 0;
+        if (request <= 0) return 0;
         if (getRF() >= request) {
             setRF(getRF() - request);
             return request;
@@ -95,17 +91,14 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
     public void onUpdate() {
         super.onUpdate();
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
-        if (getRF() > RF_CAP)
-            setRF(RF_CAP);
+        if (getRF() > RF_CAP) setRF(RF_CAP);
     }
 
     @Override
     public boolean doInteract(EntityPlayer player) {
-        if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.CART_RF, player, worldObj, this);
+        if (Game.isHost(worldObj)) GuiHandler.openGui(EnumGui.CART_RF, player, worldObj, this);
         return true;
     }
 
@@ -117,8 +110,7 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
     @Override
     public final float getMaxCartSpeedOnRail() {
         int numLocomotives = Train.getTrain(this).getNumRunningLocomotives();
-        if (numLocomotives == 0)
-            return super.getMaxCartSpeedOnRail();
+        if (numLocomotives == 0) return super.getMaxCartSpeedOnRail();
         return Math.min(1.2F, 0.08F + (numLocomotives - 1) * 0.075F);
     }
 
@@ -134,10 +126,10 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
         nbt.setInteger("rf", getRF());
     }
 
-//    @Override
-//    public Block func_145820_n() {
-//        return Blocks.redstone_block;
-//    }
+    //    @Override
+    //    public Block func_145820_n() {
+    //        return Blocks.redstone_block;
+    //    }
 
     @Override
     public double getDrag() {

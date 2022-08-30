@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,8 +10,8 @@ package mods.railcraft.common.plugins.craftguide;
 
 import cpw.mods.fml.common.Loader;
 import java.lang.reflect.Method;
-import org.apache.logging.log4j.Level;
 import mods.railcraft.common.util.misc.Game;
+import org.apache.logging.log4j.Level;
 
 /**
  *
@@ -45,10 +45,15 @@ public class CraftGuidePlugin {
                 register = api.getMethod("registerAPIObject", Object.class);
             }
             register.invoke(null, obj);
-            Game.log(Level.DEBUG, "Successfully registered CraftGuide plugin: {0}", obj.getClass().getSimpleName());
+            Game.log(
+                    Level.DEBUG,
+                    "Successfully registered CraftGuide plugin: {0}",
+                    obj.getClass().getSimpleName());
         } catch (Exception e) {
-            Game.log(Level.WARN, "Could not register CraftGuide plugin: {0}", obj.getClass().getSimpleName());
+            Game.log(
+                    Level.WARN,
+                    "Could not register CraftGuide plugin: {0}",
+                    obj.getClass().getSimpleName());
         }
     }
-
 }

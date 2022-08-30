@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import mods.railcraft.common.util.steam.ISteamUser;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.io.DataInputStream;
@@ -16,24 +15,25 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.machine.MultiBlockPattern;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.FluidItemHelper;
+import mods.railcraft.common.plugins.buildcraft.triggers.ITemperature;
+import mods.railcraft.common.util.inventory.StandaloneInventory;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.ITileFilter;
+import mods.railcraft.common.util.steam.ISteamUser;
+import mods.railcraft.common.util.steam.Steam;
+import mods.railcraft.common.util.steam.SteamBoiler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.blocks.machine.MultiBlockPattern;
-import mods.railcraft.common.plugins.buildcraft.triggers.ITemperature;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.inventory.StandaloneInventory;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.ITileFilter;
-import mods.railcraft.common.util.steam.Steam;
-import mods.railcraft.common.util.steam.SteamBoiler;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
@@ -59,8 +59,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
 
     @Override
     public IIcon getIcon(int side) {
-        if (side > 1 && isBurning())
-            return getMachineType().getTexture(6);
+        if (side > 1 && isBurning()) return getMachineType().getTexture(6);
         return getMachineType().getTexture(side);
     }
 
@@ -75,8 +74,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
 
     public boolean isBurning() {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock == null)
-            return false;
+        if (mBlock == null) return false;
         return mBlock.boiler.isBurning();
     }
 
@@ -91,8 +89,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
 
     @Override
     public int getLightValue() {
-        if (isStructureValid() && isBurning())
-            return 13;
+        if (isStructureValid() && isBurning()) return 13;
         return 0;
     }
 
@@ -124,8 +121,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         if (!isMaster || getState() == MultiBlockState.INVALID) {
             boiler.reduceHeat(getNumTanks());
@@ -137,8 +133,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
 
             boiler.tick(getNumTanks());
 
-            if (clock % FluidHelper.BUCKET_FILL_TIME == 0)
-                processBuckets();
+            if (clock % FluidHelper.BUCKET_FILL_TIME == 0) processBuckets();
         }
     }
 
@@ -146,7 +141,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
 
     protected void processBuckets() {
         FluidStack fluidStack = FluidItemHelper.getFluidStackInContainer(getStackInSlot(SLOT_LIQUID_INPUT));
-        if ( (fluidStack != null) && this.fill(ForgeDirection.UNKNOWN, fluidStack, false) > 0) {
+        if ((fluidStack != null) && this.fill(ForgeDirection.UNKNOWN, fluidStack, false) > 0) {
             FluidHelper.drainContainers(this, inventory, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT);
         }
     }
@@ -203,25 +198,21 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     @Override
     public ItemStack decrStackSize(int i, int j) {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.inventory.decrStackSize(i, j);
+        if (mBlock != null) return mBlock.inventory.decrStackSize(i, j);
         return null;
     }
 
     @Override
     public ItemStack getStackInSlot(int i) {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.inventory.getStackInSlot(i);
-        else
-            return inventory.getStackInSlot(i);
+        if (mBlock != null) return mBlock.inventory.getStackInSlot(i);
+        else return inventory.getStackInSlot(i);
     }
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock != null)
-            mBlock.inventory.setInventorySlotContents(i, itemstack);
+        if (mBlock != null) mBlock.inventory.setInventorySlotContents(i, itemstack);
     }
 
     @Override
@@ -230,12 +221,10 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public int getInventoryStackLimit() {
@@ -264,8 +253,7 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     @Override
     public float getTemperature() {
         TileBoilerFirebox mBlock = (TileBoilerFirebox) getMasterBlock();
-        if (mBlock != null)
-            return (float) mBlock.boiler.getHeat();
+        if (mBlock != null) return (float) mBlock.boiler.getHeat();
         return Steam.COLD_TEMP;
     }
 
@@ -273,5 +261,4 @@ public abstract class TileBoilerFirebox extends TileBoiler implements IInventory
     public boolean isUseableByPlayer(EntityPlayer player) {
         return RailcraftTileEntity.isUseableByPlayerHelper(this, player);
     }
-
 }

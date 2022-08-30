@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -40,24 +40,19 @@ public class GuiTrackPriming extends GuiBasic {
 
     @Override
     protected void drawExtras(int x, int y, float f) {
-        GuiTools.drawCenteredString(fontRendererObj, LocalizationPlugin.translate("railcraft.gui.track.priming.fuse", fuse), 25);
+        GuiTools.drawCenteredString(
+                fontRendererObj, LocalizationPlugin.translate("railcraft.gui.track.priming.fuse", fuse), 25);
     }
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
         short f = fuse;
-        if (guibutton.id == 0)
-            f += -10;
-        if (guibutton.id == 1)
-            f += -1;
-        if (guibutton.id == 2)
-            f += 1;
-        if (guibutton.id == 3)
-            f += 10;
-        if (f < TrackPriming.MIN_FUSE)
-            f = TrackPriming.MIN_FUSE;
-        if (f > TrackPriming.MAX_FUSE)
-            f = TrackPriming.MAX_FUSE;
+        if (guibutton.id == 0) f += -10;
+        if (guibutton.id == 1) f += -1;
+        if (guibutton.id == 2) f += 1;
+        if (guibutton.id == 3) f += 10;
+        if (f < TrackPriming.MIN_FUSE) f = TrackPriming.MIN_FUSE;
+        if (f > TrackPriming.MAX_FUSE) f = TrackPriming.MAX_FUSE;
         fuse = f;
     }
 

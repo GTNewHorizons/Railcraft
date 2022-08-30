@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,12 @@ package mods.railcraft.common.blocks;
 
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import mods.railcraft.api.core.INetworkedObject;
 import mods.railcraft.api.core.IOwnable;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -28,13 +34,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 public abstract class RailcraftTileEntity extends TileEntity implements INetworkedObject, IOwnable {
     protected final AdjacentTileCache tileCache = new AdjacentTileCache(this);
     protected int clock = MiscTools.getRand().nextInt();
@@ -43,16 +42,13 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
     private UUID uuid;
 
     public static boolean isUseableByPlayerHelper(TileEntity tile, EntityPlayer player) {
-        if (tile.isInvalid())
-            return false;
-        if (tile.getWorldObj().getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord) != tile)
-            return false;
+        if (tile.isInvalid()) return false;
+        if (tile.getWorldObj().getTileEntity(tile.xCoord, tile.yCoord, tile.zCoord) != tile) return false;
         return player.getDistanceSq(tile.xCoord, tile.yCoord, tile.zCoord) <= 64;
     }
 
     public UUID getUUID() {
-        if (uuid == null)
-            uuid = UUID.randomUUID();
+        if (uuid == null) uuid = UUID.randomUUID();
         return uuid;
     }
 
@@ -73,25 +69,24 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
 
     @Override
     public FMLProxyPacket getDescriptionPacket() {
-//        System.out.println("Sending Tile Packet");
+        //        System.out.println("Sending Tile Packet");
         RailcraftPacket packet = new PacketTileEntity(this);
         return packet.getPacket();
     }
 
     @Override
     public void writePacketData(DataOutputStream data) throws IOException {
-//        data.writeUTF(owner);
+        //        data.writeUTF(owner);
     }
 
     @Override
     public void readPacketData(DataInputStream data) throws IOException {
-//        owner = data.readUTF();
+        //        owner = data.readUTF();
     }
 
     public void markBlockForUpdate() {
-//        System.out.println("updating");
-        if (worldObj != null)
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        //        System.out.println("updating");
+        if (worldObj != null) worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     public void notifyBlocksOfNeighborChange() {
@@ -100,15 +95,12 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
     }
 
     public void sendUpdateToClient() {
-        if (canUpdate())
-            sendClientUpdate = true;
-        else
-            PacketBuilder.instance().sendTileEntityPacket(this);
+        if (canUpdate()) sendClientUpdate = true;
+        else PacketBuilder.instance().sendTileEntityPacket(this);
     }
 
     public void onBlockPlacedBy(EntityLivingBase entityliving, ItemStack stack) {
-        if (entityliving instanceof EntityPlayer)
-            owner = ((EntityPlayer) entityliving).getGameProfile();
+        if (entityliving instanceof EntityPlayer) owner = ((EntityPlayer) entityliving).getGameProfile();
     }
 
     public void onNeighborBlockChange(Block id) {
@@ -128,8 +120,7 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
     }
 
     public final int getDimension() {
-        if (worldObj == null)
-            return 0;
+        if (worldObj == null) return 0;
         return worldObj.provider.dimensionId;
     }
 
@@ -161,10 +152,8 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
     @Override
     public void writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
-        if (owner.getName() != null)
-            data.setString("owner", owner.getName());
-        if (owner.getId() != null)
-            data.setString("ownerId", owner.getId().toString());
+        if (owner.getName() != null) data.setString("owner", owner.getName());
+        if (owner.getId() != null) data.setString("ownerId", owner.getId().toString());
 
         MiscTools.writeUUID(data, "uuid", uuid);
     }

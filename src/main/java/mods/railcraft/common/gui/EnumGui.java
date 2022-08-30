@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,7 +12,6 @@ package mods.railcraft.common.gui;
  * @author CovertJaguar
  */
 public enum EnumGui {
-
     LOADER_ITEM(true),
     LOADER_FLUID(true),
     LOADER_ENERGY(true),
@@ -87,9 +86,7 @@ public enum EnumGui {
     }
 
     public static EnumGui fromOrdinal(int i) {
-        if (i < 0 || i >= VALUES.length)
-            return null;
+        if (i < 0 || i >= VALUES.length) return null;
         return VALUES[i];
     }
-
 }

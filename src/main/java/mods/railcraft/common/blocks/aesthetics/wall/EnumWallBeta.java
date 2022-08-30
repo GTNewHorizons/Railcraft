@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,25 +12,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import mods.railcraft.common.blocks.aesthetics.brick.BlockBrick;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumWallBeta implements WallInfo {
-
     QUARTZ,
     QUARTZ_CHISELED,
     IRON,
@@ -39,7 +36,8 @@ public enum EnumWallBeta implements WallInfo {
     ABYSSAL_BRICK,
     QUARRIED_BRICK,
     BLOODSTAINED_BRICK,
-    BLEACHEDBONE_BRICK,;
+    BLEACHEDBONE_BRICK,
+    ;
     public static final EnumWallBeta[] VALUES = values();
     private static final List<EnumWallBeta> creativeList = new ArrayList<EnumWallBeta>();
     private Block source;
@@ -69,8 +67,7 @@ public enum EnumWallBeta implements WallInfo {
     }
 
     public static WallInfo fromMeta(int id) {
-        if (id < 0 || id >= VALUES.length)
-            return VALUES[0];
+        if (id < 0 || id >= VALUES.length) return VALUES[0];
         return VALUES[id];
     }
 
@@ -118,23 +115,22 @@ public enum EnumWallBeta implements WallInfo {
 
     @Override
     public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(Module.STRUCTURES) && RailcraftConfig.isSubBlockEnabled(getTag()) && getBlock() != null;
+        return ModuleManager.isModuleLoaded(Module.STRUCTURES)
+                && RailcraftConfig.isSubBlockEnabled(getTag())
+                && getBlock() != null;
     }
 
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         Block block = getSource();
-        if (block == null)
-            return Blocks.brick_block.getBlockHardness(world, x, y, z);
+        if (block == null) return Blocks.brick_block.getBlockHardness(world, x, y, z);
         return block.getBlockHardness(world, x, y, z);
     }
 
     @Override
     public float getExplosionResistance(Entity entity) {
         Block block = getSource();
-        if (block == null)
-            return Blocks.brick_block.getExplosionResistance(entity);
+        if (block == null) return Blocks.brick_block.getExplosionResistance(entity);
         return block.getExplosionResistance(entity);
     }
-
 }

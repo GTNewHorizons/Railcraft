@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,19 +34,15 @@ public class BoardingLockingProfile extends LockingProfile {
             boostZ = (Math.abs(cart.motionZ) / speed) * TrackNextGenLocking.BOOST_FACTOR;
         }
         if (meta == 0 || meta == 4 || meta == 5)
-            if (isReversed())
-                cart.motionZ += boostZ;
-            else
-                cart.motionZ -= boostZ;
+            if (isReversed()) cart.motionZ += boostZ;
+            else cart.motionZ -= boostZ;
         else if (meta == 1 || meta == 2 || meta == 3)
-            if (isReversed())
-                cart.motionX -= boostX;
-            else
-                cart.motionX += boostX;
-    }
-    
-    private boolean isReversed(){
-        return track.getProfileType() == TrackNextGenLocking.LockingProfileType.BOARDING_B || track.getProfileType() == TrackNextGenLocking.LockingProfileType.BOARDING_B_TRAIN;
+            if (isReversed()) cart.motionX -= boostX;
+            else cart.motionX += boostX;
     }
 
+    private boolean isReversed() {
+        return track.getProfileType() == TrackNextGenLocking.LockingProfileType.BOARDING_B
+                || track.getProfileType() == TrackNextGenLocking.LockingProfileType.BOARDING_B_TRAIN;
+    }
 }

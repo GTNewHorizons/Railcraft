@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.client.gui;
 
+import mods.railcraft.common.core.RailcraftConstants;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
-import org.lwjgl.opengl.GL11;
-import mods.railcraft.common.core.RailcraftConstants;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public abstract class GuiBasic extends GuiScreen {
 
@@ -66,20 +66,16 @@ public abstract class GuiBasic extends GuiScreen {
         GL11.glEnable(GL11.GL_LIGHTING);
     }
 
-    protected void drawExtras(int x, int y, float f) {
-    }
+    protected void drawExtras(int x, int y, float f) {}
 
     @Override
     protected void keyTyped(char c, int i) {
-        if (i == 1 || i == mc.gameSettings.keyBindInventory.getKeyCode())
-            mc.thePlayer.closeScreen();
+        if (i == 1 || i == mc.gameSettings.keyBindInventory.getKeyCode()) mc.thePlayer.closeScreen();
     }
 
     @Override
     public void updateScreen() {
         super.updateScreen();
-        if (!mc.thePlayer.isEntityAlive() || mc.thePlayer.isDead)
-            mc.thePlayer.closeScreen();
+        if (!mc.thePlayer.isEntityAlive() || mc.thePlayer.isDead) mc.thePlayer.closeScreen();
     }
-
 }

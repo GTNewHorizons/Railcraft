@@ -8,9 +8,8 @@
 
 package mods.railcraft.api.carts;
 
-import net.minecraft.entity.item.EntityMinecart;
-
 import java.util.UUID;
+import net.minecraft.entity.item.EntityMinecart;
 
 /**
  * The LinkageManager contains all the functions needed to link and interact
@@ -133,5 +132,4 @@ public interface ILinkageManager {
      * @return A Minecart
      */
     EntityMinecart getCartFromUUID(UUID id);
-
 }

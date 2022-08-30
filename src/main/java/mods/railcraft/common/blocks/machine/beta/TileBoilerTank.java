@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,9 +11,9 @@ package mods.railcraft.common.blocks.machine.beta;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import mods.railcraft.common.util.misc.ITileFilter;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.util.misc.ITileFilter;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -23,14 +23,12 @@ import net.minecraftforge.fluids.IFluidHandler;
  */
 public abstract class TileBoilerTank extends TileBoiler {
 
-    private final static ITileFilter OUTPUT_FILTER = new ITileFilter() {
+    private static final ITileFilter OUTPUT_FILTER = new ITileFilter() {
         @Override
         public boolean matches(TileEntity tile) {
-            if (tile instanceof TileBoiler)
-                return false;
+            if (tile instanceof TileBoiler) return false;
             else return tile instanceof IFluidHandler;
         }
-
     };
     private boolean isConnected;
 
@@ -65,5 +63,4 @@ public abstract class TileBoilerTank extends TileBoiler {
     public ITileFilter getOutputFilter() {
         return OUTPUT_FILTER;
     }
-
 }

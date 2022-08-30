@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,14 +11,12 @@ package mods.railcraft.common.util.effects;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Set;
-
-import mods.railcraft.common.items.ItemGoggles;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
 import mods.railcraft.api.signals.IPairEffectRenderer;
+import mods.railcraft.common.items.ItemGoggles;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.World;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -40,7 +38,8 @@ public interface IEffectManager extends IPairEffectRenderer {
 
     void trailEffect(int startX, int startY, int startZ, TileEntity dest, long colorSeed);
 
-    void fireSparkEffect(World world, double startX, double startY, double startZ, double endX, double endY, double endZ);
+    void fireSparkEffect(
+            World world, double startX, double startY, double startZ, double endX, double endY, double endZ);
 
     void forceTrackSpawnEffect(World world, int x, int y, int z);
 }

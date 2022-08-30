@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,9 +8,9 @@
  */
 package mods.railcraft.common.blocks.anvil;
 
-import net.minecraft.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
+import net.minecraft.item.*;
 
 public class ItemAnvilBlock extends ItemMultiTexture {
 
@@ -30,7 +30,4 @@ public class ItemAnvilBlock extends ItemMultiTexture {
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack);
     }
-    
-    
-
 }

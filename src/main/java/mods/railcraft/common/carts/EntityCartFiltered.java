@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.PhantomInventory;
@@ -15,9 +17,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class EntityCartFiltered extends CartContainerBase implements IMinecart {
     private static final byte FILTER_DATA_ID = 29;
@@ -79,8 +78,7 @@ public abstract class EntityCartFiltered extends CartContainerBase implements IM
     @Override
     public ItemStack getCartItem() {
         ItemStack stack = getFilteredCartItem(getFilterItem());
-        if (hasCustomInventoryName())
-            stack.setStackDisplayName(getCommandSenderName());
+        if (hasCustomInventoryName()) stack.setStackDisplayName(getCommandSenderName());
         return stack;
     }
 
@@ -123,7 +121,7 @@ public abstract class EntityCartFiltered extends CartContainerBase implements IM
     }
 
     public void setFilter(ItemStack filter) {
-//        dataWatcher.updateObject(FILTER_DATA_ID, filter);
+        //        dataWatcher.updateObject(FILTER_DATA_ID, filter);
         getFilterInv().setInventorySlotContents(0, filter);
     }
 

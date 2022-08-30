@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,14 @@
  */
 package mods.railcraft.common.blocks.detector.types;
 
+import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
+import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.blocks.detector.DetectorFilter;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -28,20 +36,12 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
-import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class DetectorTank extends DetectorFilter {
-    private final MultiButtonController<ButtonState> buttonController = new MultiButtonController(ButtonState.ANALOG.ordinal(), ButtonState.values());
+    private final MultiButtonController<ButtonState> buttonController =
+            new MultiButtonController(ButtonState.ANALOG.ordinal(), ButtonState.values());
 
     public DetectorTank() {
         super(1);
@@ -53,8 +53,7 @@ public class DetectorTank extends DetectorFilter {
 
     public Fluid getFilterLiquid() {
         ItemStack filter = getFilters().getStackInSlot(0);
-        if (filter != null)
-            return FluidItemHelper.getFluidInContainer(filter);
+        if (filter != null) return FluidItemHelper.getFluidInContainer(filter);
         return null;
     }
 
@@ -66,12 +65,9 @@ public class DetectorTank extends DetectorFilter {
                 boolean liquidMatches = false;
                 Fluid filterFluid = getFilterLiquid();
                 FluidStack tankLiquid = tank.drain(ForgeDirection.UNKNOWN, 1, false);
-                if (filterFluid == null)
-                    liquidMatches = true;
-                else if (Fluids.areEqual(filterFluid, tankLiquid))
-                    liquidMatches = true;
-                else if (tank.canPutFluid(ForgeDirection.UNKNOWN, new FluidStack(filterFluid, 1)))
-                    liquidMatches = true;
+                if (filterFluid == null) liquidMatches = true;
+                else if (Fluids.areEqual(filterFluid, tankLiquid)) liquidMatches = true;
+                else if (tank.canPutFluid(ForgeDirection.UNKNOWN, new FluidStack(filterFluid, 1))) liquidMatches = true;
                 boolean quantityMatches = false;
                 ButtonState state = buttonController.getButtonState();
                 switch (state) {
@@ -79,22 +75,16 @@ public class DetectorTank extends DetectorFilter {
                         quantityMatches = true;
                         break;
                     case EMPTY:
-                        if (filterFluid != null && tank.isTankEmpty(filterFluid))
-                            quantityMatches = true;
-                        else if (filterFluid == null && tank.areTanksEmpty())
-                            quantityMatches = true;
+                        if (filterFluid != null && tank.isTankEmpty(filterFluid)) quantityMatches = true;
+                        else if (filterFluid == null && tank.areTanksEmpty()) quantityMatches = true;
                         break;
                     case NOT_EMPTY:
-                        if (filterFluid != null && tank.getFluidQty(filterFluid) > 0)
-                            quantityMatches = true;
-                        else if (filterFluid == null && tank.isFluidInTank())
-                            quantityMatches = true;
+                        if (filterFluid != null && tank.getFluidQty(filterFluid) > 0) quantityMatches = true;
+                        else if (filterFluid == null && tank.isFluidInTank()) quantityMatches = true;
                         break;
                     case FULL:
-                        if (filterFluid != null && tank.isTankFull(filterFluid))
-                            quantityMatches = true;
-                        else if (filterFluid == null && tank.areTanksFull())
-                            quantityMatches = true;
+                        if (filterFluid != null && tank.isTankFull(filterFluid)) quantityMatches = true;
+                        else if (filterFluid == null && tank.areTanksFull()) quantityMatches = true;
                         break;
                     default:
                         float level = filterFluid != null ? tank.getFluidLevel(filterFluid) : tank.getFluidLevel();
@@ -176,7 +166,6 @@ public class DetectorTank extends DetectorFilter {
     }
 
     public enum ButtonState implements IMultiButtonState {
-
         VOID("L = *"),
         EMPTY("L = 0%"),
         NOT_EMPTY("L > 0%"),
@@ -194,7 +183,8 @@ public class DetectorTank extends DetectorFilter {
 
         private ButtonState(String label) {
             this.label = label;
-            this.tip = ToolTip.buildToolTip("gui.detector.tank.tip." + name().toLowerCase(Locale.ENGLISH).replace("_", "."));
+            this.tip = ToolTip.buildToolTip("gui.detector.tank.tip."
+                    + name().toLowerCase(Locale.ENGLISH).replace("_", "."));
         }
 
         @Override
@@ -211,6 +201,5 @@ public class DetectorTank extends DetectorFilter {
         public ToolTip getToolTip() {
             return tip;
         }
-
     }
 }

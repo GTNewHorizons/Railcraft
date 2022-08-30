@@ -46,23 +46,29 @@ public class ItemCrowbarVoid extends ItemCrowbar implements IRepairable, IWarpin
     }
 
     public static void registerResearch() {
-        if (item == null)
-            return;
+        if (item == null) return;
         try {
-            IArcaneRecipe recipe = ThaumcraftApi.addArcaneCraftingRecipe(RESEARCH_TAG, new ItemStack(item),
+            IArcaneRecipe recipe = ThaumcraftApi.addArcaneCraftingRecipe(
+                    RESEARCH_TAG,
+                    new ItemStack(item),
                     new AspectList().add(Aspect.ENTROPY, 50),
                     " RI",
                     "RIR",
                     "IR ",
-                    'I', ThaumcraftPlugin.getItem("itemResource", 16),
-                    'R', "dyeRed");
+                    'I',
+                    ThaumcraftPlugin.getItem("itemResource", 16),
+                    'R',
+                    "dyeRed");
 
             AspectList aspects = new AspectList();
             aspects.add(Aspect.TOOL, 2).add(Aspect.MECHANISM, 4).add(Aspect.TRAVEL, 2);
 
-            ResearchItemRC voidCrowbar = new ResearchItemRC(RESEARCH_TAG, ThaumcraftPlugin.RESEARCH_CATEGORY, aspects, 0, 1, 3, new ItemStack(item));
-            voidCrowbar.setPages(ThaumcraftPlugin.getResearchPage(RESEARCH_TAG), new ResearchPage(recipe))
-                    .setParents(ItemCrowbarMagic.RESEARCH_TAG).setParentsHidden("VOIDMETAL")
+            ResearchItemRC voidCrowbar = new ResearchItemRC(
+                    RESEARCH_TAG, ThaumcraftPlugin.RESEARCH_CATEGORY, aspects, 0, 1, 3, new ItemStack(item));
+            voidCrowbar
+                    .setPages(ThaumcraftPlugin.getResearchPage(RESEARCH_TAG), new ResearchPage(recipe))
+                    .setParents(ItemCrowbarMagic.RESEARCH_TAG)
+                    .setParentsHidden("VOIDMETAL")
                     .registerResearchItem();
         } catch (Throwable error) {
             Game.logErrorAPI("Thaumcraft", error, ResearchItem.class);
@@ -70,8 +76,7 @@ public class ItemCrowbarVoid extends ItemCrowbar implements IRepairable, IWarpin
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
@@ -79,7 +84,10 @@ public class ItemCrowbarVoid extends ItemCrowbar implements IRepairable, IWarpin
     public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
         super.onUpdate(stack, world, entity, p_77663_4_, p_77663_5_);
 
-        if (stack.isItemDamaged() && entity != null && entity.ticksExisted % 20 == 0 && entity instanceof EntityLivingBase) {
+        if (stack.isItemDamaged()
+                && entity != null
+                && entity.ticksExisted % 20 == 0
+                && entity instanceof EntityLivingBase) {
             stack.damageItem(-1, (EntityLivingBase) entity);
         }
     }

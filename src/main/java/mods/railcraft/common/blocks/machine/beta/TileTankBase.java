@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,6 +11,13 @@ package mods.railcraft.common.blocks.machine.beta;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -43,25 +50,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
-    public final static int CAPACITY_PER_BLOCK_IRON = 16 * FluidHelper.BUCKET_VOLUME;
-    public final static int CAPACITY_PER_BLOCK_STEEL = 32 * FluidHelper.BUCKET_VOLUME;
-    protected final static int SLOT_INPUT = 0;
-    protected final static int SLOT_OUTPUT = 1;
-    protected final static int NETWORK_UPDATE_INTERVAL = 64;
-    private final static MetalTank IRON_TANK = new IronTank();
-    private final static List<MultiBlockPattern> patterns = buildPatterns();
+    public static final int CAPACITY_PER_BLOCK_IRON = 16 * FluidHelper.BUCKET_VOLUME;
+    public static final int CAPACITY_PER_BLOCK_STEEL = 32 * FluidHelper.BUCKET_VOLUME;
+    protected static final int SLOT_INPUT = 0;
+    protected static final int SLOT_OUTPUT = 1;
+    protected static final int NETWORK_UPDATE_INTERVAL = 64;
+    private static final MetalTank IRON_TANK = new IronTank();
+    private static final List<MultiBlockPattern> patterns = buildPatterns();
     protected final StandardTank tank = new StandardTank(64 * FluidHelper.BUCKET_VOLUME, this);
     protected final TankManager tankManager = new TankManager();
     private final StandaloneInventory inv;
@@ -101,7 +100,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     }
 
     // Doesn't seem to ever be called (Nor do the two above?)
-    public static void placeAdvancedTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {    	
+    public static void placeAdvancedTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
         MultiBlockPattern pattern = TileTankBase.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
         blockMapping.put('B', EnumMachineBeta.TANK_STEEL_WALL.ordinal());
@@ -122,36 +121,36 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         int yOffset = 0;
         int zOffset = 2;
 
-        char[][] bottom = new char[][]{
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'M', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
+        char[][] bottom = new char[][] {
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'B', 'B', 'B', 'O'},
+            {'O', 'B', 'M', 'B', 'O'},
+            {'O', 'B', 'B', 'B', 'O'},
+            {'O', 'O', 'O', 'O', 'O'}
         };
 
-        char[][] middle = new char[][]{
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'W', 'A', 'W', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
+        char[][] middle = new char[][] {
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'B', 'W', 'B', 'O'},
+            {'O', 'W', 'A', 'W', 'O'},
+            {'O', 'B', 'W', 'B', 'O'},
+            {'O', 'O', 'O', 'O', 'O'}
         };
 
-        char[][] top = new char[][]{
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'T', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
+        char[][] top = new char[][] {
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'B', 'B', 'B', 'O'},
+            {'O', 'B', 'T', 'B', 'O'},
+            {'O', 'B', 'B', 'B', 'O'},
+            {'O', 'O', 'O', 'O', 'O'}
         };
 
-        char[][] border = new char[][]{
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
+        char[][] border = new char[][] {
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'O', 'O', 'O', 'O'},
+            {'O', 'O', 'O', 'O', 'O'}
         };
 
         for (int i = 4; i <= 8; i++) {
@@ -164,44 +163,44 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         if (client || RailcraftConfig.getMaxTankSize() >= 5) {
             xOffset = zOffset = 3;
 
-            bottom = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'M', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            bottom = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'M', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            middle = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            middle = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            top = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'T', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            top = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'T', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            border = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            border = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
             for (int i = 4; i <= 8; i++) {
@@ -215,52 +214,52 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         if (client || RailcraftConfig.getMaxTankSize() >= 7) {
             xOffset = zOffset = 4;
 
-            bottom = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'M', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            bottom = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'M', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            middle = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            middle = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            top = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'T', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            top = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'T', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            border = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            border = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
             for (int i = 4; i <= 8; i++) {
@@ -274,60 +273,60 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         if (client || RailcraftConfig.getMaxTankSize() >= 9) {
             xOffset = zOffset = 5;
 
-            bottom = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'M', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            bottom = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'M', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            middle = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            middle = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'W', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'W', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            top = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'T', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
-                    {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            top = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'T', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
-            border = new char[][]{
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
-                    {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
+            border = new char[][] {
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'}
             };
 
             for (int i = 4; i <= 8; i++) {
@@ -340,7 +339,8 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         return pats;
     }
 
-    private static MultiBlockPattern buildPattern(char[][][] map, int xOffset, int yOffset, int zOffset, AxisAlignedBB entityCheck) {
+    private static MultiBlockPattern buildPattern(
+            char[][][] map, int xOffset, int yOffset, int zOffset, AxisAlignedBB entityCheck) {
         if (!RailcraftConfig.allowTankStacking()) {
             entityCheck.offset(0, 1, 0);
             yOffset = 1;
@@ -408,8 +408,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     public void initFromItem(ItemStack stack) {
         super.initFromItem(stack);
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt != null && nbt.hasKey("color"))
-            recolourBlock(15 - nbt.getByte("color"));
+        if (nbt != null && nbt.hasKey("color")) recolourBlock(15 - nbt.getByte("color"));
     }
 
     @Override
@@ -462,18 +461,17 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     public boolean blockActivated(EntityPlayer player, int side) {
         ItemStack current = player.getCurrentEquippedItem();
         if (Game.isHost(worldObj)) {
-            if (isStructureValid() && FluidHelper.handleRightClick(getTankManager(), ForgeDirection.getOrientation(side), player, true, true)) {
+            if (isStructureValid()
+                    && FluidHelper.handleRightClick(
+                            getTankManager(), ForgeDirection.getOrientation(side), player, true, true)) {
                 TileTankBase master = (TileTankBase) getMasterBlock();
-                if (master != null)
-                    master.syncClient();
+                if (master != null) master.syncClient();
                 return true;
             }
-        } else if (FluidItemHelper.isContainer(current))
-            return true;
+        } else if (FluidItemHelper.isContainer(current)) return true;
 
         // Prevents players from getting inside tanks using boats
-        if (current != null && current.getItem() == Items.boat)
-            return true;
+        if (current != null && current.getItem() == Items.boat) return true;
         return super.blockActivated(player, side);
     }
 
@@ -490,16 +488,14 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     @Override
     public TankManager getTankManager() {
         TileTankBase mBlock = (TileTankBase) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager;
+        if (mBlock != null) return mBlock.tankManager;
         return null;
     }
 
     @Override
     public StandardTank getTank() {
         TileTankBase mBlock = (TileTankBase) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager.get(0);
+        if (mBlock != null) return mBlock.tankManager.get(0);
         return null;
     }
 
@@ -510,7 +506,10 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     @Override
     protected void onPatternLock(MultiBlockPattern pattern) {
         if (isMaster) {
-            int capacity = (pattern.getPatternWidthX() - 2) * (pattern.getPatternHeight() - (pattern.getMasterOffsetY() * 2)) * (pattern.getPatternWidthZ() - 2) * getCapacityPerBlock();
+            int capacity = (pattern.getPatternWidthX() - 2)
+                    * (pattern.getPatternHeight() - (pattern.getMasterOffsetY() * 2))
+                    * (pattern.getPatternWidthZ() - 2)
+                    * getCapacityPerBlock();
             tankManager.setCapacity(0, capacity);
         }
     }
@@ -518,39 +517,35 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     @Override
     protected void onMasterChanged() {
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            tMan.get(0).setFluid(null);
+        if (tMan != null) tMan.get(0).setFluid(null);
     }
 
     @Override
     protected boolean isMapPositionValid(int x, int y, int z, char mapPos) {
-    	if (getTankType() == null) {
-    		return false;
-    	}
+        if (getTankType() == null) {
+            return false;
+        }
         switch (mapPos) {
             case 'O': // Other
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
                 if (block == getBlockType()) {
                     int meta = worldObj.getBlockMetadata(x, y, z);
-                    if (getTankType().isTankBlock(meta))
-                        return false;
+                    if (getTankType().isTankBlock(meta)) return false;
                 }
                 return true;
             }
             case 'W': // Gauge or Valve
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType())
-                    return false;
+                if (block != getBlockType()) return false;
                 int meta = worldObj.getBlockMetadata(x, y, z);
                 return getTankType().isTankBlock(meta);
             }
             case 'B': // Block
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType())
-                    return false;
+                if (block != getBlockType()) return false;
                 int meta = worldObj.getBlockMetadata(x, y, z);
                 return getTankType().isWallBlock(meta);
             }
@@ -558,11 +553,9 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
             case 'T': // Top Block
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType())
-                    return false;
+                if (block != getBlockType()) return false;
                 int meta = worldObj.getBlockMetadata(x, y, z);
-                if (!getTankType().isTankBlock(meta))
-                    return false;
+                if (!getTankType().isTankBlock(meta)) return false;
                 TileEntity tile = worldObj.getTileEntity(x, y, z);
                 if (!(tile instanceof TileMultiBlock)) {
                     worldObj.removeTileEntity(x, y, z);
@@ -588,8 +581,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
                 if (clock % FluidHelper.BUCKET_FILL_TIME == 0)
                     FluidHelper.processContainers(tankManager.get(0), inv, SLOT_INPUT, SLOT_OUTPUT);
 
-                if (networkTimer.hasTriggered(worldObj, NETWORK_UPDATE_INTERVAL))
-                    syncClient();
+                if (networkTimer.hasTriggered(worldObj, NETWORK_UPDATE_INTERVAL)) syncClient();
             }
     }
 
@@ -604,10 +596,8 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     }
 
     private boolean isFluidEqual(FluidStack L1, FluidStack L2) {
-        if (L1 == L2)
-            return true;
-        if (L1 == null || L2 == null)
-            return false;
+        if (L1 == L2) return true;
+        if (L1 == null || L2 == null) return false;
         return L1.isFluidStackIdentical(L2);
     }
 
@@ -624,8 +614,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         super.readFromNBT(data);
         tankManager.readTanksFromNBT(data);
         inv.readFromNBT("inv", data);
-        if (data.hasKey("color"))
-            color = EnumColor.fromId(data.getByte("color"));
+        if (data.hasKey("color")) color = EnumColor.fromId(data.getByte("color"));
     }
 
     @Override

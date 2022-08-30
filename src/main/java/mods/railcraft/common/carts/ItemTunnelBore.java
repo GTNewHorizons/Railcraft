@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,18 +9,18 @@
 package mods.railcraft.common.carts;
 
 import com.mojang.authlib.GameProfile;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.core.items.IMinecartItem;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.util.misc.Game;
-import net.minecraft.block.BlockRailBase;
 
 public class ItemTunnelBore extends ItemCart implements IMinecartItem {
 
@@ -30,15 +30,27 @@ public class ItemTunnelBore extends ItemCart implements IMinecartItem {
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int i, int j, int k, int l, float par8, float par9, float par10) {
+    public boolean onItemUse(
+            ItemStack itemstack,
+            EntityPlayer player,
+            World world,
+            int i,
+            int j,
+            int k,
+            int l,
+            float par8,
+            float par9,
+            float par10) {
         Block block = world.getBlock(i, j, k);
         if (TrackTools.isRailBlock(block)) {
             if (Game.isHost(world) && !CartTools.isMinecartAt(world, i, j, k, 0, null, true)) {
                 int meta = ((BlockRailBase) block).getBasicRailMetadata(world, null, i, j, k);
                 if (meta == 0 || meta == 1) {
                     int playerYaw = -90 - MathHelper.floor_float(player.rotationYaw);
-                    for (; playerYaw > 360; playerYaw -= 360);
-                    for (; playerYaw < 0; playerYaw += 360);
+                    for (; playerYaw > 360; playerYaw -= 360)
+                        ;
+                    for (; playerYaw < 0; playerYaw += 360)
+                        ;
                     ForgeDirection facing = ForgeDirection.EAST;
                     if (Math.abs(90 - playerYaw) <= 45) {
                         facing = ForgeDirection.NORTH;
@@ -58,9 +70,10 @@ public class ItemTunnelBore extends ItemCart implements IMinecartItem {
                         facing = ForgeDirection.WEST;
                     }
 
-//					System.out.println("PlayerYaw = " + playerYaw + " Yaw = " + facing + " Meta = " + meta);
+                    //					System.out.println("PlayerYaw = " + playerYaw + " Yaw = " + facing + " Meta = " + meta);
 
-                    EntityMinecart bore = new EntityTunnelBore(world, (float) i + 0.5F, (float) j, (float) k + 0.5F, facing);
+                    EntityMinecart bore =
+                            new EntityTunnelBore(world, (float) i + 0.5F, (float) j, (float) k + 0.5F, facing);
                     CartTools.setCartOwner(bore, player);
                     world.spawnEntityInWorld(bore);
                 }

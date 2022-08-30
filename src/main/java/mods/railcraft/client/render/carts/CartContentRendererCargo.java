@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.client.render.carts;
 
+import java.util.Random;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.carts.EntityCartCargo;
 import net.minecraft.block.Block;
@@ -20,8 +21,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
-
-import java.util.Random;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -40,25 +39,25 @@ public class CartContentRendererCargo extends CartContentRenderer {
     }
 
     public void renderCargo(RenderCart renderer, EntityCartCargo cart, float light, float time, int x, int y, int z) {
-        if (!cart.hasFilter())
-            return;
+        if (!cart.hasFilter()) return;
 
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
 
-        EntityItem item = new EntityItem(null, 0.0D, 0.0D, 0.0D, cart.getFilterItem().copy());
+        EntityItem item =
+                new EntityItem(null, 0.0D, 0.0D, 0.0D, cart.getFilterItem().copy());
         item.getEntityItem().stackSize = 1;
         item.hoverStart = 0.0F;
 
-        boolean renderIn3D = RenderBlocks.renderItemIn3d(Block.getBlockFromItem(item.getEntityItem().getItem()).getRenderType());
+        boolean renderIn3D = RenderBlocks.renderItemIn3d(
+                Block.getBlockFromItem(item.getEntityItem().getItem()).getRenderType());
 
         RenderItem.renderInFrame = true;
 
         if (!renderIn3D) {
-            if (!RenderManager.instance.options.fancyGraphics)
-                GL11.glDisable(GL11.GL_CULL_FACE);
+            if (!RenderManager.instance.options.fancyGraphics) GL11.glDisable(GL11.GL_CULL_FACE);
             GL11.glTranslatef(0.0F, -0.44F, 0.0F);
             float scale = 1.5F;
             GL11.glScalef(scale, scale, scale);
@@ -100,7 +99,6 @@ public class CartContentRendererCargo extends CartContentRenderer {
         }
 
         RenderItem.renderInFrame = false;
-
 
         GL11.glPopAttrib();
         GL11.glPopMatrix();

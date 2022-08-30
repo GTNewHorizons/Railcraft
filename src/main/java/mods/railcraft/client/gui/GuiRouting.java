@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,9 +8,6 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.signals.IRouter;
@@ -22,7 +19,10 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
 
 public class GuiRouting extends TileGui {
 
@@ -74,7 +74,7 @@ public class GuiRouting extends TileGui {
             return;
         }
         updateButtons();
-//        sendUpdatePacket();
+        //        sendUpdatePacket();
     }
 
     @Override
@@ -97,8 +97,14 @@ public class GuiRouting extends TileGui {
             notownedToolTips = ToolTip.buildToolTip("railcraft.gui.tip.button.lock.notowner", "{owner}=" + username);
             privateToolTips = ToolTip.buildToolTip("railcraft.gui.routing.type.private.tip", "{owner}=" + username);
         }
-        lockButton.setToolTip(router.getLockController().getButtonState() == LockButtonState.LOCKED ? lockedToolTips : lockButton.enabled ? unlockedToolTips : notownedToolTips);
-        routingButton.setToolTip(router.getRoutingController().getButtonState() == IRouter.RoutingButtonState.PRIVATE ? privateToolTips : publicToolTips);
+        lockButton.setToolTip(
+                router.getLockController().getButtonState() == LockButtonState.LOCKED
+                        ? lockedToolTips
+                        : lockButton.enabled ? unlockedToolTips : notownedToolTips);
+        routingButton.setToolTip(
+                router.getRoutingController().getButtonState() == IRouter.RoutingButtonState.PRIVATE
+                        ? privateToolTips
+                        : publicToolTips);
     }
 
     @Override
@@ -114,7 +120,7 @@ public class GuiRouting extends TileGui {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         GuiTools.drawCenteredString(fontRendererObj, router.getName(), 6);
         fontRendererObj.drawString(LocalizationPlugin.translate("railcraft.gui.routing.slot.label"), 64, 29, 0x404040);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
+        fontRendererObj.drawString(
+                StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
     }
-
 }

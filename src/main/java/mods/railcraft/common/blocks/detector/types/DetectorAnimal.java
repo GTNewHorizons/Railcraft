@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,16 @@
  */
 package mods.railcraft.common.blocks.detector.types;
 
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import mods.railcraft.common.blocks.detector.Detector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.util.network.IGuiReturnHandler;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -24,9 +28,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 public class DetectorAnimal extends Detector implements IGuiReturnHandler {
 
@@ -150,5 +151,4 @@ public class DetectorAnimal extends Detector implements IGuiReturnHandler {
         wolf = (bits & 32) != 0;
         other = (bits & 64) != 0;
     }
-
 }

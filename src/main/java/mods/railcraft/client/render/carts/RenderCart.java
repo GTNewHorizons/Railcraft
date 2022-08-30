@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.client.render.carts;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.api.carts.locomotive.IRenderer;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
@@ -23,18 +26,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 public class RenderCart extends Render implements IRenderer {
 
     private final Random rand = new Random();
     private final RenderInfo fakeBlock = new RenderInfo();
-    private final static Map<Class, CartModelRenderer> renderersCore = new HashMap<Class, CartModelRenderer>();
-    private final static Map<Class, CartContentRenderer> renderersContent = new HashMap<Class, CartContentRenderer>();
-    private final static CartModelRenderer defaultCoreRenderer = new CartModelRenderer();
-    private final static CartContentRenderer defaultContentRenderer = new CartContentRenderer();
+    private static final Map<Class, CartModelRenderer> renderersCore = new HashMap<Class, CartModelRenderer>();
+    private static final Map<Class, CartContentRenderer> renderersContent = new HashMap<Class, CartContentRenderer>();
+    private static final CartModelRenderer defaultCoreRenderer = new CartModelRenderer();
+    private static final CartContentRenderer defaultContentRenderer = new CartContentRenderer();
 
     public RenderCart() {
         shadowSize = 0.5F;
@@ -66,10 +65,8 @@ public class RenderCart extends Render implements IRenderer {
         if (vec3d != null) {
             Vec3 vec3d1 = cart.func_70495_a(mx, my, mz, d6);
             Vec3 vec3d2 = cart.func_70495_a(mx, my, mz, -d6);
-            if (vec3d1 == null)
-                vec3d1 = vec3d;
-            if (vec3d2 == null)
-                vec3d2 = vec3d;
+            if (vec3d1 == null) vec3d1 = vec3d;
+            if (vec3d2 == null) vec3d2 = vec3d;
             x += vec3d.xCoord - mx;
             y += (vec3d1.yCoord + vec3d2.yCoord) / 2D - my;
             z += vec3d.zCoord - mz;
@@ -82,15 +79,13 @@ public class RenderCart extends Render implements IRenderer {
         }
         if (cart instanceof IDirectionalCart) {
             yaw %= 360;
-            if (yaw < 0)
-                yaw += 360;
+            if (yaw < 0) yaw += 360;
             yaw += 360;
 
             double serverYaw = cart.rotationYaw;
             serverYaw += 180;
             serverYaw %= 360;
-            if (serverYaw < 0)
-                serverYaw += 360;
+            if (serverYaw < 0) serverYaw += 360;
             serverYaw += 360;
 
             if (Math.abs(yaw - serverYaw) > 90) {
@@ -110,8 +105,7 @@ public class RenderCart extends Render implements IRenderer {
 
         if (cart instanceof IRoutableCart) {
             String dest = ((IRoutableCart) cart).getDestination();
-            if (!dest.isEmpty())
-                renderHaloText(cart, dest, 0, name ? 0.5 : 0, 0, 64);
+            if (!dest.isEmpty()) renderHaloText(cart, dest, 0, name ? 0.5 : 0, 0, 64);
         }
 
         GL11.glRotatef(180F - yaw, 0.0F, 1.0F, 0.0F);
@@ -119,8 +113,7 @@ public class RenderCart extends Render implements IRenderer {
 
         float f3 = (float) cart.getRollingAmplitude() - time;
         float f4 = (float) cart.getDamage() - time;
-        if (f4 < 0.0F)
-            f4 = 0.0F;
+        if (f4 < 0.0F) f4 = 0.0F;
         if (f3 > 0.0F) {
             float angle = (MathHelper.sin(f3) * f3 * f4) / 10F;
             angle = Math.min(angle, 0.8f);
@@ -128,7 +121,7 @@ public class RenderCart extends Render implements IRenderer {
             GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
         }
         float light = cart.getBrightness(time);
-//        light = light + ((1.0f - light) * 0.4f);
+        //        light = light + ((1.0f - light) * 0.4f);
 
         boolean renderContents = renderCore(cart, light, time);
 
@@ -154,8 +147,7 @@ public class RenderCart extends Render implements IRenderer {
         CartModelRenderer render = renderersCore.get(eClass);
         if (render == null && eClass != EntityMinecart.class) {
             render = getCoreRenderer(eClass.getSuperclass());
-            if (render == null)
-                render = defaultCoreRenderer;
+            if (render == null) render = defaultCoreRenderer;
             renderersCore.put(eClass, render);
         }
         return render;
@@ -165,8 +157,7 @@ public class RenderCart extends Render implements IRenderer {
         CartContentRenderer render = renderersContent.get(eClass);
         if (render == null && eClass != EntityMinecart.class) {
             render = getContentRenderer(eClass.getSuperclass());
-            if (render == null)
-                render = defaultContentRenderer;
+            if (render == null) render = defaultContentRenderer;
             renderersContent.put(eClass, render);
         }
         return render;
@@ -195,8 +186,8 @@ public class RenderCart extends Render implements IRenderer {
         return null;
     }
 
-    public void renderHaloText(Entity entity, String text, double xOffset, double yOffset, double zOffset, int viewDist) {
+    public void renderHaloText(
+            Entity entity, String text, double xOffset, double yOffset, double zOffset, int viewDist) {
         func_147906_a(entity, text, xOffset, yOffset, zOffset, viewDist);
     }
-
 }

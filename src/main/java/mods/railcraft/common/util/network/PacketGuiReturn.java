@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -50,11 +50,9 @@ public class PacketGuiReturn extends RailcraftPacket {
             Entity entity = (Entity) obj;
             data.writeBoolean(false);
             data.writeInt(entity.getEntityId());
-        } else
-            return;
+        } else return;
         obj.writeGuiData(data);
-        if (extraData != null)
-            data.write(extraData);
+        if (extraData != null) data.write(extraData);
     }
 
     @Override
@@ -69,15 +67,13 @@ public class PacketGuiReturn extends RailcraftPacket {
 
             TileEntity t = world.getTileEntity(x, y, z);
 
-            if (t instanceof IGuiReturnHandler)
-                ((IGuiReturnHandler) t).readGuiData(data, sender);
+            if (t instanceof IGuiReturnHandler) ((IGuiReturnHandler) t).readGuiData(data, sender);
 
         } else {
             int entityId = data.readInt();
             Entity entity = world.getEntityByID(entityId);
 
-            if (entity instanceof IGuiReturnHandler)
-                ((IGuiReturnHandler) entity).readGuiData(data, sender);
+            if (entity instanceof IGuiReturnHandler) ((IGuiReturnHandler) entity).readGuiData(data, sender);
         }
     }
 
@@ -89,5 +85,4 @@ public class PacketGuiReturn extends RailcraftPacket {
     public int getID() {
         return PacketType.GUI_RETURN.ordinal();
     }
-
 }

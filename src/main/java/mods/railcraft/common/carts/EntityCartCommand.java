@@ -35,7 +35,9 @@ public class EntityCartCommand extends CartBase {
         @Override
         public void func_145756_e() {
             EntityCartCommand.this.getDataWatcher().updateObject(23, this.func_145753_i());
-            EntityCartCommand.this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145749_h()));
+            EntityCartCommand.this
+                    .getDataWatcher()
+                    .updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145749_h()));
         }
 
         @SideOnly(Side.CLIENT)
@@ -55,8 +57,7 @@ public class EntityCartCommand extends CartBase {
             return new ChunkCoordinates(
                     MathHelper.floor_double(EntityCartCommand.this.posX),
                     MathHelper.floor_double(EntityCartCommand.this.posY + 0.5D),
-                    MathHelper.floor_double(EntityCartCommand.this.posZ)
-            );
+                    MathHelper.floor_double(EntityCartCommand.this.posZ));
         }
 
         @Override
@@ -74,25 +75,23 @@ public class EntityCartCommand extends CartBase {
     }
 
     @Override
-    protected void entityInit()
-    {
+    protected void entityInit() {
         super.entityInit();
         this.getDataWatcher().addObject(23, "");
         this.getDataWatcher().addObject(24, "");
     }
-    
+
     @Override
-    protected void readEntityFromNBT(NBTTagCompound p_70037_1_)
-    {
+    protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
         super.readEntityFromNBT(p_70037_1_);
         this.commandLogic.func_145759_b(p_70037_1_);
         this.getDataWatcher().updateObject(23, this.commandLogic.func_145753_i());
-        this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.commandLogic.func_145749_h()));
+        this.getDataWatcher()
+                .updateObject(24, IChatComponent.Serializer.func_150696_a(this.commandLogic.func_145749_h()));
     }
-    
+
     @Override
-    protected void writeEntityToNBT(NBTTagCompound p_70014_1_)
-    {
+    protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
         super.writeEntityToNBT(p_70014_1_);
         this.commandLogic.func_145758_a(p_70014_1_);
     }
@@ -121,8 +120,7 @@ public class EntityCartCommand extends CartBase {
 
     @Override
     public void onActivatorRailPass(int x, int y, int z, boolean powered) {
-        if (powered && this.ticksExisted - this.timeExisted >= 4)
-        {
+        if (powered && this.ticksExisted - this.timeExisted >= 4) {
             this.commandLogic.func_145755_a(this.worldObj);
             this.timeExisted = this.ticksExisted;
         }
@@ -134,12 +132,12 @@ public class EntityCartCommand extends CartBase {
 
         if (dataValueId == 24) {
             try {
-                this.commandLogic.func_145750_b(IChatComponent.Serializer.func_150699_a(this.getDataWatcher().getWatchableObjectString(24)));
+                this.commandLogic.func_145750_b(IChatComponent.Serializer.func_150699_a(
+                        this.getDataWatcher().getWatchableObjectString(24)));
             } catch (Throwable ignored) {
-                
+
             }
-        }
-        else if (dataValueId == 23) {
+        } else if (dataValueId == 23) {
             this.commandLogic.func_145752_a(this.getDataWatcher().getWatchableObjectString(23));
         }
     }

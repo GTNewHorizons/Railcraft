@@ -17,5 +17,4 @@ public interface IPaintedCart {
     byte getPrimaryColor();
 
     byte getSecondaryColor();
-    
 }

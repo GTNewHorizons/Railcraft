@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,10 +9,6 @@
 package mods.railcraft.client.gui;
 
 import java.awt.Color;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
-import org.lwjgl.opengl.GL11;
 import mods.railcraft.client.gui.buttons.GuiButtonSmall;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.detector.types.DetectorItem;
@@ -21,6 +17,10 @@ import mods.railcraft.common.gui.containers.ContainerDetectorItem;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
+import org.lwjgl.opengl.GL11;
 
 public class GuiDetectorItem extends TileGui {
 
@@ -31,7 +31,10 @@ public class GuiDetectorItem extends TileGui {
     private GuiButton filterRight;
 
     public GuiDetectorItem(InventoryPlayer inv, TileDetector tile) {
-        super(tile, new ContainerDetectorItem(inv, tile), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_detector_item.png");
+        super(
+                tile,
+                new ContainerDetectorItem(inv, tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_detector_item.png");
         this.tile = tile;
         this.detector = (DetectorItem) tile.getDetector();
         xSize = 176;
@@ -42,8 +45,7 @@ public class GuiDetectorItem extends TileGui {
     @Override
     public void initGui() {
         super.initGui();
-        if (tile == null)
-            return;
+        if (tile == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
@@ -57,8 +59,7 @@ public class GuiDetectorItem extends TileGui {
 
     @Override
     protected void actionPerformed(GuiButton button) {
-        if (tile == null)
-            return;
+        if (tile == null) return;
         int primary = detector.getPrimaryMode().ordinal();
         int filter = detector.getFilterMode().ordinal();
         switch (button.id) {
@@ -75,16 +76,12 @@ public class GuiDetectorItem extends TileGui {
                 filter++;
                 break;
         }
-        if (primary < 0)
-            primary = DetectorItem.PrimaryMode.values().length - 1;
-        if (primary >= DetectorItem.PrimaryMode.values().length)
-            primary = 0;
+        if (primary < 0) primary = DetectorItem.PrimaryMode.values().length - 1;
+        if (primary >= DetectorItem.PrimaryMode.values().length) primary = 0;
         detector.setPrimaryMode(DetectorItem.PrimaryMode.values()[primary]);
 
-        if (filter < 0)
-            filter = DetectorItem.FilterMode.values().length - 1;
-        if (filter >= DetectorItem.FilterMode.values().length)
-            filter = 0;
+        if (filter < 0) filter = DetectorItem.FilterMode.values().length - 1;
+        if (filter >= DetectorItem.FilterMode.values().length) filter = 0;
         detector.setFilterMode(DetectorItem.FilterMode.values()[filter]);
         if (Game.isNotHost(tile.getWorld())) {
             PacketGuiReturn pkt = new PacketGuiReturn(tile);
@@ -123,7 +120,7 @@ public class GuiDetectorItem extends TileGui {
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
         } else
-            GuiTools.drawCenteredString(fontRendererObj, detector.getFilterMode().toString(), 45);
+            GuiTools.drawCenteredString(
+                    fontRendererObj, detector.getFilterMode().toString(), 45);
     }
-
 }

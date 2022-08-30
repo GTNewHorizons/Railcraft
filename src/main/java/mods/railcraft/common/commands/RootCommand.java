@@ -8,10 +8,9 @@
  */
 package mods.railcraft.common.commands;
 
+import java.util.*;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-
-import java.util.*;
 
 /**
  * Created by CovertJaguar on 3/12/2015.
@@ -60,10 +59,8 @@ public class RootCommand extends CommandBase implements IModCommand {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
-        if (!CommandHelpers.processStandardCommands(sender, this, args))
-            CommandHelpers.throwWrongUsage(sender, this);
+        if (!CommandHelpers.processStandardCommands(sender, this, args)) CommandHelpers.throwWrongUsage(sender, this);
     }
-
 
     @Override
     public String getFullCommandString() {

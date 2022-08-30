@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -18,8 +18,7 @@ import net.minecraft.world.World;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IGuiReturnHandler
-{
+public interface IGuiReturnHandler {
     public World getWorld();
 
     public void writeGuiData(DataOutputStream data) throws IOException;

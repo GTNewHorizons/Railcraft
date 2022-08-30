@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,9 @@
 package mods.railcraft.common.blocks.machine.gamma;
 
 import cofh.api.energy.IEnergyReceiver;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.carts.EntityCartRF;
@@ -19,10 +22,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class TileRFLoader extends TileRFLoaderBase implements IGuiReturnHandler, IEnergyReceiver {
     private boolean waitTillFull = true;
@@ -51,16 +50,14 @@ public class TileRFLoader extends TileRFLoaderBase implements IGuiReturnHandler,
             cartWasSent();
         }
 
-        if (cart == null)
-            return false;
+        if (cart == null) return false;
 
         if (!canHandleCart(cart)) {
             sendCart(cart);
             return false;
         }
 
-        if (isPaused())
-            return false;
+        if (isPaused()) return false;
 
         EntityCartRF rfCart = (EntityCartRF) cart;
 
@@ -76,23 +73,18 @@ public class TileRFLoader extends TileRFLoaderBase implements IGuiReturnHandler,
             }
         }
 
-        if (!transferred && !isPowered() && shouldSendCart(cart))
-            sendCart(cart);
+        if (!transferred && !isPowered() && shouldSendCart(cart)) sendCart(cart);
 
         return transferred;
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof EntityCartRF))
-            return true;
+        if (!(cart instanceof EntityCartRF)) return true;
         EntityCartRF energyCart = (EntityCartRF) cart;
-        if (!waitTillFull && energyCart.getRF() > 0)
-            return true;
-        else if (!waitIfEmpty && !waitTillFull && energyCart.getRF() == 0)
-            return true;
-        else if (energyCart.getRF() >= energyCart.getMaxRF())
-            return true;
+        if (!waitTillFull && energyCart.getRF() > 0) return true;
+        else if (!waitIfEmpty && !waitTillFull && energyCart.getRF() == 0) return true;
+        else if (energyCart.getRF() >= energyCart.getMaxRF()) return true;
         return false;
     }
 

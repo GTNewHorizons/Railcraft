@@ -20,5 +20,4 @@ public class EnchantmentDestruction extends EnchantmentCrowbar {
     public int getMaxLevel() {
         return 3;
     }
-
 }

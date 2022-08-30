@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,10 +10,10 @@ package mods.railcraft.common.fluids;
 
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.items.ModItems;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.util.inventory.InvTools;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 
 /**
@@ -22,8 +22,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 public class ForestryFluidRegistrar extends FluidRegistrar {
     public static ForestryFluidRegistrar INSTANCE = new ForestryFluidRegistrar();
 
-    private ForestryFluidRegistrar() {
-    }
+    private ForestryFluidRegistrar() {}
 
     @Override
     @Optional.Method(modid = "Forestry")
@@ -45,13 +44,15 @@ public class ForestryFluidRegistrar extends FluidRegistrar {
         } else if (container.emptyContainer.getItem() == Items.glass_bottle) {
             recycle = new ItemStack(Blocks.glass);
             chance = 10;
-        } else
-            return;
+        } else return;
 
-        if (forestry.api.recipes.RecipeManagers.squeezerManager != null && container.emptyContainer.getItem() != Items.bucket)
+        if (forestry.api.recipes.RecipeManagers.squeezerManager != null
+                && container.emptyContainer.getItem() != Items.bucket)
             if (recycle != null)
-                forestry.api.recipes.RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{container.filledContainer}, container.fluid, recycle, chance);
+                forestry.api.recipes.RecipeManagers.squeezerManager.addRecipe(
+                        10, new ItemStack[] {container.filledContainer}, container.fluid, recycle, chance);
             else
-                forestry.api.recipes.RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{container.filledContainer}, container.fluid);
+                forestry.api.recipes.RecipeManagers.squeezerManager.addRecipe(
+                        10, new ItemStack[] {container.filledContainer}, container.fluid);
     }
 }

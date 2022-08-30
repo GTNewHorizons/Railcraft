@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,8 +8,8 @@
  */
 package mods.railcraft.common.util.inventory.filters;
 
-import net.minecraft.item.ItemStack;
 import mods.railcraft.api.core.items.IStackFilter;
+import net.minecraft.item.ItemStack;
 
 /**
  *
@@ -29,8 +29,7 @@ public class ComplexStackFilter {
         return new NotFilter(filter);
     }
 
-    private ComplexStackFilter() {
-    }
+    private ComplexStackFilter() {}
 
     private static class AndFilter implements IStackFilter {
 
@@ -42,15 +41,12 @@ public class ComplexStackFilter {
 
         @Override
         public boolean matches(ItemStack stack) {
-            if (stack == null)
-                return false;
+            if (stack == null) return false;
             for (IStackFilter filter : filters) {
-                if (!filter.matches(stack))
-                    return false;
+                if (!filter.matches(stack)) return false;
             }
             return true;
         }
-
     }
 
     private static class OrFilter implements IStackFilter {
@@ -63,15 +59,12 @@ public class ComplexStackFilter {
 
         @Override
         public boolean matches(ItemStack stack) {
-            if (stack == null)
-                return false;
+            if (stack == null) return false;
             for (IStackFilter filter : filters) {
-                if (filter.matches(stack))
-                    return true;
+                if (filter.matches(stack)) return true;
             }
             return false;
         }
-
     }
 
     private static class NotFilter implements IStackFilter {
@@ -84,11 +77,8 @@ public class ComplexStackFilter {
 
         @Override
         public boolean matches(ItemStack stack) {
-            if (stack == null)
-                return false;
+            if (stack == null) return false;
             return !filter.matches(stack);
         }
-
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
@@ -40,11 +44,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, ISidedInventory {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 1;
@@ -53,50 +52,53 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     private static final int COOK_STEP_LENGTH = 50;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 4);
     private static final int TANK_CAPACITY = 64 * FluidHelper.BUCKET_VOLUME;
-    private final static List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
+    private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final TankManager tankManager = new TankManager();
     private final StandardTank tank;
     private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
     private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 2, false);
+
     static {
         char[][][] map = {
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'B', 'W', 'B', 'O'},
-                        {'O', 'W', 'A', 'W', 'O'},
-                        {'O', 'B', 'W', 'B', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'B', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },
-                {
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O', 'O'}
-                },};
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'W', 'B', 'O'},
+                {'O', 'W', 'A', 'W', 'O'},
+                {'O', 'B', 'W', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'B', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+            {
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O', 'O'}
+            },
+        };
         patterns.add(new MultiBlockPattern(map, 2, 1, 2));
     }
+
     public int cookTimeTotal = 3600;
     private int finishedAt;
 
@@ -106,12 +108,14 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
         tankManager.add(tank);
     }
 
-    public static void placeCokeOven(World world, int x, int y, int z, int creosote, ItemStack input, ItemStack output) {
+    public static void placeCokeOven(
+            World world, int x, int y, int z, int creosote, ItemStack input, ItemStack output) {
         for (MultiBlockPattern pattern : TileCokeOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
             blockMapping.put('B', EnumMachineAlpha.COKE_OVEN.ordinal());
             blockMapping.put('W', EnumMachineAlpha.COKE_OVEN.ordinal());
-            TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            TileEntity tile =
+                    pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
             if (tile instanceof TileCokeOven) {
                 TileCokeOven master = (TileCokeOven) tile;
                 master.tank.setFluid(Fluids.CREOSOTE.get(creosote));
@@ -129,16 +133,14 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
 
     public TankManager getTankManager() {
         TileCokeOven mBlock = (TileCokeOven) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager;
+        if (mBlock != null) return mBlock.tankManager;
         return null;
     }
 
     @Override
     public IIcon getIcon(int side) {
         if (getPatternMarker() == 'W' && isStructureValid()) {
-            if (isBurning())
-                return getMachineType().getTexture(7);
+            if (isBurning()) return getMachineType().getTexture(7);
             return getMachineType().getTexture(6);
         }
         return getMachineType().getTexture(0);
@@ -146,18 +148,17 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
 
     @Override
     public boolean blockActivated(EntityPlayer player, int side) {
-        if (isStructureValid() && FluidHelper.handleRightClick(this, ForgeDirection.getOrientation(side), player, false, true))
+        if (isStructureValid()
+                && FluidHelper.handleRightClick(this, ForgeDirection.getOrientation(side), player, false, true))
             return true;
-        else if (FluidItemHelper.isContainer(player.inventory.getCurrentItem()))
-            return true;
+        else if (FluidItemHelper.isContainer(player.inventory.getCurrentItem())) return true;
         return super.blockActivated(player, side);
     }
 
     @Override
     public int getTotalCookTime() {
         TileCokeOven mBlock = (TileCokeOven) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.cookTimeTotal;
+        if (mBlock != null) return mBlock.cookTimeTotal;
         return 3600;
     }
 
@@ -178,9 +179,7 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
 
         if (Game.isHost(getWorld()))
             if (isMaster()) {
-                if (clock > finishedAt + COOK_STEP_LENGTH + 5)
-                    if (cookTime <= 0)
-                        setCooking(false);
+                if (clock > finishedAt + COOK_STEP_LENGTH + 5) if (cookTime <= 0) setCooking(false);
 
                 ItemStack input = getStackInSlot(SLOT_INPUT);
                 if (input != null && input.stackSize > 0 && !InvTools.isSynthetic(input)) {
@@ -189,7 +188,10 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
                         ICokeOvenRecipe recipe = RailcraftCraftingManager.cokeOven.getRecipe(input);
 
                         if (recipe != null)
-                            if ((output == null || (output.isItemEqual(recipe.getOutput()) && output.stackSize + recipe.getOutput().stackSize <= output.getMaxStackSize()))
+                            if ((output == null
+                                            || (output.isItemEqual(recipe.getOutput())
+                                                    && output.stackSize + recipe.getOutput().stackSize
+                                                            <= output.getMaxStackSize()))
                                     && tank.fill(recipe.getFluidOutput(), false) >= recipe.getFluidOutput().amount) {
                                 cookTimeTotal = recipe.getCookTime();
                                 cookTime += COOK_STEP_LENGTH;
@@ -199,10 +201,8 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
                                     cookTime = 0;
                                     finishedAt = clock;
                                     decrStackSize(SLOT_INPUT, 1);
-                                    if (output == null)
-                                        setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput());
-                                    else
-                                        output.stackSize += recipe.getOutput().stackSize;
+                                    if (output == null) setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput());
+                                    else output.stackSize += recipe.getOutput().stackSize;
                                     tank.fill(recipe.getFluidOutput(), true);
                                     sendUpdateToClient();
                                 }
@@ -235,7 +235,8 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
                 }
 
                 if (clock % FluidHelper.BUCKET_FILL_TIME == 0)
-                    FluidHelper.fillContainers(this, this, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT, Fluids.CREOSOTE.get());
+                    FluidHelper.fillContainers(
+                            this, this, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT, Fluids.CREOSOTE.get());
             }
     }
 
@@ -243,7 +244,8 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     public boolean openGui(EntityPlayer player) {
         TileMultiBlock masterBlock = getMasterBlock();
         if (masterBlock != null && isStructureValid()) {
-            GuiHandler.openGui(EnumGui.COKE_OVEN, player, worldObj, masterBlock.xCoord, masterBlock.yCoord, masterBlock.zCoord);
+            GuiHandler.openGui(
+                    EnumGui.COKE_OVEN, player, worldObj, masterBlock.xCoord, masterBlock.yCoord, masterBlock.zCoord);
             return true;
         }
         return false;
@@ -269,17 +271,14 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            return tMan.drain(0, maxDrain, doDrain);
+        if (tMan != null) return tMan.drain(0, maxDrain, doDrain);
         return null;
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        if (resource == null)
-            return null;
-        if (!Fluids.CREOSOTE.is(resource))
-            return null;
+        if (resource == null) return null;
+        if (!Fluids.CREOSOTE.is(resource)) return null;
         return drain(from, resource.amount, doDrain);
     }
 
@@ -296,15 +295,13 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection dir) {
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            return tMan.getTankInfo();
+        if (tMan != null) return tMan.getTankInfo();
         return FakeTank.INFO;
     }
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (!super.isItemValidForSlot(slot, stack))
-            return false;
+        if (!super.isItemValidForSlot(slot, stack)) return false;
         switch (slot) {
             case SLOT_INPUT:
                 return RailcraftCraftingManager.cokeOven.getRecipe(stack) != null;

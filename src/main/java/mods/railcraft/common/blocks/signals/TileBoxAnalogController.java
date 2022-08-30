@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.BitSet;
 import java.util.EnumMap;
 import java.util.Map;
-
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SimpleSignalController;
@@ -41,8 +40,7 @@ public class TileBoxAnalogController extends TileBoxBase implements IControllerT
 
     @Override
     public boolean blockActivated(int side, EntityPlayer player) {
-        if (player.isSneaking())
-            return false;
+        if (player.isSneaking()) return false;
         GuiHandler.openGui(EnumGui.BOX_ANALOG_CONTROLLER, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
@@ -57,21 +55,16 @@ public class TileBoxAnalogController extends TileBoxBase implements IControllerT
         }
         controller.tickServer();
         SignalAspect prevAspect = controller.getAspect();
-        if (controller.isBeingPaired())
-            controller.setAspect(SignalAspect.BLINK_YELLOW);
-        else if (controller.isPaired())
-            controller.setAspect(determineAspect());
-        else
-            controller.setAspect(SignalAspect.BLINK_RED);
-        if (prevAspect != controller.getAspect())
-            sendUpdateToClient();
+        if (controller.isBeingPaired()) controller.setAspect(SignalAspect.BLINK_YELLOW);
+        else if (controller.isPaired()) controller.setAspect(determineAspect());
+        else controller.setAspect(SignalAspect.BLINK_RED);
+        if (prevAspect != controller.getAspect()) sendUpdateToClient();
     }
 
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         int s = getPowerLevel();
         if (s != strongestSignal) {
             strongestSignal = s;
@@ -82,14 +75,10 @@ public class TileBoxAnalogController extends TileBoxBase implements IControllerT
     private int getPowerLevel() {
         int p = 0, tmp;
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
-            if (side == ForgeDirection.UP)
-                continue;
-            if (tileCache.getTileOnSide(side) instanceof TileBoxBase)
-                continue;
-            if ((tmp = PowerPlugin.getBlockPowerLevel(worldObj, xCoord, yCoord, zCoord, side)) > p)
-                p = tmp;
-            if ((tmp = PowerPlugin.getBlockPowerLevel(worldObj, xCoord, yCoord - 1, zCoord, side)) > p)
-                p = tmp;
+            if (side == ForgeDirection.UP) continue;
+            if (tileCache.getTileOnSide(side) instanceof TileBoxBase) continue;
+            if ((tmp = PowerPlugin.getBlockPowerLevel(worldObj, xCoord, yCoord, zCoord, side)) > p) p = tmp;
+            if ((tmp = PowerPlugin.getBlockPowerLevel(worldObj, xCoord, yCoord - 1, zCoord, side)) > p) p = tmp;
         }
         return p;
     }
@@ -198,5 +187,4 @@ public class TileBoxAnalogController extends TileBoxBase implements IControllerT
     public SimpleSignalController getController() {
         return controller;
     }
-
 }

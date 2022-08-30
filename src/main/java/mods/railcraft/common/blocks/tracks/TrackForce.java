@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -36,8 +36,7 @@ public class TrackForce extends TrackUnsupported {
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (Game.isHost(getWorld()))
-            checkForEmitter();
+        if (Game.isHost(getWorld())) checkForEmitter();
     }
 
     public void checkForEmitter() {
@@ -45,38 +44,30 @@ public class TrackForce extends TrackUnsupported {
         int y = getY() - 1;
         Block emitterBlock = EnumMachineEpsilon.FORCE_TRACK_EMITTER.getBlock();
         if (meta == EnumTrackMeta.NORTH_SOUTH) {
-            if (isValidEmitterTile(emitter, ForgeDirection.NORTH, ForgeDirection.SOUTH))
-                return;
-            else
-                setEmitter(null);
+            if (isValidEmitterTile(emitter, ForgeDirection.NORTH, ForgeDirection.SOUTH)) return;
+            else setEmitter(null);
             for (int i = 1; i <= TileForceTrackEmitter.MAX_TRACKS; i++) {
                 int x = getX() + i * ForgeDirection.NORTH.offsetX;
                 int z = getZ() + i * ForgeDirection.NORTH.offsetZ;
-                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.SOUTH))
-                    return;
+                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.SOUTH)) return;
             }
             for (int i = 1; i <= TileForceTrackEmitter.MAX_TRACKS; i++) {
                 int x = getX() + i * ForgeDirection.SOUTH.offsetX;
                 int z = getZ() + i * ForgeDirection.SOUTH.offsetZ;
-                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.NORTH))
-                    return;
+                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.NORTH)) return;
             }
         } else {
-            if (isValidEmitterTile(emitter, ForgeDirection.EAST, ForgeDirection.WEST))
-                return;
-            else
-                setEmitter(null);
+            if (isValidEmitterTile(emitter, ForgeDirection.EAST, ForgeDirection.WEST)) return;
+            else setEmitter(null);
             for (int i = 1; i <= TileForceTrackEmitter.MAX_TRACKS; i++) {
                 int x = getX() + i * ForgeDirection.EAST.offsetX;
                 int z = getZ() + i * ForgeDirection.EAST.offsetZ;
-                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.WEST))
-                    return;
+                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.WEST)) return;
             }
             for (int i = 1; i <= TileForceTrackEmitter.MAX_TRACKS; i++) {
                 int x = getX() + i * ForgeDirection.WEST.offsetX;
                 int z = getZ() + i * ForgeDirection.WEST.offsetZ;
-                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.EAST))
-                    return;
+                if (isValidEmitter(x, y, z, emitterBlock, ForgeDirection.EAST)) return;
             }
         }
         WorldPlugin.setBlockToAir(getWorld(), getX(), getY(), getZ());
@@ -91,8 +82,7 @@ public class TrackForce extends TrackUnsupported {
     }
 
     private boolean isValidEmitter(int x, int y, int z, Block emitterBlock, ForgeDirection facing) {
-        if (WorldPlugin.getBlock(getWorld(), x, y, z) != emitterBlock)
-            return false;
+        if (WorldPlugin.getBlock(getWorld(), x, y, z) != emitterBlock) return false;
         TileEntity tile = WorldPlugin.getBlockTile(getWorld(), x, y, z);
         if (tile instanceof TileForceTrackEmitter && isValidEmitterTile((TileForceTrackEmitter) tile, facing)) {
             setEmitter(emitter);
@@ -102,16 +92,12 @@ public class TrackForce extends TrackUnsupported {
     }
 
     private boolean isValidEmitterTile(TileForceTrackEmitter tile, ForgeDirection... facing) {
-        if (tile == null || tile.isInvalid())
-            return false;
-        if (getY() - 1 != tile.yCoord)
-            return false;
-        if (getX() != tile.xCoord && getZ() != tile.zCoord)
-            return false;
+        if (tile == null || tile.isInvalid()) return false;
+        if (getY() - 1 != tile.yCoord) return false;
+        if (getX() != tile.xCoord && getZ() != tile.zCoord) return false;
         ForgeDirection emitterFacing = tile.getFacing();
         for (ForgeDirection f : facing) {
-            if (f == emitterFacing)
-                return true;
+            if (f == emitterFacing) return true;
         }
         return false;
     }
@@ -125,5 +111,4 @@ public class TrackForce extends TrackUnsupported {
     public float getExplosionResistance(double srcX, double srcY, double srcZ, Entity exploder) {
         return 6000000.0F;
     }
-
 }

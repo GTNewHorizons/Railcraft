@@ -12,16 +12,19 @@ package mods.railcraft.common.blocks.aesthetics.brick;
 import java.util.Locale;
 
 /**
-* Created by CovertJaguar on 3/12/2015.
-*/
+ * Created by CovertJaguar on 3/12/2015.
+ */
 public enum BrickVariant {
-
-    BRICK, FITTED, BLOCK, ORNATE, ETCHED, COBBLE;
+    BRICK,
+    FITTED,
+    BLOCK,
+    ORNATE,
+    ETCHED,
+    COBBLE;
     public static final BrickVariant[] VALUES = values();
 
     public static BrickVariant fromOrdinal(int ordinal) {
-        if (ordinal < 0 || ordinal >= VALUES.length)
-            return BRICK;
+        if (ordinal < 0 || ordinal >= VALUES.length) return BRICK;
         return VALUES[ordinal];
     }
 
@@ -29,5 +32,4 @@ public enum BrickVariant {
     public String toString() {
         return name().toLowerCase(Locale.ENGLISH);
     }
-
 }

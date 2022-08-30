@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -40,7 +40,8 @@ import net.minecraftforge.fluids.FluidStack;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileEngineSteamHobby extends TileEngineSteam implements IInventory, ISidedInventory, INeedsFuel, ITemperature {
+public class TileEngineSteamHobby extends TileEngineSteam
+        implements IInventory, ISidedInventory, INeedsFuel, ITemperature {
     public static final byte SLOT_FUEL = 0;
     public static final byte SLOT_LIQUID_INPUT = 1;
     public static final byte SLOT_LIQUID_OUTPUT = 2;
@@ -92,8 +93,7 @@ public class TileEngineSteamHobby extends TileEngineSteam implements IInventory,
             if (Game.isHost(worldObj)) {
                 if (FluidHelper.handleRightClick(this, ForgeDirection.getOrientation(side), player, true, false))
                     return true;
-            } else if (FluidItemHelper.isContainer(current))
-                return true;
+            } else if (FluidItemHelper.isContainer(current)) return true;
         return super.blockActivated(player, side);
     }
 
@@ -162,12 +162,10 @@ public class TileEngineSteamHobby extends TileEngineSteam implements IInventory,
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
@@ -218,8 +216,7 @@ public class TileEngineSteamHobby extends TileEngineSteam implements IInventory,
 
     @Override
     public int[] getAccessibleSlotsFromSide(int side) {
-        if (getOrientation().ordinal() == side)
-            return NO_SLOTS;
+        if (getOrientation().ordinal() == side) return NO_SLOTS;
         return SLOTS;
     }
 
@@ -251,10 +248,8 @@ public class TileEngineSteamHobby extends TileEngineSteam implements IInventory,
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (isPowered() && Fluids.STEAM.is(resource))
-            return fill(0, resource, doFill);
-        if (Fluids.WATER.is(resource))
-            return fill(1, resource, doFill);
+        if (isPowered() && Fluids.STEAM.is(resource)) return fill(0, resource, doFill);
+        if (Fluids.WATER.is(resource)) return fill(1, resource, doFill);
         return 0;
     }
 
@@ -262,8 +257,7 @@ public class TileEngineSteamHobby extends TileEngineSteam implements IInventory,
         if (tankIndex == 1)
             if (boiler.isSuperHeated() && Steam.BOILERS_EXPLODE) {
                 FluidStack water = getTankManager().get(TANK_WATER).getFluid();
-                if (water == null || water.amount <= 0)
-                    explode();
+                if (water == null || water.amount <= 0) explode();
             }
         return getTankManager().fill(tankIndex, resource, doFill);
     }

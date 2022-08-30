@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,24 +9,24 @@
 package mods.railcraft.common.gui.containers;
 
 import cofh.api.energy.EnergyStorage;
+import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
+import mods.railcraft.common.gui.slots.SlotOutput;
+import mods.railcraft.common.gui.slots.SlotUnshiftable;
+import mods.railcraft.common.gui.slots.SlotUntouchable;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
 import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.Slot;
-import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.slots.SlotOutput;
-import mods.railcraft.common.gui.slots.SlotUnshiftable;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.gui.slots.SlotUntouchable;
-import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
+import net.minecraft.item.ItemStack;
 
 public class ContainerRollingMachine extends RailcraftContainer {
 
@@ -46,9 +46,9 @@ public class ContainerRollingMachine extends RailcraftContainer {
             public void setInventorySlotContents(int slot, ItemStack stack) {
                 super.setInventorySlotContents(slot, stack);
                 if (stack != null && Game.isNotHost(tile.getWorldObj()))
-                    InvTools.addItemToolTip(stack, LocalizationPlugin.translate("railcraft.gui.rolling.machine.tip.craft"));
+                    InvTools.addItemToolTip(
+                            stack, LocalizationPlugin.translate("railcraft.gui.rolling.machine.tip.craft"));
             }
-
         };
 
         energyIndicator = new RFEnergyIndicator(tile);
@@ -81,8 +81,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
         EnergyStorage storage = tile.getEnergyStorage();
-        if (storage != null)
-            icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
     }
 
     @Override
@@ -91,10 +90,8 @@ public class ContainerRollingMachine extends RailcraftContainer {
         EnergyStorage storage = tile.getEnergyStorage();
         for (Object crafter : crafters) {
             ICrafting icrafting = (ICrafting) crafter;
-            if (lastProgress != tile.getProgress())
-                icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-            if (storage != null)
-                icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
+            if (lastProgress != tile.getProgress()) icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
         }
 
         ItemStack output = tile.getStackInSlot(0);
@@ -123,7 +120,8 @@ public class ContainerRollingMachine extends RailcraftContainer {
 
     @Override
     public final void onCraftMatrixChanged(IInventory inv) {
-        ItemStack output = RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, tile.getWorldObj());
+        ItemStack output =
+                RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, tile.getWorldObj());
         craftResult.setInventorySlotContents(0, output);
     }
 
@@ -144,6 +142,5 @@ public class ContainerRollingMachine extends RailcraftContainer {
         public void onPickupFromSlot(EntityPlayer player, ItemStack itemstack) {
             tile.useLast = true;
         }
-
     }
 }

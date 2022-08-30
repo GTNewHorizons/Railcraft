@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,11 +11,11 @@ package mods.railcraft.client.particles;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+import mods.railcraft.common.util.effects.EffectManager.EffectSourceEntity;
+import mods.railcraft.common.util.effects.EffectManager.IEffectSource;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import mods.railcraft.common.util.effects.EffectManager.EffectSourceEntity;
-import mods.railcraft.common.util.effects.EffectManager.IEffectSource;
 
 /**
  *
@@ -119,5 +119,4 @@ public class EntityHeatTrailFX extends EntityFX {
 
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
     }
-
 }

@@ -20,5 +20,4 @@ public interface IReceiverTile {
     SignalReceiver getReceiver();
 
     void onControllerAspectChange(SignalController con, SignalAspect aspect);
-
 }

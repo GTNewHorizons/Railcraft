@@ -13,5 +13,4 @@ public class LanternProxyMetal implements LanternProxy {
     public LanternInfo fromOrdinal(int id) {
         return EnumLanternMetal.fromOrdinal(id);
     }
-
 }

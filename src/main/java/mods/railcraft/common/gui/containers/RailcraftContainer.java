@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,23 +11,21 @@ package mods.railcraft.common.gui.containers;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import mods.railcraft.common.gui.widgets.Widget;
-import net.minecraft.inventory.Container;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
+import mods.railcraft.common.gui.widgets.Widget;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -79,9 +77,7 @@ public abstract class RailcraftContainer extends Container {
         }
     }
 
-
-    public void sendUpdateToClient() {
-    }
+    public void sendUpdateToClient() {}
 
     public void sendWidgetDataToClient(Widget widget, ICrafting player, byte[] data) {
         PacketBuilder.instance().sendGuiWidgetPacket((EntityPlayerMP) player, windowId, widgets.indexOf(widget), data);
@@ -92,8 +88,7 @@ public abstract class RailcraftContainer extends Container {
     }
 
     @SideOnly(Side.CLIENT)
-    public void updateString(byte id, String data) {
-    }
+    public void updateString(byte id, String data) {}
 
     @Override
     public boolean canInteractWith(EntityPlayer entityplayer) {
@@ -113,16 +108,14 @@ public abstract class RailcraftContainer extends Container {
         ItemStack stack = null;
 
         if (mouseButton == 2) {
-            if (slot.canAdjustPhantom())
-                slot.putStack(null);
+            if (slot.canAdjustPhantom()) slot.putStack(null);
         } else if (mouseButton == 0 || mouseButton == 1) {
             InventoryPlayer playerInv = player.inventory;
             slot.onSlotChanged();
             ItemStack stackSlot = slot.getStack();
             ItemStack stackHeld = playerInv.getItemStack();
 
-            if (stackSlot != null)
-                stack = stackSlot.copy();
+            if (stackSlot != null) stack = stackSlot.copy();
 
             if (stackSlot == null) {
                 if (stackHeld != null && slot.isItemValid(stackHeld))
@@ -131,39 +124,30 @@ public abstract class RailcraftContainer extends Container {
                 adjustPhantomSlot(slot, mouseButton, modifier);
                 slot.onPickupFromSlot(player, playerInv.getItemStack());
             } else if (slot.isItemValid(stackHeld))
-                if (InvTools.isItemEqual(stackSlot, stackHeld))
-                    adjustPhantomSlot(slot, mouseButton, modifier);
-                else
-                    fillPhantomSlot(slot, stackHeld, mouseButton, modifier);
+                if (InvTools.isItemEqual(stackSlot, stackHeld)) adjustPhantomSlot(slot, mouseButton, modifier);
+                else fillPhantomSlot(slot, stackHeld, mouseButton, modifier);
         }
         return stack;
     }
 
     protected void adjustPhantomSlot(SlotRailcraft slot, int mouseButton, int modifier) {
-        if (!slot.canAdjustPhantom())
-            return;
+        if (!slot.canAdjustPhantom()) return;
         ItemStack stackSlot = slot.getStack();
         int stackSize;
-        if (modifier == 1)
-            stackSize = mouseButton == 0 ? (stackSlot.stackSize + 1) / 2 : stackSlot.stackSize * 2;
-        else
-            stackSize = mouseButton == 0 ? stackSlot.stackSize - 1 : stackSlot.stackSize + 1;
+        if (modifier == 1) stackSize = mouseButton == 0 ? (stackSlot.stackSize + 1) / 2 : stackSlot.stackSize * 2;
+        else stackSize = mouseButton == 0 ? stackSlot.stackSize - 1 : stackSlot.stackSize + 1;
 
-        if (stackSize > slot.getSlotStackLimit())
-            stackSize = slot.getSlotStackLimit();
+        if (stackSize > slot.getSlotStackLimit()) stackSize = slot.getSlotStackLimit();
 
         stackSlot.stackSize = stackSize;
 
-        if (stackSlot.stackSize <= 0)
-            slot.putStack((ItemStack) null);
+        if (stackSlot.stackSize <= 0) slot.putStack((ItemStack) null);
     }
 
     protected void fillPhantomSlot(SlotRailcraft slot, ItemStack stackHeld, int mouseButton, int modifier) {
-        if (!slot.canAdjustPhantom())
-            return;
+        if (!slot.canAdjustPhantom()) return;
         int stackSize = mouseButton == 0 ? stackHeld.stackSize : 1;
-        if (stackSize > slot.getSlotStackLimit())
-            stackSize = slot.getSlotStackLimit();
+        if (stackSize > slot.getSlotStackLimit()) stackSize = slot.getSlotStackLimit();
         ItemStack phantomStack = stackHeld.copy();
         phantomStack.stackSize = stackSize;
 
@@ -214,15 +198,11 @@ public abstract class RailcraftContainer extends Container {
             Slot slot = (Slot) inventorySlots.get(machineIndex);
             if (slot instanceof SlotRailcraft) {
                 SlotRailcraft slotRailcraft = (SlotRailcraft) slot;
-                if (slotRailcraft.isPhantom())
-                    continue;
-                if (!slotRailcraft.canShift())
-                    continue;
+                if (slotRailcraft.isPhantom()) continue;
+                if (!slotRailcraft.canShift()) continue;
             }
-            if (!slot.isItemValid(stackToShift))
-                continue;
-            if (shiftItemStack(stackToShift, machineIndex, machineIndex + 1))
-                return true;
+            if (!slot.isItemValid(stackToShift)) continue;
+            if (shiftItemStack(stackToShift, machineIndex, machineIndex + 1)) return true;
         }
         return false;
     }
@@ -238,23 +218,16 @@ public abstract class RailcraftContainer extends Container {
             if (slotIndex >= numSlots - 9 * 4 && tryShiftItem(stackInSlot, numSlots)) {
                 // NOOP
             } else if (slotIndex >= numSlots - 9 * 4 && slotIndex < numSlots - 9) {
-                if (!shiftItemStack(stackInSlot, numSlots - 9, numSlots))
-                    return null;
+                if (!shiftItemStack(stackInSlot, numSlots - 9, numSlots)) return null;
             } else if (slotIndex >= numSlots - 9 && slotIndex < numSlots) {
-                if (!shiftItemStack(stackInSlot, numSlots - 9 * 4, numSlots - 9))
-                    return null;
-            } else if (!shiftItemStack(stackInSlot, numSlots - 9 * 4, numSlots))
-                return null;
+                if (!shiftItemStack(stackInSlot, numSlots - 9 * 4, numSlots - 9)) return null;
+            } else if (!shiftItemStack(stackInSlot, numSlots - 9 * 4, numSlots)) return null;
             slot.onSlotChange(stackInSlot, originalStack);
-            if (stackInSlot.stackSize <= 0)
-                slot.putStack(null);
-            else
-                slot.onSlotChanged();
-            if (stackInSlot.stackSize == originalStack.stackSize)
-                return null;
+            if (stackInSlot.stackSize <= 0) slot.putStack(null);
+            else slot.onSlotChanged();
+            if (stackInSlot.stackSize == originalStack.stackSize) return null;
             slot.onPickupFromSlot(player, stackInSlot);
         }
         return originalStack;
     }
-
 }

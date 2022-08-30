@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,5 +25,4 @@ public class GuiCartRF extends EntityGui {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         GuiTools.drawCenteredString(fontRendererObj, cart.getCommandSenderName(), 6);
     }
-
 }

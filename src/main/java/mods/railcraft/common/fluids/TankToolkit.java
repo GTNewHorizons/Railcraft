@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -28,33 +28,28 @@ public class TankToolkit implements IFluidHandler {
     }
 
     public int getFluidQty(Fluid fluid) {
-        if (fluid == null)
-            return 0;
+        if (fluid == null) return 0;
         int amount = 0;
         for (FluidTankInfo tank : getTankInfo(ForgeDirection.UNKNOWN)) {
-            if (tank.fluid != null && fluid == tank.fluid.getFluid())
-                amount += tank.fluid.amount;
+            if (tank.fluid != null && fluid == tank.fluid.getFluid()) amount += tank.fluid.amount;
         }
         return amount;
     }
 
     public boolean isTankEmpty(Fluid fluid) {
-        if (fluid == null)
-            return areTanksEmpty();
+        if (fluid == null) return areTanksEmpty();
         return getFluidQty(fluid) <= 0;
     }
 
     public boolean isTankFull(Fluid fluid) {
-        if (fluid == null)
-            return areTanksFull();
+        if (fluid == null) return areTanksFull();
         int fill = fill(ForgeDirection.UNKNOWN, new FluidStack(fluid, 1), false);
         return fill <= 0;
     }
 
     public boolean areTanksFull() {
         for (FluidTankInfo tank : getTankInfo(ForgeDirection.UNKNOWN)) {
-            if (tank.fluid == null || tank.fluid.amount < tank.capacity)
-                return false;
+            if (tank.fluid == null || tank.fluid.amount < tank.capacity) return false;
         }
         return true;
     }
@@ -66,8 +61,7 @@ public class TankToolkit implements IFluidHandler {
     public boolean isFluidInTank() {
         for (FluidTankInfo tank : getTankInfo(ForgeDirection.UNKNOWN)) {
             boolean empty = tank.fluid == null || tank.fluid.amount <= 0;
-            if (!empty)
-                return true;
+            if (!empty) return true;
         }
         return false;
     }
@@ -88,8 +82,7 @@ public class TankToolkit implements IFluidHandler {
         int capacity = 0;
         for (FluidTankInfo tank : getTankInfo(ForgeDirection.UNKNOWN)) {
             FluidStack liquid = tank.fluid;
-            if (liquid == null || liquid.getFluid() != fluid)
-                continue;
+            if (liquid == null || liquid.getFluid() != fluid) continue;
             amount += liquid.amount;
             capacity += tank.capacity;
         }
@@ -97,8 +90,7 @@ public class TankToolkit implements IFluidHandler {
     }
 
     public boolean canPutFluid(ForgeDirection from, FluidStack liquid) {
-        if (liquid == null)
-            return false;
+        if (liquid == null) return false;
         return fill(from, liquid, false) > 0;
     }
 
@@ -131,5 +123,4 @@ public class TankToolkit implements IFluidHandler {
     public boolean canDrain(ForgeDirection from, Fluid fluid) {
         return tankContainer.canDrain(from, fluid);
     }
-
 }

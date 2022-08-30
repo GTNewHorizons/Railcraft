@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -31,6 +31,7 @@ public class EntityAIMoveToBlock extends EntityAIBase {
      * This is the Maximum distance that the AI will look for the Entity
      */
     private final int maxDist;
+
     private final float weight;
     private final Block searchedBlock;
     private final int searchedMeta;
@@ -39,7 +40,8 @@ public class EntityAIMoveToBlock extends EntityAIBase {
         this(entity, searchedBlock, searchedMeta, maxDist, 0.001F);
     }
 
-    public EntityAIMoveToBlock(EntityCreature entity, Block searchedBlock, int searchedMeta, int maxDist, float weight) {
+    public EntityAIMoveToBlock(
+            EntityCreature entity, Block searchedBlock, int searchedMeta, int maxDist, float weight) {
         this.entity = entity;
         this.searchedBlock = searchedBlock;
         this.searchedMeta = searchedMeta;
@@ -55,21 +57,25 @@ public class EntityAIMoveToBlock extends EntityAIBase {
      */
     @Override
     public boolean shouldExecute() {
-        if (entity.getRNG().nextFloat() >= this.weight)
-            return false;
+        if (entity.getRNG().nextFloat() >= this.weight) return false;
 
-        if (!entity.worldObj.isDaytime())
-            return false;
+        if (!entity.worldObj.isDaytime()) return false;
 
         if (watchedBlock == null || !isBlockValid())
-            watchedBlock = WorldPlugin.findBlock(entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ, maxDist, searchedBlock, searchedMeta);
+            watchedBlock = WorldPlugin.findBlock(
+                    entity.worldObj,
+                    (int) entity.posX,
+                    (int) entity.posY,
+                    (int) entity.posZ,
+                    maxDist,
+                    searchedBlock,
+                    searchedMeta);
 
         return watchedBlock != null;
     }
 
     private boolean isBlockValid() {
-        if (searchedBlock != WorldPlugin.getBlock(entity.worldObj, watchedBlock))
-            return false;
+        if (searchedBlock != WorldPlugin.getBlock(entity.worldObj, watchedBlock)) return false;
         return WorldPlugin.getDistanceSq(watchedBlock, entity.posX, entity.posY, entity.posZ) <= maxDist * maxDist;
     }
 
@@ -89,17 +95,20 @@ public class EntityAIMoveToBlock extends EntityAIBase {
     @Override
     public void startExecuting() {
         if (entity.getDistanceSq(watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D) > 256.0D) {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(entity, 14, 3, Vec3.createVectorHelper(watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D));
-            if (vec3 != null)
-                move(vec3.xCoord, vec3.yCoord, vec3.zCoord);
-        } else
-            move(watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D);
+            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(
+                    entity,
+                    14,
+                    3,
+                    Vec3.createVectorHelper(watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D));
+            if (vec3 != null) move(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+        } else move(watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D);
     }
 
     private void move(double x, double y, double z) {
         entity.getNavigator().tryMoveToXYZ(x, y, z, 0.6D);
-//        System.out.println("Moving to Block");
-//        EffectManager.instance.teleportEffect(entity, watchedBlock.x + 0.5D, watchedBlock.y + 0.5D, watchedBlock.z + 0.5D);
+        //        System.out.println("Moving to Block");
+        //        EffectManager.instance.teleportEffect(entity, watchedBlock.x + 0.5D, watchedBlock.y + 0.5D,
+        // watchedBlock.z + 0.5D);
     }
 
     /**
@@ -109,5 +118,4 @@ public class EntityAIMoveToBlock extends EntityAIBase {
     public void resetTask() {
         this.watchedBlock = null;
     }
-
 }

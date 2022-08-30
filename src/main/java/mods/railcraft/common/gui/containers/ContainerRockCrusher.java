@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,15 +9,15 @@
 package mods.railcraft.common.gui.containers;
 
 import cofh.api.energy.EnergyStorage;
+import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
+import mods.railcraft.common.gui.slots.SlotOutput;
+import mods.railcraft.common.gui.slots.SlotRailcraft;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
 import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.slots.SlotOutput;
-import mods.railcraft.common.gui.slots.SlotRailcraft;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerRockCrusher extends RailcraftContainer {
@@ -47,13 +47,11 @@ public class ContainerRockCrusher extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
             addSlot(new Slot(inventoryplayer, j, 8 + j * 18, 142));
         }
-
     }
 
     @Override
@@ -61,8 +59,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
         EnergyStorage storage = tile.getEnergyStorage();
-        if (storage != null)
-            icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
     }
 
     @Override
@@ -73,8 +70,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProcessTime != tile.getProcessTime())
                 icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
-            if (storage != null)
-                icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
         }
 
         lastProcessTime = tile.getProcessTime();
@@ -106,6 +102,5 @@ public class ContainerRockCrusher extends RailcraftContainer {
             // Nothing goes in here
             return false;
         }
-
     }
 }

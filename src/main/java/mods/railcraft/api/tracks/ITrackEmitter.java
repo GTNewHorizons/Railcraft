@@ -18,8 +18,7 @@ package mods.railcraft.api.tracks;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackEmitter extends ITrackInstance
-{
+public interface ITrackEmitter extends ITrackInstance {
 
     /**
      * Return the redstone output of the track.

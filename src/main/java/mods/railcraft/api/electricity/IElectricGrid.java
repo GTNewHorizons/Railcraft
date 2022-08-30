@@ -36,90 +36,92 @@ public interface IElectricGrid {
     public static final class ChargeHandler {
 
         public enum ConnectType {
-
             TRACK {
 
-                        @Override
-                        public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(IElectricGrid gridObject) {
-                            int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
-                            int x = gridObject.getTile().xCoord;
-                            int y = gridObject.getTile().yCoord;
-                            int z = gridObject.getTile().zCoord;
-                            Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                @Override
+                public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
+                        IElectricGrid gridObject) {
+                    int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
+                    int x = gridObject.getTile().xCoord;
+                    int y = gridObject.getTile().yCoord;
+                    int z = gridObject.getTile().zCoord;
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
+                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
-                            EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
-                            EnumSet<ConnectType> notWire = EnumSet.complementOf(EnumSet.of(ConnectType.WIRE));
-                            EnumSet<ConnectType> track = EnumSet.of(ConnectType.TRACK);
+                    EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
+                    EnumSet<ConnectType> notWire = EnumSet.complementOf(EnumSet.of(ConnectType.WIRE));
+                    EnumSet<ConnectType> track = EnumSet.of(ConnectType.TRACK);
 
-                            positions.put(new WorldCoordinate(dim, x + 1, y, z), notWire);
-                            positions.put(new WorldCoordinate(dim, x - 1, y, z), notWire);
+                    positions.put(new WorldCoordinate(dim, x + 1, y, z), notWire);
+                    positions.put(new WorldCoordinate(dim, x - 1, y, z), notWire);
 
-                            positions.put(new WorldCoordinate(dim, x + 1, y + 1, z), track);
-                            positions.put(new WorldCoordinate(dim, x + 1, y - 1, z), track);
+                    positions.put(new WorldCoordinate(dim, x + 1, y + 1, z), track);
+                    positions.put(new WorldCoordinate(dim, x + 1, y - 1, z), track);
 
-                            positions.put(new WorldCoordinate(dim, x - 1, y + 1, z), track);
-                            positions.put(new WorldCoordinate(dim, x - 1, y - 1, z), track);
+                    positions.put(new WorldCoordinate(dim, x - 1, y + 1, z), track);
+                    positions.put(new WorldCoordinate(dim, x - 1, y - 1, z), track);
 
-                            positions.put(new WorldCoordinate(dim, x, y - 1, z), all);
+                    positions.put(new WorldCoordinate(dim, x, y - 1, z), all);
 
-                            positions.put(new WorldCoordinate(dim, x, y, z + 1), notWire);
-                            positions.put(new WorldCoordinate(dim, x, y, z - 1), notWire);
+                    positions.put(new WorldCoordinate(dim, x, y, z + 1), notWire);
+                    positions.put(new WorldCoordinate(dim, x, y, z - 1), notWire);
 
-                            positions.put(new WorldCoordinate(dim, x, y + 1, z + 1), track);
-                            positions.put(new WorldCoordinate(dim, x, y - 1, z + 1), track);
+                    positions.put(new WorldCoordinate(dim, x, y + 1, z + 1), track);
+                    positions.put(new WorldCoordinate(dim, x, y - 1, z + 1), track);
 
-                            positions.put(new WorldCoordinate(dim, x, y + 1, z - 1), track);
-                            positions.put(new WorldCoordinate(dim, x, y - 1, z - 1), track);
-                            return positions;
-                        }
-
-                    },
+                    positions.put(new WorldCoordinate(dim, x, y + 1, z - 1), track);
+                    positions.put(new WorldCoordinate(dim, x, y - 1, z - 1), track);
+                    return positions;
+                }
+            },
             WIRE {
-                        @Override
-                        public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(IElectricGrid gridObject) {
-                            int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
-                            int x = gridObject.getTile().xCoord;
-                            int y = gridObject.getTile().yCoord;
-                            int z = gridObject.getTile().zCoord;
-                            Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                @Override
+                public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
+                        IElectricGrid gridObject) {
+                    int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
+                    int x = gridObject.getTile().xCoord;
+                    int y = gridObject.getTile().yCoord;
+                    int z = gridObject.getTile().zCoord;
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
+                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
-                            EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
-                            EnumSet<ConnectType> notTrack = EnumSet.complementOf(EnumSet.of(ConnectType.TRACK));
+                    EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
+                    EnumSet<ConnectType> notTrack = EnumSet.complementOf(EnumSet.of(ConnectType.TRACK));
 
-                            positions.put(new WorldCoordinate(dim, x + 1, y, z), notTrack);
-                            positions.put(new WorldCoordinate(dim, x - 1, y, z), notTrack);
-                            positions.put(new WorldCoordinate(dim, x, y + 1, z), all);
-                            positions.put(new WorldCoordinate(dim, x, y - 1, z), notTrack);
-                            positions.put(new WorldCoordinate(dim, x, y, z + 1), notTrack);
-                            positions.put(new WorldCoordinate(dim, x, y, z - 1), notTrack);
-                            return positions;
-                        }
-
-                    },
+                    positions.put(new WorldCoordinate(dim, x + 1, y, z), notTrack);
+                    positions.put(new WorldCoordinate(dim, x - 1, y, z), notTrack);
+                    positions.put(new WorldCoordinate(dim, x, y + 1, z), all);
+                    positions.put(new WorldCoordinate(dim, x, y - 1, z), notTrack);
+                    positions.put(new WorldCoordinate(dim, x, y, z + 1), notTrack);
+                    positions.put(new WorldCoordinate(dim, x, y, z - 1), notTrack);
+                    return positions;
+                }
+            },
             BLOCK {
-                        @Override
-                        public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(IElectricGrid gridObject) {
-                            int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
-                            int x = gridObject.getTile().xCoord;
-                            int y = gridObject.getTile().yCoord;
-                            int z = gridObject.getTile().zCoord;
-                            Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                @Override
+                public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
+                        IElectricGrid gridObject) {
+                    int dim = gridObject.getTile().getWorldObj().provider.dimensionId;
+                    int x = gridObject.getTile().xCoord;
+                    int y = gridObject.getTile().yCoord;
+                    int z = gridObject.getTile().zCoord;
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
+                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
-                            EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
+                    EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
 
-                            positions.put(new WorldCoordinate(dim, x + 1, y, z), all);
-                            positions.put(new WorldCoordinate(dim, x - 1, y, z), all);
-                            positions.put(new WorldCoordinate(dim, x, y + 1, z), all);
-                            positions.put(new WorldCoordinate(dim, x, y - 1, z), all);
-                            positions.put(new WorldCoordinate(dim, x, y, z + 1), all);
-                            positions.put(new WorldCoordinate(dim, x, y, z - 1), all);
-                            return positions;
-                        }
+                    positions.put(new WorldCoordinate(dim, x + 1, y, z), all);
+                    positions.put(new WorldCoordinate(dim, x - 1, y, z), all);
+                    positions.put(new WorldCoordinate(dim, x, y + 1, z), all);
+                    positions.put(new WorldCoordinate(dim, x, y - 1, z), all);
+                    positions.put(new WorldCoordinate(dim, x, y, z + 1), all);
+                    positions.put(new WorldCoordinate(dim, x, y, z - 1), all);
+                    return positions;
+                }
+            };
 
-                    };
-
-            public abstract Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(IElectricGrid gridObject);
-
+            public abstract Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
+                    IElectricGrid gridObject);
         };
 
         private final IElectricGrid gridObject;
@@ -204,10 +206,8 @@ public interface IElectricGrid {
 
         private void removeLosses() {
             if (lossPerTick > 0.0)
-                if (charge >= lossPerTick)
-                    charge -= lossPerTick;
-                else
-                    charge = 0.0;
+                if (charge >= lossPerTick) charge -= lossPerTick;
+                else charge = 0.0;
         }
 
         /**
@@ -220,8 +220,7 @@ public interface IElectricGrid {
             draw = (draw * 49.0 + lastTickDraw) / 50.0;
             lastTickDraw = 0.0;
 
-            if (charge <= 0.0)
-                return;
+            if (charge <= 0.0) return;
 
             if (clock % SEARCH_INTERVAL == 0) {
                 neighbors.clear();
@@ -234,8 +233,7 @@ public interface IElectricGrid {
             Iterator<ChargeHandler> it = neighbors.iterator();
             while (it.hasNext()) {
                 ChargeHandler ch = it.next();
-                if (ch.gridObject.getTile().isInvalid())
-                    it.remove();
+                if (ch.gridObject.getTile().isInvalid()) it.remove();
             }
             for (ChargeHandler t : neighbors) {
                 balance(t);
@@ -262,7 +260,5 @@ public interface IElectricGrid {
             NBTTagCompound tag = nbt.getCompoundTag("chargeHandler");
             charge = tag.getDouble("charge");
         }
-
     }
-
 }

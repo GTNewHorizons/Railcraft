@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,7 +10,6 @@ package mods.railcraft.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.client.gui.GuiButton;
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.detector.TileDetector;
@@ -19,6 +18,7 @@ import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+import net.minecraft.client.gui.GuiButton;
 
 public class GuiDetectorAnimal extends GuiBasic {
 
@@ -98,5 +98,4 @@ public class GuiDetectorAnimal extends GuiBasic {
             PacketDispatcher.sendToServer(pkt);
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,9 @@ package mods.railcraft.common.blocks.ore;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.client.particles.ParticleHelperCallback;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -43,10 +46,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -125,8 +124,7 @@ public class BlockOre extends Block {
     }
 
     private static void registerOre(String name, EnumOre ore) {
-        if (!ore.isDepecriated() && ore.isEnabled())
-            OreDictionary.registerOre(name, ore.getItem());
+        if (!ore.isDepecriated() && ore.isEnabled()) OreDictionary.registerOre(name, ore.getItem());
     }
 
     @Override
@@ -137,8 +135,7 @@ public class BlockOre extends Block {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumOre ore : EnumOre.values()) {
-            if (!ore.isDepecriated() && ore.isEnabled())
-                list.add(ore.getItem());
+            if (!ore.isDepecriated() && ore.isEnabled()) list.add(ore.getItem());
         }
     }
 
@@ -180,24 +177,21 @@ public class BlockOre extends Block {
             }
             case DARK_DIAMOND: {
                 int bonus = rand.nextInt(fortune + 2) - 1;
-                if (bonus < 0)
-                    bonus = 0;
+                if (bonus < 0) bonus = 0;
                 int qty = 1 * (bonus + 1);
                 drops.add(new ItemStack(Items.diamond, qty));
                 return drops;
             }
             case DARK_EMERALD: {
                 int bonus = rand.nextInt(fortune + 2) - 1;
-                if (bonus < 0)
-                    bonus = 0;
+                if (bonus < 0) bonus = 0;
                 int qty = 1 * (bonus + 1);
                 drops.add(new ItemStack(Items.emerald, qty));
                 return drops;
             }
             case DARK_LAPIS: {
                 int bonus = rand.nextInt(fortune + 2) - 1;
-                if (bonus < 0)
-                    bonus = 0;
+                if (bonus < 0) bonus = 0;
                 int qty = (4 + rand.nextInt(5)) * (bonus + 1);
                 drops.add(new ItemStack(Items.dye, qty, 4));
                 return drops;
@@ -237,8 +231,7 @@ public class BlockOre extends Block {
                 case DARK_EMERALD:
                 case DARK_LAPIS:
                     IIcon icon = EnumCube.ABYSSAL_STONE.getIcon();
-                    if (icon != null)
-                        return icon;
+                    if (icon != null) return icon;
                 default:
                     return Blocks.stone.getIcon(side, 0);
             }
@@ -265,8 +258,7 @@ public class BlockOre extends Block {
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (EnumOre.FIRESTONE.ordinal() == meta)
-            return 15;
+        if (EnumOre.FIRESTONE.ordinal() == meta) return 15;
         return super.getLightValue(world, x, y, z);
     }
 

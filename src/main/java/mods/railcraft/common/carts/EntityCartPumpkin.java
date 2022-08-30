@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -20,15 +23,11 @@ import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.World;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 
 public class EntityCartPumpkin extends EntityCartTNTWood {
 
@@ -63,8 +62,7 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
         for (int meta = 0; meta <= 32767; ++meta) {
             List effects = PotionHelper.getPotionEffects(meta, false);
 
-            if (effects != null && !effects.isEmpty())
-                potions.add(meta);
+            if (effects != null && !effects.isEmpty()) potions.add(meta);
         }
     }
 
@@ -93,8 +91,7 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
         if (RailcraftConfig.doCartsBreakOnDrop()) {
             items.add(new ItemStack(Items.minecart));
             items.add(new ItemStack(Blocks.pumpkin));
-        } else
-            items.add(getCartItem());
+        } else items.add(getCartItem());
         return items;
     }
 
@@ -123,8 +120,7 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
             int index = rand.nextInt(mobs.size());
             String mob = mobs.get(index);
             int weight = rand.nextInt(100);
-            if (mobWeights.get(mob) >= weight)
-                return mob;
+            if (mobWeights.get(mob) >= weight) return mob;
         }
     }
 
@@ -135,8 +131,7 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
         for (int i = 0; i < numToSpawn; i++) {
             Entity mob = EntityList.createEntityByName(mobName, this.worldObj);
 
-            if (mob == null)
-                return;
+            if (mob == null) return;
 
             double x = posX + (rand.nextDouble() - rand.nextDouble()) * SPAWN_DIST;
             double y = (double) (posY + mob.height + rand.nextInt(3));
@@ -144,7 +139,9 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
             EntityLiving living = mob instanceof EntityLiving ? (EntityLiving) mob : null;
             mob.setLocationAndAngles(x, y, z, rand.nextFloat() * 360.0F, 0.0F);
 
-            if (worldObj.checkNoEntityCollision(mob.boundingBox) && worldObj.getCollidingBoundingBoxes(mob, mob.boundingBox).isEmpty() && !worldObj.isAnyLiquid(mob.boundingBox)) {
+            if (worldObj.checkNoEntityCollision(mob.boundingBox)
+                    && worldObj.getCollidingBoundingBoxes(mob, mob.boundingBox).isEmpty()
+                    && !worldObj.isAnyLiquid(mob.boundingBox)) {
 
                 if (mob instanceof EntitySkeleton) {
                     EntitySkeleton skel = (EntitySkeleton) mob;
@@ -157,15 +154,14 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
                         skel.setCurrentItemOrArmor(0, new ItemStack(Items.bow));
                     }
 
-                    mob.setCurrentItemOrArmor(4, new ItemStack(this.rand.nextFloat() < 0.25F ? Blocks.lit_pumpkin : Blocks.pumpkin));
-                } else if (living != null)
-                    living.onSpawnWithEgg(null);
+                    mob.setCurrentItemOrArmor(
+                            4, new ItemStack(this.rand.nextFloat() < 0.25F ? Blocks.lit_pumpkin : Blocks.pumpkin));
+                } else if (living != null) living.onSpawnWithEgg(null);
 
                 this.worldObj.spawnEntityInWorld(mob);
                 this.worldObj.playAuxSFX(2004, (int) x, (int) y, (int) z, 0);
 
-                if (living != null)
-                    living.spawnExplosionParticle();
+                if (living != null) living.spawnExplosionParticle();
             }
         }
     }
@@ -179,5 +175,4 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
         double z = posZ + (rand.nextDouble() - rand.nextDouble()) * SPAWN_DIST;
         InvTools.dropItem(potion, worldObj, x, y, z);
     }
-
 }

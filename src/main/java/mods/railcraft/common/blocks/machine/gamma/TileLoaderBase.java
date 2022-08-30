@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -56,10 +56,8 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
     protected abstract boolean shouldSendCart(EntityMinecart cart);
 
     protected void sendCart(EntityMinecart cart) {
-        if (cart == null)
-            return;
-        if (isManualMode())
-            return;
+        if (cart == null) return;
+        if (isManualMode()) return;
         if (CartTools.cartVelocityIsLessThan(cart, STOP_VELOCITY) || cart.isPoweredCart()) {
             setPowered(true);
         }
@@ -70,8 +68,7 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
     }
 
     protected void setPowered(boolean p) {
-        if (isManualMode())
-            p = false;
+        if (isManualMode()) p = false;
         if (powered != p) {
             powered = p;
             notifyBlocksOfNeighborChange();
@@ -84,10 +81,8 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
 
     @Override
     public void actionActivated(IActionExternal action) {
-        if (action == Actions.SEND_CART)
-            sendCartGateAction = true;
-        if (action == Actions.PAUSE)
-            pause = PAUSE_DELAY;
+        if (action == Actions.SEND_CART) sendCartGateAction = true;
+        if (action == Actions.PAUSE) pause = PAUSE_DELAY;
     }
 
     public boolean isSendCartGateAction() {
@@ -110,10 +105,8 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(getWorld()))
-            return;
-        if (pause > 0)
-            pause--;
+        if (Game.isNotHost(getWorld())) return;
+        if (pause > 0) pause--;
     }
 
     @Override
@@ -123,11 +116,13 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
 
     @Override
     public final boolean isPoweringTo(int side) {
-        if (!isPowered())
-            return false;
+        if (!isPowered()) return false;
         ForgeDirection opSide = MiscTools.getOppositeSide(side);
         Block block = WorldPlugin.getBlockOnSide(worldObj, xCoord, yCoord, zCoord, opSide);
-        return TrackTools.isRailBlock(block) || block == Blocks.redstone_wire || block == Blocks.powered_repeater || block == Blocks.unpowered_repeater;
+        return TrackTools.isRailBlock(block)
+                || block == Blocks.redstone_wire
+                || block == Blocks.powered_repeater
+                || block == Blocks.unpowered_repeater;
     }
 
     @Override

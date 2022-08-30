@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,6 +14,11 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.ByteBufOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.*;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.blocks.signals.ISecure;
@@ -50,16 +55,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class EntityLocomotive extends CartContainerBase implements IDirectionalCart, IGuiReturnHandler, ILinkableCart, IMinecart, ISecure<LocoLockButtonState>, IPaintedCart, IRoutableCart, IEntityAdditionalSpawnData {
+public abstract class EntityLocomotive extends CartContainerBase
+        implements IDirectionalCart,
+                IGuiReturnHandler,
+                ILinkableCart,
+                IMinecart,
+                ISecure<LocoLockButtonState>,
+                IPaintedCart,
+                IRoutableCart,
+                IEntityAdditionalSpawnData {
     private static final byte HAS_FUEL_DATA_ID = 16;
     private static final byte PRIMARY_COLOR_DATA_ID = 25;
     private static final byte SECONDARY_COLOR_DATA_ID = 26;
@@ -74,7 +81,8 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     private static final int WHISTLE_INTERVAL = 256;
     private static final int WHISTLE_DELAY = 160;
     private static final int WHISTLE_CHANCE = 4;
-    private final MultiButtonController<LocoLockButtonState> lockController = new MultiButtonController(0, LocoLockButtonState.VALUES);
+    private final MultiButtonController<LocoLockButtonState> lockController =
+            new MultiButtonController(0, LocoLockButtonState.VALUES);
     public LocoMode clientMode = LocoMode.SHUTDOWN;
     public LocoSpeed clientSpeed = LocoSpeed.MAX;
     public boolean clientCanLock;
@@ -116,23 +124,18 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     @Override
     public void initEntityFromItem(ItemStack item) {
         NBTTagCompound nbt = item.getTagCompound();
-        if (nbt == null)
-            return;
+        if (nbt == null) return;
 
         setPrimaryColor(ItemLocomotive.getPrimaryColor(item).ordinal());
         setSecondaryColor(ItemLocomotive.getSecondaryColor(item).ordinal());
-        if (nbt.hasKey("whistlePitch"))
-            whistlePitch = nbt.getFloat("whistlePitch");
+        if (nbt.hasKey("whistlePitch")) whistlePitch = nbt.getFloat("whistlePitch");
         if (nbt.hasKey("owner")) {
             CartTools.setCartOwner(this, PlayerPlugin.readOwnerFromNBT(nbt));
             setSecurityState(LocoLockButtonState.LOCKED);
         }
-        if (nbt.hasKey("security"))
-            setSecurityState(LocoLockButtonState.VALUES[nbt.getByte("security")]);
-        if (nbt.hasKey("emblem"))
-            setEmblem(nbt.getString("emblem"));
-        if (nbt.hasKey("model"))
-            model = nbt.getString("model");
+        if (nbt.hasKey("security")) setSecurityState(LocoLockButtonState.VALUES[nbt.getByte("security")]);
+        if (nbt.hasKey("emblem")) setEmblem(nbt.getString("emblem"));
+        if (nbt.hasKey("model")) model = nbt.getString("model");
     }
 
     @Override
@@ -180,8 +183,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         ItemLocomotive.setItemWhistleData(item, whistlePitch);
         ItemLocomotive.setModel(item, getModel());
         ItemLocomotive.setEmblem(item, getEmblem());
-        if (hasCustomInventoryName())
-            item.setStackDisplayName(getCommandSenderName());
+        if (hasCustomInventoryName()) item.setStackDisplayName(getCommandSenderName());
         return item;
     }
 
@@ -199,10 +201,10 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
                 }
                 return true;
             }
-            if (this instanceof IFluidHandler && FluidHelper.handleRightClick((IFluidHandler) this, ForgeDirection.UNKNOWN, player, true, false))
+            if (this instanceof IFluidHandler
+                    && FluidHelper.handleRightClick((IFluidHandler) this, ForgeDirection.UNKNOWN, player, true, false))
                 return true;
-            if (!isPrivate() || PlayerPlugin.isOwnerOrOp(getOwner(), player.getGameProfile()))
-                openGui(player);
+            if (!isPrivate() || PlayerPlugin.isOwnerOrOp(getOwner(), player.getGameProfile())) openGui(player);
         }
         return true;
     }
@@ -219,8 +221,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public boolean canControl(GameProfile user) {
-        if (!isPrivate())
-            return true;
+        if (!isPrivate()) return true;
         return PlayerPlugin.isOwnerOrOp(getOwner(), user);
     }
 
@@ -237,8 +238,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public void setEmblem(String emblem) {
-        if (!getEmblem().equals(emblem))
-            dataWatcher.updateObject(EMBLEM_DATA_ID, emblem);
+        if (!getEmblem().equals(emblem)) dataWatcher.updateObject(EMBLEM_DATA_ID, emblem);
     }
 
     public ItemStack getDestItem() {
@@ -251,8 +251,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public void setDestString(String dest) {
-        if (!getDestination().equals(dest))
-            dataWatcher.updateObject(DEST_DATA_ID, dest);
+        if (!getDestination().equals(dest)) dataWatcher.updateObject(DEST_DATA_ID, dest);
     }
 
     public LocoMode getMode() {
@@ -260,8 +259,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public void setMode(LocoMode mode) {
-        if (getMode() != mode)
-            dataWatcher.updateObject(LOCOMOTIVE_MODE_DATA_ID, (byte) mode.ordinal());
+        if (getMode() != mode) dataWatcher.updateObject(LOCOMOTIVE_MODE_DATA_ID, (byte) mode.ordinal());
     }
 
     public LocoSpeed getSpeed() {
@@ -269,14 +267,12 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public void setSpeed(LocoSpeed speed) {
-        if (getSpeed() != speed)
-            dataWatcher.updateObject(LOCOMOTIVE_SPEED_DATA_ID, (byte) speed.ordinal());
+        if (getSpeed() != speed) dataWatcher.updateObject(LOCOMOTIVE_SPEED_DATA_ID, (byte) speed.ordinal());
     }
 
     public void increaseSpeed() {
         LocoSpeed speed = getSpeed();
-        if (speed != LocoSpeed.MAX)
-            dataWatcher.updateObject(LOCOMOTIVE_SPEED_DATA_ID, (byte) (speed.ordinal() - 1));
+        if (speed != LocoSpeed.MAX) dataWatcher.updateObject(LOCOMOTIVE_SPEED_DATA_ID, (byte) (speed.ordinal() - 1));
     }
 
     public void decreaseSpeed() {
@@ -299,7 +295,9 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
 
     public boolean isIdle() {
         if (isShutdown()) return false;
-        return tempIdle > 0 || getMode() == LocoMode.IDLE || Train.getTrain(this).isIdle();
+        return tempIdle > 0
+                || getMode() == LocoMode.IDLE
+                || Train.getTrain(this).isIdle();
     }
 
     public boolean isShutdown() {
@@ -336,44 +334,35 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         super.onUpdate();
         update++;
 
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         processTicket();
         updateFuel();
 
-//        if (getEntityData().getBoolean("HighSpeed"))
-//            System.out.println(CartTools.getCartSpeedUncapped(this));
-        if (whistleDelay > 0)
-            whistleDelay--;
+        //        if (getEntityData().getBoolean("HighSpeed"))
+        //            System.out.println(CartTools.getCartSpeedUncapped(this));
+        if (whistleDelay > 0) whistleDelay--;
 
-        if (tempIdle > 0)
-            tempIdle--;
+        if (tempIdle > 0) tempIdle--;
 
-        if (update % WHISTLE_INTERVAL == 0 && isRunning() && rand.nextInt(WHISTLE_CHANCE) == 0)
-            whistle();
+        if (update % WHISTLE_INTERVAL == 0 && isRunning() && rand.nextInt(WHISTLE_CHANCE) == 0) whistle();
 
         if (isShutdown()) {
             double yaw = rotationYaw * Math.PI / 180D;
             double cos = Math.cos(yaw);
             double sin = Math.sin(yaw);
             float limit = 0.05f;
-            if (motionX > limit && cos < 0)
-                rotationYaw += 180;
-            else if (motionX < -limit && cos > 0)
-                rotationYaw += 180;
-            else if (motionZ > limit && sin < 0)
-                rotationYaw += 180;
-            else if (motionZ < -limit && sin > 0)
-                rotationYaw += 180;
+            if (motionX > limit && cos < 0) rotationYaw += 180;
+            else if (motionX < -limit && cos > 0) rotationYaw += 180;
+            else if (motionZ > limit && sin < 0) rotationYaw += 180;
+            else if (motionZ < -limit && sin > 0) rotationYaw += 180;
         }
     }
 
     @Override
     public boolean setDestination(ItemStack ticket) {
         if (ticket != null && ticket.getItem() instanceof ItemTicket) {
-            if (isSecure() && !ItemTicket.matchesOwnerOrOp(ticket, CartTools.getCartOwner(this)))
-                return false;
+            if (isSecure() && !ItemTicket.matchesOwnerOrOp(ticket, CartTools.getCartOwner(this))) return false;
             String dest = ItemTicket.getDestination(ticket);
             if (!dest.equals(getDestination())) {
                 setDestString(dest);
@@ -391,10 +380,8 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         ItemStack stack = invTicket.getStackInSlot(0);
         if (stack != null)
             if (stack.getItem() instanceof ItemTicket) {
-                if (setDestination(stack))
-                    invTicket.setInventorySlotContents(0, InvTools.depleteItem(stack));
-            } else
-                invTicket.setInventorySlotContents(0, null);
+                if (setDestination(stack)) invTicket.setInventorySlotContents(0, InvTools.depleteItem(stack));
+            } else invTicket.setInventorySlotContents(0, null);
     }
 
     @Override
@@ -412,8 +399,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
                     break;
                 case MAX:
                     boolean highSpeed = getEntityData().getBoolean("HighSpeed");
-                    if (highSpeed)
-                        force *= HS_FORCE_BONUS;
+                    if (highSpeed) force *= HS_FORCE_BONUS;
                     break;
             }
             double yaw = rotationYaw * Math.PI / 180D;
@@ -454,8 +440,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
                 default:
                     return 8;
             }
-        } else if (isIdle())
-            return getIdleFuelUse();
+        } else if (isIdle()) return getIdleFuelUse();
         return 0;
     }
 
@@ -466,13 +451,11 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     protected void updateFuel() {
         if (update % FUEL_USE_INTERVAL == 0 && fuel > 0) {
             fuel -= getFuelUse();
-            if (fuel < 0)
-                fuel = 0;
+            if (fuel < 0) fuel = 0;
         }
         while (fuel <= FUEL_USE_INTERVAL && !isShutdown()) {
             int newFuel = getMoreGoJuice();
-            if (newFuel <= 0)
-                break;
+            if (newFuel <= 0) break;
             fuel += newFuel;
         }
         setHasFuel(fuel > 0);
@@ -486,7 +469,8 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         if (entity instanceof EntityPlayer)
             if (ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
                 ItemStack pants = ((EntityPlayer) entity).getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                ((EntityPlayer) entity).setCurrentItemOrArmor(MiscTools.ArmorSlots.LEGS.ordinal() + 1, InvTools.damageItem(pants, 5));
+                ((EntityPlayer) entity)
+                        .setCurrentItemOrArmor(MiscTools.ArmorSlots.LEGS.ordinal() + 1, InvTools.damageItem(pants, 5));
                 return 4;
             }
         return 25;
@@ -495,23 +479,24 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     @Override
     public void applyEntityCollision(Entity entity) {
         if (Game.isHost(worldObj)) {
-            if (!entity.isEntityAlive())
-                return;
-            if (entity != this.riddenByEntity && (cartVelocityIsGreaterThan(0.2f) || getEntityData().getBoolean("HighSpeed")) && MiscTools.isKillabledEntity(entity)) {
+            if (!entity.isEntityAlive()) return;
+            if (entity != this.riddenByEntity
+                    && (cartVelocityIsGreaterThan(0.2f) || getEntityData().getBoolean("HighSpeed"))
+                    && MiscTools.isKillabledEntity(entity)) {
                 EntityLivingBase living = (EntityLivingBase) entity;
                 if (RailcraftConfig.locomotiveDamageMobs())
                     living.attackEntityFrom(RailcraftDamageSource.TRAIN, getDamageToRoadKill(living));
                 if (living.getHealth() > 0) {
                     float yaw = (rotationYaw - 90) * (float) Math.PI / 180.0F;
-                    living.addVelocity(-MathHelper.sin(yaw) * KNOCKBACK * 0.5F, 0.2D, MathHelper.cos(yaw) * KNOCKBACK * 0.5F);
+                    living.addVelocity(
+                            -MathHelper.sin(yaw) * KNOCKBACK * 0.5F, 0.2D, MathHelper.cos(yaw) * KNOCKBACK * 0.5F);
                 }
                 return;
             }
             if (collidedWithOtherLocomotive(entity)) {
                 EntityLocomotive otherLoco = (EntityLocomotive) entity;
                 explode();
-                if (otherLoco.isEntityAlive())
-                    otherLoco.explode();
+                if (otherLoco.isEntityAlive()) otherLoco.explode();
                 return;
             }
         }
@@ -519,15 +504,13 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     private boolean collidedWithOtherLocomotive(Entity entity) {
-        if (!(entity instanceof EntityLocomotive))
-            return false;
+        if (!(entity instanceof EntityLocomotive)) return false;
         EntityLocomotive otherLoco = (EntityLocomotive) entity;
-        if (getUniqueID() == entity.getUniqueID())
-            return false;
+        if (getUniqueID() == entity.getUniqueID()) return false;
         LinkageManager lm = LinkageManager.instance();
-        if (Train.areInSameTrain(this, otherLoco))
-            return false;
-        return cartVelocityIsGreaterThan(0.2f) && otherLoco.cartVelocityIsGreaterThan(0.2f)
+        if (Train.areInSameTrain(this, otherLoco)) return false;
+        return cartVelocityIsGreaterThan(0.2f)
+                && otherLoco.cartVelocityIsGreaterThan(0.2f)
                 && (Math.abs(motionX - entity.motionX) > 0.3f || Math.abs(motionZ - entity.motionZ) > 0.3f);
     }
 
@@ -619,8 +602,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         setMode(LocoMode.VALUES[data.readByte()]);
         setSpeed(LocoSpeed.VALUES[data.readByte()]);
         byte lock = data.readByte();
-        if (PlayerPlugin.isOwnerOrOp(getOwner(), sender.getGameProfile()))
-            lockController.setCurrentState(lock);
+        if (PlayerPlugin.isOwnerOrOp(getOwner(), sender.getGameProfile())) lockController.setCurrentState(lock);
     }
 
     @Override
@@ -638,8 +620,7 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         try {
             DataInputStream byteSteam = new DataInputStream(new ByteBufInputStream(data));
             String name = byteSteam.readUTF();
-            if (!name.equals(""))
-                setMinecartName(name);
+            if (!name.equals("")) setMinecartName(name);
             model = byteSteam.readUTF();
         } catch (IOException ex) {
         }
@@ -667,14 +648,12 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
 
     @Override
     public boolean canLinkWithCart(EntityMinecart cart) {
-        if (cart instanceof EntityLocomotive)
-            return true;
+        if (cart instanceof EntityLocomotive) return true;
 
         LinkageManager lm = LinkageManager.instance();
 
         EntityMinecart linkA = lm.getLinkedCartA(this);
-        if (linkA != null && !(linkA instanceof EntityLocomotive))
-            return false;
+        if (linkA != null && !(linkA instanceof EntityLocomotive)) return false;
 
         EntityMinecart linkB = lm.getLinkedCartB(this);
         return linkB == null || linkB instanceof EntityLocomotive;
@@ -701,12 +680,10 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     @Override
-    public void onLinkCreated(EntityMinecart cart) {
-    }
+    public void onLinkCreated(EntityMinecart cart) {}
 
     @Override
-    public void onLinkBroken(EntityMinecart cart) {
-    }
+    public void onLinkBroken(EntityMinecart cart) {}
 
     public abstract LocomotiveRenderType getRenderType();
 
@@ -742,19 +719,22 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
     }
 
     public enum LocoMode {
-
-        RUNNING, IDLE, SHUTDOWN;
+        RUNNING,
+        IDLE,
+        SHUTDOWN;
         public static final LocoMode[] VALUES = values();
     }
 
     public enum LocoSpeed {
-
-        MAX, SLOW, SLOWER, SLOWEST, REVERSE;
+        MAX,
+        SLOW,
+        SLOWER,
+        SLOWEST,
+        REVERSE;
         public static final LocoSpeed[] VALUES = values();
     }
 
     public enum LocoLockButtonState implements IMultiButtonState {
-
         UNLOCKED(new ButtonTextureSet(224, 0, 16, 16)),
         LOCKED(new ButtonTextureSet(240, 0, 16, 16)),
         PRIVATE(new ButtonTextureSet(240, 48, 16, 16));
@@ -779,6 +759,5 @@ public abstract class EntityLocomotive extends CartContainerBase implements IDir
         public ToolTip getToolTip() {
             return null;
         }
-
     }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -137,9 +137,7 @@ public class InventoryMapper implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (checkItems)
-            return inv.isItemValidForSlot(start + slot, stack);
+        if (checkItems) return inv.isItemValidForSlot(start + slot, stack);
         return true;
     }
-
 }

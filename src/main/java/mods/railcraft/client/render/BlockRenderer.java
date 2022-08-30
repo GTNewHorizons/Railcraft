@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,9 +12,9 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
@@ -57,11 +57,11 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler, IInvRenderer
     }
 
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-    }
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {}
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         if (!blockRenderers.isEmpty()) {
             int meta = world.getBlockMetadata(x, y, z);
             IBlockRenderer renderer = blockRenderers.get(meta);
@@ -101,9 +101,7 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler, IInvRenderer
     protected class DoNothingRenderer implements IBlockRenderer {
 
         @Override
-        public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int i, int j, int k, Block block) {
-        }
-
+        public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int i, int j, int k, Block block) {}
     }
 
     public class DefaultRenderer implements ICombinedRenderer {
@@ -120,6 +118,5 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler, IInvRenderer
             block.setBlockBounds(0, 0, 0, 1, 1, 1);
             RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
         }
-
     }
 }

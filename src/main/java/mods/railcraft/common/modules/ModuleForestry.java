@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.modules;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 

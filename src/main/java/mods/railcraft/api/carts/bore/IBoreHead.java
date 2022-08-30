@@ -15,8 +15,7 @@ import net.minecraft.util.ResourceLocation;
  * be used as a bore head for the Tunnel Bore.
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IBoreHead
-{
+public interface IBoreHead {
 
     /**
      * Return the texture file used for this bore head.

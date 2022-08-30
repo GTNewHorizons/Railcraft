@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,7 +25,14 @@ public abstract class TrackLockingBase extends TrackBaseRailcraft {
     }
 
     public void migrateTrack(TrackNextGenLocking.LockingProfileType type) {
-        Game.log(Level.WARN, "Migrating Legacy Track Type to new implementation: <{0}, {1}, {2}> {3} -> {4}", getX(), getY(), getZ(), getTrackSpec().getTrackTag(), EnumTrack.LOCKING.getTag());
+        Game.log(
+                Level.WARN,
+                "Migrating Legacy Track Type to new implementation: <{0}, {1}, {2}> {3} -> {4}",
+                getX(),
+                getY(),
+                getZ(),
+                getTrackSpec().getTrackTag(),
+                EnumTrack.LOCKING.getTag());
         ITrackInstance track = EnumTrack.LOCKING.getTrackSpec().createInstanceFromSpec();
         TrackNextGenLocking trackLocking = (TrackNextGenLocking) track;
         trackLocking.setProfile(type);
@@ -33,5 +40,4 @@ public abstract class TrackLockingBase extends TrackBaseRailcraft {
         getWorld().setTileEntity(getX(), getY(), getZ(), te);
         getWorld().markBlockForUpdate(getX(), getY(), getZ());
     }
-
 }

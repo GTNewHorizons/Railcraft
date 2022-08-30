@@ -1,6 +1,6 @@
 /*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -49,7 +49,8 @@ public class RailcraftDamageSource extends DamageSource {
 
     @Override
     public IChatComponent func_151519_b(EntityLivingBase entity) {
-        String locTag = "death.railcraft." + damageType + "." + (MiscTools.getRand().nextInt(numMessages) + 1);
+        String locTag =
+                "death.railcraft." + damageType + "." + (MiscTools.getRand().nextInt(numMessages) + 1);
         return ChatPlugin.chatComp(locTag, entity.getCommandSenderName());
     }
 
@@ -70,7 +71,5 @@ public class RailcraftDamageSource extends DamageSource {
                     }
                 }
         }
-
     }
-
 }

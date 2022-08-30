@@ -19,8 +19,7 @@ import net.minecraft.world.World;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IMinecartItem
-{
+public interface IMinecartItem {
 
     /**
      * Controls whether this cart item can be placed by the Cart and Train Dispensers.

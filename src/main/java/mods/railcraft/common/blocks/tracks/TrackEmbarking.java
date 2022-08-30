@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,20 +14,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.common.gui.EnumGui;
@@ -36,6 +22,20 @@ import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 
 public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered, IGuiReturnHandler {
 
@@ -73,7 +73,13 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null && current.getItem() instanceof IToolCrowbar) {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
-            GuiHandler.openGui(EnumGui.TRACK_EMBARKING, player, getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+            GuiHandler.openGui(
+                    EnumGui.TRACK_EMBARKING,
+                    player,
+                    getWorld(),
+                    tileEntity.xCoord,
+                    tileEntity.yCoord,
+                    tileEntity.zCoord);
             crowbar.onWhack(player, current, getX(), getY(), getZ());
             return true;
         }
@@ -82,14 +88,19 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
 
     @Override
     public void onMinecartPass(EntityMinecart cart) {
-        if (powered && cart.canBeRidden() && cart.riddenByEntity == null && cart.getEntityData().getInteger("MountPrevention") <= 0) {
+        if (powered
+                && cart.canBeRidden()
+                && cart.riddenByEntity == null
+                && cart.getEntityData().getInteger("MountPrevention") <= 0) {
             int a = area;
-            AxisAlignedBB box = AxisAlignedBB.getBoundingBox(getX(), getY(), getZ(), getX() + 1, getY() + 1, getZ() + 1);
+            AxisAlignedBB box =
+                    AxisAlignedBB.getBoundingBox(getX(), getY(), getZ(), getX() + 1, getY() + 1, getZ() + 1);
             box = box.expand(a, a, a);
             List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, box);
 
             if (entities.size() > 0) {
-                EntityLivingBase entity = (EntityLivingBase) entities.get(MiscTools.getRand().nextInt(entities.size()));
+                EntityLivingBase entity =
+                        (EntityLivingBase) entities.get(MiscTools.getRand().nextInt(entities.size()));
 
                 if (entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;
@@ -105,8 +116,7 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
                     return;
                 } else if (entity instanceof EntitySlime) {
                     EntitySlime slime = (EntitySlime) entity;
-                    if (slime.getSlimeSize() >= 100)
-                        return;
+                    if (slime.getSlimeSize() >= 100) return;
                 }
 
                 if (entity.ridingEntity == null) {
@@ -185,5 +195,4 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
     public byte getArea() {
         return area;
     }
-
 }

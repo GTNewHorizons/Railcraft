@@ -1,20 +1,20 @@
 package mods.railcraft.common.blocks.machine.epsilon;
 
 import cofh.api.energy.IEnergyHandler;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.util.misc.Game;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid, IEnergyHandler {
 
@@ -38,7 +38,8 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
                 {'*', 'O', 'O', '*'},
                 {'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O'},
-                {'*', 'O', 'O', '*'},},
+                {'*', 'O', 'O', '*'},
+            },
             {
                 {'*', 'O', 'O', '*'},
                 {'O', 'B', 'B', 'O'},
@@ -55,7 +56,9 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
                 {'*', 'O', 'O', '*'},
                 {'O', 'O', 'O', 'O'},
                 {'O', 'O', 'O', 'O'},
-                {'*', 'O', 'O', '*'},},};
+                {'*', 'O', 'O', '*'},
+            },
+        };
         patterns.add(new MultiBlockPattern(map));
     }
 
@@ -66,8 +69,7 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         chargeHandler.tick();
     }
 
@@ -88,12 +90,10 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
 
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-        if (!isStructureValid())
-            return 0;
+        if (!isStructureValid()) return 0;
         double chargeDifference = chargeHandler.getCapacity() - chargeHandler.getCharge();
         if (chargeDifference > 0.0) {
-            if (!simulate)
-                chargeHandler.addCharge((maxReceive / EU_RF_RATIO) * EFFICIENCY);
+            if (!simulate) chargeHandler.addCharge((maxReceive / EU_RF_RATIO) * EFFICIENCY);
             return maxReceive;
         }
         return 0;
@@ -130,5 +130,4 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
         super.writeToNBT(data);
         chargeHandler.writeToNBT(data);
     }
-
 }

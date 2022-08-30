@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,16 +26,14 @@ import net.minecraft.nbt.NBTTagCompound;
 public class DataTools {
 
     public static void writeItemStack(ItemStack stack, DataOutputStream dataStream) throws IOException {
-        if (stack == null)
-            dataStream.writeShort(-1);
+        if (stack == null) dataStream.writeShort(-1);
         else {
             dataStream.writeShort(Item.getIdFromItem(stack.getItem()));
             dataStream.writeByte(stack.stackSize);
             dataStream.writeShort(stack.getItemDamage());
             NBTTagCompound nbt = null;
 
-            if (stack.getItem().isDamageable() || stack.getItem().getShareTag())
-                nbt = stack.stackTagCompound;
+            if (stack.getItem().isDamageable() || stack.getItem().getShareTag()) nbt = stack.stackTagCompound;
 
             writeNBT(nbt, dataStream);
         }
@@ -56,8 +54,7 @@ public class DataTools {
     }
 
     public static void writeNBT(NBTTagCompound nbt, DataOutputStream dataStream) throws IOException {
-        if (nbt == null)
-            dataStream.writeShort(-1);
+        if (nbt == null) dataStream.writeShort(-1);
         else {
             byte[] nbtData = CompressedStreamTools.compress(nbt);
             dataStream.writeShort((short) nbtData.length);
@@ -68,8 +65,7 @@ public class DataTools {
     public static NBTTagCompound readNBT(DataInputStream dataStream) throws IOException {
         short lenght = dataStream.readShort();
 
-        if (lenght < 0)
-            return null;
+        if (lenght < 0) return null;
         else {
             byte[] nbtData = new byte[lenght];
             dataStream.read(nbtData);
@@ -80,17 +76,14 @@ public class DataTools {
     public static void byteArray2BitSet(BitSet bits, byte[] bytes) {
         bits.clear();
         for (int i = 0; i < bytes.length * 8; i++) {
-            if ((bytes[bytes.length - i / 8 - 1] & (1 << (i % 8))) > 0)
-                bits.set(i);
+            if ((bytes[bytes.length - i / 8 - 1] & (1 << (i % 8))) > 0) bits.set(i);
         }
     }
 
     public static void bitSet2ByteArray(BitSet bits, byte[] bytes) {
         Arrays.fill(bytes, (byte) 0);
         for (int i = 0; i < bits.length(); i++) {
-            if (bits.get(i))
-                bytes[bytes.length - i / 8 - 1] |= 1 << (i % 8);
+            if (bits.get(i)) bytes[bytes.length - i / 8 - 1] |= 1 << (i % 8);
         }
     }
-
 }

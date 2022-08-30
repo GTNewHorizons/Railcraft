@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,10 @@ package mods.railcraft.common.items;
 
 import buildcraft.api.tools.IToolWrench;
 import ic2.api.item.IBoxable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.tracks.BlockTrackElevator;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -35,11 +39,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, IToolWrench {
 
     public static final byte BOOST_DAMAGE = 3;
@@ -54,12 +53,7 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
             item.setUnlocalizedName(ITEM_TAG);
             RailcraftRegistry.register(item);
 
-            CraftingPlugin.addShapedRecipe(new ItemStack(item),
-                    " RI",
-                    "RIR",
-                    "IR ",
-                    'I', "ingotIron",
-                    'R', "dyeRed");
+            CraftingPlugin.addShapedRecipe(new ItemStack(item), " RI", "RIR", "IR ", 'I', "ingotIron", 'R', "dyeRed");
 
             LootPlugin.addLootTool(new ItemStack(item), 1, 1, ITEM_TAG);
             LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, ITEM_TAG);
@@ -67,8 +61,7 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
@@ -77,8 +70,8 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
     }
 
     protected ItemCrowbar(ToolMaterial material) {
-        super(3, material, new HashSet<Block>(Arrays.asList(new Block[]{
-                Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail
+        super(3, material, new HashSet<Block>(Arrays.asList(new Block[] {
+            Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail
         })));
         setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
         shiftRotations.add(BlockLever.class);
@@ -91,8 +84,7 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
 
     @Override
     public float getDigSpeed(ItemStack stack, Block block, int meta) {
-        if (TrackTools.isRailBlock(block))
-            return efficiencyOnProperMaterial;
+        if (TrackTools.isRailBlock(block)) return efficiencyOnProperMaterial;
         return super.getDigSpeed(stack, block, meta);
     }
 
@@ -108,32 +100,37 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
 
     private boolean isShiftRotation(Class<? extends Block> cls) {
         for (Class<? extends Block> shift : shiftRotations) {
-            if (shift.isAssignableFrom(cls))
-                return true;
+            if (shift.isAssignableFrom(cls)) return true;
         }
         return false;
     }
 
     private boolean isBannedRotation(Class<? extends Block> cls) {
         for (Class<? extends Block> banned : bannedRotations) {
-            if (banned.isAssignableFrom(cls))
-                return true;
+            if (banned.isAssignableFrom(cls)) return true;
         }
         return false;
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUseFirst(
+            ItemStack stack,
+            EntityPlayer player,
+            World world,
+            int x,
+            int y,
+            int z,
+            int side,
+            float hitX,
+            float hitY,
+            float hitZ) {
         Block block = world.getBlock(x, y, z);
 
-        if (block == null)
-            return false;
+        if (block == null) return false;
 
-        if (player.isSneaking() != isShiftRotation(block.getClass()))
-            return false;
+        if (player.isSneaking() != isShiftRotation(block.getClass())) return false;
 
-        if (isBannedRotation(block.getClass()))
-            return false;
+        if (isBannedRotation(block.getClass())) return false;
 
         if (block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
             player.swingItem();
@@ -143,14 +140,16 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
+    public boolean onBlockDestroyed(
+            ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
         if (!world.isRemote)
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) entity;
                 if (!player.isSneaking()) {
-                    int level = EnchantmentHelper.getEnchantmentLevel(RailcraftEnchantments.destruction.effectId, stack) * 2 + 1;
-                    if (level > 0)
-                        checkBlocks(world, level, x, y, z, entity, stack);
+                    int level =
+                            EnchantmentHelper.getEnchantmentLevel(RailcraftEnchantments.destruction.effectId, stack) * 2
+                                    + 1;
+                    if (level > 0) checkBlocks(world, level, x, y, z, entity, stack);
                 }
             }
         return super.onBlockDestroyed(stack, world, block, x, y, z, entity);
@@ -226,14 +225,42 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
         info.add(LocalizationPlugin.translate("item.railcraft.tool.crowbar.tip"));
     }
 
-    private void removeAndDrop(World world, int x, int y, int z, Block block, EntityLivingBase entity, ItemStack stack, int meta) {
-        if (!ForgeHooks.onBlockBreakEvent(world, ((EntityPlayerMP) entity).theItemInWorldManager.getGameType(), (EntityPlayerMP) entity, x, y, z).isCanceled()) {
-            InvTools.dropItems(block.getDrops(world, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack)), world, x, y, z);
+    private void removeAndDrop(
+            World world, int x, int y, int z, Block block, EntityLivingBase entity, ItemStack stack, int meta) {
+        if (!ForgeHooks.onBlockBreakEvent(
+                        world,
+                        ((EntityPlayerMP) entity).theItemInWorldManager.getGameType(),
+                        (EntityPlayerMP) entity,
+                        x,
+                        y,
+                        z)
+                .isCanceled()) {
+            InvTools.dropItems(
+                    block.getDrops(
+                            world,
+                            x,
+                            y,
+                            z,
+                            meta,
+                            EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack)),
+                    world,
+                    x,
+                    y,
+                    z);
             world.setBlockToAir(x, y, z);
         }
     }
 
-    private void removeExtraBlocks(World world, int level, int x, int y, int z, Block block, EntityLivingBase entity, ItemStack stack, int meta) {
+    private void removeExtraBlocks(
+            World world,
+            int level,
+            int x,
+            int y,
+            int z,
+            Block block,
+            EntityLivingBase entity,
+            ItemStack stack,
+            int meta) {
         if (level > 0) {
             removeAndDrop(world, x, y, z, block, entity, stack, meta);
             checkBlocks(world, level, x, y, z, entity, stack);
@@ -243,30 +270,31 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
     private void checkBlock(World world, int level, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         Block block = WorldPlugin.getBlock(world, x, y, z);
         int meta = WorldPlugin.getBlockMetadata(world, x, y, z);
-        if (TrackTools.isRailBlock(block) || block instanceof BlockTrackElevator || block.isToolEffective("crowbar", meta))
+        if (TrackTools.isRailBlock(block)
+                || block instanceof BlockTrackElevator
+                || block.isToolEffective("crowbar", meta))
             removeExtraBlocks(world, level - 1, x, y, z, block, entity, stack, meta);
     }
 
     private void checkBlocks(World world, int level, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        //NORTH
+        // NORTH
         checkBlock(world, level, x, y, z - 1, entity, stack);
         checkBlock(world, level, x, y + 1, z - 1, entity, stack);
         checkBlock(world, level, x, y - 1, z - 1, entity, stack);
-        //SOUTH
+        // SOUTH
         checkBlock(world, level, x, y, z + 1, entity, stack);
         checkBlock(world, level, x, y + 1, z + 1, entity, stack);
         checkBlock(world, level, x, y - 1, z + 1, entity, stack);
-        //EAST
+        // EAST
         checkBlock(world, level, x + 1, y, z, entity, stack);
         checkBlock(world, level, x + 1, y + 1, z, entity, stack);
         checkBlock(world, level, x + 1, y - 1, z, entity, stack);
-        //WEST
+        // WEST
         checkBlock(world, level, x - 1, y, z, entity, stack);
         checkBlock(world, level, x - 1, y + 1, z, entity, stack);
         checkBlock(world, level, x - 1, y - 1, z, entity, stack);
-        //UP_DOWN
+        // UP_DOWN
         checkBlock(world, level, x, y + 1, z, entity, stack);
         checkBlock(world, level, x, y - 1, z, entity, stack);
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.client.gui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import mods.railcraft.common.gui.containers.ContainerAnvil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -83,15 +83,14 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
         if (this.repairContainer.maximumCost > 0) {
             int k = 8453920;
             boolean flag = true;
-            String s = I18n.format("container.repair.cost", new Object[]{Integer.valueOf(this.repairContainer.maximumCost)});
+            String s = I18n.format(
+                    "container.repair.cost", new Object[] {Integer.valueOf(this.repairContainer.maximumCost)});
 
             if (this.repairContainer.maximumCost >= 40 && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 s = I18n.format("container.repair.expensive");
                 k = 16736352;
-            } else if (!this.repairContainer.getSlot(2).getHasStack())
-                flag = false;
-            else if (!this.repairContainer.getSlot(2).canTakeStack(this.playerInv.player))
-                k = 16736352;
+            } else if (!this.repairContainer.getSlot(2).getHasStack()) flag = false;
+            else if (!this.repairContainer.getSlot(2).canTakeStack(this.playerInv.player)) k = 16736352;
 
             if (flag) {
                 int l = -16777216 | (k & 16579836) >> 2 | k & -16777216;
@@ -120,18 +119,18 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
      */
     @Override
     protected void keyTyped(char par1, int par2) {
-        if (this.itemNameField.textboxKeyTyped(par1, par2))
-            this.func_135015_g();
-        else
-            super.keyTyped(par1, par2);
+        if (this.itemNameField.textboxKeyTyped(par1, par2)) this.func_135015_g();
+        else super.keyTyped(par1, par2);
     }
 
     private void func_135015_g() {
         String s = this.itemNameField.getText();
         Slot slot = this.repairContainer.getSlot(0);
 
-        if (slot != null && slot.getHasStack() && !slot.getStack().hasDisplayName() && s.equals(slot.getStack().getDisplayName()))
-            s = "";
+        if (slot != null
+                && slot.getHasStack()
+                && !slot.getStack().hasDisplayName()
+                && s.equals(slot.getStack().getDisplayName())) s = "";
 
         this.repairContainer.updateItemName(s);
         this.mc.thePlayer.sendQueue.addToSendQueue(new C17PacketCustomPayload("MC|ItemName", s.getBytes()));
@@ -167,9 +166,12 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        this.drawTexturedModalRect(k + 59, l + 20, 0, this.ySize + (this.repairContainer.getSlot(0).getHasStack() ? 0 : 16), 110, 16);
+        this.drawTexturedModalRect(
+                k + 59, l + 20, 0, this.ySize + (this.repairContainer.getSlot(0).getHasStack() ? 0 : 16), 110, 16);
 
-        if ((this.repairContainer.getSlot(0).getHasStack() || this.repairContainer.getSlot(1).getHasStack()) && !this.repairContainer.getSlot(2).getHasStack())
+        if ((this.repairContainer.getSlot(0).getHasStack()
+                        || this.repairContainer.getSlot(1).getHasStack())
+                && !this.repairContainer.getSlot(2).getHasStack())
             this.drawTexturedModalRect(k + 99, l + 45, this.xSize, 0, 28, 21);
     }
 
@@ -189,8 +191,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
             this.itemNameField.setText(par3ItemStack == null ? "" : par3ItemStack.getDisplayName());
             this.itemNameField.setEnabled(par3ItemStack != null);
 
-            if (par3ItemStack != null)
-                this.func_135015_g();
+            if (par3ItemStack != null) this.func_135015_g();
         }
     }
 
@@ -201,7 +202,5 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
      * contains the new value. Both are truncated to shorts in non-local SMP.
      */
     @Override
-    public void sendProgressBarUpdate(Container par1Container, int par2, int par3) {
-    }
-
+    public void sendProgressBarUpdate(Container par1Container, int par2, int par3) {}
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.tracks.RailTools;
 import mods.railcraft.common.util.misc.Game;
@@ -15,9 +17,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -59,11 +58,9 @@ public abstract class CartMaintenanceBase extends CartContainerBase {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
-        if (isBlinking())
-            setBlink((byte) (getBlink() - 1));
+        if (isBlinking()) setBlink((byte) (getBlink() - 1));
     }
 
     @Override
@@ -114,10 +111,8 @@ public abstract class CartMaintenanceBase extends CartContainerBase {
             CartTools.offerOrDropItem(this, stack);
         }
         int meta = worldObj.getBlockMetadata(x, y, z);
-        if (((BlockRailBase) block).isPowered())
-            meta = meta & 7;
+        if (((BlockRailBase) block).isPowered()) meta = meta & 7;
         worldObj.setBlockToAir(x, y, z);
         return meta;
     }
-
 }

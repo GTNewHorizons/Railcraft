@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.machine.gamma.TileRFLoader;
@@ -19,9 +21,6 @@ import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.tileentity.TileEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiLoaderRF extends TileGui {
 
@@ -42,8 +41,7 @@ public class GuiLoaderRF extends TileGui {
     @Override
     public void initGui() {
         super.initGui();
-        if (tile == null)
-            return;
+        if (tile == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
@@ -55,19 +53,16 @@ public class GuiLoaderRF extends TileGui {
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (tile == null)
-            return;
+        if (tile == null) return;
         if (guibutton.id == 0) {
             waitIfEmpty = !waitIfEmpty;
-            if (!waitIfEmpty)
-                waitTillFull = false;
+            if (!waitIfEmpty) waitTillFull = false;
             ((GuiToggleButton) guibutton).active = waitIfEmpty;
             ((GuiToggleButton) buttonList.get(1)).active = waitTillFull;
         }
         if (guibutton.id == 1) {
             waitTillFull = !waitTillFull;
-            if (waitTillFull)
-                waitIfEmpty = true;
+            if (waitTillFull) waitIfEmpty = true;
             ((GuiToggleButton) buttonList.get(0)).active = waitIfEmpty;
             ((GuiToggleButton) guibutton).active = waitTillFull;
         }
@@ -92,10 +87,7 @@ public class GuiLoaderRF extends TileGui {
     public void updateScreen() {
         super.updateScreen();
         TileEntity t = tile.getWorld().getTileEntity(tile.getX(), tile.getY(), tile.getZ());
-        if (t instanceof TileRFLoader)
-            tile = (TileRFLoader) t;
-        else
-            mc.thePlayer.closeScreen();
+        if (t instanceof TileRFLoader) tile = (TileRFLoader) t;
+        else mc.thePlayer.closeScreen();
     }
-
 }

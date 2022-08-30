@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,14 +34,12 @@ public class LinkageHandler {
     private static final float FORCE_LIMITER = 6f;
     private static final int TICK_HISTORY = 200;
     private static LinkageHandler instance;
-//    private static Map<EntityMinecart, CircularVec3Queue> history = new MapMaker().weakKeys().makeMap();
+    //    private static Map<EntityMinecart, CircularVec3Queue> history = new MapMaker().weakKeys().makeMap();
 
-    private LinkageHandler() {
-    }
+    private LinkageHandler() {}
 
     public static LinkageHandler getInstance() {
-        if (instance == null)
-            instance = new LinkageHandler();
+        if (instance == null) instance = new LinkageHandler();
         return instance;
     }
 
@@ -55,22 +53,16 @@ public class LinkageHandler {
      */
     private float getOptimalDistance(EntityMinecart cart1, EntityMinecart cart2) {
         float dist = 0;
-        if (cart1 instanceof ILinkableCart)
-            dist += ((ILinkableCart) cart1).getOptimalDistance(cart2);
-        else
-            dist += LinkageManager.OPTIMAL_DISTANCE;
-        if (cart2 instanceof ILinkableCart)
-            dist += ((ILinkableCart) cart2).getOptimalDistance(cart1);
-        else
-            dist += LinkageManager.OPTIMAL_DISTANCE;
+        if (cart1 instanceof ILinkableCart) dist += ((ILinkableCart) cart1).getOptimalDistance(cart2);
+        else dist += LinkageManager.OPTIMAL_DISTANCE;
+        if (cart2 instanceof ILinkableCart) dist += ((ILinkableCart) cart2).getOptimalDistance(cart1);
+        else dist += LinkageManager.OPTIMAL_DISTANCE;
         return dist;
     }
 
     private boolean canCartBeAdjustedBy(EntityMinecart cart1, EntityMinecart cart2) {
-        if (cart1 == cart2)
-            return false;
-        if (cart1 instanceof ILinkableCart && !((ILinkableCart) cart1).canBeAdjusted(cart2))
-            return false;
+        if (cart1 == cart2) return false;
+        if (cart1 instanceof ILinkableCart && !((ILinkableCart) cart1).canBeAdjusted(cart2)) return false;
         return !RailTools.isCartLockedDown(cart1);
     }
 
@@ -84,8 +76,7 @@ public class LinkageHandler {
      */
     protected void adjustVelocity(EntityMinecart cart1, EntityMinecart cart2, char link) {
         String timer = LINK_A_TIMER;
-        if (link == 'B')
-            timer = LINK_B_TIMER;
+        if (link == 'B') timer = LINK_B_TIMER;
         if (cart1.worldObj.provider.dimensionId != cart2.worldObj.provider.dimensionId) {
             short count = cart1.getEntityData().getShort(timer);
             count++;
@@ -116,29 +107,29 @@ public class LinkageHandler {
 
         // Energy transfer
 
-//        double transX = TRANSFER * (cart2.motionX - cart1.motionX);
-//        double transZ = TRANSFER * (cart2.motionZ - cart1.motionZ);
-//
-//        transX = limitForce(transX);
-//        transZ = limitForce(transZ);
-//
-//        if(adj1) {
-//            cart1.motionX += transX;
-//            cart1.motionZ += transZ;
-//        }
-//
-//        if(adj2) {
-//            cart2.motionX -= transX;
-//            cart2.motionZ -= transZ;
-//        }
+        //        double transX = TRANSFER * (cart2.motionX - cart1.motionX);
+        //        double transZ = TRANSFER * (cart2.motionZ - cart1.motionZ);
+        //
+        //        transX = limitForce(transX);
+        //        transZ = limitForce(transZ);
+        //
+        //        if(adj1) {
+        //            cart1.motionX += transX;
+        //            cart1.motionZ += transZ;
+        //        }
+        //
+        //        if(adj2) {
+        //            cart2.motionX -= transX;
+        //            cart2.motionZ -= transZ;
+        //        }
 
         // Spring force
 
         float optDist = getOptimalDistance(cart1, cart2);
         double stretch = dist - optDist;
-//        if(Math.abs(stretch) > 0.5) {
-//            stretch *= 2;
-//        }
+        //        if(Math.abs(stretch) > 0.5) {
+        //            stretch *= 2;
+        //        }
 
         boolean highSpeed = cart1.getEntityData().getBoolean("HighSpeed");
 
@@ -197,11 +188,9 @@ public class LinkageHandler {
      */
     private void adjustCart(EntityMinecart cart, LinkageManager lm) {
         int launched = cart.getEntityData().getInteger("Launched");
-        if (launched > 0)
-            return;
+        if (launched > 0) return;
 
-        if (isOnElevator(cart))
-            return;
+        if (isOnElevator(cart)) return;
 
         boolean linked = false;
 
@@ -217,7 +206,7 @@ public class LinkageHandler {
             if (launched <= 0 && !isOnElevator(link_A)) {
                 linked = true;
                 adjustVelocity(cart, link_A, 'A');
-//                adjustCartFromHistory(cart, link_A);
+                //                adjustCartFromHistory(cart, link_A);
             }
         }
 
@@ -233,7 +222,7 @@ public class LinkageHandler {
             if (launched <= 0 && !isOnElevator(link_B)) {
                 linked = true;
                 adjustVelocity(cart, link_B, 'B');
-//                adjustCartFromHistory(cart, link_B);
+                //                adjustCartFromHistory(cart, link_B);
             }
         }
 
@@ -244,75 +233,74 @@ public class LinkageHandler {
 
         if ((link_A == null && link_B != null) || (link_A != null && link_B == null)) {
             Train.getTrain(cart).refreshMaxSpeed();
-        } else if (link_A == null)
-            Train.getTrain(cart).setMaxSpeed(1.2f);
+        } else if (link_A == null) Train.getTrain(cart).setMaxSpeed(1.2f);
     }
 
-//    /**
-//     * Determines whether a cart is leading another.
-//     *
-//     * @param leader EntityMinecart
-//     * @param follower EntityMinecart
-//     * @return true if leader is leading follower
-//     */
-//    private boolean isCartLeading(EntityMinecart leader, EntityMinecart follower) {
-//        return true; // TODO: magic
-//    }
+    //    /**
+    //     * Determines whether a cart is leading another.
+    //     *
+    //     * @param leader EntityMinecart
+    //     * @param follower EntityMinecart
+    //     * @return true if leader is leading follower
+    //     */
+    //    private boolean isCartLeading(EntityMinecart leader, EntityMinecart follower) {
+    //        return true; // TODO: magic
+    //    }
 
-//    /**
-//     * Adjust the current cart's position based on the linked cart its following
-//     * so that it follows the same path at a set distance.
-//     *
-//     * @param current EntityMinecart
-//     * @param linked EntityMinecart
-//     */
-//    private void adjustCartFromHistory(EntityMinecart current, EntityMinecart linked) {
-//        // If we are leading, we don't want to adjust anything
-//        if (isCartLeading(current, linked))
-//            return;
-//
-//        CircularVec3Queue leaderHistory = history.get(linked);
-//
-//        // Optimal distance is how far apart the carts should be
-//        double optimalDist = getOptimalDistance(current, linked);
-//        optimalDist *= optimalDist;
-//
-//        double currentDistance = linked.getDistanceSqToEntity(current);
-//
-//        // Search the history for the point closest to the optimal distance.
-//        // There may be some issues with it chosing the wrong side of the cart.
-//        // Probably needs some kind of logic to compare the distance from the
-//        // new position to the current position and determine if its a valid position.
-//        Vec3 closestPoint = null;
-//        Vec3 linkedVec = Vec3.createVectorHelper(linked.posX, linked.posY, linked.posZ);
-//        double distance = Math.abs(optimalDist - currentDistance);
-//        for (Vec3 pos : leaderHistory) {
-//            double historyDistance = linkedVec.squareDistanceTo(pos);
-//            double diff = Math.abs(optimalDist - historyDistance);
-//            if (diff < distance) {
-//                closestPoint = pos;
-//                distance = diff;
-//            }
-//        }
-//
-//        // If we found a point closer to our desired distance, move us there
-//        if (closestPoint != null)
-//            current.setPosition(closestPoint.xCoord, closestPoint.yCoord, closestPoint.zCoord);
-//    }
+    //    /**
+    //     * Adjust the current cart's position based on the linked cart its following
+    //     * so that it follows the same path at a set distance.
+    //     *
+    //     * @param current EntityMinecart
+    //     * @param linked EntityMinecart
+    //     */
+    //    private void adjustCartFromHistory(EntityMinecart current, EntityMinecart linked) {
+    //        // If we are leading, we don't want to adjust anything
+    //        if (isCartLeading(current, linked))
+    //            return;
+    //
+    //        CircularVec3Queue leaderHistory = history.get(linked);
+    //
+    //        // Optimal distance is how far apart the carts should be
+    //        double optimalDist = getOptimalDistance(current, linked);
+    //        optimalDist *= optimalDist;
+    //
+    //        double currentDistance = linked.getDistanceSqToEntity(current);
+    //
+    //        // Search the history for the point closest to the optimal distance.
+    //        // There may be some issues with it chosing the wrong side of the cart.
+    //        // Probably needs some kind of logic to compare the distance from the
+    //        // new position to the current position and determine if its a valid position.
+    //        Vec3 closestPoint = null;
+    //        Vec3 linkedVec = Vec3.createVectorHelper(linked.posX, linked.posY, linked.posZ);
+    //        double distance = Math.abs(optimalDist - currentDistance);
+    //        for (Vec3 pos : leaderHistory) {
+    //            double historyDistance = linkedVec.squareDistanceTo(pos);
+    //            double diff = Math.abs(optimalDist - historyDistance);
+    //            if (diff < distance) {
+    //                closestPoint = pos;
+    //                distance = diff;
+    //            }
+    //        }
+    //
+    //        // If we found a point closer to our desired distance, move us there
+    //        if (closestPoint != null)
+    //            current.setPosition(closestPoint.xCoord, closestPoint.yCoord, closestPoint.zCoord);
+    //    }
 
-//    /**
-//     * Saved the position history of the cart every tick in a Circular Buffer.
-//     *
-//     * @param cart EntityMinecart
-//     */
-//    private void savePosition(EntityMinecart cart) {
-//        CircularVec3Queue myHistory = history.get(cart);
-//        if (myHistory == null) {
-//            myHistory = new CircularVec3Queue(TICK_HISTORY);
-//            history.put(cart, myHistory);
-//        }
-//        myHistory.add(cart.posX, cart.posY, cart.posZ);
-//    }
+    //    /**
+    //     * Saved the position history of the cart every tick in a Circular Buffer.
+    //     *
+    //     * @param cart EntityMinecart
+    //     */
+    //    private void savePosition(EntityMinecart cart) {
+    //        CircularVec3Queue myHistory = history.get(cart);
+    //        if (myHistory == null) {
+    //            myHistory = new CircularVec3Queue(TICK_HISTORY);
+    //            history.put(cart, myHistory);
+    //        }
+    //        myHistory.add(cart.posX, cart.posY, cart.posZ);
+    //    }
 
     /**
      * This is our entry point, its triggered once per tick per cart.
@@ -336,14 +324,14 @@ public class LinkageHandler {
         // Physics done here
         adjustCart(cart, lm);
 
-//        savePosition(cart);
+        //        savePosition(cart);
     }
 
     @SubscribeEvent
     public void onMinecartInteract(MinecartInteractEvent event) {
         EntityPlayer player = event.player;
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof IToolCrowbar)
-            event.setCanceled(true);
+        if (player.getCurrentEquippedItem() != null
+                && player.getCurrentEquippedItem().getItem() instanceof IToolCrowbar) event.setCanceled(true);
     }
 
     private boolean isOnElevator(EntityMinecart cart) {

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.modules;
 
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
@@ -18,7 +17,7 @@ import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 /**
  *
@@ -37,12 +36,9 @@ public class ModuleTrain extends RailcraftModule {
         MiscTools.registerTrack(EnumTrack.COUPLER);
 
         if (BlockDetector.getBlock() != null) {
-            CraftingPlugin.addShapedRecipe(EnumDetector.TRAIN.getItem(), new Object[]{
-                "XXX",
-                "XPX",
-                "XXX",
-                'X', Blocks.nether_brick,
-                'P', Blocks.stone_pressure_plate,});
+            CraftingPlugin.addShapedRecipe(EnumDetector.TRAIN.getItem(), new Object[] {
+                "XXX", "XPX", "XXX", 'X', Blocks.nether_brick, 'P', Blocks.stone_pressure_plate,
+            });
         }
 
         EnumMachineGamma.DISPENSER_TRAIN.register();
@@ -54,14 +50,17 @@ public class ModuleTrain extends RailcraftModule {
         if (type.isAvaliable() && EnumMachineGamma.DISPENSER_CART.isAvaliable()) {
             ItemStack crowbar = ItemCrowbar.getItem();
             crowbar.setItemDamage(-1);
-            CraftingPlugin.addShapedRecipe(type.getItem(),
+            CraftingPlugin.addShapedRecipe(
+                    type.getItem(),
                     "rcr",
                     "cdc",
                     "rcr",
-                    'd', EnumMachineGamma.DISPENSER_CART.getItem(),
-                    'c', crowbar,
-                    'r', "dustRedstone");
+                    'd',
+                    EnumMachineGamma.DISPENSER_CART.getItem(),
+                    'c',
+                    crowbar,
+                    'r',
+                    "dustRedstone");
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,11 +10,11 @@ package mods.railcraft.common.gui.containers;
 
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.detector.TileDetector;
+import mods.railcraft.common.blocks.detector.types.DetectorLocomotive;
+import mods.railcraft.common.gui.slots.SlotColorFilter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import mods.railcraft.common.blocks.detector.types.DetectorLocomotive;
-import mods.railcraft.common.gui.slots.SlotColorFilter;
 
 public class ContainerDetectorLocomotive extends RailcraftContainer {
 
@@ -43,5 +43,4 @@ public class ContainerDetectorLocomotive extends RailcraftContainer {
     public boolean canInteractWith(EntityPlayer entityplayer) {
         return RailcraftTileEntity.isUseableByPlayerHelper(detector.getTile(), entityplayer);
     }
-
 }

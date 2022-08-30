@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -28,20 +28,17 @@ public class EntityAISitBred extends EntityAISit {
      */
     @Override
     public boolean shouldExecute() {
-        if (!this.theEntity.isTamed())
-            return false;
-        else if (this.theEntity.isInWater())
-            return false;
-        else if (!this.theEntity.onGround)
-            return false;
+        if (!this.theEntity.isTamed()) return false;
+        else if (this.theEntity.isInWater()) return false;
+        else if (!this.theEntity.onGround) return false;
         else {
             Entity owner = theEntity.getOwner();
             String ownerId = theEntity.func_152113_b();
-            if ((ownerId != null && ownerId.trim().length() > 0) && owner == null)
-                return true;
+            if ((ownerId != null && ownerId.trim().length() > 0) && owner == null) return true;
 
-            if (owner instanceof EntityLivingBase && theEntity.getDistanceSqToEntity(owner) > 144.0D && ((EntityLivingBase) owner).getAITarget() != null)
-                return false;
+            if (owner instanceof EntityLivingBase
+                    && theEntity.getDistanceSqToEntity(owner) > 144.0D
+                    && ((EntityLivingBase) owner).getAITarget() != null) return false;
 
             return isSitting;
         }
@@ -52,5 +49,4 @@ public class EntityAISitBred extends EntityAISit {
         super.setSitting(sit);
         this.isSitting = sit;
     }
-
 }

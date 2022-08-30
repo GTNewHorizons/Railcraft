@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,13 +10,13 @@ package mods.railcraft.common.blocks.signals;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
 
 public class BlockSignalRailcraft extends BlockSignalBase {
 
@@ -58,8 +58,7 @@ public class BlockSignalRailcraft extends BlockSignalBase {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumSignal type : EnumSignal.getCreativeList()) {
-            if (type.isEnabled())
-                list.add(type.getItem());
+            if (type.isEnabled()) list.add(type.getItem());
         }
     }
 
@@ -109,5 +108,4 @@ public class BlockSignalRailcraft extends BlockSignalBase {
     public TileEntity createTileEntity(World world, int metadata) {
         return EnumSignal.fromId(metadata).getBlockEntity();
     }
-
 }

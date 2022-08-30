@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,16 +10,14 @@ package mods.railcraft.client.render;
 
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.fluids.tanks.StandardTank;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.lwjgl.opengl.GL11;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderFluidBase;
+import mods.railcraft.common.fluids.tanks.StandardTank;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
+import org.lwjgl.opengl.GL11;
 
 /**
  *
@@ -59,7 +57,7 @@ public class RenderFluidLoader extends TileEntitySpecialRenderer {
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
-//        GL11.glEnable(GL11.GL_CULL_FACE);
+        //        GL11.glEnable(GL11.GL_CULL_FACE);
 
         backDrop.texture[0] = base.getMachineType().getTexture(7);
         bindTexture(TextureMap.locationBlocksTexture);
@@ -89,7 +87,7 @@ public class RenderFluidLoader extends TileEntitySpecialRenderer {
             }
         }
 
-//        GL11.glScalef(0.994f, 1.05f, 0.994f);
+        //        GL11.glScalef(0.994f, 1.05f, 0.994f);
         GL11.glPopAttrib();
         GL11.glPopMatrix();
 
@@ -101,5 +99,4 @@ public class RenderFluidLoader extends TileEntitySpecialRenderer {
             RenderFakeBlock.renderBlock(pipe, loader.getWorld(), x, y, z, false, true);
         }
     }
-
 }

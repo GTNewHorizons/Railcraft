@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,11 +12,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.api.core.items.TagList;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.modules.ModuleManager;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 
 /**
  * This class contains a registry of all currently active Railcraft items. Which
@@ -30,8 +30,7 @@ import net.minecraft.item.ItemBlock;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public final class RailcraftRegistry {
-    private RailcraftRegistry() {
-    }
+    private RailcraftRegistry() {}
 
     /**
      * This function will return an ItemStack containing the item that
@@ -65,17 +64,14 @@ public final class RailcraftRegistry {
      * @param stack The item
      */
     public static void register(String tag, ItemStack stack) {
-        if (stack == null)
-            throw new RuntimeException("Don't register null items!");
+        if (stack == null) throw new RuntimeException("Don't register null items!");
         tag = MiscTools.cleanTag(tag);
         TagList.addTag(tag);
-//        System.out.println(tag);
+        //        System.out.println(tag);
         Item existingItem = GameRegistry.findItem(Railcraft.getModId(), tag);
         Block existingBlock = GameRegistry.findBlock(Railcraft.getModId(), tag);
-        if (existingItem == null && existingBlock == null)
-            GameRegistry.registerCustomItemStack(tag, stack);
-        else
-            throw new RuntimeException("ItemStack registrations must be unique!");
+        if (existingItem == null && existingBlock == null) GameRegistry.registerCustomItemStack(tag, stack);
+        else throw new RuntimeException("ItemStack registrations must be unique!");
     }
 
     /**
@@ -87,8 +83,7 @@ public final class RailcraftRegistry {
      * @param stack The item
      */
     public static void register(ItemStack stack) {
-        if (stack == null)
-            throw new RuntimeException("Don't register null items!");
+        if (stack == null) throw new RuntimeException("Don't register null items!");
         register(stack.getUnlocalizedName(), stack);
     }
 
@@ -101,7 +96,8 @@ public final class RailcraftRegistry {
      * @param item The item
      */
     public static void register(Item item) {
-        if (ModuleManager.getStage() != ModuleManager.Stage.PRE_INIT && ModuleManager.getStage() != ModuleManager.Stage.INIT_FIRST)
+        if (ModuleManager.getStage() != ModuleManager.Stage.PRE_INIT
+                && ModuleManager.getStage() != ModuleManager.Stage.INIT_FIRST)
             throw new RuntimeException("Items must be initialized in PreInit or InitFirst!");
         _register(item);
     }
@@ -141,7 +137,8 @@ public final class RailcraftRegistry {
      * @param itemclass
      */
     public static void register(Block block, Class<? extends ItemBlock> itemclass) {
-        if (ModuleManager.getStage() != ModuleManager.Stage.PRE_INIT && ModuleManager.getStage() != ModuleManager.Stage.INIT_FIRST)
+        if (ModuleManager.getStage() != ModuleManager.Stage.PRE_INIT
+                && ModuleManager.getStage() != ModuleManager.Stage.INIT_FIRST)
             throw new RuntimeException("Blocks must be initialized in PreInit or InitFirst!");
         String tag = block.getUnlocalizedName();
         tag = MiscTools.cleanTag(tag);

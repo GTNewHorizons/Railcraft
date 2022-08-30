@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,8 +25,10 @@ public class CartContentRendererMaintance extends CartContentRenderer {
 
     private static final ModelBase LAMP_ON = new ModelMaintanceLampOn();
     private static final ModelBase LAMP_OFF = new ModelMaintanceLampOff();
-    private static final ResourceLocation LAMP_ON_TEX = new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_maint_lamp_on.png");
-    private static final ResourceLocation LAMP_OFF_TEX = new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_maint_lamp_off.png");
+    private static final ResourceLocation LAMP_ON_TEX =
+            new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_maint_lamp_on.png");
+    private static final ResourceLocation LAMP_OFF_TEX =
+            new ResourceLocation(RailcraftConstants.CART_TEXTURE_FOLDER + "cart_maint_lamp_off.png");
 
     @Override
     public void render(RenderCart renderer, EntityMinecart cart, float light, float time) {
@@ -44,5 +46,4 @@ public class CartContentRendererMaintance extends CartContentRenderer {
         }
         GL11.glPopMatrix();
     }
-
 }

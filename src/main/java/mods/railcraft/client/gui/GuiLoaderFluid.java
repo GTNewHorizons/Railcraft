@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,13 +9,13 @@
 package mods.railcraft.client.gui;
 
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerFluidLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiLoaderFluid extends TileGui {
 
@@ -24,7 +24,10 @@ public class GuiLoaderFluid extends TileGui {
     private GuiMultiButton button;
 
     public GuiLoaderFluid(InventoryPlayer inv, TileFluidLoader tile) {
-        super(tile, new ContainerFluidLoader(inv, tile), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_fluid_loader.png");
+        super(
+                tile,
+                new ContainerFluidLoader(inv, tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_fluid_loader.png");
         this.tile = tile;
     }
 
@@ -37,7 +40,8 @@ public class GuiLoaderFluid extends TileGui {
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
-        button = new GuiMultiButton(0, w + 40, h + 60, 80, tile.getStateController().copy());
+        button = new GuiMultiButton(
+                0, w + 40, h + 60, 80, tile.getStateController().copy());
         buttonList.add(button);
     }
 
@@ -56,5 +60,4 @@ public class GuiLoaderFluid extends TileGui {
             PacketBuilder.instance().sendGuiReturnPacket(tile);
         }
     }
-
 }

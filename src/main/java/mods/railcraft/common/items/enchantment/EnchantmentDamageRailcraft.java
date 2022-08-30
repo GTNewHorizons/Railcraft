@@ -15,7 +15,15 @@ public class EnchantmentDamageRailcraft extends EnchantmentCrowbar {
     private final float damageBonusPerLevel;
     private WeakReference<Entity> target;
 
-    public EnchantmentDamageRailcraft(String tag, int id, int weight, int baseEnchantability, int levelEnchantability, int thresholdEnchantability, Class<? extends EntityLivingBase> targetType, float damageBonusPerLevel) {
+    public EnchantmentDamageRailcraft(
+            String tag,
+            int id,
+            int weight,
+            int baseEnchantability,
+            int levelEnchantability,
+            int thresholdEnchantability,
+            Class<? extends EntityLivingBase> targetType,
+            float damageBonusPerLevel) {
         super(tag, id, weight);
         this.baseEnchantability = baseEnchantability;
         this.levelEnchantability = levelEnchantability;
@@ -57,5 +65,4 @@ public class EnchantmentDamageRailcraft extends EnchantmentCrowbar {
     public boolean canApplyTogether(Enchantment enchantment) {
         return !(enchantment instanceof EnchantmentDamageRailcraft);
     }
-
 }

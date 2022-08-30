@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum Actions implements IActionExternal {
-
     PAUSE("pause"),
     SEND_CART("sendcart");
     public static final Actions[] VALUES = values();
@@ -63,9 +62,9 @@ public enum Actions implements IActionExternal {
     }
 
     @Override
-    public void actionActivate(TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] isps) {
-        if (tile instanceof IActionReceptor)
-            ((IActionReceptor) tile).actionActivated(this);
+    public void actionActivate(
+            TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] isps) {
+        if (tile instanceof IActionReceptor) ((IActionReceptor) tile).actionActivated(this);
     }
 
     @Override
@@ -82,5 +81,4 @@ public enum Actions implements IActionExternal {
     public IStatementParameter createParameter(int i) {
         return null;
     }
-
 }

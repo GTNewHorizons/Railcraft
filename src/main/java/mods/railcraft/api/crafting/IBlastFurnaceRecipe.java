@@ -14,8 +14,7 @@ import net.minecraft.item.ItemStack;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IBlastFurnaceRecipe
-{
+public interface IBlastFurnaceRecipe {
 
     public int getCookTime();
 

@@ -6,9 +6,9 @@ dependencies {
     compile 'thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev'
     compile 'curse.maven:cofh-lib-220333:2388748'
 
-    compileOnly 'com.github.GTNewHorizons:ForestryMC:4.4.6:dev'
+    compileOnly 'com.github.GTNewHorizons:ForestryMC:4.4.14:dev'
     compileOnly 'curse.maven:craftguide-75557:2459320'
 
     runtime 'com.github.GTNewHorizons:Baubles:1.0.1.14:dev'
-    runtime 'com.github.GTNewHorizons:NotEnoughItems:2.2.8-GTNH:dev'
+    runtime 'com.github.GTNewHorizons:NotEnoughItems:2.2.32-GTNH:dev'
 }

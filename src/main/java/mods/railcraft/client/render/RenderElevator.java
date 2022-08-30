@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,21 +9,21 @@
 package mods.railcraft.client.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import mods.railcraft.common.blocks.RailcraftBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
-import mods.railcraft.common.blocks.RailcraftBlocks;
+import net.minecraft.world.IBlockAccess;
 
 public class RenderElevator implements ISimpleBlockRenderingHandler {
 
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-    }
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {}
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         int meta = world.getBlockMetadata(x, y, z);
         Tessellator tessellator = Tessellator.instance;
         IIcon icon = block.getIcon(0, meta);
@@ -50,10 +50,14 @@ public class RenderElevator implements ISimpleBlockRenderingHandler {
             tessellator.addVertexWithUV((double) x + d5, (double) (y + 1) + d4, (double) (z + 0) - d4, maxU, minV);
         }
         if (meta == 4) {
-            tessellator.addVertexWithUV((double) (x + 1) - d5, (double) (y + 0) - d4, (double) (z + 1) + d4, maxU, maxV);
-            tessellator.addVertexWithUV((double) (x + 1) - d5, (double) (y + 1) + d4, (double) (z + 1) + d4, maxU, minV);
-            tessellator.addVertexWithUV((double) (x + 1) - d5, (double) (y + 1) + d4, (double) (z + 0) - d4, minU, minV);
-            tessellator.addVertexWithUV((double) (x + 1) - d5, (double) (y + 0) - d4, (double) (z + 0) - d4, minU, maxV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) - d5, (double) (y + 0) - d4, (double) (z + 1) + d4, maxU, maxV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) - d5, (double) (y + 1) + d4, (double) (z + 1) + d4, maxU, minV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) - d5, (double) (y + 1) + d4, (double) (z + 0) - d4, minU, minV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) - d5, (double) (y + 0) - d4, (double) (z + 0) - d4, minU, maxV);
         }
         if (meta == 3) {
             tessellator.addVertexWithUV((double) (x + 1) + d4, (double) (y + 0) - d4, (double) z + d5, maxU, maxV);
@@ -62,10 +66,14 @@ public class RenderElevator implements ISimpleBlockRenderingHandler {
             tessellator.addVertexWithUV((double) (x + 0) - d4, (double) (y + 0) - d4, (double) z + d5, minU, maxV);
         }
         if (meta == 2) {
-            tessellator.addVertexWithUV((double) (x + 1) + d4, (double) (y + 1) + d4, (double) (z + 1) - d5, minU, minV);
-            tessellator.addVertexWithUV((double) (x + 1) + d4, (double) (y + 0) - d4, (double) (z + 1) - d5, minU, maxV);
-            tessellator.addVertexWithUV((double) (x + 0) - d4, (double) (y + 0) - d4, (double) (z + 1) - d5, maxU, maxV);
-            tessellator.addVertexWithUV((double) (x + 0) - d4, (double) (y + 1) + d4, (double) (z + 1) - d5, maxU, minV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) + d4, (double) (y + 1) + d4, (double) (z + 1) - d5, minU, minV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 1) + d4, (double) (y + 0) - d4, (double) (z + 1) - d5, minU, maxV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 0) - d4, (double) (y + 0) - d4, (double) (z + 1) - d5, maxU, maxV);
+            tessellator.addVertexWithUV(
+                    (double) (x + 0) - d4, (double) (y + 1) + d4, (double) (z + 1) - d5, maxU, minV);
         }
         return true;
     }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -12,21 +12,21 @@ import com.mojang.authlib.GameProfile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.IRoutingTrack;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.tracks.ITrackPowered;
-import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 
 public class TrackRouting extends TrackSecured implements ITrackPowered, IRoutingTrack {
 
@@ -44,8 +44,7 @@ public class TrackRouting extends TrackSecured implements ITrackPowered, IRoutin
 
     @Override
     public IIcon getIcon() {
-        if (isPowered())
-            return getIcon(0);
+        if (isPowered()) return getIcon(0);
         return getIcon(1);
     }
 
@@ -55,7 +54,13 @@ public class TrackRouting extends TrackSecured implements ITrackPowered, IRoutin
         if (current != null && current.getItem() instanceof IToolCrowbar) {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
             if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
-                GuiHandler.openGui(EnumGui.TRACK_ROUTING, player, getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+                GuiHandler.openGui(
+                        EnumGui.TRACK_ROUTING,
+                        player,
+                        getWorld(),
+                        tileEntity.xCoord,
+                        tileEntity.yCoord,
+                        tileEntity.zCoord);
                 crowbar.onWhack(player, current, getX(), getY(), getZ());
                 return true;
             }
@@ -65,12 +70,9 @@ public class TrackRouting extends TrackSecured implements ITrackPowered, IRoutin
 
     @Override
     public void onMinecartPass(EntityMinecart cart) {
-        if (!isPowered())
-            return;
-        if (inv.getStackInSlot(0) == null)
-            return;
-        if (cart instanceof IRoutableCart)
-            ((IRoutableCart) cart).setDestination(inv.getStackInSlot(0));
+        if (!isPowered()) return;
+        if (inv.getStackInSlot(0) == null) return;
+        if (cart instanceof IRoutableCart) ((IRoutableCart) cart).setDestination(inv.getStackInSlot(0));
     }
 
     @Override
@@ -129,5 +131,4 @@ public class TrackRouting extends TrackSecured implements ITrackPowered, IRoutin
         super.onBlockRemoved();
         InvTools.dropInventory(inv, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
     }
-
 }

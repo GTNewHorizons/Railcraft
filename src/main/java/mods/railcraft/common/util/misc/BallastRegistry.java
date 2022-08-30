@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,9 +8,9 @@
  */
 package mods.railcraft.common.util.misc;
 
-import mods.railcraft.common.util.collections.BlockKey;
 import java.util.HashSet;
 import java.util.Set;
+import mods.railcraft.common.util.collections.BlockKey;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -38,12 +38,12 @@ public abstract class BallastRegistry {
 
     public static boolean isItemBallast(ItemStack stack) {
         if (stack.getItem() instanceof ItemBlock)
-            return ballastRegistry.contains(new BlockKey(((ItemBlock) stack.getItem()).field_150939_a, stack.getItemDamage()));
+            return ballastRegistry.contains(
+                    new BlockKey(((ItemBlock) stack.getItem()).field_150939_a, stack.getItemDamage()));
         return false;
     }
 
     public static Set<BlockKey> getRegisteredBallasts() {
         return ballastRegistry;
     }
-
 }

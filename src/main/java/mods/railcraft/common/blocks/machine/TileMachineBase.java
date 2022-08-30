@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,8 @@ package mods.railcraft.common.blocks.machine;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.Random;
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
@@ -27,9 +29,6 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.apache.logging.log4j.Level;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public abstract class TileMachineBase extends RailcraftTileEntity {
     private boolean checkedBlock = false;
 
@@ -41,10 +40,10 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
     }
 
     @Override
-    public final short getId() {    	
-    	if (getMachineType() == null) {
-    		return 0;
-    	}    	
+    public final short getId() {
+        if (getMachineType() == null) {
+            return 0;
+        }
         return (short) getMachineType().ordinal();
     }
 
@@ -66,11 +65,9 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
         return false;
     }
 
-    public void initFromItem(ItemStack stack) {
-    }
+    public void initFromItem(ItemStack stack) {}
 
-    public void onBlockAdded() {
-    }
+    public void onBlockAdded() {}
 
     /**
      * Called before the block is removed.
@@ -81,16 +78,12 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
     }
 
     public boolean blockActivated(EntityPlayer player, int side) {
-        if (player.isSneaking())
-            return false;
+        if (player.isSneaking()) return false;
         ItemStack stack = player.getCurrentEquippedItem();
         if (stack != null) {
-            if (stack.getItem() instanceof IActivationBlockingItem)
-                return false;
-            if (stack.getItem() instanceof ITrackItem)
-                return false;
-            if (TrackTools.isRailItem(stack.getItem()))
-                return false;
+            if (stack.getItem() instanceof IActivationBlockingItem) return false;
+            if (stack.getItem() instanceof ITrackItem) return false;
+            if (TrackTools.isRailItem(stack.getItem())) return false;
         }
         return openGui(player);
     }
@@ -114,37 +107,57 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
 
     @Override
     public void updateEntity() {
-    	super.updateEntity();
+        super.updateEntity();
 
-    	if (Game.isNotHost(worldObj))
-    		return;
+        if (Game.isNotHost(worldObj)) return;
 
-    	// Check and fix invalid block ids
-    	if (!checkedBlock) {
-    		checkedBlock = true;
+        // Check and fix invalid block ids
+        if (!checkedBlock) {
+            checkedBlock = true;
 
-    		if (getBlockType() != null && getMachineType() != null) {
-    			if (!getMachineType().isAvaliable()) {
-    				worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-    				return;
-    			}
-    			if (getBlockType() != getMachineType().getBlock()) {
-    				Game.log(Level.INFO, "Updating Machine Tile Block: {0} {1}->{2}, [{3}, {4}, {5}]", getClass().getSimpleName(), getBlockType(), getMachineType().getBlock(), xCoord, yCoord, zCoord);
-    				worldObj.setBlock(xCoord, yCoord, zCoord, getMachineType().getBlock(), getId(), 3);
-    				validate();
-    				worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
-    				updateContainingBlockInfo();
-    			}
-    			int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-    			if (getBlockType() != null && getClass() != ((BlockMachine) getBlockType()).getMachineProxy().getMachine(meta).getTileClass()) {
-    				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
-    				validate();
-    				worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
-    				Game.log(Level.INFO, "Updating Machine Tile Metadata: {0} {1}->{2}, [{3}, {4}, {5}]", getClass().getSimpleName(), meta, getId(), xCoord, yCoord, zCoord);
-    				updateContainingBlockInfo();
-    			}
-    		}
-    	}
+            if (getBlockType() != null && getMachineType() != null) {
+                if (!getMachineType().isAvaliable()) {
+                    worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+                    return;
+                }
+                if (getBlockType() != getMachineType().getBlock()) {
+                    Game.log(
+                            Level.INFO,
+                            "Updating Machine Tile Block: {0} {1}->{2}, [{3}, {4}, {5}]",
+                            getClass().getSimpleName(),
+                            getBlockType(),
+                            getMachineType().getBlock(),
+                            xCoord,
+                            yCoord,
+                            zCoord);
+                    worldObj.setBlock(xCoord, yCoord, zCoord, getMachineType().getBlock(), getId(), 3);
+                    validate();
+                    worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
+                    updateContainingBlockInfo();
+                }
+                int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                if (getBlockType() != null
+                        && getClass()
+                                != ((BlockMachine) getBlockType())
+                                        .getMachineProxy()
+                                        .getMachine(meta)
+                                        .getTileClass()) {
+                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
+                    validate();
+                    worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
+                    Game.log(
+                            Level.INFO,
+                            "Updating Machine Tile Metadata: {0} {1}->{2}, [{3}, {4}, {5}]",
+                            getClass().getSimpleName(),
+                            meta,
+                            getId(),
+                            xCoord,
+                            yCoord,
+                            zCoord);
+                    updateContainingBlockInfo();
+                }
+            }
+        }
     }
 
     public boolean openGui(EntityPlayer player) {
@@ -176,8 +189,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
     }
 
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(Random rand) {
-    }
+    public void randomDisplayTick(Random rand) {}
 
     public int colorMultiplier() {
         return 16777215;
@@ -188,8 +200,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
     }
 
     public ConnectStyle connectsToPost(ForgeDirection side) {
-        if (isSideSolid(side.getOpposite()))
-            return ConnectStyle.TWO_THIN;
+        if (isSideSolid(side.getOpposite())) return ConnectStyle.TWO_THIN;
         return ConnectStyle.NONE;
     }
 }

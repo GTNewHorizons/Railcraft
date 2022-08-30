@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -65,14 +65,10 @@ public class Widget {
         return null;
     }
 
-    public void initWidget(ICrafting player) {
-    }
+    public void initWidget(ICrafting player) {}
 
-    public void updateWidget(ICrafting player) {
-    }
+    public void updateWidget(ICrafting player) {}
 
     @SideOnly(Side.CLIENT)
-    public void handleClientPacketData(DataInputStream data) throws IOException {
-    }
-
+    public void handleClientPacketData(DataInputStream data) throws IOException {}
 }

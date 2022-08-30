@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,7 +27,8 @@ public class RenderBlockStrengthGlass extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         block.setBlockBounds(0, 0, 0, 1, 1, 1);
         if (renderblocks.overrideBlockTexture == null) {
             BlockStrengthGlass.renderingHighlight = true;
@@ -56,5 +57,4 @@ public class RenderBlockStrengthGlass extends BlockRenderer {
         float b = (float) (color & 0xff) / 255F;
         GL11.glColor4f(r, g, b, 1.0F);
     }
-
 }

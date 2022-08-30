@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,22 +11,20 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import mods.railcraft.api.carts.IEnergyTransfer;
-import mods.railcraft.common.carts.CartUtils;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.common.modules.ModuleIC2;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISidedInventory {
     private static final int SLOT_CHARGE = 0;
@@ -95,19 +93,13 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
         for (int i = 2; i < 6; i++) {
             ItemStack stack = getStackInSlot(i);
             if (stack != null)
-                if (storage != null && stack.isItemEqual(storage))
-                    storageUpgrades += stack.stackSize;
-                else if (overclocker != null && stack.isItemEqual(overclocker))
-                    overclockerUpgrades += stack.stackSize;
-                else if (transformer != null && stack.isItemEqual(transformer))
-                    transformerUpgrades += stack.stackSize;
-                else if (lapotron != null && stack.getItem() == lapotron)
-                    lapotronUpgrades += stack.stackSize;
+                if (storage != null && stack.isItemEqual(storage)) storageUpgrades += stack.stackSize;
+                else if (overclocker != null && stack.isItemEqual(overclocker)) overclockerUpgrades += stack.stackSize;
+                else if (transformer != null && stack.isItemEqual(transformer)) transformerUpgrades += stack.stackSize;
+                else if (lapotron != null && stack.getItem() == lapotron) lapotronUpgrades += stack.stackSize;
         }
-        if (overclockerUpgrades > MAX_OVERCLOCKS)
-            overclockerUpgrades = MAX_OVERCLOCKS;
-        if (lapotronUpgrades > MAX_LAPOTRON)
-            lapotronUpgrades = MAX_LAPOTRON;
+        if (overclockerUpgrades > MAX_OVERCLOCKS) overclockerUpgrades = MAX_OVERCLOCKS;
+        if (lapotronUpgrades > MAX_LAPOTRON) lapotronUpgrades = MAX_LAPOTRON;
     }
 
     @Override
@@ -123,18 +115,16 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
 
     @Override
     public boolean canHandleCart(EntityMinecart cart) {
-        if (isSendCartGateAction())
-            return false;
-        if (!(cart instanceof IEnergyTransfer))
-            return false;
+        if (isSendCartGateAction()) return false;
+        if (!(cart instanceof IEnergyTransfer)) return false;
         IEnergyTransfer energyCart = (IEnergyTransfer) cart;
-        if (energyCart.getTier() > getTier())
-            return false;
-//        ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
-//        ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
-//        if (minecartSlot1 != null || minecartSlot2 != null)
-//            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) && !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
-//                return false;
+        if (energyCart.getTier() > getTier()) return false;
+        //        ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
+        //        ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
+        //        if (minecartSlot1 != null || minecartSlot2 != null)
+        //            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) &&
+        // !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
+        //                return false;
         return true;
     }
 
@@ -149,8 +139,7 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         if (!addedToIC2EnergyNet) {
             IC2Plugin.addTileToNet(getIC2Delegate());
@@ -158,24 +147,20 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
         }
 
         int capacity = getCapacity();
-        if (energy > capacity)
-            energy = capacity;
+        if (energy > capacity) energy = capacity;
 
         ItemStack charge = getStackInSlot(SLOT_CHARGE);
-        if (charge != null)
-            energy -= IC2Plugin.chargeItem(charge, energy, getTier());
+        if (charge != null) energy -= IC2Plugin.chargeItem(charge, energy, getTier());
 
         ItemStack battery = getStackInSlot(SLOT_BATTERY);
         if (battery != null && energy < capacity)
             energy += IC2Plugin.dischargeItem(battery, capacity - energy, getTier());
 
-        if (clock % 64 == 0)
-            countUpgrades();
+        if (clock % 64 == 0) countUpgrades();
     }
 
     private void dropFromNet() {
-        if (addedToIC2EnergyNet)
-            IC2Plugin.removeTileFromNet(getIC2Delegate());
+        if (addedToIC2EnergyNet) IC2Plugin.removeTileFromNet(getIC2Delegate());
     }
 
     @Override
@@ -226,10 +211,8 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (direction == axis)
-            direction = axis.getOpposite();
-        else
-            direction = axis;
+        if (direction == axis) direction = axis.getOpposite();
+        else direction = axis;
         markBlockForUpdate();
         return true;
     }

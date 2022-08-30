@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,14 +11,8 @@ package mods.railcraft.common.carts;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.IRefuelableCart;
 import mods.railcraft.common.core.RailcraftConfig;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.FilteredTank;
 import mods.railcraft.common.fluids.tanks.StandardTank;
@@ -28,12 +22,19 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.Steam;
 import mods.railcraft.common.util.steam.SteamBoiler;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class EntityLocomotiveSteam extends EntityLocomotive implements IFluidHandler, IRefuelableCart, IFluidCart {
+public abstract class EntityLocomotiveSteam extends EntityLocomotive
+        implements IFluidHandler, IRefuelableCart, IFluidCart {
     public static final int SLOT_LIQUID_INPUT = 0;
     public static final int SLOT_LIQUID_OUTPUT = 1;
     public static final byte SMOKE_FLAG = 6;
@@ -97,8 +98,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
         if (Game.isHost(worldObj)) {
             update++;
 
-            if (tankWater.isEmpty())
-                setMode(LocoMode.SHUTDOWN);
+            if (tankWater.isEmpty()) setMode(LocoMode.SHUTDOWN);
 
             setSteaming(tankSteam.getFluidAmount() > 0);
             if (tankSteam.getRemainingSpace() >= Steam.STEAM_PER_UNIT_WATER || isShutdown()) {
@@ -106,8 +106,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
 
                 setSmoking(boiler.isBurning());
 
-                if (!boiler.isBurning())
-                    ventSteam();
+                if (!boiler.isBurning()) ventSteam();
             }
 
             if (update % FluidHelper.BUCKET_FILL_TIME == 0)
@@ -117,10 +116,16 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
                 if (rand.nextInt(3) == 0) {
                     double rads = renderYaw * Math.PI / 180D;
                     float offset = 0.4f;
-                    worldObj.spawnParticle("largesmoke", posX - Math.cos(rads) * offset, posY + 1.2f, posZ - Math.sin(rads) * offset, 0, 0, 0);
+                    worldObj.spawnParticle(
+                            "largesmoke",
+                            posX - Math.cos(rads) * offset,
+                            posY + 1.2f,
+                            posZ - Math.sin(rads) * offset,
+                            0,
+                            0,
+                            0);
                 }
-            if (isSteaming())
-                EffectManager.instance.steamEffect(worldObj, this, boundingBox.minY - posY - 0.3);
+            if (isSteaming()) EffectManager.instance.steamEffect(worldObj, this, boundingBox.minY - posY - 0.3);
         }
     }
 
@@ -129,8 +134,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
     }
 
     private void setSmoking(boolean smoke) {
-        if (getFlag(SMOKE_FLAG) != smoke)
-            setFlag(SMOKE_FLAG, smoke);
+        if (getFlag(SMOKE_FLAG) != smoke) setFlag(SMOKE_FLAG, smoke);
     }
 
     public boolean isSteaming() {
@@ -138,8 +142,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
     }
 
     private void setSteaming(boolean steam) {
-        if (getFlag(STEAM_FLAG) != steam)
-            setFlag(STEAM_FLAG, steam);
+        if (getFlag(STEAM_FLAG) != steam) setFlag(STEAM_FLAG, steam);
     }
 
     private void ventSteam() {
@@ -154,7 +157,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
             return FUEL_PER_REQUEST;
         }
         return 0;
-//        return 100;
+        //        return 100;
     }
 
     @Override
@@ -180,8 +183,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
         if (doFill && Fluids.WATER.is(resource))
             if (boiler.isSuperHeated() && Steam.BOILERS_EXPLODE) {
                 FluidStack water = tankWater.getFluid();
-                if (water == null || water.amount <= 0)
-                    explode();
+                if (water == null || water.amount <= 0) explode();
             }
         return tankWater.fill(resource, doFill);
     }
@@ -227,7 +229,5 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive implements 
     }
 
     @Override
-    public void setFilling(boolean filling) {
-    }
+    public void setFilling(boolean filling) {}
 }
-

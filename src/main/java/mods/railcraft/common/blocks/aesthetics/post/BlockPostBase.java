@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,15 +9,15 @@
 package mods.railcraft.common.blocks.aesthetics.post;
 
 import mods.railcraft.client.sounds.RailcraftSound;
+import mods.railcraft.common.blocks.signals.*;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.common.blocks.signals.*;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
 
 public abstract class BlockPostBase extends Block {
 
@@ -46,10 +46,8 @@ public abstract class BlockPostBase extends Block {
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-        if (isPlatform(world.getBlockMetadata(x, y, z)))
-            setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1.0F, 1F);
-        else
-            setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
+        if (isPlatform(world.getBlockMetadata(x, y, z))) setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1.0F, 1F);
+        else setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
     }
 
     @Override
@@ -109,5 +107,4 @@ public abstract class BlockPostBase extends Block {
     public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
         return false;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -43,8 +43,6 @@ public class ItemCube extends ItemBlock {
     public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
         super.addInformation(stack, player, info, adv);
         String tag = getUnlocalizedName(stack) + ".tip";
-        if (LocalizationPlugin.hasTag(tag))
-            info.add(LocalizationPlugin.translate(tag));
+        if (LocalizationPlugin.hasTag(tag)) info.add(LocalizationPlugin.translate(tag));
     }
-
 }

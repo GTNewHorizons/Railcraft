@@ -87,30 +87,21 @@ public class WorldCoordinate implements Comparable<WorldCoordinate> {
 
     @Override
     public int compareTo(WorldCoordinate o) {
-        if (dimension != o.dimension)
-            return dimension - o.dimension;
-        if (x != o.x)
-            return x - o.x;
-        if (y != o.y)
-            return y - o.y;
-        if (z != o.z)
-            return z - o.z;
+        if (dimension != o.dimension) return dimension - o.dimension;
+        if (x != o.x) return x - o.x;
+        if (y != o.y) return y - o.y;
+        if (z != o.z) return z - o.z;
         return 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         final WorldCoordinate other = (WorldCoordinate) obj;
-        if (this.dimension != other.dimension)
-            return false;
-        if (this.x != other.x)
-            return false;
-        if (this.y != other.y)
-            return false;
+        if (this.dimension != other.dimension) return false;
+        if (this.x != other.x) return false;
+        if (this.y != other.y) return false;
         return this.z == other.z;
     }
 

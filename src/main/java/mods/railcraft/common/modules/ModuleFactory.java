@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.modules;
 
+import java.util.ArrayList;
+import java.util.List;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.aesthetics.brick.BrickVariant;
@@ -36,9 +38,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ModuleFactory extends RailcraftModule {
     private static final int COKE_COOK_TIME = 1800;
     private static final int COKE_COOK_CREOSOTE = 500;
@@ -57,120 +56,130 @@ public class ModuleFactory extends RailcraftModule {
         BlockRCAnvil.registerBlock();
 
         if (BlockRCAnvil.getBlock() != null)
-            CraftingPlugin.addShapedRecipe(new ItemStack(BlockRCAnvil.getBlock(), 1, 0),
+            CraftingPlugin.addShapedRecipe(
+                    new ItemStack(BlockRCAnvil.getBlock(), 1, 0),
                     "BBB",
                     " I ",
                     "III",
-                    'B', "blockSteel",
-                    'I', "ingotSteel");
+                    'B',
+                    "blockSteel",
+                    'I',
+                    "ingotSteel");
 
         EnumMachineAlpha alpha = EnumMachineAlpha.COKE_OVEN;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem();
-            CraftingPlugin.addShapedRecipe(stack,
-                    "MBM",
-                    "BMB",
-                    "MBM",
-                    'B', "ingotBrick",
-                    'M', "sand");
+            CraftingPlugin.addShapedRecipe(stack, "MBM", "BMB", "MBM", 'B', "ingotBrick", 'M', "sand");
 
             if (RailcraftToolItems.getCoalCoke() != null)
-                RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(Items.coal, 1, 0), true, false, RailcraftToolItems.getCoalCoke(), Fluids.CREOSOTE.get(COKE_COOK_CREOSOTE), COKE_COOK_TIME);
+                RailcraftCraftingManager.cokeOven.addRecipe(
+                        new ItemStack(Items.coal, 1, 0),
+                        true,
+                        false,
+                        RailcraftToolItems.getCoalCoke(),
+                        Fluids.CREOSOTE.get(COKE_COOK_CREOSOTE),
+                        COKE_COOK_TIME);
         }
 
         alpha = EnumMachineAlpha.STEAM_OVEN;
         if (alpha.register())
-            CraftingPlugin.addShapedRecipe(alpha.getItem(4),
+            CraftingPlugin.addShapedRecipe(
+                    alpha.getItem(4),
                     "SSS",
                     "SFS",
                     "SSS",
-                    'F', new ItemStack(Blocks.furnace),
-                    'S', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
+                    'F',
+                    new ItemStack(Blocks.furnace),
+                    'S',
+                    RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
 
+        RailcraftCraftingManager.blastFurnace.addRecipe(
+                new ItemStack(Items.coal), false, false, 20, RailcraftToolItems.getCoalCoke());
+        RailcraftCraftingManager.blastFurnace.addRecipe(
+                new ItemStack(Blocks.coal_block), false, false, 180, EnumCube.COKE_BLOCK.getItem());
 
-        RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.coal), false, false, 20, RailcraftToolItems.getCoalCoke());
-        RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Blocks.coal_block), false, false, 180, EnumCube.COKE_BLOCK.getItem());
+        /*   alpha = EnumMachineAlpha.BLAST_FURNACE;
+                 if (alpha.register()) {
+                   ItemStack stack = alpha.getItem(4);
+                   CraftingPlugin.addShapedRecipe(stack,
+                            "MBM",
+                            "BPB",
+                            "MBM",
+                            'B', new ItemStack(Blocks.nether_brick),
+                            'M', new ItemStack(Blocks.soul_sand),
+                            'P', Items.magma_cream);
 
-      /*   alpha = EnumMachineAlpha.BLAST_FURNACE;
-         if (alpha.register()) {
-           ItemStack stack = alpha.getItem(4);
-           CraftingPlugin.addShapedRecipe(stack,
-                    "MBM",
-                    "BPB",
-                    "MBM",
-                    'B', new ItemStack(Blocks.nether_brick),
-                    'M', new ItemStack(Blocks.soul_sand),
-                    'P', Items.magma_cream);
+                    int burnTime = 1280;
+                    ItemIngot.EnumIngot steel = ItemIngot.EnumIngot.STEEL;
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_ingot), false, false, burnTime, RailcraftItem.ingot.getStack(1, steel));
 
-            int burnTime = 1280;
-            ItemIngot.EnumIngot steel = ItemIngot.EnumIngot.STEEL;
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_ingot), false, false, burnTime, RailcraftItem.ingot.getStack(1, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_helmet), true, false, burnTime * 5, RailcraftItem.ingot.getStack(5, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_chestplate), true, false, burnTime * 8, RailcraftItem.ingot.getStack(8, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_leggings), true, false, burnTime * 7, RailcraftItem.ingot.getStack(7, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_boots), true, false, burnTime * 4, RailcraftItem.ingot.getStack(4, steel));
 
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_helmet), true, false, burnTime * 5, RailcraftItem.ingot.getStack(5, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_chestplate), true, false, burnTime * 8, RailcraftItem.ingot.getStack(8, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_leggings), true, false, burnTime * 7, RailcraftItem.ingot.getStack(7, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_boots), true, false, burnTime * 4, RailcraftItem.ingot.getStack(4, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_horse_armor), true, false, burnTime * 4, RailcraftItem.ingot.getStack(4, steel));
 
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_horse_armor), true, false, burnTime * 4, RailcraftItem.ingot.getStack(4, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_sword), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_shovel), true, false, burnTime, RailcraftItem.ingot.getStack(1, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_pickaxe), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_axe), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_hoe), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.shears), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
 
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_sword), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_shovel), true, false, burnTime, RailcraftItem.ingot.getStack(1, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_pickaxe), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_axe), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_hoe), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.shears), true, false, burnTime * 2, RailcraftItem.ingot.getStack(2, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(ItemCrowbar.getItem(), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
 
-            RailcraftCraftingManager.blastFurnace.addRecipe(ItemCrowbar.getItem(), true, false, burnTime * 3, RailcraftItem.ingot.getStack(3, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_door), false, false, burnTime * 6, RailcraftItem.ingot.getStack(6, steel));
 
-            RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Items.iron_door), false, false, burnTime * 6, RailcraftItem.ingot.getStack(6, steel));
+                    int recycleTime = burnTime / 2;
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelHelm(), false, false, recycleTime * 4, RailcraftItem.ingot.getStack(4, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelArmor(), false, false, recycleTime * 6, RailcraftItem.ingot.getStack(6, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelLegs(), false, false, recycleTime * 5, RailcraftItem.ingot.getStack(5, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelBoots(), false, false, recycleTime * 3, RailcraftItem.ingot.getStack(3, steel));
 
-            int recycleTime = burnTime / 2;
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelHelm(), false, false, recycleTime * 4, RailcraftItem.ingot.getStack(4, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelArmor(), false, false, recycleTime * 6, RailcraftItem.ingot.getStack(6, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelLegs(), false, false, recycleTime * 5, RailcraftItem.ingot.getStack(5, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelBoots(), false, false, recycleTime * 3, RailcraftItem.ingot.getStack(3, steel));
-
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelSword(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelPickaxe(), false, false, recycleTime * 2, RailcraftItem.ingot.getStack(2, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelHoe(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelAxe(), false, false, recycleTime * 2, RailcraftItem.ingot.getStack(2, steel));
-            RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelShears(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
-        }
-*/
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelSword(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelPickaxe(), false, false, recycleTime * 2, RailcraftItem.ingot.getStack(2, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelHoe(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelAxe(), false, false, recycleTime * 2, RailcraftItem.ingot.getStack(2, steel));
+                    RailcraftCraftingManager.blastFurnace.addRecipe(RailcraftToolItems.getSteelShears(), false, false, recycleTime * 1, RailcraftItem.ingot.getStack(1, steel));
+                }
+        */
         alpha = EnumMachineAlpha.ROCK_CRUSHER;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem(4);
-            CraftingPlugin.addShapedRecipe(stack,
+            CraftingPlugin.addShapedRecipe(
+                    stack,
                     "PDP",
                     "DSD",
                     "PDP",
-                    'D', "gemDiamond",
-                    'P', new ItemStack(Blocks.piston),
-                    'S', "blockSteel");
+                    'D',
+                    "gemDiamond",
+                    'P',
+                    new ItemStack(Blocks.piston),
+                    'S',
+                    "blockSteel");
         }
 
         alpha = EnumMachineAlpha.ROLLING_MACHINE;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem();
-            CraftingPlugin.addShapedRecipe(stack,
-                    "IPI",
-                    "PCP",
-                    "IPI",
-                    'I', "ingotIron",
-                    'P', Blocks.piston,
-                    'C', "craftingTableWood");
-        } else
-            RollingMachineCraftingManager.copyRecipesToWorkbench();
+            CraftingPlugin.addShapedRecipe(
+                    stack, "IPI", "PCP", "IPI", 'I', "ingotIron", 'P', Blocks.piston, 'C', "craftingTableWood");
+        } else RollingMachineCraftingManager.copyRecipesToWorkbench();
 
         EnumMachineBeta metalsChest = EnumMachineBeta.METALS_CHEST;
         if (metalsChest.register())
-            CraftingPlugin.addShapedRecipe(metalsChest.getItem(),
+            CraftingPlugin.addShapedRecipe(
+                    metalsChest.getItem(),
                     "GPG",
                     "PAP",
                     "GPG",
-                    'A', new ItemStack(Blocks.anvil),
-                    'P', new ItemStack(Blocks.piston),
-                    'G', RailcraftItem.gear.getRecipeObject(ItemGear.EnumGear.STEEL));
+                    'A',
+                    new ItemStack(Blocks.anvil),
+                    'P',
+                    new ItemStack(Blocks.piston),
+                    'G',
+                    RailcraftItem.gear.getRecipeObject(ItemGear.EnumGear.STEEL));
 
         if (BlockCube.getBlock() != null) {
             EnumCube type = EnumCube.STEEL_BLOCK;
@@ -179,21 +188,18 @@ public class ModuleFactory extends RailcraftModule {
 
                 LootPlugin.addLootTool(type.getItem(), 1, 1, "steel.block");
 
-             /*   if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable())
-                    RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Blocks.iron_block), false, false, 11520, EnumCube.STEEL_BLOCK.getItem());
-            */}
+                /*   if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable())
+                        RailcraftCraftingManager.blastFurnace.addRecipe(new ItemStack(Blocks.iron_block), false, false, 11520, EnumCube.STEEL_BLOCK.getItem());
+                */ }
 
             type = EnumCube.COPPER_BLOCK;
-            if (RailcraftConfig.isSubBlockEnabled(type.getTag()))
-                initMetalBlock(Metal.COPPER);
+            if (RailcraftConfig.isSubBlockEnabled(type.getTag())) initMetalBlock(Metal.COPPER);
 
             type = EnumCube.TIN_BLOCK;
-            if (RailcraftConfig.isSubBlockEnabled(type.getTag()))
-                initMetalBlock(Metal.TIN);
+            if (RailcraftConfig.isSubBlockEnabled(type.getTag())) initMetalBlock(Metal.TIN);
 
             type = EnumCube.LEAD_BLOCK;
-            if (RailcraftConfig.isSubBlockEnabled(type.getTag()))
-                initMetalBlock(Metal.LEAD);
+            if (RailcraftConfig.isSubBlockEnabled(type.getTag())) initMetalBlock(Metal.LEAD);
 
             type = EnumCube.CRUSHED_OBSIDIAN;
             if (RailcraftConfig.isSubBlockEnabled(type.getTag())) {
@@ -201,7 +207,9 @@ public class ModuleFactory extends RailcraftModule {
 
                 BallastRegistry.registerBallast(BlockCube.getBlock(), type.ordinal());
 
-                if (IC2Plugin.isModInstalled() && RailcraftConfig.addObsidianRecipesToMacerator() && RailcraftItem.dust.isEnabled()) {
+                if (IC2Plugin.isModInstalled()
+                        && RailcraftConfig.addObsidianRecipesToMacerator()
+                        && RailcraftItem.dust.isEnabled()) {
                     IC2Plugin.addMaceratorRecipe(new ItemStack(Blocks.obsidian), stack);
                     IC2Plugin.addMaceratorRecipe(stack, RailcraftItem.dust.getStack(ItemDust.EnumDust.OBSIDIAN));
                 }
@@ -213,11 +221,7 @@ public class ModuleFactory extends RailcraftModule {
                 Block cube = BlockCube.getBlock();
                 if (cube != null) {
                     ItemStack stack = type.getItem();
-                    CraftingPlugin.addShapedRecipe(stack,
-                            "CCC",
-                            "CCC",
-                            "CCC",
-                            'C', RailcraftToolItems.getCoalCoke());
+                    CraftingPlugin.addShapedRecipe(stack, "CCC", "CCC", "CCC", 'C', RailcraftToolItems.getCoalCoke());
                     CraftingPlugin.addShapelessRecipe(RailcraftToolItems.getCoalCoke(9), stack);
                 }
             }
@@ -247,59 +251,75 @@ public class ModuleFactory extends RailcraftModule {
             if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable() && EnumBrick.INFERNAL.getBlock() != null) {
 
                 ItemStack stack = EnumMachineAlpha.BLAST_FURNACE.getItem(4);
-                CraftingPlugin.addShapedRecipe(stack,
+                CraftingPlugin.addShapedRecipe(
+                        stack,
                         " B ",
                         "BPB",
                         " B ",
-                        'B', EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
-                        'P', Items.magma_cream);
+                        'B',
+                        EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
+                        'P',
+                        Items.magma_cream);
             }
             if (EnumMachineAlpha.COKE_OVEN.isAvaliable() && EnumBrick.SANDY.getBlock() != null) {
                 ItemStack stack = EnumMachineAlpha.COKE_OVEN.getItem();
-                CraftingPlugin.addShapedRecipe(stack,
-                        " B ",
-                        " S ",
-                        " B ",
-                        'B', EnumBrick.SANDY.get(BrickVariant.BRICK, 1),
-                        'S', "sand");
+                CraftingPlugin.addShapedRecipe(
+                        stack, " B ", " S ", " B ", 'B', EnumBrick.SANDY.get(BrickVariant.BRICK, 1), 'S', "sand");
             }
         }
 
         if (EnumCube.COKE_BLOCK.isEnabled())
-            RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(Blocks.coal_block), false, false, EnumCube.COKE_BLOCK.getItem(), Fluids.CREOSOTE.get(COKE_COOK_CREOSOTE * 9), COKE_COOK_TIME * 9);
+            RailcraftCraftingManager.cokeOven.addRecipe(
+                    new ItemStack(Blocks.coal_block),
+                    false,
+                    false,
+                    EnumCube.COKE_BLOCK.getItem(),
+                    Fluids.CREOSOTE.get(COKE_COOK_CREOSOTE * 9),
+                    COKE_COOK_TIME * 9);
 
         if (Fluids.CREOSOTE.get() != null && RailcraftConfig.creosoteTorchOutput() > 0) {
             FluidStack creosote = Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME);
             for (ItemStack container : FluidHelper.getContainersFilledWith(creosote)) {
-                CraftingPlugin.addShapedRecipe(new ItemStack(Blocks.torch, RailcraftConfig.creosoteTorchOutput()),
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(Blocks.torch, RailcraftConfig.creosoteTorchOutput()),
                         "C",
                         "W",
                         "S",
-                        'C', container,
-                        'W', Blocks.wool,
-                        'S', "stickWood");
+                        'C',
+                        container,
+                        'W',
+                        Blocks.wool,
+                        'S',
+                        "stickWood");
             }
-            ForestryPlugin.instance().addCarpenterRecipe("torches", 10, Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), null, new ItemStack(Blocks.torch, RailcraftConfig.creosoteTorchOutput()),
-                    "#",
-                    "|",
-                    '#', Blocks.wool,
-                    '|', Items.stick);
+            ForestryPlugin.instance()
+                    .addCarpenterRecipe(
+                            "torches",
+                            10,
+                            Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME),
+                            null,
+                            new ItemStack(Blocks.torch, RailcraftConfig.creosoteTorchOutput()),
+                            "#",
+                            "|",
+                            '#',
+                            Blocks.wool,
+                            '|',
+                            Items.stick);
         }
     }
 
     @Override
     public void postInit() {
-        if (OreDictionary.getOres("blockSteel").isEmpty())
-            OreDictionary.registerOre("blockSteel", Blocks.iron_block);
+        if (OreDictionary.getOres("blockSteel").isEmpty()) OreDictionary.registerOre("blockSteel", Blocks.iron_block);
 
-        if (!EnumMachineAlpha.BLAST_FURNACE.isAvaliable())
-            registerAltSteelFurnaceRecipe();
+        if (!EnumMachineAlpha.BLAST_FURNACE.isAvaliable()) registerAltSteelFurnaceRecipe();
 
         List<ItemStack> logs = new ArrayList<ItemStack>(25);
         logs.addAll(OreDictionary.getOres("logWood"));
         logs.addAll(OreDictionary.getOres("woodRubber"));
         for (ItemStack log : logs) {
-            RailcraftCraftingManager.cokeOven.addRecipe(log, true, false, new ItemStack(Items.coal, 1, 1), Fluids.CREOSOTE.get(250), COKE_COOK_TIME);
+            RailcraftCraftingManager.cokeOven.addRecipe(
+                    log, true, false, new ItemStack(Items.coal, 1, 1), Fluids.CREOSOTE.get(250), COKE_COOK_TIME);
             RailcraftCraftingManager.blastFurnace.addRecipe(log, false, false, 20, new ItemStack(Items.coal, 1, 1));
         }
 
@@ -314,7 +334,14 @@ public class ModuleFactory extends RailcraftModule {
             ItemStack crushedUranium = IC2Plugin.getItem(classic ? "uraniumDrop" : "crushedUraniumOre");
 
             if (!RailcraftConfig.getRecipeConfig("ic2.macerator.ores"))
-                IC2Plugin.removeMaceratorDustRecipes(crushedIron, crushedGold, crushedCopper, crushedTin, crushedSilver, crushedLead, crushedUranium);
+                IC2Plugin.removeMaceratorDustRecipes(
+                        crushedIron,
+                        crushedGold,
+                        crushedCopper,
+                        crushedTin,
+                        crushedSilver,
+                        crushedLead,
+                        crushedUranium);
 
             if (!RailcraftConfig.getRecipeConfig("ic2.macerator.bones"))
                 IC2Plugin.removeMaceratorRecipes(new ItemStack(Items.dye, 1, 15));
@@ -329,9 +356,16 @@ public class ModuleFactory extends RailcraftModule {
                 IC2Plugin.removeMaceratorRecipes(new ItemStack(Blocks.dirt));
         }
 
-        ForestryPlugin.instance().addCarpenterRecipe("ties", 40, Fluids.CREOSOTE.get(750), null, RailcraftItem.tie.getStack(1, EnumTie.WOOD),
-                "###",
-                '#', "slabWood");
+        ForestryPlugin.instance()
+                .addCarpenterRecipe(
+                        "ties",
+                        40,
+                        Fluids.CREOSOTE.get(750),
+                        null,
+                        RailcraftItem.tie.getStack(1, EnumTie.WOOD),
+                        "###",
+                        '#',
+                        "slabWood");
     }
 
     @Override
@@ -342,11 +376,7 @@ public class ModuleFactory extends RailcraftModule {
 
     private void initMetalBlock(Metal m) {
         OreDictionary.registerOre(m.getBlockTag(), m.getBlock());
-        CraftingPlugin.addShapedRecipe(m.getBlock(),
-                "III",
-                "III",
-                "III",
-                'I', m.getIngotTag());
+        CraftingPlugin.addShapedRecipe(m.getBlock(), "III", "III", "III", 'I', m.getIngotTag());
         CraftingPlugin.addShapelessRecipe(m.getIngot(9), m.getBlockTag());
     }
 }

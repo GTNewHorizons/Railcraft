@@ -13,5 +13,6 @@ package mods.railcraft.api.signals;
  */
 public interface ISignalPacketBuilder {
     void sendPairPacketUpdate(AbstractPair pairing);
+
     void sendPairPacketRequest(AbstractPair pairing);
 }

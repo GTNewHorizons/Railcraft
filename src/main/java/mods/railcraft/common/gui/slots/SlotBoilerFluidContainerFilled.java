@@ -12,13 +12,10 @@ public class SlotBoilerFluidContainerFilled extends SlotFluidContainerFilled {
     public SlotBoilerFluidContainerFilled(IInventory iinventory, int slotIndex, int posX, int posY) {
         super(iinventory, slotIndex, posX, posY);
     }
-    
-        
+
     @Override
-    public boolean isItemValid(ItemStack itemstack)
-    {   
+    public boolean isItemValid(ItemStack itemstack) {
         Fluid fluid = FluidItemHelper.getFluidInContainer(itemstack);
         return super.isItemValid(itemstack) && (FuelManager.getBoilerFuelValue(fluid) > 0 || Fluids.WATER.is(fluid));
     }
-    
 }

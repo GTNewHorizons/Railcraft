@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -34,11 +34,9 @@ public class CraftingHandler {
             ItemStack stack = craftMatrix.getStackInSlot(i);
             if (stack != null) {
                 count++;
-                if (stack.getItem() == ItemFirestoneCracked.item)
-                    craftMatrix.setInventorySlotContents(i, null);
+                if (stack.getItem() == ItemFirestoneCracked.item) craftMatrix.setInventorySlotContents(i, null);
                 ICartType cartType = EnumCart.getCartType(stack);
-                if (cartType != null && cartType != EnumCart.BASIC)
-                    cartItem = stack;
+                if (cartType != null && cartType != EnumCart.BASIC) cartItem = stack;
             }
         }
         if (cartItem != null) {
@@ -46,7 +44,8 @@ public class CraftingHandler {
             if (type != null && EnumCart.getCartType(result) == EnumCart.getCartType(cartItem)) {
                 ItemStack filterItem = EntityCartFiltered.getFilterFromCartItem(result);
                 if (filterItem != null)
-                    for (IInvSlot slot : InventoryIterator.getIterable(craftMatrix).notNull()) {
+                    for (IInvSlot slot :
+                            InventoryIterator.getIterable(craftMatrix).notNull()) {
                         ItemStack stack = slot.getStackInSlot();
                         if (InvTools.isItemEqual(stack, filterItem)) {
                             if (cartItem.stackSize == 1) {
@@ -69,5 +68,4 @@ public class CraftingHandler {
             }
         }
     }
-
 }

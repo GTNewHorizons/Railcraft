@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,7 +9,6 @@
 package mods.railcraft.client.render;
 
 import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
-import mods.railcraft.api.tracks.ITrackSwitch;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -71,15 +70,15 @@ public class RenderSwitch implements ICombinedRenderer {
             info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
             RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
         }
-//        if (type == EnumSignal.SWITCH_ROUTING) {
-//            if (facing == 2 || facing == 3) {
-//                info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
-//                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
-//            } else {
-//                info.setBlockBounds(5.99F * PIX, 0.0F, 2F * PIX, 10.01F * PIX, 3.01F * PIX, 1.0F);
-//                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
-//            }
-//        }
+        //        if (type == EnumSignal.SWITCH_ROUTING) {
+        //            if (facing == 2 || facing == 3) {
+        //                info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
+        //                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
+        //            } else {
+        //                info.setBlockBounds(5.99F * PIX, 0.0F, 2F * PIX, 10.01F * PIX, 3.01F * PIX, 1.0F);
+        //                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
+        //            }
+        //        }
 
         // Targets
 
@@ -91,7 +90,6 @@ public class RenderSwitch implements ICombinedRenderer {
             return;
         }
 
-
         setTextureWhite();
         ArrowDirection whiteArrow = tile.getWhiteArrowRenderState();
         renderTarget(whiteArrow, renderblocks, world, x, y, z);
@@ -100,8 +98,7 @@ public class RenderSwitch implements ICombinedRenderer {
         ArrowDirection redArrow = tile.getRedArrowRenderState();
         renderTarget(redArrow, renderblocks, world, x, y, z);
 
-        if (type == EnumSignal.SWITCH_LEVER)
-            renderLever(x, y, z, facing, powered);
+        if (type == EnumSignal.SWITCH_LEVER) renderLever(x, y, z, facing, powered);
     }
 
     private void setTextureCore() {
@@ -163,12 +160,9 @@ public class RenderSwitch implements ICombinedRenderer {
 
             vertices[i].xCoord += pix * 6;
 
-            if (facing == 2)
-                vertices[i].rotateAroundY(((float) Math.PI / 2F) * 3);
-            else if (facing == 3)
-                vertices[i].rotateAroundY(((float) Math.PI / 2F) * 1);
-            else if (facing == 5)
-                vertices[i].rotateAroundY(((float) Math.PI / 2F) * 2);
+            if (facing == 2) vertices[i].rotateAroundY(((float) Math.PI / 2F) * 3);
+            else if (facing == 3) vertices[i].rotateAroundY(((float) Math.PI / 2F) * 1);
+            else if (facing == 5) vertices[i].rotateAroundY(((float) Math.PI / 2F) * 2);
 
             vertices[i].xCoord += x + 0.5;
             vertices[i].yCoord += y + 0.125;
@@ -183,8 +177,7 @@ public class RenderSwitch implements ICombinedRenderer {
         double maxV = icon.getInterpolatedV(8.0D);
 
         for (int side = 0; side < 6; ++side) {
-            if (side == 2)
-                maxV = icon.getMaxV();
+            if (side == 2) maxV = icon.getMaxV();
 
             if (side == 0) {
                 vertex1 = vertices[0];
@@ -225,7 +218,8 @@ public class RenderSwitch implements ICombinedRenderer {
         }
     }
 
-    private void renderTarget(ArrowDirection arrow, RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z) {
+    private void renderTarget(
+            ArrowDirection arrow, RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z) {
         switch (arrow) {
             case NORTH:
                 renderTargetNorth(renderblocks, world, x, y, z);
@@ -372,5 +366,4 @@ public class RenderSwitch implements ICombinedRenderer {
             tess.draw();
         }
     }
-
 }

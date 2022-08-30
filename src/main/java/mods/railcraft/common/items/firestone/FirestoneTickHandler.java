@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -37,16 +37,15 @@ public class FirestoneTickHandler {
         if (stack.getItem() == ItemFirestoneRaw.item) return true;
         if (stack.getItem() == ItemFirestoneCut.item) return true;
         if (stack.getItem() == ItemFirestoneCracked.item) return true;
-        return InvTools.isStackEqualToBlock(stack, BlockOre.getBlock()) && stack.getItemDamage() == EnumOre.FIRESTONE.ordinal();
+        return InvTools.isStackEqualToBlock(stack, BlockOre.getBlock())
+                && stack.getItemDamage() == EnumOre.FIRESTONE.ordinal();
     }
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event) {
-        if (event.side == Side.CLIENT)
-            return;
+        if (event.side == Side.CLIENT) return;
         clock++;
-        if (clock % 4 != 0)
-            return;
+        if (clock % 4 != 0) return;
         EntityPlayer player = (EntityPlayer) event.player;
         if (player.openContainer != player.inventoryContainer) return;
         for (ItemStack stack : player.inventory.mainInventory) {
@@ -67,30 +66,24 @@ public class FirestoneTickHandler {
         int y = (int) Math.round(player.posY) - 5 + rnd.nextInt(12);
         int z = (int) Math.round(player.posZ) - 5 + rnd.nextInt(12);
 
-        if (y < 1)
-            y = 1;
-        if (y > player.worldObj.getActualHeight())
-            y = player.worldObj.getActualHeight() - 2;
+        if (y < 1) y = 1;
+        if (y > player.worldObj.getActualHeight()) y = player.worldObj.getActualHeight() - 2;
 
-        if (canBurn(player.worldObj, x, y, z))
-            return player.worldObj.setBlock(x, y, z, Blocks.fire);
+        if (canBurn(player.worldObj, x, y, z)) return player.worldObj.setBlock(x, y, z, Blocks.fire);
         return false;
     }
 
     private boolean canBurn(World world, int x, int y, int z) {
-        if (world.getBlock(x, y, z) != Blocks.air)
-            return false;
+        if (world.getBlock(x, y, z) != Blocks.air) return false;
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
             int sx = MiscTools.getXOnSide(x, side);
             int sy = MiscTools.getYOnSide(y, side);
             int sz = MiscTools.getZOnSide(z, side);
             if (!world.isAirBlock(sx, sy, sz)) {
                 Block block = WorldPlugin.getBlock(world, sx, sy, sz);
-                if (block != Blocks.fire)
-                    return true;
+                if (block != Blocks.fire) return true;
             }
         }
         return false;
     }
-
 }

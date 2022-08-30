@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,14 @@
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
+import static net.minecraftforge.common.util.ForgeDirection.DOWN;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+
 import buildcraft.api.statements.IActionExternal;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.*;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -47,60 +54,59 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.*;
-
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
-public class TileSteamOven extends TileMultiBlockInventory implements IFluidHandler, ISidedInventory, ISteamUser, IHasWork {
+public class TileSteamOven extends TileMultiBlockInventory
+        implements IFluidHandler, ISidedInventory, ISteamUser, IHasWork {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 9;
-    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[]{UP, DOWN};
+    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] {UP, DOWN};
     private static final int STEAM_PER_BATCH = 8000;
     private static final int TOTAL_COOK_TIME = 256;
     private static final int COOK_STEP = 16;
     private static final int ITEMS_SMELTED = 9;
-    private static final int[] SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    private static final int[] SLOTS = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
     private static final int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
-    private final static List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
+    private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final TankManager tankManager = new TankManager();
     private final StandardTank tank;
     private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 9);
     private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 9, false);
     private final Set<IActionExternal> actions = new HashSet<IActionExternal>();
+
     static {
         char[][][] map = {
-                {
-                        {'*', 'O', 'O', '*'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'*', 'O', 'O', '*'},},
-                {
-                        {'*', 'O', 'O', '*'},
-                        {'O', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'O'},
-                        {'*', 'O', 'O', '*'}
-                },
-                {
-                        {'*', 'O', 'O', '*'},
-                        {'O', 'B', 'B', 'O'},
-                        {'O', 'B', 'B', 'O'},
-                        {'*', 'O', 'O', '*'}
-                },
-                {
-                        {'*', 'O', 'O', '*'},
-                        {'O', 'O', 'O', 'O'},
-                        {'O', 'O', 'O', 'O'},
-                        {'*', 'O', 'O', '*'},},};
+            {
+                {'*', 'O', 'O', '*'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'*', 'O', 'O', '*'},
+            },
+            {
+                {'*', 'O', 'O', '*'},
+                {'O', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'O'},
+                {'*', 'O', 'O', '*'}
+            },
+            {
+                {'*', 'O', 'O', '*'},
+                {'O', 'B', 'B', 'O'},
+                {'O', 'B', 'B', 'O'},
+                {'*', 'O', 'O', '*'}
+            },
+            {
+                {'*', 'O', 'O', '*'},
+                {'O', 'O', 'O', 'O'},
+                {'O', 'O', 'O', 'O'},
+                {'*', 'O', 'O', '*'},
+            },
+        };
         patterns.add(new MultiBlockPattern(map));
     }
+
     public int cookTime;
     public boolean finishedCycle = false;
     private ForgeDirection facing = ForgeDirection.NORTH;
     private boolean paused = false;
+
     public TileSteamOven() {
         super("railcraft.gui.steam.oven", 18, patterns);
         tank = new FilteredTank(TANK_CAPACITY, Fluids.STEAM.get(), this);
@@ -111,7 +117,8 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
         for (MultiBlockPattern pattern : TileSteamOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
             blockMapping.put('B', EnumMachineAlpha.STEAM_OVEN.ordinal());
-            TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            TileEntity tile =
+                    pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
             if (tile instanceof TileSteamOven) {
                 TileSteamOven master = (TileSteamOven) tile;
                 for (int slot = 0; slot < 9; slot++) {
@@ -132,8 +139,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
 
     public TankManager getTankManager() {
         TileSteamOven mBlock = (TileSteamOven) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.tankManager;
+        if (mBlock != null) return mBlock.tankManager;
         return null;
     }
 
@@ -143,43 +149,34 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
             switch (side) {
                 case 2:
                     if (getPatternPositionY() == 2) {
-                        if (getPatternPositionX() == 2)
-                            return Texture.DOOR_TL.getIcon();
+                        if (getPatternPositionX() == 2) return Texture.DOOR_TL.getIcon();
                         return Texture.DOOR_TR.getIcon();
                     }
-                    if (getPatternPositionX() == 2)
-                        return Texture.DOOR_BL.getIcon();
+                    if (getPatternPositionX() == 2) return Texture.DOOR_BL.getIcon();
                     return Texture.DOOR_BR.getIcon();
                 case 3:
                     if (getPatternPositionY() == 2) {
-                        if (getPatternPositionX() == 1)
-                            return Texture.DOOR_TL.getIcon();
+                        if (getPatternPositionX() == 1) return Texture.DOOR_TL.getIcon();
                         return Texture.DOOR_TR.getIcon();
                     }
-                    if (getPatternPositionX() == 1)
-                        return Texture.DOOR_BL.getIcon();
+                    if (getPatternPositionX() == 1) return Texture.DOOR_BL.getIcon();
                     return Texture.DOOR_BR.getIcon();
                 case 4:
                     if (getPatternPositionY() == 2) {
-                        if (getPatternPositionZ() == 1)
-                            return Texture.DOOR_TL.getIcon();
+                        if (getPatternPositionZ() == 1) return Texture.DOOR_TL.getIcon();
                         return Texture.DOOR_TR.getIcon();
                     }
-                    if (getPatternPositionZ() == 1)
-                        return Texture.DOOR_BL.getIcon();
+                    if (getPatternPositionZ() == 1) return Texture.DOOR_BL.getIcon();
                     return Texture.DOOR_BR.getIcon();
                 case 5:
                     if (getPatternPositionY() == 2) {
-                        if (getPatternPositionZ() == 2)
-                            return Texture.DOOR_TL.getIcon();
+                        if (getPatternPositionZ() == 2) return Texture.DOOR_TL.getIcon();
                         return Texture.DOOR_TR.getIcon();
                     }
-                    if (getPatternPositionZ() == 2)
-                        return Texture.DOOR_BL.getIcon();
+                    if (getPatternPositionZ() == 2) return Texture.DOOR_BL.getIcon();
                     return Texture.DOOR_BR.getIcon();
             }
-        if (side > 1)
-            return Texture.SIDE.getIcon();
+        if (side > 1) return Texture.SIDE.getIcon();
         return Texture.CAP.getIcon();
     }
 
@@ -192,15 +189,13 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
 
     public int getCookTime() {
         TileSteamOven masterOven = (TileSteamOven) getMasterBlock();
-        if (masterOven != null)
-            return masterOven.cookTime;
+        if (masterOven != null) return masterOven.cookTime;
         return -1;
     }
 
     public ForgeDirection getFacing() {
         TileSteamOven masterOven = (TileSteamOven) getMasterBlock();
-        if (masterOven != null)
-            return masterOven.facing;
+        if (masterOven != null) return masterOven.facing;
         return facing;
     }
 
@@ -221,31 +216,29 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
         super.updateEntity();
 
         if (Game.isNotHost(getWorld())) {
-            if (hasFinishedCycle())
-                EffectManager.instance.steamEffect(worldObj, this, +0.25);
+            if (hasFinishedCycle()) EffectManager.instance.steamEffect(worldObj, this, +0.25);
             return;
         }
 
         if (isMaster()) {
-            if (clock % 16 == 0)
-                processActions();
+            if (clock % 16 == 0) processActions();
             if (clock % COOK_STEP == 0) {
                 setHasFinishedCycle(false);
                 if (!paused)
                     if (hasRecipe()) {
-                        if (cookTime <= 0 && drainSteam())
-                            cookTime = 1;
+                        if (cookTime <= 0 && drainSteam()) cookTime = 1;
                         else if (cookTime > 0) {
                             cookTime += COOK_STEP;
                             if (cookTime >= TOTAL_COOK_TIME)
                                 if (smeltItems()) {
                                     cookTime = 0;
                                     setHasFinishedCycle(true);
-                                    SoundHelper.playSound(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 1, (float) (1 + MiscTools.getRand().nextGaussian() * 0.1));
+                                    SoundHelper.playSound(
+                                            worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 1, (float)
+                                                    (1 + MiscTools.getRand().nextGaussian() * 0.1));
                                 }
                         }
-                    } else
-                        cookTime = 0;
+                    } else cookTime = 0;
             }
         }
     }
@@ -262,8 +255,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
     private boolean hasRecipe() {
         for (int slot = 0; slot < 9; slot++) {
             ItemStack stack = invInput.getStackInSlot(slot);
-            if (stack != null && FurnaceRecipes.smelting().getSmeltingResult(stack) != null)
-                return true;
+            if (stack != null && FurnaceRecipes.smelting().getSmeltingResult(stack) != null) return true;
         }
         return false;
     }
@@ -301,14 +293,11 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (axis == UP || axis == DOWN)
-            return false;
+        if (axis == UP || axis == DOWN) return false;
         TileSteamOven master = (TileSteamOven) getMasterBlock();
         if (master != null) {
-            if (master.facing == axis)
-                master.facing = axis.getOpposite();
-            else
-                master.facing = axis;
+            if (master.facing == axis) master.facing = axis.getOpposite();
+            else master.facing = axis;
             master.scheduleMasterRetest();
             return true;
         }
@@ -324,7 +313,8 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
     public boolean openGui(EntityPlayer player) {
         TileMultiBlock masterBlock = getMasterBlock();
         if (masterBlock != null) {
-            GuiHandler.openGui(EnumGui.STEAN_OVEN, player, worldObj, masterBlock.xCoord, masterBlock.yCoord, masterBlock.zCoord);
+            GuiHandler.openGui(
+                    EnumGui.STEAN_OVEN, player, worldObj, masterBlock.xCoord, masterBlock.yCoord, masterBlock.zCoord);
             return true;
         }
         return false;
@@ -368,8 +358,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         if (resource == null) return 0;
         TankManager tMan = getTankManager();
-        if (tMan == null)
-            return 0;
+        if (tMan == null) return 0;
         return tMan.fill(0, resource, doFill);
     }
 
@@ -396,8 +385,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection dir) {
         TankManager tMan = getTankManager();
-        if (tMan != null)
-            return tMan.getTankInfo();
+        if (tMan != null) return tMan.getTankInfo();
         return FakeTank.INFO;
     }
 
@@ -418,28 +406,23 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (!super.isItemValidForSlot(slot, stack))
-            return false;
-        if (stack == null)
-            return false;
-        if (slot >= SLOT_OUTPUT)
-            return false;
+        if (!super.isItemValidForSlot(slot, stack)) return false;
+        if (stack == null) return false;
+        if (slot >= SLOT_OUTPUT) return false;
         return FurnaceRecipes.smelting().getSmeltingResult(stack) != null;
     }
 
     @Override
     public boolean hasWork() {
         TileSteamOven mBlock = (TileSteamOven) getMasterBlock();
-        if (mBlock != null)
-            return mBlock.cookTime > 0;
+        if (mBlock != null) return mBlock.cookTime > 0;
         return false;
     }
 
     private void processActions() {
         paused = false;
         for (IActionExternal action : actions) {
-            if (action == Actions.PAUSE)
-                paused = true;
+            if (action == Actions.PAUSE) paused = true;
         }
         actions.clear();
     }
@@ -447,13 +430,16 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
     @Override
     public void actionActivated(IActionExternal action) {
         TileSteamOven mBlock = (TileSteamOven) getMasterBlock();
-        if (mBlock != null)
-            mBlock.actions.add(action);
+        if (mBlock != null) mBlock.actions.add(action);
     }
 
     enum Texture {
-
-        DOOR_TL(6), DOOR_TR(7), DOOR_BL(8), DOOR_BR(9), SIDE(2), CAP(0);
+        DOOR_TL(6),
+        DOOR_TR(7),
+        DOOR_BL(8),
+        DOOR_BR(9),
+        SIDE(2),
+        CAP(0);
         private final int index;
 
         private Texture(int index) {
@@ -463,6 +449,5 @@ public class TileSteamOven extends TileMultiBlockInventory implements IFluidHand
         public IIcon getIcon() {
             return EnumMachineAlpha.STEAM_OVEN.getTexture(index);
         }
-
     }
 }

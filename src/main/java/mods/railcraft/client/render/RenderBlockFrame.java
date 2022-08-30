@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -27,7 +27,8 @@ public class RenderBlockFrame extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         BlockFrame.flipTextures = true;
         renderblocks.setRenderBounds(0.999, 0.999, 0.999, 0.001, 0.001, 0.001);
         renderblocks.renderStandardBlock(block, x, y, z);
@@ -53,5 +54,4 @@ public class RenderBlockFrame extends BlockRenderer {
 
         GL11.glPopAttrib();
     }
-
 }

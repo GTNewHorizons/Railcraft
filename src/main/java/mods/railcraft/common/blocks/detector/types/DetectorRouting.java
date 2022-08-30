@@ -1,12 +1,14 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
  * license page at http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
+
+import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 import java.util.List;
 import mods.railcraft.api.carts.CartTools;
@@ -29,8 +31,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
-
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -49,9 +49,9 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
         public String getInventoryName() {
             return tile.getName();
         }
-
     });
-    private final MultiButtonController<RoutingButtonState> routingController = new MultiButtonController<RoutingButtonState>(0, RoutingButtonState.values());
+    private final MultiButtonController<RoutingButtonState> routingController =
+            new MultiButtonController<RoutingButtonState>(0, RoutingButtonState.values());
     private boolean powered;
 
     @Override
@@ -73,7 +73,8 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
                 copy.stackSize = 1;
                 inv.setInventorySlotContents(0, copy);
                 if (!player.capabilities.isCreativeMode) {
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, InvTools.depleteItem(current));
+                    player.inventory.setInventorySlotContents(
+                            player.inventory.currentItem, InvTools.depleteItem(current));
                     player.inventory.markDirty();
                 }
                 return true;
@@ -96,14 +97,11 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
 
     @Override
     public int testCarts(List<EntityMinecart> carts) {
-        if (logic == null || !logic.isValid())
-            return NO_POWER;
+        if (logic == null || !logic.isValid()) return NO_POWER;
         for (EntityMinecart cart : carts) {
             if (routingController.getButtonState() == RoutingButtonState.PRIVATE)
-                if (!getOwner().equals(CartTools.getCartOwner(cart)))
-                    continue;
-            if (logic.matches(this, cart))
-                return FULL_POWER;
+                if (!getOwner().equals(CartTools.getCartOwner(cart))) continue;
+            if (logic.matches(this, cart)) return FULL_POWER;
         }
         return NO_POWER;
     }
@@ -142,8 +140,7 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
     }
 
     private void refreshLogic() {
-        if (logic == null && inv.getStackInSlot(0) != null)
-            logic = ItemRoutingTable.getLogic(inv.getStackInSlot(0));
+        if (logic == null && inv.getStackInSlot(0) != null) logic = ItemRoutingTable.getLogic(inv.getStackInSlot(0));
     }
 
     @Override
@@ -164,5 +161,4 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
     public IInventory getInventory() {
         return inv;
     }
-
 }

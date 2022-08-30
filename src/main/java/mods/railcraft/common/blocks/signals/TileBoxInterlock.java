@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,7 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.api.signals.*;
-import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import static net.minecraftforge.common.util.ForgeDirection.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,8 +17,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-
-import static net.minecraftforge.common.util.ForgeDirection.*;
+import mods.railcraft.api.signals.*;
+import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IReceiverTile, IAspectProvider {
     private static final ForgeDirection[] SIDES = {NORTH, WEST, SOUTH, EAST};
@@ -31,8 +30,7 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
     private Interlock interlock = new Interlock(this);
     private SignalAspect overrideAspect = SignalAspect.RED;
 
-    public TileBoxInterlock() {
-    }
+    public TileBoxInterlock() {}
 
     @Override
     public EnumSignal getSignalType() {
@@ -40,8 +38,7 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
     }
 
     @Override
-    public void onControllerAspectChange(SignalController con, SignalAspect aspect) {
-    }
+    public void onControllerAspectChange(SignalController con, SignalAspect aspect) {}
 
     @Override
     public void updateEntity() {
@@ -62,15 +59,11 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
         interlock.tick(this);
 
         SignalAspect prevAspect = controller.getAspect();
-        if (receiver.isBeingPaired() || controller.isBeingPaired())
-            controller.setAspect(SignalAspect.BLINK_YELLOW);
-        else if (controller.isPaired() && receiver.isPaired())
-            controller.setAspect(determineAspect());
-        else
-            controller.setAspect(SignalAspect.BLINK_RED);
+        if (receiver.isBeingPaired() || controller.isBeingPaired()) controller.setAspect(SignalAspect.BLINK_YELLOW);
+        else if (controller.isPaired() && receiver.isPaired()) controller.setAspect(determineAspect());
+        else controller.setAspect(SignalAspect.BLINK_RED);
 
-        if (prevAspect != controller.getAspect())
-            sendUpdateToClient();
+        if (prevAspect != controller.getAspect()) sendUpdateToClient();
     }
 
     private void mergeInterlocks() {
@@ -94,7 +87,8 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
             if (t instanceof TileBoxBase) {
                 TileBoxBase tile = (TileBoxBase) t;
                 if (tile.canTransferAspect())
-                    newAspect = SignalAspect.mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
+                    newAspect =
+                            SignalAspect.mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
             }
         }
         return newAspect;
@@ -144,10 +138,8 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
     @Override
     public boolean isConnected(ForgeDirection side) {
         TileEntity tile = tileCache.getTileOnSide(side);
-        if (tile instanceof TileBoxInterlock)
-            return true;
-        if (tile instanceof TileBoxBase)
-            return ((TileBoxBase) tile).canTransferAspect();
+        if (tile instanceof TileBoxInterlock) return true;
+        if (tile instanceof TileBoxBase) return ((TileBoxBase) tile).canTransferAspect();
         return false;
     }
 
@@ -195,12 +187,9 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
 
         @Override
         public int compare(TileBoxInterlock o1, TileBoxInterlock o2) {
-            if (o1.xCoord != o2.xCoord)
-                return o1.xCoord - o2.xCoord;
-            if (o1.zCoord != o2.zCoord)
-                return o1.zCoord - o2.zCoord;
-            if (o1.yCoord != o2.yCoord)
-                return o1.yCoord - o2.yCoord;
+            if (o1.xCoord != o2.xCoord) return o1.xCoord - o2.xCoord;
+            if (o1.zCoord != o2.zCoord) return o1.zCoord - o2.zCoord;
+            if (o1.yCoord != o2.yCoord) return o1.yCoord - o2.yCoord;
             return 0;
         }
     }
@@ -235,8 +224,7 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
                 delay++;
                 return;
             }
-            if (active != null && active.isInvalid())
-                active = null;
+            if (active != null && active.isInvalid()) active = null;
             if (active == null && !lockRequests.isEmpty() && interlocks.first() == host) {
                 active = lockRequests.last();
                 lockRequests.clear();
@@ -244,10 +232,8 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
         }
 
         public void requestLock(TileBoxInterlock host, boolean request) {
-            if (request)
-                lockRequests.add(host);
-            else if (active == host)
-                active = null;
+            if (request) lockRequests.add(host);
+            else if (active == host) active = null;
         }
 
         public SignalAspect getAspect(TileBoxInterlock host, SignalAspect requestedAspect) {

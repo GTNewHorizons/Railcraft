@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -22,7 +22,6 @@ public abstract class IndicatorController implements IIndicatorController {
         public void refresh() {
             refreshToolTip();
         }
-
     };
     protected ToolTipLine tip = new ToolTipLine();
 
@@ -30,12 +29,10 @@ public abstract class IndicatorController implements IIndicatorController {
         tips.add(tip);
     }
 
-    protected void refreshToolTip() {
-    }
+    protected void refreshToolTip() {}
 
     @Override
     public final ToolTip getToolTip() {
         return tips;
     }
-
 }

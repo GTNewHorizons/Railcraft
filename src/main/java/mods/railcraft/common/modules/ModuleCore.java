@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,6 +13,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.api.fuel.FuelManager;
@@ -31,8 +35,8 @@ import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
 import mods.railcraft.common.carts.*;
-import mods.railcraft.common.commands.CommandDebug;
 import mods.railcraft.common.commands.CommandAdmin;
+import mods.railcraft.common.commands.CommandDebug;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.*;
@@ -70,21 +74,14 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.apache.logging.log4j.Level;
 
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
 public class ModuleCore extends RailcraftModule {
     public static void addLiquidFuels() {
         int bioheat = (int) (16000 * RailcraftConfig.boilerBiofuelMultiplier());
         Fluid ethanol = Fluids.BIOETHANOL.get();
-        if (ethanol != null)
-            FuelManager.addBoilerFuel(ethanol, bioheat); // Biofuel
+        if (ethanol != null) FuelManager.addBoilerFuel(ethanol, bioheat); // Biofuel
 
         Fluid biofuel = Fluids.BIOFUEL.get();
-        if (biofuel != null)
-            FuelManager.addBoilerFuel(biofuel, bioheat); // Biofuel
+        if (biofuel != null) FuelManager.addBoilerFuel(biofuel, bioheat); // Biofuel
 
         Fluid fuel = Fluids.FUEL.get();
         if (fuel != null)
@@ -92,15 +89,16 @@ public class ModuleCore extends RailcraftModule {
 
         Fluid coal = Fluids.COAL.get();
         if (coal != null)
-            FuelManager.addBoilerFuel(coal, (int) (32000 * RailcraftConfig.boilerFuelMultiplier())); // Liquefaction Coal
+            FuelManager.addBoilerFuel(
+                    coal, (int) (32000 * RailcraftConfig.boilerFuelMultiplier())); // Liquefaction Coal
 
         Fluid pyrotheum = Fluids.PYROTHEUM.get();
         if (pyrotheum != null)
-            FuelManager.addBoilerFuel(pyrotheum, (int) (64000 * RailcraftConfig.boilerFuelMultiplier())); // Blazing Pyrotheum
+            FuelManager.addBoilerFuel(
+                    pyrotheum, (int) (64000 * RailcraftConfig.boilerFuelMultiplier())); // Blazing Pyrotheum
 
         Fluid creosote = Fluids.CREOSOTE.get();
-        if (creosote != null)
-            FuelManager.addBoilerFuel(creosote, 4800); // Creosote
+        if (creosote != null) FuelManager.addBoilerFuel(creosote, 4800); // Creosote
     }
 
     @Override
@@ -127,11 +125,31 @@ public class ModuleCore extends RailcraftModule {
 
         EntityItemFireproof.register();
 
-        RecipeSorter.register("railcraft:rotor.repair", RotorRepairRecipe.class, RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
-        RecipeSorter.register("railcraft:locomotive.painting", LocomotivePaintingRecipe.class, RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
-        RecipeSorter.register("railcraft:routing.table.copy", RoutingTableCopyRecipe.class, RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
-        RecipeSorter.register("railcraft:routing.ticket.copy", RoutingTicketCopyRecipe.class, RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
-        RecipeSorter.register("railcraft:cart.filter", CartFilterRecipe.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
+        RecipeSorter.register(
+                "railcraft:rotor.repair",
+                RotorRepairRecipe.class,
+                RecipeSorter.Category.SHAPED,
+                "after:minecraft:shaped");
+        RecipeSorter.register(
+                "railcraft:locomotive.painting",
+                LocomotivePaintingRecipe.class,
+                RecipeSorter.Category.SHAPED,
+                "after:minecraft:shaped");
+        RecipeSorter.register(
+                "railcraft:routing.table.copy",
+                RoutingTableCopyRecipe.class,
+                RecipeSorter.Category.SHAPED,
+                "after:minecraft:shaped");
+        RecipeSorter.register(
+                "railcraft:routing.ticket.copy",
+                RoutingTicketCopyRecipe.class,
+                RecipeSorter.Category.SHAPED,
+                "after:minecraft:shaped");
+        RecipeSorter.register(
+                "railcraft:cart.filter",
+                CartFilterRecipe.class,
+                RecipeSorter.Category.SHAPELESS,
+                "after:minecraft:shapeless");
 
         OreDictionary.registerOre("chestWood", Blocks.chest);
         OreDictionary.registerOre("craftingTableWood", Blocks.crafting_table);
@@ -169,7 +187,9 @@ public class ModuleCore extends RailcraftModule {
 
         if (RailcraftConfig.useCollisionHandler()) {
             if (EntityMinecart.getCollisionHandler() != null)
-                Game.log(Level.WARN, "Existing Minecart Collision Handler detected, overwriting. Please check your configs to ensure this is desired behavior.");
+                Game.log(
+                        Level.WARN,
+                        "Existing Minecart Collision Handler detected, overwriting. Please check your configs to ensure this is desired behavior.");
             EntityMinecart.setCollisionHandler(MinecartHooks.getInstance());
         }
 
@@ -181,10 +201,9 @@ public class ModuleCore extends RailcraftModule {
             testSet.add(Item.getItemFromBlock(Blocks.activator_rail));
         }
 
-        if (RailcraftConfig.getRecipeConfig("railcraft.cart.furnace"))
-            testSet.add(Items.furnace_minecart);
+        if (RailcraftConfig.getRecipeConfig("railcraft.cart.furnace")) testSet.add(Items.furnace_minecart);
 
-//        MiscTools.addShapelessRecipe(new ItemStack(Item.coal, 20), Block.dirt);
+        //        MiscTools.addShapelessRecipe(new ItemStack(Item.coal, 20), Block.dirt);
         Iterator it = CraftingManager.getInstance().getRecipeList().iterator();
         while (it.hasNext()) {
             IRecipe r = (IRecipe) it.next();
@@ -193,9 +212,7 @@ public class ModuleCore extends RailcraftModule {
                 output = r.getRecipeOutput();
             } catch (Exception ex) {
             }
-            if (output != null)
-                if (testSet.contains(output.getItem()))
-                    it.remove();
+            if (output != null) if (testSet.contains(output.getItem())) it.remove();
         }
 
         // Items
@@ -226,18 +243,16 @@ public class ModuleCore extends RailcraftModule {
 
         // Define Recipes
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.bronze")) {
-            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart), false, new Object[]{
-                    "I I",
-                    "III",
-                    'I', "ingotBronze",});
+            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart), false, new Object[] {
+                "I I", "III", 'I', "ingotBronze",
+            });
             CraftingPlugin.addRecipe(recipe);
         }
 
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.steel")) {
-            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart, 2), false, new Object[]{
-                    "I I",
-                    "III",
-                    'I', "ingotSteel",});
+            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart, 2), false, new Object[] {
+                "I I", "III", 'I', "ingotSteel",
+            });
             CraftingPlugin.addRecipe(recipe);
         }
 
@@ -249,36 +264,53 @@ public class ModuleCore extends RailcraftModule {
             ItemStack stackRailActivator = new ItemStack(Blocks.activator_rail, 16);
 
             Object woodRailbed = RailcraftItem.railbed.getRecipeObject(EnumRailbed.WOOD);
-            CraftingPlugin.addShapedRecipe(stackRailNormal,
+            CraftingPlugin.addShapedRecipe(
+                    stackRailNormal,
                     "I I",
                     "I#I",
                     "I I",
-                    'I', RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
-                    '#', woodRailbed);
-            CraftingPlugin.addShapedRecipe(stackRailBooster,
+                    'I',
+                    RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
+                    '#',
+                    woodRailbed);
+            CraftingPlugin.addShapedRecipe(
+                    stackRailBooster,
                     "I I",
                     "I#I",
                     "IrI",
-                    'I', RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED),
-                    '#', woodRailbed,
-                    'r', "dustRedstone");
-            CraftingPlugin.addShapedRecipe(stackRailDetector,
+                    'I',
+                    RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED),
+                    '#',
+                    woodRailbed,
+                    'r',
+                    "dustRedstone");
+            CraftingPlugin.addShapedRecipe(
+                    stackRailDetector,
                     "IsI",
                     "I#I",
                     "IrI",
-                    'I', RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
-                    '#', Blocks.stone_pressure_plate,
-                    'r', "dustRedstone",
-                    's', woodRailbed);
-            CraftingPlugin.addShapedRecipe(stackRailActivator,
+                    'I',
+                    RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
+                    '#',
+                    Blocks.stone_pressure_plate,
+                    'r',
+                    "dustRedstone",
+                    's',
+                    woodRailbed);
+            CraftingPlugin.addShapedRecipe(
+                    stackRailActivator,
                     "ItI",
                     "I#I",
                     "ItI",
-                    'I', RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
-                    '#', woodRailbed,
-                    't', new ItemStack(Blocks.redstone_torch));
+                    'I',
+                    RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
+                    '#',
+                    woodRailbed,
+                    't',
+                    new ItemStack(Blocks.redstone_torch));
 
-            CraftingPlugin.addShapelessRecipe(RailcraftItem.rail.getStack(1, EnumRail.STANDARD),
+            CraftingPlugin.addShapelessRecipe(
+                    RailcraftItem.rail.getStack(1, EnumRail.STANDARD),
                     Blocks.rail,
                     Blocks.rail,
                     Blocks.rail,
@@ -295,7 +327,8 @@ public class ModuleCore extends RailcraftModule {
     private void replaceVanillaCart(EnumCart cartType, Item original, String entityTag, int entityId) {
         cartType.registerEntity();
 
-        Class<? extends EntityMinecart> minecartClass = (Class<? extends EntityMinecart>) EntityList.stringToClassMapping.remove(entityTag);
+        Class<? extends EntityMinecart> minecartClass =
+                (Class<? extends EntityMinecart>) EntityList.stringToClassMapping.remove(entityTag);
 
         CartUtils.classReplacements.put(minecartClass, cartType);
         CartUtils.vanillaCartItemMap.put(original, cartType);
@@ -312,19 +345,19 @@ public class ModuleCore extends RailcraftModule {
     @Override
     public void initSecond() {
         if (RailcraftConfig.useCreosoteFurnaceRecipes() || !EnumMachineAlpha.COKE_OVEN.isAvaliable()) {
-            FurnaceRecipes.smelting().func_151394_a(new ItemStack(Items.coal, 1, 0), FluidContainers.getCreosoteOilBottle(2), 0.0F);
-            FurnaceRecipes.smelting().func_151394_a(new ItemStack(Items.coal, 1, 1), FluidContainers.getCreosoteOilBottle(1), 0.0F);
+            FurnaceRecipes.smelting()
+                    .func_151394_a(new ItemStack(Items.coal, 1, 0), FluidContainers.getCreosoteOilBottle(2), 0.0F);
+            FurnaceRecipes.smelting()
+                    .func_151394_a(new ItemStack(Items.coal, 1, 1), FluidContainers.getCreosoteOilBottle(1), 0.0F);
         }
 
         // Finish initializing ItemRegistry
         for (EnumSignal type : EnumSignal.values()) {
-            if (type.isEnabled())
-                RailcraftRegistry.register(type.getItem());
+            if (type.isEnabled()) RailcraftRegistry.register(type.getItem());
         }
 
         for (EnumCube type : EnumCube.values()) {
-            if (type.isEnabled())
-                RailcraftRegistry.register(type.getItem());
+            if (type.isEnabled()) RailcraftRegistry.register(type.getItem());
         }
 
         Set<IEnumMachine> machines = new HashSet<IEnumMachine>();
@@ -335,8 +368,7 @@ public class ModuleCore extends RailcraftModule {
         machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));
 
         for (IEnumMachine machine : machines) {
-            if (machine.isAvaliable())
-                RailcraftRegistry.register(machine.getItem());
+            if (machine.isAvaliable()) RailcraftRegistry.register(machine.getItem());
         }
     }
 
@@ -351,42 +383,42 @@ public class ModuleCore extends RailcraftModule {
 
         FluidHelper.nerfWaterBottle();
 
-//----------------------------------------------
-// Boiler Test Setup
-// ---------------------------------------------
-//        StandardTank tankWater = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
-//        StandardTank tankSteam = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
-//        tankWater.setFluid(Fluids.WATER.get(tankWater.getCapacity()));
-//        SteamBoiler boiler = new SteamBoiler(tankWater, tankSteam);
-//        class TestProvider implements IFuelProvider {
-//
-//            public int fuel = 3200;
-//
-//            @Override
-//            public double getMoreFuel() {
-//                if (fuel > 0) {
-//                    fuel--;
-//                    return 1;
-//                }
-//                return 0;
-//            }
-//
-//            @Override
-//            public double getHeatStep() {
-//                return Steam.HEAT_STEP;
-//            }
-//
-//        }
-//        TestProvider provider = new TestProvider();
-//        boiler.setFuelProvider(provider);
-//        int ticks = 0;
-//        while (provider.fuel > 0 || boiler.burnTime > boiler.getFuelPerCycle(1) || boiler.getHeat() > 20) {
-//            boiler.tick(1);
-//            ticks++;
-//        }
-//        System.out.printf("Ran for %d ticks.%n", ticks);
-//        System.out.printf("Steam Produced=%s%n", tankSteam.getFluidAmount());
-//        System.exit(0);
+        // ----------------------------------------------
+        // Boiler Test Setup
+        // ---------------------------------------------
+        //        StandardTank tankWater = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
+        //        StandardTank tankSteam = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
+        //        tankWater.setFluid(Fluids.WATER.get(tankWater.getCapacity()));
+        //        SteamBoiler boiler = new SteamBoiler(tankWater, tankSteam);
+        //        class TestProvider implements IFuelProvider {
+        //
+        //            public int fuel = 3200;
+        //
+        //            @Override
+        //            public double getMoreFuel() {
+        //                if (fuel > 0) {
+        //                    fuel--;
+        //                    return 1;
+        //                }
+        //                return 0;
+        //            }
+        //
+        //            @Override
+        //            public double getHeatStep() {
+        //                return Steam.HEAT_STEP;
+        //            }
+        //
+        //        }
+        //        TestProvider provider = new TestProvider();
+        //        boiler.setFuelProvider(provider);
+        //        int ticks = 0;
+        //        while (provider.fuel > 0 || boiler.burnTime > boiler.getFuelPerCycle(1) || boiler.getHeat() > 20) {
+        //            boiler.tick(1);
+        //            ticks++;
+        //        }
+        //        System.out.printf("Ran for %d ticks.%n", ticks);
+        //        System.out.printf("Steam Produced=%s%n", tankSteam.getFluidAmount());
+        //        System.exit(0);
     }
 
     @SubscribeEvent
@@ -394,8 +426,7 @@ public class ModuleCore extends RailcraftModule {
         if (event.player.ridingEntity instanceof EntityMinecart) {
             Entity p = event.player;
             EntityMinecart cart = (EntityMinecart) event.player.ridingEntity;
-            if (Train.getTrain(cart).size() > 1)
-                CartUtils.dismount(cart, p.posX, p.posY + 1, p.posZ);
+            if (Train.getTrain(cart).size() > 1) CartUtils.dismount(cart, p.posX, p.posY + 1, p.posZ);
         }
     }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -14,11 +14,9 @@ import mods.railcraft.client.render.models.ModelSimple;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class ModelEnginePiston extends ModelSimple
-{
+public class ModelEnginePiston extends ModelSimple {
 
-    public ModelEnginePiston()
-    {
+    public ModelEnginePiston() {
         super("piston");
         renderer.setTextureSize(128, 128);
         setTextureOffset("piston.core", 32, 24);

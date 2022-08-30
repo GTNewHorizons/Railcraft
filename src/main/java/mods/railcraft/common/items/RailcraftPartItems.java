@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,25 +32,18 @@ public class RailcraftPartItems {
 
     public static ItemStack getTurbineBlade(int qty) {
         Item item = itemTurbineBlade;
-        if (item != null)
-            return new ItemStack(item, qty);
+        if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable())
-            return null;
+        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
 
         String tag = "railcraft.part.turbine.blade";
-        if (!RailcraftConfig.isItemEnabled(tag))
-            return RailcraftItem.ingot.getStack(qty, ItemIngot.EnumIngot.STEEL);
+        if (!RailcraftConfig.isItemEnabled(tag)) return RailcraftItem.ingot.getStack(qty, ItemIngot.EnumIngot.STEEL);
 
         item = new ItemRailcraft().setUnlocalizedName(tag);
         RailcraftRegistry.register(item);
         ItemStack stack = new ItemStack(item);
 
-        CraftingPlugin.addShapedRecipe(stack,
-                "I",
-                "I",
-                "I",
-                'I', "ingotSteel");
+        CraftingPlugin.addShapedRecipe(stack, "I", "I", "I", 'I', "ingotSteel");
 
         itemTurbineBlade = item;
 
@@ -63,29 +56,20 @@ public class RailcraftPartItems {
 
     public static ItemStack getTurbineDisk(int qty) {
         Item item = itemTurbineDisk;
-        if (item != null)
-            return new ItemStack(item, qty);
+        if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable())
-            return null;
+        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
 
         String tag = "railcraft.part.turbine.disk";
 
-        if (!RailcraftConfig.isItemEnabled(tag))
-            return null;
+        if (!RailcraftConfig.isItemEnabled(tag)) return null;
 
         item = new ItemRailcraft().setUnlocalizedName(tag);
         RailcraftRegistry.register(item);
         ItemStack stack = new ItemStack(item);
 
         ItemStack blade = getTurbineBlade();
-        if (blade != null)
-            CraftingPlugin.addShapedRecipe(stack,
-                    "BBB",
-                    "BAB",
-                    "BBB",
-                    'A', "blockSteel",
-                    'B', blade);
+        if (blade != null) CraftingPlugin.addShapedRecipe(stack, "BBB", "BAB", "BBB", 'A', "blockSteel", 'B', blade);
 
         itemTurbineDisk = item;
 
@@ -98,16 +82,13 @@ public class RailcraftPartItems {
 
     public static ItemStack getTurbineRotor(int qty) {
         Item item = itemTurbineRotor;
-        if (item != null)
-            return new ItemStack(item, qty);
+        if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable())
-            return null;
+        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
 
         String tag = "railcraft.part.turbine.rotor";
 
-        if (!RailcraftConfig.isItemEnabled(tag))
-            return null;
+        if (!RailcraftConfig.isItemEnabled(tag)) return null;
 
         item = new ItemRailcraft().setUnlocalizedName(tag);
         item.setMaxDamage(30000).setMaxStackSize(1);
@@ -115,14 +96,10 @@ public class RailcraftPartItems {
         ItemStack stack = new ItemStack(item);
 
         ItemStack disk = getTurbineDisk();
-        if (disk != null)
-            CraftingPlugin.addShapedRecipe(stack,
-                    "DDD",
-                    'D', disk);
+        if (disk != null) CraftingPlugin.addShapedRecipe(stack, "DDD", 'D', disk);
 
         itemTurbineRotor = item;
 
         return new ItemStack(item, qty);
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,7 +13,6 @@ import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 
 /**
  *
@@ -54,5 +53,4 @@ public class BlockFactoryLantern extends BlockFactory {
         EnumLanternStone.initialize();
         EnumLanternMetal.initialize();
     }
-
 }

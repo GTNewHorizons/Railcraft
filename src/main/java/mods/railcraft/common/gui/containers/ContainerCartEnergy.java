@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,7 +32,6 @@ public class ContainerCartEnergy extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
@@ -57,7 +56,8 @@ public class ContainerCartEnergy extends RailcraftContainer {
             ICrafting player = (ICrafting) crafters.get(i);
 
             if (lastEnergy != cart.getEnergy())
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) cart.getEnergy());
+                PacketBuilder.instance()
+                        .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) cart.getEnergy());
         }
 
         lastEnergy = (int) cart.getEnergy();
@@ -66,8 +66,6 @@ public class ContainerCartEnergy extends RailcraftContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data) {
-        if (id == 0)
-            cart.setEnergy(data);
+        if (id == 0) cart.setEnergy(data);
     }
-
 }

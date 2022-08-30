@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,11 +8,11 @@
  */
 package mods.railcraft.client.gui;
 
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.carts.EntityTunnelBore;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerBore;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiCartBore extends EntityGui {
 
@@ -49,5 +49,4 @@ public class GuiCartBore extends EntityGui {
             drawTexturedModalRect(w + 44, (h + 48) - burnProgress, 176, 12 - burnProgress, 14, burnProgress + 2);
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -32,15 +32,11 @@ public class BlockFenceReplacement extends BlockFence {
     @Override
     public boolean canConnectFenceTo(IBlockAccess world, int i, int j, int k) {
         Block block = world.getBlock(i, j, k);
-        if (block == this || block == Blocks.fence_gate)
-            return true;
+        if (block == this || block == Blocks.fence_gate) return true;
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileTrack)
-            if (((TileTrack) tile).getTrackInstance() instanceof TrackGated)
-                return true;
+        if (tile instanceof TileTrack) if (((TileTrack) tile).getTrackInstance() instanceof TrackGated) return true;
         if (block != null && block.getMaterial().isOpaque() && block.renderAsNormalBlock())
             return block.getMaterial() != Material.gourd;
         return false;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,8 +8,8 @@
  */
 package mods.railcraft.common.blocks.detector;
 
-import net.minecraft.nbt.NBTTagCompound;
 import mods.railcraft.common.util.inventory.PhantomInventory;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  *
@@ -43,5 +43,4 @@ public abstract class DetectorFilter extends Detector {
         NBTTagCompound filters = data.getCompoundTag("filters");
         getFilters().readFromNBT("Items", filters);
     }
-
 }

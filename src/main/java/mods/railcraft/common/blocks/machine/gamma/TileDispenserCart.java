@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,15 +11,6 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemMinecart;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -35,7 +26,16 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemMinecart;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileDispenserCart extends TileMachineItem {
 
@@ -54,19 +54,15 @@ public class TileDispenserCart extends TileMachineItem {
 
     @Override
     public IIcon getIcon(int side) {
-        if (direction.ordinal() == side)
-            return getMachineType().getTexture(3);
-        if (side != 0 && side != 1)
-            return getMachineType().getTexture(2);
+        if (direction.ordinal() == side) return getMachineType().getTexture(3);
+        if (side != 0 && side != 1) return getMachineType().getTexture(2);
         return getMachineType().getTexture(1);
     }
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (direction == axis)
-            direction = axis.getOpposite();
-        else
-            direction = axis;
+        if (direction == axis) direction = axis.getOpposite();
+        else direction = axis;
         markBlockForUpdate();
         return true;
     }
@@ -93,8 +89,7 @@ public class TileDispenserCart extends TileMachineItem {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (timeSinceLastSpawn < Integer.MAX_VALUE)
-            timeSinceLastSpawn++;
+        if (timeSinceLastSpawn < Integer.MAX_VALUE) timeSinceLastSpawn++;
     }
 
     public void onPulse() {
@@ -114,7 +109,8 @@ public class TileDispenserCart extends TileMachineItem {
                                 canPlace = ((IMinecartItem) cartStack.getItem()).canBePlacedByNonPlayer(cartStack);
                             if (canPlace) {
                                 ItemStack placedStack = cartStack.copy();
-                                EntityMinecart placedCart = CartUtils.placeCart(getOwner(), placedStack, (WorldServer) worldObj, x, y, z);
+                                EntityMinecart placedCart =
+                                        CartUtils.placeCart(getOwner(), placedStack, (WorldServer) worldObj, x, y, z);
                                 if (placedCart != null) {
                                     decrStackSize(ii, 1);
                                     timeSinceLastSpawn = 0;
@@ -130,21 +126,18 @@ public class TileDispenserCart extends TileMachineItem {
                             item.motionX = (float) MiscTools.getRand().nextGaussian() * factor;
                             item.motionY = (float) MiscTools.getRand().nextGaussian() * factor + 0.2F;
                             item.motionZ = (float) MiscTools.getRand().nextGaussian() * factor;
-                            if (worldObj.spawnEntityInWorld(item))
-                                setInventorySlotContents(ii, null);
+                            if (worldObj.spawnEntityInWorld(item)) setInventorySlotContents(ii, null);
                         }
                     }
                 }
         } else if (!cart.isDead && cart.getCartItem() != null) {
             IInventory testInv = new InventoryCopy(this);
             ItemStack cartStack = cart.getCartItem();
-            if (cart.hasCustomInventoryName())
-                cartStack.setStackDisplayName(cart.getCommandSenderName());
+            if (cart.hasCustomInventoryName()) cartStack.setStackDisplayName(cart.getCommandSenderName());
             ItemStack remainder = InvTools.moveItemStack(cartStack.copy(), testInv);
             if (remainder == null) {
                 InvTools.moveItemStack(cartStack, this);
-                if (cart.riddenByEntity != null)
-                    cart.riddenByEntity.mountEntity(null);
+                if (cart.riddenByEntity != null) cart.riddenByEntity.mountEntity(null);
                 cart.setDead();
             }
         }
@@ -153,14 +146,12 @@ public class TileDispenserCart extends TileMachineItem {
     @Override
     public void onNeighborBlockChange(Block block) {
         super.onNeighborBlockChange(block);
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         boolean newPower = PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord);
         if (!powered && newPower) {
             powered = newPower;
             onPulse();
-        } else
-            powered = newPower;
+        } else powered = newPower;
     }
 
     @Override
@@ -188,7 +179,7 @@ public class TileDispenserCart extends TileMachineItem {
         super.writePacketData(data);
 
         data.writeByte(direction.ordinal());
-//        data.writeBoolean(powered);
+        //        data.writeBoolean(powered);
     }
 
     @Override
@@ -196,7 +187,7 @@ public class TileDispenserCart extends TileMachineItem {
         super.readPacketData(data);
 
         direction = ForgeDirection.getOrientation(data.readByte());
-//        powered = data.readBoolean();
+        //        powered = data.readBoolean();
 
         markBlockForUpdate();
     }
@@ -213,5 +204,4 @@ public class TileDispenserCart extends TileMachineItem {
     public int getInventoryStackLimit() {
         return 64;
     }
-
 }

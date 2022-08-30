@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -71,8 +71,7 @@ public class EntityLocomotiveElectric extends EntityLocomotive implements ISided
 
     @Override
     public void setMode(LocoMode mode) {
-        if (mode == LocoMode.IDLE)
-            mode = LocoMode.SHUTDOWN;
+        if (mode == LocoMode.IDLE) mode = LocoMode.SHUTDOWN;
         super.setMode(mode);
     }
 
@@ -108,16 +107,21 @@ public class EntityLocomotiveElectric extends EntityLocomotive implements ISided
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
         chargeHandler.tick();
     }
 
     @Override
-    protected void func_145821_a(int trackX, int trackY, int trackZ, double maxSpeed, double slopeAdjustement, Block trackBlock, int trackMeta) {
+    protected void func_145821_a(
+            int trackX,
+            int trackY,
+            int trackZ,
+            double maxSpeed,
+            double slopeAdjustement,
+            Block trackBlock,
+            int trackMeta) {
         super.func_145821_a(trackX, trackY, trackZ, maxSpeed, slopeAdjustement, trackBlock, trackMeta);
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
         chargeHandler.tickOnTrack(trackX, trackY, trackZ);
     }
 
@@ -167,5 +171,4 @@ public class EntityLocomotiveElectric extends EntityLocomotive implements ISided
         super.readEntityFromNBT(data);
         chargeHandler.readFromNBT(data);
     }
-
 }

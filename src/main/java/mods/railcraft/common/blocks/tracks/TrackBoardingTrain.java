@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -21,12 +21,9 @@ public class TrackBoardingTrain extends TrackBoarding {
     public void updateEntity() {
         if (Game.isHost(getWorld())) {
             TrackNextGenLocking.LockingProfileType type;
-            if (isReversed())
-                type = TrackNextGenLocking.LockingProfileType.BOARDING_B_TRAIN;
-            else
-                type = TrackNextGenLocking.LockingProfileType.BOARDING_A_TRAIN;
+            if (isReversed()) type = TrackNextGenLocking.LockingProfileType.BOARDING_B_TRAIN;
+            else type = TrackNextGenLocking.LockingProfileType.BOARDING_A_TRAIN;
             migrateTrack(type);
         }
     }
-
 }

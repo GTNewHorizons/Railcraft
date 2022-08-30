@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,11 +9,11 @@
 package mods.railcraft.common.gui.containers;
 
 import mods.railcraft.api.core.items.IMinecartItem;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
 import mods.railcraft.common.gui.slots.SlotMinecart;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerDispenserCart extends RailcraftContainer {
@@ -32,7 +32,6 @@ public class ContainerDispenserCart extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 58 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
@@ -48,12 +47,10 @@ public class ContainerDispenserCart extends RailcraftContainer {
 
         @Override
         public boolean isItemValid(ItemStack stack) {
-            if (stack == null)
-                return false;
+            if (stack == null) return false;
             if (stack.getItem() instanceof IMinecartItem)
                 return ((IMinecartItem) stack.getItem()).canBePlacedByNonPlayer(stack);
             return super.isItemValid(stack);
         }
-
     }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,12 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import mods.railcraft.api.signals.SignalAspect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import mods.railcraft.api.signals.SignalAspect;
-import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileBoxBase extends TileSignalFoundation {
 
@@ -51,8 +51,7 @@ public abstract class TileBoxBase extends TileSignalFoundation {
         return false;
     }
 
-    public void onNeighborStateChange(TileBoxBase neighbor, ForgeDirection side) {
-    }
+    public void onNeighborStateChange(TileBoxBase neighbor, ForgeDirection side) {}
 
     public final void updateNeighborBoxes() {
         for (int side = 2; side < 6; side++) {
@@ -75,8 +74,7 @@ public abstract class TileBoxBase extends TileSignalFoundation {
 
     @Override
     public boolean isSideSolid(IBlockAccess world, int i, int j, int k, ForgeDirection side) {
-        if (side == ForgeDirection.UP)
-            return true;
+        if (side == ForgeDirection.UP) return true;
         return false;
     }
 
@@ -84,5 +82,4 @@ public abstract class TileBoxBase extends TileSignalFoundation {
     public boolean canConnectRedstone(int dir) {
         return true;
     }
-
 }

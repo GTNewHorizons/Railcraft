@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -60,8 +60,7 @@ public final class EntityCartEnergyCESU extends EntityCartEnergy {
 
     @Override
     public ItemStack getIC2Item() {
-        //IC2 Classic so no RenderCrash Happens
+        // IC2 Classic so no RenderCrash Happens
         return IC2Plugin.getItem(IC2Plugin.isClassic() ? "mfsUnit" : "cesuUnit");
     }
-
 }

@@ -41,15 +41,20 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
     }
 
     @Override
-    protected void func_145821_a(int trackX, int trackY, int trackZ, double maxSpeed, double slopeAdjustment, Block trackBlock, int trackMeta) {
+    protected void func_145821_a(
+            int trackX,
+            int trackY,
+            int trackZ,
+            double maxSpeed,
+            double slopeAdjustment,
+            Block trackBlock,
+            int trackMeta) {
         super.func_145821_a(trackX, trackY, trackZ, maxSpeed, slopeAdjustment, trackBlock, trackMeta);
-        if (Game.isNotHost(worldObj))
-            return;
+        if (Game.isNotHost(worldObj)) return;
 
         stockItems(SLOT_REPLACE, SLOT_STOCK);
         updateTravelDirection(trackX, trackY, trackZ, trackMeta);
-        if (travelDirection != ForgeDirection.UNKNOWN)
-            placeTrack(trackX, trackY, trackZ);
+        if (travelDirection != ForgeDirection.UNKNOWN) placeTrack(trackX, trackY, trackZ);
     }
 
     private void placeTrack(int x, int y, int z) {
@@ -63,14 +68,10 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
             y++;
         if (isValidReplacementBlock(x, y, z) && isValidReplacementBlock(x, y - 1, z)) {
             y--;
-            if (travelDirection == ForgeDirection.NORTH)
-                trackMeta = EnumTrackMeta.SOUTH_SLOPE;
-            if (travelDirection == ForgeDirection.SOUTH)
-                trackMeta = EnumTrackMeta.NORTH_SLOPE;
-            if (travelDirection == ForgeDirection.WEST)
-                trackMeta = EnumTrackMeta.EAST_SLOPE;
-            if (travelDirection == ForgeDirection.EAST)
-                trackMeta = EnumTrackMeta.WEST_SLOPE;
+            if (travelDirection == ForgeDirection.NORTH) trackMeta = EnumTrackMeta.SOUTH_SLOPE;
+            if (travelDirection == ForgeDirection.SOUTH) trackMeta = EnumTrackMeta.NORTH_SLOPE;
+            if (travelDirection == ForgeDirection.WEST) trackMeta = EnumTrackMeta.EAST_SLOPE;
+            if (travelDirection == ForgeDirection.EAST) trackMeta = EnumTrackMeta.WEST_SLOPE;
         }
 
         if (isValidNewTrackPosition(x, y, z)) {
@@ -88,11 +89,11 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
 
     private boolean isValidReplacementBlock(int x, int y, int z) {
         Block block = worldObj.getBlock(x, y, z);
-        return (worldObj.isAirBlock(x, y, z) ||
-                block instanceof IPlantable ||
-                block instanceof IShearable ||
-                EntityTunnelBore.replaceableBlocks.contains(block)) ||
-                block.isReplaceable(worldObj, x, y, z);
+        return (worldObj.isAirBlock(x, y, z)
+                        || block instanceof IPlantable
+                        || block instanceof IShearable
+                        || EntityTunnelBore.replaceableBlocks.contains(block))
+                || block.isReplaceable(worldObj, x, y, z);
     }
 
     @Override
@@ -102,8 +103,7 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
 
     @Override
     public boolean doInteract(EntityPlayer player) {
-        if (Game.isHost(worldObj))
-            GuiHandler.openGui(EnumGui.CART_TRACK_LAYER, player, worldObj, this);
+        if (Game.isHost(worldObj)) GuiHandler.openGui(EnumGui.CART_TRACK_LAYER, player, worldObj, this);
         return true;
     }
 

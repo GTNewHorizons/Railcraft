@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,8 +24,12 @@ import net.minecraft.item.ItemStack;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum Metal {
-
-    STEEL("Steel"), IRON("Iron"), GOLD("Gold"), COPPER("Copper"), TIN("Tin"), LEAD("Lead");
+    STEEL("Steel"),
+    IRON("Iron"),
+    GOLD("Gold"),
+    COPPER("Copper"),
+    TIN("Tin"),
+    LEAD("Lead");
     public static final Metal[] VALUES = values();
     private static final EnumBiMap<Metal, EnumIngot> ingotMap = EnumBiMap.create(Metal.class, EnumIngot.class);
     private static final EnumBiMap<Metal, EnumNugget> nuggetMap = EnumBiMap.create(Metal.class, EnumNugget.class);
@@ -82,8 +86,7 @@ public enum Metal {
                 return new ItemStack(Items.gold_nugget, qty);
             default: {
                 ItemStack stack = RailcraftItem.nugget.getStack(qty, nuggetMap.get(this));
-                if (stack == null)
-                    stack = OreDictPlugin.getOre(getNuggetTag(), qty);
+                if (stack == null) stack = OreDictPlugin.getOre(getNuggetTag(), qty);
                 return stack;
             }
         }
@@ -128,8 +131,7 @@ public enum Metal {
                 return new ItemStack(Blocks.gold_block, qty);
             default: {
                 ItemStack stack = blockMap.get(this).getItem(qty);
-                if (stack == null)
-                    stack = OreDictPlugin.getOre(getBlockTag(), qty);
+                if (stack == null) stack = OreDictPlugin.getOre(getBlockTag(), qty);
                 return stack;
             }
         }
@@ -164,5 +166,4 @@ public enum Metal {
     public static Metal get(EnumCube ore) {
         return blockMap.inverse().get(ore);
     }
-
 }

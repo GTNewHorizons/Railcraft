@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,14 +25,15 @@ public class APIErrorHandler {
 
     private static final Set<Class> printedWarnings = new HashSet<Class>();
 
-    private APIErrorHandler() {
-    }
+    private APIErrorHandler() {}
 
     public static void versionMismatch(Class type) {
         if (!printedWarnings.contains(type)) {
-            Game.log(Level.ERROR, "The Railcraft API (" + type.getSimpleName() + ") in one of the mods you are using needs updating, expect odd behaivor.");
+            Game.log(
+                    Level.ERROR,
+                    "The Railcraft API (" + type.getSimpleName()
+                            + ") in one of the mods you are using needs updating, expect odd behaivor.");
             printedWarnings.add(type);
         }
     }
-
 }

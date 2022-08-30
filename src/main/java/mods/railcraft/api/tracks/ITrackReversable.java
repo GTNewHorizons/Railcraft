@@ -16,8 +16,7 @@ package mods.railcraft.api.tracks;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackReversable extends ITrackInstance
-{
+public interface ITrackReversable extends ITrackInstance {
 
     public boolean isReversed();
 

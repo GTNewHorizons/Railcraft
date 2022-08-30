@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,6 +10,9 @@ package mods.railcraft.common.blocks.machine.gamma;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -25,15 +28,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author CovertJaguar
  */
 public enum EnumMachineGamma implements IEnumMachine {
-
     ITEM_LOADER(Module.TRANSPORT, "loader.item", 0, TileItemLoader.class),
     ITEM_UNLOADER(Module.TRANSPORT, "unloader.item", 0, TileItemUnloader.class),
     ITEM_LOADER_ADVANCED(Module.TRANSPORT, "loader.item.advanced", 0, TileItemLoaderAdvanced.class),
@@ -89,18 +87,17 @@ public enum EnumMachineGamma implements IEnumMachine {
 
     @Override
     public IIcon getTexture(int index) {
-        if (index < 0 || index >= texture.length)
-            index = 0;
+        if (index < 0 || index >= texture.length) index = 0;
         return texture[index];
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerIcons(IIconRegister iconRegister) {
         for (EnumMachineGamma machine : VALUES) {
-            if (machine.extraIcons == -1)
-                continue;
+            if (machine.extraIcons == -1) continue;
             machine.texture = new IIcon[machine.extraIcons + 6];
-            IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + machine.tag, machine.extraIcons + 3);
+            IIcon[] icons =
+                    TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + machine.tag, machine.extraIcons + 3);
             IIcon cap = icons[0];
             IIcon side = icons[1];
             IIcon face = icons[2];
@@ -124,22 +121,23 @@ public enum EnumMachineGamma implements IEnumMachine {
                     machine.texture[3] = face;
             }
 
-            if (machine.extraIcons > 0)
-                System.arraycopy(icons, 3, machine.texture, 6, machine.extraIcons);
+            if (machine.extraIcons > 0) System.arraycopy(icons, 3, machine.texture, 6, machine.extraIcons);
         }
 
         IIcon emitterSide = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".side");
         RF_LOADER.texture = new IIcon[9];
         Arrays.fill(RF_LOADER.texture, emitterSide);
         RF_LOADER.texture[6] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".side.unpowered");
-        RF_LOADER.texture[3] = RF_LOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".facing");
+        RF_LOADER.texture[3] =
+                RF_LOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".facing");
         RF_LOADER.texture[8] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".facing.unpowered");
 
         emitterSide = iconRegister.registerIcon("railcraft:" + RF_UNLOADER.tag + ".side");
         RF_UNLOADER.texture = new IIcon[9];
         Arrays.fill(RF_UNLOADER.texture, emitterSide);
         RF_UNLOADER.texture[6] = RF_LOADER.texture[6];
-        RF_UNLOADER.texture[3] = RF_UNLOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_UNLOADER.tag + ".facing");
+        RF_UNLOADER.texture[3] =
+                RF_UNLOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_UNLOADER.tag + ".facing");
         RF_UNLOADER.texture[8] = RF_LOADER.texture[8];
 
         IIcon[] pipe = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:loader.pipe", 2);
@@ -151,8 +149,7 @@ public enum EnumMachineGamma implements IEnumMachine {
     }
 
     public static EnumMachineGamma fromId(int id) {
-        if (id < 0 || id >= VALUES.length)
-            id = 0;
+        if (id < 0 || id >= VALUES.length) id = 0;
         return VALUES[id];
     }
 
@@ -187,8 +184,7 @@ public enum EnumMachineGamma implements IEnumMachine {
     @Override
     public ItemStack getItem(int qty) {
         Block block = getBlock();
-        if (block == null)
-            return null;
+        if (block == null) return null;
         return new ItemStack(block, qty, ordinal());
     }
 
@@ -220,12 +216,9 @@ public enum EnumMachineGamma implements IEnumMachine {
 
     @Override
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-        if (tip != null)
-            return tip;
+        if (tip != null) return tip;
         String tipTag = getTag() + ".tip";
-        if (LocalizationPlugin.hasTag(tipTag))
-            tip = ToolTip.buildToolTip(tipTag);
+        if (LocalizationPlugin.hasTag(tipTag)) tip = ToolTip.buildToolTip(tipTag);
         return tip;
     }
-
 }

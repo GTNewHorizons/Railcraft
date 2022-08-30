@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -15,8 +15,6 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.tracks.*;
@@ -28,7 +26,9 @@ import mods.railcraft.common.util.misc.MiscTools;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
@@ -49,8 +49,11 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     private State state = State.RETRACTED;
 
     private static enum State {
-
-        EXTENDED, RETRACTED, EXTENDING, RETRACTING, HALTED;
+        EXTENDED,
+        RETRACTED,
+        EXTENDING,
+        RETRACTING,
+        HALTED;
 
         private void doAction(TileForceTrackEmitter emitter) {
             switch (this) {
@@ -65,7 +68,6 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
                     break;
             }
         }
-
     }
 
     @Override
@@ -82,8 +84,7 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     }
 
     private void checkRedstone() {
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
         boolean p = PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord);
         if (powered != p) {
             powered = p;
@@ -106,8 +107,7 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         double draw = getDraw(numTracks);
         if (powered && chargeHandler.removeCharge(draw) >= draw)
@@ -118,12 +118,10 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
                     state = State.EXTENDING;
                     break;
                 case EXTENDED:
-                    if (clock % TICKS_PER_REFRESH == 0)
-                        state = State.EXTENDING;
+                    if (clock % TICKS_PER_REFRESH == 0) state = State.EXTENDING;
                     break;
             }
-        else if (state == State.EXTENDED || state == State.EXTENDING || state == State.HALTED)
-            state = State.RETRACTING;
+        else if (state == State.EXTENDED || state == State.EXTENDING || state == State.HALTED) state = State.RETRACTING;
 
         state.doAction(this);
 
@@ -139,16 +137,13 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
         if (tile instanceof TileTrack) {
             TileTrack trackTile = (TileTrack) tile;
             ITrackInstance track = trackTile.getTrackInstance();
-            if (track instanceof ITrackLockdown)
-                ((ITrackLockdown) track).releaseCart();
+            if (track instanceof ITrackLockdown) ((ITrackLockdown) track).releaseCart();
         }
     }
 
     private void extend() {
-        if (!hasPowerToExtend())
-            state = State.HALTED;
-        if (numTracks >= MAX_TRACKS)
-            state = State.EXTENDED;
+        if (!hasPowerToExtend()) state = State.HALTED;
+        if (numTracks >= MAX_TRACKS) state = State.EXTENDED;
         else if (clock % TICKS_PER_ACTION == 0) {
             int x = xCoord + (numTracks + 1) * facing.offsetX;
             int y = yCoord + 1;
@@ -156,14 +151,10 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
             if (WorldPlugin.blockExists(worldObj, x, y, z)) {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
                 EnumTrackMeta meta;
-                if (facing == ForgeDirection.NORTH || facing == ForgeDirection.SOUTH)
-                    meta = EnumTrackMeta.NORTH_SOUTH;
-                else
-                    meta = EnumTrackMeta.EAST_WEST;
-                if (!placeTrack(x, y, z, block, meta) && !claimTrack(x, y, z, block, meta))
-                    state = State.EXTENDED;
-            } else
-                state = State.HALTED;
+                if (facing == ForgeDirection.NORTH || facing == ForgeDirection.SOUTH) meta = EnumTrackMeta.NORTH_SOUTH;
+                else meta = EnumTrackMeta.EAST_WEST;
+                if (!placeTrack(x, y, z, block, meta) && !claimTrack(x, y, z, block, meta)) state = State.EXTENDED;
+            } else state = State.HALTED;
         }
     }
 
@@ -179,13 +170,10 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     }
 
     private boolean claimTrack(int x, int y, int z, Block block, EnumTrackMeta meta) {
-        if (block != RailcraftBlocks.getBlockTrack())
-            return false;
-        if (TrackTools.getTrackMetaEnum(worldObj, block, null, x, y, z) != meta)
-            return false;
+        if (block != RailcraftBlocks.getBlockTrack()) return false;
+        if (TrackTools.getTrackMetaEnum(worldObj, block, null, x, y, z) != meta) return false;
         TileEntity tile = WorldPlugin.getBlockTile(worldObj, x, y, z);
-        if (!TrackTools.isTrackSpec(tile, EnumTrack.FORCE.getTrackSpec()))
-            return false;
+        if (!TrackTools.isTrackSpec(tile, EnumTrack.FORCE.getTrackSpec())) return false;
         TrackForce track = (TrackForce) ((TileTrack) tile).getTrackInstance();
         TileForceTrackEmitter emitter = track.getEmitter();
         if (emitter == null || emitter == this) {
@@ -209,8 +197,7 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     }
 
     private void retract() {
-        if (numTracks <= 0)
-            state = State.RETRACTED;
+        if (numTracks <= 0) state = State.RETRACTED;
         else if (clock % TICKS_PER_ACTION == 0) {
             int x = xCoord + numTracks * facing.offsetX;
             int y = yCoord + 1;
@@ -244,23 +231,17 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
 
     @Override
     public IIcon getIcon(int side) {
-        if (side == facing.ordinal())
-            return getMachineType().getTexture(powered ? 7 : 8);
+        if (side == facing.ordinal()) return getMachineType().getTexture(powered ? 7 : 8);
         return getMachineType().getTexture(powered ? 0 : 6);
     }
 
     @Override
     public boolean rotateBlock(ForgeDirection axis) {
-        if (Game.isNotHost(worldObj))
-            return false;
-        if (state != State.RETRACTED)
-            return false;
-        if (axis == ForgeDirection.UP || axis == ForgeDirection.DOWN)
-            return false;
-        if (facing == axis)
-            facing = axis.getOpposite();
-        else
-            facing = axis;
+        if (Game.isNotHost(worldObj)) return false;
+        if (state != State.RETRACTED) return false;
+        if (axis == ForgeDirection.UP || axis == ForgeDirection.DOWN) return false;
+        if (facing == axis) facing = axis.getOpposite();
+        else facing = axis;
         numTracks = 0;
         markBlockForUpdate();
         notifyBlocksOfNeighborChange();
@@ -311,12 +292,10 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
             update = true;
         }
 
-        if (update)
-            markBlockForUpdate();
+        if (update) markBlockForUpdate();
     }
 
     public ForgeDirection getFacing() {
         return facing;
     }
-
 }

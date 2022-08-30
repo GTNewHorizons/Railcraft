@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,6 +9,9 @@
 package mods.railcraft.common.blocks.detector;
 
 import com.mojang.authlib.GameProfile;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.common.blocks.signals.ISecure;
 import mods.railcraft.common.gui.buttons.LockButtonState;
 import mods.railcraft.common.gui.buttons.MultiButtonController;
@@ -17,15 +20,12 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public abstract class DetectorSecured extends Detector implements IGuiReturnHandler, ISecure<LockButtonState> {
-    private final MultiButtonController<LockButtonState> lockController = new MultiButtonController(0, LockButtonState.VALUES);
+    private final MultiButtonController<LockButtonState> lockController =
+            new MultiButtonController(0, LockButtonState.VALUES);
 
     public DetectorSecured() {
         super();

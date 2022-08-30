@@ -15,8 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ICokeOvenRecipe
-{
+public interface ICokeOvenRecipe {
 
     public int getCookTime();
 

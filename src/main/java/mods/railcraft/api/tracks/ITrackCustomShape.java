@@ -21,8 +21,7 @@ import net.minecraft.util.Vec3;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ITrackCustomShape extends ITrackInstance
-{
+public interface ITrackCustomShape extends ITrackInstance {
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool();
 

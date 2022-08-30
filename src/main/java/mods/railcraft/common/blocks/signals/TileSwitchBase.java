@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.EnumSet;
 import mods.railcraft.api.tracks.ISwitchDevice;
 import mods.railcraft.api.tracks.ITrackSwitch;
 import mods.railcraft.common.blocks.tracks.TrackSwitchBase;
@@ -22,11 +26,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.EnumSet;
 
 public abstract class TileSwitchBase extends TileSignalFoundation implements ISwitchDevice {
     private static final int ARROW_UPDATE_INTERVAL = 16;
@@ -77,11 +76,9 @@ public abstract class TileSwitchBase extends TileSignalFoundation implements ISw
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isHost(worldObj))
-            return;
+        if (Game.isHost(worldObj)) return;
 
-        if (clock % ARROW_UPDATE_INTERVAL == 0)
-            updateArrows();
+        if (clock % ARROW_UPDATE_INTERVAL == 0) updateArrows();
     }
 
     @Override
@@ -89,24 +86,38 @@ public abstract class TileSwitchBase extends TileSignalFoundation implements ISw
         if (lastSwitchState != isSwitched) {
             lastSwitchState = isSwitched;
             if (isSwitched)
-                SoundHelper.playSound(worldObj, getX(), getY(), getZ(), "tile.piston.in", 0.25f, worldObj.rand.nextFloat() * 0.25F + 0.7F);
+                SoundHelper.playSound(
+                        worldObj,
+                        getX(),
+                        getY(),
+                        getZ(),
+                        "tile.piston.in",
+                        0.25f,
+                        worldObj.rand.nextFloat() * 0.25F + 0.7F);
             else
-                SoundHelper.playSound(worldObj, getX(), getY(), getZ(), "tile.piston.out", 0.25f, worldObj.rand.nextFloat() * 0.25F + 0.7F);
+                SoundHelper.playSound(
+                        worldObj,
+                        getX(),
+                        getY(),
+                        getZ(),
+                        "tile.piston.out",
+                        0.25f,
+                        worldObj.rand.nextFloat() * 0.25F + 0.7F);
         }
     }
 
     @Override
     @Deprecated
-    public void setRenderState(ArrowDirection redArrow, ArrowDirection whiteArrow) {
-
-    }
+    public void setRenderState(ArrowDirection redArrow, ArrowDirection whiteArrow) {}
 
     @Override
     public void updateArrows() {
         ArrowDirection redArrow = null;
         ArrowDirection whiteArrow = null;
-        for (ForgeDirection side : EnumSet.of(ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST)) {
-            TrackSwitchBase trackSwitch = TrackTools.getTrackInstance(tileCache.getTileOnSide(side), TrackSwitchBase.class);
+        for (ForgeDirection side :
+                EnumSet.of(ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST)) {
+            TrackSwitchBase trackSwitch =
+                    TrackTools.getTrackInstance(tileCache.getTileOnSide(side), TrackSwitchBase.class);
             if (trackSwitch != null) {
                 redArrow = mergeArrowDirection(redArrow, trackSwitch.getRedSignDirection());
                 whiteArrow = mergeArrowDirection(whiteArrow, trackSwitch.getWhiteSignDirection());
@@ -121,8 +132,7 @@ public abstract class TileSwitchBase extends TileSignalFoundation implements ISw
             whiteArrowRenderState = whiteArrow;
             changed = true;
         }
-        if (changed)
-            markBlockForUpdate();
+        if (changed) markBlockForUpdate();
     }
 
     private ArrowDirection mergeArrowDirection(ArrowDirection arrow1, ArrowDirection arrow2) {
@@ -199,6 +209,7 @@ public abstract class TileSwitchBase extends TileSignalFoundation implements ISw
     }
 
     protected boolean isBeingPoweredByRedstone() {
-        return PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord) || PowerPlugin.isRedstonePowered(worldObj, xCoord, yCoord, zCoord);
+        return PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord)
+                || PowerPlugin.isRedstonePowered(worldObj, xCoord, yCoord, zCoord);
     }
 }

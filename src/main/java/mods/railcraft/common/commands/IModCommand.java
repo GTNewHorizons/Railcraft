@@ -9,11 +9,10 @@
 
 package mods.railcraft.common.commands;
 
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
-
 import java.util.List;
 import java.util.SortedSet;
+import net.minecraft.command.ICommand;
+import net.minecraft.command.ICommandSender;
 
 /**
  * Created by CovertJaguar on 3/12/2015.

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -20,7 +20,6 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum EnumDetector {
-
     ITEM(Module.AUTOMATION, DetectorItem.class),
     ANY(Module.AUTOMATION, Detector.class),
     EMPTY(Module.AUTOMATION, DetectorEmpty.class),
@@ -78,7 +77,7 @@ public enum EnumDetector {
         return new ItemStack(BlockDetector.getBlock(), qty, ordinal());
     }
 
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return BlockDetector.getBlock() != null && ModuleManager.isModuleLoaded(module);
     }
 }

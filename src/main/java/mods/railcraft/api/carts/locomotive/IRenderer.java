@@ -17,5 +17,4 @@ import net.minecraft.util.ResourceLocation;
 public interface IRenderer {
 
     void bindTex(ResourceLocation texture);
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -31,5 +31,4 @@ public class TileIC2Delegate extends TileEntity implements IEnergyTile {
     public boolean isInvalid() {
         return delegate.isInvalid();
     }
-
 }

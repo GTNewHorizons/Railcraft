@@ -9,26 +9,23 @@
 
 package mods.railcraft.common.commands;
 
+import java.util.*;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-
-import java.util.*;
 
 /**
  * Created by CovertJaguar on 3/12/2015.
  */
 public abstract class SubCommand implements IModCommand {
 
-
     public enum PermLevel {
-
-        EVERYONE(0), ADMIN(2);
+        EVERYONE(0),
+        ADMIN(2);
         int permLevel;
 
         private PermLevel(int permLevel) {
             this.permLevel = permLevel;
         }
-
     }
 
     private final String name;
@@ -83,8 +80,7 @@ public abstract class SubCommand implements IModCommand {
 
     @Override
     public final void processCommand(ICommandSender sender, String[] args) {
-        if (!CommandHelpers.processStandardCommands(sender, this, args))
-            processSubCommand(sender, args);
+        if (!CommandHelpers.processStandardCommands(sender, this, args)) processSubCommand(sender, args);
     }
 
     public void processSubCommand(ICommandSender sender, String[] args) {

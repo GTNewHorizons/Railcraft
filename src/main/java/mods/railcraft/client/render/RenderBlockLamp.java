@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -56,7 +56,8 @@ public class RenderBlockLamp extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         if (canConnect(world, x, y, z, ForgeDirection.DOWN))
             renderCenteredCube(x, y, z, block, renderblocks, PILLAR_BORDER, PILLAR_HEIGHT, PILLAR_THICKNESS);
 
@@ -111,17 +112,31 @@ public class RenderBlockLamp extends BlockRenderer {
         return true;
     }
 
-    private void renderCenteredCube(int x, int y, int z, Block block, RenderBlocks renderblocks, int border, int height, int thinkness) {
-        block.setBlockBounds(border * PIX, height * PIX, border * PIX, 1 - border * PIX, height * PIX + thinkness * PIX, 1 - border * PIX);
+    private void renderCenteredCube(
+            int x, int y, int z, Block block, RenderBlocks renderblocks, int border, int height, int thinkness) {
+        block.setBlockBounds(
+                border * PIX,
+                height * PIX,
+                border * PIX,
+                1 - border * PIX,
+                height * PIX + thinkness * PIX,
+                1 - border * PIX);
         RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
     }
 
     private void renderCornerPost(int x, int y, int z, Block block, RenderBlocks renderblocks, int xBase, int zBase) {
-        block.setBlockBounds(xBase * PIX, BASE_HEIGHT * PIX + BASE_THICKNESS * PIX, zBase * PIX, xBase * PIX + CORNER_THICKNESS * PIX, CAPBASE_HEIGHT * PIX, zBase * PIX + CORNER_THICKNESS * PIX);
+        block.setBlockBounds(
+                xBase * PIX,
+                BASE_HEIGHT * PIX + BASE_THICKNESS * PIX,
+                zBase * PIX,
+                xBase * PIX + CORNER_THICKNESS * PIX,
+                CAPBASE_HEIGHT * PIX,
+                zBase * PIX + CORNER_THICKNESS * PIX);
         RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
     }
 
-    private void renderConnector(int x, int y, int z, Block block, RenderBlocks renderblocks, int xMin, int zMin, int xMax, int zMax) {
+    private void renderConnector(
+            int x, int y, int z, Block block, RenderBlocks renderblocks, int xMin, int zMin, int xMax, int zMax) {
         block.setBlockBounds(xMin * PIX, CANDLE_HEIGHT * PIX, zMin * PIX, xMax * PIX, CAPBASE_HEIGHT * PIX, zMax * PIX);
         RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
     }
@@ -130,11 +145,9 @@ public class RenderBlockLamp extends BlockRenderer {
         int sx = MiscTools.getXOnSide(x, side);
         int sy = MiscTools.getYOnSide(y, side);
         int sz = MiscTools.getZOnSide(z, side);
-        if (world.isSideSolid(sx, sy, sz, side.getOpposite(), false))
-            return true;
+        if (world.isSideSolid(sx, sy, sz, side.getOpposite(), false)) return true;
         if (side == ForgeDirection.DOWN) {
-            if (World.doesBlockHaveSolidTopSurface(world, sx, sy, sz))
-                return true;
+            if (World.doesBlockHaveSolidTopSurface(world, sx, sy, sz)) return true;
             if (world instanceof ChunkCache) {
                 Block block = WorldPlugin.getBlock(world, sx, sy, sz);
                 if (block != null && block.canPlaceTorchOnTop(Minecraft.getMinecraft().theWorld, sx, sy, sz))
@@ -142,8 +155,7 @@ public class RenderBlockLamp extends BlockRenderer {
             }
         }
         Block block = WorldPlugin.getBlock(world, sx, sy, sz);
-        if (block instanceof BlockPostBase)
-            return true;
+        if (block instanceof BlockPostBase) return true;
         return false;
     }
 
@@ -165,14 +177,26 @@ public class RenderBlockLamp extends BlockRenderer {
         renderCornerPostItem(info, renderblocks, one, one);
     }
 
-    private void renderCenteredCubeItem(RenderInfo info, RenderBlocks renderblocks, int border, int height, int thinkness) {
-        info.setBlockBounds(border * PIX, height * PIX, border * PIX, 1 - border * PIX, height * PIX + thinkness * PIX, 1 - border * PIX);
+    private void renderCenteredCubeItem(
+            RenderInfo info, RenderBlocks renderblocks, int border, int height, int thinkness) {
+        info.setBlockBounds(
+                border * PIX,
+                height * PIX,
+                border * PIX,
+                1 - border * PIX,
+                height * PIX + thinkness * PIX,
+                1 - border * PIX);
         RenderFakeBlock.renderBlockOnInventory(renderblocks, info, 1);
     }
 
     private void renderCornerPostItem(RenderInfo info, RenderBlocks renderblocks, int xBase, int zBase) {
-        info.setBlockBounds(xBase * PIX, BASE_HEIGHT * PIX + BASE_THICKNESS * PIX, zBase * PIX, xBase * PIX + CORNER_THICKNESS * PIX, CAPBASE_HEIGHT * PIX, zBase * PIX + CORNER_THICKNESS * PIX);
+        info.setBlockBounds(
+                xBase * PIX,
+                BASE_HEIGHT * PIX + BASE_THICKNESS * PIX,
+                zBase * PIX,
+                xBase * PIX + CORNER_THICKNESS * PIX,
+                CAPBASE_HEIGHT * PIX,
+                zBase * PIX + CORNER_THICKNESS * PIX);
         RenderFakeBlock.renderBlockOnInventory(renderblocks, info, 1);
     }
-
 }

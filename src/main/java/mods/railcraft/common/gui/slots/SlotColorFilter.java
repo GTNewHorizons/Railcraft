@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -24,11 +24,8 @@ public class SlotColorFilter extends SlotRailcraft {
 
     @Override
     public boolean isItemValid(ItemStack itemstack) {
-        if (itemstack == null)
-            return false;
-        if (InvTools.isStackEqualToBlock(itemstack, Blocks.wool))
-            return true;
+        if (itemstack == null) return false;
+        if (InvTools.isStackEqualToBlock(itemstack, Blocks.wool)) return true;
         return itemstack.getItem() == Items.dye;
     }
-
 }

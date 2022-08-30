@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -35,8 +35,7 @@ public class ItemPost extends ItemBlock {
 
     public static String getEmblem(ItemStack stack) {
         NBTTagCompound nbt = stack.getTagCompound();
-        if (nbt == null || !nbt.hasKey("emblem"))
-            return "";
+        if (nbt == null || !nbt.hasKey("emblem")) return "";
         return nbt.getString("emblem");
     }
 
@@ -56,8 +55,7 @@ public class ItemPost extends ItemBlock {
     public IIcon getIcon(ItemStack stack, int pass) {
         if (stack.getItemDamage() == EnumPost.EMBLEM.ordinal()) {
             EnumColor color = InvTools.getItemColor(stack);
-            if (color != null && BlockPostMetal.textures != null)
-                return BlockPostMetal.textures[color.ordinal()];
+            if (color != null && BlockPostMetal.textures != null) return BlockPostMetal.textures[color.ordinal()];
         }
         return super.getIcon(stack, pass);
     }
@@ -78,13 +76,10 @@ public class ItemPost extends ItemBlock {
             NBTTagCompound nbt = stack.getTagCompound();
             NBTTagString emblemIdent = (NBTTagString) nbt.getTag("emblem");
 
-            if (emblemIdent == null || EmblemToolsClient.packageManager == null)
-                return;
+            if (emblemIdent == null || EmblemToolsClient.packageManager == null) return;
 
             Emblem emblem = EmblemToolsClient.packageManager.getEmblem(emblemIdent.func_150285_a_());
-            if (emblem != null)
-                info.add(EnumChatFormatting.GRAY + emblem.displayName);
+            if (emblem != null) info.add(EnumChatFormatting.GRAY + emblem.displayName);
         }
     }
-
 }

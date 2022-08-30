@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,8 +9,6 @@
 package mods.railcraft.common.blocks.machine.epsilon;
 
 import mods.railcraft.api.electricity.IElectricGrid;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
@@ -18,7 +16,9 @@ import mods.railcraft.common.plugins.ic2.ISinkDelegate;
 import mods.railcraft.common.plugins.ic2.TileIC2MultiEmitterDelegate;
 import mods.railcraft.common.plugins.ic2.TileIC2SinkDelegate;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
@@ -45,8 +45,7 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     public void updateEntity() {
         super.updateEntity();
 
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         if (!addedToIC2EnergyNet) {
             IC2Plugin.addTileToNet(getIC2Delegate());
@@ -57,8 +56,7 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     }
 
     private void dropFromNet() {
-        if (addedToIC2EnergyNet)
-            IC2Plugin.removeTileFromNet(getIC2Delegate());
+        if (addedToIC2EnergyNet) IC2Plugin.removeTileFromNet(getIC2Delegate());
     }
 
     @Override
@@ -126,5 +124,4 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
             }
         return sinkDelegate;
     }
-
 }

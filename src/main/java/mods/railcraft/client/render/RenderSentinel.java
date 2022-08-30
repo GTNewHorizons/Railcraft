@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,16 +8,15 @@
  */
 package mods.railcraft.client.render;
 
-import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
-public class RenderSentinel implements ICombinedRenderer
-{
+public class RenderSentinel implements ICombinedRenderer {
 
     @Override
     public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {

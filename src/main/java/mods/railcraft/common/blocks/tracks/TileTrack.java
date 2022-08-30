@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackTile;
 import mods.railcraft.api.tracks.TrackRegistry;
@@ -19,15 +22,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class TileTrack extends RailcraftTileEntity implements ITrackTile, IGuiReturnHandler {
     public ITrackInstance track;
 
-    public TileTrack() {
-    }
+    public TileTrack() {}
 
     public TileTrack(ITrackInstance t) {
         track = t;
@@ -68,16 +66,14 @@ public class TileTrack extends RailcraftTileEntity implements ITrackTile, IGuiRe
     public void writePacketData(DataOutputStream data) throws IOException {
         super.writePacketData(data);
 
-        if (track != null)
-            track.writePacketData(data);
+        if (track != null) track.writePacketData(data);
     }
 
     @Override
     public void readPacketData(DataInputStream data) throws IOException {
         super.readPacketData(data);
 
-        if (track != null)
-            track.readPacketData(data);
+        if (track != null) track.readPacketData(data);
     }
 
     @Override
@@ -104,18 +100,17 @@ public class TileTrack extends RailcraftTileEntity implements ITrackTile, IGuiRe
 
     @Override
     public void writeGuiData(DataOutputStream data) throws IOException {
-        if (track instanceof IGuiReturnHandler)
-            ((IGuiReturnHandler) track).writeGuiData(data);
+        if (track instanceof IGuiReturnHandler) ((IGuiReturnHandler) track).writeGuiData(data);
     }
 
     @Override
     public void readGuiData(DataInputStream data, EntityPlayer sender) throws IOException {
-        if (track instanceof IGuiReturnHandler)
-            ((IGuiReturnHandler) track).readGuiData(data, sender);
+        if (track instanceof IGuiReturnHandler) ((IGuiReturnHandler) track).readGuiData(data, sender);
     }
 
     @Override
-    public boolean shouldRefresh(Block oldBlock, Block newBlock, int oldMeta, int newMeta, World world, int x, int y, int z) {
+    public boolean shouldRefresh(
+            Block oldBlock, Block newBlock, int oldMeta, int newMeta, World world, int x, int y, int z) {
         return oldBlock != newBlock;
     }
 }

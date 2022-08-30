@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,15 +9,15 @@
 package mods.railcraft.common.items;
 
 import ic2.api.item.IMetalArmor;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.OreDictPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 
 /**
  *
@@ -55,5 +55,4 @@ public class ItemSteelArmor extends ItemArmor implements IMetalArmor {
     public boolean isMetalArmor(ItemStack itemstack, EntityPlayer player) {
         return true;
     }
-
 }

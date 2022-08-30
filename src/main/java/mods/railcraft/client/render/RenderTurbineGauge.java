@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,11 @@
  */
 package mods.railcraft.client.render;
 
+import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-
-import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import org.lwjgl.opengl.GL11;
 
 public class RenderTurbineGauge extends TileEntitySpecialRenderer {
@@ -22,8 +21,7 @@ public class RenderTurbineGauge extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
         TileSteamTurbine turbine = (TileSteamTurbine) tile;
 
-        if (!turbine.isStructureValid()
-                || turbine.getPatternMarker() != 'W')
+        if (!turbine.isStructureValid() || turbine.getPatternMarker() != 'W')
             // not a gauge block
             return;
 
@@ -61,11 +59,11 @@ public class RenderTurbineGauge extends TileEntitySpecialRenderer {
                 rx = 1;
             }
 
-        if (fx == 0 && fz == 0 || rx == 0 && rz == 0)
-            throw new IllegalStateException("can't detect gauge orientation");
+        if (fx == 0 && fz == 0 || rx == 0 && rz == 0) throw new IllegalStateException("can't detect gauge orientation");
 
         // fix lightmap coords to use the brightness value in front of the block, not inside it (which would be just 0)
-        int lmCoords = tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord + fx, tile.yCoord, tile.zCoord + fz, 0);
+        int lmCoords =
+                tile.getWorldObj().getLightBrightnessForSkyBlocks(tile.xCoord + fx, tile.yCoord, tile.zCoord + fz, 0);
         int lmX = lmCoords % 65536;
         int lmY = lmCoords / 65536;
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lmX / 1.0F, lmY / 1.0F);
@@ -107,5 +105,4 @@ public class RenderTurbineGauge extends TileEntitySpecialRenderer {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
-
 }

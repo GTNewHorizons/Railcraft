@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,11 +11,6 @@ package mods.railcraft.common.blocks.tracks;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerReinforced;
@@ -24,6 +19,11 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 
 public class TrackLauncher extends TrackReinforced implements ITrackPowered, IGuiReturnHandler {
 
@@ -60,7 +60,13 @@ public class TrackLauncher extends TrackReinforced implements ITrackPowered, IGu
         if (current != null && current.getItem() instanceof IToolCrowbar) {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
             if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
-                GuiHandler.openGui(EnumGui.TRACK_LAUNCHER, player, getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+                GuiHandler.openGui(
+                        EnumGui.TRACK_LAUNCHER,
+                        player,
+                        getWorld(),
+                        tileEntity.xCoord,
+                        tileEntity.yCoord,
+                        tileEntity.zCoord);
                 crowbar.onWhack(player, current, getX(), getY(), getZ());
                 return true;
             }

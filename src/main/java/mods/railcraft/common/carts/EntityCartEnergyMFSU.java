@@ -51,5 +51,4 @@ public final class EntityCartEnergyMFSU extends EntityCartEnergy {
     public ICartType getCartType() {
         return EnumCart.ENERGY_MFSU;
     }
-
 }

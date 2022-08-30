@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,7 +9,6 @@
 package mods.railcraft.common.carts;
 
 import java.util.List;
-
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -47,13 +46,11 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
     public abstract ICartType getCartType();
 
     @Override
-    public void initEntityFromItem(ItemStack stack) {
-    }
+    public void initEntityFromItem(ItemStack stack) {}
 
     @Override
     public final boolean interactFirst(EntityPlayer player) {
-        if (MinecraftForge.EVENT_BUS.post(new MinecartInteractEvent(this, player)))
-            return true;
+        if (MinecraftForge.EVENT_BUS.post(new MinecartInteractEvent(this, player))) return true;
         return doInteract(player);
     }
 
@@ -68,8 +65,7 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
     @Override
     public ItemStack getCartItem() {
         ItemStack stack = EnumCart.fromCart(this).getCartItem();
-        if (hasCustomInventoryName())
-            stack.setStackDisplayName(getCommandSenderName());
+        if (hasCustomInventoryName()) stack.setStackDisplayName(getCommandSenderName());
         return stack;
     }
 
@@ -93,8 +89,7 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
     public void killMinecart(DamageSource par1DamageSource) {
         setDead();
         List<ItemStack> drops = getItemsDropped();
-        if (this.func_95999_t() != null)
-            drops.get(0).setStackDisplayName(this.func_95999_t());
+        if (this.func_95999_t() != null) drops.get(0).setStackDisplayName(this.func_95999_t());
         for (ItemStack item : drops) {
             entityDropItem(item, 0.0F);
         }
@@ -110,7 +105,8 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
         if (trackMeta != null) {
             ForgeDirection forgeDirection = determineTravelDirection(trackMeta);
             ForgeDirection previousForgeDirection = travelDirectionHistory[1];
-            if (previousForgeDirection != ForgeDirection.UNKNOWN && travelDirectionHistory[0] == previousForgeDirection) {
+            if (previousForgeDirection != ForgeDirection.UNKNOWN
+                    && travelDirectionHistory[0] == previousForgeDirection) {
                 travelDirection = forgeDirection;
                 verticalTravelDirection = determineVerticalTravelDirection(trackMeta);
             }
@@ -121,44 +117,31 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
 
     private ForgeDirection determineTravelDirection(EnumTrackMeta trackMeta) {
         if (trackMeta.isStraightTrack()) {
-            if (posX - prevPosX > 0)
-                return ForgeDirection.EAST;
-            if (posX - prevPosX < 0)
-                return ForgeDirection.WEST;
-            if (posZ - prevPosZ > 0)
-                return ForgeDirection.SOUTH;
-            if (posZ - prevPosZ < 0)
-                return ForgeDirection.NORTH;
+            if (posX - prevPosX > 0) return ForgeDirection.EAST;
+            if (posX - prevPosX < 0) return ForgeDirection.WEST;
+            if (posZ - prevPosZ > 0) return ForgeDirection.SOUTH;
+            if (posZ - prevPosZ < 0) return ForgeDirection.NORTH;
         } else {
             switch (trackMeta) {
                 case EAST_SOUTH_CORNER:
-                    if (prevPosZ > posZ)
-                        return ForgeDirection.EAST;
-                    else
-                        return ForgeDirection.SOUTH;
+                    if (prevPosZ > posZ) return ForgeDirection.EAST;
+                    else return ForgeDirection.SOUTH;
                 case WEST_SOUTH_CORNER:
-                    if (prevPosZ > posZ)
-                        return ForgeDirection.WEST;
-                    else
-                        return ForgeDirection.SOUTH;
+                    if (prevPosZ > posZ) return ForgeDirection.WEST;
+                    else return ForgeDirection.SOUTH;
                 case WEST_NORTH_CORNER:
-                    if (prevPosZ > posZ)
-                        return ForgeDirection.NORTH;
-                    else
-                        return ForgeDirection.WEST;
+                    if (prevPosZ > posZ) return ForgeDirection.NORTH;
+                    else return ForgeDirection.WEST;
                 case EAST_NORTH_CORNER:
-                    if (prevPosZ > posZ)
-                        return ForgeDirection.NORTH;
-                    else
-                        return ForgeDirection.EAST;
+                    if (prevPosZ > posZ) return ForgeDirection.NORTH;
+                    else return ForgeDirection.EAST;
             }
         }
         return ForgeDirection.UNKNOWN;
     }
 
     private ForgeDirection determineVerticalTravelDirection(EnumTrackMeta trackMeta) {
-        if (trackMeta.isSlopeTrack())
-            return prevPosY < posY ? ForgeDirection.UP : ForgeDirection.DOWN;
+        if (trackMeta.isSlopeTrack()) return prevPosY < posY ? ForgeDirection.UP : ForgeDirection.DOWN;
         return ForgeDirection.UNKNOWN;
     }
 

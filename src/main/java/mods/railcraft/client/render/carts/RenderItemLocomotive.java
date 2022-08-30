@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -39,8 +39,7 @@ public class RenderItemLocomotive implements IItemRenderer, IRenderer {
             case INVENTORY:
                 String rendererTag = ItemLocomotive.getModel(stack);
                 LocomotiveModelRenderer renderer = renderType.getRenderer(rendererTag);
-                if (renderer == null || !renderer.renderItemIn3D())
-                    return false;
+                if (renderer == null || !renderer.renderItemIn3D()) return false;
             case ENTITY:
             case EQUIPPED:
             case EQUIPPED_FIRST_PERSON:
@@ -114,5 +113,4 @@ public class RenderItemLocomotive implements IItemRenderer, IRenderer {
 
         GL11.glPopAttrib();
     }
-
 }

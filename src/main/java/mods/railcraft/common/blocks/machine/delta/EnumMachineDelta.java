@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,28 +13,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
-import mods.railcraft.common.blocks.machine.BoundingBoxManager.BoundingBox;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 /**
  *
  * @author CovertJaguar
  */
 public enum EnumMachineDelta implements IEnumMachine {
-
     WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0),
     CAGE(Module.TRANSPORT, "cage", TileCage.class, 4, 1, 0, 1, 2, 2, 2, 2, 3);
     private final Module module;
@@ -48,7 +46,7 @@ public enum EnumMachineDelta implements IEnumMachine {
 
     static {
         creativeList.add(WIRE);
-//        creativeList.add(SAWMILL);
+        //        creativeList.add(SAWMILL);
 
         BoundingBoxManager.registerBoundingBox(WIRE, new TileWire.WireBoundingBox());
     }
@@ -83,8 +81,7 @@ public enum EnumMachineDelta implements IEnumMachine {
 
     @Override
     public IIcon getTexture(int index) {
-        if (index < 0 || index >= texture.length)
-            index = 0;
+        if (index < 0 || index >= texture.length) index = 0;
         return texture[index];
     }
 
@@ -103,8 +100,7 @@ public enum EnumMachineDelta implements IEnumMachine {
     }
 
     public static EnumMachineDelta fromId(int id) {
-        if (id < 0 || id >= VALUES.length)
-            id = 0;
+        if (id < 0 || id >= VALUES.length) id = 0;
         return VALUES[id];
     }
 
@@ -138,8 +134,7 @@ public enum EnumMachineDelta implements IEnumMachine {
     @Override
     public ItemStack getItem(int qty) {
         Block block = getBlock();
-        if (block == null)
-            return null;
+        if (block == null) return null;
         return new ItemStack(block, qty, ordinal());
     }
 
@@ -162,12 +157,9 @@ public enum EnumMachineDelta implements IEnumMachine {
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-        if (tip != null)
-            return tip;
+        if (tip != null) return tip;
         String tipTag = getTag() + ".tip";
-        if (LocalizationPlugin.hasTag(tipTag))
-            tip = ToolTip.buildToolTip(tipTag);
+        if (LocalizationPlugin.hasTag(tipTag)) tip = ToolTip.buildToolTip(tipTag);
         return tip;
     }
-
 }

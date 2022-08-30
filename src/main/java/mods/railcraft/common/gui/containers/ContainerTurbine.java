@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,13 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.items.RailcraftPartItems;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerTurbine extends RailcraftContainer {
@@ -31,7 +31,6 @@ public class ContainerTurbine extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 58 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
@@ -77,6 +76,5 @@ public class ContainerTurbine extends RailcraftContainer {
         public boolean isItemValid(ItemStack stack) {
             return stack != null && stack.getItem() == RailcraftPartItems.itemTurbineRotor;
         }
-
     }
 }

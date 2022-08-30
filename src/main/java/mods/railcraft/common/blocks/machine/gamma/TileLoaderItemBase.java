@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,9 @@
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
 import mods.railcraft.common.gui.buttons.IMultiButtonState;
@@ -26,18 +29,16 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiReturnHandler, ISidedInventory {
     protected static final int[] SLOTS = InvTools.buildSlotArray(0, 9);
     private final PhantomInventory invFilters = new PhantomInventory(9, this);
-    private final MultiButtonController<EnumTransferMode> transferModeController = new MultiButtonController(EnumTransferMode.ALL.ordinal(), EnumTransferMode.values());
-    private final MultiButtonController<EnumRedstoneMode> redstoneModeController = new MultiButtonController(0, getValidRedstoneModes());
+    private final MultiButtonController<EnumTransferMode> transferModeController =
+            new MultiButtonController(EnumTransferMode.ALL.ordinal(), EnumTransferMode.values());
+    private final MultiButtonController<EnumRedstoneMode> redstoneModeController =
+            new MultiButtonController(0, getValidRedstoneModes());
     protected boolean movedItemCart = false;
 
     public MultiButtonController<EnumTransferMode> getTransferModeController() {
@@ -79,18 +80,15 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
 
     @Override
     public boolean canHandleCart(EntityMinecart cart) {
-        if (isSendCartGateAction())
-            return false;
-        if (!(cart instanceof IInventory))
-            return false;
+        if (isSendCartGateAction()) return false;
+        if (!(cart instanceof IInventory)) return false;
         IInventory cartInv = (IInventory) cart;
-        if (cartInv.getSizeInventory() <= 0)
-            return false;
+        if (cartInv.getSizeInventory() <= 0) return false;
         ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
         ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
         if (minecartSlot1 != null || minecartSlot2 != null)
-            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) && !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
-                return false;
+            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart)
+                    && !CartUtils.doesCartMatchFilter(minecartSlot2, cart)) return false;
         return true;
     }
 
@@ -160,7 +158,6 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
     }
 
     public enum EnumTransferMode implements IMultiButtonState {
-
         TRANSFER("railcraft.gui.item.loader.transfer"),
         STOCK("railcraft.gui.item.loader.stock"),
         EXCESS("railcraft.gui.item.loader.excess"),
@@ -187,11 +184,9 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
         public ToolTip getToolTip() {
             return tip;
         }
-
     }
 
     public enum EnumRedstoneMode implements IMultiButtonState {
-
         IMMEDIATE("railcraft.gui.item.loader.immediate"),
         COMPLETE("railcraft.gui.item.loader.complete"),
         MANUAL("railcraft.gui.item.loader.manual"),
@@ -218,6 +213,5 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
         public ToolTip getToolTip() {
             return tip;
         }
-
     }
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,18 +11,10 @@ package mods.railcraft.common.blocks.machine.gamma;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import mods.railcraft.common.fluids.*;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.fluids.*;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
@@ -33,6 +25,12 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -40,7 +38,8 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturnHandler {
 
     private static final int TRANSFER_RATE = 80;
-    private final MultiButtonController<ButtonState> stateController = new MultiButtonController<ButtonState>(ButtonState.EMPTY_COMPLETELY.ordinal(), ButtonState.values());
+    private final MultiButtonController<ButtonState> stateController =
+            new MultiButtonController<ButtonState>(ButtonState.EMPTY_COMPLETELY.ordinal(), ButtonState.values());
 
     @Override
     public IEnumMachine getMachineType() {
@@ -53,8 +52,7 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
 
     @Override
     public IIcon getIcon(int side) {
-        if (side > 1)
-            return getMachineType().getTexture(6);
+        if (side > 1) return getMachineType().getTexture(6);
         return getMachineType().getTexture(side);
     }
 
@@ -66,8 +64,7 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (Game.isNotHost(getWorld()))
-            return;
+        if (Game.isNotHost(getWorld())) return;
 
         flow = 0;
 
@@ -96,16 +93,14 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
             cartWasSent();
         }
 
-        if (cart == null)
-            return;
+        if (cart == null) return;
 
         if (!canHandleCart(cart)) {
             sendCart(cart);
             return;
         }
 
-        if (isPaused())
-            return;
+        if (isPaused()) return;
 
         TankToolkit tankCart = new TankToolkit((IFluidHandler) cart);
 
@@ -115,22 +110,17 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
             tankCart.drain(ForgeDirection.DOWN, flow, true);
         }
 
-        if (flow > 0)
-            setPowered(false);
+        if (flow > 0) setPowered(false);
 
-        if (!isManualMode() && flow <= 0 && !isPowered() && shouldSendCart(cart))
-            sendCart(cart);
+        if (!isManualMode() && flow <= 0 && !isPowered() && shouldSendCart(cart)) sendCart(cart);
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof IFluidHandler))
-            return true;
+        if (!(cart instanceof IFluidHandler)) return true;
         TankToolkit tankCart = new TankToolkit((IFluidHandler) cart);
-        if (stateController.getButtonState() == ButtonState.IMMEDIATE)
-            return true;
-        if (getFilterFluid() != null && tankCart.isTankEmpty(getFilterFluid()))
-            return true;
+        if (stateController.getButtonState() == ButtonState.IMMEDIATE) return true;
+        if (getFilterFluid() != null && tankCart.isTankEmpty(getFilterFluid())) return true;
         return tankCart.areTanksEmpty();
     }
 
@@ -208,7 +198,6 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
     }
 
     public enum ButtonState implements IMultiButtonState {
-
         EMPTY_COMPLETELY("railcraft.gui.liquid.unloader.empty"),
         IMMEDIATE("railcraft.gui.liquid.unloader.immediate"),
         MANUAL("railcraft.gui.liquid.unloader.manual");
@@ -234,7 +223,5 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
         public ToolTip getToolTip() {
             return tip;
         }
-
     }
-
 }

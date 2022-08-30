@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -28,7 +28,6 @@ public class WorldGenFirestone extends WorldGenerator {
 
     public WorldGenFirestone() {
         super();
-
     }
 
     @Override
@@ -36,15 +35,13 @@ public class WorldGenFirestone extends WorldGenerator {
         for (int yy = y; yy > y - 6; yy--) {
             if (!world.blockExists(x, yy, z)) return false;
             Block block = WorldPlugin.getBlock(world, x, yy, z);
-            if (block != Blocks.lava && block != Blocks.flowing_lava)
-                return false;
+            if (block != Blocks.lava && block != Blocks.flowing_lava) return false;
         }
         int yy = y - 6;
         while (yy > 1) {
             if (!world.blockExists(x, yy, z)) return false;
             Block block = WorldPlugin.getBlock(world, x, yy, z);
-            if (block != Blocks.lava && block != Blocks.flowing_lava)
-                break;
+            if (block != Blocks.lava && block != Blocks.flowing_lava) break;
             yy--;
         }
         Block block = WorldPlugin.getBlock(world, x, yy, z);
@@ -52,5 +49,4 @@ public class WorldGenFirestone extends WorldGenerator {
             return world.setBlock(x, yy, z, firestone, firestoneMeta, 2);
         return false;
     }
-
 }

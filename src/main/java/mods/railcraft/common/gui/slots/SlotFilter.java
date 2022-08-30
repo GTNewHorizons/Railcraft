@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -29,5 +29,4 @@ public class SlotFilter extends SlotRailcraft {
     public boolean isItemValid(ItemStack par1ItemStack) {
         return controller == null || controller.isSlotEnabled();
     }
-
 }

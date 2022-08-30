@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,25 +9,24 @@
 package mods.railcraft.client.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackSwitch;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.common.blocks.tracks.TrackGated;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 public class RenderTrack implements ISimpleBlockRenderingHandler {
 
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-    }
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {}
 
     @Override
     public boolean shouldRender3DInInventory(int modelId) {
@@ -40,7 +39,8 @@ public class RenderTrack implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(
+            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
         int meta = ((BlockRailBase) block).getBasicRailMetadata(world, null, x, y, z);
 
         IIcon icon;
@@ -263,5 +263,4 @@ public class RenderTrack implements ISimpleBlockRenderingHandler {
         }
         gate.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
-
 }

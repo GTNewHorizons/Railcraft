@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,7 +11,6 @@ package mods.railcraft.common.modules;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -37,14 +36,19 @@ public class ModuleChunkLoading extends RailcraftModule {
         if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
             Block block = RailcraftBlocks.registerBlockMachineAlpha();
             if (block != null && RailcraftConfig.canCraftAnchors()) {
-                CraftingPlugin.addShapedRecipe(alpha.getItem(),
+                CraftingPlugin.addShapedRecipe(
+                        alpha.getItem(),
                         "gog",
                         "dpd",
                         "gog",
-                        'd', "gemDiamond",
-                        'g', "ingotGold",
-                        'p', Items.ender_pearl,
-                        'o', new ItemStack(Blocks.obsidian));
+                        'd',
+                        "gemDiamond",
+                        'g',
+                        "ingotGold",
+                        'p',
+                        Items.ender_pearl,
+                        'o',
+                        new ItemStack(Blocks.obsidian));
             }
         }
 
@@ -52,14 +56,19 @@ public class ModuleChunkLoading extends RailcraftModule {
         if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
             Block block = RailcraftBlocks.registerBlockMachineAlpha();
             if (block != null && RailcraftConfig.canCraftPersonalAnchors()) {
-                CraftingPlugin.addShapedRecipe(alpha.getItem(),
+                CraftingPlugin.addShapedRecipe(
+                        alpha.getItem(),
                         "gog",
                         "dpd",
                         "gog",
-                        'd', "gemEmerald",
-                        'g', "ingotGold",
-                        'p', Items.ender_pearl,
-                        'o', new ItemStack(Blocks.obsidian));
+                        'd',
+                        "gemEmerald",
+                        'g',
+                        "ingotGold",
+                        'p',
+                        Items.ender_pearl,
+                        'o',
+                        new ItemStack(Blocks.obsidian));
             }
         }
 
@@ -67,14 +76,19 @@ public class ModuleChunkLoading extends RailcraftModule {
         if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
             Block block = RailcraftBlocks.registerBlockMachineAlpha();
             if (block != null && RailcraftConfig.canCraftPassiveAnchors()) {
-                CraftingPlugin.addShapedRecipe(alpha.getItem(),
+                CraftingPlugin.addShapedRecipe(
+                        alpha.getItem(),
                         "gog",
                         "dpd",
                         "gog",
-                        'd', "dyeCyan",
-                        'g', "ingotGold",
-                        'p', Items.ender_pearl,
-                        'o', new ItemStack(Blocks.obsidian));
+                        'd',
+                        "dyeCyan",
+                        'g',
+                        "ingotGold",
+                        'p',
+                        Items.ender_pearl,
+                        'o',
+                        new ItemStack(Blocks.obsidian));
             }
         }
 
@@ -89,13 +103,17 @@ public class ModuleChunkLoading extends RailcraftModule {
             if (block != null) {
                 ItemStack stack = beta.getItem();
                 if (RailcraftConfig.canCraftAnchors()) {
-                    CraftingPlugin.addShapedRecipe(stack,
+                    CraftingPlugin.addShapedRecipe(
+                            stack,
                             " p ",
                             " o ",
                             "ogo",
-                            'g', "ingotGold",
-                            'p', Items.ender_pearl,
-                            'o', new ItemStack(Blocks.obsidian));
+                            'g',
+                            "ingotGold",
+                            'p',
+                            Items.ender_pearl,
+                            'o',
+                            new ItemStack(Blocks.obsidian));
                 }
             }
         }
@@ -105,27 +123,18 @@ public class ModuleChunkLoading extends RailcraftModule {
         if (EnumMachineAlpha.WORLD_ANCHOR.isAvaliable() && cart.setup()) {
             ItemStack anchor = EnumMachineAlpha.WORLD_ANCHOR.getItem();
             if (RailcraftConfig.canCraftAnchors()) {
-                CraftingPlugin.addShapedRecipe(cart.getCartItem(),
-                        "A",
-                        "M",
-                        'A', anchor,
-                        'M', Items.minecart);
+                CraftingPlugin.addShapedRecipe(cart.getCartItem(), "A", "M", 'A', anchor, 'M', Items.minecart);
                 CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
             }
             cart.setContents(anchor);
         }
-
 
         // Define Personal Anchor Cart
         cart = EnumCart.ANCHOR_PERSONAL;
         if (EnumMachineAlpha.PERSONAL_ANCHOR.isAvaliable() && cart.setup()) {
             ItemStack anchor = EnumMachineAlpha.PERSONAL_ANCHOR.getItem();
             if (RailcraftConfig.canCraftPersonalAnchors()) {
-                CraftingPlugin.addShapedRecipe(cart.getCartItem(),
-                        "A",
-                        "M",
-                        'A', anchor,
-                        'M', Items.minecart);
+                CraftingPlugin.addShapedRecipe(cart.getCartItem(), "A", "M", 'A', anchor, 'M', Items.minecart);
                 CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
             }
             cart.setContents(anchor);

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,11 +11,11 @@ package mods.railcraft.common.plugins.forge;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import mods.railcraft.common.util.inventory.InvTools;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 /**
  *
@@ -26,8 +26,7 @@ public class OreDictPlugin {
     public static boolean isOreType(String oreName, ItemStack stack) {
         List<ItemStack> ores = OreDictionary.getOres(oreName);
         for (ItemStack ore : ores) {
-            if (InvTools.isItemEqual(ore, stack))
-                return true;
+            if (InvTools.isItemEqual(ore, stack)) return true;
         }
         return false;
     }
@@ -54,11 +53,9 @@ public class OreDictPlugin {
         for (String name : names) {
             if (name.startsWith("ore"))
                 for (ItemStack stack : OreDictionary.getOres(name)) {
-                    if (stack.getItem() instanceof ItemBlock)
-                        ores.add(InvTools.getBlockFromStack(stack));
+                    if (stack.getItem() instanceof ItemBlock) ores.add(InvTools.getBlockFromStack(stack));
                 }
         }
         return ores;
     }
-
 }

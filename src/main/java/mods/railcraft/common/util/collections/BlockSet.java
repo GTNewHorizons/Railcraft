@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -26,9 +26,7 @@ public class BlockSet extends HashSet<BlockKey> {
     }
 
     public boolean contains(Block block, int meta) {
-        if (contains(new BlockKey(block)))
-            return true;
+        if (contains(new BlockKey(block))) return true;
         return contains(new BlockKey(block, meta));
     }
-
 }

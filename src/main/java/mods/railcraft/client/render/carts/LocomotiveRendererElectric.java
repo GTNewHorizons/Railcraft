@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -41,7 +41,14 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
     }
 
     @Override
-    public void renderLocomotive(IRenderer renderer, EntityMinecart cart, int primaryColor, int secondaryColor, ResourceLocation emblemTexture, float light, float time) {
+    public void renderLocomotive(
+            IRenderer renderer,
+            EntityMinecart cart,
+            int primaryColor,
+            int secondaryColor,
+            ResourceLocation emblemTexture,
+            float light,
+            float time) {
         super.renderLocomotive(renderer, cart, primaryColor, secondaryColor, emblemTexture, light, time);
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
@@ -72,9 +79,7 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
             renderer.rotationPointX = 8F;
             renderer.rotationPointY = 8F;
             renderer.rotationPointZ = 8F;
-
         }
-
     }
 
     private static class ModelLampOn extends ModelLampOff {
@@ -82,7 +87,8 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
         public ModelLampOn() {
             for (Object box : renderer.cubeList) {
                 TexturedQuadAdv[] quadsNew = new TexturedQuadAdv[6];
-                TexturedQuad[] quadsOld = ObfuscationReflectionHelper.getPrivateValue(ModelBox.class, (ModelBox) box, 1);
+                TexturedQuad[] quadsOld =
+                        ObfuscationReflectionHelper.getPrivateValue(ModelBox.class, (ModelBox) box, 1);
                 for (int i = 0; i < 6; i++) {
                     quadsNew[i] = new TexturedQuadAdv(quadsOld[i].vertexPositions);
                     quadsNew[i].setBrightness(210);
@@ -91,7 +97,5 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
                 ObfuscationReflectionHelper.setPrivateValue(ModelBox.class, (ModelBox) box, quadsNew, 1);
             }
         }
-
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -25,13 +25,9 @@ public class BoilerFuelTank extends StandardTank {
 
     @Override
     public int fill(FluidStack resource, boolean doFill) {
-        if (resource == null)
-            return 0;
-        if (Fluids.WATER.get() == resource.getFluid())
-            return 0;
-        if (FuelManager.getBoilerFuelValue(resource.getFluid()) > 0)
-            return super.fill(resource, doFill);
+        if (resource == null) return 0;
+        if (Fluids.WATER.get() == resource.getFluid()) return 0;
+        if (FuelManager.getBoilerFuelValue(resource.getFluid()) > 0) return super.fill(resource, doFill);
         return 0;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,16 +11,16 @@ package mods.railcraft.common.gui.containers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
+import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
+import mods.railcraft.common.util.network.PacketBuilder;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
-import mods.railcraft.common.util.network.PacketBuilder;
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class ContainerEngineSteam extends RailcraftContainer {
 
@@ -98,5 +98,4 @@ public class ContainerEngineSteam extends RailcraftContainer {
     public boolean canInteractWith(EntityPlayer entityplayer) {
         return RailcraftTileEntity.isUseableByPlayerHelper(tile, entityplayer);
     }
-
 }

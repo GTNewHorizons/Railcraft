@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,13 +11,13 @@ package mods.railcraft.common.gui.containers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderEnergyBase;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.gui.slots.SlotEnergy;
 import mods.railcraft.common.gui.slots.SlotUpgrade;
 import mods.railcraft.common.util.network.PacketBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerEnergyLoader extends RailcraftContainer {
 
@@ -40,7 +40,6 @@ public class ContainerEnergyLoader extends RailcraftContainer {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));
             }
-
         }
 
         for (int j = 0; j < 9; j++) {
@@ -68,16 +67,14 @@ public class ContainerEnergyLoader extends RailcraftContainer {
             ICrafting player = (ICrafting) crafters.get(i);
 
             if (lastEnergy != device.getEnergy())
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
+                PacketBuilder.instance()
+                        .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
 
-            if (lastStorage != device.storageUpgrades)
-                player.sendProgressBarUpdate(this, 1, device.storageUpgrades);
+            if (lastStorage != device.storageUpgrades) player.sendProgressBarUpdate(this, 1, device.storageUpgrades);
 
-            if (lastLapo != device.lapotronUpgrades)
-                player.sendProgressBarUpdate(this, 2, device.lapotronUpgrades);
+            if (lastLapo != device.lapotronUpgrades) player.sendProgressBarUpdate(this, 2, device.lapotronUpgrades);
 
-            if (lastLapo != device.transferRate)
-                player.sendProgressBarUpdate(this, 3, device.transferRate);
+            if (lastLapo != device.transferRate) player.sendProgressBarUpdate(this, 3, device.transferRate);
         }
 
         lastEnergy = (int) device.getEnergy();
@@ -89,14 +86,9 @@ public class ContainerEnergyLoader extends RailcraftContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data) {
-        if (id == 0)
-            this.device.setEnergy(data);
-        if (id == 1)
-            this.device.storageUpgrades = (short) data;
-        if (id == 2)
-            this.device.lapotronUpgrades = (short) data;
-        if (id == 3)
-            this.device.transferRate = data;
+        if (id == 0) this.device.setEnergy(data);
+        if (id == 1) this.device.storageUpgrades = (short) data;
+        if (id == 2) this.device.lapotronUpgrades = (short) data;
+        if (id == 3) this.device.transferRate = data;
     }
-
 }

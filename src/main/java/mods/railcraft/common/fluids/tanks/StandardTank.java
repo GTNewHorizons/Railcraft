@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,7 @@
  */
 package mods.railcraft.common.fluids.tanks;
 
+import java.util.Locale;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.gui.tooltips.ToolTipLine;
 import net.minecraft.item.EnumRarity;
@@ -15,8 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-
-import java.util.Locale;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -52,8 +51,7 @@ public class StandardTank extends FluidTank {
 
     public int getColor() {
         Fluid f = getFluidType();
-        if (f == null)
-            return DEFAULT_COLOR;
+        if (f == null) return DEFAULT_COLOR;
         return f.getColor(getFluid());
     }
 
@@ -75,17 +73,14 @@ public class StandardTank extends FluidTank {
 
     @Override
     public int fill(final FluidStack resource, final boolean doFill) {
-        if (resource == null)
-            return 0;
-        if (resource.amount <= 0)
-            return 0;
+        if (resource == null) return 0;
+        if (resource.amount <= 0) return 0;
         return super.fill(resource, doFill);
     }
 
     @Override
     public FluidStack drain(int maxDrain, boolean doDrain) {
-        if (maxDrain <= 0)
-            return null;
+        if (maxDrain <= 0) return null;
         return super.drain(maxDrain, doDrain);
     }
 
@@ -98,9 +93,10 @@ public class StandardTank extends FluidTank {
         int amount = 0;
         if (renderData.fluid != null && renderData.amount > 0) {
             EnumRarity rarity = renderData.fluid.getRarity();
-            if (rarity == null)
-                rarity = EnumRarity.common;
-            ToolTipLine fluidName = new ToolTipLine(renderData.fluid.getLocalizedName(new FluidStack(renderData.fluid, renderData.amount)), rarity.rarityColor);
+            if (rarity == null) rarity = EnumRarity.common;
+            ToolTipLine fluidName = new ToolTipLine(
+                    renderData.fluid.getLocalizedName(new FluidStack(renderData.fluid, renderData.amount)),
+                    rarity.rarityColor);
             fluidName.setSpacing(2);
             toolTip.add(fluidName);
             amount = renderData.amount;

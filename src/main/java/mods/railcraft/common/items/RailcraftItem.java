@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -19,7 +19,6 @@ import net.minecraftforge.oredict.OreDictionary;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum RailcraftItem {
-
     circuit(ItemCircuit.class, "part.circuit"),
     dust(ItemDust.class, "dust"),
     gear(ItemGear.class, "part.gear"),
@@ -51,8 +50,7 @@ public enum RailcraftItem {
     }
 
     public void registerItem() {
-        if (item != null)
-            return;
+        if (item != null) return;
 
         if (isEnabled()) {
             try {
@@ -95,8 +93,7 @@ public enum RailcraftItem {
 
     public ItemStack getStack(int qty, int meta) {
         registerItem();
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item, qty, meta);
     }
 
@@ -116,24 +113,19 @@ public enum RailcraftItem {
 
     public Object getRecipeObject() {
         registerItem();
-        if (item != null)
-            return item.getRecipeObject(null);
+        if (item != null) return item.getRecipeObject(null);
         Object obj = altRecipeObject;
-        if (obj instanceof ItemStack)
-            obj = ((ItemStack) obj).copy();
+        if (obj instanceof ItemStack) obj = ((ItemStack) obj).copy();
         return obj;
     }
 
     public Object getRecipeObject(IItemMetaEnum meta) {
         checkMetaObject(meta);
         registerItem();
-        if (item != null)
-            return item.getRecipeObject(meta);
+        if (item != null) return item.getRecipeObject(meta);
         Object obj = meta.getAlternate();
-        if (obj == null)
-            obj = altRecipeObject;
-        if (obj instanceof ItemStack)
-            obj = ((ItemStack) obj).copy();
+        if (obj == null) obj = altRecipeObject;
+        if (obj instanceof ItemStack) obj = ((ItemStack) obj).copy();
         return obj;
     }
 
@@ -143,8 +135,7 @@ public enum RailcraftItem {
 
     public static void definePostRecipes() {
         for (RailcraftItem type : VALUES) {
-            if (type.item != null)
-                type.item.definePostRecipes();
+            if (type.item != null) type.item.definePostRecipes();
         }
     }
 }

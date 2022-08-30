@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -51,13 +51,18 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
                 item = new ItemSignalTuner().setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item),
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
                         " T ",
                         "BRB",
                         "   ",
-                        'B', Blocks.stone_button,
-                        'R', RailcraftItem.circuit, ItemCircuit.EnumCircuit.RECEIVER,
-                        'T', Blocks.redstone_torch);
+                        'B',
+                        Blocks.stone_button,
+                        'R',
+                        RailcraftItem.circuit,
+                        ItemCircuit.EnumCircuit.RECEIVER,
+                        'T',
+                        Blocks.redstone_torch);
 
                 LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, "tool.signal.tuner");
             }
@@ -65,13 +70,22 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
     }
 
     public static ItemStack getItem() {
-        if (item == null)
-            return null;
+        if (item == null) return null;
         return new ItemStack(item);
     }
 
     @Override
-    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int i, int j, int k, int side, float par8, float par9, float par10) {
+    public boolean onItemUse(
+            ItemStack item,
+            EntityPlayer player,
+            World world,
+            int i,
+            int j,
+            int k,
+            int side,
+            float par8,
+            float par9,
+            float par10) {
         if (Game.isHost(world) && item.hasTagCompound() && player.isSneaking()) {
             WorldCoordinate cPos = getControllerData(item);
             if (cPos != null) {
@@ -97,7 +111,11 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
                             if (receiver.getTile() != controller.getTile()) {
                                 controller.registerReceiver(receiver);
                                 controller.endPairing();
-                                ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.tuner.success", controller.getLocalizationTag(), receiver.getLocalizationTag());
+                                ChatPlugin.sendLocalizedChatFromServer(
+                                        player,
+                                        "railcraft.gui.tuner.success",
+                                        controller.getLocalizationTag(),
+                                        receiver.getLocalizationTag());
                                 item.setTagCompound(null);
                                 return true;
                             }
@@ -114,17 +132,18 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
                 if (Game.isHost(world)) {
                     SignalController controller = ((IControllerTile) tile).getController();
                     if (cPos == null || (i != cPos.x || j != cPos.y || k != cPos.z)) {
-                        ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.tuner.start", controller.getLocalizationTag());
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player, "railcraft.gui.tuner.start", controller.getLocalizationTag());
                         setControllerData(item, tile);
                         controller.startPairing();
                     } else {
-                        ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.tuner.stop", controller.getLocalizationTag());
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player, "railcraft.gui.tuner.stop", controller.getLocalizationTag());
                         controller.endPairing();
                         item.setTagCompound(null);
                     }
                 }
-            } else
-                return false;
+            } else return false;
             return true;
         }
         return false;

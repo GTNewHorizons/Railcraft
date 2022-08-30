@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,10 @@
  */
 package mods.railcraft.common.blocks.hidden;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -19,17 +23,13 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class TileHidden extends RailcraftTileEntity {
     private static final int DURATION_MIINUTES = 15;
-    private static final long DURATION_MILLISECONDS = TimeUnit.MILLISECONDS.convert(DURATION_MIINUTES, TimeUnit.MINUTES);
+    private static final long DURATION_MILLISECONDS =
+            TimeUnit.MILLISECONDS.convert(DURATION_MIINUTES, TimeUnit.MINUTES);
     public WorldCoordinate lastMarker;
     public long colorSeed;
     public long timestamp = -1;
@@ -42,8 +42,7 @@ public class TileHidden extends RailcraftTileEntity {
                 EffectManager.instance.trailEffect(lastMarker.x, lastMarker.y, lastMarker.z, this, colorSeed);
             return;
         }
-        if (timestamp == -1)
-            return;
+        if (timestamp == -1) return;
 
         if (clock % 64 == 0) {
             if (BlockHidden.getBlock() == null || !RailcraftConfig.isTrackingAuraEnabled()) {
@@ -58,8 +57,7 @@ public class TileHidden extends RailcraftTileEntity {
             }
 
             boolean timeElapsed = System.currentTimeMillis() - timestamp >= DURATION_MILLISECONDS;
-            if (timeElapsed)
-                worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.air, 0, 6);
+            if (timeElapsed) worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.air, 0, 6);
         }
     }
 

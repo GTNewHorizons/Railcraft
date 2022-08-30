@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,6 +8,8 @@
  */
 package mods.railcraft.common.items;
 
+import java.util.List;
+import java.util.Locale;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,16 +20,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import java.util.List;
-import java.util.Locale;
-
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemCircuit extends ItemRailcraft {
 
     public enum EnumCircuit implements IItemMetaEnum {
-
         CONTROLLER(Items.comparator),
         RECEIVER(Blocks.redstone_torch),
         SIGNAL(Items.repeater);
@@ -48,10 +46,7 @@ public class ItemCircuit extends ItemRailcraft {
         public Class<? extends ItemRailcraft> getItemClass() {
             return ItemCircuit.class;
         }
-
-    }
-
-    ;
+    };
 
     public ItemCircuit() {
         super();
@@ -69,42 +64,64 @@ public class ItemCircuit extends ItemRailcraft {
 
     @Override
     public void defineRecipes() {
-        CraftingPlugin.addShapedRecipe(new ItemStack(this, 1, EnumCircuit.CONTROLLER.ordinal()),
+        CraftingPlugin.addShapedRecipe(
+                new ItemStack(this, 1, EnumCircuit.CONTROLLER.ordinal()),
                 " #S",
                 "BGR",
                 "SRL",
-                'L', "gemLapis",
-                '#', Items.repeater,
-                'G', "ingotGold",
-                'S', new ItemStack(Blocks.wool, 1, 14),
-                'R', "dustRedstone",
-                'B', "slimeball");
-        CraftingPlugin.addShapedRecipe(new ItemStack(this, 1, EnumCircuit.RECEIVER.ordinal()),
+                'L',
+                "gemLapis",
+                '#',
+                Items.repeater,
+                'G',
+                "ingotGold",
+                'S',
+                new ItemStack(Blocks.wool, 1, 14),
+                'R',
+                "dustRedstone",
+                'B',
+                "slimeball");
+        CraftingPlugin.addShapedRecipe(
+                new ItemStack(this, 1, EnumCircuit.RECEIVER.ordinal()),
                 " #S",
                 "BGR",
                 "SRL",
-                'L', "gemLapis",
-                '#', Items.repeater,
-                'G', "ingotGold",
-                'S', new ItemStack(Blocks.wool, 1, 13),
-                'R', "dustRedstone",
-                'B', "slimeball");
-        CraftingPlugin.addShapedRecipe(new ItemStack(this, 1, EnumCircuit.SIGNAL.ordinal()),
+                'L',
+                "gemLapis",
+                '#',
+                Items.repeater,
+                'G',
+                "ingotGold",
+                'S',
+                new ItemStack(Blocks.wool, 1, 13),
+                'R',
+                "dustRedstone",
+                'B',
+                "slimeball");
+        CraftingPlugin.addShapedRecipe(
+                new ItemStack(this, 1, EnumCircuit.SIGNAL.ordinal()),
                 " #S",
                 "BGR",
                 "SRL",
-                'L', "gemLapis",
-                '#', Items.repeater,
-                'G', "ingotGold",
-                'S', new ItemStack(Blocks.wool, 1, 4),
-                'R', "dustRedstone",
-                'B', "slimeball");
+                'L',
+                "gemLapis",
+                '#',
+                Items.repeater,
+                'G',
+                "ingotGold",
+                'S',
+                new ItemStack(Blocks.wool, 1, 4),
+                'R',
+                "dustRedstone",
+                'B',
+                "slimeball");
     }
 
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumCircuit gear : EnumCircuit.VALUES) {
-            gear.icon = iconRegister.registerIcon("railcraft:part.circuit." + gear.name().toLowerCase(Locale.ENGLISH));
+            gear.icon = iconRegister.registerIcon(
+                    "railcraft:part.circuit." + gear.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -117,16 +134,14 @@ public class ItemCircuit extends ItemRailcraft {
 
     @Override
     public IIcon getIconFromDamage(int damage) {
-        if (damage >= EnumCircuit.VALUES.length)
-            return EnumCircuit.RECEIVER.icon;
+        if (damage >= EnumCircuit.VALUES.length) return EnumCircuit.RECEIVER.icon;
         return EnumCircuit.VALUES[damage].icon;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumCircuit.VALUES.length)
-            return "";
+        if (damage < 0 || damage >= EnumCircuit.VALUES.length) return "";
         switch (EnumCircuit.VALUES[damage]) {
             case CONTROLLER:
                 return "item.railcraft.part.circuit.controller";
@@ -138,5 +153,4 @@ public class ItemCircuit extends ItemRailcraft {
                 return "";
         }
     }
-
 }

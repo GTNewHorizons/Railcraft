@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,15 +10,15 @@ package mods.railcraft.client.gui.buttons;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import org.lwjgl.opengl.GL11;
-import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
 import mods.railcraft.common.gui.buttons.IMultiButtonState;
+import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
 /**
  *
@@ -57,16 +57,20 @@ public class GuiMultiButton extends GuiBetterButton {
         boolean flag = x >= xPosition && y >= yPosition && x < xPosition + width && y < yPosition + h;
         int hoverState = getHoverState(flag);
         drawTexturedModalRect(xPosition, yPosition, xOffset, yOffset + hoverState * h, width / 2, h);
-        drawTexturedModalRect(xPosition + width / 2, yPosition, xOffset + w - width / 2, yOffset + hoverState * h, width / 2, h);
+        drawTexturedModalRect(
+                xPosition + width / 2, yPosition, xOffset + w - width / 2, yOffset + hoverState * h, width / 2, h);
         mouseDragged(minecraft, x, y);
         displayString = state.getLabel();
         if (!displayString.equals("")) {
             if (!enabled) {
-                drawCenteredString(fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xffa0a0a0);
+                drawCenteredString(
+                        fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xffa0a0a0);
             } else if (flag) {
-                drawCenteredString(fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xffffa0);
+                drawCenteredString(
+                        fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xffffa0);
             } else {
-                drawCenteredString(fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xe0e0e0);
+                drawCenteredString(
+                        fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, 0xe0e0e0);
             }
         }
     }
@@ -96,5 +100,4 @@ public class GuiMultiButton extends GuiBetterButton {
         }
         return super.getToolTip();
     }
-
 }

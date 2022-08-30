@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -51,27 +51,21 @@ public abstract class RailcraftModule {
         return EnumSet.noneOf(Module.class);
     }
 
-    public void preInit() {
-    }
+    public void preInit() {}
 
-    public void initFirst() {
-    }
+    public void initFirst() {}
 
-    public void initSecond() {
-    }
+    public void initSecond() {}
 
-    public void postInit() {
-    }
+    public void postInit() {}
 
-    public void postInitNotLoaded() {
-    }
+    public void postInitNotLoaded() {}
 
     public boolean canModuleLoad() {
         return true;
     }
 
-    public void printLoadError() {
-    }
+    public void printLoadError() {}
 
     @SideOnly(Side.CLIENT)
     public GuiScreen getGuiScreen(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
@@ -86,5 +80,4 @@ public abstract class RailcraftModule {
     public String toString() {
         return getClass().getSimpleName();
     }
-
 }

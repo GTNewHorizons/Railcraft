@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -38,18 +38,14 @@ public abstract class BlockFactory {
     protected abstract void doBlockInit();
 
     public final void initRecipes(Module module) {
-        if (!needsInit)
-            doRecipeInit(module);
+        if (!needsInit) doRecipeInit(module);
     }
 
     protected abstract void doRecipeInit(Module module);
 
     public final void finalizeBlocks(Module module) {
-        if (!needsInit)
-            doBlockFinalize(module);
+        if (!needsInit) doBlockFinalize(module);
     }
 
-    protected void doBlockFinalize(Module module) {
-    }
-
+    protected void doBlockFinalize(Module module) {}
 }

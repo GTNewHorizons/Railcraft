@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface ICartContentsTextureProvider{
+public interface ICartContentsTextureProvider {
 
     public IIcon getBlockTextureOnSide(int side);
 }

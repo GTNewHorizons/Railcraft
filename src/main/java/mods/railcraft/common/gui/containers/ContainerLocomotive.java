@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -13,15 +13,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.carts.EntityLocomotive;
 import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
 import mods.railcraft.common.carts.EntityLocomotive.LocoSpeed;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
 import mods.railcraft.common.gui.slots.*;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerLocomotive extends RailcraftContainer {
 
@@ -49,12 +49,13 @@ public class ContainerLocomotive extends RailcraftContainer {
     public final void init() {
         defineSlotsAndWidgets();
 
-        SlotRailcraft slotTicket = new SlotStackFilter(ItemTicket.FILTER, loco, loco.getSizeInventory() - 2, 116, guiHeight - 111) {
-            @Override
-            public int getSlotStackLimit() {
-                return 1;
-            }
-        };
+        SlotRailcraft slotTicket =
+                new SlotStackFilter(ItemTicket.FILTER, loco, loco.getSizeInventory() - 2, 116, guiHeight - 111) {
+                    @Override
+                    public int getSlotStackLimit() {
+                        return 1;
+                    }
+                };
         slotTicket.setToolTips(ToolTip.buildToolTip("gui.locomotive.tip.slot.ticket"));
         addSlot(slotTicket);
         addSlot(new SlotUntouchable(loco, loco.getSizeInventory() - 1, 134, guiHeight - 111));
@@ -70,9 +71,7 @@ public class ContainerLocomotive extends RailcraftContainer {
         }
     }
 
-    public void defineSlotsAndWidgets() {
-
-    }
+    public void defineSlotsAndWidgets() {}
 
     @Override
     public void addCraftingToCrafters(ICrafting icrafting) {
@@ -84,8 +83,7 @@ public class ContainerLocomotive extends RailcraftContainer {
         icrafting.sendProgressBarUpdate(this, 13, PlayerPlugin.isOwnerOrOp(loco.getOwner(), playerInv.player) ? 1 : 0);
 
         String oName = loco.getOwner().getName();
-        if (oName != null)
-            PacketBuilder.instance().sendGuiStringPacket((EntityPlayerMP) icrafting, windowId, 0, oName);
+        if (oName != null) PacketBuilder.instance().sendGuiStringPacket((EntityPlayerMP) icrafting, windowId, 0, oName);
     }
 
     @Override
@@ -96,16 +94,13 @@ public class ContainerLocomotive extends RailcraftContainer {
             ICrafting var2 = (ICrafting) crafter;
 
             LocoSpeed speed = loco.getSpeed();
-            if (lastSpeed != speed)
-                var2.sendProgressBarUpdate(this, 10, speed.ordinal());
+            if (lastSpeed != speed) var2.sendProgressBarUpdate(this, 10, speed.ordinal());
 
             LocoMode mode = loco.getMode();
-            if (lastMode != mode)
-                var2.sendProgressBarUpdate(this, 11, mode.ordinal());
+            if (lastMode != mode) var2.sendProgressBarUpdate(this, 11, mode.ordinal());
 
             int lock = loco.getLockController().getCurrentState();
-            if (lastLockState != lock)
-                var2.sendProgressBarUpdate(this, 12, lock);
+            if (lastLockState != lock) var2.sendProgressBarUpdate(this, 12, lock);
         }
 
         this.lastSpeed = loco.getSpeed();
@@ -141,5 +136,4 @@ public class ContainerLocomotive extends RailcraftContainer {
                 break;
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,12 +8,8 @@
  */
 package mods.railcraft.client.gui;
 
-import org.apache.logging.log4j.Level;
-
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.detector.TileDetector;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.alpha.*;
@@ -34,7 +30,10 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -42,11 +41,9 @@ import net.minecraft.world.World;
 public class FactoryGui {
 
     public static GuiScreen build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
-        if (gui != EnumGui.ANVIL && obj == null)
-            return null;
+        if (gui != EnumGui.ANVIL && obj == null) return null;
 
-        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid())
-            return null;
+        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid()) return null;
 
         try {
             switch (gui) {
@@ -121,11 +118,20 @@ public class FactoryGui {
                 case TRACK_ROUTING:
                     return new GuiTrackRouting(inv, (TrackRouting) ((TileTrack) obj).getTrackInstance());
                 case SWITCH_MOTOR:
-                    return new GuiSwitchMotor(inv.player, (TileSwitchMotor) obj, LocalizationPlugin.translate("railcraft.gui.switch.motor.action"));
+                    return new GuiSwitchMotor(
+                            inv.player,
+                            (TileSwitchMotor) obj,
+                            LocalizationPlugin.translate("railcraft.gui.switch.motor.action"));
                 case BOX_RECEIVER:
-                    return new GuiAspectAction(inv.player, (IAspectActionManager) obj, LocalizationPlugin.translate("railcraft.gui.box.aspect.action"));
+                    return new GuiAspectAction(
+                            inv.player,
+                            (IAspectActionManager) obj,
+                            LocalizationPlugin.translate("railcraft.gui.box.aspect.action"));
                 case BOX_RELAY:
-                    return new GuiAspectAction(inv.player, (IAspectActionManager) obj, LocalizationPlugin.translate("railcraft.gui.box.aspect.action"));
+                    return new GuiAspectAction(
+                            inv.player,
+                            (IAspectActionManager) obj,
+                            LocalizationPlugin.translate("railcraft.gui.box.aspect.action"));
                 case BOX_CONTROLLER:
                     return new GuiBoxController((TileBoxController) obj);
                 case BOX_ANALOG_CONTROLLER:
@@ -174,5 +180,4 @@ public class FactoryGui {
         }
         return null;
     }
-
 }

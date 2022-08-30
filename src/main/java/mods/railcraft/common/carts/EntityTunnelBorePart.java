@@ -14,11 +14,18 @@ public class EntityTunnelBorePart extends Entity {
     public final float forwardOffset;
     public final float sideOffset;
 
-    public EntityTunnelBorePart(EntityTunnelBore parent, String partName, float width, float height, float forwardOffset) {
+    public EntityTunnelBorePart(
+            EntityTunnelBore parent, String partName, float width, float height, float forwardOffset) {
         this(parent, partName, width, height, forwardOffset, 0.0F);
     }
 
-    public EntityTunnelBorePart(EntityTunnelBore parent, String partName, float width, float height, float forwardOffset, float sideOffset) {
+    public EntityTunnelBorePart(
+            EntityTunnelBore parent,
+            String partName,
+            float width,
+            float height,
+            float forwardOffset,
+            float sideOffset) {
         super(parent.worldObj);
         this.setSize(width, height);
         this.parent = parent;
@@ -41,20 +48,17 @@ public class EntityTunnelBorePart extends Entity {
         return boundingBox;
     }
 
-    protected void entityInit() {
-    }
+    protected void entityInit() {}
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-    }
+    protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {}
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
-    protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-    }
+    protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {}
 
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.

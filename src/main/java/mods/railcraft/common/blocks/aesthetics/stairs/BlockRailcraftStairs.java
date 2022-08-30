@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -10,12 +10,10 @@ package mods.railcraft.common.blocks.aesthetics.stairs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
@@ -64,7 +62,9 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     }
 
     public static boolean isEnabled(EnumBlockMaterial mat) {
-        return ModuleManager.isModuleLoaded(ModuleManager.Module.STRUCTURES) && RailcraftConfig.isSubBlockEnabled(getTag(mat)) && getBlock() != null;
+        return ModuleManager.isModuleLoaded(ModuleManager.Module.STRUCTURES)
+                && RailcraftConfig.isSubBlockEnabled(getTag(mat))
+                && getBlock() != null;
     }
 
     private final int renderId;
@@ -90,8 +90,7 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumBlockMaterial mat : EnumBlockMaterial.creativeList) {
-            if (isEnabled(mat))
-                list.add(getItem(mat));
+            if (isEnabled(mat)) list.add(getItem(mat));
         }
     }
 
@@ -118,15 +117,13 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {
-    }
+    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {}
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
         player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
         player.addExhaustion(0.025F);
-        if (Game.isHost(world) && !player.capabilities.isCreativeMode)
-            dropBlockAsItem(world, x, y, z, 0, 0);
+        if (Game.isHost(world) && !player.capabilities.isCreativeMode) dropBlockAsItem(world, x, y, z, 0, 0);
         return world.setBlockToAir(x, y, z);
     }
 
@@ -149,16 +146,15 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileStair)
-            return ((TileStair) tile).getStair().getBlockHardness(world, x, y, z);
+        if (tile instanceof TileStair) return ((TileStair) tile).getStair().getBlockHardness(world, x, y, z);
         return super.getBlockHardness(world, x, y, z);
     }
 
     @Override
-    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(
+            Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileStair)
-            return ((TileStair) tile).getStair().getExplosionResistance(entity);
+        if (tile instanceof TileStair) return ((TileStair) tile).getStair().getExplosionResistance(entity);
         return super.getExplosionResistance(entity, world, x, y, z, explosionX, explosionY, explosionZ);
     }
 
@@ -187,8 +183,7 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileStair)
-            return ((TileStair) tile).getTexture(side);
+        if (tile instanceof TileStair) return ((TileStair) tile).getTexture(side);
         return super.getIcon(world, x, y, z, side);
     }
 
@@ -207,14 +202,11 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     @Override
     public SoundType getSound(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileStair)
-            return ((TileStair) tile).getStair().getSound();
+        if (tile instanceof TileStair) return ((TileStair) tile).getStair().getSound();
         return null;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
-    }
-
+    public void registerBlockIcons(IIconRegister par1IconRegister) {}
 }

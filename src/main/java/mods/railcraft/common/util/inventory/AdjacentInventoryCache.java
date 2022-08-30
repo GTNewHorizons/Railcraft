@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,13 +8,12 @@
  */
 package mods.railcraft.common.util.inventory;
 
+import java.util.*;
 import mods.railcraft.common.util.misc.AdjacentTileCache;
 import mods.railcraft.common.util.misc.ITileFilter;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.*;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -32,7 +31,8 @@ public final class AdjacentInventoryCache {
         this(tile, cache, null, null);
     }
 
-    public AdjacentInventoryCache(TileEntity tile, AdjacentTileCache cache, ITileFilter filter, Comparator<IInventory> sorter) {
+    public AdjacentInventoryCache(
+            TileEntity tile, AdjacentTileCache cache, ITileFilter filter, Comparator<IInventory> sorter) {
         this.cache = cache;
         cache.addListener(new AdjacentTileCache.ICacheListener() {
             @Override
@@ -45,7 +45,6 @@ public final class AdjacentInventoryCache {
                 changedSides.addAll(EnumSet.allOf(ForgeDirection.class));
                 invs.clear();
             }
-
         });
         this.filter = filter;
         this.sorter = sorter;
@@ -59,8 +58,7 @@ public final class AdjacentInventoryCache {
                 TileEntity tile = tiles.get(side);
                 if (tile != null && (filter == null || filter.matches(tile))) {
                     IInventory inv = InvTools.getInventoryFromTile(tile, side.getOpposite());
-                    if (inv != null)
-                        invs.put(side, inv);
+                    if (inv != null) invs.put(side, inv);
                 }
             }
             changedSides.clear();
@@ -68,11 +66,9 @@ public final class AdjacentInventoryCache {
             sortedInvs.clear();
             sortedInvs.addAll(invs.values());
 
-            if (sorter != null)
-                Collections.sort(sortedInvs, sorter);
+            if (sorter != null) Collections.sort(sortedInvs, sorter);
         }
 
         return sortedInvs;
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -109,16 +109,14 @@ public class BlockStrengthGlass extends BlockGlass {
     }
 
     private enum Neighbors {
-
-        TOP, BOTTOM;
+        TOP,
+        BOTTOM;
     }
 
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        if (renderingHighlight)
-            return icons[4];
-        if (side <= 1)
-            return icons[0];
+        if (renderingHighlight) return icons[4];
+        if (side <= 1) return icons[0];
         int meta = world.getBlockMetadata(x, y, z);
 
         EnumSet neighbors = EnumSet.noneOf(Neighbors.class);
@@ -133,8 +131,7 @@ public class BlockStrengthGlass extends BlockGlass {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        if (renderingHighlight)
-            return icons[4];
+        if (renderingHighlight) return icons[4];
         return icons[0];
     }
 
@@ -162,10 +159,8 @@ public class BlockStrengthGlass extends BlockGlass {
 
     @Override
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-        if (renderingHighlight)
-            return super.colorMultiplier(world, x, y, z);
+        if (renderingHighlight) return super.colorMultiplier(world, x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         return EnumColor.fromId(15 - meta).getHexColor();
     }
-
 }

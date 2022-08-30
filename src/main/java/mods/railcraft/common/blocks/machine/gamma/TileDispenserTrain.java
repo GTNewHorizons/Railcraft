@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,16 +9,9 @@
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.util.Map;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemMinecart;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.core.items.IMinecartItem;
+import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.carts.ItemCartAnchor;
@@ -27,15 +20,22 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.inventory.PhantomInventory;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.MiscTools;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemMinecart;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.WorldServer;
 
 public class TileDispenserTrain extends TileDispenserCart {
 
-    public final static int PATTERN_SIZE = 9;
-    public final static int BUFFER_SIZE = 18;
+    public static final int PATTERN_SIZE = 9;
+    public static final int BUFFER_SIZE = 18;
     private byte patternIndex;
     private boolean spawningTrain = false;
     private EntityMinecart lastCart;
@@ -59,10 +59,8 @@ public class TileDispenserTrain extends TileDispenserCart {
 
     @Override
     public IIcon getIcon(int side) {
-        if (direction.ordinal() == side)
-            return getMachineType().getTexture(3);
-        if (side != 0 && side != 1)
-            return getMachineType().getTexture(2);
+        if (direction.ordinal() == side) return getMachineType().getTexture(3);
+        if (side != 0 && side != 1) return getMachineType().getTexture(2);
         return getMachineType().getTexture(1);
     }
 
@@ -78,8 +76,7 @@ public class TileDispenserTrain extends TileDispenserCart {
 
         for (Map.Entry<ItemStack, Integer> entry : pattern.entrySet()) {
             Integer count = buffer.get(entry.getKey());
-            if (count == null || count < entry.getValue())
-                return false;
+            if (count == null || count < entry.getValue()) return false;
         }
 
         return true;
@@ -95,15 +92,12 @@ public class TileDispenserTrain extends TileDispenserCart {
 
         @Override
         public boolean matches(ItemStack stack) {
-            if (stack == null)
-                return false;
-            if (InvTools.isItemEqual(stack, original))
-                return true;
+            if (stack == null) return false;
+            if (InvTools.isItemEqual(stack, original)) return true;
             if (stack.getItem() instanceof ItemCartAnchor || stack.getItem() instanceof ItemLocomotive)
                 return InvTools.isItemEqual(stack, original, false, false);
             return false;
         }
-
     }
 
     private boolean spawnNextCart() {
@@ -129,11 +123,9 @@ public class TileDispenserTrain extends TileDispenserCart {
                     CartTools.getLinkageManager(worldObj).createLink(cartPlaced, lastCart);
                     lastCart = cartPlaced;
                     patternIndex++;
-                    if (patternIndex >= getPattern().getSizeInventory())
-                        resetSpawnSequence();
+                    if (patternIndex >= getPattern().getSizeInventory()) resetSpawnSequence();
                     return true;
-                } else
-                    InvTools.moveItemStack(cartItem, invStock);
+                } else InvTools.moveItemStack(cartItem, invStock);
             }
         }
         return false;
@@ -149,8 +141,7 @@ public class TileDispenserTrain extends TileDispenserCart {
     public void updateEntity() {
         super.updateEntity();
 
-        if (spawningTrain && clock % 4 == 0)
-            spawnNextCart();
+        if (spawningTrain && clock % 4 == 0) spawnNextCart();
     }
 
     @Override
@@ -158,14 +149,13 @@ public class TileDispenserTrain extends TileDispenserCart {
         EntityMinecart cart = CartTools.getMinecartOnSide(worldObj, xCoord, yCoord, zCoord, 0, direction);
         if (cart == null)
             if (!spawningTrain && canBuildTrain())
-                if (timeSinceLastSpawn > RailcraftConfig.getCartDispenserMinDelay() * 20)
-                    spawningTrain = true;
-//            else if(!spawningTrain) {
-//                ItemStack cartStack = InventoryTools.moveItemStack(cart.getCartItem(), invBuffer);
-//                if(cartStack == null) {
-//                    cart.setDead();
-//                }
-//            }
+                if (timeSinceLastSpawn > RailcraftConfig.getCartDispenserMinDelay() * 20) spawningTrain = true;
+        //            else if(!spawningTrain) {
+        //                ItemStack cartStack = InventoryTools.moveItemStack(cart.getCartItem(), invBuffer);
+        //                if(cartStack == null) {
+        //                    cart.setDead();
+        //                }
+        //            }
     }
 
     @Override
@@ -193,49 +183,48 @@ public class TileDispenserTrain extends TileDispenserCart {
         if (data.hasKey("pattern")) {
             NBTTagCompound pattern = data.getCompoundTag("pattern");
             getPattern().readFromNBT("Items", pattern);
-        } else
-            getPattern().readFromNBT("invPattern", data);
+        } else getPattern().readFromNBT("invPattern", data);
     }
 
-//    @Override
-//    public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
-//        if (InvTools.isInventoryEmpty(getPattern()))
-//            return 0;
-//        IInventory inv = invStock;
-//        if (!doAdd)
-//            inv = new InventoryCopy(inv);
-//        ItemStack leftOver = InvTools.moveItemStack(stack, inv);
-//        if (leftOver == null)
-//            return stack.stackSize;
-//        return stack.stackSize - leftOver.stackSize;
-//    }
-//
-//    @Override
-//    public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
-//        Set<ItemStack> patternSet = new ItemStackSet();
-//        Set<ItemStack> bufferSet = new ItemStackSet();
-//
-//        for (ItemStack stack : getPattern().getContents()) {
-//            if (stack != null)
-//                patternSet.add(stack);
-//        }
-//
-//        for (ItemStack stack : getInventory().getContents()) {
-//            if (stack != null)
-//                bufferSet.add(stack);
-//        }
-//
-//        bufferSet.removeAll(patternSet);
-//
-//        IInventory inv = invStock;
-//        if (!doRemove)
-//            inv = new InventoryCopy(inv);
-//
-//        for (ItemStack stack : bufferSet) {
-//            ItemStack removed = InvTools.removeOneItem(inv, stack);
-//            return removed != null ? new ItemStack[]{removed} : new ItemStack[0];
-//        }
-//
-//        return new ItemStack[0];
-//    }
+    //    @Override
+    //    public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
+    //        if (InvTools.isInventoryEmpty(getPattern()))
+    //            return 0;
+    //        IInventory inv = invStock;
+    //        if (!doAdd)
+    //            inv = new InventoryCopy(inv);
+    //        ItemStack leftOver = InvTools.moveItemStack(stack, inv);
+    //        if (leftOver == null)
+    //            return stack.stackSize;
+    //        return stack.stackSize - leftOver.stackSize;
+    //    }
+    //
+    //    @Override
+    //    public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
+    //        Set<ItemStack> patternSet = new ItemStackSet();
+    //        Set<ItemStack> bufferSet = new ItemStackSet();
+    //
+    //        for (ItemStack stack : getPattern().getContents()) {
+    //            if (stack != null)
+    //                patternSet.add(stack);
+    //        }
+    //
+    //        for (ItemStack stack : getInventory().getContents()) {
+    //            if (stack != null)
+    //                bufferSet.add(stack);
+    //        }
+    //
+    //        bufferSet.removeAll(patternSet);
+    //
+    //        IInventory inv = invStock;
+    //        if (!doRemove)
+    //            inv = new InventoryCopy(inv);
+    //
+    //        for (ItemStack stack : bufferSet) {
+    //            ItemStack removed = InvTools.removeOneItem(inv, stack);
+    //            return removed != null ? new ItemStack[]{removed} : new ItemStack[0];
+    //        }
+    //
+    //        return new ItemStack[0];
+    //    }
 }

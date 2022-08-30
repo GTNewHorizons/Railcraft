@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -11,12 +11,12 @@ package mods.railcraft.common.blocks.tracks;
 import java.util.HashMap;
 import java.util.Map;
 import mods.railcraft.api.core.ITextureLoader;
-import net.minecraft.util.IIcon;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 
 /**
  *
@@ -31,8 +31,7 @@ public class TrackTextureLoader implements ITextureLoader, ITrackItemIconProvide
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumTrack track : EnumTrack.VALUES) {
-            if (track.getNumIcons() == 0)
-                continue;
+            if (track.getNumIcons() == 0) continue;
             IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, track.getTextureTag(), track.getNumIcons());
             textures.put(track.getTrackSpec(), icons);
             itemIcon.put(track.getTrackSpec(), icons[track.getItemIconIndex()]);
@@ -42,13 +41,11 @@ public class TrackTextureLoader implements ITextureLoader, ITrackItemIconProvide
     @Override
     public IIcon getTrackItemIcon(TrackSpec spec) {
         IIcon icon = itemIcon.get(spec);
-        if (icon == null)
-            icon = Blocks.rail.getIcon(0, 0);
+        if (icon == null) icon = Blocks.rail.getIcon(0, 0);
         return icon;
     }
 
     public IIcon[] getTrackIcons(TrackSpec spec) {
         return textures.get(spec);
     }
-
 }

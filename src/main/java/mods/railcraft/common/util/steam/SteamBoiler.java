@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -72,8 +72,7 @@ public class SteamBoiler {
     }
 
     public double getHeatStep() {
-        if (fuelProvider != null)
-            return fuelProvider.getHeatStep();
+        if (fuelProvider != null) return fuelProvider.getHeatStep();
         return Steam.HEAT_STEP;
     }
 
@@ -87,8 +86,7 @@ public class SteamBoiler {
 
     public void setHeat(double heat) {
         this.heat = heat;
-        if (this.heat < Steam.COLD_TEMP)
-            this.heat = Steam.COLD_TEMP;
+        if (this.heat < Steam.COLD_TEMP) this.heat = Steam.COLD_TEMP;
     }
 
     public double getHeatLevel() {
@@ -97,8 +95,7 @@ public class SteamBoiler {
 
     public void increaseHeat(int numTanks) {
         double max = getMaxHeat();
-        if (heat == max)
-            return;
+        if (heat == max) return;
         double step = getHeatStep();
         double change = step + (((max - heat) / max) * step * 3);
         change /= numTanks;
@@ -107,8 +104,7 @@ public class SteamBoiler {
     }
 
     public void reduceHeat(int numTanks) {
-        if (heat == Steam.COLD_TEMP)
-            return;
+        if (heat == Steam.COLD_TEMP) return;
         double step = Steam.HEAT_STEP;
         double change = step + ((heat / getMaxHeat()) * step * 3);
         change /= numTanks;
@@ -137,8 +133,7 @@ public class SteamBoiler {
     }
 
     public int getBurnProgressScaled(int i) {
-        if (!isBoiling())
-            return 0;
+        if (!isBoiling()) return 0;
         int scale = (int) ((burnTime / currentItemBurnTime) * i);
         scale = Math.max(0, scale);
         scale = Math.min(i, scale);
@@ -146,11 +141,9 @@ public class SteamBoiler {
     }
 
     private boolean addFuel() {
-        if (fuelProvider == null)
-            return false;
+        if (fuelProvider == null) return false;
         double fuel = fuelProvider.getMoreFuel();
-        if (fuel <= 0)
-            return false;
+        if (fuel <= 0) return false;
         burnTime += fuel;
         currentItemBurnTime = burnTime;
         return true;
@@ -174,42 +167,33 @@ public class SteamBoiler {
             double fuelNeeded = getFuelPerCycle(numTanks);
             while (burnTime < fuelNeeded) {
                 boolean addedFuel = addFuel();
-                if (!addedFuel)
-                    break;
+                if (!addedFuel) break;
             }
             boolean wasBurning = isBurning;
             isBurning = burnTime >= fuelNeeded;
-            if (isBurning)
-                burnTime -= fuelNeeded;
-            if (tile != null && isBurning != wasBurning)
-                tile.sendUpdateToClient();
+            if (isBurning) burnTime -= fuelNeeded;
+            if (tile != null && isBurning != wasBurning) tile.sendUpdateToClient();
             convertSteam(numTanks);
         }
 
-        if (isBurning)
-            increaseHeat(numTanks);
-        else
-            reduceHeat(numTanks);
+        if (isBurning) increaseHeat(numTanks);
+        else reduceHeat(numTanks);
     }
 
     public int convertSteam(int numTanks) {
-        if (!isBoiling())
-            return 0;
+        if (!isBoiling()) return 0;
 
         partialConversions += numTanks * getHeatLevel();
         int waterCost = (int) partialConversions;
-        if (waterCost <= 0)
-            return 0;
+        if (waterCost <= 0) return 0;
         partialConversions -= waterCost;
 
         FluidStack water = tankWater.drain(waterCost, false);
-        if (water == null)
-            return 0;
+        if (water == null) return 0;
 
         waterCost = Math.min(waterCost, water.amount);
         FluidStack steam = Fluids.STEAM.get(Steam.STEAM_PER_UNIT_WATER * waterCost);
-        if (steam == null)
-            return 0;
+        if (steam == null) return 0;
 
         tankWater.drain(waterCost, true);
         tankSteam.fill(steam, true);
@@ -244,6 +228,6 @@ public class SteamBoiler {
         public int getScaledLevel(int size) {
             return (int) ((getHeat() - Steam.COLD_TEMP) * size / (getMaxHeat() - Steam.COLD_TEMP));
         }
-
-    };
+    }
+    ;
 }

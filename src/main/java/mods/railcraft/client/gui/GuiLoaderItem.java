@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,7 +9,6 @@
 package mods.railcraft.client.gui;
 
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
-import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -17,6 +16,7 @@ import mods.railcraft.common.gui.containers.ContainerItemLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketBuilder;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiLoaderItem extends TileGui {
 
@@ -28,20 +28,26 @@ public class GuiLoaderItem extends TileGui {
     private final TileLoaderItemBase tile;
 
     public GuiLoaderItem(InventoryPlayer inv, TileLoaderItemBase tile) {
-        super((RailcraftTileEntity) tile, new ContainerItemLoader(inv, tile), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_item_loader.png");
+        super(
+                (RailcraftTileEntity) tile,
+                new ContainerItemLoader(inv, tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_item_loader.png");
         this.tile = tile;
     }
 
     @Override
     public void initGui() {
         super.initGui();
-        if (tile == null)
-            return;
+        if (tile == null) return;
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
-        buttonList.add(transferMode = new GuiMultiButton(0, w + 62, h + 45, 52, tile.getTransferModeController().copy()));
-        buttonList.add(redstoneMode = new GuiMultiButton(0, w + 62, h + 62, 52, tile.getRedstoneModeController().copy()));
+        buttonList.add(
+                transferMode = new GuiMultiButton(
+                        0, w + 62, h + 45, 52, tile.getTransferModeController().copy()));
+        buttonList.add(
+                redstoneMode = new GuiMultiButton(
+                        0, w + 62, h + 62, 52, tile.getRedstoneModeController().copy()));
     }
 
     @Override
@@ -55,10 +61,11 @@ public class GuiLoaderItem extends TileGui {
     @Override
     public void onGuiClosed() {
         if (Game.isNotHost(tile.getWorld())) {
-            tile.getTransferModeController().setCurrentState(transferMode.getController().getCurrentState());
-            tile.getRedstoneModeController().setCurrentState(redstoneMode.getController().getCurrentState());
+            tile.getTransferModeController()
+                    .setCurrentState(transferMode.getController().getCurrentState());
+            tile.getRedstoneModeController()
+                    .setCurrentState(redstoneMode.getController().getCurrentState());
             PacketBuilder.instance().sendGuiReturnPacket(tile);
         }
     }
-
 }

@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -16,7 +16,6 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumColor {
-
     BLACK(0x2D2D2D),
     RED(0xA33835),
     GREEN(0x394C1E),
@@ -33,8 +32,8 @@ public enum EnumColor {
     MAGENTA(0xFF64FF),
     ORANGE(0xFF6A00),
     WHITE(0xFFFFFF);
-    public final static EnumColor[] VALUES = values();
-    public final static String[] DYES = {
+    public static final EnumColor[] VALUES = values();
+    public static final String[] DYES = {
         "dyeBlack",
         "dyeRed",
         "dyeGreen",
@@ -50,8 +49,9 @@ public enum EnumColor {
         "dyeLightBlue",
         "dyeMagenta",
         "dyeOrange",
-        "dyeWhite"};
-    public final static String[] NAMES = {
+        "dyeWhite"
+    };
+    public static final String[] NAMES = {
         "Black",
         "Red",
         "Green",
@@ -67,7 +67,8 @@ public enum EnumColor {
         "LightBlue",
         "Magenta",
         "Orange",
-        "White"};
+        "White"
+    };
     private final int color;
 
     private EnumColor(int color) {
@@ -79,23 +80,20 @@ public enum EnumColor {
     }
 
     public static EnumColor fromId(int id) {
-        if (id < 0 || id >= VALUES.length)
-            return WHITE;
+        if (id < 0 || id >= VALUES.length) return WHITE;
         return VALUES[id];
     }
 
     public static EnumColor fromDye(String dyeTag) {
         for (int id = 0; id < DYES.length; id++) {
-            if (DYES[id].equals(dyeTag))
-                return VALUES[id];
+            if (DYES[id].equals(dyeTag)) return VALUES[id];
         }
         return null;
     }
 
     public static EnumColor fromName(String name) {
         for (int id = 0; id < NAMES.length; id++) {
-            if (NAMES[id].equals(name))
-                return VALUES[id];
+            if (NAMES[id].equals(name)) return VALUES[id];
         }
         return null;
     }
@@ -140,9 +138,10 @@ public enum EnumColor {
         String[] words = s.split(" ");
         StringBuilder b = new StringBuilder();
         for (String word : words) {
-            b.append(word.charAt(0)).append(word.substring(1).toLowerCase(Locale.ENGLISH)).append(" ");
+            b.append(word.charAt(0))
+                    .append(word.substring(1).toLowerCase(Locale.ENGLISH))
+                    .append(" ");
         }
         return b.toString().trim();
     }
-
 }

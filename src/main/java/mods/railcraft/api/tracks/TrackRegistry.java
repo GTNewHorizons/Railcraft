@@ -65,7 +65,6 @@ public class TrackRegistry {
         public TrackSpecConflictException(String msg) {
             super(msg);
         }
-
     }
 
     /**
@@ -76,9 +75,13 @@ public class TrackRegistry {
      */
     public static void registerTrackSpec(TrackSpec trackSpec) {
         if (trackSpecsFromID.put(trackSpec.getTrackId(), trackSpec) != null)
-            throw new TrackSpecConflictException("TrackId conflict detected, please adjust your config or contact the author of the " + trackSpec.getTrackTag());
+            throw new TrackSpecConflictException(
+                    "TrackId conflict detected, please adjust your config or contact the author of the "
+                            + trackSpec.getTrackTag());
         if (trackSpecsFromTag.put(trackSpec.getTrackTag(), trackSpec) != null)
-            throw new TrackSpecConflictException("TrackTag conflict detected, please adjust your config or contact the author of the " + trackSpec.getTrackTag());
+            throw new TrackSpecConflictException(
+                    "TrackTag conflict detected, please adjust your config or contact the author of the "
+                            + trackSpec.getTrackTag());
     }
 
     /**
@@ -145,5 +148,4 @@ public class TrackRegistry {
     public static Map<String, TrackSpec> getTrackSpecTags() {
         return trackSpecsFromTag;
     }
-
 }

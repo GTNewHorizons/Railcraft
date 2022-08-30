@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -8,7 +8,6 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class SlotMinecartFilter extends SlotMinecart {
@@ -18,5 +17,4 @@ public class SlotMinecartFilter extends SlotMinecart {
         setPhantom();
         setStackLimit(1);
     }
-
 }

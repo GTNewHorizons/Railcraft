@@ -25,13 +25,11 @@ public class ActionProvider implements IActionProvider {
     }
 
     @Override
-    public Collection<IActionExternal> getExternalActions(ForgeDirection side, net.minecraft.tileentity.TileEntity tile) {
+    public Collection<IActionExternal> getExternalActions(
+            ForgeDirection side, net.minecraft.tileentity.TileEntity tile) {
         Collection<IActionExternal> actions = new LinkedList<IActionExternal>();
-        if (tile instanceof IHasWork)
-            actions.add(Actions.PAUSE);
-        if (tile instanceof IHasCart)
-            actions.add(Actions.SEND_CART);
+        if (tile instanceof IHasWork) actions.add(Actions.PAUSE);
+        if (tile instanceof IHasCart) actions.add(Actions.SEND_CART);
         return actions;
     }
-
 }

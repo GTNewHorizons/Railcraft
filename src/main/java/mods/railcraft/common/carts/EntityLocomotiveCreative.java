@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- * 
+ *
  * This code is the property of CovertJaguar
  * and may only be used with explicit written
  * permission unless otherwise specified on the
@@ -9,15 +9,12 @@
 package mods.railcraft.common.carts;
 
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.api.electricity.IElectricMinecart;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.SoundHelper;
-import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -61,8 +58,7 @@ public class EntityLocomotiveCreative extends EntityLocomotive implements ISided
 
     @Override
     public void setMode(LocoMode mode) {
-        if (mode == LocoMode.IDLE)
-            mode = LocoMode.SHUTDOWN;
+        if (mode == LocoMode.IDLE) mode = LocoMode.SHUTDOWN;
         super.setMode(mode);
     }
 
@@ -140,5 +136,4 @@ public class EntityLocomotiveCreative extends EntityLocomotive implements ISided
     public void readEntityFromNBT(NBTTagCompound data) {
         super.readEntityFromNBT(data);
     }
-
 }

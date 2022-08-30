@@ -19,7 +19,6 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum Triggers implements ITriggerExternal {
-
     HAS_WORK("work", new TriggerHasWork()),
     HAS_CART("cart", new TriggerHasCart()),
     ENGINE_BLUE("engine.blue", new TriggerEngine(EnumSet.of(EnergyStage.BLUE))),
@@ -71,7 +70,8 @@ public enum Triggers implements ITriggerExternal {
     }
 
     @Override
-    public boolean isTriggerActive(TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] parameter) {
+    public boolean isTriggerActive(
+            TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] parameter) {
         return trigger.isTriggerActive(side, tile, parameter);
     }
 
@@ -99,5 +99,4 @@ public enum Triggers implements ITriggerExternal {
     public IStatement rotateLeft() {
         return this;
     }
-
 }
