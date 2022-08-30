@@ -212,9 +212,12 @@ public abstract class InvTools {
     }
 
     public static ItemStack depleteItem(ItemStack stack) {
-        if (stack.stackSize == 1) return stack.getItem().getContainerItem(stack);
-        else {
-            stack.splitStack(1);
+        if (stack == null || stack.stackSize <= 0) {
+            return null;
+        } else if (stack.stackSize == 1) {
+            return stack.getItem().getContainerItem(stack);
+        } else {
+            stack.stackSize--;
             return stack;
         }
     }

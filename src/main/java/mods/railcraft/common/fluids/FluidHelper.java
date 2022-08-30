@@ -34,7 +34,7 @@ public final class FluidHelper {
     public static final int BUCKET_FILL_TIME = 8;
     public static final int NETWORK_UPDATE_INTERVAL = 128;
     public static final int BUCKET_VOLUME = 1000;
-    public static final int PROCESS_VOLUME = BUCKET_VOLUME * 4;
+    public static final int PROCESS_VOLUME = Integer.MAX_VALUE;
     private static final List<FluidRegistrar> adapters = new ArrayList<FluidRegistrar>();
 
     static {
