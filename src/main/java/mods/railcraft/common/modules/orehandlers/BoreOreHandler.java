@@ -11,11 +11,9 @@ package mods.railcraft.common.modules.orehandlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.common.carts.EntityTunnelBore;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
-import org.apache.logging.log4j.Level;
 
 public class BoreOreHandler {
 
@@ -31,12 +29,6 @@ public class BoreOreHandler {
                         || oreClass.equals("logWood")
                         || oreClass.equals("treeSapling")
                         || oreClass.equals("treeLeaves"))) {
-            Game.log(
-                    Level.DEBUG,
-                    "Automation Module: Ore Detected, adding to blocks Tunnel Bore can mine: {0}, id={1} meta={2}",
-                    oreClass,
-                    ore,
-                    ore.getItemDamage());
             EntityTunnelBore.addMineableBlock(InvTools.getBlockFromStack(ore), ore.getItemDamage());
         }
     }
