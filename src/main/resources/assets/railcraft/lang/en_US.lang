@@ -1,4 +1,4 @@
-﻿chat.railcraft.api.error=Error: Outdated API, please check your log for more info.
+chat.railcraft.api.error=Error: Outdated API, please check your log for more info.
 
 command.railcraft.aliases=Aliases: %s
 command.railcraft.help=Type '%s' for help.
