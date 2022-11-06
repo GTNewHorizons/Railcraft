@@ -94,7 +94,7 @@ public class ModuleFactory extends RailcraftModule {
                     RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
 
         RailcraftCraftingManager.blastFurnace.addRecipe(
-                new ItemStack(Items.coal), false, false, 20, RailcraftToolItems.getCoalCoke());
+                new ItemStack(Items.coal, 1, 0), true, false, 20, RailcraftToolItems.getCoalCoke());
         RailcraftCraftingManager.blastFurnace.addRecipe(
                 new ItemStack(Blocks.coal_block), false, false, 180, EnumCube.COKE_BLOCK.getItem());
 
