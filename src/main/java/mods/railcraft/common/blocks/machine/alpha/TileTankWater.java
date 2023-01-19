@@ -177,11 +177,14 @@ public class TileTankWater extends TileTank implements ISidedInventory {
                     //                    String debug = "Biome=" + biome.biomeName + ", Humidity=" + humidity;
 
                     boolean outside = false;
+                    outer:
                     for (int x = xCoord - 1; x <= xCoord + 1; x++) {
                         for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-                            outside = worldObj.canBlockSeeTheSky(x, yCoord + 3, z);
                             //                            System.out.println(x + ", " + (yCoord + 3) + ", " + z);
-                            if (outside) break;
+                            if (worldObj.canBlockSeeTheSky(x, yCoord + 3, z)) {
+                                outside = true;
+                                break outer;
+                            }
                         }
                     }
 
