@@ -29,13 +29,13 @@ public class LocomotiveKeyHandler {
 
     public static final LocomotiveKeyHandler INSTANCE = new LocomotiveKeyHandler();
     private final KeyBinding fasterKey =
-            new KeyBinding("railcraft.keybind.loco.faster", Keyboard.KEY_PERIOD, Railcraft.MOD_ID);
+            new KeyBinding("railcraft.keybind.loco.faster", Keyboard.KEY_NONE, Railcraft.MOD_ID);
     private final KeyBinding slowerKey =
-            new KeyBinding("railcraft.keybind.loco.slower", Keyboard.KEY_COMMA, Railcraft.MOD_ID);
+            new KeyBinding("railcraft.keybind.loco.slower", Keyboard.KEY_NONE, Railcraft.MOD_ID);
     private final KeyBinding modeChange =
-            new KeyBinding("railcraft.keybind.loco.mode", Keyboard.KEY_M, Railcraft.MOD_ID);
+            new KeyBinding("railcraft.keybind.loco.mode", Keyboard.KEY_NONE, Railcraft.MOD_ID);
     private final KeyBinding whistle =
-            new KeyBinding("railcraft.keybind.loco.whistle", Keyboard.KEY_N, Railcraft.MOD_ID);
+            new KeyBinding("railcraft.keybind.loco.whistle", Keyboard.KEY_NONE, Railcraft.MOD_ID);
 
     private LocomotiveKeyHandler() {
         ClientRegistry.registerKeyBinding(fasterKey);
