@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import mods.railcraft.api.core.IPostConnection;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
@@ -69,7 +70,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     /**
      * Returns the default ambient occlusion value based on block opacity
-     * 
+     *
      * @return
      */
     @SideOnly(Side.CLIENT)
@@ -326,9 +327,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
-        TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).canCreatureSpawn(type);
-        return super.canCreatureSpawn(type, world, x, y, z);
+        return !RailcraftConfig.cannotMobsSpawnOnMechanism;
     }
 
     @Override

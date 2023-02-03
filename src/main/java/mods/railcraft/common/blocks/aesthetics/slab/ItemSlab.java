@@ -5,7 +5,11 @@
  */
 package mods.railcraft.common.blocks.aesthetics.slab;
 
+import java.util.List;
+
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
 
 import net.minecraft.block.Block;
@@ -173,5 +177,10 @@ public class ItemSlab extends ItemBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+        info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

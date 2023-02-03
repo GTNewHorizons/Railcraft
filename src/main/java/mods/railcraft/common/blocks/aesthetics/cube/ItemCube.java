@@ -7,6 +7,7 @@ package mods.railcraft.common.blocks.aesthetics.cube;
 
 import java.util.List;
 
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 import net.minecraft.block.Block;
@@ -43,5 +44,8 @@ public class ItemCube extends ItemBlock {
         super.addInformation(stack, player, info, adv);
         String tag = getUnlocalizedName(stack) + ".tip";
         if (LocalizationPlugin.hasTag(tag)) info.add(LocalizationPlugin.translate(tag));
+
+        if (RailcraftConfig.cannotMobsSpawnOnDecorBlocks)
+            info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

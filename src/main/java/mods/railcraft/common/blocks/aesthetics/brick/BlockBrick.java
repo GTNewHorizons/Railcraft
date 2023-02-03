@@ -8,12 +8,14 @@ package mods.railcraft.common.blocks.aesthetics.brick;
 import java.util.List;
 
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -64,5 +66,10 @@ public class BlockBrick extends Block {
     @Override
     public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
         return false;
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return !RailcraftConfig.cannotMobsSpawnOnDecorBlocks;
     }
 }

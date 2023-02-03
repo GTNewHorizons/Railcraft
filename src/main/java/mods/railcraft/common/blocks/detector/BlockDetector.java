@@ -25,6 +25,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -292,5 +293,10 @@ public class BlockDetector extends BlockContainer {
         for (EnumDetector detector : EnumDetector.VALUES) {
             if (detector.isEnabled()) list.add(detector.getItem());
         }
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return !RailcraftConfig.cannotMobsSpawnOnMechanism;
     }
 }

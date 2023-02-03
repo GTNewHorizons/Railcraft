@@ -55,6 +55,7 @@ public class RailcraftConfig {
     private static final String COMMENT_PREFIX = "\n";
     private static final String COMMENT_SUFFIX = "\n";
     // private static final String COMMENT_PREFIX = "\n\n # ";
+    public static final String NO_MOB_SPAWN_ON_THIS_BLOCK_LANG = "item.nomobspawnsonthisblock.tip";
     private static final String CAT_ANCHORS = "anchors";
     private static final String CAT_AURAS = "auras";
     private static final String CAT_ENCHANTMENTS = "enchantments";
@@ -130,6 +131,8 @@ public class RailcraftConfig {
     private static Configuration configMain;
     private static Configuration configBlock;
     private static Configuration configItems;
+    public static boolean cannotMobsSpawnOnDecorBlocks;
+    public static boolean cannotMobsSpawnOnMechanism;
 
     public static void preInit() {
         Game.log(Level.TRACE, "Railcraft Config: Doing preinit parsing");
@@ -149,6 +152,9 @@ public class RailcraftConfig {
         doUpdateCheck = get("check.version.online", true, "change to '{t}=false' to disable latest version checking");
 
         playSounds = get("play.sounds", true, "change to '{t}=false' to prevent all mod sounds from playing");
+
+        cannotMobsSpawnOnDecorBlocks = get("cannotMobsSpawnOnDecorBlocks", true, "Cannot mobs Spawn on decor blocks");
+        cannotMobsSpawnOnMechanism = get("cannotMobsSpawnOnMechanism", true, "Cannot mobs Spawn on Mechanism");
 
         configMain.addCustomCategoryComment("tweaks", "Here you can change the behavior of various things");
 

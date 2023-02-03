@@ -112,6 +112,8 @@ entity.Railcraft.cart.work.name=Work Cart
 fluid.creosote=Creosote Oil
 fluid.steam=Steam
 
+item.nomobspawnsonthisblock.tip=Mobs cannot Spawn on this Block
+
 item.minecartChest.name=Chest Cart
 item.minecartFurnace.name=Furnace Cart
 item.minecartTnt.name=TNT Cart

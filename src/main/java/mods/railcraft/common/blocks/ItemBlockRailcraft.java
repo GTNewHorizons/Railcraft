@@ -7,6 +7,7 @@ package mods.railcraft.common.blocks;
 
 import java.util.List;
 
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.gui.tooltips.ToolTipLine;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -51,5 +52,7 @@ public class ItemBlockRailcraft extends ItemBlock {
         if (toolTip != null) for (ToolTipLine line : toolTip) {
             info.add(line.text);
         }
+        if (RailcraftConfig.cannotMobsSpawnOnDecorBlocks)
+            info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

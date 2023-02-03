@@ -5,7 +5,13 @@
  */
 package mods.railcraft.common.blocks.aesthetics.brick;
 
+import java.util.List;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -31,5 +37,11 @@ public class ItemBrick extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return getUnlocalizedName() + "." + BrickVariant.fromOrdinal(stack.getItemDamage());
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+        if (RailcraftConfig.cannotMobsSpawnOnDecorBlocks)
+            info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

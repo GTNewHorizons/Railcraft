@@ -176,8 +176,7 @@ public class BlockCube extends Block {
 
     @Override
     public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int i, int j, int k) {
-        int meta = world.getBlockMetadata(i, j, k);
-        return EnumCube.fromOrdinal(meta).getBlockDef().canCreatureSpawn(type, world, i, j, k);
+        return !RailcraftConfig.cannotMobsSpawnOnDecorBlocks;
     }
 
     @Override

@@ -5,7 +5,13 @@
  */
 package mods.railcraft.common.blocks.aesthetics.lantern;
 
+import java.util.List;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -37,5 +43,10 @@ public class ItemLantern extends ItemBlock {
     public String getUnlocalizedName(ItemStack stack) {
         BlockLantern block = (BlockLantern) field_150939_a;
         return "tile." + block.proxy.fromOrdinal(stack.getItemDamage()).getTag();
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+        info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

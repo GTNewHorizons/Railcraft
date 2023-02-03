@@ -5,6 +5,11 @@
  */
 package mods.railcraft.common.blocks.detector;
 
+import java.util.List;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -66,5 +71,11 @@ public class ItemDetector extends ItemBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+        if (RailcraftConfig.cannotMobsSpawnOnMechanism)
+            info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }

@@ -5,8 +5,14 @@
  */
 package mods.railcraft.common.blocks.anvil;
 
+import java.util.List;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 
 public class ItemAnvilBlock extends ItemMultiTexture {
@@ -26,5 +32,10 @@ public class ItemAnvilBlock extends ItemMultiTexture {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return super.getUnlocalizedName(stack);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+        info.add(LocalizationPlugin.translate(RailcraftConfig.NO_MOB_SPAWN_ON_THIS_BLOCK_LANG));
     }
 }
