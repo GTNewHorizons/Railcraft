@@ -327,7 +327,12 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
-        return !RailcraftConfig.cannotMobsSpawnOnMechanism;
+        if (RailcraftConfig.cannotMobsSpawnOnMechanism) return false;
+        else {
+            TileEntity tile = world.getTileEntity(x, y, z);
+            if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).canCreatureSpawn(type);
+            return super.canCreatureSpawn(type, world, x, y, z);
+        }
     }
 
     @Override
