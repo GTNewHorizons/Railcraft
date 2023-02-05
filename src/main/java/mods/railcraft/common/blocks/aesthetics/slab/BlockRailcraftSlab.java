@@ -261,6 +261,7 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
         this.setBlockBoundsBasedOnState(world, x, y, z);
         super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
     }
+
     @Override
     public int getLightOpacity() {
         return 15;
