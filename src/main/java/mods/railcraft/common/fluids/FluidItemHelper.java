@@ -68,7 +68,9 @@ public class FluidItemHelper {
     public static boolean isContainer(ItemStack stack) {
         if (stack == null) return false;
         if (stack.getItem() instanceof IFluidContainerItem) {
-            return ((IFluidContainerItem) stack.getItem()).getCapacity(stack) > 0;
+            if (((IFluidContainerItem) stack.getItem()).getCapacity(stack) > 0) {
+                return true;
+            }
         }
         return FluidContainerRegistry.isContainer(stack);
     }
@@ -77,7 +79,9 @@ public class FluidItemHelper {
         if (stack == null) return false;
         if (stack.getItem() instanceof IFluidContainerItem) {
             IFluidContainerItem fluidCon = (IFluidContainerItem) stack.getItem();
-            return fluidCon.getFluid(stack) != null && fluidCon.getFluid(stack).amount > 0;
+            if (fluidCon.getFluid(stack) != null && fluidCon.getFluid(stack).amount > 0) {
+                return true;
+            }
         }
         return FluidContainerRegistry.isFilledContainer(stack);
     }

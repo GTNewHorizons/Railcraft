@@ -5,6 +5,9 @@
  */
 package mods.railcraft.common.fluids;
 
+import static mods.railcraft.common.fluids.FluidItemHelper.DrainReturn;
+import static mods.railcraft.common.fluids.FluidItemHelper.FillReturn;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -135,18 +138,21 @@ public final class FluidHelper {
         if (fluidToFill == null) return false;
         ItemStack input = inv.getStackInSlot(inputSlot);
         ItemStack output = inv.getStackInSlot(outputSlot);
-        FluidItemHelper.FillReturn fill = FluidItemHelper
-                .fillContainer(input, new FluidStack(fluidToFill, PROCESS_VOLUME));
-        if (fill.container != null && hasPlaceToPutContainer(output, fill.container)) {
-            FluidStack drain = fluidHandler.drain(ForgeDirection.UNKNOWN, fill.amount, false);
-            if (drain != null && drain.amount == fill.amount) {
-                fill = FluidItemHelper.fillContainer(input, drain);
-                if (fill.container != null && fill.amount == drain.amount) {
-                    fluidHandler.drain(ForgeDirection.UNKNOWN, fill.amount, true);
-                    storeContainer(inv, inputSlot, outputSlot, fill.container);
-                }
-                return true;
+
+        FillReturn fillSim = FluidItemHelper.fillContainer(input, new FluidStack(fluidToFill, PROCESS_VOLUME));
+        if (fillSim.container == null) return false;
+
+        FluidStack tankDrained = fluidHandler.drain(ForgeDirection.UNKNOWN, fillSim.amount, false);
+        // container item might be able to store larger amount than the tank can provide
+        if (tankDrained != null && tankDrained.amount <= fillSim.amount) {
+            FillReturn fill = FluidItemHelper.fillContainer(input, tankDrained);
+            // and check if amount matches here
+            if (fill.container != null && fill.amount == tankDrained.amount
+                    && hasPlaceToPutContainer(output, fill.container)) {
+                fluidHandler.drain(ForgeDirection.UNKNOWN, fill.amount, true);
+                storeContainer(inv, inputSlot, outputSlot, fill.container);
             }
+            return true;
         }
         return false;
     }
@@ -154,20 +160,34 @@ public final class FluidHelper {
     public static boolean drainContainers(IFluidHandler fluidHandler, IInventory inv, int inputSlot, int outputSlot) {
         ItemStack input = inv.getStackInSlot(inputSlot);
         ItemStack output = inv.getStackInSlot(outputSlot);
-        if (input != null) {
-            FluidItemHelper.DrainReturn drain = FluidItemHelper.drainContainer(input, PROCESS_VOLUME);
-            if (drain.fluidDrained != null
-                    && (drain.container == null || hasPlaceToPutContainer(output, drain.container))) {
-                int used = fluidHandler.fill(ForgeDirection.UNKNOWN, drain.fluidDrained, false);
-                if ((drain.isAtomic && used == drain.fluidDrained.amount)
-                        || (!drain.isAtomic && drain.fluidDrained.amount > 0)) {
-                    fluidHandler.fill(ForgeDirection.UNKNOWN, drain.fluidDrained, true);
-                    storeContainer(inv, inputSlot, outputSlot, drain.container);
-                    return true;
-                }
+        if (input == null) return false;
+
+        // get fluid contained in this item
+        DrainReturn drainSim = FluidItemHelper.drainContainer(input, PROCESS_VOLUME);
+        if (drainSim.fluidDrained == null) return false;
+
+        int tankFilledAmount = fluidHandler.fill(ForgeDirection.UNKNOWN, drainSim.fluidDrained, false);
+        if (canFluidContainerBeDrained(drainSim, fluidHandler)) {
+            DrainReturn drainSim2 = FluidItemHelper.drainContainer(input, tankFilledAmount);
+            // draining full and partial volume might return different item, so we're simulating twice
+            // e.g. GT cell item doesn't allow partial drain
+            // e.g. GT large cell can return empty or partially filled item depending on the amount to drain
+            if (canFluidContainerBeDrained(drainSim2, fluidHandler) && drainSim2.fluidDrained != null
+                    && (drainSim2.container == null || hasPlaceToPutContainer(output, drainSim2.container))) {
+                DrainReturn drain = FluidItemHelper.drainContainer(input, tankFilledAmount);
+                fluidHandler.fill(ForgeDirection.UNKNOWN, drain.fluidDrained, true);
+                storeContainer(inv, inputSlot, outputSlot, drain.container);
+                return true;
             }
         }
         return false;
+    }
+
+    private static boolean canFluidContainerBeDrained(DrainReturn drainSim, IFluidHandler fluidHandler) {
+        int filledAmount = fluidHandler.fill(ForgeDirection.UNKNOWN, drainSim.fluidDrained, false);
+        return filledAmount > 0 && ((drainSim.isAtomic && filledAmount == drainSim.fluidDrained.amount)
+                // this check for atomicity allows partial draining
+                || (!drainSim.isAtomic && drainSim.fluidDrained.amount > 0));
     }
 
     private static boolean hasPlaceToPutContainer(ItemStack output, ItemStack container) {
