@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.client.gui.GuiRoutingTable;
@@ -30,6 +31,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
+
+import com.google.common.collect.ImmutableSet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,6 +42,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
+
+    private static final Set<String> editableKeys = ImmutableSet.of("title", "author", "pages");
 
     public static final IStackFilter FILTER = new IStackFilter() {
 
@@ -71,22 +77,24 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     @Override
-    public boolean validateNBT(NBTTagCompound nbt) {
+    public boolean validateNBT(ItemStack oldStack, NBTTagCompound nbt) {
+        // player can edit title, author and pages, and nothing else
+        if (!IEditableItem.checkValidModification(oldStack.stackTagCompound, nbt, editableKeys)) return false;
         return validBookTagContents(nbt);
     }
 
     public static boolean validBookTagContents(NBTTagCompound nbt) {
         if (!validBookTagPages(nbt)) return false;
-        else if (nbt.hasKey("title")) {
+        else if (nbt.hasKey("title", Constants.NBT.TAG_STRING)) {
             String s = nbt.getString("title");
-            return s != null && s.length() <= 16 ? nbt.hasKey("author") : false;
+            return s != null && s.length() <= 16 ? nbt.hasKey("author", Constants.NBT.TAG_STRING) : false;
         }
         return true;
     }
 
     public static boolean validBookTagPages(NBTTagCompound nbt) {
         if (nbt == null) return false;
-        else if (!nbt.hasKey("pages")) return false;
+        else if (!nbt.hasKey("pages", Constants.NBT.TAG_LIST)) return false;
         else {
             NBTList<NBTTagList> pages = NBTPlugin.getNBTList(nbt, "pages", NBTPlugin.EnumNBTType.LIST);
             for (NBTTagList pageNBT : pages) {

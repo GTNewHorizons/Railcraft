@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 
@@ -20,10 +19,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 public class PacketCurrentItemNBT extends RailcraftPacket {
 
+    private static final Marker SECURITY_MARKER = MarkerManager.getMarker("SuspiciousPackets");
     private static final Set<String> ALLOWED_TAGS = new HashSet<>(Arrays.asList("title", "author", "pages", "dest"));
 
     private final EntityPlayer player;
@@ -53,16 +54,16 @@ public class PacketCurrentItemNBT extends RailcraftPacket {
             IEditableItem eItem = (IEditableItem) stack.getItem();
 
             if (!eItem.canPlayerEdit(player, currentItem)) {
-                Game.log(
-                        Level.WARN,
-                        "{0} attempted to edit an item he is not allowed to edit {0}.",
-                        Railcraft.proxy.getPlayerUsername(player),
+                Game.LOGGER.warn(
+                        SECURITY_MARKER,
+                        "Player {} attempted to edit an item he is not allowed to edit {}.",
+                        player.getGameProfile(),
                         currentItem.getItem().getUnlocalizedName());
                 return;
             }
 
-            if (!eItem.validateNBT(stack.getTagCompound())) {
-                Game.log(Level.WARN, "Item NBT not valid!");
+            if (!eItem.validateNBT(currentItem, stack.getTagCompound())) {
+                Game.LOGGER.warn(SECURITY_MARKER, "Player {}: Item NBT not valid!", player.getGameProfile());
                 return;
             }
 

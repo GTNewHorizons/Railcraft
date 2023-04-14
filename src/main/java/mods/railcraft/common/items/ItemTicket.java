@@ -13,6 +13,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.network.IEditableItem;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.Constants;
 
+import com.google.common.collect.ImmutableSet;
 import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
@@ -32,6 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemTicket extends ItemRailcraft {
 
+    private static final ImmutableSet<String> editableKeys = ImmutableSet.of("dest");
     public static final IStackFilter FILTER = new IStackFilter() {
 
         @Override
@@ -110,7 +114,9 @@ public class ItemTicket extends ItemRailcraft {
         return PlayerPlugin.readOwnerFromNBT(nbt);
     }
 
-    public boolean validateNBT(NBTTagCompound nbt) {
+    public boolean validateNBT(ItemStack oldStack, NBTTagCompound nbt) {
+        if (!IEditableItem.checkValidModification(oldStack.stackTagCompound, nbt, editableKeys)) return false;
+        if (!nbt.hasKey("dest", Constants.NBT.TAG_STRING)) return false;
         String dest = nbt.getString("dest");
         return dest.length() < LINE_LENGTH;
     }

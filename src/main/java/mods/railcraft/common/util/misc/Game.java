@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFormatMessage;
 
@@ -27,6 +28,7 @@ public class Game {
     public static final boolean IS_OBFUSCATED = !World.class.getSimpleName().equals("World");
     public static final boolean IS_DEBUG = !Railcraft.VERSION.endsWith("0");
     public static final boolean IS_BUKKIT;
+    public static final Logger LOGGER = LogManager.getLogger(Railcraft.MOD_ID);
     public static boolean isGTNH;
 
     static {
@@ -64,7 +66,7 @@ public class Game {
     }
 
     public static void log(Level level, Message msg) {
-        LogManager.getLogger(Railcraft.MOD_ID).log(level, msg);
+        LOGGER.log(level, msg);
     }
 
     public static void logTrace(Level level, String msg, Object... args) {
