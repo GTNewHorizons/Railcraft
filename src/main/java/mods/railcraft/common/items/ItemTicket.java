@@ -35,7 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemTicket extends ItemRailcraft {
 
-    private static final ImmutableSet<String> editableKeys = ImmutableSet.of("dest");
+    private static final ImmutableSet<String> editableKeys = ImmutableSet.of("dest", "owner", "ownerId");
     public static final IStackFilter FILTER = new IStackFilter() {
 
         @Override
