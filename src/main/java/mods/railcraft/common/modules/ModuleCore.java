@@ -308,17 +308,6 @@ public class ModuleCore extends RailcraftModule {
                     woodRailbed,
                     't',
                     new ItemStack(Blocks.redstone_torch));
-
-            CraftingPlugin.addShapelessRecipe(
-                    RailcraftItem.rail.getStack(1, EnumRail.STANDARD),
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail,
-                    Blocks.rail);
         }
 
         MachineTileRegistery.registerTileEntities();
