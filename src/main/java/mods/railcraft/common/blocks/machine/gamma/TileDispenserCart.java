@@ -125,7 +125,8 @@ public class TileDispenserCart extends TileMachineItem {
                             item.motionX = (float) MiscTools.getRand().nextGaussian() * factor;
                             item.motionY = (float) MiscTools.getRand().nextGaussian() * factor + 0.2F;
                             item.motionZ = (float) MiscTools.getRand().nextGaussian() * factor;
-                            if (worldObj.spawnEntityInWorld(item)) setInventorySlotContents(ii, null);
+                            worldObj.spawnEntityInWorld(item);
+                            setInventorySlotContents(ii, null);
                         }
                     }
                 }
