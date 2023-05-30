@@ -5,12 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
-import mods.railcraft.common.blocks.aesthetics.post.BlockPostBase;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -20,6 +14,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
+import mods.railcraft.common.blocks.aesthetics.post.BlockPostBase;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

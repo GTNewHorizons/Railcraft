@@ -7,6 +7,19 @@ package mods.railcraft.common.blocks.machine.alpha;
 
 import java.util.*;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import buildcraft.api.statements.IActionExternal;
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyHandler;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
@@ -25,20 +38,6 @@ import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import buildcraft.api.statements.IActionExternal;
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
 
 public class TileRollingMachine extends TileMachineBase implements IEnergyHandler, ISidedInventory, IHasWork {
 

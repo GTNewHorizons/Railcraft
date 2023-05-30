@@ -8,6 +8,9 @@ package mods.railcraft.common.modules;
 import java.util.EnumSet;
 import java.util.Set;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
@@ -21,9 +24,6 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.RoutingTableCopyRecipe;
 import mods.railcraft.common.util.crafting.RoutingTicketCopyRecipe;
 import mods.railcraft.common.util.misc.MiscTools;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
 /**
  *

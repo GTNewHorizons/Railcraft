@@ -8,9 +8,6 @@ package mods.railcraft.client.render;
 import java.util.HashMap;
 import java.util.Map;
 
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.fluids.tanks.StandardTank;
-
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
@@ -19,6 +16,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.fluids.tanks.StandardTank;
 
 /**
  *

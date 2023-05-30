@@ -5,6 +5,11 @@
  */
 package mods.railcraft.common.modules;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.ore.BlockOre;
@@ -20,12 +25,6 @@ import mods.railcraft.common.items.firestone.ItemFirestoneRaw;
 import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 
 /**
  *

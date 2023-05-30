@@ -5,17 +5,17 @@
  */
 package mods.railcraft.common.blocks.tracks.speedcontroller;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.common.blocks.tracks.TrackSpeed;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  *

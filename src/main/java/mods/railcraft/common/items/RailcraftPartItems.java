@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.items;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

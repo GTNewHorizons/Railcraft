@@ -7,12 +7,6 @@ package mods.railcraft.client.render;
 
 import static net.minecraftforge.common.util.ForgeDirection.*;
 
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
-import mods.railcraft.common.blocks.signals.TileBoxBase;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
@@ -23,6 +17,12 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
+import mods.railcraft.common.blocks.signals.TileBoxBase;
 
 public class RenderSignalBox extends RenderTESRSignals implements ICombinedRenderer {
 

@@ -8,16 +8,16 @@ package mods.railcraft.common.carts;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.api.carts.ICartContentsTextureProvider;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.carts.ICartContentsTextureProvider;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.util.misc.Game;
 
 public final class EntityCartRF extends CartBase implements ICartContentsTextureProvider {
 

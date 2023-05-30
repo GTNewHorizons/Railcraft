@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.util.misc;
 
-import mods.railcraft.api.signals.SignalAspect;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
+import mods.railcraft.api.signals.SignalAspect;
 
 /**
  *

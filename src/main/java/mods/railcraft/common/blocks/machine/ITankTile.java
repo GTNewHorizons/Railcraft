@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.StandardTank;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.StandardTank;
 
 /**
  *

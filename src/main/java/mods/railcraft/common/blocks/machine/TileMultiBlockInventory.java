@@ -7,15 +7,15 @@ package mods.railcraft.common.blocks.machine;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.StandaloneInventory;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.StandaloneInventory;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

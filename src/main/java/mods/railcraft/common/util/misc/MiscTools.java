@@ -9,12 +9,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.tracks.EnumTrack;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,6 +22,12 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.tracks.EnumTrack;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 public abstract class MiscTools {
 

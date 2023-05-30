@@ -5,6 +5,12 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.gui.slots.SlotFuel;
@@ -12,13 +18,6 @@ import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotWater;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;
-
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerBoilerSolid extends RailcraftContainer {
 

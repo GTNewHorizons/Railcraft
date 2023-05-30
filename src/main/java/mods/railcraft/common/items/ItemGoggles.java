@@ -7,14 +7,6 @@ package mods.railcraft.common.items;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.hidden.BlockHidden;
-import mods.railcraft.common.blocks.hidden.TrailTicker;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +17,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import mods.railcraft.common.blocks.hidden.BlockHidden;
+import mods.railcraft.common.blocks.hidden.TrailTicker;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

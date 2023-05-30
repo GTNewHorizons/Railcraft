@@ -8,6 +8,9 @@ package mods.railcraft.common.blocks.aesthetics.stairs;
 import static mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial.*;
 import static mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs.getItem;
 
+import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.BlockFactory;
@@ -20,10 +23,6 @@ import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.item.ItemStack;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

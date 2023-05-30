@@ -5,12 +5,12 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.fluids.Fluids;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+
+import mods.railcraft.common.fluids.FluidItemHelper;
+import mods.railcraft.common.fluids.Fluids;
 
 public class SlotWater extends SlotRailcraft {
 

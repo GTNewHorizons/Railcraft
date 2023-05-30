@@ -5,14 +5,13 @@
  */
 package mods.railcraft.client.core;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.client.Minecraft;
 
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

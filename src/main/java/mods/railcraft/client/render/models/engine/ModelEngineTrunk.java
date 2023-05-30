@@ -5,10 +5,10 @@
  */
 package mods.railcraft.client.render.models.engine;
 
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+
+import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 
 /**
  *

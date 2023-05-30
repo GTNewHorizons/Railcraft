@@ -5,10 +5,10 @@
  */
 package mods.railcraft.client.render;
 
+import net.minecraft.block.Block;
+
 import mods.railcraft.client.render.RenderBlockPost.RenderPost;
 import mods.railcraft.common.blocks.aesthetics.post.BlockPostMetal;
-
-import net.minecraft.block.Block;
 
 /**
  *

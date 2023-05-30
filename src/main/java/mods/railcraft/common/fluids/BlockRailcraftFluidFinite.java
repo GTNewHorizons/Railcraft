@@ -7,8 +7,6 @@ package mods.railcraft.common.fluids;
 
 import java.util.Random;
 
-import mods.railcraft.client.particles.EntityDropParticleFX;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +20,7 @@ import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.particles.EntityDropParticleFX;
 
 /**
  *

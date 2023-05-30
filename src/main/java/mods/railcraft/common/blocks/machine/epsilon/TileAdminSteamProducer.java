@@ -4,13 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.TileMachineBase;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -22,6 +15,13 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.TileMachineBase;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.Fluids;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 public class TileAdminSteamProducer extends TileMachineBase implements IFluidHandler {
 

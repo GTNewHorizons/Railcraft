@@ -7,12 +7,12 @@ package mods.railcraft.common.carts;
 
 import java.util.*;
 
-import mods.railcraft.api.electricity.IElectricMinecart;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.google.common.collect.Lists;
+
+import mods.railcraft.api.electricity.IElectricMinecart;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

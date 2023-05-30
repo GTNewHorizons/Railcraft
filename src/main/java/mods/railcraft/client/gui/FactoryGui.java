@@ -5,6 +5,12 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.world.World;
+
+import org.apache.logging.log4j.Level;
+
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.machine.ITankTile;
@@ -27,12 +33,6 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.world.World;
-
-import org.apache.logging.log4j.Level;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

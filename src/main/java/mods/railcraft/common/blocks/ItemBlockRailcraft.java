@@ -7,13 +7,6 @@ package mods.railcraft.common.blocks;
 
 import java.util.List;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.gui.tooltips.ToolTipLine;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -21,6 +14,12 @@ import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.gui.tooltips.ToolTipLine;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  *

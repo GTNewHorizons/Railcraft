@@ -5,19 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.MultiBlockPattern;
-import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.IEnergyHandler;
+import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.MultiBlockPattern;
+import mods.railcraft.common.blocks.machine.TileMultiBlock;
+import mods.railcraft.common.util.misc.Game;
 
 public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid, IEnergyHandler {
 

@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.blocks.machine;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorAdmin;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorPassive;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorPersonal;
@@ -61,7 +62,6 @@ import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

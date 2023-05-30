@@ -11,13 +11,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackTile;
-
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 
 /**
  *

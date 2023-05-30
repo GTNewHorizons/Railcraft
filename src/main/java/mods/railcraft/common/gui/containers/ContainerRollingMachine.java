@@ -5,17 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
-import mods.railcraft.common.gui.slots.SlotOutput;
-import mods.railcraft.common.gui.slots.SlotUnshiftable;
-import mods.railcraft.common.gui.slots.SlotUntouchable;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -26,6 +15,16 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import cofh.api.energy.EnergyStorage;
+import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
+import mods.railcraft.common.gui.slots.SlotOutput;
+import mods.railcraft.common.gui.slots.SlotUnshiftable;
+import mods.railcraft.common.gui.slots.SlotUntouchable;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
 
 public class ContainerRollingMachine extends RailcraftContainer {
 

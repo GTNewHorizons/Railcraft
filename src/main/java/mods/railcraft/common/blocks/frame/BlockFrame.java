@@ -5,20 +5,6 @@
  */
 package mods.railcraft.common.blocks.frame;
 
-import mods.railcraft.api.core.IPostConnection;
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.blocks.ItemBlockRailcraft;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.delta.TileWire;
-import mods.railcraft.common.blocks.machine.delta.TileWire.AddonType;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.items.ItemPlate.EnumPlate;
-import mods.railcraft.common.items.RailcraftItem;
-import mods.railcraft.common.plugins.forestry.ForestryPlugin;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -32,6 +18,19 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.IPostConnection;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.blocks.ItemBlockRailcraft;
+import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
+import mods.railcraft.common.blocks.machine.delta.TileWire;
+import mods.railcraft.common.blocks.machine.delta.TileWire.AddonType;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.ItemPlate.EnumPlate;
+import mods.railcraft.common.items.RailcraftItem;
+import mods.railcraft.common.plugins.forestry.ForestryPlugin;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

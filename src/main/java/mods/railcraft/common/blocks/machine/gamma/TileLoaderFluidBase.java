@@ -9,17 +9,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.carts.CartUtils;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.StandardTank;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.PhantomInventory;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -31,6 +20,17 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.common.carts.CartUtils;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.FluidItemHelper;
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.PhantomInventory;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+import mods.railcraft.common.util.misc.Game;
 
 public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInventory, IFluidHandler, ISidedInventory {
 

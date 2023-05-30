@@ -9,23 +9,6 @@ import java.util.*;
 
 import javax.annotation.Nonnull;
 
-import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
-import mods.railcraft.common.util.inventory.filters.InvertedStackFilter;
-import mods.railcraft.common.util.inventory.filters.StackFilter;
-import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
-import mods.railcraft.common.util.inventory.wrappers.ChestWrapper;
-import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
-import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
-import mods.railcraft.common.util.inventory.wrappers.SidedInventoryMapper;
-import mods.railcraft.common.util.misc.EnumColor;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.ITileFilter;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -43,6 +26,23 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
+
+import mods.railcraft.api.core.items.IStackFilter;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
+import mods.railcraft.common.util.inventory.filters.InvertedStackFilter;
+import mods.railcraft.common.util.inventory.filters.StackFilter;
+import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
+import mods.railcraft.common.util.inventory.wrappers.ChestWrapper;
+import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
+import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
+import mods.railcraft.common.util.inventory.wrappers.SidedInventoryMapper;
+import mods.railcraft.common.util.misc.EnumColor;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.ITileFilter;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public abstract class InvTools {
 

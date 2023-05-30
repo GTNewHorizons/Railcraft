@@ -5,11 +5,11 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.entity.player.InventoryPlayer;
+
 import mods.railcraft.common.carts.IIC2EnergyCart;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerCartEnergy;
-
-import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiCartEnergy extends EntityGui {
 

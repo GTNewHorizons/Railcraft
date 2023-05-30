@@ -7,10 +7,6 @@ package mods.railcraft.common.modules;
 
 import java.util.*;
 
-import mods.railcraft.common.blocks.BlockFactory;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.modules.ModuleManager.Module;
-
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +14,9 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.BlockFactory;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.modules.ModuleManager.Module;
 
 public abstract class RailcraftModule {
 

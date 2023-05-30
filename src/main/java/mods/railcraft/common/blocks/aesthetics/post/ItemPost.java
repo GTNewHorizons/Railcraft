@@ -7,11 +7,6 @@ package mods.railcraft.common.blocks.aesthetics.post;
 
 import java.util.List;
 
-import mods.railcraft.client.emblems.Emblem;
-import mods.railcraft.client.emblems.EmblemToolsClient;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -20,6 +15,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.client.emblems.Emblem;
+import mods.railcraft.client.emblems.EmblemToolsClient;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  *

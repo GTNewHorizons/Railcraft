@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.util.steam;
 
+import net.minecraftforge.fluids.FluidStack;
+
 import mods.railcraft.api.fuel.FuelManager;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.tanks.StandardTank;
-
-import net.minecraftforge.fluids.FluidStack;
 
 /**
  *

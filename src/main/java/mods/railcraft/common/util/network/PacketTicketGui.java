@@ -9,16 +9,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.client.gui.GuiTicket;
-import mods.railcraft.common.items.ItemTicketGold;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.gui.GuiTicket;
+import mods.railcraft.common.items.ItemTicketGold;
+import mods.railcraft.common.util.misc.Game;
 
 public class PacketTicketGui extends RailcraftPacket {
 

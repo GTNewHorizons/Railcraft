@@ -8,6 +8,9 @@ package mods.railcraft.common.util.sounds;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
+
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.aesthetics.post.BlockPost;
@@ -15,9 +18,6 @@ import mods.railcraft.common.blocks.aesthetics.post.EnumPost;
 import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.Block.SoundType;
 
 /**
  *

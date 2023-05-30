@@ -10,9 +10,6 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.network.RailcraftPacket.PacketType;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
@@ -22,6 +19,8 @@ import cpw.mods.fml.common.network.FMLEventChannel;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.network.RailcraftPacket.PacketType;
 
 public class PacketHandler {
 

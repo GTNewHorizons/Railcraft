@@ -5,13 +5,13 @@
  */
 package mods.railcraft.client.gui;
 
-import mods.railcraft.common.core.RailcraftConstants;
-
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.common.core.RailcraftConstants;
 
 public abstract class GuiBasic extends GuiScreen {
 

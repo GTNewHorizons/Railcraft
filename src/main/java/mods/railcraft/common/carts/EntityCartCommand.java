@@ -5,8 +5,6 @@
  */
 package mods.railcraft.common.carts;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +18,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * Credits to CovertJaguar.

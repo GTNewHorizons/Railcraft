@@ -5,15 +5,15 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.client.render.RenderFakeBlock;
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.carts.EntityCartRF;
-
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.client.render.RenderFakeBlock;
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.carts.EntityCartRF;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -12,11 +12,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +20,11 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public abstract class TileSignalBase extends TileSignalFoundation implements ISignalTile, IAspectProvider {
 

@@ -5,14 +5,14 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import mods.railcraft.common.blocks.ItemBlockRailcraftMultiType;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import mods.railcraft.common.blocks.ItemBlockRailcraftMultiType;
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 public class ItemMachine extends ItemBlockRailcraftMultiType {
 

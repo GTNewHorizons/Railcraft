@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.util.steam;
 
-import mods.railcraft.common.util.misc.ITileFilter;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import mods.railcraft.common.util.misc.ITileFilter;
 
 /**
  *

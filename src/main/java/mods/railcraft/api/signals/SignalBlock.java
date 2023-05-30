@@ -7,11 +7,6 @@ package mods.railcraft.api.signals;
 
 import java.util.*;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.api.tracks.RailTools;
-import mods.railcraft.api.tracks.TrackScanner;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +18,11 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.message.MessageFormatMessage;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.api.tracks.RailTools;
+import mods.railcraft.api.tracks.TrackScanner;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

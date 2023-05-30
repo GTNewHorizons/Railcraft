@@ -5,9 +5,9 @@
  */
 package mods.railcraft.client.gui.buttons;
 
-import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 
 @SideOnly(Side.CLIENT)
 public class GuiToggleButtonSmall extends GuiToggleButton {

@@ -7,13 +7,13 @@ package mods.railcraft.common.blocks.aesthetics.wall;
 
 import java.util.List;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class ItemWall extends ItemBlock {
 

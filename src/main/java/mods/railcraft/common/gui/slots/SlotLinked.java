@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.util.inventory.InvTools;
 
 public class SlotLinked extends Slot {
 

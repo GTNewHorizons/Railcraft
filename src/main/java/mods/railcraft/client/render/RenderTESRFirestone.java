@@ -5,10 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.common.items.firestone.ItemFirestoneCracked;
-import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
-import mods.railcraft.common.items.firestone.TileFirestoneRecharge;
-
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -17,6 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.common.items.firestone.ItemFirestoneCracked;
+import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
+import mods.railcraft.common.items.firestone.TileFirestoneRecharge;
 
 /**
  *

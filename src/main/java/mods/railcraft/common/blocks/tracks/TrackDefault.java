@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
+
 import mods.railcraft.api.tracks.TrackInstanceBase;
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
 
 /**
  *

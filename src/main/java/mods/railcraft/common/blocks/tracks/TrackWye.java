@@ -8,12 +8,12 @@ package mods.railcraft.common.blocks.tracks;
 import java.util.List;
 import java.util.UUID;
 
-import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
-import mods.railcraft.common.carts.CartUtils;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
+import mods.railcraft.common.carts.CartUtils;
 
 public class TrackWye extends TrackSwitchBase {
 

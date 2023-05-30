@@ -5,13 +5,6 @@
  */
 package mods.railcraft.client.gui;
 
-import mods.railcraft.client.gui.buttons.GuiBetterButton;
-import mods.railcraft.common.gui.containers.RailcraftContainer;
-import mods.railcraft.common.gui.slots.SlotRailcraft;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.gui.tooltips.ToolTipLine;
-import mods.railcraft.common.gui.widgets.Widget;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -21,6 +14,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.client.gui.buttons.GuiBetterButton;
+import mods.railcraft.common.gui.containers.RailcraftContainer;
+import mods.railcraft.common.gui.slots.SlotRailcraft;
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.gui.tooltips.ToolTipLine;
+import mods.railcraft.common.gui.widgets.Widget;
 
 public abstract class GuiContainerRailcraft extends GuiContainer {
 

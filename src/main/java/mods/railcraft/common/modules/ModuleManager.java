@@ -11,10 +11,6 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -26,6 +22,9 @@ import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.util.misc.Game;
 
 public class ModuleManager {
 

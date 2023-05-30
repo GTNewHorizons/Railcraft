@@ -12,11 +12,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import mods.railcraft.common.fluids.tanks.StandardTank;
-import mods.railcraft.common.items.ModItems;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +23,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
+
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.items.ModItems;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

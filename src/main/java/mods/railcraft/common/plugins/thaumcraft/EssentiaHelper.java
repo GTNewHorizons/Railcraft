@@ -8,10 +8,10 @@ package mods.railcraft.common.plugins.thaumcraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IEssentiaContainerItem;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  *

@@ -7,8 +7,6 @@ package mods.railcraft.client.gui;
 
 import java.util.List;
 
-import mods.railcraft.client.gui.buttons.GuiBetterButton;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -17,6 +15,8 @@ import net.minecraft.entity.passive.EntityVillager;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import mods.railcraft.client.gui.buttons.GuiBetterButton;
 
 public class GuiTools {
 

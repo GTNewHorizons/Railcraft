@@ -9,12 +9,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
+import mods.railcraft.common.blocks.RailcraftTileEntity;
 
 public class PacketTileRequest extends RailcraftPacket {
 

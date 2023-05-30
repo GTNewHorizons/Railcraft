@@ -12,14 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import mods.railcraft.api.core.items.IToolCrowbar;
-import mods.railcraft.api.tracks.ITrackPowered;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.util.effects.EffectManager;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -35,6 +27,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.api.core.items.IToolCrowbar;
+import mods.railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.util.effects.EffectManager;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered, IGuiReturnHandler {
 

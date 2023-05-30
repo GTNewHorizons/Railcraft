@@ -5,8 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.common.blocks.ore.BlockOre;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,6 +14,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.common.blocks.ore.BlockOre;
 
 /**
  *

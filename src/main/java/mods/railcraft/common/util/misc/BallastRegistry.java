@@ -8,12 +8,12 @@ package mods.railcraft.common.util.misc;
 import java.util.HashSet;
 import java.util.Set;
 
-import mods.railcraft.common.util.collections.BlockKey;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.util.collections.BlockKey;
 
 /**
  * Register an item here to designate it as a possible ballast that can be used in the Bore.

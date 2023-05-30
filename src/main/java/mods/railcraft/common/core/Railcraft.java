@@ -7,25 +7,6 @@ package mods.railcraft.common.core;
 
 import java.io.File;
 
-import mods.railcraft.api.crafting.IRockCrusherRecipe;
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.api.fuel.FuelManager;
-import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
-import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
-import mods.railcraft.common.carts.LinkageManager;
-import mods.railcraft.common.commands.RootCommand;
-import mods.railcraft.common.fluids.RailcraftFluids;
-import mods.railcraft.common.items.ItemMagnifyingGlass;
-import mods.railcraft.common.items.firestone.BlockFirestoneRecharge;
-import mods.railcraft.common.modules.ModuleManager;
-import mods.railcraft.common.plugins.craftguide.CraftGuidePlugin;
-import mods.railcraft.common.util.inventory.filters.StackFilter;
-import mods.railcraft.common.util.misc.BallastRegistry;
-import mods.railcraft.common.util.misc.BlinkTick;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.network.PacketHandler;
-
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.item.Item;
@@ -47,6 +28,24 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.registry.GameRegistry;
+import mods.railcraft.api.crafting.IRockCrusherRecipe;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.api.fuel.FuelManager;
+import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
+import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
+import mods.railcraft.common.carts.LinkageManager;
+import mods.railcraft.common.commands.RootCommand;
+import mods.railcraft.common.fluids.RailcraftFluids;
+import mods.railcraft.common.items.ItemMagnifyingGlass;
+import mods.railcraft.common.items.firestone.BlockFirestoneRecharge;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.plugins.craftguide.CraftGuidePlugin;
+import mods.railcraft.common.util.inventory.filters.StackFilter;
+import mods.railcraft.common.util.misc.BallastRegistry;
+import mods.railcraft.common.util.misc.BlinkTick;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.network.PacketHandler;
 
 @Mod(
         modid = Railcraft.MOD_ID,

@@ -3,14 +3,13 @@ package mods.railcraft.common.plugins.buildcraft.actions;
 import java.util.Collection;
 import java.util.LinkedList;
 
-import mods.railcraft.common.plugins.buildcraft.triggers.*;
-
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IActionExternal;
 import buildcraft.api.statements.IActionInternal;
 import buildcraft.api.statements.IActionProvider;
 import buildcraft.api.statements.IStatementContainer;
+import mods.railcraft.common.plugins.buildcraft.triggers.*;
 
 /**
  *

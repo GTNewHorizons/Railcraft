@@ -5,6 +5,15 @@
  */
 package mods.railcraft.common.carts;
 
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
@@ -19,15 +28,6 @@ import mods.railcraft.common.util.inventory.filters.StackFilter;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.SolidFuelProvider;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

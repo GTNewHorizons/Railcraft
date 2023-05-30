@@ -10,14 +10,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.registry.GameData;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

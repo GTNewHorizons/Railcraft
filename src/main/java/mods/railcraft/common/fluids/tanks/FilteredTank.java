@@ -5,12 +5,12 @@
  */
 package mods.railcraft.common.fluids.tanks;
 
-import mods.railcraft.common.gui.tooltips.ToolTipLine;
-
 import net.minecraft.item.EnumRarity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import mods.railcraft.common.gui.tooltips.ToolTipLine;
 
 /**
  *

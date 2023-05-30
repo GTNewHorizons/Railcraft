@@ -7,11 +7,6 @@ package mods.railcraft.common.carts;
 
 import java.util.List;
 
-import mods.railcraft.api.carts.IItemCart;
-import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +16,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
+
+import mods.railcraft.api.carts.IItemCart;
+import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * It also contains some generic code that most carts will find useful.

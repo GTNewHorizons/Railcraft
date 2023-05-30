@@ -10,8 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -22,6 +20,7 @@ import com.google.common.collect.MapMaker;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

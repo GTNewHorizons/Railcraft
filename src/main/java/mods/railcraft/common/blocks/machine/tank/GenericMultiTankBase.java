@@ -10,14 +10,14 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.entity.Entity;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.beta.MetalTank;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
-import net.minecraft.entity.Entity;
 
 /**
  *

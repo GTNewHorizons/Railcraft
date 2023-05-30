@@ -9,14 +9,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.util.misc.EnumColor;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.util.misc.EnumColor;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

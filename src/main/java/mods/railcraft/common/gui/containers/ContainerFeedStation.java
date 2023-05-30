@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.common.blocks.machine.alpha.TileFeedStation;
-import mods.railcraft.common.gui.slots.SlotFeed;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+
+import mods.railcraft.common.blocks.machine.alpha.TileFeedStation;
+import mods.railcraft.common.gui.slots.SlotFeed;
 
 public class ContainerFeedStation extends RailcraftContainer {
 

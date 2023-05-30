@@ -5,16 +5,16 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
-import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
-import mods.railcraft.common.blocks.aesthetics.slab.TileSlab;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
+import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
+import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
+import mods.railcraft.common.blocks.aesthetics.slab.TileSlab;
 
 /**
  *

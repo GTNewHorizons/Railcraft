@@ -8,9 +8,6 @@ package mods.railcraft.common.items;
 import java.util.List;
 import java.util.Locale;
 
-import mods.railcraft.common.plugins.forge.CraftingPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -18,6 +15,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

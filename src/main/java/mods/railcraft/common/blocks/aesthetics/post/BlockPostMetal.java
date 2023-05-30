@@ -8,14 +8,6 @@ package mods.railcraft.common.blocks.aesthetics.post;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forestry.ForestryPlugin;
-import mods.railcraft.common.plugins.forge.HarvestPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,6 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forestry.ForestryPlugin;
+import mods.railcraft.common.plugins.forge.HarvestPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  *

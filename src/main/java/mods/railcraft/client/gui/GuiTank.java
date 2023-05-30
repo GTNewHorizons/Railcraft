@@ -5,13 +5,13 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
+
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerTank;
-
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
 
 /**
  *

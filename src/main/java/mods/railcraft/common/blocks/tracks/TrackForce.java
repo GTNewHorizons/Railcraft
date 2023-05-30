@@ -7,16 +7,16 @@ package mods.railcraft.common.blocks.tracks;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
+import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 public class TrackForce extends TrackUnsupported {
 

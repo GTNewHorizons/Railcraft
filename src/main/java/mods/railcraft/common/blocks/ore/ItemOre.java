@@ -7,10 +7,6 @@ package mods.railcraft.common.blocks.ore;
 
 import java.util.List;
 
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.items.EntityItemFireproof;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +14,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.items.EntityItemFireproof;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class ItemOre extends ItemBlock {
 

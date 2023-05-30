@@ -5,10 +5,10 @@
  */
 package mods.railcraft.client.sounds;
 
-import mods.railcraft.common.util.sounds.SoundHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
+import mods.railcraft.common.util.sounds.SoundHelper;
 
 /**
  *

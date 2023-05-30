@@ -5,11 +5,11 @@
  */
 package mods.railcraft.client.gui;
 
-import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
-import mods.railcraft.common.gui.containers.ContainerLocomotiveSteamSolid;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+
+import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
+import mods.railcraft.common.gui.containers.ContainerLocomotiveSteamSolid;
 
 public class GuiLocomotiveSteamSolid extends GuiLocomotive {
 

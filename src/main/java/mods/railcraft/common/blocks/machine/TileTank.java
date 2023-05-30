@@ -10,11 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import mods.railcraft.common.fluids.TankManager;
-import mods.railcraft.common.fluids.tanks.FakeTank;
-import mods.railcraft.common.fluids.tanks.StandardTank;
-import mods.railcraft.common.gui.slots.SlotLiquidContainer;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Slot;
@@ -24,6 +19,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import mods.railcraft.common.fluids.TankManager;
+import mods.railcraft.common.fluids.tanks.FakeTank;
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.gui.slots.SlotLiquidContainer;
 
 /**
  *

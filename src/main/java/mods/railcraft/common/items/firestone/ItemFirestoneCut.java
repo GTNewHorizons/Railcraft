@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.items.firestone;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 /**
  *

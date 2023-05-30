@@ -5,14 +5,14 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
-import mods.railcraft.common.gui.slots.SlotMinecart;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.api.core.items.IMinecartItem;
+import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
+import mods.railcraft.common.gui.slots.SlotMinecart;
 
 public class ContainerDispenserCart extends RailcraftContainer {
 

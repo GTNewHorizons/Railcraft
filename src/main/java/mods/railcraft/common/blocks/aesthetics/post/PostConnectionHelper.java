@@ -8,6 +8,13 @@ package mods.railcraft.common.blocks.aesthetics.post;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSign;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
 import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
@@ -15,13 +22,6 @@ import mods.railcraft.common.blocks.signals.ISignalTile;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSign;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  *

@@ -5,8 +5,8 @@
  */
 package mods.railcraft.common.modules;
 
-import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import cpw.mods.fml.common.Optional;
+import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

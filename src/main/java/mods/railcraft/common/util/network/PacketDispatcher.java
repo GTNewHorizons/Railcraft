@@ -7,8 +7,6 @@ package mods.railcraft.common.util.network;
 
 import java.lang.reflect.Method;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.server.management.PlayerManager;
@@ -16,6 +14,7 @@ import net.minecraft.world.WorldServer;
 
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

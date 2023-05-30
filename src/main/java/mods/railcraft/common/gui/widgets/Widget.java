@@ -8,14 +8,13 @@ package mods.railcraft.common.gui.widgets;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import mods.railcraft.client.gui.GuiContainerRailcraft;
-import mods.railcraft.common.gui.containers.RailcraftContainer;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 import net.minecraft.inventory.ICrafting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.gui.GuiContainerRailcraft;
+import mods.railcraft.common.gui.containers.RailcraftContainer;
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 /**
  *

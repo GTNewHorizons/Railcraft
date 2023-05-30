@@ -5,13 +5,13 @@
  */
 package mods.railcraft.client.render.models.carts;
 
-import mods.railcraft.client.render.models.ModelTextured;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import mods.railcraft.client.render.models.ModelTextured;
 
 /**
  *

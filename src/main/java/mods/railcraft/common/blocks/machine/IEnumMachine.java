@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 /**
  *

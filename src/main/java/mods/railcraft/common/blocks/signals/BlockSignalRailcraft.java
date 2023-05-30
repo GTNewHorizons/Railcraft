@@ -7,8 +7,6 @@ package mods.railcraft.common.blocks.signals;
 
 import java.util.List;
 
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -17,6 +15,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
 
 public class BlockSignalRailcraft extends BlockSignalBase {
 

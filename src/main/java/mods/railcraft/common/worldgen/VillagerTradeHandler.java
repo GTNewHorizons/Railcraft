@@ -7,12 +7,6 @@ package mods.railcraft.common.worldgen;
 
 import java.util.Random;
 
-import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
-import mods.railcraft.common.blocks.signals.ItemSignalTuner;
-import mods.railcraft.common.blocks.tracks.EnumTrack;
-import mods.railcraft.common.carts.EnumCart;
-import mods.railcraft.common.items.*;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
@@ -25,6 +19,11 @@ import net.minecraft.village.MerchantRecipeList;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
+import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
+import mods.railcraft.common.blocks.signals.ItemSignalTuner;
+import mods.railcraft.common.blocks.tracks.EnumTrack;
+import mods.railcraft.common.carts.EnumCart;
+import mods.railcraft.common.items.*;
 
 public class VillagerTradeHandler implements IVillageTradeHandler {
 

@@ -5,13 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
-import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
-import mods.railcraft.common.util.network.PacketBuilder;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -20,6 +13,12 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
+import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
+import mods.railcraft.common.util.network.PacketBuilder;
 
 public class ContainerEngineSteam extends RailcraftContainer {
 

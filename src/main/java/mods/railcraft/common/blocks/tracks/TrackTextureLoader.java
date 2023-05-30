@@ -8,14 +8,14 @@ package mods.railcraft.common.blocks.tracks;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
+
 import mods.railcraft.api.core.ITextureLoader;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
 
 /**
  *

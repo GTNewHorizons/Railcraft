@@ -5,17 +5,17 @@
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
-import mods.railcraft.client.sounds.RailcraftSound;
-import mods.railcraft.common.blocks.signals.*;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.client.sounds.RailcraftSound;
+import mods.railcraft.common.blocks.signals.*;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
 
 public abstract class BlockPostBase extends Block {
 

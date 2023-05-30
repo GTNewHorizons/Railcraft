@@ -5,6 +5,9 @@
  */
 package mods.railcraft.common.modules;
 
+import net.minecraft.init.Items;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
@@ -16,9 +19,6 @@ import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.items.RailcraftPartItems;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.RotorRepairRecipe;
-
-import net.minecraft.init.Items;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
  *

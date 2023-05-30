@@ -5,18 +5,18 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.locomotive.IRenderer;
-import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
-import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.common.carts.EntityLocomotive;
-import mods.railcraft.common.carts.ItemLocomotive;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.locomotive.IRenderer;
+import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
+import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
+import mods.railcraft.common.carts.EntityLocomotive;
+import mods.railcraft.common.carts.ItemLocomotive;
 
 /**
  *

@@ -5,15 +5,15 @@
  */
 package mods.railcraft.common.util.inventory.filters;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.*;
+
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.plugins.forge.FuelPlugin;
 import mods.railcraft.common.util.misc.BallastRegistry;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.*;
 
 /**
  * This interface is used with several of the functions in IItemTransfer to provide a convenient means of dealing with

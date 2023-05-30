@@ -12,6 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import mods.railcraft.api.core.INetworkedObject;
 import mods.railcraft.api.core.IOwnable;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -22,17 +33,6 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketBuilder;
 import mods.railcraft.common.util.network.PacketTileEntity;
 import mods.railcraft.common.util.network.RailcraftPacket;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 public abstract class RailcraftTileEntity extends TileEntity implements INetworkedObject, IOwnable {
 

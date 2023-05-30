@@ -6,8 +6,6 @@
 
 package mods.railcraft.common.commands;
 
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +15,8 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  * Created by CovertJaguar on 3/12/2015.

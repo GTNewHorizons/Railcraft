@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import mods.railcraft.api.core.items.IMinecartItem;
-
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +22,8 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.mojang.authlib.GameProfile;
+
+import mods.railcraft.api.core.items.IMinecartItem;
 
 public abstract class CartTools {
 

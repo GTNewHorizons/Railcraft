@@ -7,11 +7,10 @@ package mods.railcraft.common.plugins.craftguide;
 
 import java.lang.reflect.Method;
 
-import mods.railcraft.common.util.misc.Game;
-
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.Loader;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

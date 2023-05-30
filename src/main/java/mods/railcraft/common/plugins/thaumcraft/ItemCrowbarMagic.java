@@ -5,14 +5,13 @@
  */
 package mods.railcraft.common.plugins.thaumcraft;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;

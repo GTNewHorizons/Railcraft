@@ -7,16 +7,6 @@ package mods.railcraft.common.carts;
 
 import java.util.List;
 
-import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
-import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.client.emblems.Emblem;
-import mods.railcraft.client.emblems.EmblemToolsClient;
-import mods.railcraft.client.render.RenderTools;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +19,15 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
+import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
+import mods.railcraft.client.emblems.Emblem;
+import mods.railcraft.client.emblems.EmblemToolsClient;
+import mods.railcraft.client.render.RenderTools;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.forge.PlayerPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

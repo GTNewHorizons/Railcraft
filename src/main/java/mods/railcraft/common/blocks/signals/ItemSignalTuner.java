@@ -5,6 +5,17 @@
  */
 package mods.railcraft.common.blocks.signals;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
+
+import cpw.mods.fml.common.Optional;
+import ic2.api.item.IBoxable;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
@@ -17,18 +28,6 @@ import mods.railcraft.common.items.ItemRailcraft;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
-
-import cpw.mods.fml.common.Optional;
-import ic2.api.item.IBoxable;
 
 @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2")
 public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivationBlockingItem {

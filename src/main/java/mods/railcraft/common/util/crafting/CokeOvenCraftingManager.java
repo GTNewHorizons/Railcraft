@@ -8,13 +8,13 @@ package mods.railcraft.common.util.crafting;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import mods.railcraft.api.crafting.ICokeOvenCraftingManager;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.util.inventory.InvTools;
-
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class CokeOvenCraftingManager implements ICokeOvenCraftingManager {
 

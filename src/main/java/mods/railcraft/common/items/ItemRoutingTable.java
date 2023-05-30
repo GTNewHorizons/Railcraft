@@ -11,16 +11,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
-import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.client.gui.GuiRoutingTable;
-import mods.railcraft.common.blocks.signals.RoutingLogic;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.network.IEditableItem;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,6 +27,15 @@ import com.google.common.collect.ImmutableSet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.items.IStackFilter;
+import mods.railcraft.client.gui.GuiRoutingTable;
+import mods.railcraft.common.blocks.signals.RoutingLogic;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.network.IEditableItem;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -7,10 +7,6 @@ package mods.railcraft.common.blocks.machine.beta;
 
 import java.util.Random;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.misc.Timer;
-
 import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -18,6 +14,9 @@ import net.minecraftforge.fluids.Fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.misc.Timer;
 
 /**
  *

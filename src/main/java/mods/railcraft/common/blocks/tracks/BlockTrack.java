@@ -7,21 +7,6 @@ package mods.railcraft.common.blocks.tracks;
 
 import java.util.*;
 
-import mods.railcraft.api.core.IPostConnection;
-import mods.railcraft.api.core.ITextureLoader;
-import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.api.tracks.*;
-import mods.railcraft.client.particles.ParticleHelper;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.items.ItemOveralls;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.misc.RailcraftDamageSource;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.particle.EffectRenderer;
@@ -50,6 +35,20 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.IPostConnection;
+import mods.railcraft.api.core.ITextureLoader;
+import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.api.tracks.*;
+import mods.railcraft.client.particles.ParticleHelper;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.items.ItemOveralls;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.misc.RailcraftDamageSource;
 
 public class BlockTrack extends BlockRailBase implements IPostConnection {
 

@@ -7,14 +7,6 @@ package mods.railcraft.common.items;
 
 import java.util.List;
 
-import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.network.IEditableItem;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,6 +20,13 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.items.IStackFilter;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.forge.PlayerPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.network.IEditableItem;
 
 /**
  *

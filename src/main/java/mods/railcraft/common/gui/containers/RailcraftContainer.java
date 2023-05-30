@@ -9,11 +9,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.common.gui.slots.SlotRailcraft;
-import mods.railcraft.common.gui.widgets.Widget;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.network.PacketBuilder;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,6 +21,10 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.gui.slots.SlotRailcraft;
+import mods.railcraft.common.gui.widgets.Widget;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.network.PacketBuilder;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

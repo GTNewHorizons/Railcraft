@@ -11,10 +11,10 @@ import java.io.IOException;
 
 import javax.annotation.Nonnull;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

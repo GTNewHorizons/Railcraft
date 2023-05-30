@@ -2,13 +2,12 @@ package mods.railcraft.common.plugins.buildcraft.triggers;
 
 import java.util.EnumSet;
 
-import mods.railcraft.common.blocks.machine.beta.TileEngine;
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IStatementParameter;
+import mods.railcraft.common.blocks.machine.beta.TileEngine;
+import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 
 /**
  *

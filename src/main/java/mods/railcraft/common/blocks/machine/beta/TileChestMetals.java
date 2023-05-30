@@ -8,6 +8,8 @@ package mods.railcraft.common.blocks.machine.beta;
 import java.util.EnumMap;
 import java.util.Map;
 
+import net.minecraft.inventory.IInventory;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.items.Metal;
@@ -15,8 +17,6 @@ import mods.railcraft.common.util.inventory.filters.ComplexStackFilter;
 import mods.railcraft.common.util.inventory.filters.ExclusionStackFilter;
 import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.inventory.IInventory;
 
 /**
  *

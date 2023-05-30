@@ -5,6 +5,16 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -24,16 +34,6 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.SolidFuelProvider;
 import mods.railcraft.common.util.steam.Steam;
 import mods.railcraft.common.util.steam.SteamBoiler;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

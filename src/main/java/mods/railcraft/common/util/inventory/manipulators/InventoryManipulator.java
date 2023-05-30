@@ -8,13 +8,13 @@ package mods.railcraft.common.util.inventory.manipulators;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
-
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

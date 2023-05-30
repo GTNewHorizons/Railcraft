@@ -10,17 +10,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.modules.ModuleManager;
-import mods.railcraft.common.modules.ModuleManager.Module;
-import mods.railcraft.common.plugins.forge.CraftingPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.modules.ModuleManager.Module;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
 
 /**
  *

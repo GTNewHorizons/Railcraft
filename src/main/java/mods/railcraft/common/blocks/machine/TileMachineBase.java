@@ -8,15 +8,6 @@ package mods.railcraft.common.blocks.machine;
 import java.util.ArrayList;
 import java.util.Random;
 
-import mods.railcraft.api.core.IPostConnection.ConnectStyle;
-import mods.railcraft.api.core.items.ITrackItem;
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.items.IActivationBlockingItem;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +20,14 @@ import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.IPostConnection.ConnectStyle;
+import mods.railcraft.api.core.items.ITrackItem;
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.items.IActivationBlockingItem;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+import mods.railcraft.common.util.misc.Game;
 
 public abstract class TileMachineBase extends RailcraftTileEntity {
 

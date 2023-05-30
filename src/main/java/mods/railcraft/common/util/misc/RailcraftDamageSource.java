@@ -5,8 +5,6 @@
  */
 package mods.railcraft.common.util.misc;
 
-import mods.railcraft.common.plugins.forge.ChatPlugin;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -16,6 +14,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
 
 /**
  *

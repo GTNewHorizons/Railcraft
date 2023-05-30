@@ -13,17 +13,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import mods.railcraft.common.plugins.buildcraft.actions.Actions;
-import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
-import mods.railcraft.common.plugins.buildcraft.triggers.INeedsFuel;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.EnumSkyBlock;
 
 import buildcraft.api.statements.IActionExternal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.plugins.buildcraft.actions.Actions;
+import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
+import mods.railcraft.common.plugins.buildcraft.triggers.INeedsFuel;
+import mods.railcraft.common.util.misc.Game;
 
 public abstract class TileMultiBlockOven extends TileMultiBlockInventory implements INeedsFuel, IHasWork {
 

@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.carts;
 
-import mods.railcraft.api.carts.IAlternateCartTexture;
-import mods.railcraft.common.core.RailcraftConstants;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.carts.IAlternateCartTexture;
+import mods.railcraft.common.core.RailcraftConstants;
 
 /**
  *

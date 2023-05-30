@@ -5,11 +5,6 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.bore.IBoreHead;
-import mods.railcraft.client.render.models.bore.ModelTunnelBore;
-import mods.railcraft.common.carts.EntityTunnelBore;
-import mods.railcraft.common.core.RailcraftConstants;
-
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -19,6 +14,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.bore.IBoreHead;
+import mods.railcraft.client.render.models.bore.ModelTunnelBore;
+import mods.railcraft.common.carts.EntityTunnelBore;
+import mods.railcraft.common.core.RailcraftConstants;
 
 public class RenderTunnelBore extends Render {
 

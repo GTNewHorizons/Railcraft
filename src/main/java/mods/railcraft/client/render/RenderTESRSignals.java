@@ -8,16 +8,6 @@ package mods.railcraft.client.render;
 
 import java.util.Arrays;
 
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.api.signals.AbstractPair;
-import mods.railcraft.api.signals.IControllerTile;
-import mods.railcraft.api.signals.IReceiverTile;
-import mods.railcraft.api.signals.ISignalBlockTile;
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.items.ItemGoggles;
-import mods.railcraft.common.util.effects.EffectManager;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -29,6 +19,16 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.api.signals.AbstractPair;
+import mods.railcraft.api.signals.IControllerTile;
+import mods.railcraft.api.signals.IReceiverTile;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.common.items.ItemGoggles;
+import mods.railcraft.common.util.effects.EffectManager;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

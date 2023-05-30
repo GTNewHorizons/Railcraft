@@ -5,11 +5,10 @@
  */
 package mods.railcraft.common.plugins.craftguide;
 
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import uristqwerty.CraftGuide.api.BasicRecipeFilter;
 import uristqwerty.CraftGuide.api.CraftGuideRecipe;
 

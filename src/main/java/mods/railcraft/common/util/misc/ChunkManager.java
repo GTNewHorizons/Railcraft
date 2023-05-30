@@ -10,12 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
-import mods.railcraft.common.carts.EntityCartAnchor;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -30,7 +24,13 @@ import org.apache.logging.log4j.Level;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.carts.EntityCartAnchor;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

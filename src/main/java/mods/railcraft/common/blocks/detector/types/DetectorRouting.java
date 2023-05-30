@@ -9,6 +9,14 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.detector.DetectorSecured;
 import mods.railcraft.common.blocks.detector.EnumDetector;
@@ -21,14 +29,6 @@ import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  *

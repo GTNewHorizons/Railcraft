@@ -5,9 +5,9 @@
  */
 package mods.railcraft.api.carts;
 
-import mods.railcraft.api.core.items.IStackFilter;
-
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.api.core.items.IStackFilter;
 
 /**
  * This interface allows items to be passed around with out needing to know anything about the underlying implementation

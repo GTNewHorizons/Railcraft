@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.util.misc;
 
-import mods.railcraft.common.util.collections.ItemMap;
-
 import net.minecraft.inventory.IInventory;
+
+import mods.railcraft.common.util.collections.ItemMap;
 
 /**
  *

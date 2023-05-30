@@ -8,6 +8,14 @@ package mods.railcraft.common.core;
 import java.io.File;
 import java.util.*;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
+import org.apache.logging.log4j.Level;
+
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -38,14 +46,6 @@ import mods.railcraft.common.util.collections.ItemMap;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.steam.Steam;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraftforge.common.config.ConfigCategory;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-
-import org.apache.logging.log4j.Level;
 
 public class RailcraftConfig {
 

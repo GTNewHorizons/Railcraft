@@ -5,10 +5,10 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.entity.player.InventoryPlayer;
+
 import mods.railcraft.common.carts.EntityLocomotiveCreative;
 import mods.railcraft.common.gui.containers.ContainerLocomotive;
-
-import net.minecraft.entity.player.InventoryPlayer;
 
 class GuiLocomotiveCreative extends GuiLocomotive {
 

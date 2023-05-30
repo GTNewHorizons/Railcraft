@@ -5,6 +5,12 @@
  */
 package mods.railcraft.common.items;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import com.google.common.collect.EnumBiMap;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.ore.EnumOre;
@@ -12,12 +18,6 @@ import mods.railcraft.common.items.ItemIngot.EnumIngot;
 import mods.railcraft.common.items.ItemNugget.EnumNugget;
 import mods.railcraft.common.plugins.forge.OreDictPlugin;
 import mods.railcraft.common.util.inventory.filters.OreStackFilter;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import com.google.common.collect.EnumBiMap;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

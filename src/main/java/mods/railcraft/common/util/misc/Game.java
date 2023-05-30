@@ -5,8 +5,6 @@
  */
 package mods.railcraft.common.util.misc;
 
-import mods.railcraft.common.core.Railcraft;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
@@ -19,6 +17,7 @@ import org.apache.logging.log4j.message.MessageFormatMessage;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.core.Railcraft;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

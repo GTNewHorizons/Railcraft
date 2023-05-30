@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.blocks.tracks.locking;
 
+import net.minecraft.entity.item.EntityMinecart;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.tracks.TrackNextGenLocking;
-
-import net.minecraft.entity.item.EntityMinecart;
 
 /**
  *

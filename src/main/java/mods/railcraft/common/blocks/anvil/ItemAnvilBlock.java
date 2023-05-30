@@ -7,13 +7,13 @@ package mods.railcraft.common.blocks.anvil;
 
 import java.util.List;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class ItemAnvilBlock extends ItemMultiTexture {
 

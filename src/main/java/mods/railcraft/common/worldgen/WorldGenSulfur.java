@@ -5,15 +5,15 @@
  */
 package mods.railcraft.common.worldgen;
 
-import mods.railcraft.common.blocks.ore.BlockOre;
-import mods.railcraft.common.blocks.ore.EnumOre;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.ore.BlockOre;
+import mods.railcraft.common.blocks.ore.EnumOre;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

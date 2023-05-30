@@ -7,12 +7,12 @@ package mods.railcraft.common.util.inventory;
 
 import java.util.*;
 
-import mods.railcraft.common.util.misc.AdjacentTileCache;
-import mods.railcraft.common.util.misc.ITileFilter;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.util.misc.AdjacentTileCache;
+import mods.railcraft.common.util.misc.ITileFilter;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

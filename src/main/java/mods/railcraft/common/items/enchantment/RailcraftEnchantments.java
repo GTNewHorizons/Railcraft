@@ -1,10 +1,10 @@
 package mods.railcraft.common.items.enchantment;
 
-import mods.railcraft.common.core.RailcraftConfig;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraftforge.common.MinecraftForge;
+
+import mods.railcraft.common.core.RailcraftConfig;
 
 public class RailcraftEnchantments {
 

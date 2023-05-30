@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.gui.widgets;
 
-import mods.railcraft.client.gui.GuiContainerRailcraft;
-import mods.railcraft.common.gui.tooltips.ToolTip;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.gui.GuiContainerRailcraft;
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 /**
  *

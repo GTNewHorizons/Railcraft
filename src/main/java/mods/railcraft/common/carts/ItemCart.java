@@ -7,13 +7,6 @@ package mods.railcraft.common.carts;
 
 import java.util.List;
 
-import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
@@ -28,6 +21,12 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.items.IMinecartItem;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public class ItemCart extends ItemMinecart implements IMinecartItem {
 

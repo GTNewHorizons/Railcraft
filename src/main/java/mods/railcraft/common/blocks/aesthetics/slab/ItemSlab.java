@@ -7,17 +7,17 @@ package mods.railcraft.common.blocks.aesthetics.slab;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

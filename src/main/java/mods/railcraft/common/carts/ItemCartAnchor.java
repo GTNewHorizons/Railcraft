@@ -7,13 +7,13 @@ package mods.railcraft.common.carts;
 
 import java.util.List;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *

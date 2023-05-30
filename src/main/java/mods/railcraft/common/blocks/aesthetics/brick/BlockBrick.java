@@ -7,10 +7,6 @@ package mods.railcraft.common.blocks.aesthetics.brick;
 
 import java.util.List;
 
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +18,9 @@ import net.minecraft.world.IBlockAccess;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
 
 public class BlockBrick extends Block {
 

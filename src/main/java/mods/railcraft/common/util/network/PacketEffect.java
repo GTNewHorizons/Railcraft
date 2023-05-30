@@ -10,11 +10,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.util.effects.EffectManager;
-
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
+import mods.railcraft.common.util.effects.EffectManager;
 
 public class PacketEffect extends RailcraftPacket {
 

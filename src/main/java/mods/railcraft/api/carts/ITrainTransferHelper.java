@@ -5,11 +5,11 @@
  */
 package mods.railcraft.api.carts;
 
-import mods.railcraft.api.core.items.IStackFilter;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+
+import mods.railcraft.api.core.items.IStackFilter;
 
 /**
  * This interface is the API facing wrapper for an internal helper class that makes it simple to pass items and fluids

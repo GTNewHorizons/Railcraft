@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
-import mods.railcraft.api.tracks.ITrackReversable;
-import mods.railcraft.common.carts.CartUtils;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
+import mods.railcraft.api.tracks.ITrackReversable;
+import mods.railcraft.common.carts.CartUtils;
 
 public class TrackSwitch extends TrackSwitchBase implements ITrackReversable {
 

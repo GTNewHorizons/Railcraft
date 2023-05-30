@@ -9,11 +9,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.blocks.machine.TileMachineBase;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +19,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.energy.IEnergyConnection;
+import mods.railcraft.common.blocks.machine.TileMachineBase;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

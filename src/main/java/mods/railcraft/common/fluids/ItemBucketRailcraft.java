@@ -5,9 +5,6 @@
  */
 package mods.railcraft.common.fluids;
 
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,6 +21,8 @@ import net.minecraftforge.fluids.Fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public class ItemBucketRailcraft extends Item {
 

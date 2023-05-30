@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.items;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

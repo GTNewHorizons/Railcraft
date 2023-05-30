@@ -7,11 +7,11 @@ package mods.railcraft.common.blocks.machine.zeta;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+
 import mods.railcraft.common.blocks.machine.IComparatorOverride;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.IMachineProxy;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
 
 /**
  *

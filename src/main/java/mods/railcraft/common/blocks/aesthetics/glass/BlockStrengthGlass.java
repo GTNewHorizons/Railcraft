@@ -7,16 +7,6 @@ package mods.railcraft.common.blocks.aesthetics.glass;
 
 import java.util.*;
 
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forestry.ForestryPlugin;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
-import mods.railcraft.common.util.misc.EnumColor;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
@@ -31,6 +21,15 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forestry.ForestryPlugin;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
+import mods.railcraft.common.util.misc.EnumColor;
 
 /**
  *

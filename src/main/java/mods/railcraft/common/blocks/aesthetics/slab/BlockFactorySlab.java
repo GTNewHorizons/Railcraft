@@ -7,6 +7,9 @@ package mods.railcraft.common.blocks.aesthetics.slab;
 
 import static mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab.getItem;
 
+import net.minecraft.init.Blocks;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.common.blocks.BlockFactory;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.core.Railcraft;
@@ -14,10 +17,6 @@ import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-
-import net.minecraft.init.Blocks;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

@@ -5,12 +5,12 @@
  */
 package mods.railcraft.common.items.firestone;
 
-import mods.railcraft.common.items.EntityItemFireproof;
-import mods.railcraft.common.items.ItemRailcraft;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import mods.railcraft.common.items.EntityItemFireproof;
+import mods.railcraft.common.items.ItemRailcraft;
 
 /**
  *

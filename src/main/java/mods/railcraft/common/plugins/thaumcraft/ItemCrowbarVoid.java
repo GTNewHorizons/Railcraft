@@ -5,11 +5,6 @@
  */
 package mods.railcraft.common.plugins.thaumcraft;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.items.ItemCrowbar;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.ItemCrowbar;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.Game;
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.IWarpingGear;
 import thaumcraft.api.ThaumcraftApi;

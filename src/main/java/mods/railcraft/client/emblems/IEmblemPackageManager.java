@@ -5,9 +5,9 @@
  */
 package mods.railcraft.client.emblems;
 
-import mods.railcraft.client.util.textures.Texture;
-
 import net.minecraft.util.ResourceLocation;
+
+import mods.railcraft.client.util.textures.Texture;
 
 /**
  *

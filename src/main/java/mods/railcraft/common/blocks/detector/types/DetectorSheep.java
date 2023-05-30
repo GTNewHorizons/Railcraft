@@ -10,14 +10,14 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.detector.DetectorFilter;
-import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.gui.EnumGui;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.blocks.detector.DetectorFilter;
+import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.gui.EnumGui;
 
 /**
  *

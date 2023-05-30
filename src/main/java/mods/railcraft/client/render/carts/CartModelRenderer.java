@@ -5,14 +5,14 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.IAlternateCartTexture;
-import mods.railcraft.api.carts.locomotive.IRenderer;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.IAlternateCartTexture;
+import mods.railcraft.api.carts.locomotive.IRenderer;
 
 /**
  *

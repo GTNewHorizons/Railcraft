@@ -5,10 +5,10 @@
  */
 package mods.railcraft.api.signals;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

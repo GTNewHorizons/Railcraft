@@ -11,13 +11,13 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.carts.EntityLocomotive;
-import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
-import mods.railcraft.common.carts.Train;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+
+import mods.railcraft.common.carts.EntityLocomotive;
+import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
+import mods.railcraft.common.carts.Train;
 
 public class PacketKeyPress extends RailcraftPacket {
 

@@ -12,13 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import mods.railcraft.common.fluids.tanks.StandardTank;
-import mods.railcraft.common.plugins.forge.NBTPlugin;
-import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
-import mods.railcraft.common.util.misc.AdjacentTileCache;
-import mods.railcraft.common.util.misc.ITileFilter;
-import mods.railcraft.common.util.network.PacketBuilder;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -29,6 +22,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 import com.google.common.collect.ForwardingList;
+
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.plugins.forge.NBTPlugin;
+import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
+import mods.railcraft.common.util.misc.AdjacentTileCache;
+import mods.railcraft.common.util.misc.ITileFilter;
+import mods.railcraft.common.util.network.PacketBuilder;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

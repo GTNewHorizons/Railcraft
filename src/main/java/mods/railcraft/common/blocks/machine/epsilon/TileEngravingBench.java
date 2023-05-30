@@ -10,21 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.emblems.EmblemToolsServer;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.plugins.buildcraft.actions.Actions;
-import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
-import mods.railcraft.common.plugins.forge.OreDictPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -39,6 +24,20 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.TileMachineItem;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.emblems.EmblemToolsServer;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.plugins.buildcraft.actions.Actions;
+import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
+import mods.railcraft.common.plugins.forge.OreDictPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 public class TileEngravingBench extends TileMachineItem
         implements IEnergyHandler, ISidedInventory, IHasWork, IGuiReturnHandler {

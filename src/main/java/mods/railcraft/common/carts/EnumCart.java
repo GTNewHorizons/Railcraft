@@ -8,16 +8,6 @@ package mods.railcraft.common.carts;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
-import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.misc.EntityIDs;
-import mods.railcraft.common.util.misc.EnumColor;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.item.EntityMinecartHopper;
@@ -27,6 +17,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
+import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
+import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.EntityIDs;
+import mods.railcraft.common.util.misc.EnumColor;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public enum EnumCart implements ICartType {
 

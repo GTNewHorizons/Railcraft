@@ -5,11 +5,11 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.common.carts.CartExplosiveBase;
-
 import net.minecraft.entity.item.EntityMinecart;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.common.carts.CartExplosiveBase;
 
 /**
  *

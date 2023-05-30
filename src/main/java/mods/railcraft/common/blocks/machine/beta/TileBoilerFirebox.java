@@ -10,19 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.MultiBlockPattern;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.plugins.buildcraft.triggers.ITemperature;
-import mods.railcraft.common.util.inventory.StandaloneInventory;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.ITileFilter;
-import mods.railcraft.common.util.steam.ISteamUser;
-import mods.railcraft.common.util.steam.Steam;
-import mods.railcraft.common.util.steam.SteamBoiler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -35,6 +22,18 @@ import net.minecraftforge.fluids.FluidStack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.machine.MultiBlockPattern;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.fluids.FluidItemHelper;
+import mods.railcraft.common.plugins.buildcraft.triggers.ITemperature;
+import mods.railcraft.common.util.inventory.StandaloneInventory;
+import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.ITileFilter;
+import mods.railcraft.common.util.steam.ISteamUser;
+import mods.railcraft.common.util.steam.Steam;
+import mods.railcraft.common.util.steam.SteamBoiler;
 
 /**
  *

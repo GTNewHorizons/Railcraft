@@ -10,15 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import mods.railcraft.api.core.items.IToolCrowbar;
-import mods.railcraft.common.blocks.tracks.BlockTrackElevator;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.items.enchantment.RailcraftEnchantments;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
@@ -38,6 +29,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.tools.IToolWrench;
 import ic2.api.item.IBoxable;
+import mods.railcraft.api.core.items.IToolCrowbar;
+import mods.railcraft.common.blocks.tracks.BlockTrackElevator;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.enchantment.RailcraftEnchantments;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, IToolWrench {
 

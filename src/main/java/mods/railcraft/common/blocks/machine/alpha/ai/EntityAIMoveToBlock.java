@@ -5,14 +5,14 @@
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
+
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
 
 /**
  *

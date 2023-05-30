@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.api.core.items.IStackFilter;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.api.core.items.IStackFilter;
 
 /**
  *

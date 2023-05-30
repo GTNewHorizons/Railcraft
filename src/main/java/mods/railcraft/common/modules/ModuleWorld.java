@@ -5,6 +5,17 @@
  */
 package mods.railcraft.common.modules;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.ore.BlockOre;
@@ -19,18 +30,6 @@ import mods.railcraft.common.worldgen.SaltpeterGenerator;
 import mods.railcraft.common.worldgen.SulfurGenerator;
 import mods.railcraft.common.worldgen.VillagerTradeHandler;
 import mods.railcraft.common.worldgen.WorkshopCreationHandeler;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import cpw.mods.fml.common.registry.VillagerRegistry;
 
 /**
  *

@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.worldgen;
 
-import mods.railcraft.common.blocks.ore.EnumOre;
-
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
+
+import mods.railcraft.common.blocks.ore.EnumOre;
 
 /**
  *

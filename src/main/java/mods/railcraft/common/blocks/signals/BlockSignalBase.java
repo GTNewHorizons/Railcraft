@@ -5,12 +5,6 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.api.core.IPostConnection;
-import mods.railcraft.api.signals.SignalTools;
-import mods.railcraft.common.items.IActivationBlockingItem;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,6 +20,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.apache.logging.log4j.Level;
+
+import mods.railcraft.api.core.IPostConnection;
+import mods.railcraft.api.signals.SignalTools;
+import mods.railcraft.common.items.IActivationBlockingItem;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 public abstract class BlockSignalBase extends BlockContainer implements IPostConnection {
 

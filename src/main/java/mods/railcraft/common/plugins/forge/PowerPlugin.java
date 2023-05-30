@@ -7,12 +7,12 @@ package mods.railcraft.common.plugins.forge;
 
 import static net.minecraftforge.common.util.ForgeDirection.*;
 
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.api.core.items.IToolCrowbar;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
@@ -27,6 +25,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.core.items.IToolCrowbar;
 
 /**
  * All ITrackInstances should extend this class. It contains a number of default functions and standard behavior for

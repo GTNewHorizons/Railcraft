@@ -5,11 +5,6 @@
  */
 package mods.railcraft.common.carts;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -20,6 +15,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.mojang.authlib.GameProfile;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.core.items.IMinecartItem;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.util.misc.Game;
 
 public class ItemTunnelBore extends ItemCart implements IMinecartItem {
 

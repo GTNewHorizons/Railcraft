@@ -7,10 +7,10 @@ package mods.railcraft.common.util.misc;
 
 import java.util.*;
 
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.plugins.forge.WorldPlugin;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

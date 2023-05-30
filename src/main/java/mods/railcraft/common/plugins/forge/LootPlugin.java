@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.plugins.forge;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
+
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

@@ -9,11 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import mods.railcraft.api.carts.IRoutableCart;
-import mods.railcraft.api.carts.locomotive.IRenderer;
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.carts.*;
-
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -25,6 +20,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.IRoutableCart;
+import mods.railcraft.api.carts.locomotive.IRenderer;
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.carts.*;
 
 public class RenderCart extends Render implements IRenderer {
 

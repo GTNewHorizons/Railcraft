@@ -5,15 +5,15 @@
  */
 package mods.railcraft.client.gui;
 
-import mods.railcraft.client.gui.buttons.GuiToggleButton;
-import mods.railcraft.common.blocks.signals.TileSwitchMotor;
-import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.google.common.collect.Lists;
+
+import mods.railcraft.client.gui.buttons.GuiToggleButton;
+import mods.railcraft.common.blocks.signals.TileSwitchMotor;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class GuiSwitchMotor extends GuiAspectAction {
 

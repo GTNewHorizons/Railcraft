@@ -5,13 +5,6 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.locomotive.IRenderer;
-import mods.railcraft.client.render.TexturedQuadAdv;
-import mods.railcraft.client.render.models.ModelSimple;
-import mods.railcraft.client.render.models.locomotives.ModelLocomotiveElectric;
-import mods.railcraft.common.carts.EntityLocomotive;
-import mods.railcraft.common.core.RailcraftConstants;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.TexturedQuad;
@@ -21,6 +14,12 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import mods.railcraft.api.carts.locomotive.IRenderer;
+import mods.railcraft.client.render.TexturedQuadAdv;
+import mods.railcraft.client.render.models.ModelSimple;
+import mods.railcraft.client.render.models.locomotives.ModelLocomotiveElectric;
+import mods.railcraft.common.carts.EntityLocomotive;
+import mods.railcraft.common.core.RailcraftConstants;
 
 /**
  *

@@ -5,12 +5,12 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
+
 import mods.railcraft.common.carts.EntityCartCargo;
 import mods.railcraft.common.gui.slots.SlotFilter;
 import mods.railcraft.common.gui.slots.SlotLinked;
-
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 
 public class ContainerCartCargo extends RailcraftContainer {
 

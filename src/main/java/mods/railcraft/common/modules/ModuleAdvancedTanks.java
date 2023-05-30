@@ -2,6 +2,8 @@ package mods.railcraft.common.modules;
 
 import java.util.HashMap;
 
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.tank.GenericMultiTankBase;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
@@ -10,8 +12,6 @@ import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
-
-import net.minecraft.item.ItemStack;
 
 public class ModuleAdvancedTanks extends RailcraftModule {
 

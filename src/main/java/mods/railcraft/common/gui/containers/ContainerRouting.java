@@ -5,6 +5,13 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
 import mods.railcraft.common.gui.slots.*;
@@ -13,14 +20,6 @@ import mods.railcraft.common.gui.widgets.Widget;
 import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerRouting extends RailcraftContainer {
 

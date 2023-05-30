@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.api.core.items.ITrackItem;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.api.core.items.ITrackItem;
+import mods.railcraft.common.blocks.tracks.TrackTools;
 
 public class SlotTrack extends SlotRailcraft {
 

@@ -5,15 +5,6 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.api.signals.ISignalBlockTile;
-import mods.railcraft.api.signals.SignalBlock;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.items.IActivationBlockingItem;
-import mods.railcraft.common.items.ItemRailcraft;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -26,6 +17,14 @@ import net.minecraftforge.common.DimensionManager;
 
 import cpw.mods.fml.common.Optional;
 import ic2.api.item.IBoxable;
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalBlock;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.IActivationBlockingItem;
+import mods.railcraft.common.items.ItemRailcraft;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.util.misc.Game;
 
 @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2")
 public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, IActivationBlockingItem {

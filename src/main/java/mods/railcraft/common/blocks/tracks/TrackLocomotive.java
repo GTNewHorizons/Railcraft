@@ -9,16 +9,16 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.core.items.IToolCrowbar;
-import mods.railcraft.api.tracks.ITrackPowered;
-import mods.railcraft.common.carts.EntityLocomotive;
-import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.api.core.items.IToolCrowbar;
+import mods.railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.common.carts.EntityLocomotive;
+import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
 
 public class TrackLocomotive extends TrackBaseRailcraft implements ITrackPowered {
 

@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.api.signals.SignalAspect;
-
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.signals.SignalAspect;
 
 /**
  *

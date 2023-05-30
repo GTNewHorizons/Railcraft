@@ -5,15 +5,15 @@
  */
 package mods.railcraft.common.util.steam;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
+
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.gui.widgets.IIndicatorController;
 import mods.railcraft.common.gui.widgets.IndicatorController;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
 
 /**
  *

@@ -6,6 +6,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiTextField;
+
+import org.lwjgl.opengl.GL11;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.blocks.signals.TileBoxAnalogController;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -13,11 +18,6 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
-
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiTextField;
-
-import org.lwjgl.opengl.GL11;
 
 public class GuiBoxAnalogController extends GuiBasic {
 

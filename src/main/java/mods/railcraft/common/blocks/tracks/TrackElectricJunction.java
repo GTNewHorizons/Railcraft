@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import mods.railcraft.api.electricity.IElectricGrid;
-
 import net.minecraft.nbt.NBTTagCompound;
+
+import mods.railcraft.api.electricity.IElectricGrid;
 
 public class TrackElectricJunction extends TrackJunction implements IElectricGrid {
 

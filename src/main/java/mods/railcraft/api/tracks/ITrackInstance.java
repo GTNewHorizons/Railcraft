@@ -8,8 +8,6 @@ package mods.railcraft.api.tracks;
 
 import java.util.List;
 
-import mods.railcraft.api.core.INetworkedObject;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,6 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.api.core.INetworkedObject;
 
 /**
  * This interface defines a track.

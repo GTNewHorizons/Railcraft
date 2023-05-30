@@ -5,8 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -14,6 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import mods.railcraft.common.blocks.RailcraftBlocks;
 
 public class RenderElevator implements ISimpleBlockRenderingHandler {
 

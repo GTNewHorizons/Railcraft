@@ -5,9 +5,9 @@
  */
 package mods.railcraft.client.render.models.locomotives;
 
-import mods.railcraft.client.render.models.ModelSimple;
-
 import net.minecraft.client.model.ModelRenderer;
+
+import mods.railcraft.client.render.models.ModelSimple;
 
 public class ModelLocomotiveElectric extends ModelSimple {
 

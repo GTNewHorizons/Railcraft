@@ -5,9 +5,6 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.common.blocks.ItemBlockRailcraftMultiType;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.common.blocks.ItemBlockRailcraftMultiType;
+import mods.railcraft.common.blocks.RailcraftBlocks;
 
 public class ItemSignal extends ItemBlockRailcraftMultiType {
 

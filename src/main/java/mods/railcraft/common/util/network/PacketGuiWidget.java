@@ -9,11 +9,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.common.gui.containers.RailcraftContainer;
-
 import net.minecraft.client.entity.EntityClientPlayerMP;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import mods.railcraft.common.gui.containers.RailcraftContainer;
 
 public class PacketGuiWidget extends RailcraftPacket {
 

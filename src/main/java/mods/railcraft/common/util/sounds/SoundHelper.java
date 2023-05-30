@@ -8,8 +8,6 @@ package mods.railcraft.common.util.sounds;
 import java.util.HashMap;
 import java.util.Map;
 
-import mods.railcraft.common.core.RailcraftConfig;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.entity.Entity;
@@ -18,6 +16,7 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import mods.railcraft.common.core.RailcraftConfig;
 
 /**
  *

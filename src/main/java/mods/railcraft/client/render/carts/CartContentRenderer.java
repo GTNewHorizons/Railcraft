@@ -5,11 +5,6 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.ICartContentsTextureProvider;
-import mods.railcraft.client.render.RenderFakeBlock;
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.client.render.models.ModelTextured;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityMinecart;
@@ -18,6 +13,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.ICartContentsTextureProvider;
+import mods.railcraft.client.render.RenderFakeBlock;
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.client.render.models.ModelTextured;
 
 /**
  *

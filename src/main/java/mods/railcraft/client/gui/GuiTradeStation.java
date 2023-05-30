@@ -11,6 +11,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.EnumChatFormatting;
+
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation.GuiPacketType;
@@ -20,13 +26,6 @@ import mods.railcraft.common.gui.containers.ContainerTradeStation;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.util.collections.RevolvingList;
 import mods.railcraft.common.util.network.PacketBuilder;
-
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.EnumChatFormatting;
-
-import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class GuiTradeStation extends TileGui {
 

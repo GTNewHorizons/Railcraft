@@ -11,20 +11,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMateBreeding;
-import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.gui.GuiHandler;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.filters.StackFilter;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.network.ITileExtraDataHandler;
-import mods.railcraft.common.util.network.PacketDispatcher;
-import mods.railcraft.common.util.network.PacketTileExtraData;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -40,6 +26,19 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.TileMachineItem;
+import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMateBreeding;
+import mods.railcraft.common.gui.EnumGui;
+import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.filters.StackFilter;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.network.ITileExtraDataHandler;
+import mods.railcraft.common.util.network.PacketDispatcher;
+import mods.railcraft.common.util.network.PacketTileExtraData;
 
 public class TileFeedStation extends TileMachineItem implements ITileExtraDataHandler {
 

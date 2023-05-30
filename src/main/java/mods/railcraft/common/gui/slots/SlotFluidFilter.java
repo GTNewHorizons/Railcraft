@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.fluids.FluidItemHelper;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.fluids.FluidItemHelper;
 
 public class SlotFluidFilter extends SlotRailcraft {
 

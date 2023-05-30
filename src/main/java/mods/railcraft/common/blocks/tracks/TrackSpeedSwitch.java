@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerHighSpeed;
-
 import net.minecraft.entity.item.EntityMinecart;
+
+import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerHighSpeed;
 
 public class TrackSpeedSwitch extends TrackSwitch {
 

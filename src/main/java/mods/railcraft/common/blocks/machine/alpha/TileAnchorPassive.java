@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
+import net.minecraftforge.common.ForgeChunkManager;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.collections.ItemMap;
-
-import net.minecraftforge.common.ForgeChunkManager;
 
 /**
  * Created by Terpo on 2/24/2015.

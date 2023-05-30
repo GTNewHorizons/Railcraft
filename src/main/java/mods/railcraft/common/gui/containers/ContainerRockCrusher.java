@@ -5,14 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
-import mods.railcraft.common.gui.slots.SlotOutput;
-import mods.railcraft.common.gui.slots.SlotRailcraft;
-import mods.railcraft.common.gui.widgets.IndicatorWidget;
-import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
@@ -20,6 +12,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import cofh.api.energy.EnergyStorage;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
+import mods.railcraft.common.gui.slots.SlotOutput;
+import mods.railcraft.common.gui.slots.SlotRailcraft;
+import mods.railcraft.common.gui.widgets.IndicatorWidget;
+import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
+import mods.railcraft.common.util.misc.Game;
 
 public class ContainerRockCrusher extends RailcraftContainer {
 

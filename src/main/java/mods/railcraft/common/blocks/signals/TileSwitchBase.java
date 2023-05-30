@@ -10,14 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.EnumSet;
 
-import mods.railcraft.api.tracks.ISwitchDevice;
-import mods.railcraft.api.tracks.ITrackSwitch;
-import mods.railcraft.common.blocks.tracks.TrackSwitchBase;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.sounds.SoundHelper;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,6 +17,14 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.tracks.ISwitchDevice;
+import mods.railcraft.api.tracks.ITrackSwitch;
+import mods.railcraft.common.blocks.tracks.TrackSwitchBase;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.sounds.SoundHelper;
 
 public abstract class TileSwitchBase extends TileSignalFoundation implements ISwitchDevice {
 

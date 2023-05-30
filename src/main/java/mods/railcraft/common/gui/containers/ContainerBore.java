@@ -5,18 +5,17 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.common.carts.EntityTunnelBore;
-import mods.railcraft.common.gui.slots.SlotBallast;
-import mods.railcraft.common.gui.slots.SlotBore;
-import mods.railcraft.common.gui.slots.SlotFuel;
-import mods.railcraft.common.gui.slots.SlotTrack;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.carts.EntityTunnelBore;
+import mods.railcraft.common.gui.slots.SlotBallast;
+import mods.railcraft.common.gui.slots.SlotBore;
+import mods.railcraft.common.gui.slots.SlotFuel;
+import mods.railcraft.common.gui.slots.SlotTrack;
 
 public class ContainerBore extends RailcraftContainer {
 

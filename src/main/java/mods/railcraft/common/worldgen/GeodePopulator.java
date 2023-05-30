@@ -8,9 +8,6 @@ package mods.railcraft.common.worldgen;
 import java.util.Locale;
 import java.util.Random;
 
-import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
-import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -25,6 +22,8 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
+import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

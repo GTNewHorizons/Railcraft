@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.carts;
 
-import mods.railcraft.common.core.RailcraftConstants;
-
 import net.minecraft.util.ResourceLocation;
+
+import mods.railcraft.common.core.RailcraftConstants;
 
 public class ItemBoreHeadSteel extends ItemBoreHead {
 

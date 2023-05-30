@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerSlow;
-
 import net.minecraft.util.IIcon;
+
+import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerSlow;
 
 public class TrackSlow extends TrackBaseRailcraft {
 

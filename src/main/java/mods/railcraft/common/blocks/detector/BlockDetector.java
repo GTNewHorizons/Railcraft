@@ -8,17 +8,6 @@ package mods.railcraft.common.blocks.detector;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.items.IActivationBlockingItem;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.plugins.forge.HarvestPlugin;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,6 +27,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.IActivationBlockingItem;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.HarvestPlugin;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public class BlockDetector extends BlockContainer {
 

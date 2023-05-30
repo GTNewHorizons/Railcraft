@@ -8,11 +8,10 @@ package mods.railcraft.api.tracks;
 
 import java.util.*;
 
-import mods.railcraft.api.core.ITextureLoader;
-
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.FMLLog;
+import mods.railcraft.api.core.ITextureLoader;
 
 /**
  * The TrackRegistry is part of a system that allows 3rd party addons to simply, quickly, and easily define new Tracks

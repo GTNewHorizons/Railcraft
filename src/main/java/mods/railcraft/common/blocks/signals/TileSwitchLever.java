@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import mods.railcraft.api.tracks.ITrackSwitch;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+
+import mods.railcraft.api.tracks.ITrackSwitch;
 
 public class TileSwitchLever extends TileSwitchBase {
 

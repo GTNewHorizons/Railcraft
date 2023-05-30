@@ -5,12 +5,6 @@
  */
 package mods.railcraft.client.gui.buttons;
 
-import mods.railcraft.common.gui.buttons.IButtonTextureSet;
-import mods.railcraft.common.gui.buttons.IMultiButtonState;
-import mods.railcraft.common.gui.buttons.MultiButtonController;
-import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
@@ -19,6 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.gui.buttons.IButtonTextureSet;
+import mods.railcraft.common.gui.buttons.IMultiButtonState;
+import mods.railcraft.common.gui.buttons.MultiButtonController;
+import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 /**
  *

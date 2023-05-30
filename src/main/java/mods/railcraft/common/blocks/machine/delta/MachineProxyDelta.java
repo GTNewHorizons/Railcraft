@@ -7,13 +7,12 @@ package mods.railcraft.common.blocks.machine.delta;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.IMachineProxy;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachineProxy;
 
 /**
  *

@@ -1,11 +1,10 @@
 package mods.railcraft.common.plugins.buildcraft.triggers;
 
-import mods.railcraft.api.signals.SignalAspect;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IStatementParameter;
+import mods.railcraft.api.signals.SignalAspect;
 
 /**
  *

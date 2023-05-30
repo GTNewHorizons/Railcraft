@@ -13,14 +13,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+
 import mods.railcraft.common.blocks.detector.Detector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.carts.Train;
 import mods.railcraft.common.gui.EnumGui;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>

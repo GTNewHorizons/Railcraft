@@ -8,17 +8,6 @@ package mods.railcraft.common.items;
 import java.util.EnumSet;
 import java.util.List;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.IOwnable;
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.TileMultiBlock.MultiBlockStateReturn;
-import mods.railcraft.common.blocks.signals.IDualHeadSignal;
-import mods.railcraft.common.blocks.signals.TileSignalBase;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.*;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +19,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.core.IOwnable;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.common.blocks.machine.TileMultiBlock;
+import mods.railcraft.common.blocks.machine.TileMultiBlock.MultiBlockStateReturn;
+import mods.railcraft.common.blocks.signals.IDualHeadSignal;
+import mods.railcraft.common.blocks.signals.TileSignalBase;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

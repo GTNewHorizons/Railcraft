@@ -11,8 +11,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -23,6 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.apache.logging.log4j.Level;
+
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *

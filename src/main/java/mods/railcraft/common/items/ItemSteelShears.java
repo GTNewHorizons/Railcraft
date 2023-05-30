@@ -5,15 +5,15 @@
  */
 package mods.railcraft.common.items;
 
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IShearable;
+
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

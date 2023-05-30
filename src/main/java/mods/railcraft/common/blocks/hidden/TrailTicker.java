@@ -8,12 +8,6 @@ package mods.railcraft.common.blocks.hidden;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.misc.Timer;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -26,6 +20,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.misc.Timer;
 
 /**
  *

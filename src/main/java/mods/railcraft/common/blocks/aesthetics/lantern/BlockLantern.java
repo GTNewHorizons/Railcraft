@@ -8,9 +8,6 @@ package mods.railcraft.common.blocks.aesthetics.lantern;
 import java.util.List;
 import java.util.Random;
 
-import mods.railcraft.client.particles.ParticleHelper;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -26,6 +23,8 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.particles.ParticleHelper;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
 
 public class BlockLantern extends Block {
 

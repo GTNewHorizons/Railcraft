@@ -9,12 +9,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.signals.*;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.nbt.NBTTagCompound;
 
 import org.apache.logging.log4j.Level;
+
+import mods.railcraft.api.signals.*;
+import mods.railcraft.common.util.misc.Game;
 
 public class TileSignalBlockSignal extends TileSignalBase implements IControllerTile, ISignalTile, ISignalBlockTile {
 

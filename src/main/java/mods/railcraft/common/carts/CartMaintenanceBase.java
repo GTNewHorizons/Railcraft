@@ -8,14 +8,14 @@ package mods.railcraft.common.carts;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.tracks.RailTools;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.tracks.RailTools;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -5,13 +5,12 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.signals.EnumSignal;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.signals.EnumSignal;
 
 /**
  *

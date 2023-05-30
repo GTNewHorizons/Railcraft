@@ -5,16 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.api.core.IPostConnection.ConnectStyle;
-import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.aesthetics.post.PostConnectionHelper;
-import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
-import mods.railcraft.common.blocks.signals.TileSignalBase;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
@@ -26,6 +16,16 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.core.IPostConnection.ConnectStyle;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.aesthetics.post.PostConnectionHelper;
+import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
+import mods.railcraft.common.blocks.signals.TileSignalBase;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer {
 

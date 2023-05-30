@@ -7,17 +7,6 @@ package mods.railcraft.common.carts;
 
 import java.util.List;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.carts.ILinkageManager;
-import mods.railcraft.api.tracks.RailTools;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.tracks.TrackSpeed;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.MiscTools;
-import mods.railcraft.common.util.misc.Vec2D;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -40,6 +29,16 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.carts.ILinkageManager;
+import mods.railcraft.api.tracks.RailTools;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.tracks.TrackSpeed;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.misc.MiscTools;
+import mods.railcraft.common.util.misc.Vec2D;
 
 public final class MinecartHooks implements IMinecartCollisionHandler {
 

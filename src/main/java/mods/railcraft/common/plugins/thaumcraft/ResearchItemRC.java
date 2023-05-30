@@ -5,15 +5,14 @@
  */
 package mods.railcraft.common.plugins.thaumcraft;
 
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.research.ResearchItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.research.ResearchItem;
 
 /**
  *

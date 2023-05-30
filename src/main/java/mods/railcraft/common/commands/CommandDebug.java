@@ -7,14 +7,6 @@ package mods.railcraft.common.commands;
 
 import java.util.List;
 
-import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.api.signals.*;
-import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.signals.TileBoxBase;
-import mods.railcraft.common.plugins.forge.ChatPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.tileentity.TileEntity;
@@ -25,6 +17,14 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFactory;
 import org.apache.logging.log4j.message.MessageFormatMessageFactory;
+
+import mods.railcraft.api.core.WorldCoordinate;
+import mods.railcraft.api.signals.*;
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+import mods.railcraft.common.blocks.signals.TileBoxBase;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * Created by CovertJaguar on 3/12/2015.

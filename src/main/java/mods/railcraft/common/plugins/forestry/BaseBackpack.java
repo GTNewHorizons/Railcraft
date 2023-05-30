@@ -8,9 +8,6 @@ package mods.railcraft.common.plugins.forestry;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.common.items.RailcraftItem;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,6 +18,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.Optional;
 import forestry.api.storage.IBackpackDefinition;
+import mods.railcraft.common.items.RailcraftItem;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.modules.ModuleIC2;
-import mods.railcraft.common.plugins.ic2.IC2Plugin;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.modules.ModuleIC2;
+import mods.railcraft.common.plugins.ic2.IC2Plugin;
 
 public class SlotUpgrade extends Slot {
 

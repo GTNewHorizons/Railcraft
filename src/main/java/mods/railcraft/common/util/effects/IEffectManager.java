@@ -9,13 +9,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Set;
 
-import mods.railcraft.api.signals.IPairEffectRenderer;
-import mods.railcraft.common.items.ItemGoggles;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.signals.IPairEffectRenderer;
+import mods.railcraft.common.items.ItemGoggles;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

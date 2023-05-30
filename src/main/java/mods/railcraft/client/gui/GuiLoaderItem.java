@@ -5,6 +5,8 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.entity.player.InventoryPlayer;
+
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
@@ -13,8 +15,6 @@ import mods.railcraft.common.gui.containers.ContainerItemLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketBuilder;
-
-import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiLoaderItem extends TileGui {
 

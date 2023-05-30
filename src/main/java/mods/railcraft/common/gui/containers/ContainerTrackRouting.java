@@ -5,13 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import mods.railcraft.common.blocks.tracks.TrackRouting;
-import mods.railcraft.common.gui.slots.*;
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.items.ItemTicketGold;
-import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.util.network.PacketBuilder;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -19,6 +12,12 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.tracks.TrackRouting;
+import mods.railcraft.common.gui.slots.*;
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.items.ItemTicketGold;
+import mods.railcraft.common.plugins.forge.PlayerPlugin;
+import mods.railcraft.common.util.network.PacketBuilder;
 
 public class ContainerTrackRouting extends RailcraftContainer {
 

@@ -5,8 +5,6 @@
  */
 package mods.railcraft.common.plugins.forge;
 
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
@@ -15,6 +13,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 import com.mojang.authlib.GameProfile;
+
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * Chat Plugin for sending chat messages.

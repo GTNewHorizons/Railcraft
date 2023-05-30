@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.util.inventory.filters.StackFilter;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.util.inventory.filters.StackFilter;
 
 public class SlotFuel extends SlotRailcraft {
 

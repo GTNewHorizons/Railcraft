@@ -10,16 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import mods.railcraft.client.gui.buttons.GuiBetterButton;
-import mods.railcraft.client.gui.buttons.GuiButtonRoutingTableNextPage;
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.items.ItemRoutingTable;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.network.PacketCurrentItemNBT;
-import mods.railcraft.common.util.network.PacketDispatcher;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,6 +25,15 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.gui.buttons.GuiBetterButton;
+import mods.railcraft.client.gui.buttons.GuiButtonRoutingTableNextPage;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.items.ItemRoutingTable;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.network.PacketCurrentItemNBT;
+import mods.railcraft.common.util.network.PacketDispatcher;
 
 @SideOnly(Side.CLIENT)
 public class GuiRoutingTable extends GuiScreen {

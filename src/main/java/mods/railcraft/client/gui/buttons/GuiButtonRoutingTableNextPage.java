@@ -5,8 +5,6 @@
  */
 package mods.railcraft.client.gui.buttons;
 
-import mods.railcraft.client.gui.GuiRoutingTable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 
@@ -14,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.gui.GuiRoutingTable;
 
 @SideOnly(Side.CLIENT)
 public class GuiButtonRoutingTableNextPage extends GuiButton {

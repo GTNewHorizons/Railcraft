@@ -8,6 +8,10 @@ package mods.railcraft.client.render.carts;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelMinecart;
+import net.minecraft.entity.item.EntityMinecart;
+
 import mods.railcraft.client.render.models.ModelSimpleCube;
 import mods.railcraft.client.render.models.ModelTextured;
 import mods.railcraft.client.render.models.carts.ModelGift;
@@ -15,10 +19,6 @@ import mods.railcraft.client.render.models.carts.ModelLowSidesMinecart;
 import mods.railcraft.client.render.models.carts.ModelMaintance;
 import mods.railcraft.common.carts.*;
 import mods.railcraft.common.core.RailcraftConstants;
-
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelMinecart;
-import net.minecraft.entity.item.EntityMinecart;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

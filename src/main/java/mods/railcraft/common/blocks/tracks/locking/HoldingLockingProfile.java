@@ -9,11 +9,11 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.tracks.TrackNextGenLocking;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.common.blocks.tracks.TrackNextGenLocking;
 
 /**
  *

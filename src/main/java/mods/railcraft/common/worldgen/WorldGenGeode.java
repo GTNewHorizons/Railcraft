@@ -9,16 +9,16 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import mods.railcraft.common.blocks.ore.BlockOre;
-import mods.railcraft.common.blocks.ore.EnumOre;
-import mods.railcraft.common.plugins.forge.OreDictPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import mods.railcraft.common.blocks.ore.BlockOre;
+import mods.railcraft.common.blocks.ore.EnumOre;
+import mods.railcraft.common.plugins.forge.OreDictPlugin;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
 
 /**
  *

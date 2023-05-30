@@ -5,12 +5,6 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.api.carts.locomotive.IRenderer;
-import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
-import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,6 +13,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.carts.locomotive.IRenderer;
+import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.misc.MiscTools;
 
 /**
  *

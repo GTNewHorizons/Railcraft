@@ -7,17 +7,17 @@ package mods.railcraft.common.util.crafting;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.world.World;
+
 import mods.railcraft.common.carts.EntityCartFiltered;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ICartType;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
-
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.world.World;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

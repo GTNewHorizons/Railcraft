@@ -5,12 +5,12 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.client.gui.GuiButton;
+
 import mods.railcraft.common.carts.CartExplosiveBase;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketBuilder;
-
-import net.minecraft.client.gui.GuiButton;
 
 public class GuiCartTNTFuse extends GuiBasic {
 

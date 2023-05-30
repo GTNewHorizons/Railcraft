@@ -9,10 +9,6 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.items.ItemGoggles.GoggleAura;
-import mods.railcraft.common.plugins.forge.ChatPlugin;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
@@ -23,6 +19,9 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.items.ItemGoggles.GoggleAura;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

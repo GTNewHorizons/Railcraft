@@ -7,8 +7,6 @@ package mods.railcraft.client.particles;
 
 import java.util.Random;
 
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityDiggingFX;
@@ -17,6 +15,7 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
 
 /**
  *

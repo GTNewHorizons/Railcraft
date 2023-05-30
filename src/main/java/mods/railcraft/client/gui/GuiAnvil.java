@@ -7,8 +7,6 @@ package mods.railcraft.client.gui;
 
 import java.util.List;
 
-import mods.railcraft.common.gui.containers.ContainerAnvil;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -28,6 +26,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.gui.containers.ContainerAnvil;
 
 @SideOnly(Side.CLIENT)
 public class GuiAnvil extends GuiContainer implements ICrafting {

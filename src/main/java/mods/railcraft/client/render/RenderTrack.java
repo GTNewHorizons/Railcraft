@@ -5,12 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.api.tracks.ITrackInstance;
-import mods.railcraft.api.tracks.ITrackSwitch;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.tracks.TileTrack;
-import mods.railcraft.common.blocks.tracks.TrackGated;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -21,6 +15,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import mods.railcraft.api.tracks.ITrackInstance;
+import mods.railcraft.api.tracks.ITrackSwitch;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.tracks.TileTrack;
+import mods.railcraft.common.blocks.tracks.TrackGated;
 
 public class RenderTrack implements ISimpleBlockRenderingHandler {
 

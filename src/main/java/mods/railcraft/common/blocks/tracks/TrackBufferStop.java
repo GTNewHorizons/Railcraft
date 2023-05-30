@@ -9,15 +9,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.railcraft.api.tracks.ITrackCustomShape;
-import mods.railcraft.api.tracks.ITrackReversable;
-import mods.railcraft.common.util.misc.MiscTools;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
+import mods.railcraft.api.tracks.ITrackCustomShape;
+import mods.railcraft.api.tracks.ITrackReversable;
+import mods.railcraft.common.util.misc.MiscTools;
 
 public class TrackBufferStop extends TrackBaseRailcraft implements ITrackReversable, ITrackCustomShape {
 

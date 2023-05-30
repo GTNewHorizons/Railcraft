@@ -8,14 +8,14 @@ package mods.railcraft.common.carts;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.api.carts.IMinecart;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.PhantomInventory;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.carts.IMinecart;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.PhantomInventory;
 
 public abstract class EntityCartFiltered extends CartContainerBase implements IMinecart {
 

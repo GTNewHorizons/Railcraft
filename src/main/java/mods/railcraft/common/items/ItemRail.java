@@ -8,13 +8,6 @@ package mods.railcraft.common.items;
 import java.util.List;
 import java.util.Locale;
 
-import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.items.ItemTie.EnumTie;
-import mods.railcraft.common.plugins.forge.CraftingPlugin;
-import mods.railcraft.common.plugins.forge.LootPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -23,6 +16,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.common.items.ItemTie.EnumTie;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.LootPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
 
 public class ItemRail extends ItemRailcraft {
 

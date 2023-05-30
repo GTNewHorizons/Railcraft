@@ -5,16 +5,16 @@
  */
 package mods.railcraft.common.carts;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.StandaloneInventory;
-import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.inventory.StandaloneInventory;
+import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -7,14 +7,14 @@ package mods.railcraft.common.plugins.forge;
 
 import static mods.railcraft.common.util.misc.MiscTools.*;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  *

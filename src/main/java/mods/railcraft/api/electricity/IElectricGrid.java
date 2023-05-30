@@ -8,10 +8,10 @@ package mods.railcraft.api.electricity;
 
 import java.util.*;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  * Any Electric Track needs to implement this interface on either the track TileEntity or ITrackInstance object.

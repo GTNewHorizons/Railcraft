@@ -10,11 +10,11 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 import java.util.List;
 
-import mods.railcraft.common.blocks.detector.Detector;
-import mods.railcraft.common.blocks.detector.EnumDetector;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+
+import mods.railcraft.common.blocks.detector.Detector;
+import mods.railcraft.common.blocks.detector.EnumDetector;
 
 /**
  *

@@ -8,9 +8,9 @@ package mods.railcraft.common.blocks.machine.beta;
 import java.util.HashSet;
 import java.util.Set;
 
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-
 import net.minecraft.entity.Entity;
+
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *

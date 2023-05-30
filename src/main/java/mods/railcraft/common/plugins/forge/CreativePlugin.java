@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.plugins.forge;
 
-import mods.railcraft.common.items.ItemCrowbarReinforced;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.items.ItemCrowbarReinforced;
 
 /**
  *

@@ -8,10 +8,6 @@ package mods.railcraft.common.carts;
 import java.util.ArrayList;
 import java.util.List;
 
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.FuelPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.entity.item.EntityMinecartFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,6 +17,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.FuelPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
 
 public class EntityCartFurnace extends EntityMinecartFurnace {
 

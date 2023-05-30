@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.api.carts.bore.IBoreHead;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.api.carts.bore.IBoreHead;
 
 public class SlotBore extends Slot {
 

@@ -7,9 +7,9 @@ package mods.railcraft.api.signals;
 
 import javax.annotation.Nonnull;
 
-import mods.railcraft.api.core.WorldCoordinate;
-
 import net.minecraft.tileentity.TileEntity;
+
+import mods.railcraft.api.core.WorldCoordinate;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

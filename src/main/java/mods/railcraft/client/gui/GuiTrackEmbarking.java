@@ -5,14 +5,14 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.client.gui.GuiButton;
+
 import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.common.blocks.tracks.TrackEmbarking;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import mods.railcraft.common.util.network.PacketGuiReturn;
-
-import net.minecraft.client.gui.GuiButton;
 
 public class GuiTrackEmbarking extends GuiBasic {
 

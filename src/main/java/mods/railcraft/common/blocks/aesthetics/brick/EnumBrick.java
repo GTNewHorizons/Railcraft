@@ -9,6 +9,11 @@ import static mods.railcraft.common.blocks.aesthetics.brick.BrickVariant.*;
 
 import java.util.Locale;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.BlockFactory;
@@ -21,11 +26,6 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
 import mods.railcraft.common.util.misc.Game;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 /**
  * Created by CovertJaguar on 3/12/2015.

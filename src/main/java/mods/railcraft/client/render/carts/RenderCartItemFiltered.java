@@ -5,8 +5,6 @@
  */
 package mods.railcraft.client.render.carts;
 
-import mods.railcraft.common.carts.EntityCartFiltered;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
@@ -14,6 +12,8 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.common.carts.EntityCartFiltered;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

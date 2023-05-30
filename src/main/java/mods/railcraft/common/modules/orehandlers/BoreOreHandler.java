@@ -5,14 +5,13 @@
  */
 package mods.railcraft.common.modules.orehandlers;
 
-import mods.railcraft.common.carts.EntityTunnelBore;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.railcraft.common.carts.EntityTunnelBore;
+import mods.railcraft.common.util.inventory.InvTools;
 
 public class BoreOreHandler {
 

@@ -10,15 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import mods.railcraft.client.particles.ParticleHelper;
-import mods.railcraft.client.sounds.RailcraftSound;
-import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.modules.ModuleManager;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.sounds.IBlockSoundProvider;
-
 import net.minecraft.block.*;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -38,6 +29,14 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.client.particles.ParticleHelper;
+import mods.railcraft.client.sounds.RailcraftSound;
+import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.sounds.IBlockSoundProvider;
 
 public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProvider {
 

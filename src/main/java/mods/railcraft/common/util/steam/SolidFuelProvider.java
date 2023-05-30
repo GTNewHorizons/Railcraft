@@ -5,13 +5,13 @@
  */
 package mods.railcraft.common.util.steam;
 
-import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
-import mods.railcraft.common.plugins.forge.FuelPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
+import mods.railcraft.common.plugins.forge.FuelPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  *

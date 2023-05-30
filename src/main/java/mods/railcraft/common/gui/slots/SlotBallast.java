@@ -5,10 +5,10 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.util.misc.BallastRegistry;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
+import mods.railcraft.common.util.misc.BallastRegistry;
 
 public class SlotBallast extends SlotRailcraft {
 

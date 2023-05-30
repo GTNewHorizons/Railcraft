@@ -5,15 +5,14 @@
  */
 package mods.railcraft.common.fluids;
 
-import mods.railcraft.common.items.ModItems;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 
 import cpw.mods.fml.common.Optional;
+import mods.railcraft.common.items.ModItems;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

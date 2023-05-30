@@ -8,12 +8,12 @@ package mods.railcraft.api.electricity;
 
 import java.util.Random;
 
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.nbt.NBTTagCompound;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.RailTools;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * This interface provides a simple means of using or producing Electricity within a train.

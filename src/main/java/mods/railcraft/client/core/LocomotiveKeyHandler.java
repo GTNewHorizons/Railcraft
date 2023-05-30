@@ -5,10 +5,6 @@
  */
 package mods.railcraft.client.core;
 
-import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.util.network.PacketBuilder;
-import mods.railcraft.common.util.network.PacketKeyPress;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
@@ -20,6 +16,9 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import mods.railcraft.common.core.Railcraft;
+import mods.railcraft.common.util.network.PacketBuilder;
+import mods.railcraft.common.util.network.PacketKeyPress;
 
 /**
  *

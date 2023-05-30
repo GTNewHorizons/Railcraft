@@ -8,14 +8,6 @@ package mods.railcraft.common.blocks.tracks;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mods.railcraft.api.core.items.ITrackItem;
-import mods.railcraft.api.tracks.ITrackInstance;
-import mods.railcraft.api.tracks.TrackSpec;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerHighSpeed;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -25,6 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import mods.railcraft.api.core.items.ITrackItem;
+import mods.railcraft.api.tracks.ITrackInstance;
+import mods.railcraft.api.tracks.TrackSpec;
+import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.tracks.speedcontroller.SpeedControllerHighSpeed;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

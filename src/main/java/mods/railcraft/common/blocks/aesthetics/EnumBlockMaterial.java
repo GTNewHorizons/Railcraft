@@ -10,11 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mods.railcraft.client.sounds.RailcraftSound;
-import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
-import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
-import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.entity.Entity;
@@ -22,6 +17,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import mods.railcraft.client.sounds.RailcraftSound;
+import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
+import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
+import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 
 /**
  *

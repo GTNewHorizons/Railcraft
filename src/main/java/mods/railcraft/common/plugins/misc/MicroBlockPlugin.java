@@ -5,9 +5,9 @@
  */
 package mods.railcraft.common.plugins.misc;
 
-import mods.railcraft.common.plugins.multipart.MultiPartPlugin;
-
 import net.minecraft.block.Block;
+
+import mods.railcraft.common.plugins.multipart.MultiPartPlugin;
 
 /**
  *

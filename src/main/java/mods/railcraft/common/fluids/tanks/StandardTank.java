@@ -7,14 +7,14 @@ package mods.railcraft.common.fluids.tanks;
 
 import java.util.Locale;
 
-import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.gui.tooltips.ToolTipLine;
-
 import net.minecraft.item.EnumRarity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.gui.tooltips.ToolTipLine;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

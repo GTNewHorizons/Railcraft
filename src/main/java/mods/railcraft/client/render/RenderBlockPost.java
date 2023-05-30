@@ -5,13 +5,6 @@
  */
 package mods.railcraft.client.render;
 
-import mods.railcraft.api.core.IPostConnection.ConnectStyle;
-import mods.railcraft.client.emblems.EmblemToolsClient;
-import mods.railcraft.common.blocks.aesthetics.post.*;
-import mods.railcraft.common.blocks.tracks.TrackTools;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -26,6 +19,13 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
+
+import mods.railcraft.api.core.IPostConnection.ConnectStyle;
+import mods.railcraft.client.emblems.EmblemToolsClient;
+import mods.railcraft.common.blocks.aesthetics.post.*;
+import mods.railcraft.common.blocks.tracks.TrackTools;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

@@ -9,11 +9,11 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 import java.util.List;
 
+import net.minecraft.entity.item.EntityMinecart;
+
 import mods.railcraft.api.carts.IExplosiveCart;
 import mods.railcraft.common.blocks.detector.Detector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
-
-import net.minecraft.entity.item.EntityMinecart;
 
 /**
  *

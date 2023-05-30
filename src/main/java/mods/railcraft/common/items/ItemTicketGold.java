@@ -7,15 +7,6 @@ package mods.railcraft.common.items;
 
 import static mods.railcraft.common.items.ItemTicket.getOwner;
 
-import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.CraftingPlugin;
-import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.plugins.forge.RailcraftRegistry;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.network.IEditableItem;
-import mods.railcraft.common.util.network.PacketBuilder;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -27,6 +18,14 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.api.core.items.IStackFilter;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.PlayerPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.network.IEditableItem;
+import mods.railcraft.common.util.network.PacketBuilder;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>

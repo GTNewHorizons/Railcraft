@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.gui.slots;
 
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+
+import mods.railcraft.common.gui.tooltips.ToolTip;
 
 /**
  *

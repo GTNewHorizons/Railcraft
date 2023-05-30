@@ -5,12 +5,6 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.client.util.textures.TextureAtlasSheet;
-import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,6 +19,12 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.plugins.forge.PowerPlugin;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * Implementation of the iron ladder blocks. Iron ladders act much like normal (wooden) ladders. Climbing down iron

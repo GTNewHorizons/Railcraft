@@ -15,12 +15,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
-import mods.railcraft.api.signals.*;
-import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import mods.railcraft.api.signals.*;
+import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
 
 public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IReceiverTile, IAspectProvider {
 

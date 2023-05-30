@@ -7,13 +7,6 @@ package mods.railcraft.common.carts;
 
 import java.util.Set;
 
-import mods.railcraft.api.carts.IFluidCart;
-import mods.railcraft.api.carts.IItemCart;
-import mods.railcraft.api.carts.ITrainTransferHelper;
-import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.fluids.FluidHelper;
-import mods.railcraft.common.util.inventory.InvTools;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -22,6 +15,13 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import mods.railcraft.api.carts.IFluidCart;
+import mods.railcraft.api.carts.IItemCart;
+import mods.railcraft.api.carts.ITrainTransferHelper;
+import mods.railcraft.api.core.items.IStackFilter;
+import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.util.inventory.InvTools;
 
 /**
  * Created by CovertJaguar on 5/9/2015.

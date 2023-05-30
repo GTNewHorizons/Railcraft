@@ -5,11 +5,11 @@
  */
 package mods.railcraft.common.fluids.tanks;
 
-import mods.railcraft.api.fuel.FuelManager;
-import mods.railcraft.common.fluids.Fluids;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
+
+import mods.railcraft.api.fuel.FuelManager;
+import mods.railcraft.common.fluids.Fluids;
 
 /**
  *

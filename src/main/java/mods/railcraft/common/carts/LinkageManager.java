@@ -9,17 +9,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.carts.ILinkableCart;
-import mods.railcraft.api.carts.ILinkageManager;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.util.misc.Game;
-
 import net.minecraft.entity.item.EntityMinecart;
 
 import org.apache.logging.log4j.Level;
 
 import com.google.common.collect.MapMaker;
+
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.carts.ILinkableCart;
+import mods.railcraft.api.carts.ILinkageManager;
+import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  * The LinkageManager contains all the functions needed to link and interacted with linked carts.
