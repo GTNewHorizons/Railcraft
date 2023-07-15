@@ -61,6 +61,7 @@ public class IC2Plugin {
         return null;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static void addTileToNet(TileEntity tile) {
         try {
             if (tile instanceof IEnergyTile) MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) tile));
@@ -69,6 +70,7 @@ public class IC2Plugin {
         }
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static void removeTileFromNet(TileEntity tile) {
         try {
             if (tile instanceof IEnergyTile)
@@ -78,6 +80,7 @@ public class IC2Plugin {
         }
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static boolean isEnergyItem(ItemStack stack) {
         try {
             return stack != null && stack.getItem() instanceof IElectricItem;
@@ -91,6 +94,7 @@ public class IC2Plugin {
      * @param stack
      * @return energy used
      */
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static double chargeItem(ItemStack stack, double energy, int tier) {
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem && energy > 0)
@@ -105,6 +109,7 @@ public class IC2Plugin {
      * @param stack
      * @return energy received
      */
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static double dischargeItem(ItemStack stack, double energyNeeded, int tier) {
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem
@@ -116,6 +121,7 @@ public class IC2Plugin {
         return 0;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static boolean canCharge(ItemStack stack, int tier) {
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem) {
@@ -128,6 +134,7 @@ public class IC2Plugin {
         return false;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static boolean canDischarge(ItemStack stack, int tier) {
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem) {
@@ -140,6 +147,7 @@ public class IC2Plugin {
         return false;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static void addMaceratorRecipe(ItemStack input, ItemStack output) {
         try {
             Recipes.macerator.addRecipe(new RecipeInputItemStack(input), null, output);
@@ -148,6 +156,7 @@ public class IC2Plugin {
         }
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static void removeMaceratorRecipes(ItemStack... items) {
         try {
             Map<IRecipeInput, RecipeOutput> recipes = Recipes.macerator.getRecipes();
@@ -162,6 +171,7 @@ public class IC2Plugin {
         }
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     private static boolean doesRecipeRequire(IRecipeInput input, ItemStack... items) {
         for (ItemStack stack : input.getInputs()) {
             if (InvTools.isItemEqual(stack, items)) return true;
@@ -169,6 +179,7 @@ public class IC2Plugin {
         return false;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     private static boolean doesRecipeProduce(RecipeOutput recipe, ItemStack... items) {
         for (ItemStack output : recipe.items) {
             if (InvTools.isItemEqual(output, items)) return true;
@@ -176,6 +187,7 @@ public class IC2Plugin {
         return false;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "IC2")
     public static void removeMaceratorDustRecipes(ItemStack... items) {
         try {
             Map<IRecipeInput, RecipeOutput> recipes = Recipes.macerator.getRecipes();
