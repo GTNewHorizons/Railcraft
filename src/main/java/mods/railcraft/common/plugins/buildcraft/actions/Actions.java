@@ -18,6 +18,9 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(value = {
+	@cpw.mods.fml.common.Optional.Interface(iface = "buildcraft.api.statements.IActionExternal", modid = "BuildCraft|Core"),
+})
 public enum Actions implements IActionExternal {
 
     PAUSE("pause"),

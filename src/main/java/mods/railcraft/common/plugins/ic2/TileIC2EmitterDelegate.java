@@ -13,6 +13,9 @@ import ic2.api.energy.tile.IEnergySource;
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(value = {
+	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = "IC2"),
+})
 public class TileIC2EmitterDelegate extends TileIC2Delegate implements IEnergySource {
 
     private final IEmitterDelegate delegate;

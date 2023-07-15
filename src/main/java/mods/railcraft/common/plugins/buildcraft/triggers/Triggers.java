@@ -19,6 +19,9 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(value = {
+	@cpw.mods.fml.common.Optional.Interface(iface = "buildcraft.api.statements.ITriggerExternal", modid = "BuildCraft|Core"),
+})
 public enum Triggers implements ITriggerExternal {
 
     HAS_WORK("work", new TriggerHasWork()),

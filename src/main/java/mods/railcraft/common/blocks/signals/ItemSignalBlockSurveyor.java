@@ -26,7 +26,9 @@ import mods.railcraft.common.items.ItemRailcraft;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.misc.Game;
 
-@Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2")
+@cpw.mods.fml.common.Optional.InterfaceList(value = {
+	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"),
+})
 public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, IActivationBlockingItem {
 
     private static Item item;
