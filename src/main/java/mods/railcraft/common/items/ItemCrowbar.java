@@ -38,10 +38,11 @@ import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
 
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"),
-	@cpw.mods.fml.common.Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"),
+                @cpw.mods.fml.common.Optional.Interface(
+                        iface = "buildcraft.api.tools.IToolWrench",
+                        modid = "BuildCraft|Core"), })
 public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, IToolWrench {
 
     public static final byte BOOST_DAMAGE = 3;

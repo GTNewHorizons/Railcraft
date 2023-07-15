@@ -14,9 +14,8 @@ import ic2.api.energy.tile.IEnergySink;
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2"), })
 public class TileIC2SinkDelegate extends TileIC2Delegate implements IEnergySink {
 
     private final ISinkDelegate delegate;

@@ -13,9 +13,8 @@ import ic2.api.energy.tile.IEnergyTile;
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile", modid = "IC2"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergyTile", modid = "IC2"), })
 public class TileIC2Delegate extends TileEntity implements IEnergyTile {
 
     private final TileEntity delegate;

@@ -15,9 +15,10 @@ import mods.railcraft.common.plugins.buildcraft.triggers.*;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "buildcraft.api.statements.IActionProvider", modid = "BuildCraft|Core"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "buildcraft.api.statements.IActionProvider",
+                modid = "BuildCraft|Core"), })
 public class ActionProvider implements IActionProvider {
 
     public ActionProvider() {

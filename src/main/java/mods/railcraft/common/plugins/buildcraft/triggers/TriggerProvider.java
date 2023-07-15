@@ -16,9 +16,10 @@ import mods.railcraft.common.blocks.machine.beta.TileEngine;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "buildcraft.api.statements.ITriggerProvider", modid = "BuildCraft|Core"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "buildcraft.api.statements.ITriggerProvider",
+                modid = "BuildCraft|Core"), })
 public class TriggerProvider implements ITriggerProvider {
 
     public TriggerProvider() {

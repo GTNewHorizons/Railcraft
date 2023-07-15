@@ -16,9 +16,9 @@ import ic2.api.energy.tile.IMetaDelegate;
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(value = {
-	@cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IMetaDelegate", modid = "IC2"),
-})
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = {
+                @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IMetaDelegate", modid = "IC2"), })
 public class TileIC2MultiEmitterDelegate extends TileIC2EmitterDelegate implements IMetaDelegate {
 
     private final List<TileEntity> subTiles = new ArrayList<TileEntity>(30);
