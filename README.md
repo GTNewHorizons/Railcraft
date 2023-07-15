@@ -2,6 +2,9 @@
 
 Here you will find the source  for the **GTNH fork of the Railcraft Project**.  See `covertjaguar_RC_permission.png` for permission.
 
+Please open issues on our main pack issue tracker [here](https://github.com/GTNewHorizons/GT-New-Horizons-Modpack/issues).
+
+The original README follows:
 
 ## What is Railcraft?
 
@@ -66,4 +69,4 @@ Railcraft is licensed under a custom usage license tailored specifically for the
   * You **MAY** use snippets of Railcraft Code posted on the Official Github in your own projects, but only if your project consists of less than 25% of Railcraft derived code. You must give credit to the Railcraft Project for the code used, including a link to the Github Project. Put this in your class file headers that contain Railcraft code, in your readme, and on the main download page.
   * You may **NOT** use Railcraft Art Assets in other projects **unless** the project is intended to operate alongside Railcraft. Examples are Addons and InterMod Integration.
   * You **MAY** fork and edit the Github Project for the purpose of contributing to the Official Railcraft Project. You may **NOT** distribute any Jar created from a fork for any reason.
-  * All contributions to the Official Railcraft Project must be covered by a Contributor Licensing Agreement signed by the contributor.
+  * (This does not apply to our fork, because the contributions are not going to the official upstream project) All contributions to the Official Railcraft Project must be covered by a Contributor Licensing Agreement signed by the contributor.
