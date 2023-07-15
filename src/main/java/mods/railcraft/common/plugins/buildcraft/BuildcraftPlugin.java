@@ -14,6 +14,7 @@ import mods.railcraft.common.util.misc.Game;
  */
 public class BuildcraftPlugin {
 
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public static void init() {
         try {
             StatementManager.registerTriggerProvider(new TriggerProvider());

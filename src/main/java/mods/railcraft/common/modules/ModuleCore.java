@@ -175,7 +175,7 @@ public class ModuleCore extends RailcraftModule {
 
         EntityEnderman.setCarriable(Blocks.gravel, false);
 
-        BuildcraftPlugin.init();
+        if (cpw.mods.fml.common.Loader.isModLoaded("BuildCraft|Core")) BuildcraftPlugin.init();
 
         MinecraftForge.EVENT_BUS.register(MinecartHooks.getInstance());
         MinecraftForge.EVENT_BUS.register(LinkageHandler.getInstance());
