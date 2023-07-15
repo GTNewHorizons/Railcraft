@@ -12,6 +12,7 @@ import buildcraft.api.statements.IStatementParameter;
 public class TriggerLowFuel extends Trigger {
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter) {
         if (tile instanceof INeedsFuel) {
             return ((INeedsFuel) tile).needsFuel();

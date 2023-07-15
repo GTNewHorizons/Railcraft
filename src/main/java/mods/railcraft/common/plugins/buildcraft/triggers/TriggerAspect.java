@@ -19,6 +19,7 @@ public class TriggerAspect extends Trigger {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter) {
         if (tile instanceof IAspectProvider) {
             return ((IAspectProvider) tile).getTriggerAspect() == aspect;

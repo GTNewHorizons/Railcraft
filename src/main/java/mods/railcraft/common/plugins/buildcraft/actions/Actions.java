@@ -35,6 +35,7 @@ public enum Actions implements IActionExternal {
         this.tag = tag;
     }
 
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public static void init() {
         for (Actions action : VALUES) {
             StatementManager.registerStatement(action);
@@ -68,6 +69,7 @@ public enum Actions implements IActionExternal {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public void actionActivate(TileEntity tile, ForgeDirection side, IStatementContainer isc,
             IStatementParameter[] isps) {
         if (tile instanceof IActionReceptor) ((IActionReceptor) tile).actionActivated(this);

@@ -20,6 +20,7 @@ public class TriggerTemp extends Trigger {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter) {
         if (tile instanceof ITemperature) {
             float temp = ((ITemperature) tile).getTemperature();

@@ -26,11 +26,13 @@ public class ActionProvider implements IActionProvider {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<IActionInternal> getInternalActions(IStatementContainer isc) {
         return null;
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<IActionExternal> getExternalActions(ForgeDirection side,
             net.minecraft.tileentity.TileEntity tile) {
         Collection<IActionExternal> actions = new LinkedList<IActionExternal>();

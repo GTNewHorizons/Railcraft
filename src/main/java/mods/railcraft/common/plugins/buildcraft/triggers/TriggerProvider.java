@@ -27,11 +27,13 @@ public class TriggerProvider implements ITriggerProvider {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<ITriggerInternal> getInternalTriggers(IStatementContainer isc) {
         return null;
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<ITriggerExternal> getExternalTriggers(ForgeDirection side, TileEntity tile) {
         LinkedList<ITriggerExternal> triggers = new LinkedList<ITriggerExternal>();
         if (tile instanceof IHasWork) triggers.add(Triggers.HAS_WORK);

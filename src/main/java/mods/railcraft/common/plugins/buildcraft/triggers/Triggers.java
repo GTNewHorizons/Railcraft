@@ -77,6 +77,7 @@ public enum Triggers implements ITriggerExternal {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(TileEntity tile, ForgeDirection side, IStatementContainer isc,
             IStatementParameter[] parameter) {
         return trigger.isTriggerActive(side, tile, parameter);

@@ -11,5 +11,6 @@ import buildcraft.api.statements.IStatementParameter;
  */
 public abstract class Trigger {
 
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public abstract boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter);
 }
