@@ -1,7 +1,7 @@
 // Add your dependencies here
 
 dependencies {
-    api("com.github.GTNewHorizons:BuildCraft:7.1.33:dev")
+    compileOnly("com.github.GTNewHorizons:BuildCraft:7.1.33:dev")
     implementation("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
     implementation("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     compileOnly("curse.maven:cofh-lib-220333:2388748")
