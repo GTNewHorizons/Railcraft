@@ -7,7 +7,6 @@ package mods.railcraft.common.blocks.machine.alpha;
 
 import java.util.*;
 
-import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -29,6 +28,7 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.buildcraft.actions.Actions;
 import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
+import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
 import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
 import mods.railcraft.common.util.inventory.AdjacentInventoryCache;
 import mods.railcraft.common.util.inventory.InvTools;
@@ -41,8 +41,9 @@ import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
 import mods.railcraft.common.util.misc.Game;
 
 @cpw.mods.fml.common.Optional.InterfaceList(
-    value = { @cpw.mods.fml.common.Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
-})
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "cofh.api.energy.IEnergyHandler",
+                modid = "CoFHAPI|energy"), })
 public class TileRollingMachine extends TileMachineBase implements IEnergyHandler, ISidedInventory, IHasWork {
 
     private static final int PROCESS_TIME = 100;
@@ -75,7 +76,8 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     }
 
     public TileRollingMachine() {
-        if (RailcraftConfig.machinesRequirePower()) energyStorage = RedstoneFluxPlugin.createEnergyStorage(MAX_ENERGY, MAX_RECEIVE);
+        if (RailcraftConfig.machinesRequirePower())
+            energyStorage = RedstoneFluxPlugin.createEnergyStorage(MAX_ENERGY, MAX_RECEIVE);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
         data.setInteger("progress", progress);
 
-        if (energyStorage != null) ((EnergyStorage)energyStorage).writeToNBT(data);
+        if (energyStorage != null) ((EnergyStorage) energyStorage).writeToNBT(data);
 
         invResult.writeToNBT("invResult", data);
         InvTools.writeInvToNBT(craftMatrix, "Crafting", data);
@@ -106,7 +108,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
 
         progress = data.getInteger("progress");
 
-        if (energyStorage != null) ((EnergyStorage)energyStorage).readFromNBT(data);
+        if (energyStorage != null) ((EnergyStorage) energyStorage).readFromNBT(data);
 
         invResult.readFromNBT("invResult", data);
         InvTools.readInvFromNBT(craftMatrix, "Crafting", data);
@@ -184,10 +186,10 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
         } else {
             isWorking = true;
             if (energyStorage != null) {
-                int energy = ((EnergyStorage)energyStorage).extractEnergy(ACTIVATION_POWER, true);
+                int energy = ((EnergyStorage) energyStorage).extractEnergy(ACTIVATION_POWER, true);
                 if (energy >= ACTIVATION_POWER) {
                     progress++;
-                    ((EnergyStorage)energyStorage).extractEnergy(ACTIVATION_POWER, false);
+                    ((EnergyStorage) energyStorage).extractEnergy(ACTIVATION_POWER, false);
                 }
             } else progress++;
         }
@@ -352,7 +354,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
         if (energyStorage == null) return 0;
-        return ((EnergyStorage)energyStorage).receiveEnergy(maxReceive, simulate);
+        return ((EnergyStorage) energyStorage).receiveEnergy(maxReceive, simulate);
     }
 
     @Override
@@ -363,12 +365,12 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     @Override
     public int getEnergyStored(ForgeDirection from) {
         if (energyStorage == null) return 0;
-        return ((EnergyStorage)energyStorage).getEnergyStored();
+        return ((EnergyStorage) energyStorage).getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(ForgeDirection from) {
         if (energyStorage == null) return 0;
-        return ((EnergyStorage)energyStorage).getMaxEnergyStored();
+        return ((EnergyStorage) energyStorage).getMaxEnergyStored();
     }
 }

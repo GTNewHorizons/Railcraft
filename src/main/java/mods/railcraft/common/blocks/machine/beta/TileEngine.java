@@ -28,8 +28,9 @@ import mods.railcraft.common.util.misc.Game;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @cpw.mods.fml.common.Optional.InterfaceList(
-    value = { @cpw.mods.fml.common.Optional.Interface(iface = "cofh.api.energy.IEnergyConnection", modid = "CoFHAPI|energy"),
-})
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "cofh.api.energy.IEnergyConnection",
+                modid = "CoFHAPI|energy"), })
 public abstract class TileEngine extends TileMachineBase implements IEnergyConnection {
 
     public float currentOutput = 0;

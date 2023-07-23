@@ -25,8 +25,9 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 @cpw.mods.fml.common.Optional.InterfaceList(
-    value = { @cpw.mods.fml.common.Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHAPI|energy"),
-})
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "cofh.api.energy.IEnergyProvider",
+                modid = "CoFHAPI|energy"), })
 public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider, IGuiReturnHandler {
 
     private boolean waitTillEmpty = true;

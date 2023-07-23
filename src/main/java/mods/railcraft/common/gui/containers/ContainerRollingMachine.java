@@ -25,6 +25,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ContainerRollingMachine extends RailcraftContainer {
 
@@ -49,7 +50,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
             }
         };
 
-        energyIndicator = new RFEnergyIndicator(tile);
+        energyIndicator = new RFEnergyIndicator(tile.getMaxEnergyStored(ForgeDirection.UNKNOWN));
         addWidget(new IndicatorWidget(energyIndicator, 157, 19, 176, 12, 6, 48));
 
         addSlot(new SlotRollingMachine(craftResult, 0, 93, 27));
@@ -79,7 +80,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
         Object storage = tile.getEnergyStorage();
-        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage)storage).getEnergyStored());
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage) storage).getEnergyStored());
     }
 
     @Override
@@ -89,7 +90,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
         for (Object crafter : crafters) {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProgress != tile.getProgress()) icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage)storage).getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage) storage).getEnergyStored());
         }
 
         ItemStack output = tile.getStackInSlot(0);

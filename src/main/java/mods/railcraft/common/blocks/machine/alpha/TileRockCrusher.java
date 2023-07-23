@@ -7,7 +7,6 @@ package mods.railcraft.common.blocks.machine.alpha;
 
 import java.util.*;
 
-import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -38,6 +37,7 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.buildcraft.actions.Actions;
 import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
 import mods.railcraft.common.util.inventory.wrappers.InventoryCopy;
@@ -51,8 +51,9 @@ import mods.railcraft.common.util.sounds.SoundHelper;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @cpw.mods.fml.common.Optional.InterfaceList(
-    value = { @cpw.mods.fml.common.Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"),
-})
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "cofh.api.energy.IEnergyHandler",
+                modid = "CoFHAPI|energy"), })
 public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyHandler, IHasWork, ISidedInventory {
 
     public static final int SLOT_INPUT = 0;
@@ -165,7 +166,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     private boolean useMasterEnergy(int amount, boolean doRemove) {
         TileRockCrusher mBlock = (TileRockCrusher) getMasterBlock();
         if (mBlock != null) if (mBlock.energyStorage == null) return true;
-        else return ((EnergyStorage)mBlock.energyStorage).extractEnergy(amount, !doRemove) == amount;
+        else return ((EnergyStorage) mBlock.energyStorage).extractEnergy(amount, !doRemove) == amount;
         return false;
     }
 
@@ -242,10 +243,10 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             } else {
                 isWorking = true;
                 if (energyStorage != null) {
-                    int energy = ((EnergyStorage)energyStorage).extractEnergy(CRUSHING_POWER_COST_PER_TICK, true);
+                    int energy = ((EnergyStorage) energyStorage).extractEnergy(CRUSHING_POWER_COST_PER_TICK, true);
                     if (energy >= CRUSHING_POWER_COST_PER_TICK) {
                         processTime++;
-                        ((EnergyStorage)energyStorage).extractEnergy(CRUSHING_POWER_COST_PER_TICK, false);
+                        ((EnergyStorage) energyStorage).extractEnergy(CRUSHING_POWER_COST_PER_TICK, false);
                     }
                 } else processTime++;
             }
@@ -286,7 +287,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         super.writeToNBT(data);
         data.setInteger("processTime", processTime);
 
-        if (energyStorage != null) ((EnergyStorage)energyStorage).writeToNBT(data);
+        if (energyStorage != null) ((EnergyStorage) energyStorage).writeToNBT(data);
     }
 
     @Override
@@ -294,7 +295,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         super.readFromNBT(data);
         processTime = data.getInteger("processTime");
 
-        if (energyStorage != null) ((EnergyStorage)energyStorage).readFromNBT(data);
+        if (energyStorage != null) ((EnergyStorage) energyStorage).readFromNBT(data);
     }
 
     public int getProcessTime() {
@@ -374,7 +375,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     @Override
     public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
         if (Game.isGTNH || getEnergyStorage() == null) return 0;
-        return ((EnergyStorage)getEnergyStorage()).receiveEnergy(maxReceive, simulate);
+        return ((EnergyStorage) getEnergyStorage()).receiveEnergy(maxReceive, simulate);
     }
 
     @Override
@@ -385,13 +386,13 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     @Override
     public int getEnergyStored(ForgeDirection from) {
         if (Game.isGTNH || getEnergyStorage() == null) return 0;
-        return ((EnergyStorage)getEnergyStorage()).getEnergyStored();
+        return ((EnergyStorage) getEnergyStorage()).getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored(ForgeDirection from) {
         if (Game.isGTNH || getEnergyStorage() == null) return 0;
-        return ((EnergyStorage)getEnergyStorage()).getMaxEnergyStored();
+        return ((EnergyStorage) getEnergyStorage()).getMaxEnergyStored();
     }
 
     @Override

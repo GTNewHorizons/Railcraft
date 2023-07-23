@@ -19,6 +19,7 @@ import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;
 import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
 import mods.railcraft.common.util.misc.Game;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ContainerRockCrusher extends RailcraftContainer {
 
@@ -30,7 +31,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
         super(crusher);
         this.tile = crusher;
 
-        energyIndicator = new RFEnergyIndicator(tile);
+        energyIndicator = new RFEnergyIndicator(tile.getMaxEnergyStored(ForgeDirection.UNKNOWN));
         addWidget(new IndicatorWidget(energyIndicator, 157, 23, 176, 53, 6, 48));
 
         for (int i = 0; i < 3; i++) {
@@ -59,7 +60,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
         Object storage = tile.getEnergyStorage();
-        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage)storage).getEnergyStored());
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage) storage).getEnergyStored());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProcessTime != tile.getProcessTime())
                 icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
-            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage)storage).getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage) storage).getEnergyStored());
         }
 
         lastProcessTime = tile.getProcessTime();

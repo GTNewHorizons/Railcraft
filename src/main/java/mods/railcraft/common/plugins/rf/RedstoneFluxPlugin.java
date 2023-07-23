@@ -1,9 +1,9 @@
 package mods.railcraft.common.plugins.rf;
 
-import cofh.api.energy.EnergyStorage;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import mods.railcraft.common.util.misc.AdjacentTileCache;
