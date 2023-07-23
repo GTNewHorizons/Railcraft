@@ -78,18 +78,18 @@ public class ContainerRollingMachine extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting icrafting) {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-        EnergyStorage storage = tile.getEnergyStorage();
-        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
+        Object storage = tile.getEnergyStorage();
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage)storage).getEnergyStored());
     }
 
     @Override
     public void sendUpdateToClient() {
         super.sendUpdateToClient();
-        EnergyStorage storage = tile.getEnergyStorage();
+        Object storage = tile.getEnergyStorage();
         for (Object crafter : crafters) {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProgress != tile.getProgress()) icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage)storage).getEnergyStored());
         }
 
         ItemStack output = tile.getStackInSlot(0);

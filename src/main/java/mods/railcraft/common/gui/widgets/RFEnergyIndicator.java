@@ -18,6 +18,7 @@ public class RFEnergyIndicator extends IndicatorController {
     private int energy;
     private final int maxEnergy;
 
+    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
     public RFEnergyIndicator(IEnergyHandler energyHandler) {
         this.maxEnergy = energyHandler.getMaxEnergyStored(ForgeDirection.UNKNOWN);
     }
