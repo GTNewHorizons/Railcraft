@@ -11,6 +11,7 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.*;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -19,10 +20,9 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "buildcraft.api.statements.ITriggerExternal",
-                modid = "BuildCraft|Core"), })
+@Optional.InterfaceList(
+        value = {
+                @Optional.Interface(iface = "buildcraft.api.statements.ITriggerExternal", modid = "BuildCraft|Core"), })
 public enum Triggers implements ITriggerExternal {
 
     HAS_WORK("work", new TriggerHasWork()),
@@ -77,7 +77,7 @@ public enum Triggers implements ITriggerExternal {
     }
 
     @Override
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(TileEntity tile, ForgeDirection side, IStatementContainer isc,
             IStatementParameter[] parameter) {
         return trigger.isTriggerActive(side, tile, parameter);

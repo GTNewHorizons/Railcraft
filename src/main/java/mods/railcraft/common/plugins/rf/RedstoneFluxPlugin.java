@@ -6,6 +6,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.util.misc.AdjacentTileCache;
 
 /**
@@ -15,7 +16,7 @@ import mods.railcraft.common.util.misc.AdjacentTileCache;
  */
 public class RedstoneFluxPlugin {
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static int pushToTile(TileEntity tile, ForgeDirection side, int powerToTransfer) {
         if (canTileReceivePower(tile, side)) {
             IEnergyReceiver handler = (IEnergyReceiver) tile;
@@ -24,7 +25,7 @@ public class RedstoneFluxPlugin {
         return 0;
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static int pushToTiles(IEnergyProvider provider, AdjacentTileCache tileCache, int pushPerSide) {
         int pushed = 0;
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
@@ -42,7 +43,7 @@ public class RedstoneFluxPlugin {
         return pushed;
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static boolean canTileReceivePower(TileEntity tile, ForgeDirection side) {
         if (tile instanceof IEnergyReceiver) {
             IEnergyReceiver handler = (IEnergyReceiver) tile;
@@ -51,17 +52,17 @@ public class RedstoneFluxPlugin {
         return false;
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static Object createEnergyStorage(int par1) {
         return new EnergyStorage(par1);
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static Object createEnergyStorage(int par1, int par2) {
         return new EnergyStorage(par1, par2);
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "CoFHAPI|energy")
+    @Optional.Method(modid = "CoFHAPI|energy")
     public static Object createEnergyStorage(int par1, int par2, int par3) {
         return new EnergyStorage(par1, par2, par3);
     }

@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -18,10 +19,8 @@ import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.util.misc.Game;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyHandler",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"), })
 public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid, IEnergyHandler {
 
     public static void placeFluxTransformer(World world, int x, int y, int z) {

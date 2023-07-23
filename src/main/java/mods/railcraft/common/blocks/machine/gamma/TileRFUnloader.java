@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.IEnergyProvider;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.carts.EntityCartRF;
@@ -24,10 +25,8 @@ import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyProvider",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyProvider", modid = "CoFHAPI|energy"), })
 public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider, IGuiReturnHandler {
 
     private boolean waitTillEmpty = true;

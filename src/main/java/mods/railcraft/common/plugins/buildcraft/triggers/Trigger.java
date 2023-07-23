@@ -4,6 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IStatementParameter;
+import cpw.mods.fml.common.Optional;
 
 /**
  *
@@ -11,6 +12,6 @@ import buildcraft.api.statements.IStatementParameter;
  */
 public abstract class Trigger {
 
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public abstract boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter);
 }

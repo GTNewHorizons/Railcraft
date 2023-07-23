@@ -4,6 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IStatementParameter;
+import cpw.mods.fml.common.Optional;
 
 /**
  *
@@ -20,7 +21,7 @@ public class TriggerTemp extends Trigger {
     }
 
     @Override
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(ForgeDirection side, TileEntity tile, IStatementParameter[] parameter) {
         if (tile instanceof ITemperature) {
             float temp = ((ITemperature) tile).getTemperature();

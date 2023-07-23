@@ -24,6 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -40,10 +41,8 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyHandler",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"), })
 public class TileEngravingBench extends TileMachineItem
         implements IEnergyHandler, ISidedInventory, IHasWork, IGuiReturnHandler {
 

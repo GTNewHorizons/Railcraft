@@ -24,6 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
@@ -50,10 +51,8 @@ import mods.railcraft.common.util.sounds.SoundHelper;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyHandler",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"), })
 public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyHandler, IHasWork, ISidedInventory {
 
     public static final int SLOT_INPUT = 0;

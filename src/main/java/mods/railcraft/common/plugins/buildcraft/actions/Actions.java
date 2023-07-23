@@ -12,16 +12,16 @@ import buildcraft.api.statements.IActionExternal;
 import buildcraft.api.statements.IStatementContainer;
 import buildcraft.api.statements.IStatementParameter;
 import buildcraft.api.statements.StatementManager;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "buildcraft.api.statements.IActionExternal",
-                modid = "BuildCraft|Core"), })
+@Optional.InterfaceList(
+        value = {
+                @Optional.Interface(iface = "buildcraft.api.statements.IActionExternal", modid = "BuildCraft|Core"), })
 public enum Actions implements IActionExternal {
 
     PAUSE("pause"),
@@ -35,7 +35,7 @@ public enum Actions implements IActionExternal {
         this.tag = tag;
     }
 
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public static void init() {
         for (Actions action : VALUES) {
             StatementManager.registerStatement(action);
@@ -69,7 +69,7 @@ public enum Actions implements IActionExternal {
     }
 
     @Override
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public void actionActivate(TileEntity tile, ForgeDirection side, IStatementContainer isc,
             IStatementParameter[] isps) {
         if (tile instanceof IActionReceptor) ((IActionReceptor) tile).actionActivated(this);

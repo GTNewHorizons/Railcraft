@@ -20,6 +20,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
@@ -40,10 +41,8 @@ import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
 import mods.railcraft.common.util.misc.Game;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyHandler",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyHandler", modid = "CoFHAPI|energy"), })
 public class TileRollingMachine extends TileMachineBase implements IEnergyHandler, ISidedInventory, IHasWork {
 
     private static final int PROCESS_TIME = 100;

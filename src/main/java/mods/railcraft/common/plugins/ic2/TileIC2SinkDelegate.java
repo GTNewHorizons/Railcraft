@@ -8,14 +8,14 @@ package mods.railcraft.common.plugins.ic2;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.common.Optional;
 import ic2.api.energy.tile.IEnergySink;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2"), })
+@Optional.InterfaceList(value = { @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2"), })
 public class TileIC2SinkDelegate extends TileIC2Delegate implements IEnergySink {
 
     private final ISinkDelegate delegate;

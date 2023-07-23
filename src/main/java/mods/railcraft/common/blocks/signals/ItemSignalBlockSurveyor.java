@@ -15,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
+import cpw.mods.fml.common.Optional;
 import ic2.api.item.IBoxable;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.ISignalBlockTile;
@@ -25,8 +26,7 @@ import mods.railcraft.common.items.ItemRailcraft;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.misc.Game;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"), })
+@Optional.InterfaceList(value = { @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"), })
 public class ItemSignalBlockSurveyor extends ItemRailcraft implements IBoxable, IActivationBlockingItem {
 
     private static Item item;

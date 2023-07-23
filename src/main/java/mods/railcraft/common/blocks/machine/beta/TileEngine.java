@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.energy.IEnergyConnection;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
@@ -27,10 +28,8 @@ import mods.railcraft.common.util.misc.Game;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(
-                iface = "cofh.api.energy.IEnergyConnection",
-                modid = "CoFHAPI|energy"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection", modid = "CoFHAPI|energy"), })
 public abstract class TileEngine extends TileMachineBase implements IEnergyConnection {
 
     public float currentOutput = 0;

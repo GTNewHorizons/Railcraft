@@ -28,6 +28,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.tools.IToolWrench;
+import cpw.mods.fml.common.Optional;
 import ic2.api.item.IBoxable;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.tracks.BlockTrackElevator;
@@ -38,11 +39,9 @@ import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
 
-@cpw.mods.fml.common.Optional.InterfaceList(
-        value = { @cpw.mods.fml.common.Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"),
-                @cpw.mods.fml.common.Optional.Interface(
-                        iface = "buildcraft.api.tools.IToolWrench",
-                        modid = "BuildCraft|Core"), })
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"),
+                @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core"), })
 public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, IToolWrench {
 
     public static final byte BOOST_DAMAGE = 3;

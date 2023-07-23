@@ -3,6 +3,7 @@ package mods.railcraft.common.plugins.buildcraft;
 import net.minecraft.block.Block;
 
 import buildcraft.api.statements.StatementManager;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameData;
 import mods.railcraft.common.plugins.buildcraft.actions.ActionProvider;
@@ -14,7 +15,7 @@ import mods.railcraft.common.util.misc.Game;
  */
 public class BuildcraftPlugin {
 
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public static void init() {
         try {
             StatementManager.registerTriggerProvider(new TriggerProvider());

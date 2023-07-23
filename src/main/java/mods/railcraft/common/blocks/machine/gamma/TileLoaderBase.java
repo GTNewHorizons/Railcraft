@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IActionExternal;
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -79,7 +80,7 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
     }
 
     @Override
-    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
+    @Optional.Method(modid = "BuildCraft|Core")
     public void actionActivated(IActionExternal action) {
         if (action == Actions.SEND_CART) sendCartGateAction = true;
         if (action == Actions.PAUSE) pause = PAUSE_DELAY;
