@@ -79,6 +79,7 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public void actionActivated(IActionExternal action) {
         if (action == Actions.SEND_CART) sendCartGateAction = true;
         if (action == Actions.PAUSE) pause = PAUSE_DELAY;

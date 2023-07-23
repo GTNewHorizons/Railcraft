@@ -5,10 +5,6 @@
  */
 package mods.railcraft.common.gui.widgets;
 
-import net.minecraftforge.common.util.ForgeDirection;
-
-import cofh.api.energy.IEnergyHandler;
-
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
