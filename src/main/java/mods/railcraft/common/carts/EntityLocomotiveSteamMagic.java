@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -37,6 +38,8 @@ import thaumcraft.api.aspects.IAspectContainer;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@Optional.InterfaceList(
+        value = { @Optional.Interface(iface = "thaumcraft.api.aspects.IAspectContainer", modid = "Thaumcraft"), })
 public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements ISidedInventory, IAspectContainer {
 
     private static final int SLOT_BURN = 2;
@@ -74,6 +77,7 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public boolean doesContainerAccept(Aspect tag) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -173,14 +177,17 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public AspectList getAspects() {
         return new AspectList().add(Aspect.FIRE, fireAspect.getAmount()).add(Aspect.WATER, waterAspect.getAmount());
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public void setAspects(AspectList aspects) {}
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public int addToContainer(Aspect tag, int amount) {
         if (tag == Aspect.FIRE) return fireAspect.fill(amount, true);
         if (tag == Aspect.WATER) return waterAspect.fill(amount, true);
@@ -188,6 +195,7 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public boolean takeFromContainer(Aspect tag, int amount) {
         if (tag == Aspect.FIRE) return fireAspect.remove(amount, true);
         if (tag == Aspect.WATER) return waterAspect.remove(amount, true);
@@ -195,11 +203,13 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public boolean takeFromContainer(AspectList ot) {
         return false;
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public boolean doesContainerContainAmount(Aspect tag, int amount) {
         if (tag == Aspect.FIRE) return fireAspect.contains(amount);
         if (tag == Aspect.WATER) return waterAspect.contains(amount);
@@ -207,6 +217,7 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public boolean doesContainerContain(AspectList ot) {
         for (Entry<Aspect, Integer> entry : ot.aspects.entrySet()) {
             if (!doesContainerContainAmount(entry.getKey(), entry.getValue())) return false;
@@ -215,6 +226,7 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
+    @Optional.Method(modid = "Thaumcraft")
     public int containerContains(Aspect tag) {
         if (tag == Aspect.FIRE) return fireAspect.getAmount();
         if (tag == Aspect.WATER) return waterAspect.getAmount();
