@@ -162,24 +162,26 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
 
                     if (recipe != null) if ((output == null || (output.isItemEqual(recipe.getOutput())
                             && output.stackSize + recipe.getOutput().stackSize <= output.getMaxStackSize()))
-                            && tank.fill(recipe.getFluidOutput(), false) >= recipe.getFluidOutput().amount) {
-                                cookTimeTotal = recipe.getCookTime();
-                                cookTime += COOK_STEP_LENGTH;
-                                setCooking(true);
+                            && (recipe.getFluidOutput() == null
+                                    || tank.fill(recipe.getFluidOutput(), false) >= recipe.getFluidOutput().amount)) {
+                                        cookTimeTotal = recipe.getCookTime();
+                                        cookTime += COOK_STEP_LENGTH;
+                                        setCooking(true);
 
-                                if (cookTime >= recipe.getCookTime()) {
-                                    cookTime = 0;
-                                    finishedAt = clock;
-                                    decrStackSize(SLOT_INPUT, 1);
-                                    if (output == null) setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput());
-                                    else output.stackSize += recipe.getOutput().stackSize;
-                                    tank.fill(recipe.getFluidOutput(), true);
-                                    sendUpdateToClient();
-                                }
-                            } else {
-                                cookTime = 0;
-                                setCooking(false);
-                            }
+                                        if (cookTime >= recipe.getCookTime()) {
+                                            cookTime = 0;
+                                            finishedAt = clock;
+                                            decrStackSize(SLOT_INPUT, 1);
+                                            if (output == null)
+                                                setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput());
+                                            else output.stackSize += recipe.getOutput().stackSize;
+                                            tank.fill(recipe.getFluidOutput(), true);
+                                            sendUpdateToClient();
+                                        }
+                                    } else {
+                                        cookTime = 0;
+                                        setCooking(false);
+                                    }
                     else {
                         cookTime = 0;
                         setCooking(false);
