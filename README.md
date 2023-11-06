@@ -4,6 +4,11 @@ Here you will find the source  for the **GTNH fork of the Railcraft Project**.  
 
 Please open issues on our main pack issue tracker [here](https://github.com/GTNewHorizons/GT-New-Horizons-Modpack/issues).
 
+To develop on the GTNH fork, ignore the instructions in the original README below, and instead follow the standard [GTNH development instructions](https://gtnh.miraheze.org/wiki/Development#Next_steps), but usually all you need to do is:
+
+1. `./gradlew build` - builds the project, if it fails you may need `./gradlew spotlessApply` first
+2. `./gradlew runClient` - runs a Minecraft client with this project
+
 The original README follows:
 
 ## What is Railcraft?
@@ -39,6 +44,8 @@ Regarding new features/behavior changes, please submit a Suggestion Issue to the
 Also, as a bonus. If submit a Pull Request that ends up being 'merged into dev' you are elligable to recieve beta access. To redeem, contact CovertJaguar on IRC.
 
 ## Building
+
+_GTNH Note: These are the original building steps, which do not work on this fork and shouldn't be used._
 
 The Railcraft Project follows standard Forge conventions for setting up and building a project, with a couple additional details (details to come).
 
