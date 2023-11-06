@@ -5,7 +5,8 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
+import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
+import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

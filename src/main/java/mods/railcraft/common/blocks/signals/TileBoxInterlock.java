@@ -5,7 +5,10 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import static net.minecraftforge.common.util.ForgeDirection.*;
+import static net.minecraftforge.common.util.ForgeDirection.EAST;
+import static net.minecraftforge.common.util.ForgeDirection.NORTH;
+import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
+import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
