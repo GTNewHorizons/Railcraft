@@ -5,7 +5,13 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
@@ -38,7 +44,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.core.ITextureLoader;
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.api.tracks.*;
+import mods.railcraft.api.tracks.ITrackBlocksMovement;
+import mods.railcraft.api.tracks.ITrackCustomShape;
+import mods.railcraft.api.tracks.ITrackEmitter;
+import mods.railcraft.api.tracks.ITrackInstance;
+import mods.railcraft.api.tracks.TrackInstanceBase;
+import mods.railcraft.api.tracks.TrackRegistry;
+import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.core.Railcraft;

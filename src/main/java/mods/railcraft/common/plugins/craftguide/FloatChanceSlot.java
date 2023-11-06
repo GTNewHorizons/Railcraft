@@ -8,7 +8,10 @@ package mods.railcraft.common.plugins.craftguide;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import uristqwerty.CraftGuide.api.*;
+import uristqwerty.CraftGuide.api.ItemFilter;
+import uristqwerty.CraftGuide.api.ItemSlot;
+import uristqwerty.CraftGuide.api.Renderer;
+import uristqwerty.CraftGuide.api.SlotType;
 
 /**
  * An ItemSlot that appends probability information to the name of the item it contains. To use it, instead of putting

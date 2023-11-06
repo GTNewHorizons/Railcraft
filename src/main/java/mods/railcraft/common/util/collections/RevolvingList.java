@@ -5,7 +5,9 @@
  */
 package mods.railcraft.common.util.collections;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.LinkedList;
 
 import com.google.common.collect.ForwardingCollection;
 

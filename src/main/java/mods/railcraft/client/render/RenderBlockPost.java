@@ -22,7 +22,12 @@ import org.lwjgl.opengl.GL11;
 
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
 import mods.railcraft.client.emblems.EmblemToolsClient;
-import mods.railcraft.common.blocks.aesthetics.post.*;
+import mods.railcraft.common.blocks.aesthetics.post.BlockPost;
+import mods.railcraft.common.blocks.aesthetics.post.BlockPostBase;
+import mods.railcraft.common.blocks.aesthetics.post.EnumPost;
+import mods.railcraft.common.blocks.aesthetics.post.ItemPost;
+import mods.railcraft.common.blocks.aesthetics.post.PostConnectionHelper;
+import mods.railcraft.common.blocks.aesthetics.post.TilePostEmblem;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;

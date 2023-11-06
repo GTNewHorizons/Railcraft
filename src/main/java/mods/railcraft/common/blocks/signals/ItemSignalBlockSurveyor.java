@@ -23,7 +23,11 @@ import mods.railcraft.api.signals.SignalBlock;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.IActivationBlockingItem;
 import mods.railcraft.common.items.ItemRailcraft;
-import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.LootPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 
 @Optional.InterfaceList(value = { @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2"), })

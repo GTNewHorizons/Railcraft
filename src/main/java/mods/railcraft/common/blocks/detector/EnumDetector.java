@@ -10,7 +10,22 @@ import java.util.Locale;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import mods.railcraft.common.blocks.detector.types.*;
+import mods.railcraft.common.blocks.detector.types.DetectorAdvanced;
+import mods.railcraft.common.blocks.detector.types.DetectorAge;
+import mods.railcraft.common.blocks.detector.types.DetectorAnimal;
+import mods.railcraft.common.blocks.detector.types.DetectorEmpty;
+import mods.railcraft.common.blocks.detector.types.DetectorEnergy;
+import mods.railcraft.common.blocks.detector.types.DetectorExplosive;
+import mods.railcraft.common.blocks.detector.types.DetectorItem;
+import mods.railcraft.common.blocks.detector.types.DetectorLocomotive;
+import mods.railcraft.common.blocks.detector.types.DetectorMob;
+import mods.railcraft.common.blocks.detector.types.DetectorPlayer;
+import mods.railcraft.common.blocks.detector.types.DetectorPowered;
+import mods.railcraft.common.blocks.detector.types.DetectorRouting;
+import mods.railcraft.common.blocks.detector.types.DetectorSheep;
+import mods.railcraft.common.blocks.detector.types.DetectorTank;
+import mods.railcraft.common.blocks.detector.types.DetectorTrain;
+import mods.railcraft.common.blocks.detector.types.DetectorVillager;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 

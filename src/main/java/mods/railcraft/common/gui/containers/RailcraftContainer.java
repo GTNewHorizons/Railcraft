@@ -5,7 +5,8 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

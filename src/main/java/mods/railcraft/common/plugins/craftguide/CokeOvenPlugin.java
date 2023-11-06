@@ -11,7 +11,13 @@ import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.core.RailcraftConstants;
-import uristqwerty.CraftGuide.api.*;
+import uristqwerty.CraftGuide.api.ItemSlot;
+import uristqwerty.CraftGuide.api.LiquidSlot;
+import uristqwerty.CraftGuide.api.RecipeGenerator;
+import uristqwerty.CraftGuide.api.RecipeProvider;
+import uristqwerty.CraftGuide.api.RecipeTemplate;
+import uristqwerty.CraftGuide.api.Slot;
+import uristqwerty.CraftGuide.api.SlotType;
 
 /**
  *

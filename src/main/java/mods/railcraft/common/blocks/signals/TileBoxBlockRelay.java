@@ -16,7 +16,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.api.signals.*;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.api.signals.SignalBlock;
+import mods.railcraft.api.signals.SignalBlockRelay;
+import mods.railcraft.api.signals.SimpleSignalController;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;

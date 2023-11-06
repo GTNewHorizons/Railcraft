@@ -8,7 +8,7 @@ package mods.railcraft.common.blocks.aesthetics.lantern;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;

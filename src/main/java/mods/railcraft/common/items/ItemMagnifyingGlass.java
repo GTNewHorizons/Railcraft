@@ -27,7 +27,12 @@ import mods.railcraft.common.blocks.machine.TileMultiBlock.MultiBlockStateReturn
 import mods.railcraft.common.blocks.signals.IDualHeadSignal;
 import mods.railcraft.common.blocks.signals.TileSignalBase;
 import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.forge.LootPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 
 /**
