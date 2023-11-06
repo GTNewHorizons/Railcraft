@@ -7,7 +7,8 @@ package mods.railcraft.common.blocks.aesthetics.wall;
 
 import java.util.List;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -117,7 +118,7 @@ public class BlockRailcraftWall extends BlockWall {
 
     /**
      * The type of render function that is called for this block
-     * 
+     *
      * @return
      */
     @Override

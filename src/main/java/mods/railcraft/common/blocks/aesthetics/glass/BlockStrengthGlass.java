@@ -5,7 +5,10 @@
  */
 package mods.railcraft.common.blocks.aesthetics.glass;
 
-import java.util.*;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;

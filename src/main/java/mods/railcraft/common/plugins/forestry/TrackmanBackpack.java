@@ -20,12 +20,12 @@ import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
 import mods.railcraft.common.blocks.signals.ItemSignalTuner;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.fluids.FluidContainers;
-import mods.railcraft.common.items.*;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.items.ItemCrowbarReinforced;
 import mods.railcraft.common.items.ItemGoggles;
 import mods.railcraft.common.items.ItemMagnifyingGlass;
 import mods.railcraft.common.items.ItemWhistleTuner;
+import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.items.RailcraftToolItems;
 
 /**

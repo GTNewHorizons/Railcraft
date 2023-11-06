@@ -8,7 +8,11 @@ package mods.railcraft.common.blocks.tracks;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;

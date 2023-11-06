@@ -21,7 +21,13 @@ import mods.railcraft.common.blocks.hidden.BlockHidden;
 import mods.railcraft.common.blocks.hidden.TrailTicker;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.forge.LootPlugin;
+import mods.railcraft.common.plugins.forge.OreDictPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 

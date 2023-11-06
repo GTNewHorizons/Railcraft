@@ -19,7 +19,11 @@ import org.apache.logging.log4j.message.MessageFactory;
 import org.apache.logging.log4j.message.MessageFormatMessageFactory;
 
 import mods.railcraft.api.core.WorldCoordinate;
-import mods.railcraft.api.signals.*;
+import mods.railcraft.api.signals.IControllerTile;
+import mods.railcraft.api.signals.IReceiverTile;
+import mods.railcraft.api.signals.SignalController;
+import mods.railcraft.api.signals.SignalReceiver;
+import mods.railcraft.api.signals.SimpleSignalReceiver;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.signals.TileBoxBase;
 import mods.railcraft.common.plugins.forge.ChatPlugin;

@@ -12,7 +12,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.helpers.StructureHelper;
-import mods.railcraft.common.blocks.machine.alpha.*;
+import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
+import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
+import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
+import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
+import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileTankBase;

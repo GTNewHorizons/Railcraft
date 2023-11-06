@@ -13,7 +13,7 @@ import net.minecraft.inventory.Slot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.tracks.TrackRouting;
-import mods.railcraft.common.gui.slots.*;
+import mods.railcraft.common.gui.slots.SlotSecure;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemTicketGold;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;

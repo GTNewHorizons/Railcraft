@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
-import mods.railcraft.common.gui.slots.*;
+import mods.railcraft.common.gui.slots.SlotSecure;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.gui.widgets.Widget;
 import mods.railcraft.common.items.ItemRoutingTable;

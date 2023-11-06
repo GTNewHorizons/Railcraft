@@ -7,7 +7,7 @@ package mods.railcraft.client.particles;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 

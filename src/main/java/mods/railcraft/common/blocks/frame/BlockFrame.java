@@ -29,7 +29,11 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
-import mods.railcraft.common.plugins.forge.*;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.CreativePlugin;
+import mods.railcraft.common.plugins.forge.HarvestPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 
 /**

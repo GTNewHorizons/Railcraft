@@ -13,7 +13,13 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import org.apache.logging.log4j.Level;
 
-import mods.railcraft.api.signals.*;
+import mods.railcraft.api.signals.IControllerTile;
+import mods.railcraft.api.signals.ISignalBlockTile;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.api.signals.SignalBlock;
+import mods.railcraft.api.signals.SignalBlockSimple;
+import mods.railcraft.api.signals.SignalTools;
+import mods.railcraft.api.signals.SimpleSignalController;
 import mods.railcraft.common.util.misc.Game;
 
 public class TileSignalBlockSignal extends TileSignalBase implements IControllerTile, ISignalTile, ISignalBlockTile {

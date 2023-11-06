@@ -5,7 +5,10 @@
  */
 package mods.railcraft.common.blocks.signals;
 
-import static net.minecraftforge.common.util.ForgeDirection.*;
+import static net.minecraftforge.common.util.ForgeDirection.EAST;
+import static net.minecraftforge.common.util.ForgeDirection.NORTH;
+import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
+import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,7 +22,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.api.signals.*;
+import mods.railcraft.api.signals.IControllerTile;
+import mods.railcraft.api.signals.IReceiverTile;
+import mods.railcraft.api.signals.SignalAspect;
+import mods.railcraft.api.signals.SignalController;
+import mods.railcraft.api.signals.SimpleSignalController;
+import mods.railcraft.api.signals.SimpleSignalReceiver;
 import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
 
 public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IReceiverTile, IAspectProvider {

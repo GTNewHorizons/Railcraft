@@ -5,7 +5,11 @@
  */
 package mods.railcraft.common.commands;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;

@@ -5,7 +5,11 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

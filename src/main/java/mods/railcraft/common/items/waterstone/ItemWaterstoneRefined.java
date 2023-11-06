@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemRailcraft;
-import mods.railcraft.common.items.firestone.*;
+import mods.railcraft.common.items.firestone.EntityItemFirestone;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;

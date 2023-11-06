@@ -10,7 +10,8 @@ import buildcraft.api.statements.IActionInternal;
 import buildcraft.api.statements.IActionProvider;
 import buildcraft.api.statements.IStatementContainer;
 import cpw.mods.fml.common.Optional;
-import mods.railcraft.common.plugins.buildcraft.triggers.*;
+import mods.railcraft.common.plugins.buildcraft.triggers.IHasCart;
+import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
 
 /**
  *

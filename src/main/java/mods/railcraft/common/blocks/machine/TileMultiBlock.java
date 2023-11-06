@@ -8,7 +8,10 @@ package mods.railcraft.common.blocks.machine;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
