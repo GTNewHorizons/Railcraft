@@ -53,6 +53,7 @@ import mods.railcraft.common.util.misc.BlinkTick;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketHandler;
+import mods.railcraft.crossmod.waila.Waila;
 
 @Mod(
         modid = Railcraft.MOD_ID,
@@ -244,6 +245,14 @@ public final class Railcraft {
         CraftGuidePlugin.init();
 
         RailcraftConfig.postInit();
+    }
+
+    @Mod.EventHandler
+    public void onLoad(FMLInitializationEvent aEvent) {
+        if (Loader.isModLoaded("Waila")) {
+            Waila.init();
+        }
+
     }
 
     @Mod.EventHandler
