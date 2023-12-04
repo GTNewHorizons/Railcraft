@@ -124,7 +124,7 @@ public class ModuleCore extends RailcraftModule {
                                                                                                           // Pyrotheum
 
         Fluid creosote = Fluids.CREOSOTE.get();
-        if (creosote != null) FuelManager.addBoilerFuel(creosote, 4800); // Creosote
+        if (creosote != null) FuelManager.addBoilerFuel(creosote, 6400); // Creosote
     }
 
     @Override
