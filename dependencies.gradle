@@ -1,13 +1,13 @@
 // Add your dependencies here
 
 dependencies {
-    compileOnly("com.github.GTNewHorizons:BuildCraft:7.1.36:dev")
+    compileOnly("com.github.GTNewHorizons:BuildCraft:7.1.37:dev")
     implementation("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
     implementation("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     compileOnly("curse.maven:cofh-lib-220333:2388748")
-    compileOnly("com.github.GTNewHorizons:ForestryMC:4.6.14:dev") { transitive = false }
+    compileOnly("com.github.GTNewHorizons:ForestryMC:4.7.0:dev") { transitive = false }
     compileOnly("curse.maven:craftguide-75557:2459320")
 
-    runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.1.16:dev") // for Thaumcraft
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.4.9-GTNH:dev")
+    runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.3:dev") // for Thaumcraft
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.4.13-GTNH:dev")
 }
