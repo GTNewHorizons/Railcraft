@@ -51,8 +51,7 @@ public class FluidRenderer {
         if (fluid == null) return null;
 
         IIcon side = RenderTools.getSafeIcon(fluid.getFlowingIcon());
-        if (fluid.getStillIcon() != null && fluid.getFlowingIcon() == null) {
-            // If still icon is present but flowing is missing, use still in place of flowing to avoid missing texture
+        if ((fluid.getStillIcon() != null) && (fluid.getFlowingIcon() == null)) {
             side = RenderTools.getSafeIcon(fluid.getStillIcon());
         }
 
