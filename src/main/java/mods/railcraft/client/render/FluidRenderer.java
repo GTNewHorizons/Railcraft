@@ -49,8 +49,14 @@ public class FluidRenderer {
 
     public static ResourceLocation setupFlowingLiquidTexture(Fluid fluid, IIcon[] texArray) {
         if (fluid == null) return null;
-        IIcon top = RenderTools.getSafeIcon(fluid.getStillIcon());
+
         IIcon side = RenderTools.getSafeIcon(fluid.getFlowingIcon());
+        if (fluid.getStillIcon() != null && fluid.getFlowingIcon() == null) {
+            // If still icon is present but flowing is missing, use still in place of flowing to avoid missing texture
+            side = RenderTools.getSafeIcon(fluid.getStillIcon());
+        }
+
+        IIcon top = RenderTools.getSafeIcon(fluid.getStillIcon());
         texArray[0] = top;
         texArray[1] = top;
         texArray[2] = side;
