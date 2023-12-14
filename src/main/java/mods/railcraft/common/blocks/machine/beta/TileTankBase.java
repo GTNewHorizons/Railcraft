@@ -345,16 +345,6 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(int fortune) {
-        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-        ItemStack drop = getMachineType().getItem();
-        NBTTagCompound nbt = InvTools.getItemData(drop);
-        nbt.setByte("color", (byte) EnumColor.WHITE.ordinal());
-        items.add(drop);
-        return items;
-    }
-
-    @Override
     public ArrayList<ItemStack> getBlockDroppedSilkTouch(int fortune) {
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
         ItemStack drop = getMachineType().getItem();
