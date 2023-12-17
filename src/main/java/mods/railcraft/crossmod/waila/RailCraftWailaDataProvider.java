@@ -31,12 +31,11 @@ public class RailCraftWailaDataProvider implements IWailaDataProvider {
             IWailaConfigHandler config) {
         final TileEntity tile = accessor.getTileEntity();
         if (tile instanceof IRailCraftWailaProvider) {
-        ((IRailCraftWailaProvider) tile).getWailaBody(itemStack, currenttip, accessor, config);
+            ((IRailCraftWailaProvider) tile).getWailaBody(itemStack, currenttip, accessor, config);
         }
 
         return currenttip;
     }
-    
 
     @Override
     public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
@@ -48,7 +47,7 @@ public class RailCraftWailaDataProvider implements IWailaDataProvider {
     public NBTTagCompound getNBTData(final EntityPlayerMP player, final TileEntity tile, final NBTTagCompound tag,
             final World world, int x, int y, int z) {
         if (tile instanceof IRailCraftWailaProvider) {
-        ((IRailCraftWailaProvider) tile).getWailaNBTData(player, tile, tag, world, x, y, z);
+            ((IRailCraftWailaProvider) tile).getWailaNBTData(player, tile, tag, world, x, y, z);
         }
 
         return tag;

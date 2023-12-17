@@ -1203,3 +1203,4 @@ tile.railcraft.wall.stone.brick.name=Stone Brick Wall
 tile.railcraft.worldlogic.name=Saltpeter Ore Spawner
 
 tooltip.wawla.tooltype.crowbar=Crowbar
+tooltip.tile.ownedBy=Owned by:

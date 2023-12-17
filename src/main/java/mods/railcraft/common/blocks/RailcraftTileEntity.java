@@ -15,16 +15,22 @@ import java.util.UUID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 import mods.railcraft.api.core.INetworkedObject;
 import mods.railcraft.api.core.IOwnable;
+import mods.railcraft.api.core.IRailCraftWailaProvider;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
@@ -34,7 +40,8 @@ import mods.railcraft.common.util.network.PacketBuilder;
 import mods.railcraft.common.util.network.PacketTileEntity;
 import mods.railcraft.common.util.network.RailcraftPacket;
 
-public abstract class RailcraftTileEntity extends TileEntity implements INetworkedObject, IOwnable {
+public abstract class RailcraftTileEntity extends TileEntity
+        implements INetworkedObject, IOwnable, IRailCraftWailaProvider {
 
     protected final AdjacentTileCache tileCache = new AdjacentTileCache(this);
     protected int clock = MiscTools.getRand().nextInt();
@@ -184,4 +191,24 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
     }
 
     public abstract short getId();
+
+    @Override
+    public void getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
+            IWailaConfigHandler config) {
+        NBTTagCompound tag = accessor.getNBTData();
+        if (tag.hasKey("owner")) currenttip.add(
+                StatCollector.translateToLocal("tooltip.tile.ownedBy") + " "
+                        + EnumChatFormatting.YELLOW
+                        + tag.getString("owner"));
+
+    }
+
+    @Override
+    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
+            int z) {
+
+        // String imprintedWith = getTypeForDisplay();
+        // if (imprintedWith != "") tag.setString("ImprintedWith", imprintedWith);
+
+    }
 }
