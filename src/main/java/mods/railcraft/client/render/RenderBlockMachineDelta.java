@@ -17,6 +17,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import mods.railcraft.api.electricity.GridTools;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
@@ -32,6 +34,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@ThreadSafeISBRH(perThread = false)
 public class RenderBlockMachineDelta extends BlockRenderer {
 
     public RenderBlockMachineDelta() {
@@ -41,6 +44,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
         addBlockRenderer(EnumMachineDelta.CAGE.ordinal(), new CageRenderer());
     }
 
+    @ThreadSafeISBRH(perThread = false)
     private class WireRenderer extends DefaultRenderer {
 
         private final RenderBlockFrame renderFrame;
@@ -240,6 +244,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
         }
     }
 
+    @ThreadSafeISBRH(perThread = false)
     private class CageRenderer extends DefaultRenderer {
 
         @Override

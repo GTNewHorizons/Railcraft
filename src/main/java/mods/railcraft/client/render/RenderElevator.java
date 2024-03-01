@@ -11,9 +11,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 
+@ThreadSafeISBRH(perThread = false)
 public class RenderElevator implements ISimpleBlockRenderingHandler {
 
     @Override

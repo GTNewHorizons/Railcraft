@@ -7,6 +7,7 @@ package mods.railcraft.client.render;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -15,15 +16,18 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
+import com.gtnewhorizons.angelica.api.ThreadSafeISBRH;
+
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@ThreadSafeISBRH(perThread = false)
 public class BlockRenderer implements ISimpleBlockRenderingHandler, IInvRenderer {
 
-    private final Map<Integer, IBlockRenderer> blockRenderers = new HashMap<Integer, IBlockRenderer>();
+    private final Map<Integer, IBlockRenderer> blockRenderers = new ConcurrentHashMap<>();
     private final Map<Integer, IInvRenderer> itemRenderers = new HashMap<Integer, IInvRenderer>();
     private ICombinedRenderer defaultRenderer = new DefaultRenderer();
     private final ItemRenderer itemRenderer;

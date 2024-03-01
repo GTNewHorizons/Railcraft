@@ -10,4 +10,7 @@ dependencies {
 
     runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.4:dev") // for Thaumcraft
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
+
+    compileOnlyApi("com.github.GTNewHorizons:Angelica:1.0.0-alpha31:api")
+
 }
