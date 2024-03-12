@@ -8,25 +8,18 @@ package mods.railcraft.common.util.network;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
-import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 
 public class PacketCurrentItemNBT extends RailcraftPacket {
 
     private static final Marker SECURITY_MARKER = MarkerManager.getMarker("SuspiciousPackets");
-    private static final Set<String> ALLOWED_TAGS = new HashSet<>(Arrays.asList("title", "author", "pages", "dest"));
-
     private final EntityPlayer player;
     private final ItemStack currentItem;
 
@@ -65,13 +58,6 @@ public class PacketCurrentItemNBT extends RailcraftPacket {
             if (!eItem.validateNBT(currentItem, stack.getTagCompound())) {
                 Game.LOGGER.warn(SECURITY_MARKER, "Player {}: Item NBT not valid!", player.getGameProfile());
                 return;
-            }
-
-            NBTTagCompound nbt = InvTools.getItemData(stack);
-            for (String tag : (Set<String>) nbt.func_150296_c()) {
-                if (!ALLOWED_TAGS.contains(tag)) {
-                    return;
-                }
             }
 
             currentItem.setTagCompound(stack.getTagCompound());
