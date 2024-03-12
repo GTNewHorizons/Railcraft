@@ -5,12 +5,12 @@ dependencies {
     implementation("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
     implementation("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     compileOnly("curse.maven:cofh-lib-220333:2388748")
-    compileOnly("com.github.GTNewHorizons:ForestryMC:4.8.4:dev") { transitive = false }
+    compileOnly("com.github.GTNewHorizons:ForestryMC:4.8.7:dev") { transitive = false }
     compileOnly("curse.maven:craftguide-75557:2459320")
 
     runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.4:dev") // for Thaumcraft
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.21-GTNH:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.24-GTNH:dev")
 
-    compileOnlyApi("com.github.GTNewHorizons:Angelica:1.0.0-alpha31:api")
+    compileOnlyApi("com.github.GTNewHorizons:Angelica:1.0.0-alpha34:api")
 
 }
