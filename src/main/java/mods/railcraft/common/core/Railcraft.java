@@ -71,7 +71,7 @@ import mods.railcraft.common.util.network.PacketHandler;
 public final class Railcraft {
 
     public static final String MOD_ID = "Railcraft";
-    public static final String VERSION = "GRADLETOKEN_VERSION";
+    public static final String VERSION = Tags.VERSION;
     public static final String MC_VERSION = "[1.7.10,1.8)";
     public static final RootCommand rootCommand = new RootCommand();
 
