@@ -93,7 +93,9 @@ public class CokeOvenCraftingManager implements ICokeOvenCraftingManager {
             if (InvTools.isItemEqual(input, r.input, true, r.matchNBT, false)) return r;
         }
         for (CokeOvenRecipe r : recipes) {
-            if (InvTools.isItemEqual(input, r.input, r.matchDamage /*not a damage, but a subtype*/, r.matchNBT, false)) return r;
+            if (InvTools
+                    .isItemEqual(input, r.input, r.matchDamage /* not a damage, but a subtype */, r.matchNBT, false))
+                return r;
         }
         return null;
     }

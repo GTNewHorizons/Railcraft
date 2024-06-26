@@ -121,7 +121,8 @@ public class TileItemLoader extends TileLoaderItemBase {
                         numMoved = 0;
                     }
 
-                    InvFilteredHelper helper = InvFilteredHelper.filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
+                    InvFilteredHelper helper = InvFilteredHelper
+                            .filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
 
                     if (numMoved < helper.countItems(getItemFilters())) {
                         ItemStack moved = helper.moveOneItem(chests, cartInv);
@@ -151,7 +152,8 @@ public class TileItemLoader extends TileLoaderItemBase {
                         continue;
                     }
 
-                    InvFilteredHelper helper = InvFilteredHelper.filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
+                    InvFilteredHelper helper = InvFilteredHelper
+                            .filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
 
                     int stocked = helper.countItems(cartInv);
                     if (stocked < helper.countItems(getItemFilters())) {
@@ -173,7 +175,8 @@ public class TileItemLoader extends TileLoaderItemBase {
                         continue;
                     }
 
-                    InvFilteredHelper helper = InvFilteredHelper.filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
+                    InvFilteredHelper helper = InvFilteredHelper
+                            .filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter);
 
                     int stocked = helper.countItems(chests);
                     if (stocked > helper.countItems(getItemFilters())) {
@@ -185,7 +188,8 @@ public class TileItemLoader extends TileLoaderItemBase {
                     }
                 }
                 if (!movedItemCart) {
-                    movedItemCart = InvFilteredHelper.filteredByStacks(isMatchByNBT(), isMatchByMetadata(), getItemFilters().getContents())
+                    movedItemCart = InvFilteredHelper
+                            .filteredByStacks(isMatchByNBT(), isMatchByMetadata(), getItemFilters().getContents())
                             .invert().moveOneItem(chests, cartInv) != null;
                 }
                 break;
@@ -269,8 +273,8 @@ public class TileItemLoader extends TileLoaderItemBase {
             hasFilter = true;
             Short numMoved = transferredItems.get(filter);
 
-            if (numMoved == null || numMoved
-                    < InvFilteredHelper.filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter).countItems(getItemFilters())) {
+            if (numMoved == null || numMoved < InvFilteredHelper
+                    .filteredByStacks(isMatchByNBT(), isMatchByMetadata(), filter).countItems(getItemFilters())) {
                 return false;
             }
         }

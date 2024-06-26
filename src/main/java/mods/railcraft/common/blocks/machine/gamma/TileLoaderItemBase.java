@@ -42,8 +42,8 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
             0,
             MatchNBTMode.values());
     private final MultiButtonController<MatchMetadataMode> matchMetadataController = new MultiButtonController<>(
-        0,
-        MatchMetadataMode.values());
+            0,
+            MatchMetadataMode.values());
     protected boolean movedItemCart = false;
 
     public MultiButtonController<EnumTransferMode> getTransferModeController() {
@@ -132,7 +132,8 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
     }
 
     public void setMatchByMetadata(boolean matchByMetadata) {
-        this.matchMetadataController.setCurrentState(matchByMetadata ? MatchMetadataMode.MATCH_METADATA : MatchMetadataMode.IGNORE_METADATA);
+        this.matchMetadataController.setCurrentState(
+                matchByMetadata ? MatchMetadataMode.MATCH_METADATA : MatchMetadataMode.IGNORE_METADATA);
     }
 
     @Override

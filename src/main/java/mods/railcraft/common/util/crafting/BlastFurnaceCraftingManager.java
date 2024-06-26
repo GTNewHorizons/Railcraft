@@ -132,7 +132,9 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
             if (InvTools.isItemEqual(input, r.input, true, r.matchNBT, false)) return r;
         }
         for (BlastFurnaceRecipe r : recipes) {
-            if (InvTools.isItemEqual(input, r.input, r.matchDamage /*not a damage, but a subtype*/, r.matchNBT, false)) return r;
+            if (InvTools
+                    .isItemEqual(input, r.input, r.matchDamage /* not a damage, but a subtype */, r.matchNBT, false))
+                return r;
         }
         return null;
     }

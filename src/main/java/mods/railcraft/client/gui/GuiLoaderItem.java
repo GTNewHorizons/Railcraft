@@ -5,6 +5,8 @@
  */
 package mods.railcraft.client.gui;
 
+import net.minecraft.entity.player.InventoryPlayer;
+
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.client.gui.buttons.GuiOverlayMultiButton;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
@@ -17,9 +19,9 @@ import mods.railcraft.common.gui.containers.ContainerItemLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketBuilder;
-import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiLoaderItem extends TileGui {
+
     private final String FILTER_LABEL = LocalizationPlugin.translate("railcraft.gui.filters");
     private final String CART_FILTER_LABEL = LocalizationPlugin.translate("railcraft.gui.filters.carts");
     private final String BUFFER_LABEL = LocalizationPlugin.translate("railcraft.gui.item.loader.buffer");
@@ -31,9 +33,9 @@ public class GuiLoaderItem extends TileGui {
 
     public GuiLoaderItem(InventoryPlayer inv, TileLoaderItemBase tile) {
         super(
-            tile,
-            new ContainerItemLoader(inv, tile),
-            RailcraftConstants.GUI_TEXTURE_FOLDER + "new/gui_item_loader.png");
+                tile,
+                new ContainerItemLoader(inv, tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "new/gui_item_loader.png");
         this.tile = tile;
 
         ySize = 182;
@@ -47,11 +49,17 @@ public class GuiLoaderItem extends TileGui {
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
         buttonList.add(
-            transferMode = new GuiMultiButton<>(0, w + 62, h + 45, 52, tile.getTransferModeController().copy()));
+                transferMode = new GuiMultiButton<>(0, w + 62, h + 45, 52, tile.getTransferModeController().copy()));
         buttonList.add(
-            redstoneMode = new GuiMultiButton<>(0, w + 62, h + 62, 52, tile.getRedstoneModeController().copy()));
-        buttonList.add(matchMetadataMode = new GuiOverlayMultiButton<>(0, w + 8, h + 81, tile.getMatchMetadataController().copy()));
-        buttonList.add(matchNBTMode = new GuiOverlayMultiButton<>(0, w + 8 + 16, h + 81, tile.getMatchNbtController().copy()));
+                redstoneMode = new GuiMultiButton<>(0, w + 62, h + 62, 52, tile.getRedstoneModeController().copy()));
+        buttonList.add(
+                matchMetadataMode = new GuiOverlayMultiButton<>(
+                        0,
+                        w + 8,
+                        h + 81,
+                        tile.getMatchMetadataController().copy()));
+        buttonList.add(
+                matchNBTMode = new GuiOverlayMultiButton<>(0, w + 8 + 16, h + 81, tile.getMatchNbtController().copy()));
     }
 
     @Override
