@@ -11,11 +11,11 @@ package mods.railcraft.common.gui.buttons;
  */
 public interface IButtonTextureSet {
 
-    public int getX();
+    int getX();
 
-    public int getY();
+    int getY();
 
-    public int getHeight();
+    int getHeight();
 
-    public int getWidth();
+    int getWidth();
 }

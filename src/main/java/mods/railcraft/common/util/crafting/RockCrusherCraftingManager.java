@@ -121,10 +121,12 @@ public class RockCrusherCraftingManager implements IRockCrusherCraftingManager {
         if (input == null) return null;
         for (CrusherRecipe r : recipes) {
             if (!r.matchDamage || InvTools.isWildcard(r.input)) continue;
-            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT)) return r;
+            if (InvTools.isItemEqual(input, r.input, true, r.matchNBT, false)) return r;
         }
         for (CrusherRecipe r : recipes) {
-            if (InvTools.isItemEqual(input, r.input, r.matchDamage, r.matchNBT)) return r;
+            if (InvTools
+                    .isItemEqual(input, r.input, r.matchDamage /* not a damage, but a subtype */, r.matchNBT, false))
+                return r;
         }
         return null;
     }

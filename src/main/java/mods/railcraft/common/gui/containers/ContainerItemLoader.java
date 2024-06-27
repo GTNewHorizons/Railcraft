@@ -37,12 +37,12 @@ public class ContainerItemLoader extends RailcraftContainer {
 
         for (int i = 0; i < 3; i++) {
             for (int k = 0; k < 9; k++) {
-                addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));
+                addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 100 + i * 18));
             }
         }
 
         for (int j = 0; j < 9; j++) {
-            addSlot(new Slot(inventoryplayer, j, 8 + j * 18, 142));
+            addSlot(new Slot(inventoryplayer, j, 8 + j * 18, 158));
         }
     }
 }

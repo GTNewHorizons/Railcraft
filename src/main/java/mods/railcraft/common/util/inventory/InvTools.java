@@ -7,7 +7,6 @@ package mods.railcraft.common.util.inventory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,7 +37,6 @@ import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
-import mods.railcraft.common.util.inventory.filters.InvertedStackFilter;
 import mods.railcraft.common.util.inventory.filters.StackFilter;
 import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
 import mods.railcraft.common.util.inventory.wrappers.ChestWrapper;
@@ -378,7 +376,7 @@ public abstract class InvTools {
         return countItems(inv, new ArrayStackFilter(filters));
     }
 
-    public static int countItems(Collection<IInventory> inventories, ItemStack... filter) {
+    public static int countItems(Collection<IInventory> inventories, IStackFilter filter) {
         int count = 0;
         for (IInventory inv : inventories) {
             count += InvTools.countItems(inv, filter);
@@ -461,19 +459,6 @@ public abstract class InvTools {
     /**
      * Attempts to move one item from a collection of inventories.
      *
-     * @param filters ItemStack to match against
-     */
-    public static ItemStack moveOneItem(Collection<IInventory> sources, IInventory dest, ItemStack... filters) {
-        for (IInventory inv : sources) {
-            ItemStack moved = InvTools.moveOneItem(inv, dest, filters);
-            if (moved != null) return moved;
-        }
-        return null;
-    }
-
-    /**
-     * Attempts to move one item from a collection of inventories.
-     *
      * @param filter an IStackFilter to match against
      */
     public static ItemStack moveOneItem(Collection<IInventory> sources, IInventory dest, IStackFilter filter) {
@@ -492,41 +477,6 @@ public abstract class InvTools {
     public static ItemStack moveOneItem(IInventory source, Collection<IInventory> destinations, ItemStack... filters) {
         for (IInventory dest : destinations) {
             ItemStack moved = InvTools.moveOneItem(source, dest, filters);
-            if (moved != null) return moved;
-        }
-        return null;
-    }
-
-    /**
-     * Attempts to move a single item from one inventory to another.
-     * <p/>
-     * Will not move any items in the filter.
-     *
-     * @param filters an ItemStack[] to exclude
-     * @return null if nothing was moved, the stack moved otherwise
-     */
-    public static ItemStack moveOneItemExcept(IInventory source, IInventory dest, ItemStack... filters) {
-        return moveOneItem(source, dest, new InvertedStackFilter(new ArrayStackFilter(filters)));
-    }
-
-    /**
-     * Attempts to move one item from a collection of inventories.
-     */
-    public static ItemStack moveOneItemExcept(Collection<IInventory> sources, IInventory dest, ItemStack... filters) {
-        for (IInventory inv : sources) {
-            ItemStack moved = InvTools.moveOneItemExcept(inv, dest, filters);
-            if (moved != null) return moved;
-        }
-        return null;
-    }
-
-    /**
-     * Attempts to move one item to a collection of inventories.
-     */
-    public static ItemStack moveOneItemExcept(IInventory source, Collection<IInventory> destinations,
-            ItemStack... filters) {
-        for (IInventory dest : destinations) {
-            ItemStack moved = InvTools.moveOneItemExcept(source, dest, filters);
             if (moved != null) return moved;
         }
         return null;
@@ -591,7 +541,7 @@ public abstract class InvTools {
      * @return True if equal
      */
     public static boolean isItemEqual(ItemStack a, ItemStack b) {
-        return isItemEqual(a, b, true, true);
+        return isItemEqual(a, b, true, true, false);
     }
 
     /**
@@ -602,23 +552,23 @@ public abstract class InvTools {
      * @return True if equal
      */
     public static boolean isItemEqualIgnoreNBT(ItemStack a, ItemStack b) {
-        return isItemEqual(a, b, true, false);
+        return isItemEqual(a, b, true, false, false);
     }
 
-    public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchDamage,
-            final boolean matchNBT) {
+    public static boolean isItemEqual(final ItemStack a, final ItemStack b, boolean matchSubtypes,
+            final boolean matchNBT, boolean matchDamage) {
         if (a == null || b == null) return false;
         if (a.getItem() != b.getItem()) return false;
         if (matchNBT && !ItemStack.areItemStackTagsEqual(a, b)) return false;
-        if (matchDamage && a.getHasSubtypes()) {
+        if (matchDamage || (matchSubtypes && a.getHasSubtypes())) {
             if (isWildcard(a) || isWildcard(b)) return true;
-            if (a.getItemDamage() != b.getItemDamage()) return false;
+            return a.getItemDamage() == b.getItemDamage();
         }
         return true;
     }
 
-    public static boolean isCartItemEqual(final ItemStack a, final ItemStack b, final boolean matchDamage) {
-        if (!isItemEqual(a, b, matchDamage, false)) return false;
+    public static boolean isCartItemEqual(final ItemStack a, final ItemStack b, final boolean matchSubtypes) {
+        if (!isItemEqual(a, b, matchSubtypes, false, false)) return false;
         if (a.hasDisplayName() && !a.getDisplayName().equals(b.getDisplayName())) return false;
         return true;
     }
@@ -718,7 +668,7 @@ public abstract class InvTools {
             }
         }
 
-        List<ItemStack> list = new LinkedList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
         for (ItemStack stack : output.getContents()) {
             if (stack != null) list.add(stack);
         }

@@ -24,9 +24,9 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
  * @author CovertJaguar <http://railcraft.info/wiki/info:license>
  */
 @SideOnly(Side.CLIENT)
-public class GuiMultiButton extends GuiBetterButton {
+public class GuiMultiButton<T extends IMultiButtonState> extends GuiBetterButton {
 
-    private final MultiButtonController control;
+    private final MultiButtonController<? extends T> control;
     public boolean canChange = true;
 
     public GuiMultiButton(int id, int x, int y, int width, MultiButtonController control) {
@@ -104,7 +104,7 @@ public class GuiMultiButton extends GuiBetterButton {
         return pressed;
     }
 
-    public MultiButtonController getController() {
+    public MultiButtonController<? extends T> getController() {
         return control;
     }
 

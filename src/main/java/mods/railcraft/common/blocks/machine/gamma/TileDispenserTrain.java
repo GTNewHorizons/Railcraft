@@ -94,7 +94,7 @@ public class TileDispenserTrain extends TileDispenserCart {
             if (stack == null) return false;
             if (InvTools.isItemEqual(stack, original)) return true;
             if (stack.getItem() instanceof ItemCartAnchor || stack.getItem() instanceof ItemLocomotive)
-                return InvTools.isItemEqual(stack, original, false, false);
+                return InvTools.isItemEqual(stack, original, false, false, false);
             return false;
         }
     }
