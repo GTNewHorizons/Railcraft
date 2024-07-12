@@ -555,8 +555,12 @@ public abstract class InvTools {
         return isItemEqual(a, b, true, false, false);
     }
 
-    public static boolean isItemEqual(final ItemStack a, final ItemStack b, boolean matchSubtypes,
-            final boolean matchNBT, boolean matchDamage) {
+    public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchSubtypes,
+            final boolean matchNBT) {
+        return isItemEqual(a, b, matchSubtypes, matchNBT, false);
+    }
+    public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchSubtypes,
+            final boolean matchNBT, final boolean matchDamage) {
         if (a == null || b == null) return false;
         if (a.getItem() != b.getItem()) return false;
         if (matchNBT && !ItemStack.areItemStackTagsEqual(a, b)) return false;
