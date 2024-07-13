@@ -559,6 +559,7 @@ public abstract class InvTools {
             final boolean matchNBT) {
         return isItemEqual(a, b, matchSubtypes, matchNBT, false);
     }
+
     public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchSubtypes,
             final boolean matchNBT, final boolean matchDamage) {
         if (a == null || b == null) return false;
