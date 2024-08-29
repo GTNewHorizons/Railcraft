@@ -5,6 +5,9 @@
  */
 package mods.railcraft.common.worldgen;
 
+import static com.kuba6000.mobsinfo.api.VillagerTrade.create;
+import static com.kuba6000.mobsinfo.api.VillagerTrade.createItem;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -134,8 +137,11 @@ public class VillagerTradeHandler implements IVillageTradeHandler, IVillagerInfo
                 ((MerchantRecipeList) recipeList).add(new MerchantRecipe(buyStack1, buyStack2, sellStack));
             }
         } else {
-            VillagerTrade trade = VillagerTrade.create(prepareStack(offers[0]), prepareStack(sale));
-            if (offers.length >= 2) trade.withSecondaryInput(prepareStack(offers[1]));
+            VillagerTrade trade = create(
+                    createItem(prepareStack(offers[0])).withPossibleSizes(offers[0].min, offers[0].max),
+                    createItem(prepareStack(sale)).withPossibleSizes(sale.min, sale.max));
+            if (offers.length >= 2) trade.withSecondaryInput(
+                    createItem(prepareStack(offers[1])).withPossibleSizes(offers[1].min, offers[1].max));
             ((ArrayList<VillagerTrade>) recipeList).add(trade.withChance(chance));
         }
     }
