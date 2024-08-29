@@ -5,7 +5,10 @@
  */
 package mods.railcraft.common.worldgen;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
@@ -17,7 +20,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
+import com.kuba6000.mobsinfo.api.IVillagerInfoProvider;
+import com.kuba6000.mobsinfo.api.VillagerTrade;
+
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
 import mods.railcraft.common.blocks.signals.ItemSignalTuner;
@@ -30,7 +37,8 @@ import mods.railcraft.common.items.ItemMagnifyingGlass;
 import mods.railcraft.common.items.ItemWhistleTuner;
 import mods.railcraft.common.items.RailcraftToolItems;
 
-public class VillagerTradeHandler implements IVillageTradeHandler {
+@Optional.Interface(iface = "com.kuba6000.mobsinfo.api.IVillagerInfoProvider", modid = "mobsinfo")
+public class VillagerTradeHandler implements IVillageTradeHandler, IVillagerInfoProvider {
 
     private float baseChance;
 
@@ -40,6 +48,17 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
         baseChance = ObfuscationReflectionHelper
                 .<Float, EntityVillager>getPrivateValue(EntityVillager.class, villager, "field_82191_bN");
 
+        addRecipes(recipeList, rand);
+    }
+
+    @Optional.Method(modid = "mobsinfo")
+    @Override
+    public void provideTrades(@Nonnull EntityVillager villager, int profession,
+            @Nonnull ArrayList<VillagerTrade> trades) {
+        addRecipes(trades, null);
+    }
+
+    protected void addRecipes(Object recipeList, Random rand) {
         addTrade(recipeList, rand, 0.7F, new Offer(Items.coal, 16, 24), new Offer(Items.emerald));
         addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald), new Offer(Items.coal, 24, 32));
 
@@ -81,7 +100,7 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
         addTrade(recipeList, rand, 0.5F, new Offer(RailcraftToolItems.getOveralls()), new Offer(Items.emerald, 2, 4));
     }
 
-    private class Offer {
+    private static class Offer {
 
         public final Object obj;
         public final int min, max;
@@ -101,17 +120,23 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
         }
     }
 
-    private void addTrade(MerchantRecipeList recipeList, Random rand, float chance, Offer sale, Offer... offers) {
-        if (offers.length <= 0 || sale.obj == null) return;
+    private void addTrade(Object recipeList, Random rand, float chance, Offer sale, Offer... offers) {
+        if (offers.length == 0 || sale.obj == null) return;
         for (Offer offer : offers) {
             if (offer.obj == null) return;
         }
-        if (rand.nextFloat() < adjustProbability(chance)) {
-            ItemStack sellStack = prepareStack(rand, sale);
-            ItemStack buyStack1 = prepareStack(rand, offers[0]);
-            ItemStack buyStack2 = null;
-            if (offers.length >= 2) buyStack2 = prepareStack(rand, offers[1]);
-            recipeList.add(new MerchantRecipe(buyStack1, buyStack2, sellStack));
+        if (recipeList instanceof MerchantRecipeList) {
+            if (rand.nextFloat() < adjustProbability(chance)) {
+                ItemStack sellStack = prepareStack(rand, sale);
+                ItemStack buyStack1 = prepareStack(rand, offers[0]);
+                ItemStack buyStack2 = null;
+                if (offers.length >= 2) buyStack2 = prepareStack(rand, offers[1]);
+                ((MerchantRecipeList) recipeList).add(new MerchantRecipe(buyStack1, buyStack2, sellStack));
+            }
+        } else {
+            VillagerTrade trade = VillagerTrade.create(prepareStack(offers[0]), prepareStack(sale));
+            if (offers.length >= 2) trade.withSecondaryInput(prepareStack(offers[1]));
+            ((ArrayList<VillagerTrade>) recipeList).add(trade.withChance(chance));
         }
     }
 
@@ -123,6 +148,17 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
         }
         if (offer.obj instanceof Item) return new ItemStack((Item) offer.obj, stackSize(rand, offer.min, offer.max));
         if (offer.obj instanceof Block) return new ItemStack((Block) offer.obj, stackSize(rand, offer.min, offer.max));
+        throw new IllegalArgumentException("Unrecongnized object passed to villager trade setup");
+    }
+
+    private ItemStack prepareStack(Offer offer) throws IllegalArgumentException {
+        if (offer.obj instanceof ItemStack) {
+            ItemStack stack = (ItemStack) offer.obj;
+            stack.stackSize = 1;
+            return stack;
+        }
+        if (offer.obj instanceof Item) return new ItemStack((Item) offer.obj);
+        if (offer.obj instanceof Block) return new ItemStack((Block) offer.obj);
         throw new IllegalArgumentException("Unrecongnized object passed to villager trade setup");
     }
 
