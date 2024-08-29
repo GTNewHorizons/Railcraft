@@ -7,7 +7,7 @@ dependencies {
     implementation("curse.maven:cofh-lib-220333:2388748")
     compileOnly("com.github.GTNewHorizons:ForestryMC:4.9.7:dev") { transitive = false }
     compileOnly("curse.maven:craftguide-75557:2459320")
-    compileOnly("com.github.GTNewHorizons:Mobs-Info:0.4.4-GTNH-pre:dev")
+    compileOnly("com.github.GTNewHorizons:Mobs-Info:0.4.5-GTNH:dev")
 
     runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.4:dev") // for Thaumcraft
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.6.14-GTNH:dev")
