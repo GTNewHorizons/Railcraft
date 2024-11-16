@@ -19,7 +19,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.energy.IEnergyConnection;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.rf.RedstoneFluxPlugin;
@@ -29,7 +31,7 @@ import mods.railcraft.common.util.misc.Game;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @Optional.InterfaceList(
-        value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection", modid = "CoFHAPI|energy"), })
+    value = { @Optional.Interface(iface = "cofh.api.energy.IEnergyConnection", modid = "CoFHAPI|energy"), })
 public abstract class TileEngine extends TileMachineBase implements IEnergyConnection {
 
     public float currentOutput = 0;
@@ -155,12 +157,24 @@ public abstract class TileEngine extends TileMachineBase implements IEnergyConne
     @Override
     public boolean blockActivated(EntityPlayer player, int side) {
         ItemStack current = player.inventory.getCurrentItem();
-        if (current != null) if (current.getItem() instanceof IToolWrench) {
+
+        if (current == null) return super.blockActivated(player, side);
+
+        // Detect if BC loaded to avoid crash
+        if (Loader.isModLoaded("buildcraft") && current.getItem() instanceof IToolWrench) {
             IToolWrench wrench = (IToolWrench) current.getItem();
             if (wrench.canWrench(player, xCoord, yCoord, zCoord))
                 if (Game.isHost(worldObj) && getEnergyStage() == EnergyStage.OVERHEAT) {
                     resetEnergyStage();
                     wrench.wrenchUsed(player, xCoord, yCoord, zCoord);
+                    return true;
+                }
+        } else if (current.getItem() instanceof IToolCrowbar) {// If BC not loaded, fall back to RC crowbar.
+            IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
+            if (crowbar.canWhack(player, current, xCoord, yCoord, zCoord))
+                if (Game.isHost(worldObj) && getEnergyStage() == EnergyStage.OVERHEAT) {
+                    resetEnergyStage();
+                    crowbar.onWhack(player, current, xCoord, yCoord, zCoord);
                     return true;
                 }
         }
