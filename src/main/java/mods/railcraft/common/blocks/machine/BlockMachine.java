@@ -48,7 +48,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     private final int[] metaOpacity;
 
     public BlockMachine(int renderId, IMachineProxy proxy, boolean opaque, int[] metaOpacity) {
-        super(Material.rock);
+        super(Material.ground);
         setResistance(4.5F);
         setHardness(2.0F);
         setStepSound(soundTypeStone);
