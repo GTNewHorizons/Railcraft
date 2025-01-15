@@ -14,14 +14,12 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -164,23 +162,6 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).isSideSolid(side);
         return true;
-    }
-
-    @Override
-    public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int l) {}
-
-    @Override
-    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
-        player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
-        player.addExhaustion(0.025F);
-        if (Game.isHost(world) && !player.capabilities.isCreativeMode)
-            if (canSilkHarvest(world, player, x, y, z, 0) && EnchantmentHelper.getSilkTouchModifier(player)) {
-                List<ItemStack> drops = getBlockDroppedSilkTouch(world, x, y, z, 0, 0);
-                for (ItemStack stack : drops) {
-                    dropBlockAsItem(world, x, y, z, stack);
-                }
-            } else dropBlockAsItem(world, x, y, z, 0, 0);
-        return world.setBlockToAir(x, y, z);
     }
 
     @Override
