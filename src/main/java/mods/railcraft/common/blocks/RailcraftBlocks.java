@@ -103,14 +103,19 @@ public class RailcraftBlocks {
             for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
                 switch (type) {
                     case FEED_STATION:
-                    case TANK_WATER:
                         blockMachineAlpha.setHarvestLevel("axe", 1, type.ordinal());
+                        break;
+                    case TANK_WATER:
+                        blockMachineAlpha.setHarvestLevel("axe", 0, type.ordinal());
                         // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     case WORLD_ANCHOR:
                     case PERSONAL_ANCHOR:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
                         // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        break;
+                    case COKE_OVEN:
+                        blockMachineAlpha.setHarvestLevel("pickaxe", 0, type.ordinal());
                         break;
                     default:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());
