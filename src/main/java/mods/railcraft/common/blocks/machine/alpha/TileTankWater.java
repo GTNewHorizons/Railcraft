@@ -93,7 +93,7 @@ public class TileTankWater extends TileTank implements ISidedInventory {
     private IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1);
 
     public TileTankWater() {
-        super("gui.tank.water", 2, patterns);
+        super("railcraft.gui.tank.water", 2, patterns);
         tank = new FilteredTank(TANK_CAPACITY, Fluids.WATER.get(), this);
         tankManager.add(tank);
     }
