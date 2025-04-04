@@ -14,4 +14,5 @@ dependencies {
 
     compileOnlyApi("com.github.GTNewHorizons:Angelica:1.0.0-beta40:api")
 
+    compileOnly("org.jetbrains:annotations:26.0.2")
 }

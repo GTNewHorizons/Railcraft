@@ -15,11 +15,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import org.jetbrains.annotations.NotNull;
+
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.EntityItemFireproof;
+import mods.railcraft.common.items.firestone.IItemFirestoneBurning;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.util.inventory.InvTools;
 
-public class ItemOre extends ItemBlock {
+public class ItemOre extends ItemBlock implements IItemFirestoneBurning {
 
     public ItemOre(Block block) {
         super(block);
@@ -86,5 +90,11 @@ public class ItemOre extends ItemBlock {
         entity.motionZ = location.motionZ;
         entity.delayBeforeCanPickup = 10;
         return entity;
+    }
+
+    @Override
+    public boolean shouldBurn(@NotNull ItemStack itemStack) {
+        boolean isStackEqual = InvTools.isStackEqualToBlock(itemStack, BlockOre.getBlock());
+        return isStackEqual && itemStack.getItemDamage() == EnumOre.FIRESTONE.ordinal();
     }
 }
