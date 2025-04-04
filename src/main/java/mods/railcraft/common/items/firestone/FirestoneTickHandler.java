@@ -17,8 +17,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
-import mods.railcraft.common.blocks.ore.BlockOre;
-import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -33,11 +31,11 @@ public class FirestoneTickHandler {
 
     private boolean shouldBurn(ItemStack stack) {
         if (stack == null || stack.getItem() == null) return false;
-        if (stack.getItem() == ItemFirestoneRaw.item) return true;
-        if (stack.getItem() == ItemFirestoneCut.item) return true;
-        if (stack.getItem() == ItemFirestoneCracked.item) return true;
-        return InvTools.isStackEqualToBlock(stack, BlockOre.getBlock())
-                && stack.getItemDamage() == EnumOre.FIRESTONE.ordinal();
+        if (stack.getItem() instanceof IItemFirestoneBurning) {
+            IItemFirestoneBurning burning = (IItemFirestoneBurning) stack.getItem();
+            return burning.shouldBurn(stack);
+        }
+        return false;
     }
 
     @SubscribeEvent
