@@ -41,9 +41,13 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import gregtech.api.hazards.Hazard;
+import gregtech.api.hazards.HazardProtection;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.core.ITextureLoader;
+import mods.railcraft.api.core.items.ISafetyPants;
 import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler;
 import mods.railcraft.api.tracks.ITrackBlocksMovement;
 import mods.railcraft.api.tracks.ITrackCustomShape;
 import mods.railcraft.api.tracks.ITrackEmitter;
@@ -54,10 +58,10 @@ import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.items.ItemOveralls;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
@@ -231,17 +235,39 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
         if (!(track instanceof IElectricGrid)) return;
 
         IElectricGrid.ChargeHandler chargeHandler = ((IElectricGrid) track).getChargeHandler();
-        if (chargeHandler.getCharge() > 2000)
-            if (entity instanceof EntityPlayer && ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
-                if (!((EntityPlayer) entity).capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
-                    EntityPlayer player = ((EntityPlayer) entity);
-                    ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                    player.setCurrentItemOrArmor(
-                            MiscTools.ArmorSlots.LEGS.ordinal() + 1,
-                            InvTools.damageItem(pants, 1));
+        if (chargeHandler.getCharge() > 2000) {
+            if (entity instanceof EntityPlayer) {
+                EntityPlayer player = ((EntityPlayer) entity);
+                ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+                if (pants == null || pants.getItem() == null) {
+                    try_zap(player, chargeHandler);
+                    return;
                 }
-            } else if (((EntityLivingBase) entity).attackEntityFrom(RailcraftDamageSource.TRACK_ELECTRIC, 2))
-                chargeHandler.removeCharge(2000);
+                if (ModuleManager.isModuleLoaded(Module.GREGTECH)) {
+                    // The current GT Hazard API has no concept of "damage on use", so we'll exclude that here.
+                    // Can be updated if it's more important to have the pants damaged than behaving like a GT hazard.
+                    if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {
+                        return;
+                    }
+                } else {
+                    // should we move up to modern type pattern syntax here for a newer Java version?
+                    if (pants.getItem() instanceof ISafetyPants
+                            && ((ISafetyPants) pants.getItem()).blocksElectricTrackDamage(pants)) {
+                        if (!player.capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
+                            ((ISafetyPants) pants.getItem()).onShock(pants, player);
+                        }
+                        return;
+                    }
+                }
+                try_zap((EntityLivingBase) entity, chargeHandler);
+            } else {
+                try_zap((EntityLivingBase) entity, chargeHandler);
+            }
+        } ;
+    }
+
+    static void try_zap(EntityLivingBase entity, ChargeHandler chargeHandler) {
+        if (entity.attackEntityFrom(RailcraftDamageSource.TRACK_ELECTRIC, 2)) chargeHandler.removeCharge(2000);
     }
 
     @Override
