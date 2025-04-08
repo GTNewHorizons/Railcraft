@@ -219,16 +219,19 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public byte getColorization() {
         return -1;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public byte setColorization(byte aColor) {
         return -1;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public long injectEnergyUnits(ForgeDirection side, long aVoltage, long aAmperage) {
         if (getDemandedEnergy() > aVoltage) {
             energy += aVoltage;
@@ -239,11 +242,13 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public boolean inputEnergyFrom(ForgeDirection side) {
         return this.direction != side;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public boolean outputsEnergyTo(ForgeDirection side) {
         return false;
     }

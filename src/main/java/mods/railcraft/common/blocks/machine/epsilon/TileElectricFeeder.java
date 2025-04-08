@@ -129,16 +129,19 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public byte getColorization() {
         return -1;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public byte setColorization(byte aColor) {
         return -1;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public long injectEnergyUnits(ForgeDirection side, long aVoltage, long aAmperage) {
         if (getDemandedEnergy() > aVoltage) {
             getChargeHandler().addCharge(aVoltage);
@@ -149,11 +152,13 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public boolean inputEnergyFrom(ForgeDirection side) {
         return true;
     }
 
     @Override
+    @Optional.Method(modid = "gregtech")
     public boolean outputsEnergyTo(ForgeDirection side) {
         return false;
     }
