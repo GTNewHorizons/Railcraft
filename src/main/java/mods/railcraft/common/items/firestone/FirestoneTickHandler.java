@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -40,7 +41,7 @@ public class FirestoneTickHandler {
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event) {
-        if (event.side == Side.CLIENT) return;
+        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks) return;
         clock++;
         if (clock % 4 != 0) return;
         EntityPlayer player = (EntityPlayer) event.player;
