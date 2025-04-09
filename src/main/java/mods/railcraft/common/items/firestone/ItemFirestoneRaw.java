@@ -8,6 +8,8 @@ package mods.railcraft.common.items.firestone;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import org.jetbrains.annotations.NotNull;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
@@ -15,7 +17,7 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public class ItemFirestoneRaw extends ItemFirestoneBase {
+public class ItemFirestoneRaw extends ItemFirestoneBase implements IItemFirestoneBurning {
 
     public static Item item;
 
@@ -36,5 +38,10 @@ public class ItemFirestoneRaw extends ItemFirestoneBase {
 
     public ItemFirestoneRaw() {
         setMaxStackSize(9);
+    }
+
+    @Override
+    public boolean shouldBurn(@NotNull ItemStack itemStack) {
+        return true;
     }
 }
