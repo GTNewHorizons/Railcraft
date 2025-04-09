@@ -78,7 +78,7 @@ public class CommandHelpers {
     }
 
     public static void processChildCommand(ICommandSender sender, SubCommand child, String[] args) {
-        if (!sender.canCommandSenderUseCommand(child.getRequiredPermissionLevel(), child.getFullCommandString()))
+        if (!sender.canCommandSenderUseCommand(child.getPermissionLevel(), child.getFullCommandString()))
             throw new WrongUsageException(LocalizationPlugin.translate("command.railcraft.noperms"));
         String[] newargs = new String[args.length - 1];
         System.arraycopy(args, 1, newargs, 0, newargs.length);
@@ -100,7 +100,7 @@ public class CommandHelpers {
                 body,
                 "command.railcraft.aliases",
                 command.getCommandAliases().toString().replace("[", "").replace("]", ""));
-        sendLocalizedChatMessage(sender, body, "command.railcraft.permlevel", command.getRequiredPermissionLevel());
+        sendLocalizedChatMessage(sender, body, "command.railcraft.permlevel", command.getPermissionLevel());
         sendLocalizedChatMessage(
                 sender,
                 body,
