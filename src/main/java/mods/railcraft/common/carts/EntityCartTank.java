@@ -46,15 +46,10 @@ public class EntityCartTank extends EntityCartFiltered
     private final TankManager tankManager = new TankManager();
     private final IInventory invLiquids = new InventoryMapper(this, false);
     private int update = MiscTools.getRand().nextInt();
-    private int DEFAULT_CAPACITY = RailcraftConfig.getTankCartCapacity();
 
     public EntityCartTank(World world) {
         super(world);
-        tankManager.add(new StandardTank(DEFAULT_CAPACITY));
-    }
-    public EntityCartTank(World world, int capacity) {
-        super(world);
-        tankManager.add(new StandardTank(capacity));
+        tankManager.add(new StandardTank(getCapacity()));
     }
 
     public EntityCartTank(World world, double d, double d1, double d2) {
@@ -66,6 +61,10 @@ public class EntityCartTank extends EntityCartFiltered
         prevPosX = d;
         prevPosY = d1;
         prevPosZ = d2;
+    }
+
+    public int getCapacity() {
+        return RailcraftConfig.getTankCartCapacity();
     }
 
     @Override
@@ -138,7 +137,8 @@ public class EntityCartTank extends EntityCartFiltered
             int fluidId = FluidHelper.getFluidId(fluidStack);
             if (fluidId != getFluidId()) setFluidId(fluidId);
             if (fluidStack.amount != getFluidQty()) setFluidQty(fluidStack.amount);
-            if (getTankManager().get(0).getColor() != getFluidColor()) setFluidColor(getTankManager().get(0).getColor());
+            if (getTankManager().get(0).getColor() != getFluidColor())
+                setFluidColor(getTankManager().get(0).getColor());
         } else {
             if (getFluidId() != -1) setFluidId(-1);
             if (getFluidQty() != 0) setFluidQty(0);
@@ -193,7 +193,8 @@ public class EntityCartTank extends EntityCartFiltered
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         if (resource == null) return 0;
         Fluid filterFluid = getFilterFluid();
-        if (filterFluid == null || resource.getFluid() == filterFluid) return getTankManager().get(0).fill(resource, doFill);
+        if (filterFluid == null || resource.getFluid() == filterFluid)
+            return getTankManager().get(0).fill(resource, doFill);
         return 0;
     }
 
@@ -205,7 +206,8 @@ public class EntityCartTank extends EntityCartFiltered
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
         if (resource == null) return null;
-        if (getTankManager().get(0).getFluidType() == resource.getFluid()) return getTankManager().get(0).drain(resource.amount, doDrain);
+        if (getTankManager().get(0).getFluidType() == resource.getFluid())
+            return getTankManager().get(0).drain(resource.amount, doDrain);
         return null;
     }
 
