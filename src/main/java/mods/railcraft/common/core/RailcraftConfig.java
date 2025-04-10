@@ -117,7 +117,6 @@ public class RailcraftConfig {
     private static boolean routingOpsOnly;
     private static boolean machinesRequirePower;
     private static boolean trackingAuraEnabled;
-    public static boolean firestoneIgnitesBlocks;
     private static int minecartTankCapacity = 32;
     private static int minecartTankFillRate = 32;
     private static int launchRailMaxForce;
@@ -366,11 +365,6 @@ public class RailcraftConfig {
                 "trackingAura",
                 true,
                 "Change to '{t}=false' to disable the Tracking Aura");
-        firestoneIgnitesBlocks = get(
-                CAT_TWEAKS_ITEMS + ".firestone",
-                "firestoneIgnitesBlocks",
-                true,
-                "Change to '{t}=false' to disable Firestone items igniting blocks around players");
     }
 
     private static void loadTrackTweaks() {

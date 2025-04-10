@@ -11,8 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import org.jetbrains.annotations.NotNull;
-
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -23,7 +21,7 @@ import mods.railcraft.common.util.misc.MiscTools;
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public class ItemFirestoneCracked extends ItemFirestoneRefined implements IItemFirestoneBurning {
+public class ItemFirestoneCracked extends ItemFirestoneRefined {
 
     public static int HEAT = 100;
     public static Item item;
@@ -69,10 +67,5 @@ public class ItemFirestoneCracked extends ItemFirestoneRefined implements IItemF
         if (stack.getItemDamage() >= stack.getMaxDamage() - 5) tipTag = getUnlocalizedName() + ".tip.empty";
         ToolTip tip = ToolTip.buildToolTip(tipTag);
         if (tip != null) info.addAll(tip.convertToStrings());
-    }
-
-    @Override
-    public boolean shouldBurn(@NotNull ItemStack itemStack) {
-        return true;
     }
 }
