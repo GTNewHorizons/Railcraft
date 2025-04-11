@@ -44,7 +44,12 @@ public class RootCommand extends CommandBase implements IModCommand {
     }
 
     @Override
-    public int getRequiredPermissionLevel() {
+    public final int getRequiredPermissionLevel() {
+        return getPermissionLevel();
+    }
+
+    @Override
+    public int getPermissionLevel() {
         return 0;
     }
 

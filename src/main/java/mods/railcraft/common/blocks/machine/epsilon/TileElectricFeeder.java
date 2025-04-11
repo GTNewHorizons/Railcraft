@@ -10,6 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.common.Optional;
+import gregtech.api.interfaces.tileentity.IEnergyConnected;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
@@ -23,7 +25,11 @@ import mods.railcraft.common.util.misc.Game;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileElectricFeeder extends TileMachineBase implements IElectricGrid, ISinkDelegate {
+@Optional.InterfaceList(
+        value = { @Optional.Interface(
+                iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
+                modid = "gregtech"), })
+public class TileElectricFeeder extends TileMachineBase implements IElectricGrid, ISinkDelegate, IEnergyConnected {
 
     private final ChargeHandler chargeHandler = new ChargeHandler(this, ChargeHandler.ConnectType.BLOCK, 1);
     private TileEntity sinkDelegate;
@@ -120,5 +126,40 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
             Game.logErrorAPI("IndustrialCraft", error);
         }
         return sinkDelegate;
+    }
+
+    @Override
+    @Optional.Method(modid = "gregtech")
+    public byte getColorization() {
+        return -1;
+    }
+
+    @Override
+    @Optional.Method(modid = "gregtech")
+    public byte setColorization(byte aColor) {
+        return -1;
+    }
+
+    @Override
+    @Optional.Method(modid = "gregtech")
+    public long injectEnergyUnits(ForgeDirection side, long aVoltage, long aAmperage) {
+        if (getDemandedEnergy() > aVoltage) {
+            getChargeHandler().addCharge(aVoltage);
+            return 1L;
+        } else {
+            return 0L;
+        }
+    }
+
+    @Override
+    @Optional.Method(modid = "gregtech")
+    public boolean inputEnergyFrom(ForgeDirection side) {
+        return true;
+    }
+
+    @Override
+    @Optional.Method(modid = "gregtech")
+    public boolean outputsEnergyTo(ForgeDirection side) {
+        return false;
     }
 }
