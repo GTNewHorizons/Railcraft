@@ -37,6 +37,7 @@ import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IPaintedCart;
 import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
+import mods.railcraft.api.core.items.ISafetyPants;
 import mods.railcraft.common.blocks.signals.ISecure;
 import mods.railcraft.common.carts.EntityLocomotive.LocoLockButtonState;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -46,7 +47,6 @@ import mods.railcraft.common.gui.buttons.IButtonTextureSet;
 import mods.railcraft.common.gui.buttons.IMultiButtonState;
 import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.items.ItemOveralls;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.items.ItemWhistleTuner;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -463,11 +463,14 @@ public abstract class EntityLocomotive extends CartContainerBase
     }
 
     public int getDamageToRoadKill(EntityLivingBase entity) {
-        if (entity instanceof EntityPlayer) if (ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
-            ItemStack pants = ((EntityPlayer) entity).getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-            ((EntityPlayer) entity)
-                    .setCurrentItemOrArmor(MiscTools.ArmorSlots.LEGS.ordinal() + 1, InvTools.damageItem(pants, 5));
-            return 4;
+        if (entity instanceof EntityPlayer player) {
+            ItemStack legArmor = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+            if (legArmor != null && legArmor.getItem() instanceof ISafetyPants safetyPants) {
+                if (safetyPants.lowersLocomotiveDamage(legArmor)) {
+                    safetyPants.onHitLocomotive(legArmor, (EntityPlayer) entity);
+                    return 4;
+                }
+            }
         }
         return 25;
     }
@@ -478,7 +481,7 @@ public abstract class EntityLocomotive extends CartContainerBase
             if (!entity.isEntityAlive()) return;
             if (entity != this.riddenByEntity
                     && (cartVelocityIsGreaterThan(0.2f) || getEntityData().getBoolean("HighSpeed"))
-                    && MiscTools.isKillabledEntity(entity)) {
+                    && MiscTools.isKillableEntity(entity)) {
                 EntityLivingBase living = (EntityLivingBase) entity;
                 if (RailcraftConfig.locomotiveDamageMobs())
                     living.attackEntityFrom(RailcraftDamageSource.TRAIN, getDamageToRoadKill(living));

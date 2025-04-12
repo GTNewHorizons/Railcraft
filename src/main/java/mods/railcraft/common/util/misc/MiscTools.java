@@ -270,7 +270,7 @@ public abstract class MiscTools {
         return x + side.offsetX == xCoord && y + side.offsetY == yCoord && z + side.offsetZ == zCoord;
     }
 
-    public static boolean isKillabledEntity(Entity entity) {
+    public static boolean isKillableEntity(Entity entity) {
         if (entity.ridingEntity instanceof EntityMinecart) return false;
         if (!(entity instanceof EntityLivingBase)) return false;
         return ((EntityLivingBase) entity).getMaxHealth() < 100;

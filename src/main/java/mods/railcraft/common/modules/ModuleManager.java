@@ -68,7 +68,8 @@ public class ModuleManager {
         EMBLEM(getClass("mods.railcraft.common.modules.ModuleEmblem")),
         MAGIC(ModuleMagic.class),
         ELECTRICITY(ModuleElectricity.class),
-        REDSTONE_FLUX(ModuleRF.class);
+        REDSTONE_FLUX(ModuleRF.class),
+        GREGTECH(ModuleGT5.class);
 
         private final RailcraftModule instance;
 

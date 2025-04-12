@@ -41,9 +41,13 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import gregtech.api.hazards.Hazard;
+import gregtech.api.hazards.HazardProtection;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.core.ITextureLoader;
+import mods.railcraft.api.core.items.ISafetyPants;
 import mods.railcraft.api.electricity.IElectricGrid;
+import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler;
 import mods.railcraft.api.tracks.ITrackBlocksMovement;
 import mods.railcraft.api.tracks.ITrackCustomShape;
 import mods.railcraft.api.tracks.ITrackEmitter;
@@ -54,10 +58,10 @@ import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.items.ItemOveralls;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
-import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
@@ -222,7 +226,7 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         if (Game.isNotHost(world)) return;
 
-        if (!MiscTools.isKillabledEntity(entity)) return;
+        if (!MiscTools.isKillableEntity(entity)) return;
 
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
         if (!(tile instanceof TileTrack)) return;
@@ -231,17 +235,42 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
         if (!(track instanceof IElectricGrid)) return;
 
         IElectricGrid.ChargeHandler chargeHandler = ((IElectricGrid) track).getChargeHandler();
-        if (chargeHandler.getCharge() > 2000)
-            if (entity instanceof EntityPlayer && ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
-                if (!((EntityPlayer) entity).capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
-                    EntityPlayer player = ((EntityPlayer) entity);
+        if (chargeHandler.getCharge() > 2000) {
+            if (entity instanceof EntityPlayer player) {
+                if (ModuleManager.isModuleLoaded(Module.GREGTECH)) {
+                    if (isShockProtectedHazmat(player)) {
+                        return;
+                    } ;
+                } else {
                     ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                    player.setCurrentItemOrArmor(
-                            MiscTools.ArmorSlots.LEGS.ordinal() + 1,
-                            InvTools.damageItem(pants, 1));
+                    if (pants.getItem() instanceof ISafetyPants safetyPants
+                            && safetyPants.blocksElectricTrackDamage(pants)) {
+                        if (!player.capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
+                            safetyPants.onShock(pants, player);
+                        }
+                        return;
+                    }
                 }
-            } else if (((EntityLivingBase) entity).attackEntityFrom(RailcraftDamageSource.TRACK_ELECTRIC, 2))
-                chargeHandler.removeCharge(2000);
+            }
+            // isKillableEntity makes this cast okay
+            tryZap((EntityLivingBase) entity, chargeHandler);
+        } ;
+    }
+
+    private static boolean isShockProtectedHazmat(EntityPlayer player) {
+        ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+        if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {
+            return true;
+        }
+        ItemStack boots = player.getCurrentArmor(MiscTools.ArmorSlots.BOOTS.ordinal());
+        if (HazardProtection.protectsAgainstHazard(boots, Hazard.ELECTRICAL)) {
+            return true;
+        }
+        return false;
+    }
+
+    static void tryZap(EntityLivingBase entityLiving, ChargeHandler chargeHandler) {
+        if (entityLiving.attackEntityFrom(RailcraftDamageSource.TRACK_ELECTRIC, 2)) chargeHandler.removeCharge(2000);
     }
 
     @Override
