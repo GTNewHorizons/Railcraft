@@ -481,7 +481,7 @@ public abstract class EntityLocomotive extends CartContainerBase
             if (!entity.isEntityAlive()) return;
             if (entity != this.riddenByEntity
                     && (cartVelocityIsGreaterThan(0.2f) || getEntityData().getBoolean("HighSpeed"))
-                    && MiscTools.isKillabledEntity(entity)) {
+                    && MiscTools.isKillableEntity(entity)) {
                 EntityLivingBase living = (EntityLivingBase) entity;
                 if (RailcraftConfig.locomotiveDamageMobs())
                     living.attackEntityFrom(RailcraftDamageSource.TRAIN, getDamageToRoadKill(living));

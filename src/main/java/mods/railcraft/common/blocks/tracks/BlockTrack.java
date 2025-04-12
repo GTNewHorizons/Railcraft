@@ -226,7 +226,7 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         if (Game.isNotHost(world)) return;
 
-        if (!MiscTools.isKillabledEntity(entity)) return;
+        if (!MiscTools.isKillableEntity(entity)) return;
 
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
         if (!(tile instanceof TileTrack)) return;
@@ -237,33 +237,36 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
         IElectricGrid.ChargeHandler chargeHandler = ((IElectricGrid) track).getChargeHandler();
         if (chargeHandler.getCharge() > 2000) {
             if (entity instanceof EntityPlayer player) {
-                ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                if (pants != null && pants.getItem() != null) {
-                    if (ModuleManager.isModuleLoaded(Module.GREGTECH)) {
-                        // The current GT Hazard API has no concept of "damage on use", so we'll exclude that here.
-                        // Can be updated if it's more important to have the pants damaged than behaving like a GT
-                        // hazard.
-                        if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {
-                            return;
+                if (ModuleManager.isModuleLoaded(Module.GREGTECH)) {
+                    if (isShockProtectedHazmat(player)) {
+                        return;
+                    } ;
+                } else {
+                    ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+                    if (pants.getItem() instanceof ISafetyPants safetyPants
+                            && safetyPants.blocksElectricTrackDamage(pants)) {
+                        if (!player.capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
+                            safetyPants.onShock(pants, player);
                         }
-                        ItemStack boots = player.getCurrentArmor(MiscTools.ArmorSlots.BOOTS.ordinal());
-                        if (boots != null && HazardProtection.protectsAgainstHazard(boots, Hazard.ELECTRICAL)) {
-                            return;
-                        }
-                    } else {
-                        // should we move up to modern type pattern syntax here for a newer Java version?
-                        if (pants.getItem() instanceof ISafetyPants safetyPants
-                                && safetyPants.blocksElectricTrackDamage(pants)) {
-                            if (!player.capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
-                                safetyPants.onShock(pants, player);
-                            }
-                            return;
-                        }
+                        return;
                     }
                 }
             }
+            // isKillableEntity makes this cast okay
             tryZap((EntityLivingBase) entity, chargeHandler);
         } ;
+    }
+
+    private static boolean isShockProtectedHazmat(EntityPlayer player) {
+        ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+        if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {
+            return true;
+        }
+        ItemStack boots = player.getCurrentArmor(MiscTools.ArmorSlots.BOOTS.ordinal());
+        if (HazardProtection.protectsAgainstHazard(boots, Hazard.ELECTRICAL)) {
+            return true;
+        }
+        return false;
     }
 
     static void tryZap(EntityLivingBase entityLiving, ChargeHandler chargeHandler) {
