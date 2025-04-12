@@ -21,7 +21,6 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
-import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -35,7 +34,7 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 
 public class EntityCartTank extends EntityCartFiltered
-        implements IFluidHandler, ILiquidTransfer, ISidedInventory, IMinecart, IFluidCart {
+        implements IFluidHandler, ILiquidTransfer, ISidedInventory, IFluidCart {
 
     private static final byte FLUID_ID_DATA_ID = 25;
     private static final byte FLUID_QTY_DATA_ID = 26;
@@ -45,15 +44,12 @@ public class EntityCartTank extends EntityCartFiltered
     private static final int SLOT_OUTPUT = 1;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 2);
     private final TankManager tankManager = new TankManager();
-    private final StandardTank tank = new StandardTank(RailcraftConfig.getTankCartCapacity());
     private final IInventory invLiquids = new InventoryMapper(this, false);
-    private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1, false);
-    private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1, false);
     private int update = MiscTools.getRand().nextInt();
 
     public EntityCartTank(World world) {
         super(world);
-        tankManager.add(tank);
+        tankManager.add(new StandardTank(getCapacity()));
     }
 
     public EntityCartTank(World world, double d, double d1, double d2) {
@@ -65,6 +61,10 @@ public class EntityCartTank extends EntityCartFiltered
         prevPosX = d;
         prevPosY = d1;
         prevPosZ = d2;
+    }
+
+    public int getCapacity() {
+        return RailcraftConfig.getTankCartCapacity();
     }
 
     @Override
@@ -121,23 +121,24 @@ public class EntityCartTank extends EntityCartFiltered
 
         if (Game.isNotHost(worldObj)) {
             if (getFluidId() != -1) {
-                tank.renderData.fluid = FluidRegistry.getFluid(getFluidId());
-                tank.renderData.amount = getFluidQty();
-                tank.renderData.color = getFluidColor();
+                getTankManager().get(0).renderData.fluid = FluidRegistry.getFluid(getFluidId());
+                getTankManager().get(0).renderData.amount = getFluidQty();
+                getTankManager().get(0).renderData.color = getFluidColor();
             } else {
-                tank.renderData.fluid = null;
-                tank.renderData.amount = 0;
-                tank.renderData.color = StandardTank.DEFAULT_COLOR;
+                getTankManager().get(0).renderData.fluid = null;
+                getTankManager().get(0).renderData.amount = 0;
+                getTankManager().get(0).renderData.color = StandardTank.DEFAULT_COLOR;
             }
             return;
         }
 
-        FluidStack fluidStack = tank.getFluid();
+        FluidStack fluidStack = getTankManager().get(0).getFluid();
         if (fluidStack != null) {
             int fluidId = FluidHelper.getFluidId(fluidStack);
             if (fluidId != getFluidId()) setFluidId(fluidId);
             if (fluidStack.amount != getFluidQty()) setFluidQty(fluidStack.amount);
-            if (tank.getColor() != getFluidColor()) setFluidColor(tank.getColor());
+            if (getTankManager().get(0).getColor() != getFluidColor())
+                setFluidColor(getTankManager().get(0).getColor());
         } else {
             if (getFluidId() != -1) setFluidId(-1);
             if (getFluidQty() != 0) setFluidQty(0);
@@ -159,7 +160,7 @@ public class EntityCartTank extends EntityCartFiltered
         }
 
         if (update % FluidHelper.BUCKET_FILL_TIME == 0)
-            FluidHelper.processContainers(tank, invLiquids, SLOT_INPUT, SLOT_OUTPUT);
+            FluidHelper.processContainers(getTankManager().get(0), invLiquids, SLOT_INPUT, SLOT_OUTPUT);
     }
 
     @Override
@@ -192,19 +193,21 @@ public class EntityCartTank extends EntityCartFiltered
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         if (resource == null) return 0;
         Fluid filterFluid = getFilterFluid();
-        if (filterFluid == null || resource.getFluid() == filterFluid) return tank.fill(resource, doFill);
+        if (filterFluid == null || resource.getFluid() == filterFluid)
+            return getTankManager().get(0).fill(resource, doFill);
         return 0;
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        return tank.drain(maxDrain, doDrain);
+        return getTankManager().get(0).drain(maxDrain, doDrain);
     }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
         if (resource == null) return null;
-        if (tank.getFluidType() == resource.getFluid()) return tank.drain(resource.amount, doDrain);
+        if (getTankManager().get(0).getFluidType() == resource.getFluid())
+            return getTankManager().get(0).drain(resource.amount, doDrain);
         return null;
     }
 
@@ -325,7 +328,7 @@ public class EntityCartTank extends EntityCartFiltered
     @Override
     public boolean canPassFluidRequests(Fluid fluid) {
         if (hasFilter()) return getFilterFluid() == fluid;
-        if (!tank.isEmpty() && tank.getFluidType() != fluid) return false;
+        if (!getTankManager().get(0).isEmpty() && getTankManager().get(0).getFluidType() != fluid) return false;
         return true;
     }
 
