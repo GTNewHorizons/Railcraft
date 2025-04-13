@@ -19,6 +19,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import com.indemnity83.irontank.reference.TankType;
+
+import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -340,5 +343,10 @@ public class EntityCartTank extends EntityCartFiltered
     @Override
     public boolean canProvidePulledFluid(EntityMinecart requester, Fluid fluid) {
         return canPassFluidRequests(fluid);
+    }
+
+    @Optional.Method(modid = "irontankminecarts")
+    public TankType tankType() {
+        return TankType.GLASS;
     }
 }
