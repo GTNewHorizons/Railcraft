@@ -24,7 +24,6 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IFluidCart;
-import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -169,7 +168,6 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
         if (cart != currentCart) {
             if (currentCart instanceof IFluidCart) ((IFluidCart) currentCart).setFilling(false);
-            else if (currentCart instanceof ILiquidTransfer) ((ILiquidTransfer) currentCart).setFilling(false);
             setPowered(false);
             currentCart = cart;
             cartWasSent();
@@ -223,7 +221,6 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         if (flowed) setPowered(false);
 
         if (cart instanceof IFluidCart) ((IFluidCart) cart).setFilling(flowed);
-        else if (cart instanceof ILiquidTransfer) ((ILiquidTransfer) cart).setFilling(flowed);
 
         if (tankCart.isTankFull(loaderTank.getFluidType())) waitForReset = RESET_WAIT;
 

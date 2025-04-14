@@ -229,5 +229,11 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
     }
 
     @Override
+    // Implementation irrelevant since no custom filling rendering is happening (see IFluidCart method description)
+    public boolean isFilling() {
+        return false;
+    }
+
+    @Override
     public void setFilling(boolean filling) {}
 }

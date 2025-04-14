@@ -60,4 +60,9 @@ public interface IFluidCart {
      * @param filling
      */
     void setFilling(boolean filling);
+
+    /**
+     * Set by the Liquid Loader while filling, primarily used for rendering a visible change while being filled.
+     */
+    boolean isFilling();
 }

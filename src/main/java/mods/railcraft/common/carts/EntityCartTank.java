@@ -25,7 +25,6 @@ import com.indemnity83.irontank.reference.TankType;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.IFluidCart;
-import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -39,8 +38,7 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import secondderivative.irontankminecarts.minecarts.EntityMinecartTankAbstract;
 
-public class EntityCartTank extends EntityCartFiltered
-        implements IFluidHandler, ILiquidTransfer, ISidedInventory, IFluidCart {
+public class EntityCartTank extends EntityCartFiltered implements IFluidHandler, ISidedInventory, IFluidCart {
 
     private static final byte FLUID_ID_DATA_ID = 25;
     private static final byte FLUID_QTY_DATA_ID = 26;
@@ -268,11 +266,6 @@ public class EntityCartTank extends EntityCartFiltered
     }
 
     @Override
-    public boolean isFilling() {
-        return dataWatcher.getWatchableObjectByte(FILLING_DATA_ID) != 0;
-    }
-
-    @Override
     public void setFilling(boolean fill) {
         dataWatcher.updateObject(FILLING_DATA_ID, Byte.valueOf(fill ? 1 : (byte) 0));
     }
@@ -308,61 +301,6 @@ public class EntityCartTank extends EntityCartFiltered
     }
 
     @Override
-    @Deprecated
-    public int offerLiquid(Object source, FluidStack offer) {
-        int qty = offer.amount;
-        int used = fill(ForgeDirection.UNKNOWN, offer, true);
-
-        offer.amount = qty - used;
-        if (offer.amount <= 0) return used;
-
-        LinkageManager lm = LinkageManager.instance();
-
-        EntityMinecart linkedCart = lm.getLinkedCartA(this);
-        if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
-            used += ((ILiquidTransfer) linkedCart).offerLiquid(this, offer);
-
-        offer.amount = qty - used;
-        if (offer.amount <= 0) return used;
-
-        linkedCart = lm.getLinkedCartB(this);
-        if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
-            used += ((ILiquidTransfer) linkedCart).offerLiquid(this, offer);
-
-        return used;
-    }
-
-    @Override
-    @Deprecated
-    public int requestLiquid(Object source, FluidStack request) {
-        FluidStack acquired = drain(ForgeDirection.UNKNOWN, request.amount, false);
-        if (acquired == null || !request.isFluidEqual(acquired)) return 0;
-
-        drain(ForgeDirection.UNKNOWN, request.amount, true);
-
-        if (acquired.amount >= request.amount) return acquired.amount;
-
-        FluidStack newRequest = request.copy();
-        newRequest.amount = request.amount - acquired.amount;
-
-        LinkageManager lm = LinkageManager.instance();
-
-        EntityMinecart linkedCart = lm.getLinkedCartA(this);
-        if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
-            acquired.amount += ((ILiquidTransfer) linkedCart).requestLiquid(this, newRequest);
-
-        if (acquired.amount >= request.amount) return acquired.amount;
-
-        newRequest.amount = request.amount - acquired.amount;
-
-        linkedCart = lm.getLinkedCartB(this);
-        if (linkedCart != source && linkedCart instanceof ILiquidTransfer)
-            acquired.amount += ((ILiquidTransfer) linkedCart).requestLiquid(this, newRequest);
-
-        return acquired.amount;
-    }
-
-    @Override
     public boolean canPassFluidRequests(Fluid fluid) {
         if (hasFilter()) return getFilterFluid() == fluid;
         if (!getTankManager().get(0).isEmpty() && getTankManager().get(0).getFluidType() != fluid) return false;
@@ -377,6 +315,11 @@ public class EntityCartTank extends EntityCartFiltered
     @Override
     public boolean canProvidePulledFluid(EntityMinecart requester, Fluid fluid) {
         return canPassFluidRequests(fluid);
+    }
+
+    @Override
+    public boolean isFilling() {
+        return dataWatcher.getWatchableObjectByte(FILLING_DATA_ID) != 0;
     }
 
     @Optional.Method(modid = "irontankminecarts")
