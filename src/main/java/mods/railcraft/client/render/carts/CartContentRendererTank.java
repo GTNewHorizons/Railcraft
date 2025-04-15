@@ -36,8 +36,8 @@ public class CartContentRendererTank extends CartContentRenderer {
         StandardTank tank = cartTank.getTankManager().get(0);
         if (tank.renderData.fluid != null && tank.renderData.amount > 0) {
             int[] displayLists = FluidRenderer.getLiquidDisplayLists(tank.renderData.fluid);
-            boolean isGas = tank.renderData.fluid.isGaseous();
             if (displayLists != null) {
+                boolean isGas = tank.renderData.fluid.isGaseous();
                 GL11.glPushMatrix();
 
                 GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
