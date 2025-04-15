@@ -28,6 +28,8 @@ import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.FilteredTank;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.Game;
@@ -78,7 +80,8 @@ public abstract class TileSteamTrap extends TileMachineBase implements ISteamUse
         }
         triggerCheck();
         if (isJetting()) {
-            boolean gt5Loaded = Loader.isModLoaded("gregtech") && !Loader.isModLoaded("gregapi");
+            boolean gt5Loaded = Loader.isModLoaded("gregtech") && !Loader.isModLoaded("gregapi")
+                    && ModuleManager.isModuleLoaded(Module.GREGTECH);
             for (EntityLivingBase entity : getEntitiesInSteamArea()) {
                 if (gt5Loaded && entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;

@@ -20,6 +20,8 @@ import gregtech.api.hazards.IHazardProtector;
 import mods.railcraft.api.core.items.ISafetyPants;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.modules.ModuleManager;
+import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -90,6 +92,6 @@ public class ItemOveralls extends ItemArmor implements ISafetyPants, IHazardProt
     @Override
     @Optional.Method(modid = "gregtech")
     public boolean protectsAgainst(ItemStack itemStack, Hazard hazard) {
-        return hazard == Hazard.ELECTRICAL;
+        return (hazard == Hazard.ELECTRICAL) && ModuleManager.isModuleLoaded(Module.GREGTECH);
     }
 }
