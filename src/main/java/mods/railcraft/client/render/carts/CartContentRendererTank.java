@@ -52,7 +52,7 @@ public class CartContentRendererTank extends CartContentRenderer {
                 renderer.bindTex(FluidRenderer.getFluidSheet(tank.renderData.fluid));
                 FluidRenderer.setColorForTank(tank);
                 if (isGas) {
-                    GL11.glColor4f(1.0f, 1.0f, 1.0f, Math.max(level, 0.3f + level * 0.7f));
+                    GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.3f + level * 0.7f);
                     GL11.glCallList(displayLists[FluidRenderer.DISPLAY_STAGES - 1]);
                 } else {
                     GL11.glCallList(displayLists[(int) (level * (float) (FluidRenderer.DISPLAY_STAGES - 1))]);
