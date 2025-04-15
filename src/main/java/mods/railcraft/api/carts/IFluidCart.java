@@ -62,7 +62,9 @@ public interface IFluidCart {
     void setFilling(boolean filling);
 
     /**
-     * Set by the Liquid Loader while filling, primarily used for rendering a visible change while being filled.
+     * Not needed by the vanilla loader, should only be assumed to work for rendering purposes.
      */
-    boolean isFilling();
+    default boolean isFilling() {
+        return false;
+    };
 }
