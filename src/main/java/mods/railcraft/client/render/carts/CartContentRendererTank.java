@@ -37,6 +37,7 @@ public class CartContentRendererTank extends CartContentRenderer {
         if (tank.renderData.fluid != null && tank.renderData.amount > 0) {
             int[] displayLists = FluidRenderer.getLiquidDisplayLists(tank.renderData.fluid);
             if (displayLists != null) {
+                boolean isGas = tank.renderData.fluid.isGaseous();
                 GL11.glPushMatrix();
 
                 GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
@@ -50,9 +51,14 @@ public class CartContentRendererTank extends CartContentRenderer {
 
                 renderer.bindTex(FluidRenderer.getFluidSheet(tank.renderData.fluid));
                 FluidRenderer.setColorForTank(tank);
-                GL11.glCallList(displayLists[(int) (level * (float) (FluidRenderer.DISPLAY_STAGES - 1))]);
+                if (isGas) {
+                    GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.3f + level * 0.7f);
+                    GL11.glCallList(displayLists[FluidRenderer.DISPLAY_STAGES - 1]);
+                } else {
+                    GL11.glCallList(displayLists[(int) (level * (float) (FluidRenderer.DISPLAY_STAGES - 1))]);
+                }
 
-                if (cartTank.isFilling()) {
+                if (cartTank.isFilling() && !isGas) {
                     ResourceLocation texSheet = FluidRenderer
                             .setupFlowingLiquidTexture(tank.renderData.fluid, fillBlock.texture);
                     if (texSheet != null) {

@@ -83,7 +83,8 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
         if (tile instanceof TileTankIronValve) {
             TileTankIronValve valve = (TileTankIronValve) tile;
             StandardTank fillTank = valve.getFillTank();
-            if (fillTank.renderData.fluid != null && fillTank.renderData.amount > 0) {
+            if (fillTank.renderData.fluid != null && !fillTank.renderData.fluid.isGaseous()
+                    && fillTank.renderData.amount > 0) {
                 GL11.glPushMatrix();
                 if (valve.getPattern().getPatternMarkerChecked(
                         valve.getPatternPositionX(),
@@ -184,6 +185,7 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
         if (tank == null) return;
 
         if (tank.renderData.fluid != null && tank.renderData.amount > 0) {
+            boolean isGas = tank.renderData.fluid.isGaseous();
             preGL();
             GL11.glTranslatef((float) x + 0.5F, (float) y + yOffset + 0.01f, (float) z + 0.5F);
             GL11.glScalef(hScale, vScale, hScale);
@@ -198,8 +200,12 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
 
                 bindTexture(FluidRenderer.getFluidSheet(tank.renderData.fluid));
                 FluidRenderer.setColorForTank(tank);
-                GL11.glCallList(displayLists[(int) (level * (float) (FluidRenderer.DISPLAY_STAGES - 1))]);
-
+                if (isGas) {
+                    GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.3f + level * 0.7f);
+                    GL11.glCallList(displayLists[FluidRenderer.DISPLAY_STAGES - 1]);
+                } else {
+                    GL11.glCallList(displayLists[(int) (level * (float) (FluidRenderer.DISPLAY_STAGES - 1))]);
+                }
                 GL11.glPopMatrix();
             }
 
