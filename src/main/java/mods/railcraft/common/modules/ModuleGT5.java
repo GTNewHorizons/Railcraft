@@ -9,7 +9,8 @@ public class ModuleGT5 extends RailcraftModule {
 
     @Override
     public boolean canModuleLoad() {
-        return Loader.isModLoaded("gregtech");
+        // gregapi is a GT6 marker, and this module is not compatible with that
+        return Loader.isModLoaded("gregtech") && !Loader.isModLoaded("gregapi");
     }
 
     @Override
@@ -19,6 +20,6 @@ public class ModuleGT5 extends RailcraftModule {
 
     @Override
     public void printLoadError() {
-        Game.log(Level.INFO, "Module disabled: {0}, Gregtech not detected", this);
+        Game.log(Level.INFO, "Module disabled: {0}, no valid Gregtech version detected", this);
     }
 }

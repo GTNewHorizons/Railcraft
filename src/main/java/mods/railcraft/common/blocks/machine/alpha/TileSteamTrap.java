@@ -21,7 +21,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
-import cpw.mods.fml.common.Loader;
 import gregtech.api.hazards.HazardProtection;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -80,8 +79,7 @@ public abstract class TileSteamTrap extends TileMachineBase implements ISteamUse
         }
         triggerCheck();
         if (isJetting()) {
-            boolean gt5Loaded = Loader.isModLoaded("gregtech") && !Loader.isModLoaded("gregapi")
-                    && ModuleManager.isModuleLoaded(Module.GREGTECH);
+            boolean gt5Loaded = ModuleManager.isModuleLoaded(Module.GREGTECH);
             for (EntityLivingBase entity : getEntitiesInSteamArea()) {
                 if (gt5Loaded && entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;
