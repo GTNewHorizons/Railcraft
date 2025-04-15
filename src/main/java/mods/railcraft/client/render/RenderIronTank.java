@@ -83,7 +83,8 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
         if (tile instanceof TileTankIronValve) {
             TileTankIronValve valve = (TileTankIronValve) tile;
             StandardTank fillTank = valve.getFillTank();
-            if (fillTank.renderData.fluid != null && !fillTank.renderData.fluid.isGaseous() && fillTank.renderData.amount > 0) {
+            if (fillTank.renderData.fluid != null && !fillTank.renderData.fluid.isGaseous()
+                    && fillTank.renderData.amount > 0) {
                 GL11.glPushMatrix();
                 if (valve.getPattern().getPatternMarkerChecked(
                         valve.getPatternPositionX(),
