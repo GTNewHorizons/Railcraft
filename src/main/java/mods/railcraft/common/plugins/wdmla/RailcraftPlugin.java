@@ -13,6 +13,7 @@ import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
 
 @WDMlaPlugin
 public class RailcraftPlugin implements IWDMlaPlugin {
+
     @Override
     public void register(IWDMlaCommonRegistration registration) {
         registration.registerItemStorage(ItemStorageProvider.Extension.INSTANCE, EntityCartChest.class);
