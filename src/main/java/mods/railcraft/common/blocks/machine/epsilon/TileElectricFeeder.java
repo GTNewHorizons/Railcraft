@@ -28,7 +28,7 @@ import mods.railcraft.common.util.misc.Game;
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
-                modid = "gregtech"), })
+                modid = "dreamcraft"), })
 public class TileElectricFeeder extends TileMachineBase implements IElectricGrid, ISinkDelegate, IEnergyConnected {
 
     private final ChargeHandler chargeHandler = new ChargeHandler(this, ChargeHandler.ConnectType.BLOCK, 1);
@@ -128,6 +128,7 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
         return sinkDelegate;
     }
 
+    // probably no problem with these methods and GT6
     @Override
     @Optional.Method(modid = "gregtech")
     public byte getColorization() {
