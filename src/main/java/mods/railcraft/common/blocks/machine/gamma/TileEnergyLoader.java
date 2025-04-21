@@ -31,7 +31,7 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
-                modid = "gregtech"), })
+                modid = "dreamcraft"), })
 public class TileEnergyLoader extends TileLoaderEnergyBase
         implements ISinkDelegate, IGuiReturnHandler, IEnergyConnected {
 
@@ -218,6 +218,7 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
         return this;
     }
 
+    // probably no problem with these and GT6
     @Override
     @Optional.Method(modid = "gregtech")
     public byte getColorization() {
