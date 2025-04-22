@@ -31,7 +31,7 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
-                modid = "gregtechNH"), })
+                modid = "gregtech_nh"), })
 public class TileEnergyLoader extends TileLoaderEnergyBase
         implements ISinkDelegate, IGuiReturnHandler, IEnergyConnected {
 
