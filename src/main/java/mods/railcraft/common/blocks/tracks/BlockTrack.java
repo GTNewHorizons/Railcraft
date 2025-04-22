@@ -257,7 +257,7 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
         } ;
     }
 
-    @Optional.method(modid = "dreamcraft")
+    @Optional.method(modid = "gregtechNH")
     private static boolean isShockProtectedHazmat(EntityPlayer player) {
         ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
         if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {
