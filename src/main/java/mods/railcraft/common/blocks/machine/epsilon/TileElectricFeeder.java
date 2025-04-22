@@ -28,7 +28,7 @@ import mods.railcraft.common.util.misc.Game;
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
-                modid = "gregtechNH"), })
+                modid = "gregtech_nh"), })
 public class TileElectricFeeder extends TileMachineBase implements IElectricGrid, ISinkDelegate, IEnergyConnected {
 
     private final ChargeHandler chargeHandler = new ChargeHandler(this, ChargeHandler.ConnectType.BLOCK, 1);
