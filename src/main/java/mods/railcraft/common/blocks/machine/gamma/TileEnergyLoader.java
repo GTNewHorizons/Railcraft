@@ -28,10 +28,11 @@ import mods.railcraft.common.plugins.ic2.TileIC2SinkDelegate;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 
+// This API exists in all GT versions, don't change to gregtech_nh modid
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
-                modid = "gregtech_nh"), })
+                modid = "gregtech"), })
 public class TileEnergyLoader extends TileLoaderEnergyBase
         implements ISinkDelegate, IGuiReturnHandler, IEnergyConnected {
 
@@ -218,7 +219,7 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
         return this;
     }
 
-    // probably no problem with these and GT6
+    // No problem with these and other GT versions, dont change modid
     @Override
     @Optional.Method(modid = "gregtech")
     public byte getColorization() {
