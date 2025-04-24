@@ -38,6 +38,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import org.apache.logging.log4j.Level;
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -257,6 +258,7 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
         } ;
     }
 
+    @Optional.Method(modid = "gregtech_nh")
     private static boolean isShockProtectedHazmat(EntityPlayer player) {
         ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
         if (HazardProtection.protectsAgainstHazard(pants, Hazard.ELECTRICAL)) {

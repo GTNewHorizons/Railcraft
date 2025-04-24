@@ -25,6 +25,8 @@ import mods.railcraft.common.util.misc.Game;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+
+// This API exists in all GT versions, don't change to gregtech_nh
 @Optional.InterfaceList(
         value = { @Optional.Interface(
                 iface = "gregtech.api.interfaces.tileentity.IEnergyConnected",
@@ -128,6 +130,7 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
         return sinkDelegate;
     }
 
+    // no problem with these methods and GT6, don't change to gregtech_nh
     @Override
     @Optional.Method(modid = "gregtech")
     public byte getColorization() {

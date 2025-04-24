@@ -31,7 +31,7 @@ import mods.railcraft.common.util.misc.MiscTools;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @Optional.InterfaceList(
-        value = { @Optional.Interface(iface = "gregtech.api.hazards.IHazardProtector", modid = "gregtech"), })
+        value = { @Optional.Interface(iface = "gregtech.api.hazards.IHazardProtector", modid = "gregtech_nh"), })
 public class ItemOveralls extends ItemArmor implements ISafetyPants, IHazardProtector {
 
     private static final ItemStack BLUE_CLOTH = new ItemStack(Blocks.wool, 1, 3);
@@ -90,7 +90,7 @@ public class ItemOveralls extends ItemArmor implements ISafetyPants, IHazardProt
     }
 
     @Override
-    @Optional.Method(modid = "gregtech")
+    @Optional.Method(modid = "gregtech_nh")
     public boolean protectsAgainst(ItemStack itemStack, Hazard hazard) {
         return (hazard == Hazard.ELECTRICAL) && ModuleManager.isModuleLoaded(Module.GREGTECH);
     }
