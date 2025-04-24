@@ -240,10 +240,10 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
                 if (ModuleManager.isModuleLoaded(Module.GREGTECH)) {
                     if (isShockProtectedHazmat(player)) {
                         return;
-                    } ;
+                    }
                 } else {
                     ItemStack pants = player.getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                    if (pants.getItem() instanceof ISafetyPants safetyPants
+                    if (pants != null && pants.getItem() instanceof ISafetyPants safetyPants
                             && safetyPants.blocksElectricTrackDamage(pants)) {
                         if (!player.capabilities.isCreativeMode && MiscTools.RANDOM.nextInt(150) == 0) {
                             safetyPants.onShock(pants, player);
