@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.IMachineProxy;
 
 /**
@@ -21,12 +21,12 @@ import mods.railcraft.common.blocks.machine.IMachineProxy;
 public class MachineProxyDelta implements IMachineProxy {
 
     @Override
-    public IEnumMachine getMachine(int meta) {
+    public IMachine getMachine(int meta) {
         return EnumMachineDelta.fromId(meta);
     }
 
     @Override
-    public List<? extends IEnumMachine> getCreativeList() {
+    public List<? extends IMachine> getCreativeList() {
         return EnumMachineDelta.getCreativeList();
     }
 

@@ -15,9 +15,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
  */
 public interface IMachineProxy {
 
-    IEnumMachine getMachine(int meta);
+    IMachine getMachine(int meta);
 
-    List<? extends IEnumMachine> getCreativeList();
+    List<? extends IMachine> getCreativeList();
 
     void registerIcons(IIconRegister iconRegister);
 }

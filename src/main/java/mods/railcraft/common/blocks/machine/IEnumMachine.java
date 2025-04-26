@@ -5,41 +5,13 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-
-import mods.railcraft.common.gui.tooltips.ToolTip;
-
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public interface IEnumMachine {
-
-    String getTag();
-
-    boolean isAvaliable();
-
-    ItemStack getItem();
-
-    ItemStack getItem(int qty);
-
-    IIcon getTexture(int side);
-
-    Class getTileClass();
-
-    TileEntity getTileEntity();
-
-    ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv);
+public interface IEnumMachine extends IMachine {
 
     int ordinal();
-
-    Block getBlock();
-
-    boolean isDepreciated();
 
     default int getCapacity() {
         return 0;

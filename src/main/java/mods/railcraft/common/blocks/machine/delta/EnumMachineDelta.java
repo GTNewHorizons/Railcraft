@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
@@ -31,7 +31,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar
  */
-public enum EnumMachineDelta implements IEnumMachine {
+public enum EnumMachineDelta implements IMachine {
 
     WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0);
 

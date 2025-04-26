@@ -17,34 +17,34 @@ import net.minecraft.world.World;
  */
 public class BoundingBoxManager {
 
-    private static final Map<IEnumMachine, BoundingBox> collisionBoxes = new HashMap<IEnumMachine, BoundingBox>();
-    private static final Map<IEnumMachine, BoundingBox> selectionBoxes = new HashMap<IEnumMachine, BoundingBox>();
+    private static final Map<IMachine, BoundingBox> collisionBoxes = new HashMap<IMachine, BoundingBox>();
+    private static final Map<IMachine, BoundingBox> selectionBoxes = new HashMap<IMachine, BoundingBox>();
     public static final BoundingBox DEFAULT = new BoundingBox();
 
     private BoundingBoxManager() {}
 
-    public static AxisAlignedBB getCollisionBox(World world, int x, int y, int z, IEnumMachine machine) {
+    public static AxisAlignedBB getCollisionBox(World world, int x, int y, int z, IMachine machine) {
         BoundingBox box = collisionBoxes.get(machine);
         if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
-    public static AxisAlignedBB getSelectionBox(World world, int x, int y, int z, IEnumMachine machine) {
+    public static AxisAlignedBB getSelectionBox(World world, int x, int y, int z, IMachine machine) {
         BoundingBox box = selectionBoxes.get(machine);
         if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
-    public static void registerBoundingBox(IEnumMachine machine, BoundingBox box) {
+    public static void registerBoundingBox(IMachine machine, BoundingBox box) {
         registerCollisionBoundingBox(machine, box);
         registerSelectionBoundingBox(machine, box);
     }
 
-    public static void registerCollisionBoundingBox(IEnumMachine machine, BoundingBox box) {
+    public static void registerCollisionBoundingBox(IMachine machine, BoundingBox box) {
         collisionBoxes.put(machine, box);
     }
 
-    public static void registerSelectionBoundingBox(IEnumMachine machine, BoundingBox box) {
+    public static void registerSelectionBoundingBox(IMachine machine, BoundingBox box) {
         selectionBoxes.put(machine, box);
     }
 

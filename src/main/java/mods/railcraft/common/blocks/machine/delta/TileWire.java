@@ -24,7 +24,7 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager.ReducedBoundingBox;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
@@ -54,7 +54,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
     private AddonType addon = AddonType.NONE;
 
     @Override
-    public IEnumMachine getMachineType() {
+    public IMachine getMachineType() {
         return EnumMachineDelta.WIRE;
     }
 

@@ -33,7 +33,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
 
     private boolean checkedBlock = false;
 
-    public abstract IEnumMachine getMachineType();
+    public abstract IMachine getMachineType();
 
     @Override
     public String getLocalizationTag() {
@@ -45,7 +45,10 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
         if (getMachineType() == null) {
             return 0;
         }
-        return (short) getMachineType().ordinal();
+        if (getMachineType() instanceof IEnumMachine enumMachine) {
+            return (short) enumMachine.ordinal();
+        }
+        return 0;
     }
 
     public boolean canCreatureSpawn(EnumCreatureType type) {

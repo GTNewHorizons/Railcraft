@@ -80,7 +80,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         return proxy;
     }
 
-    public IEnumMachine getMachineType(World world, int x, int y, int z) {
+    public IMachine getMachineType(World world, int x, int y, int z) {
         int meta = WorldPlugin.getBlockMetadata(world, x, y, z);
         return proxy.getMachine(meta);
     }
@@ -276,7 +276,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (IEnumMachine type : proxy.getCreativeList()) {
+        for (IMachine type : proxy.getCreativeList()) {
             if (type.isAvaliable()) list.add(type.getItem());
         }
     }
