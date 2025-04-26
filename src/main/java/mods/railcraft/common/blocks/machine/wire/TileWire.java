@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.delta;
+package mods.railcraft.common.blocks.machine.wire;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

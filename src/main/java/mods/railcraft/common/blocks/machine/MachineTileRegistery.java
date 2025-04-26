@@ -39,7 +39,6 @@ import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
-import mods.railcraft.common.blocks.machine.delta.TileWire;
 import mods.railcraft.common.blocks.machine.epsilon.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeeder;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeederAdmin;
@@ -61,6 +60,7 @@ import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
+import mods.railcraft.common.blocks.machine.wire.TileWire;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
