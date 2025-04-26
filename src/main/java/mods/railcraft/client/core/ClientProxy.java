@@ -36,7 +36,6 @@ import mods.railcraft.client.render.RenderBlockPost;
 import mods.railcraft.client.render.RenderBlockPostMetal;
 import mods.railcraft.client.render.RenderBlockSignal;
 import mods.railcraft.client.render.RenderBlockStrengthGlass;
-import mods.railcraft.client.render.RenderCagedEntity;
 import mods.railcraft.client.render.RenderChest;
 import mods.railcraft.client.render.RenderElevator;
 import mods.railcraft.client.render.RenderFluidLoader;
@@ -77,7 +76,6 @@ import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
-import mods.railcraft.common.blocks.machine.delta.TileCage;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
@@ -207,8 +205,6 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEngineSteamHobby.class, RenderPneumaticEngine.renderHobby);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEngineSteamLow.class, RenderPneumaticEngine.renderLow);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEngineSteamHigh.class, RenderPneumaticEngine.renderHigh);
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileCage.class, new RenderCagedEntity());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTrackTESR.class, new RenderTrackBuffer());
 

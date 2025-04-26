@@ -174,15 +174,6 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
-        // EnumMachineDelta delta = EnumMachineDelta.CAGE;
-        // if (delta.register())
-        // CraftingPlugin.addShapedOreRecipe(alpha.getItem(6),
-        // "III",
-        // "IWI",
-        // "PPP",
-        // 'I', new ItemStack(Block.fenceIron),
-        // 'W', new ItemStack(Item.wheat),
-        // 'P', ItemPlate.getPlate(ItemPlate.EnumPlate.STEEL));
         EnumCart cart = EnumCart.TANK;
 
         if (cart.setup()) {

@@ -33,8 +33,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  */
 public enum EnumMachineDelta implements IEnumMachine {
 
-    WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0),
-    CAGE(Module.TRANSPORT, "cage", TileCage.class, 4, 1, 0, 1, 2, 2, 2, 2, 3);
+    WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0);
 
     private final Module module;
     private final String tag;
@@ -47,7 +46,6 @@ public enum EnumMachineDelta implements IEnumMachine {
 
     static {
         creativeList.add(WIRE);
-        // creativeList.add(SAWMILL);
 
         BoundingBoxManager.registerBoundingBox(WIRE, new TileWire.WireBoundingBox());
     }

@@ -39,7 +39,6 @@ import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
-import mods.railcraft.common.blocks.machine.delta.TileCage;
 import mods.railcraft.common.blocks.machine.delta.TileWire;
 import mods.railcraft.common.blocks.machine.epsilon.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeeder;
@@ -121,7 +120,6 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileRFUnloader.class, "RCUnloaderTileRF");
 
         // Delta
-        GameRegistry.registerTileEntity(TileCage.class, "RCCageTile");
         GameRegistry.registerTileEntity(TileWire.class, "RCWireTile");
 
         // Epsilon

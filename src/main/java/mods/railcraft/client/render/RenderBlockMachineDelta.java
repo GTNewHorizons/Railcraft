@@ -9,10 +9,8 @@ import java.util.EnumSet;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -41,7 +39,6 @@ public class RenderBlockMachineDelta extends BlockRenderer {
         super(RailcraftBlocks.getBlockMachineDelta());
 
         addCombinedRenderer(EnumMachineDelta.WIRE.ordinal(), new WireRenderer());
-        addBlockRenderer(EnumMachineDelta.CAGE.ordinal(), new CageRenderer());
     }
 
     @ThreadSafeISBRH(perThread = false)
@@ -114,11 +111,6 @@ public class RenderBlockMachineDelta extends BlockRenderer {
                     BlockFrame.getBlock(),
                     BlockFrame.getBlock().getRenderType(),
                     renderblocks);
-        }
-
-        private void renderPlatform(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
-            block.setBlockBounds(0.0F, 14 * RenderTools.PIXEL, 0.0F, 1.0F, 1.0F, 1.0F);
-            RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
         }
 
         private void renderWire(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block,
@@ -241,115 +233,6 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             info.setBlockBounds(min, 6 * pix - 0.0002f, 6 * pix - 0.0002f, max, 10 * pix + 0.0002f, 10 * pix + 0.0002f);
             RenderFakeBlock.renderBlockOnInventory(renderblocks, info, 1);
-        }
-    }
-
-    @ThreadSafeISBRH(perThread = false)
-    private class CageRenderer extends DefaultRenderer {
-
-        @Override
-        public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
-            Tessellator tessellator = Tessellator.instance;
-            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-            float c = 1.0F;
-            tessellator.setColorOpaque_F(c, c, c);
-
-            IIcon icon = renderblocks.getBlockIcon(block, world, x, y, z, 2);
-            if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
-
-            double minU = (double) icon.getMinU();
-            double minV = (double) icon.getMinV();
-            double maxU = (double) icon.getMaxU();
-            double maxV = (double) icon.getMaxV();
-            double border = 0.0D;
-            double offset = 0.001D;
-
-            double[][] vertices;
-
-            if (WorldPlugin.getBlock(world, x - 1, y, z) != block
-                    || world.getBlockMetadata(x - 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] { { x + offset, (y + 1) + border, (z + 1) + border, minU, minV },
-                        { x + offset, (y + 0) - border, (z + 1) + border, minU, maxV },
-                        { x + offset, (y + 0) - border, (z + 0) - border, maxU, maxV },
-                        { x + offset, (y + 1) + border, (z + 0) - border, maxU, minV }, };
-                renderFace(tessellator, vertices);
-            }
-
-            if (WorldPlugin.getBlock(world, x + 1, y, z) != block
-                    || world.getBlockMetadata(x + 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] { { (x + 1) - offset, (y + 0) - border, (z + 1) + border, maxU, maxV },
-                        { (x + 1) - offset, (y + 1) + border, (z + 1) + border, maxU, minV },
-                        { (x + 1) - offset, (y + 1) + border, (z + 0) - border, minU, minV },
-                        { (x + 1) - offset, (y + 0) - border, (z + 0) - border, minU, maxV }, };
-                renderFace(tessellator, vertices);
-            }
-
-            if (WorldPlugin.getBlock(world, x, y, z - 1) != block
-                    || world.getBlockMetadata(x, y, z - 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] { { (x + 1) + border, (y + 0) - border, z + offset, maxU, maxV },
-                        { (x + 1) + border, (y + 1) + border, z + offset, maxU, minV },
-                        { (x + 0) - border, (y + 1) + border, z + offset, minU, minV },
-                        { (x + 0) - border, (y + 0) - border, z + offset, minU, maxV }, };
-                renderFace(tessellator, vertices);
-            }
-
-            if (WorldPlugin.getBlock(world, x, y, z + 1) != block
-                    || world.getBlockMetadata(x, y, z + 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] { { (x + 1) + border, (y + 1) + border, (z + 1) - offset, minU, minV },
-                        { (x + 1) + border, (y + 0) - border, (z + 1) - offset, minU, maxV },
-                        { (x + 0) - border, (y + 0) - border, (z + 1) - offset, maxU, maxV },
-                        { (x + 0) - border, (y + 1) + border, (z + 1) - offset, maxU, minV }, };
-                renderFace(tessellator, vertices);
-            }
-
-            if (WorldPlugin.getBlock(world, x, y - 1, z) != block
-                    || world.getBlockMetadata(x, y - 1, z) != EnumMachineDelta.CAGE.ordinal()) {
-                icon = renderblocks.getBlockIcon(block, world, x, y, z, 0);
-                if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
-
-                minU = (double) icon.getMinU();
-                minV = (double) icon.getMinV();
-                maxU = (double) icon.getMaxU();
-                maxV = (double) icon.getMaxV();
-
-                vertices = new double[][] { { (x + 1) + border, y + offset, (z + 1) + border, minU, minV },
-                        { (x + 0) - border, y + offset, (z + 1) + border, minU, maxV },
-                        { (x + 0) - border, y + offset, (z + 0) - border, maxU, maxV },
-                        { (x + 1) + border, y + offset, (z + 0) - border, maxU, minV }, };
-                renderFace(tessellator, vertices);
-            }
-
-            if (WorldPlugin.getBlock(world, x, y + 1, z) != block
-                    || world.getBlockMetadata(x, y + 1, z) != EnumMachineDelta.CAGE.ordinal()) {
-                icon = renderblocks.getBlockIcon(block, world, x, y, z, 1);
-                if (renderblocks.hasOverrideBlockTexture()) icon = renderblocks.overrideBlockTexture;
-
-                minU = (double) icon.getMinU();
-                minV = (double) icon.getMinV();
-                maxU = (double) icon.getMaxU();
-                maxV = (double) icon.getMaxV();
-
-                vertices = new double[][] { { (x + 0) - border, (y + 1) - offset, (z + 1) + border, maxU, maxV },
-                        { (x + 1) + border, (y + 1) - offset, (z + 1) + border, maxU, minV },
-                        { (x + 1) + border, (y + 1) - offset, (z + 0) - border, minU, minV },
-                        { (x + 0) - border, (y + 1) - offset, (z + 0) - border, minU, maxV }, };
-                renderFace(tessellator, vertices);
-            }
-        }
-
-        private void renderFace(Tessellator tess, double[][] vertices) {
-
-            for (int i = 0; i < 4; i++) {
-                tess.addVertexWithUV(vertices[i][0], vertices[i][1], vertices[i][2], vertices[i][3], vertices[i][4]);
-            }
-            for (int i = 0; i < 4; i++) {
-                tess.addVertexWithUV(
-                        vertices[3 - i][0],
-                        vertices[3 - i][1],
-                        vertices[3 - i][2],
-                        vertices[i][3],
-                        vertices[i][4]);
-            }
         }
     }
 }

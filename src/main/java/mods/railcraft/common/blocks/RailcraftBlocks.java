@@ -206,7 +206,6 @@ public class RailcraftBlocks {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
             lightOpacity[EnumMachineDelta.WIRE.ordinal()] = 0;
-            lightOpacity[EnumMachineDelta.CAGE.ordinal()] = 0;
             blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.delta");
             blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
