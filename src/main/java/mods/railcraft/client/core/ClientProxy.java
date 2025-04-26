@@ -28,7 +28,6 @@ import mods.railcraft.client.render.FluidRenderer;
 import mods.railcraft.client.render.RenderBlockFrame;
 import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineBeta;
-import mods.railcraft.client.render.RenderBlockMachineDelta;
 import mods.railcraft.client.render.RenderBlockMachineEta;
 import mods.railcraft.client.render.RenderBlockMachineZeta;
 import mods.railcraft.client.render.RenderBlockOre;
@@ -36,6 +35,7 @@ import mods.railcraft.client.render.RenderBlockPost;
 import mods.railcraft.client.render.RenderBlockPostMetal;
 import mods.railcraft.client.render.RenderBlockSignal;
 import mods.railcraft.client.render.RenderBlockStrengthGlass;
+import mods.railcraft.client.render.RenderBlockWire;
 import mods.railcraft.client.render.RenderChest;
 import mods.railcraft.client.render.RenderElevator;
 import mods.railcraft.client.render.RenderFluidLoader;
@@ -229,7 +229,7 @@ public class ClientProxy extends CommonProxy {
         if (RailcraftBlocks.getBlockElevator() != null) RenderingRegistry.registerBlockHandler(new RenderElevator());
 
         registerBlockRenderer(new RenderBlockMachineBeta());
-        registerBlockRenderer(new RenderBlockMachineDelta());
+        registerBlockRenderer(new RenderBlockWire());
         registerBlockRenderer(new RenderBlockMachineEta());
         registerBlockRenderer(new RenderBlockMachineZeta());
         registerBlockRenderer(new RenderBlockSignal());

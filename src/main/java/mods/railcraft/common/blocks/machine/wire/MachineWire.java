@@ -5,9 +5,6 @@
  */
 package mods.railcraft.common.blocks.machine.wire;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,13 +33,10 @@ public class MachineWire implements IMachine {
     public static MachineWire INSTANCE = new MachineWire();
     private static final String tag = "wire";
     private IIcon[] texture = new IIcon[12];
-    private final int[] textureInfo = { 1, 1, 0, 0, 0, 0, 0, 0 };
-    private static final List<MachineWire> creativeList = new ArrayList<MachineWire>();
+    private final int[] textureInfo = { 0, 0, 0, 0, 0, 0 };
     private ToolTip tip;
 
     static {
-        creativeList.add(INSTANCE);
-
         BoundingBoxManager.registerBoundingBox(INSTANCE, new TileWire.WireBoundingBox());
     }
 
@@ -59,10 +53,6 @@ public class MachineWire implements IMachine {
         return this.getModule() == null;
     }
 
-    public IIcon[] getTexture() {
-        return texture;
-    }
-
     @Override
     public IIcon getTexture(int index) {
         if (index < 0 || index >= texture.length) index = 0;
@@ -72,17 +62,11 @@ public class MachineWire implements IMachine {
     @SideOnly(Side.CLIENT)
     public static void registerIcons(IIconRegister iconRegister) {
         if (INSTANCE.isDepreciated()) return;
-        INSTANCE.texture = new IIcon[INSTANCE.textureInfo.length - 2];
-        int columns = INSTANCE.textureInfo[0];
-        int rows = INSTANCE.textureInfo[1];
-        IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + tag, columns, rows);
+        INSTANCE.texture = new IIcon[6];
+        IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + tag, 1, 1);
         for (int i = 0; i < INSTANCE.texture.length; i++) {
-            INSTANCE.texture[i] = icons[INSTANCE.textureInfo[i + 2]];
+            INSTANCE.texture[i] = icons[INSTANCE.textureInfo[i]];
         }
-    }
-
-    public static List<MachineWire> getCreativeList() {
-        return creativeList;
     }
 
     @Override
