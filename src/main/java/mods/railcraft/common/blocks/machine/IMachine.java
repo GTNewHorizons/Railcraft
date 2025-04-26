@@ -14,7 +14,7 @@ public interface IMachine {
 
     ItemStack getItem();
 
-    Class<TileMachineBase> getTileClass();
+    Class<? extends TileMachineBase> getTileClass();
 
     TileEntity getTileEntity();
 

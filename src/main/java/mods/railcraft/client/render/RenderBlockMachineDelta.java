@@ -22,7 +22,6 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.frame.BlockFrame;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
 import mods.railcraft.common.blocks.machine.delta.TileWire;
 import mods.railcraft.common.blocks.machine.delta.TileWire.AddonType;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -38,7 +37,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
     public RenderBlockMachineDelta() {
         super(RailcraftBlocks.getBlockMachineDelta());
 
-        addCombinedRenderer(EnumMachineDelta.WIRE.ordinal(), new WireRenderer());
+        addCombinedRenderer(0, new WireRenderer());
     }
 
     @ThreadSafeISBRH(perThread = false)

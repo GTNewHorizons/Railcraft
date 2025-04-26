@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.blocks.machine.delta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,21 +19,23 @@ import mods.railcraft.common.blocks.machine.IMachineProxy;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class MachineProxyDelta implements IMachineProxy {
+public class MachineProxyWire implements IMachineProxy {
 
     @Override
     public IMachine getMachine(int meta) {
-        return EnumMachineDelta.fromId(meta);
+        return MachineWire.INSTANCE;
     }
 
     @Override
     public List<? extends IMachine> getCreativeList() {
-        return EnumMachineDelta.getCreativeList();
+        ArrayList<IMachine> list = new ArrayList<IMachine>();
+        list.add(MachineWire.INSTANCE);
+        return list;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
-        EnumMachineDelta.registerIcons(iconRegister);
+        MachineWire.registerIcons(iconRegister);
     }
 }

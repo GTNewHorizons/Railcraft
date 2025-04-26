@@ -48,7 +48,7 @@ import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
+import mods.railcraft.common.blocks.machine.delta.MachineWire;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -379,7 +379,7 @@ public class ModuleCore extends RailcraftModule {
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
         machines.addAll(EnumSet.allOf(EnumMachineBeta.class));
         machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
-        machines.addAll(EnumSet.allOf(EnumMachineDelta.class));
+        machines.add(MachineWire.INSTANCE);
         machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));
 
         for (IMachine machine : machines) {

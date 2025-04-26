@@ -31,30 +31,19 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar
  */
-public enum EnumMachineDelta implements IMachine {
+public class MachineWire implements IMachine {
 
-    WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0);
-
-    private final Module module;
-    private final String tag;
-    private final Class<? extends TileMachineBase> tile;
+    public static MachineWire INSTANCE = new MachineWire();
+    private static final String tag = "wire";
     private IIcon[] texture = new IIcon[12];
-    private final int[] textureInfo;
-    private static final List<EnumMachineDelta> creativeList = new ArrayList<EnumMachineDelta>();
-    private static final EnumMachineDelta[] VALUES = values();
+    private final int[] textureInfo = { 1, 1, 0, 0, 0, 0, 0, 0 };
+    private static final List<MachineWire> creativeList = new ArrayList<MachineWire>();
     private ToolTip tip;
 
     static {
-        creativeList.add(WIRE);
+        creativeList.add(INSTANCE);
 
-        BoundingBoxManager.registerBoundingBox(WIRE, new TileWire.WireBoundingBox());
-    }
-
-    private EnumMachineDelta(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {
-        this.module = module;
-        this.tile = tile;
-        this.tag = tag;
-        this.textureInfo = textureInfo;
+        BoundingBoxManager.registerBoundingBox(INSTANCE, new TileWire.WireBoundingBox());
     }
 
     public boolean register() {
@@ -67,11 +56,7 @@ public enum EnumMachineDelta implements IMachine {
 
     @Override
     public boolean isDepreciated() {
-        return module == null;
-    }
-
-    public void setTexture(IIcon[] tex) {
-        this.texture = tex;
+        return this.getModule() == null;
     }
 
     public IIcon[] getTexture() {
@@ -86,24 +71,17 @@ public enum EnumMachineDelta implements IMachine {
 
     @SideOnly(Side.CLIENT)
     public static void registerIcons(IIconRegister iconRegister) {
-        for (EnumMachineDelta machine : VALUES) {
-            if (machine.isDepreciated()) continue;
-            machine.texture = new IIcon[machine.textureInfo.length - 2];
-            int columns = machine.textureInfo[0];
-            int rows = machine.textureInfo[1];
-            IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + machine.tag, columns, rows);
-            for (int i = 0; i < machine.texture.length; i++) {
-                machine.texture[i] = icons[machine.textureInfo[i + 2]];
-            }
+        if (INSTANCE.isDepreciated()) return;
+        INSTANCE.texture = new IIcon[INSTANCE.textureInfo.length - 2];
+        int columns = INSTANCE.textureInfo[0];
+        int rows = INSTANCE.textureInfo[1];
+        IIcon[] icons = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + tag, columns, rows);
+        for (int i = 0; i < INSTANCE.texture.length; i++) {
+            INSTANCE.texture[i] = icons[INSTANCE.textureInfo[i + 2]];
         }
     }
 
-    public static EnumMachineDelta fromId(int id) {
-        if (id < 0 || id >= VALUES.length) id = 0;
-        return VALUES[id];
-    }
-
-    public static List<EnumMachineDelta> getCreativeList() {
+    public static List<MachineWire> getCreativeList() {
         return creativeList;
     }
 
@@ -113,13 +91,13 @@ public enum EnumMachineDelta implements IMachine {
     }
 
     @Override
-    public Class getTileClass() {
-        return tile;
+    public Class<? extends TileMachineBase> getTileClass() {
+        return TileWire.class;
     }
 
     public TileMachineBase getTileEntity() {
         try {
-            return tile.newInstance();
+            return getTileClass().newInstance();
         } catch (Exception ex) {}
         return null;
     }
@@ -133,11 +111,11 @@ public enum EnumMachineDelta implements IMachine {
     public ItemStack getItem(int qty) {
         Block block = getBlock();
         if (block == null) return null;
-        return new ItemStack(block, qty, ordinal());
+        return new ItemStack(block, qty);
     }
 
     public Module getModule() {
-        return module;
+        return Module.ELECTRICITY;
     }
 
     @Override

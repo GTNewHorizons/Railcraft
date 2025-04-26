@@ -55,7 +55,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
 
     @Override
     public IMachine getMachineType() {
-        return EnumMachineDelta.WIRE;
+        return MachineWire.INSTANCE;
     }
 
     @Override

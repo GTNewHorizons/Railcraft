@@ -35,7 +35,7 @@ import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
+import mods.railcraft.common.blocks.machine.delta.MachineWire;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
@@ -856,9 +856,7 @@ public class RailcraftConfig {
             loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineDelta type : EnumMachineDelta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(MachineWire.INSTANCE.getTag());
 
         for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
             loadBlockFeature(type.getTag());

@@ -17,8 +17,7 @@ import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.delta.MachineProxyDelta;
+import mods.railcraft.common.blocks.machine.delta.MachineProxyWire;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
@@ -205,19 +204,12 @@ public class RailcraftBlocks {
             int renderId = Railcraft.getProxy().getRenderId();
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineDelta.WIRE.ordinal()] = 0;
-            blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity)
+            lightOpacity[0] = 0;
+            blockMachineDelta = new BlockMachine(renderId, new MachineProxyWire(), false, lightOpacity)
                     .setBlockName("railcraft.machine.delta");
             blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
             RailcraftRegistry.register(blockMachineDelta, ItemMachine.class);
-
-            for (EnumMachineDelta type : EnumMachineDelta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineDelta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
+            blockMachineDelta.setHarvestLevel("pickaxe", 2);
         }
         return blockMachineDelta;
     }

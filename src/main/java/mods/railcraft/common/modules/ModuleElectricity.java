@@ -11,7 +11,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
+import mods.railcraft.common.blocks.machine.delta.MachineWire;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.items.ItemElectricMeter;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
@@ -92,10 +92,10 @@ public class ModuleElectricity extends RailcraftModule {
                 'R',
                 "blockRedstone");
 
-        EnumMachineDelta delta = EnumMachineDelta.WIRE;
-        if (delta.register()) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
+        MachineWire wire = MachineWire.INSTANCE;
+        if (wire.register()) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
                 new ShapedOreRecipe(
-                        delta.getItem(8),
+                        wire.getItem(8),
                         "LPL",
                         "PCP",
                         "LPL",
