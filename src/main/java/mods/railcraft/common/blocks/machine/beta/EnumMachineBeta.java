@@ -25,7 +25,6 @@ import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -160,15 +159,6 @@ public enum EnumMachineBeta implements IEnumMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineBeta();
-    }
-
-    public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
-    }
-
-    @Override
-    public boolean isAvaliable() {
-        return getBlock() != null && isEnabled();
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {

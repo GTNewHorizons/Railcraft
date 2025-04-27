@@ -290,7 +290,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (IMachine type : proxy.getCreativeList()) {
-            if (type.isAvaliable()) list.add(type.getItem());
+            if (type.isAvailable()) list.add(type.getItem());
         }
     }
 

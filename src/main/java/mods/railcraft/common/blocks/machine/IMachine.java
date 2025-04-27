@@ -5,8 +5,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public interface IMachine {
@@ -29,7 +30,9 @@ public interface IMachine {
         return new ItemStack(block, qty);
     }
 
-    boolean isAvaliable();
+    default boolean isAvailable() {
+        return getBlock() != null && ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
+    };
 
     String getTag();
 

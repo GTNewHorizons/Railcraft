@@ -23,7 +23,6 @@ import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -179,15 +178,6 @@ public enum EnumMachineGamma implements IEnumMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineGamma();
-    }
-
-    public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
-    }
-
-    @Override
-    public boolean isAvaliable() {
-        return getBlock() != null && isEnabled();
     }
 
     public boolean register() {

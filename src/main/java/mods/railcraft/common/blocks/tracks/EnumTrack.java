@@ -249,7 +249,7 @@ public enum EnumTrack {
                 : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED);
         Object railSpeed = RailcraftConfig.useOldRecipes() ? "ingotSteel"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.SPEED);
-        Object railReinforced = RailcraftConfig.useOldRecipes() || !EnumMachineAlpha.ROCK_CRUSHER.isEnabled()
+        Object railReinforced = RailcraftConfig.useOldRecipes() || !EnumMachineAlpha.ROCK_CRUSHER.isAvailable()
                 ? "ingotSteel"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.REINFORCED);
         Object railElectric = RailcraftConfig.useOldRecipes() ? "ingotCopper"
@@ -260,7 +260,7 @@ public enum EnumTrack {
         Object stoneRailbed = RailcraftConfig.useOldRecipes() ? Blocks.stone_slab
                 : RailcraftItem.railbed.getRecipeObject(EnumRailbed.STONE);
         Object reinforcedRailbed = RailcraftConfig.useOldRecipes() || !RailcraftItem.rail.isEnabled()
-                || !EnumMachineAlpha.ROCK_CRUSHER.isEnabled() ? new ItemStack(Blocks.obsidian) : stoneRailbed;
+                || !EnumMachineAlpha.ROCK_CRUSHER.isAvailable() ? new ItemStack(Blocks.obsidian) : stoneRailbed;
 
         ItemStack crowbar = ItemCrowbar.getItem();
 

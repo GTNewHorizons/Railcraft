@@ -153,7 +153,7 @@ public class ModuleIC2 extends RailcraftModule {
         else detector = new ItemStack(Blocks.stone_pressure_plate);
 
         if (battery != null && machine != null) {
-            if (EnumMachineGamma.ENERGY_LOADER.isAvaliable()) Recipes.advRecipes.addRecipe(
+            if (EnumMachineGamma.ENERGY_LOADER.isAvailable()) Recipes.advRecipes.addRecipe(
                     EnumMachineGamma.ENERGY_LOADER.getItem(),
                     "BLB",
                     "BIB",
@@ -167,7 +167,7 @@ public class ModuleIC2 extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            if (EnumMachineGamma.ENERGY_UNLOADER.isAvaliable()) Recipes.advRecipes.addRecipe(
+            if (EnumMachineGamma.ENERGY_UNLOADER.isAvailable()) Recipes.advRecipes.addRecipe(
                     EnumMachineGamma.ENERGY_UNLOADER.getItem(),
                     "BDB",
                     "BIB",

@@ -24,7 +24,6 @@ import mods.railcraft.common.carts.ItemCartAnchor;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -141,25 +140,6 @@ public enum EnumMachineAlpha implements IEnumMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineAlpha();
-    }
-
-    /**
-     * Block is enabled, but may not be defined yet.
-     *
-     * @return
-     */
-    public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
-    }
-
-    /**
-     * Block is enabled and defined.
-     *
-     * @return
-     */
-    @Override
-    public boolean isAvaliable() {
-        return getBlock() != null && isEnabled();
     }
 
     @Override

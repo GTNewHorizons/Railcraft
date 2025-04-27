@@ -20,7 +20,6 @@ import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -94,15 +93,6 @@ public class MachineWire implements IMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineWire();
-    }
-
-    public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
-    }
-
-    @Override
-    public boolean isAvaliable() {
-        return getBlock() != null && isEnabled();
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {

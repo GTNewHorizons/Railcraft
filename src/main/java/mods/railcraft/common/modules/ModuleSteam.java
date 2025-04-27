@@ -187,7 +187,7 @@ public class ModuleSteam extends RailcraftModule {
     @Override
     public void initSecond() {
         EnumMachineAlpha alpha = EnumMachineAlpha.STEAM_TRAP_MANUAL;
-        if (alpha.isAvaliable()) {
+        if (alpha.isAvailable()) {
             ItemStack stack = alpha.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
@@ -203,7 +203,7 @@ public class ModuleSteam extends RailcraftModule {
         }
 
         alpha = EnumMachineAlpha.STEAM_TRAP_AUTO;
-        if (alpha.isAvaliable()) {
+        if (alpha.isAvailable()) {
             ItemStack stack = alpha.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
@@ -218,7 +218,7 @@ public class ModuleSteam extends RailcraftModule {
                     "dustRedstone",
                     'D',
                     new ItemStack(Blocks.dispenser));
-            if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvaliable()) {
+            if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvailable()) {
                 CraftingPlugin.addShapedRecipe(
                         stack,
                         "RTR",
@@ -233,9 +233,9 @@ public class ModuleSteam extends RailcraftModule {
 
     private ItemStack getTankItem() {
         ItemStack tank;
-        if (EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.isAvaliable())
+        if (EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.isAvailable())
             tank = EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem();
-        else if (EnumMachineBeta.TANK_STEEL_WALL.isAvaliable()) tank = EnumMachineBeta.TANK_STEEL_WALL.getItem();
+        else if (EnumMachineBeta.TANK_STEEL_WALL.isAvailable()) tank = EnumMachineBeta.TANK_STEEL_WALL.getItem();
         else tank = RailcraftItem.plate.getStack(1, EnumPlate.STEEL);
         if (tank == null) tank = RailcraftItem.ingot.getStack(1, ItemIngot.EnumIngot.STEEL);
         if (tank == null) tank = new ItemStack(Blocks.iron_block);
