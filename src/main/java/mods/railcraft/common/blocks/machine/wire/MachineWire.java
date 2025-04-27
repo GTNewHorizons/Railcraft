@@ -42,7 +42,7 @@ public class MachineWire implements IMachine {
 
     public boolean register() {
         if (RailcraftConfig.isSubBlockEnabled(getTag())) {
-            RailcraftBlocks.registerBlockMachineDelta();
+            RailcraftBlocks.registerBlockMachineWire();
             return getBlock() != null;
         }
         return false;
@@ -104,7 +104,7 @@ public class MachineWire implements IMachine {
 
     @Override
     public Block getBlock() {
-        return RailcraftBlocks.getBlockMachineDelta();
+        return RailcraftBlocks.getBlockMachineWire();
     }
 
     public boolean isEnabled() {

@@ -44,7 +44,7 @@ public class RailcraftBlocks {
     private static Block blockMachineAlpha;
     private static Block blockMachineBeta;
     private static Block blockMachineGamma;
-    private static Block blockMachineDelta;
+    private static Block blockMachineWire;
     private static Block blockMachineEpsilon;
     private static Block blockTrack;
     private static Block blockRailElevator;
@@ -199,23 +199,23 @@ public class RailcraftBlocks {
         return blockMachineGamma;
     }
 
-    public static Block registerBlockMachineDelta() {
-        if (blockMachineDelta == null && RailcraftConfig.isBlockEnabled("machine.delta")) {
+    public static Block registerBlockMachineWire() {
+        if (blockMachineWire == null && RailcraftConfig.isBlockEnabled("machine.delta")) {
             int renderId = Railcraft.getProxy().getRenderId();
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
             lightOpacity[0] = 0;
-            blockMachineDelta = new BlockMachine(renderId, new MachineProxyWire(), false, lightOpacity)
+            blockMachineWire = new BlockMachine(renderId, new MachineProxyWire(), false, lightOpacity)
                     .setBlockName("railcraft.machine.delta");
-            blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
-            RailcraftRegistry.register(blockMachineDelta, ItemMachine.class);
-            blockMachineDelta.setHarvestLevel("pickaxe", 2);
+            blockMachineWire.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
+            RailcraftRegistry.register(blockMachineWire, ItemMachine.class);
+            blockMachineWire.setHarvestLevel("pickaxe", 2);
         }
-        return blockMachineDelta;
+        return blockMachineWire;
     }
 
-    public static Block getBlockMachineDelta() {
-        return blockMachineDelta;
+    public static Block getBlockMachineWire() {
+        return blockMachineWire;
     }
 
     public static Block registerBlockMachineEpsilon() {

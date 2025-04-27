@@ -38,7 +38,7 @@ public class RenderBlockWire extends BlockRenderer {
     private final RenderBlockFrame renderFrame;
 
     public RenderBlockWire() {
-        super(RailcraftBlocks.getBlockMachineDelta());
+        super(RailcraftBlocks.getBlockMachineWire());
         if (BlockFrame.getBlock() != null) renderFrame = new RenderBlockFrame();
         else renderFrame = null;
     }
