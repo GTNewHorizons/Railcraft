@@ -145,11 +145,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         return null;
     }
 
-    @Override
-    public ItemStack getItem() {
-        return getItem(1);
-    }
-
     public Module getModule() {
         return module;
     }

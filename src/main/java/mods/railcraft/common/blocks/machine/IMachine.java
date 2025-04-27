@@ -13,7 +13,9 @@ public interface IMachine {
 
     IIcon getTexture(int side);
 
-    ItemStack getItem();
+    default ItemStack getItem() {
+        return getItem(1);
+    };
 
     Class<? extends TileMachineBase> getTileClass();
 

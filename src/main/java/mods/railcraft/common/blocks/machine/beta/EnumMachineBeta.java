@@ -153,11 +153,6 @@ public enum EnumMachineBeta implements IEnumMachine {
     }
 
     @Override
-    public ItemStack getItem() {
-        return getItem(1);
-    }
-
-    @Override
     public Module getModule() {
         return module;
     }
