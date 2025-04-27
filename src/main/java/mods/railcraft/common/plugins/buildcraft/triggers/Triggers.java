@@ -17,7 +17,7 @@ import buildcraft.api.statements.ITriggerExternal;
 import buildcraft.api.statements.StatementManager;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
+import mods.railcraft.common.blocks.machine.engine.TileEngine.EnergyStage;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**

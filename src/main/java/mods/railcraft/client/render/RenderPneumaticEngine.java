@@ -20,8 +20,8 @@ import mods.railcraft.client.render.models.engine.ModelEngineBase;
 import mods.railcraft.client.render.models.engine.ModelEngineFrame;
 import mods.railcraft.client.render.models.engine.ModelEnginePiston;
 import mods.railcraft.client.render.models.engine.ModelEngineTrunk;
-import mods.railcraft.common.blocks.machine.beta.TileEngine;
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
+import mods.railcraft.common.blocks.machine.engine.TileEngine;
+import mods.railcraft.common.blocks.machine.engine.TileEngine.EnergyStage;
 import mods.railcraft.common.core.RailcraftConstants;
 
 public class RenderPneumaticEngine extends TileEntitySpecialRenderer implements IInvRenderer {
