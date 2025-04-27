@@ -39,7 +39,7 @@ import mods.railcraft.common.util.steam.SteamBoiler;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class TileBoilerFirebox extends TileBoiler implements IInventory, ISidedInventory, ITemperature {
+public abstract class TileBoilerFirebox extends TileBoiler implements ISidedInventory, ITemperature {
 
     protected static final int SLOT_LIQUID_INPUT = 0;
     protected static final int SLOT_LIQUID_OUTPUT = 1;

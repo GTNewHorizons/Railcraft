@@ -13,7 +13,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,7 +32,7 @@ import mods.railcraft.common.util.steam.Steam;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class TileEngineSteam extends TileEngine implements IFluidHandler, ISteamUser {
+public abstract class TileEngineSteam extends TileEngine implements ISteamUser {
 
     private static final int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
     public static final int TANK_STEAM = 0;

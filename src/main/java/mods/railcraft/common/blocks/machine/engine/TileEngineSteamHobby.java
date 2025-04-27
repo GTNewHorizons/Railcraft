@@ -40,7 +40,7 @@ import mods.railcraft.common.util.steam.SteamBoiler;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileEngineSteamHobby extends TileEngineSteam
-        implements IInventory, ISidedInventory, INeedsFuel, ITemperature {
+        implements ISidedInventory, INeedsFuel, ITemperature {
 
     public static final byte SLOT_FUEL = 0;
     public static final byte SLOT_LIQUID_INPUT = 1;

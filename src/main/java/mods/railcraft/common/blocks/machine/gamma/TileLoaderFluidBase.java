@@ -32,7 +32,7 @@ import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 
-public abstract class TileLoaderFluidBase extends TileLoaderBase implements IInventory, IFluidHandler, ISidedInventory {
+public abstract class TileLoaderFluidBase extends TileLoaderBase implements IFluidHandler, ISidedInventory {
 
     protected static final int SLOT_INPUT = 0;
     protected static final int SLOT_OUTPUT = 1;
