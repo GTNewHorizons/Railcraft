@@ -16,12 +16,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.util.misc.Game;
 
-public class EntityCartChest extends CartContainerBase implements IItemCart {
+public class EntityCartChest extends CartContainerBase {
 
     public EntityCartChest(World world) {
         super(world);

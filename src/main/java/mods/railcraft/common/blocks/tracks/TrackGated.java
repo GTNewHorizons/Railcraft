@@ -5,9 +5,6 @@
  */
 package mods.railcraft.common.blocks.tracks;
 
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
