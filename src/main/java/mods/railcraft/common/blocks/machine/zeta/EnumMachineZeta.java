@@ -127,11 +127,6 @@ public enum EnumMachineZeta implements IEnumMachine {
         return capacity;
     }
 
-    @Override
-    public boolean isDepreciated() {
-        return module == null;
-    }
-
     public void setTexture(IIcon[] tex) {
         this.texture = tex;
     }
@@ -202,6 +197,7 @@ public enum EnumMachineZeta implements IEnumMachine {
         return new ItemStack(block, qty, ordinal());
     }
 
+    @Override
     public Module getModule() {
         return module;
     }

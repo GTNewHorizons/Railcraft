@@ -49,11 +49,6 @@ public class MachineWire implements IMachine {
     }
 
     @Override
-    public boolean isDepreciated() {
-        return this.getModule() == null;
-    }
-
-    @Override
     public IIcon getTexture(int index) {
         if (index < 0 || index >= texture.length) index = 0;
         return texture[index];
@@ -98,6 +93,7 @@ public class MachineWire implements IMachine {
         return new ItemStack(block, qty);
     }
 
+    @Override
     public Module getModule() {
         return Module.ELECTRICITY;
     }

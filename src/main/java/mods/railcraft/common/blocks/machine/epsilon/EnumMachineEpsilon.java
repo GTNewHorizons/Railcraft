@@ -74,11 +74,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         return false;
     }
 
-    @Override
-    public boolean isDepreciated() {
-        return module == null;
-    }
-
     public void setTexture(IIcon[] tex) {
         this.texture = tex;
     }

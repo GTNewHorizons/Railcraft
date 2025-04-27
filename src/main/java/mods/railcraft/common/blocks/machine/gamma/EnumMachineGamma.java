@@ -77,11 +77,6 @@ public enum EnumMachineGamma implements IEnumMachine {
         this.extraIcons = extraIcons;
     }
 
-    @Override
-    public boolean isDepreciated() {
-        return module == null;
-    }
-
     public void setTexture(IIcon... tex) {
         this.texture = tex;
     }
@@ -188,6 +183,7 @@ public enum EnumMachineGamma implements IEnumMachine {
         return new ItemStack(block, qty, ordinal());
     }
 
+    @Override
     public Module getModule() {
         return module;
     }

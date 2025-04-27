@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.modules.ModuleManager.Module;
 
 public interface IMachine {
 
@@ -26,7 +27,11 @@ public interface IMachine {
 
     String getTag();
 
-    boolean isDepreciated();
+    Module getModule();
+
+    default boolean isDepreciated() {
+        return getModule() == null;
+    };
 
     Block getBlock();
 }

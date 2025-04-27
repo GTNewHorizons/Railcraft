@@ -88,11 +88,6 @@ public enum EnumMachineAlpha implements IEnumMachine {
     }
 
     @Override
-    public boolean isDepreciated() {
-        return module == null;
-    }
-
-    @Override
     public IIcon getTexture(int index) {
         if (index < 0 || index >= texture.length) index = 0;
         return texture[index];
@@ -150,6 +145,7 @@ public enum EnumMachineAlpha implements IEnumMachine {
         return new ItemStack(block, qty, ordinal());
     }
 
+    @Override
     public Module getModule() {
         return module;
     }
