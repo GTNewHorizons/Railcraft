@@ -47,7 +47,7 @@ import mods.railcraft.common.util.steam.ISteamUser;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileSteamTurbine extends TileMultiBlock
-        implements IMultiEmitterDelegate, IFluidHandler, INeedsMaintenance, ISteamUser, IElectricGrid {
+        implements IMultiEmitterDelegate, INeedsMaintenance, ISteamUser, IElectricGrid {
 
     enum Texture {
 
