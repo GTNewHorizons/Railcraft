@@ -20,7 +20,12 @@ public interface IMachine {
 
     Class<? extends TileMachineBase> getTileClass();
 
-    TileEntity getTileEntity();
+    default TileEntity getTileEntity() {
+        try {
+            return getTileClass().newInstance();
+        } catch (Exception ex) {}
+        return null;
+    };
 
     ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv);
 

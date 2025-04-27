@@ -73,13 +73,6 @@ public class MachineWire implements IMachine {
         return TileWire.class;
     }
 
-    public TileMachineBase getTileEntity() {
-        try {
-            return getTileClass().newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
     @Override
     public ItemStack getItem() {
         return getItem(1);

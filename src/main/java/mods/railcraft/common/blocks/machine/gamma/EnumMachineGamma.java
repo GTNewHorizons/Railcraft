@@ -163,14 +163,6 @@ public enum EnumMachineGamma implements IEnumMachine {
     }
 
     @Override
-    public TileMachineBase getTileEntity() {
-        try {
-            return tile.newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
-    @Override
     public Module getModule() {
         return module;
     }

@@ -137,13 +137,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         return tile;
     }
 
-    public TileMachineBase getTileEntity() {
-        try {
-            return tile.newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
     public Module getModule() {
         return module;
     }

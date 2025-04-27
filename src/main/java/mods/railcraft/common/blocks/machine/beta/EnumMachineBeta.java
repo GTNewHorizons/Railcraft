@@ -144,13 +144,6 @@ public enum EnumMachineBeta implements IEnumMachine {
         return tile;
     }
 
-    public TileMachineBase getTileEntity() {
-        try {
-            return tile.newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
     @Override
     public Module getModule() {
         return module;
