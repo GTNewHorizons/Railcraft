@@ -139,13 +139,6 @@ public enum EnumMachineAlpha implements IEnumMachine {
     }
 
     @Override
-    public ItemStack getItem(int qty) {
-        Block block = getBlock();
-        if (block == null) return null;
-        return new ItemStack(block, qty, ordinal());
-    }
-
-    @Override
     public Module getModule() {
         return module;
     }

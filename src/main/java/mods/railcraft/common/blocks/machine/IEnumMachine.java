@@ -5,6 +5,8 @@
  */
 package mods.railcraft.common.blocks.machine;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
@@ -15,5 +17,12 @@ public interface IEnumMachine extends IMachine {
 
     default int getCapacity() {
         return 0;
+    }
+
+    @Override
+    default ItemStack getItem(int qty) {
+        Block block = getBlock();
+        if (block == null) return null;
+        return new ItemStack(block, qty, ordinal());
     }
 }

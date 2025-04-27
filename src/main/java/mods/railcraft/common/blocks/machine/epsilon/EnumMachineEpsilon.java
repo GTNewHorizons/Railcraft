@@ -150,13 +150,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         return getItem(1);
     }
 
-    @Override
-    public ItemStack getItem(int qty) {
-        Block block = getBlock();
-        if (block == null) return null;
-        return new ItemStack(block, qty, ordinal());
-    }
-
     public Module getModule() {
         return module;
     }

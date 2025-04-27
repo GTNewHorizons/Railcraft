@@ -87,13 +87,6 @@ public class MachineWire implements IMachine {
     }
 
     @Override
-    public ItemStack getItem(int qty) {
-        Block block = getBlock();
-        if (block == null) return null;
-        return new ItemStack(block, qty);
-    }
-
-    @Override
     public Module getModule() {
         return Module.ELECTRICITY;
     }

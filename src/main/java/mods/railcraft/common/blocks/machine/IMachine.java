@@ -21,7 +21,11 @@ public interface IMachine {
 
     ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv);
 
-    ItemStack getItem(int qty);
+    default ItemStack getItem(int qty) {
+        Block block = getBlock();
+        if (block == null) return null;
+        return new ItemStack(block, qty);
+    }
 
     boolean isAvaliable();
 
