@@ -28,7 +28,6 @@ import mods.railcraft.common.blocks.machine.beta.TileBoilerTankHigh;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerTankLow;
 import mods.railcraft.common.blocks.machine.beta.TileChestMetals;
 import mods.railcraft.common.blocks.machine.beta.TileChestVoid;
-import mods.railcraft.common.blocks.machine.beta.TileSawmill;
 import mods.railcraft.common.blocks.machine.beta.TileSentinel;
 import mods.railcraft.common.blocks.machine.beta.TileTankIronGauge;
 import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
@@ -103,7 +102,6 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileTankSteelValve.class, "RCSteelTankValveTile");
         GameRegistry.registerTileEntity(TileChestVoid.class, "RCVoidChestTile");
         GameRegistry.registerTileEntity(TileChestMetals.class, "RCMetalsChestTile");
-        GameRegistry.registerTileEntity(TileSawmill.class, "RCSawmillTile");
 
         // Gamma
         GameRegistry.registerTileEntity(TileDispenserCart.class, "RCMinecartDispenserTile");
