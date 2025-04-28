@@ -52,10 +52,10 @@ public abstract class RailTools {
      */
     public static boolean placeRailAt(ItemStack stack, World world, int i, int j, int k) {
         if (stack == null) return false;
-        if (stack.getItem() instanceof ITrackItem)
-            return ((ITrackItem) stack.getItem()).placeTrack(stack.copy(), world, i, j, k);
-        if (stack.getItem() instanceof ItemBlock) {
-            Block block = ((ItemBlock) stack.getItem()).field_150939_a;
+        if (stack.getItem() instanceof ITrackItem trackItem)
+            return trackItem.placeTrack(stack.copy(), world, i, j, k);
+        if (stack.getItem() instanceof ItemBlock itemBlock) {
+            Block block = itemBlock.field_150939_a;
             if (BlockRailBase.func_150051_a(block)) {
                 boolean success = world.setBlock(i, j, k, block);
                 if (success) world.playSoundEffect(
@@ -98,8 +98,8 @@ public abstract class RailTools {
         if (BlockRailBase.func_150049_b_(cart.worldObj, x, y - 1, z)) y--;
 
         TileEntity tile = cart.worldObj.getTileEntity(x, y, z);
-        if (tile instanceof ITrackTile) {
-            ITrackInstance track = ((ITrackTile) tile).getTrackInstance();
+        if (tile instanceof ITrackTile iTrackTile) {
+            ITrackInstance track = iTrackTile.getTrackInstance();
             return track instanceof ITrackLockdown && ((ITrackLockdown) track).isCartLockedDown(cart);
         } else if (tile instanceof ITrackLockdown) return ((ITrackLockdown) tile).isCartLockedDown(cart);
         return false;
@@ -145,11 +145,11 @@ public abstract class RailTools {
 
     public static ITrackTile getTrackFuzzyAt(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof ITrackTile) return (ITrackTile) tile;
+        if (tile instanceof ITrackTile track) return track;
         tile = world.getTileEntity(x, y + 1, z);
-        if (tile instanceof ITrackTile) return (ITrackTile) tile;
+        if (tile instanceof ITrackTile track) return track;
         tile = world.getTileEntity(x, y - 1, z);
-        if (tile instanceof ITrackTile) return (ITrackTile) tile;
+        if (tile instanceof ITrackTile track) return track;
         return null;
     }
 

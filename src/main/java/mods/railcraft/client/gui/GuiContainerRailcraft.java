@@ -70,8 +70,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
                 }
             }
             for (Object button : buttonList) {
-                if (!(button instanceof GuiBetterButton)) continue;
-                GuiBetterButton betterButton = (GuiBetterButton) button;
+                if (!(button instanceof GuiBetterButton betterButton)) continue;
                 if (!betterButton.visible) continue;
                 ToolTip tips = betterButton.getToolTip();
                 if (tips == null) continue;
@@ -83,8 +82,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
                 }
             }
             for (Object obj : inventorySlots.inventorySlots) {
-                if (!(obj instanceof SlotRailcraft)) continue;
-                SlotRailcraft slot = (SlotRailcraft) obj;
+                if (!(obj instanceof SlotRailcraft slot)) continue;
                 if (slot.getStack() != null) continue;
                 ToolTip tips = slot.getToolTip();
                 if (tips == null) continue;
@@ -199,7 +197,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
     @Override
     protected void mouseClickMove(int x, int y, int mouseButton, long time) {
         Slot slot = getSlotAtPosition(x, y);
-        if (mouseButton == 1 && slot instanceof SlotRailcraft && ((SlotRailcraft) slot).isPhantom()) return;
+        if (mouseButton == 1 && slot instanceof SlotRailcraft slotRailcraft && slotRailcraft.isPhantom()) return;
         super.mouseClickMove(x, y, mouseButton, time);
     }
 

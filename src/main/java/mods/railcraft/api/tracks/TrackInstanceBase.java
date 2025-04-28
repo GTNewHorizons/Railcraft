@@ -76,8 +76,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     public boolean blockActivated(EntityPlayer player) {
         if (this instanceof ITrackReversable) {
             ItemStack current = player.getCurrentEquippedItem();
-            if (current != null && current.getItem() instanceof IToolCrowbar) {
-                IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
+            if (current != null && current.getItem() instanceof IToolCrowbar crowbar) {
                 if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
                     ITrackReversable track = (ITrackReversable) this;
                     track.setReversed(!track.isReversed());
@@ -247,8 +246,8 @@ public abstract class TrackInstanceBase implements ITrackInstance {
         if (blockToTest == blockTrack) {
             int meta = world.getBlockMetadata(i, j, k);
             TileEntity tile = world.getTileEntity(i, j, k);
-            if (tile instanceof ITrackTile) {
-                ITrackInstance track = ((ITrackTile) tile).getTrackInstance();
+            if (tile instanceof ITrackTile trackTile) {
+                ITrackInstance track = trackTile.getTrackInstance();
                 if (!(track instanceof ITrackPowered) || track.getTrackSpec() != spec || !canPropagatePowerTo(track))
                     return false;
                 if (orientation == 1 && (meta == 0 || meta == 4 || meta == 5)) return false;

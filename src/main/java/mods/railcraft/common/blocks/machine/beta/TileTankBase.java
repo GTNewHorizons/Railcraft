@@ -81,8 +81,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         blockMapping.put('B', EnumMachineBeta.TANK_IRON_WALL.ordinal());
         blockMapping.put('W', EnumMachineBeta.TANK_IRON_GAUGE.ordinal());
         TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
-        if (tile instanceof TileTankBase) {
-            TileTankBase master = (TileTankBase) tile;
+        if (tile instanceof TileTankBase master) {
             master.tank.setFluid(fluid);
         }
     }
@@ -93,8 +92,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         blockMapping.put('B', EnumMachineBeta.TANK_STEEL_WALL.ordinal());
         blockMapping.put('W', EnumMachineBeta.TANK_STEEL_GAUGE.ordinal());
         TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
-        if (tile instanceof TileTankBase) {
-            TileTankBase master = (TileTankBase) tile;
+        if (tile instanceof TileTankBase master) {
             master.tank.setFluid(fluid);
         }
     }
@@ -106,8 +104,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         blockMapping.put('B', EnumMachineBeta.TANK_STEEL_WALL.ordinal());
         blockMapping.put('W', EnumMachineBeta.TANK_STEEL_GAUGE.ordinal());
         TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
-        if (tile instanceof TileTankBase) {
-            TileTankBase master = (TileTankBase) tile;
+        if (tile instanceof TileTankBase master) {
             master.tank.setFluid(fluid);
         }
     }

@@ -75,7 +75,7 @@ public class FactoryGui {
     public static GuiScreen build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         if (gui != EnumGui.ANVIL && obj == null) return null;
 
-        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid()) return null;
+        if (obj instanceof TileMultiBlock multiObj && !multiObj.isStructureValid()) return null;
 
         try {
             switch (gui) {
