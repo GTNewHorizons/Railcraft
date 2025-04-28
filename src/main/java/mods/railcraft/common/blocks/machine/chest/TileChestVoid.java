@@ -3,11 +3,12 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.chest;
 
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.misc.Game;
 
 /**
@@ -19,8 +20,8 @@ public class TileChestVoid extends TileChestRailcraft {
     private static final int TICK_PER_VOID = 8;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.VOID_CHEST;
+    public IMachine getMachineType() {
+        return Machines.VOID_CHEST;
     }
 
     @Override

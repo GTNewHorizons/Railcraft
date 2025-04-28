@@ -167,8 +167,7 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
         @Override
         public AxisAlignedBB getBox(World world, int x, int y, int z) {
             TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
-            if (tile instanceof TileWire) {
-                TileWire wire = (TileWire) tile;
+            if (tile instanceof TileWire wire) {
                 AddonType type = wire.getAddon();
                 if (type == AddonType.NONE) return super.getBox(world, x, y, z);
             }

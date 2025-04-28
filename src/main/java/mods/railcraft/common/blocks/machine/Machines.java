@@ -3,6 +3,8 @@ package mods.railcraft.common.blocks.machine;
 import net.minecraft.block.Block;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
+import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
@@ -50,6 +52,23 @@ public class Machines {
             1,
             1,
             1);
+
+    public static final Machine VOID_CHEST = registerMachine(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineChestVoid(),
+            TileChestVoid.class,
+            "chest.void",
+            1,
+            1,
+            0);
+    public static final Machine METALS_CHEST = registerMachine(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineChestMetals(),
+            TileChestMetals.class,
+            "chest.metals",
+            1,
+            1,
+            0);
 
     public static final Machine WIRE = registerMachine(
             Module.ELECTRICITY,

@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.chest;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -11,7 +11,8 @@ import java.util.Map;
 import net.minecraft.inventory.IInventory;
 
 import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.items.Metal;
 import mods.railcraft.common.util.inventory.filters.ComplexStackFilter;
 import mods.railcraft.common.util.inventory.filters.ExclusionStackFilter;
@@ -134,8 +135,8 @@ public class TileChestMetals extends TileChestRailcraft {
     private Target target = Target.NUGGET_CONDENSE;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.METALS_CHEST;
+    public IMachine getMachineType() {
+        return Machines.METALS_CHEST;
     }
 
     @Override

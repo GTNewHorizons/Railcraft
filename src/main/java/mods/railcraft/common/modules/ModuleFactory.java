@@ -22,8 +22,9 @@ import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -354,8 +355,8 @@ public class ModuleFactory extends RailcraftModule {
                     "craftingTableWood");
         } else RollingMachineCraftingManager.copyRecipesToWorkbench();
 
-        EnumMachineBeta metalsChest = EnumMachineBeta.METALS_CHEST;
-        if (metalsChest.register()) CraftingPlugin.addShapedRecipe(
+        Machine metalsChest = Machines.METALS_CHEST;
+        if (metalsChest.isAvailable()) CraftingPlugin.addShapedRecipe(
                 metalsChest.getItem(),
                 "GPG",
                 "PAP",

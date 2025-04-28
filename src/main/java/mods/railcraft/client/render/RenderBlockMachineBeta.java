@@ -7,9 +7,6 @@ package mods.railcraft.client.render;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.beta.TileChestMetals;
-import mods.railcraft.common.blocks.machine.beta.TileChestVoid;
-import mods.railcraft.common.core.RailcraftConstants;
 
 /**
  *
@@ -22,15 +19,5 @@ public class RenderBlockMachineBeta extends BlockRenderer {
 
         addBlockRenderer(EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal(), new RenderBoilerTank());
         addBlockRenderer(EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal(), new RenderBoilerTank());
-
-        addBlockRenderer(EnumMachineBeta.VOID_CHEST.ordinal(), new DoNothingRenderer());
-        addItemRenderer(
-                EnumMachineBeta.VOID_CHEST.ordinal(),
-                new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_void.png", new TileChestVoid()));
-
-        addBlockRenderer(EnumMachineBeta.METALS_CHEST.ordinal(), new DoNothingRenderer());
-        addItemRenderer(
-                EnumMachineBeta.METALS_CHEST.ordinal(),
-                new RenderChest(RailcraftConstants.TESR_TEXTURE_FOLDER + "chest_metals.png", new TileChestMetals()));
     }
 }

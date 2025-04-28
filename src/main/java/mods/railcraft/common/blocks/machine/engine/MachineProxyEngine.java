@@ -1,8 +1,5 @@
 package mods.railcraft.common.blocks.machine.engine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 
 import mods.railcraft.common.blocks.machine.IMachine;
@@ -29,13 +26,6 @@ public class MachineProxyEngine implements IMachineProxy {
     @Override
     public IMachine getMachine(int meta) {
         return getMachine();
-    }
-
-    @Override
-    public List<? extends IMachine> getCreativeList() {
-        List<IMachine> list = new ArrayList<IMachine>();
-        list.add(getMachine(0));
-        return list;
     }
 
     @Override

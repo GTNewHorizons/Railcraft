@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.chest;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import static net.minecraftforge.common.util.ForgeDirection.UP;

@@ -382,6 +382,8 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.ENGINE_STEAM_LOW);
         machines.add(Machines.ENGINE_STEAM_HIGH);
         machines.add(Machines.SENTINEL);
+        machines.add(Machines.VOID_CHEST);
+        machines.add(Machines.METALS_CHEST);
         machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
         machines.add(Machines.WIRE);
         machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));

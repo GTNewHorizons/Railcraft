@@ -19,6 +19,8 @@ import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
+import mods.railcraft.common.blocks.machine.chest.MachineProxyChestMetals;
+import mods.railcraft.common.blocks.machine.chest.MachineProxyChestVoid;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.MachineProxyEngine;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
@@ -55,6 +57,8 @@ public class RailcraftBlocks {
     private static Block blockMachineWire;
     private static Block blockMachineEpsilon;
     private static Block blockMachineSentinel;
+    private static Block blockMachineChestVoid;
+    private static Block blockMachineChestMetals;
     private static Block blockTrack;
     private static Block blockRailElevator;
     private static Block blockSignal;
@@ -152,8 +156,6 @@ public class RailcraftBlocks {
             lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
             blockMachineBeta = new BlockMultiMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.beta");
             RailcraftRegistry.register(blockMachineBeta, ItemMultiMachine.class);
@@ -182,6 +184,36 @@ public class RailcraftBlocks {
 
     public static Block getBlockMachineSentinel() {
         return blockMachineSentinel;
+    }
+
+    public static Block registerBlockMachineChestVoid() {
+        if (blockMachineChestVoid == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineChestVoid = new BlockMachine(renderId, new MachineProxyChestVoid(), false, 0)
+                    .setBlockName("railcraft.chest.void");
+            RailcraftRegistry.register(blockMachineChestVoid, ItemMachine.class);
+            blockMachineChestVoid.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return blockMachineChestVoid;
+    }
+
+    public static Block getBlockMachineChestVoid() {
+        return blockMachineChestVoid;
+    }
+
+    public static Block registerBlockMachineChestMetals() {
+        if (blockMachineChestMetals == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineChestMetals = new BlockMachine(renderId, new MachineProxyChestMetals(), false, 0)
+                    .setBlockName("railcraft.chest.metals");
+            RailcraftRegistry.register(blockMachineChestMetals, ItemMachine.class);
+            blockMachineChestMetals.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return blockMachineChestMetals;
+    }
+
+    public static Block getBlockMachineChestMetals() {
+        return blockMachineChestMetals;
     }
 
     public static Block registerBlockMachineGamma() {

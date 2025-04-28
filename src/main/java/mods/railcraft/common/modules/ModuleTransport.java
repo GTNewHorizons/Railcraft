@@ -10,6 +10,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
@@ -62,8 +64,8 @@ public class ModuleTransport extends RailcraftModule {
         // initIronTank();
         // initSteelTank();
 
-        EnumMachineBeta voidChest = EnumMachineBeta.VOID_CHEST;
-        if (voidChest.register()) CraftingPlugin.addShapedRecipe(
+        Machine voidChest = Machines.VOID_CHEST;
+        if (voidChest.isAvailable()) CraftingPlugin.addShapedRecipe(
                 voidChest.getItem(),
                 "OOO",
                 "OPO",

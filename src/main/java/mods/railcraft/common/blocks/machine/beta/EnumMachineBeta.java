@@ -40,8 +40,6 @@ public enum EnumMachineBeta implements IEnumMachine {
     BOILER_FIREBOX_SOLID(Module.STEAM, "boiler.firebox.solid", TileBoilerFireboxSolid.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
     BOILER_FIREBOX_FLUID(Module.STEAM, "boiler.firebox.liquid", TileBoilerFireboxFluid.class, 3, 1, 0, 0, 1, 1, 1, 1,
             2),
-    VOID_CHEST(Module.TRANSPORT, "chest.void", TileChestVoid.class, 1, 1, 0),
-    METALS_CHEST(Module.TRANSPORT, "chest.metals", TileChestMetals.class, 1, 1, 0),
     TANK_STEEL_WALL(Module.TRANSPORT, "tank.steel.wall", TileTankSteelWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
     TANK_STEEL_GAUGE(Module.TRANSPORT, "tank.steel.gauge", TileTankSteelGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3,
             4),
@@ -67,8 +65,6 @@ public enum EnumMachineBeta implements IEnumMachine {
         creativeList.add(BOILER_FIREBOX_FLUID);
         creativeList.add(BOILER_TANK_LOW_PRESSURE);
         creativeList.add(BOILER_TANK_HIGH_PRESSURE);
-        creativeList.add(VOID_CHEST);
-        creativeList.add(METALS_CHEST);
     }
 
     private EnumMachineBeta(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {

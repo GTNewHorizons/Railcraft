@@ -152,8 +152,7 @@ public class BlockFrame extends Block implements IPostConnection {
         if (current != null && InvTools.isItemEqualIgnoreNBT(current, Machines.WIRE.getItem()))
             if (WorldPlugin.setBlock(world, x, y, z, Machines.WIRE.getBlock(), 0, 2)) {
                 TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
-                if (tile instanceof TileWire) {
-                    TileWire wire = (TileWire) tile;
+                if (tile instanceof TileWire wire) {
                     wire.setAddon(AddonType.FRAME);
                 }
                 if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));

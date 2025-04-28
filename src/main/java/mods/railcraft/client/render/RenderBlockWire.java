@@ -81,8 +81,7 @@ public class RenderBlockWire extends BlockRenderer {
         renderPlug(renderblocks, world, x, y, z, block, plugCons);
 
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
-        if (tile instanceof TileWire) {
-            TileWire wire = (TileWire) tile;
+        if (tile instanceof TileWire wire) {
             if (wire.getAddon() == AddonType.FRAME) {
                 BlockFrame.poweredTexture = powered;
                 renderFrame(renderblocks, world, x, y, z, block);
