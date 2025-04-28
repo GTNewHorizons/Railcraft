@@ -48,7 +48,6 @@ import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -377,7 +376,12 @@ public class ModuleCore extends RailcraftModule {
 
         Set<IMachine> machines = new HashSet<IMachine>();
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
-        machines.addAll(EnumSet.allOf(EnumMachineBeta.class));
+        machines.add(Machines.TANK_IRON_WALL);
+        machines.add(Machines.TANK_IRON_GAUGE);
+        machines.add(Machines.TANK_IRON_VALVE);
+        machines.add(Machines.TANK_STEEL_WALL);
+        machines.add(Machines.TANK_STEEL_GAUGE);
+        machines.add(Machines.TANK_STEEL_VALVE);
         machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
         machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
         machines.add(Machines.BOILER_FIREBOX_SOLID);

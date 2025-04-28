@@ -14,8 +14,8 @@ import org.lwjgl.opengl.GL11;
 
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.beta.TileTankBase;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankBase;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronValve;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.StandardTank;

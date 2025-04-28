@@ -17,8 +17,6 @@ import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.ItemMultiMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyBoilerTank;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyFirebox;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
@@ -32,6 +30,10 @@ import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.gamma.MachineProxyGamma;
 import mods.railcraft.common.blocks.machine.sentinel.MachineProxySentinel;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankGauge;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankValve;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankWall;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
@@ -53,8 +55,13 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 public class RailcraftBlocks {
 
     private static Block blockMachineAlpha;
-    private static Block blockMachineBeta;
     private static Block blockMachineGamma;
+    private static Block blockTankWallIron;
+    private static Block blockTankGaugeIron;
+    private static Block blockTankValveIron;
+    private static Block blockTankWallSteel;
+    private static Block blockTankGaugeSteel;
+    private static Block blockTankValveSteel;
     private static Block blockBoilerTankLowPressure;
     private static Block blockBoilerTankHighPressure;
     private static Block blockBoilerFireboxSolid;
@@ -150,31 +157,61 @@ public class RailcraftBlocks {
         return blockMachineAlpha;
     }
 
-    public static Block registerBlockMachineBeta() {
-        if (blockMachineBeta == null && RailcraftConfig.isBlockEnabled("machine.beta")) {
-
+    public static Block registerBlockTankWall(TankMaterial material) {
+        Block wall = getBlockTankWall(material);
+        if (wall == null) {
             int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineBeta.TANK_IRON_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
-            blockMachineBeta = new BlockMultiMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.beta");
-            RailcraftRegistry.register(blockMachineBeta, ItemMultiMachine.class);
-
-            for (EnumMachineBeta type : EnumMachineBeta.values()) {
-                blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-            }
+            wall = new BlockMachine(renderId, new MachineProxyTankWall(material), false, 0)
+                    .setBlockName("railcraft.tank.wall." + material.name);
+            RailcraftRegistry.register(wall, ItemMachine.class);
+            wall.setHarvestLevel("pickaxe", 2, 0);
         }
-        return blockMachineBeta;
+        return wall;
     }
 
-    public static Block getBlockMachineBeta() {
-        return blockMachineBeta;
+    public static Block getBlockTankWall(TankMaterial material) {
+        return switch (material) {
+            case IRON -> blockTankWallIron;
+            case STEEL -> blockTankWallSteel;
+        };
+    }
+
+    public static Block registerBlockTankGauge(TankMaterial material) {
+        Block wall = getBlockTankGauge(material);
+        if (wall == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            wall = new BlockMachine(renderId, new MachineProxyTankGauge(material), false, 0)
+                    .setBlockName("railcraft.tank.gauge." + material.name);
+            RailcraftRegistry.register(wall, ItemMachine.class);
+            wall.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return wall;
+    }
+
+    public static Block getBlockTankGauge(TankMaterial material) {
+        return switch (material) {
+            case IRON -> blockTankGaugeIron;
+            case STEEL -> blockTankGaugeSteel;
+        };
+    }
+
+    public static Block registerBlockTankValve(TankMaterial material) {
+        Block valve = getBlockTankValve(material);
+        if (valve == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            valve = new BlockMachine(renderId, new MachineProxyTankValve(material), false, 0)
+                    .setBlockName("railcraft.tank.valve." + material.name);
+            RailcraftRegistry.register(valve, ItemMachine.class);
+            valve.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return valve;
+    }
+
+    public static Block getBlockTankValve(TankMaterial material) {
+        return switch (material) {
+            case IRON -> blockTankValveIron;
+            case STEEL -> blockTankValveSteel;
+        };
     }
 
     public static Block getBlockFirebox(FireboxType fireboxType) {

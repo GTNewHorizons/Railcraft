@@ -16,11 +16,24 @@ import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronWall;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelWall;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class Machines {
 
+    public static final Machine TANK_IRON_WALL = registerTankWall(TankMaterial.IRON, TileTankIronWall.class);
+    public static final Machine TANK_IRON_GAUGE = registerTankGauge(TankMaterial.IRON, TileTankIronGauge.class);
+    public static final Machine TANK_IRON_VALVE = registerTankValve(TankMaterial.IRON, TileTankIronValve.class);
+    public static final Machine TANK_STEEL_WALL = registerTankWall(TankMaterial.STEEL, TileTankSteelWall.class);
+    public static final Machine TANK_STEEL_GAUGE = registerTankGauge(TankMaterial.STEEL, TileTankSteelGauge.class);
+    public static final Machine TANK_STEEL_VALVE = registerTankValve(TankMaterial.STEEL, TileTankSteelValve.class);
     public static final Machine BOILER_TANK_LOW_PRESSURE = registerMachine(
             Module.STEAM,
             RailcraftBlocks.registerBlockBoilerTank(TankPressure.LOW),
@@ -144,11 +157,65 @@ public class Machines {
             0,
             0);
 
-    public static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
+    private static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
             String tag, int... textureInfo) {
         if (block != null) {
             return new Machine(module, block, tileClass, tag, textureInfo);
         }
         return null;
+    }
+
+    private static Machine registerTankWall(TankMaterial material, Class<? extends TileMachineBase> tileClass) {
+        return registerMachine(
+                material.module,
+                RailcraftBlocks.registerBlockTankWall(material),
+                tileClass,
+                "tank." + material.name + ".wall",
+                2,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1);
+    }
+
+    private static Machine registerTankGauge(TankMaterial material, Class<? extends TileMachineBase> tileClass) {
+        return registerMachine(
+                material.module,
+                RailcraftBlocks.registerBlockTankGauge(material),
+                tileClass,
+                "tank." + material.name + ".gauge",
+                1,
+                5,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                2,
+                3,
+                4);
+    }
+
+    private static Machine registerTankValve(TankMaterial material, Class<? extends TileMachineBase> tileClass) {
+        return registerMachine(
+                material.module,
+                RailcraftBlocks.registerBlockTankValve(material),
+                tileClass,
+                "tank." + material.name + ".valve",
+                4,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                2,
+                3);
     }
 }

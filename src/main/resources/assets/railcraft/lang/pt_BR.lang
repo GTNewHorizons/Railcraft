@@ -127,9 +127,9 @@ tile.railcraft.machine.boiler.firebox.solid.name=Forno para Sólidos
 tile.railcraft.machine.boiler.tank.pressure.high.name=Caldeira de Alta Pressão
 tile.railcraft.machine.boiler.tank.pressure.low.name=Caldeira de Baixa Pressão
 tile.railcraft.machine.engine.steam.hobby.name=Motor a Vapor Amador
-tile.railcraft.machine.beta.tank.iron.gauge.name=Vidro de Tanque
-tile.railcraft.machine.beta.tank.iron.valve.name=Válvula de Tanque
-tile.railcraft.machine.beta.tank.iron.wall.name=Parede de Tanque
+tile.railcraft.machine.tank.iron.gauge.name=Vidro de Tanque
+tile.railcraft.machine.tank.iron.valve.name=Válvula de Tanque
+tile.railcraft.machine.tank.iron.wall.name=Parede de Tanque
 
 tile.railcraft.machine.gamma.dispenser.cart.name=Dispensador de Vagões
 tile.railcraft.machine.gamma.dispenser.train.name=Dispensador de Trem

@@ -135,9 +135,9 @@ tile.railcraft.machine.boiler.tank.pressure.low.name=Chapa de Baixa-Pressão
 tile.railcraft.machine.engine.steam.high.name=Motor a Vapor Industrial
 tile.railcraft.machine.engine.steam.hobby.name=Motor a Vapor para Amadores
 tile.railcraft.machine.engine.steam.low.name=Motor a Vapor Comercial
-tile.railcraft.machine.beta.tank.iron.gauge.name=Janela para Tanque
-tile.railcraft.machine.beta.tank.iron.valve.name=Válvula para Tanque
-tile.railcraft.machine.beta.tank.iron.wall.name=Bloco para Tanque
+tile.railcraft.machine.tank.iron.gauge.name=Janela para Tanque
+tile.railcraft.machine.tank.iron.valve.name=Válvula para Tanque
+tile.railcraft.machine.tank.iron.wall.name=Bloco para Tanque
 
 tile.railcraft.machine.gamma.dispenser.cart.name=Dispensador de Vagões
 tile.railcraft.machine.gamma.dispenser.train.name=Dispensador de Comboios

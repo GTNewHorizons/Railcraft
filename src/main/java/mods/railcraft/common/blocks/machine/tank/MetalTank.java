@@ -3,8 +3,9 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 
 /**
@@ -15,9 +16,9 @@ public abstract class MetalTank {
 
     public abstract String getTitle();
 
-    public abstract boolean isTankBlock(int meta);
+    public abstract boolean isTankBlock(Block block);
 
-    public abstract boolean isWallBlock(int meta);
+    public abstract boolean isWallBlock(Block block);
 
     public abstract float getResistance(Entity exploder);
 }

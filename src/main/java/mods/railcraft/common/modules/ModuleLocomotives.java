@@ -12,7 +12,6 @@ import net.minecraft.item.crafting.IRecipe;
 
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.carts.EnumCart;
@@ -54,7 +53,7 @@ public class ModuleLocomotives extends RailcraftModule {
             if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
             else if (Machines.BOILER_TANK_LOW_PRESSURE.isAvailable())
                 tank = Machines.BOILER_TANK_LOW_PRESSURE.getItem();
-            else if (EnumMachineBeta.TANK_IRON_WALL.isAvailable()) tank = EnumMachineBeta.TANK_IRON_WALL.getItem();
+            else if (Machines.TANK_IRON_WALL.isAvailable()) tank = Machines.TANK_IRON_WALL.getItem();
             else if (RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL) != null)
                 tank = RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL);
             else tank = new ItemStack(Items.iron_ingot);

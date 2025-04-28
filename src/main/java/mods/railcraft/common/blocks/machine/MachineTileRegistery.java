@@ -22,12 +22,6 @@ import mods.railcraft.common.blocks.machine.alpha.TileSteamTrapManual;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronGauge;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankHigh;
@@ -59,6 +53,12 @@ import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankIronWall;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankSteelWall;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 
 /**

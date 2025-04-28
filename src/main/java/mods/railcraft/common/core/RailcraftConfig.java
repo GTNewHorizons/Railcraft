@@ -35,7 +35,6 @@ import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
@@ -776,7 +775,6 @@ public class RailcraftConfig {
         loadBlockProperty("residual.heat");
 
         loadBlockProperty("machine.alpha");
-        loadBlockProperty("machine.beta");
         loadBlockProperty("machine.engine");
         loadBlockProperty("machine.wire");
         loadBlockProperty("machine.gamma");
@@ -846,10 +844,6 @@ public class RailcraftConfig {
         }
 
         for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
-        for (EnumMachineBeta type : EnumMachineBeta.values()) {
             loadBlockFeature(type.getTag());
         }
 

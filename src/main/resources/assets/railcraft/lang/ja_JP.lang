@@ -137,9 +137,9 @@ tile.railcraft.machine.boiler.tank.pressure.low.name=低圧用のボイラー
 tile.railcraft.machine.engine.steam.high.name=工業用蒸気エンジン
 tile.railcraft.machine.engine.steam.hobby.name=個人用蒸気エンジン
 tile.railcraft.machine.engine.steam.low.name=商用蒸気エンジン
-tile.railcraft.machine.beta.tank.iron.gauge.name=鉄タンクのゲージ
-tile.railcraft.machine.beta.tank.iron.valve.name=鉄タンクのバルブ
-tile.railcraft.machine.beta.tank.iron.wall.name=鉄タンクの壁材
+tile.railcraft.machine.tank.iron.gauge.name=鉄タンクのゲージ
+tile.railcraft.machine.tank.iron.valve.name=鉄タンクのバルブ
+tile.railcraft.machine.tank.iron.wall.name=鉄タンクの壁材
 
 tile.railcraft.machine.gamma.dispenser.cart.name=トロッコディスペンサー
 tile.railcraft.machine.gamma.dispenser.train.name=列車ディスペンサー

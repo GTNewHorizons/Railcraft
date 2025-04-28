@@ -220,9 +220,9 @@ tile.railcraft.machine.boiler.tank.pressure.low.name=Lage Druk Boiler
 tile.railcraft.machine.engine.steam.high.name=Industriele Stoommachine
 tile.railcraft.machine.engine.steam.hobby.name=Amateuristische Stoommachine
 tile.railcraft.machine.engine.steam.low.name=Commerciele Stoommachine
-tile.railcraft.machine.beta.tank.iron.gauge.name=IJzeren Tank Raam
-tile.railcraft.machine.beta.tank.iron.valve.name=IJzeren Tank Ventiel
-tile.railcraft.machine.beta.tank.iron.wall.name=IJzeren Tank Wand
+tile.railcraft.machine.tank.iron.gauge.name=IJzeren Tank Raam
+tile.railcraft.machine.tank.iron.valve.name=IJzeren Tank Ventiel
+tile.railcraft.machine.tank.iron.wall.name=IJzeren Tank Wand
 
 tile.railcraft.machine.gamma.dispenser.cart.name=Mijnkar Dispenser
 tile.railcraft.machine.gamma.dispenser.train.name=Trein Dispenser

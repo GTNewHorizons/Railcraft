@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -15,7 +15,8 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.common.blocks.machine.IComparatorValueProvider;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.TankManager;
@@ -74,8 +75,8 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.TANK_IRON_VALVE;
+    public IMachine getMachineType() {
+        return Machines.TANK_IRON_VALVE;
     }
 
     @Override

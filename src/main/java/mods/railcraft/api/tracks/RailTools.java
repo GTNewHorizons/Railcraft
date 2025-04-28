@@ -52,8 +52,7 @@ public abstract class RailTools {
      */
     public static boolean placeRailAt(ItemStack stack, World world, int i, int j, int k) {
         if (stack == null) return false;
-        if (stack.getItem() instanceof ITrackItem trackItem)
-            return trackItem.placeTrack(stack.copy(), world, i, j, k);
+        if (stack.getItem() instanceof ITrackItem trackItem) return trackItem.placeTrack(stack.copy(), world, i, j, k);
         if (stack.getItem() instanceof ItemBlock itemBlock) {
             Block block = itemBlock.field_150939_a;
             if (BlockRailBase.func_150051_a(block)) {

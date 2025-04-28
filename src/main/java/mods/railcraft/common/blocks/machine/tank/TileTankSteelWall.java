@@ -3,9 +3,10 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 
 /**
  *
@@ -16,8 +17,8 @@ public class TileTankSteelWall extends TileTankIronWall {
     public static final MetalTank STEEL_TANK = new SteelTank();
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.TANK_STEEL_WALL;
+    public IMachine getMachineType() {
+        return Machines.TANK_STEEL_WALL;
     }
 
     @Override

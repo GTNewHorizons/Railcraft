@@ -3,10 +3,11 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -14,7 +15,8 @@ import net.minecraftforge.fluids.Fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Timer;
 
@@ -28,8 +30,8 @@ public class TileTankIronGauge extends TileTankBase {
     private final Timer timer = new Timer();
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.TANK_IRON_GAUGE;
+    public IMachine getMachineType() {
+        return Machines.TANK_IRON_GAUGE;
     }
 
     @Override
@@ -55,24 +57,24 @@ public class TileTankIronGauge extends TileTankBase {
         if (s == ForgeDirection.UP || s == ForgeDirection.DOWN) {
             int markerTop = getPattern().getPatternMarkerChecked(px, py + 1, pz);
             if (markerTop == 'A' || markerTop == 'O') {
-                int metaUp = worldObj.getBlockMetadata(xCoord, yCoord, zCoord - 1);
-                int metaDown = worldObj.getBlockMetadata(xCoord, yCoord, zCoord + 1);
-                return getTextureBasedOnNeighbors(metaUp, metaDown);
+                Block up = worldObj.getBlock(xCoord, yCoord, zCoord - 1);
+                Block down = worldObj.getBlock(xCoord, yCoord, zCoord + 1);
+                return getTextureBasedOnNeighbors(up, down);
             }
             return getTextureFromMachine(0);
         }
 
-        int metaUp = worldObj.getBlockMetadata(xCoord, yCoord + 1, zCoord);
-        int metaDown = worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord);
-        return getTextureBasedOnNeighbors(metaUp, metaDown);
+        Block up = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
+        Block down = worldObj.getBlock(xCoord, yCoord - 1, zCoord);
+        return getTextureBasedOnNeighbors(up, down);
     }
 
-    private IIcon getTextureBasedOnNeighbors(int metaUp, int metaDown) {
-        if (metaUp == getBlockMetadata() && metaDown == getBlockMetadata()) {
+    private IIcon getTextureBasedOnNeighbors(Block up, Block down) {
+        if (up == getBlockType() && down == getBlockType()) {
             return getTextureFromMachine(7);
-        } else if (metaUp == getBlockMetadata()) {
+        } else if (up == getBlockType()) {
             return getTextureFromMachine(8);
-        } else if (metaDown == getBlockMetadata()) {
+        } else if (down == getBlockType()) {
             return getTextureFromMachine(6);
         }
         return getTextureFromMachine(0);

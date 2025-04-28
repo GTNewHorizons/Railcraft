@@ -231,9 +231,9 @@ tile.railcraft.machine.boiler.tank.pressure.low.name=Bojler Niskociśnieniowy
 tile.railcraft.machine.engine.steam.high.name=Przemysłowy Silnik Parowy
 tile.railcraft.machine.engine.steam.hobby.name=Hobbystyczny Silnik Parowy
 tile.railcraft.machine.engine.steam.low.name=Komercyjny Silnik Parowy
-tile.railcraft.machine.beta.tank.iron.gauge.name=Wizjer Żelaznego Zbiornika
-tile.railcraft.machine.beta.tank.iron.valve.name=Zawór Żelaznego Zbiornika
-tile.railcraft.machine.beta.tank.iron.wall.name=Ściana Żelaznego Zbiornika
+tile.railcraft.machine.tank.iron.gauge.name=Wizjer Żelaznego Zbiornika
+tile.railcraft.machine.tank.iron.valve.name=Zawór Żelaznego Zbiornika
+tile.railcraft.machine.tank.iron.wall.name=Ściana Żelaznego Zbiornika
 
 tile.railcraft.machine.gamma.dispenser.cart.name=Dozownik Wagonów
 tile.railcraft.machine.gamma.dispenser.train.name=Dozownik Pociągów

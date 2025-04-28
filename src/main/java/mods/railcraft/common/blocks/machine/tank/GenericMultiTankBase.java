@@ -10,10 +10,10 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 
 import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.beta.MetalTank;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
@@ -25,9 +25,9 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  */
 public class GenericMultiTankBase extends MetalTank {
 
-    private final Set<Integer> tankBlocks = new HashSet<Integer>();
+    private final Set<Block> tankBlocks = new HashSet<Block>();
 
-    private final int tankWallMeta;
+    private final Block tankWallBlock;
 
     public final String tankMaterial;
 
@@ -41,10 +41,10 @@ public class GenericMultiTankBase extends MetalTank {
             IEnumMachine tankGauge) {
         tankMaterial = tankMat;
         capacity = tankCapacity;
-        tankWallMeta = tankWall.ordinal();
-        tankBlocks.add(tankWall.ordinal());
-        tankBlocks.add(tankValve.ordinal());
-        tankBlocks.add(tankGauge.ordinal());
+        tankWallBlock = tankWall.getBlock();
+        tankBlocks.add(tankWall.getBlock());
+        tankBlocks.add(tankValve.getBlock());
+        tankBlocks.add(tankGauge.getBlock());
         TANK_WALL = tankWall;
         TANK_VALVE = tankValve;
         TANK_GAUGE = tankGauge;
@@ -66,13 +66,13 @@ public class GenericMultiTankBase extends MetalTank {
     }
 
     @Override
-    public boolean isTankBlock(int meta) {
-        return tankBlocks.contains(meta);
+    public boolean isTankBlock(Block block) {
+        return tankBlocks.contains(block);
     }
 
     @Override
-    public boolean isWallBlock(int meta) {
-        return meta == tankWallMeta;
+    public boolean isWallBlock(Block block) {
+        return block == tankWallBlock;
     }
 
     @Override

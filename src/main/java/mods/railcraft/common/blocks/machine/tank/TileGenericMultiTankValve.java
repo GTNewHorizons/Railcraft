@@ -8,8 +8,6 @@ package mods.railcraft.common.blocks.machine.tank;
 import net.minecraft.nbt.NBTTagCompound;
 
 import mods.railcraft.common.blocks.machine.IEnumMachine;
-import mods.railcraft.common.blocks.machine.beta.MetalTank;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
 
 /**

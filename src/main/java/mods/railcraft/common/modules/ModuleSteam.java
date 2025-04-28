@@ -14,7 +14,6 @@ import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.items.ItemGear.EnumGear;
@@ -222,7 +221,7 @@ public class ModuleSteam extends RailcraftModule {
     private ItemStack getTankItem() {
         ItemStack tank;
         if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
-        else if (EnumMachineBeta.TANK_STEEL_WALL.isAvailable()) tank = EnumMachineBeta.TANK_STEEL_WALL.getItem();
+        else if (Machines.TANK_STEEL_WALL.isAvailable()) tank = Machines.TANK_STEEL_WALL.getItem();
         else tank = RailcraftItem.plate.getStack(1, EnumPlate.STEEL);
         if (tank == null) tank = RailcraftItem.ingot.getStack(1, ItemIngot.EnumIngot.STEEL);
         if (tank == null) tank = new ItemStack(Blocks.iron_block);

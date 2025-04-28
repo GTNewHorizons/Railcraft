@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -30,8 +30,9 @@ import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.ITankTile;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -75,38 +76,30 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         tankManager.add(tank);
     }
 
-    public static void placeIronTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
+    public static void placeMultiTank(World world, int x, int y, int z, int patternIndex, TankMaterial material,
+            FluidStack fluid) {
         MultiBlockPattern pattern = TileTankBase.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-        blockMapping.put('B', EnumMachineBeta.TANK_IRON_WALL.ordinal());
-        blockMapping.put('W', EnumMachineBeta.TANK_IRON_GAUGE.ordinal());
-        TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
+        blockMapping.put('B', Block.getIdFromBlock(getWall(material).getBlock()));
+        blockMapping.put('W', Block.getIdFromBlock(getGauge(material).getBlock()));
+        TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
         if (tile instanceof TileTankBase master) {
             master.tank.setFluid(fluid);
         }
     }
 
-    public static void placeSteelTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
-        MultiBlockPattern pattern = TileTankBase.patterns.get(patternIndex);
-        Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-        blockMapping.put('B', EnumMachineBeta.TANK_STEEL_WALL.ordinal());
-        blockMapping.put('W', EnumMachineBeta.TANK_STEEL_GAUGE.ordinal());
-        TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
-        if (tile instanceof TileTankBase master) {
-            master.tank.setFluid(fluid);
-        }
+    private static Machine getWall(TankMaterial material) {
+        return switch (material) {
+            case IRON -> Machines.TANK_IRON_WALL;
+            case STEEL -> Machines.TANK_IRON_WALL;
+        };
     }
 
-    // Doesn't seem to ever be called (Nor do the two above?)
-    public static void placeAdvancedTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
-        MultiBlockPattern pattern = TileTankBase.patterns.get(patternIndex);
-        Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-        blockMapping.put('B', EnumMachineBeta.TANK_STEEL_WALL.ordinal());
-        blockMapping.put('W', EnumMachineBeta.TANK_STEEL_GAUGE.ordinal());
-        TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
-        if (tile instanceof TileTankBase master) {
-            master.tank.setFluid(fluid);
-        }
+    private static Machine getGauge(TankMaterial material) {
+        return switch (material) {
+            case IRON -> Machines.TANK_IRON_GAUGE;
+            case STEEL -> Machines.TANK_IRON_GAUGE;
+        };
     }
 
     private static List<MultiBlockPattern> buildPatterns() {
@@ -443,39 +436,30 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
             case 'O': // Other
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block == getBlockType()) {
-                    int meta = worldObj.getBlockMetadata(x, y, z);
-                    if (getTankType().isTankBlock(meta)) return false;
-                }
+                if (getTankType().isTankBlock(block)) return false;
                 return true;
             }
             case 'W': // Gauge or Valve
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType()) return false;
-                int meta = worldObj.getBlockMetadata(x, y, z);
-                return getTankType().isTankBlock(meta);
+                return getTankType().isTankBlock(block);
             }
             case 'B': // Block
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType()) return false;
-                int meta = worldObj.getBlockMetadata(x, y, z);
-                return getTankType().isWallBlock(meta);
+                return getTankType().isWallBlock(block);
             }
             case 'M': // Master
             case 'T': // Top Block
             {
                 Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-                if (block != getBlockType()) return false;
-                int meta = worldObj.getBlockMetadata(x, y, z);
-                if (!getTankType().isTankBlock(meta)) return false;
+                if (!getTankType().isTankBlock(block)) return false;
                 TileEntity tile = worldObj.getTileEntity(x, y, z);
-                if (!(tile instanceof TileMultiBlock)) {
+                if (!(tile instanceof TileMultiBlock tileMultiBlock)) {
                     worldObj.removeTileEntity(x, y, z);
                     return true;
                 }
-                return !((TileMultiBlock) tile).isStructureValid();
+                return !tileMultiBlock.isStructureValid();
             }
             case 'A': // Air
             {

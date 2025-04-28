@@ -3,13 +3,15 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.tank;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
@@ -18,12 +20,12 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  */
 public class IronTank extends MetalTank {
 
-    private final Set<Integer> tankBlocks = new HashSet<Integer>();
+    private final Set<Block> tankBlocks = new HashSet<Block>();
 
     public IronTank() {
-        tankBlocks.add(EnumMachineBeta.TANK_IRON_WALL.ordinal());
-        tankBlocks.add(EnumMachineBeta.TANK_IRON_VALVE.ordinal());
-        tankBlocks.add(EnumMachineBeta.TANK_IRON_GAUGE.ordinal());
+        tankBlocks.add(Machines.TANK_IRON_WALL.getBlock());
+        tankBlocks.add(Machines.TANK_IRON_GAUGE.getBlock());
+        tankBlocks.add(Machines.TANK_IRON_VALVE.getBlock());
     }
 
     @Override
@@ -32,13 +34,13 @@ public class IronTank extends MetalTank {
     }
 
     @Override
-    public boolean isTankBlock(int meta) {
-        return tankBlocks.contains(meta);
+    public boolean isTankBlock(Block block) {
+        return tankBlocks.contains(block);
     }
 
     @Override
-    public boolean isWallBlock(int meta) {
-        return meta == EnumMachineBeta.TANK_IRON_WALL.ordinal();
+    public boolean isWallBlock(Block block) {
+        return block == Machines.TANK_IRON_WALL.getBlock();
     }
 
     @Override
