@@ -229,14 +229,10 @@ public class ThaumcraftPlugin {
             addItemAspect(EnumMachineAlpha.WORLD_ANCHOR.getItem(), anchorAspects);
             addItemAspect(Machines.SENTINEL.getItem(), anchorAspects);
 
-            addItemAspect(EnumMachineBeta.BOILER_FIREBOX_SOLID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(EnumMachineBeta.BOILER_FIREBOX_FLUID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(
-                    EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.getItem(),
-                    steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(
-                    EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem(),
-                    steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_FIREBOX_SOLID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_FIREBOX_LIQUID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_TANK_LOW_PRESSURE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_TANK_HIGH_PRESSURE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
             addItemAspect(Machines.ENGINE_STEAM_HOBBY.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
             addItemAspect(Machines.ENGINE_STEAM_LOW.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
             addItemAspect(Machines.ENGINE_STEAM_HIGH.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));

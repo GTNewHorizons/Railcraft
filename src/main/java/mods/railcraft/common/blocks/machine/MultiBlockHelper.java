@@ -17,9 +17,9 @@ import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
 import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
 import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileTankBase;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
 
 /**

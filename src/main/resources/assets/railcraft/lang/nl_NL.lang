@@ -213,10 +213,10 @@ tile.railcraft.machine.alpha.turbine.name=Stoomturbine Compartiment
 tile.railcraft.machine.alpha.anchor.world.name=Wereldanker
 
 tile.railcraft.machine.anchor.sentinel.name=Wereldanker Bewaker
-tile.railcraft.machine.beta.boiler.firebox.liquid.name=Vloeistof Gedreven Boiler
-tile.railcraft.machine.beta.boiler.firebox.solid.name=Brandstof Gedreven Boiler
-tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Hoge Druk Boiler
-tile.railcraft.machine.beta.boiler.tank.pressure.low.name=Lage Druk Boiler
+tile.railcraft.machine.boiler.firebox.liquid.name=Vloeistof Gedreven Boiler
+tile.railcraft.machine.boiler.firebox.solid.name=Brandstof Gedreven Boiler
+tile.railcraft.machine.boiler.tank.pressure.high.name=Hoge Druk Boiler
+tile.railcraft.machine.boiler.tank.pressure.low.name=Lage Druk Boiler
 tile.railcraft.machine.engine.steam.high.name=Industriele Stoommachine
 tile.railcraft.machine.engine.steam.hobby.name=Amateuristische Stoommachine
 tile.railcraft.machine.engine.steam.low.name=Commerciele Stoommachine

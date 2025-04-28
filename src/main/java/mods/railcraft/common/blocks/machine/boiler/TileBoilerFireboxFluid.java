@@ -3,11 +3,12 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.boiler;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -17,8 +18,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.fuel.FuelManager;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -50,13 +51,12 @@ public class TileBoilerFireboxFluid extends TileBoilerFirebox {
         for (MultiBlockPattern pattern : TileBoiler.patterns) {
             if (pattern.getPatternHeight() - 3 == height && pattern.getPatternWidthX() - 2 == width) {
                 Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-                blockMapping.put('F', EnumMachineBeta.BOILER_FIREBOX_FLUID.ordinal());
+                blockMapping.put('F', Block.getIdFromBlock(Machines.BOILER_FIREBOX_LIQUID.getBlock()));
                 blockMapping.put(
                         'H',
-                        highPressure ? EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()
-                                : EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal());
-                TileEntity tile = pattern
-                        .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineBeta(), blockMapping);
+                        highPressure ? Block.getIdFromBlock(Machines.BOILER_TANK_HIGH_PRESSURE.getBlock())
+                                : Block.getIdFromBlock(Machines.BOILER_TANK_LOW_PRESSURE.getBlock()));
+                TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
                 if (tile instanceof TileBoilerFireboxFluid) {
                     TileBoilerFireboxFluid master = (TileBoilerFireboxFluid) tile;
                     master.tankWater.setFluid(Fluids.WATER.get(water));
@@ -68,8 +68,8 @@ public class TileBoilerFireboxFluid extends TileBoilerFirebox {
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.BOILER_FIREBOX_FLUID;
+    public IMachine getMachineType() {
+        return Machines.BOILER_FIREBOX_LIQUID;
     }
 
     @Override

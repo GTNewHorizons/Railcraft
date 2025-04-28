@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 
-import mods.railcraft.common.blocks.machine.beta.TileBoilerTank;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank;
 
 /**
  *
@@ -25,9 +25,7 @@ public class RenderBoilerTank implements IBlockRenderer {
     @Override
     public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
         TileEntity t = world.getTileEntity(x, y, z);
-        if (t instanceof TileBoilerTank) {
-            TileBoilerTank myTile = (TileBoilerTank) t;
-
+        if (t instanceof TileBoilerTank myTile) {
             float x1, x2, z1, z2;
             x1 = z1 = BORDER;
             x2 = z2 = 1 - BORDER;

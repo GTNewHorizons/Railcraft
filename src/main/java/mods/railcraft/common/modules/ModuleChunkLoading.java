@@ -99,7 +99,7 @@ public class ModuleChunkLoading extends RailcraftModule {
 
         Machine sentinel = Machines.SENTINEL;
         if (sentinel.isAvailable()) {
-            Block block = RailcraftBlocks.registerBlockMachineBeta();
+            Block block = sentinel.getBlock();
             if (block != null) {
                 ItemStack stack = sentinel.getItem();
                 if (RailcraftConfig.canCraftAnchors()) {

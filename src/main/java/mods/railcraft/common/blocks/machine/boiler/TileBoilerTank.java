@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.boiler;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -62,5 +62,21 @@ public abstract class TileBoilerTank extends TileBoiler {
     @Override
     public ITileFilter getOutputFilter() {
         return OUTPUT_FILTER;
+    }
+
+    public enum TankPressure {
+
+        LOW("low"),
+        HIGH("high");
+
+        private String name;
+
+        private TankPressure(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
     }
 }

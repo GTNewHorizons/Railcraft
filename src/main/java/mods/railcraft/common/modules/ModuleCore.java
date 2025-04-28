@@ -378,6 +378,10 @@ public class ModuleCore extends RailcraftModule {
         Set<IMachine> machines = new HashSet<IMachine>();
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
         machines.addAll(EnumSet.allOf(EnumMachineBeta.class));
+        machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
+        machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
+        machines.add(Machines.BOILER_FIREBOX_SOLID);
+        machines.add(Machines.BOILER_FIREBOX_LIQUID);
         machines.add(Machines.ENGINE_STEAM_HOBBY);
         machines.add(Machines.ENGINE_STEAM_LOW);
         machines.add(Machines.ENGINE_STEAM_HIGH);

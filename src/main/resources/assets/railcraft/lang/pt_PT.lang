@@ -128,10 +128,10 @@ tile.railcraft.machine.alpha.turbine.name=Central da Turbina a Vapor
 tile.railcraft.machine.alpha.anchor.world.name=Ancorador
 
 tile.railcraft.machine.anchor.sentinel.name=Ancorador Sentinela
-tile.railcraft.machine.beta.boiler.firebox.liquid.name=Caldeira de Líquidos
-tile.railcraft.machine.beta.boiler.firebox.solid.name=Caldeira
-tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Chapa de Alta-Pressão
-tile.railcraft.machine.beta.boiler.tank.pressure.low.name=Chapa de Baixa-Pressão
+tile.railcraft.machine.boiler.firebox.liquid.name=Caldeira de Líquidos
+tile.railcraft.machine.boiler.firebox.solid.name=Caldeira
+tile.railcraft.machine.boiler.tank.pressure.high.name=Chapa de Alta-Pressão
+tile.railcraft.machine.boiler.tank.pressure.low.name=Chapa de Baixa-Pressão
 tile.railcraft.machine.engine.steam.high.name=Motor a Vapor Industrial
 tile.railcraft.machine.engine.steam.hobby.name=Motor a Vapor para Amadores
 tile.railcraft.machine.engine.steam.low.name=Motor a Vapor Comercial

@@ -122,10 +122,10 @@ tile.railcraft.machine.alpha.rolling.machine.name=Máquina Roladora
 tile.railcraft.machine.alpha.tank.water.name=Parede do Tanque de Água
 tile.railcraft.machine.alpha.anchor.world.name=Âncora Mundial
 
-tile.railcraft.machine.beta.boiler.firebox.liquid.name=Forno para Liquidos
-tile.railcraft.machine.beta.boiler.firebox.solid.name=Forno para Sólidos
-tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Caldeira de Alta Pressão
-tile.railcraft.machine.beta.boiler.tank.pressure.low.name=Caldeira de Baixa Pressão
+tile.railcraft.machine.boiler.firebox.liquid.name=Forno para Liquidos
+tile.railcraft.machine.boiler.firebox.solid.name=Forno para Sólidos
+tile.railcraft.machine.boiler.tank.pressure.high.name=Caldeira de Alta Pressão
+tile.railcraft.machine.boiler.tank.pressure.low.name=Caldeira de Baixa Pressão
 tile.railcraft.machine.engine.steam.hobby.name=Motor a Vapor Amador
 tile.railcraft.machine.beta.tank.iron.gauge.name=Vidro de Tanque
 tile.railcraft.machine.beta.tank.iron.valve.name=Válvula de Tanque

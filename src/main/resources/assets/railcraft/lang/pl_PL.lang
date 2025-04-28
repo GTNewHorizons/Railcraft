@@ -224,10 +224,10 @@ tile.railcraft.machine.alpha.turbine.name=Obudowa Turbiny Parowej
 tile.railcraft.machine.alpha.anchor.world.name=Kotwica Swiata
 
 tile.railcraft.machine.anchor.sentinel.name=Słup Kotwica
-tile.railcraft.machine.beta.boiler.firebox.liquid.name=Palenisko Na Płyn
-tile.railcraft.machine.beta.boiler.firebox.solid.name=Palenisko Na Paliwo Stałe
-tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Bojler Wysokociśnieniowy
-tile.railcraft.machine.beta.boiler.tank.pressure.low.name=Bojler Niskociśnieniowy
+tile.railcraft.machine.boiler.firebox.liquid.name=Palenisko Na Płyn
+tile.railcraft.machine.boiler.firebox.solid.name=Palenisko Na Paliwo Stałe
+tile.railcraft.machine.boiler.tank.pressure.high.name=Bojler Wysokociśnieniowy
+tile.railcraft.machine.boiler.tank.pressure.low.name=Bojler Niskociśnieniowy
 tile.railcraft.machine.engine.steam.high.name=Przemysłowy Silnik Parowy
 tile.railcraft.machine.engine.steam.hobby.name=Hobbystyczny Silnik Parowy
 tile.railcraft.machine.engine.steam.low.name=Komercyjny Silnik Parowy

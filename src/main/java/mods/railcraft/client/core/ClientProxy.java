@@ -25,6 +25,8 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.client.render.BlockRenderer;
 import mods.railcraft.client.render.FluidRenderer;
+import mods.railcraft.client.render.RenderBlockBoilerTank;
+import mods.railcraft.client.render.RenderBlockFirebox;
 import mods.railcraft.client.render.RenderBlockFrame;
 import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineBeta;
@@ -74,6 +76,8 @@ import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
 import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
 import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
@@ -233,6 +237,10 @@ public class ClientProxy extends CommonProxy {
         if (RailcraftBlocks.getBlockElevator() != null) RenderingRegistry.registerBlockHandler(new RenderElevator());
 
         registerBlockRenderer(new RenderBlockMachineBeta());
+        registerBlockRenderer(new RenderBlockBoilerTank(TankPressure.LOW));
+        registerBlockRenderer(new RenderBlockBoilerTank(TankPressure.HIGH));
+        registerBlockRenderer(new RenderBlockFirebox(FireboxType.SOLID));
+        registerBlockRenderer(new RenderBlockFirebox(FireboxType.LIQUID));
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HOBBY, RenderPneumaticEngine.renderHobby));
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.LOW, RenderPneumaticEngine.renderLow));
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HIGH, RenderPneumaticEngine.renderHigh));

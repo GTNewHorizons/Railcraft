@@ -6,7 +6,6 @@
 package mods.railcraft.client.render;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 
 /**
  *
@@ -16,8 +15,5 @@ public class RenderBlockMachineBeta extends BlockRenderer {
 
     public RenderBlockMachineBeta() {
         super(RailcraftBlocks.getBlockMachineBeta());
-
-        addBlockRenderer(EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal(), new RenderBoilerTank());
-        addBlockRenderer(EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal(), new RenderBoilerTank());
     }
 }

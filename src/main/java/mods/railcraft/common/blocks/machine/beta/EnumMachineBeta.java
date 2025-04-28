@@ -34,12 +34,6 @@ public enum EnumMachineBeta implements IEnumMachine {
     TANK_IRON_WALL(Module.TRANSPORT, "tank.iron.wall", TileTankIronWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
     TANK_IRON_GAUGE(Module.TRANSPORT, "tank.iron.gauge", TileTankIronGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4),
     TANK_IRON_VALVE(Module.TRANSPORT, "tank.iron.valve", TileTankIronValve.class, 4, 1, 0, 0, 1, 1, 1, 1, 2, 3),
-    BOILER_TANK_LOW_PRESSURE(Module.STEAM, "boiler.tank.pressure.low", TileBoilerTankLow.class, 2, 1, 0, 0, 1, 1, 1, 1),
-    BOILER_TANK_HIGH_PRESSURE(Module.STEAM, "boiler.tank.pressure.high", TileBoilerTankHigh.class, 2, 1, 0, 0, 1, 1, 1,
-            1),
-    BOILER_FIREBOX_SOLID(Module.STEAM, "boiler.firebox.solid", TileBoilerFireboxSolid.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
-    BOILER_FIREBOX_FLUID(Module.STEAM, "boiler.firebox.liquid", TileBoilerFireboxFluid.class, 3, 1, 0, 0, 1, 1, 1, 1,
-            2),
     TANK_STEEL_WALL(Module.TRANSPORT, "tank.steel.wall", TileTankSteelWall.class, 2, 1, 0, 0, 1, 1, 1, 1),
     TANK_STEEL_GAUGE(Module.TRANSPORT, "tank.steel.gauge", TileTankSteelGauge.class, 1, 5, 0, 0, 0, 0, 0, 0, 1, 2, 3,
             4),
@@ -61,10 +55,6 @@ public enum EnumMachineBeta implements IEnumMachine {
         creativeList.add(TANK_STEEL_WALL);
         creativeList.add(TANK_STEEL_GAUGE);
         creativeList.add(TANK_STEEL_VALVE);
-        creativeList.add(BOILER_FIREBOX_SOLID);
-        creativeList.add(BOILER_FIREBOX_FLUID);
-        creativeList.add(BOILER_TANK_LOW_PRESSURE);
-        creativeList.add(BOILER_TANK_HIGH_PRESSURE);
     }
 
     private EnumMachineBeta(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {

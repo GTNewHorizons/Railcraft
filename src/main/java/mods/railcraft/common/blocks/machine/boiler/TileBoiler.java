@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.boiler;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,6 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -50,20 +51,20 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     public static final float HEAT_LOW = Steam.MAX_HEAT_LOW;
     public static final float HEAT_HIGH = Steam.MAX_HEAT_HIGH;
     protected static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
-    private static final Set<Integer> boilerBlocks = new HashSet<Integer>();
-    private static final Set<Integer> fireboxBlocks = new HashSet<Integer>();
+    private static final Set<Block> boilerBlocks = new HashSet<Block>();
+    private static final Set<Block> fireboxBlocks = new HashSet<Block>();
     protected final TankManager tankManager = new TankManager();
     protected final FilteredTank tankWater;
     protected final FilteredTank tankSteam;
     private boolean explode = false;
 
     static {
-        fireboxBlocks.add(EnumMachineBeta.BOILER_FIREBOX_SOLID.ordinal());
-        fireboxBlocks.add(EnumMachineBeta.BOILER_FIREBOX_FLUID.ordinal());
+        fireboxBlocks.add(Machines.BOILER_FIREBOX_SOLID.getBlock());
+        fireboxBlocks.add(Machines.BOILER_FIREBOX_LIQUID.getBlock());
 
         boilerBlocks.addAll(fireboxBlocks);
-        boilerBlocks.add(EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal());
-        boilerBlocks.add(EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal());
+        boilerBlocks.add(Machines.BOILER_TANK_LOW_PRESSURE.getBlock());
+        boilerBlocks.add(Machines.BOILER_TANK_HIGH_PRESSURE.getBlock());
 
         patterns.add(buildMap(3, 4, 2, 'H', TICKS_HIGH, HEAT_HIGH, STEAM_HIGH));
         patterns.add(buildMap(3, 3, 2, 'H', TICKS_HIGH, HEAT_HIGH, STEAM_HIGH));
@@ -210,22 +211,19 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     @Override
     protected boolean isMapPositionValid(int x, int y, int z, char mapPos) {
         Block block = WorldPlugin.getBlock(worldObj, x, y, z);
-        int meta = worldObj.getBlockMetadata(x, y, z);
 
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && boilerBlocks.contains(meta)) return false;
+                if (boilerBlocks.contains(block)) return false;
                 break;
             case 'L': // Tank
-                if (block != getBlockType() || meta != EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()) return false;
+                if (block != Machines.BOILER_TANK_LOW_PRESSURE.getBlock()) return false;
                 break;
             case 'H': // Tank
-                if (block != getBlockType() || meta != EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal())
-                    return false;
+                if (block != Machines.BOILER_TANK_HIGH_PRESSURE.getBlock()) return false;
                 break;
             case 'F': // Firebox
-                if (block != getBlockType() || meta != getBlockMetadata() || !fireboxBlocks.contains(meta))
-                    return false;
+                if (block != getBlockType() || !fireboxBlocks.contains(block)) return false;
                 break;
             case 'A': // Air
                 if (!worldObj.isAirBlock(x, y, z)) return false;

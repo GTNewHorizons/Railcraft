@@ -23,7 +23,7 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFirebox;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankManager;

@@ -130,10 +130,10 @@ tile.railcraft.machine.alpha.turbine.name=蒸気タービンハウジング
 tile.railcraft.machine.alpha.anchor.world.name=ワールドアンカー
 
 tile.railcraft.machine.anchor.sentinel.name=アンカーセンチネル
-tile.railcraft.machine.beta.boiler.firebox.liquid.name=液体燃料用の火室
-tile.railcraft.machine.beta.boiler.firebox.solid.name=固体燃料用の火室
-tile.railcraft.machine.beta.boiler.tank.pressure.high.name=高圧用のボイラー
-tile.railcraft.machine.beta.boiler.tank.pressure.low.name=低圧用のボイラー
+tile.railcraft.machine.boiler.firebox.liquid.name=液体燃料用の火室
+tile.railcraft.machine.boiler.firebox.solid.name=固体燃料用の火室
+tile.railcraft.machine.boiler.tank.pressure.high.name=高圧用のボイラー
+tile.railcraft.machine.boiler.tank.pressure.low.name=低圧用のボイラー
 tile.railcraft.machine.engine.steam.high.name=工業用蒸気エンジン
 tile.railcraft.machine.engine.steam.hobby.name=個人用蒸気エンジン
 tile.railcraft.machine.engine.steam.low.name=商用蒸気エンジン

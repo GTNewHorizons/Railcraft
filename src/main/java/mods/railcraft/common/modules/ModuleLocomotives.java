@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
@@ -50,18 +51,16 @@ public class ModuleLocomotives extends RailcraftModule {
             paintLocomotive(cart.getCartItem());
 
             ItemStack tank;
-            if (EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.isAvailable())
-                tank = EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem();
-            else if (EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.isAvailable())
-                tank = EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.getItem();
+            if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
+            else if (Machines.BOILER_TANK_LOW_PRESSURE.isAvailable())
+                tank = Machines.BOILER_TANK_LOW_PRESSURE.getItem();
             else if (EnumMachineBeta.TANK_IRON_WALL.isAvailable()) tank = EnumMachineBeta.TANK_IRON_WALL.getItem();
             else if (RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL) != null)
                 tank = RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL);
             else tank = new ItemStack(Items.iron_ingot);
 
             ItemStack firebox;
-            if (EnumMachineBeta.BOILER_FIREBOX_SOLID.isAvailable())
-                firebox = EnumMachineBeta.BOILER_FIREBOX_SOLID.getItem();
+            if (Machines.BOILER_FIREBOX_SOLID.isAvailable()) firebox = Machines.BOILER_FIREBOX_SOLID.getItem();
             else if (EnumMachineAlpha.BLAST_FURNACE.isAvailable()) firebox = EnumMachineAlpha.BLAST_FURNACE.getItem();
             else firebox = new ItemStack(Blocks.furnace);
 

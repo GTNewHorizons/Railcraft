@@ -19,6 +19,10 @@ import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
+import mods.railcraft.common.blocks.machine.boiler.MachineProxyBoilerTank;
+import mods.railcraft.common.blocks.machine.boiler.MachineProxyFirebox;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.chest.MachineProxyChestMetals;
 import mods.railcraft.common.blocks.machine.chest.MachineProxyChestVoid;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
@@ -51,6 +55,10 @@ public class RailcraftBlocks {
     private static Block blockMachineAlpha;
     private static Block blockMachineBeta;
     private static Block blockMachineGamma;
+    private static Block blockBoilerTankLowPressure;
+    private static Block blockBoilerTankHighPressure;
+    private static Block blockBoilerFireboxSolid;
+    private static Block blockBoilerFireboxLiquid;
     private static Block blockEngineHobby;
     private static Block blockEngineLow;
     private static Block blockEngineHigh;
@@ -154,8 +162,6 @@ public class RailcraftBlocks {
             lightOpacity[EnumMachineBeta.TANK_STEEL_WALL.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.TANK_STEEL_VALVE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()] = 0;
             blockMachineBeta = new BlockMultiMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.beta");
             RailcraftRegistry.register(blockMachineBeta, ItemMultiMachine.class);
@@ -169,6 +175,44 @@ public class RailcraftBlocks {
 
     public static Block getBlockMachineBeta() {
         return blockMachineBeta;
+    }
+
+    public static Block getBlockFirebox(FireboxType fireboxType) {
+        return switch (fireboxType) {
+            case SOLID -> blockBoilerFireboxSolid;
+            case LIQUID -> blockBoilerFireboxLiquid;
+        };
+    }
+
+    public static Block registerBlockFirebox(FireboxType fireboxType) {
+        Block firebox = getBlockFirebox(fireboxType);
+        if (firebox == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            firebox = new BlockMachine(renderId, new MachineProxyFirebox(fireboxType), true, 255)
+                    .setBlockName("railcraft.boiler.firebox." + fireboxType.getName());
+            RailcraftRegistry.register(firebox, ItemMachine.class);
+            firebox.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return firebox;
+    }
+
+    public static Block getBlockBoilerTank(TankPressure pressure) {
+        return switch (pressure) {
+            case LOW -> blockBoilerTankLowPressure;
+            case HIGH -> blockBoilerTankHighPressure;
+        };
+    }
+
+    public static Block registerBlockBoilerTank(TankPressure pressure) {
+        Block block = getBlockBoilerTank(pressure);
+        if (block == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            block = new BlockMachine(renderId, new MachineProxyBoilerTank(pressure), false, 0)
+                    .setBlockName("railcraft.boiler.tank." + pressure.getName());
+            RailcraftRegistry.register(block, ItemMachine.class);
+            block.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return block;
     }
 
     public static Block registerBlockMachineSentinel() {
