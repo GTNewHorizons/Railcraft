@@ -1,0 +1,43 @@
+package mods.railcraft.common.blocks.machine.engine;
+
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.IMachineProxy;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+
+public class MachineProxyEngine implements IMachineProxy {
+    private EngineType engineType;
+    
+    public MachineProxyEngine(EngineType engineType) {
+        this.engineType = engineType;
+    }
+
+    private Machine getMachine() {
+        return switch (engineType) {
+            case HOBBY -> Machines.ENGINE_STEAM_HOBBY;
+            case LOW -> Machines.ENGINE_STEAM_LOW;
+            case HIGH -> Machines.ENGINE_STEAM_HIGH;
+        };
+    }
+
+    @Override
+    public IMachine getMachine(int meta) {
+        return getMachine();
+    }
+    @Override
+    public List<? extends IMachine> getCreativeList() {
+        List<IMachine> list = new ArrayList<IMachine>();
+        list.add(getMachine(0));
+        return list;
+    }
+
+    @Override
+    public void registerIcons(IIconRegister iconRegister) {
+        getMachine().registerIcons(iconRegister);
+    }
+}

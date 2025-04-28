@@ -28,6 +28,7 @@ import mods.railcraft.client.render.FluidRenderer;
 import mods.railcraft.client.render.RenderBlockFrame;
 import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineBeta;
+import mods.railcraft.client.render.RenderBlockMachineEngine;
 import mods.railcraft.client.render.RenderBlockMachineEta;
 import mods.railcraft.client.render.RenderBlockMachineZeta;
 import mods.railcraft.client.render.RenderBlockOre;
@@ -67,6 +68,7 @@ import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.beta.TileChestMetals;
 import mods.railcraft.common.blocks.machine.beta.TileChestVoid;
+import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
@@ -229,6 +231,9 @@ public class ClientProxy extends CommonProxy {
         if (RailcraftBlocks.getBlockElevator() != null) RenderingRegistry.registerBlockHandler(new RenderElevator());
 
         registerBlockRenderer(new RenderBlockMachineBeta());
+        registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HOBBY, RenderPneumaticEngine.renderHobby));
+        registerBlockRenderer(new RenderBlockMachineEngine(EngineType.LOW, RenderPneumaticEngine.renderLow));
+        registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HIGH, RenderPneumaticEngine.renderHigh));
         registerBlockRenderer(new RenderBlockWire());
         registerBlockRenderer(new RenderBlockMachineEta());
         registerBlockRenderer(new RenderBlockMachineZeta());

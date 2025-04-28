@@ -23,8 +23,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.tracks.ITrackReversable;
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
@@ -184,7 +184,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
                     1,
                     5,
                     sbb);
-            if (EnumMachineBeta.ENGINE_STEAM_HOBBY.isAvailable() && RailcraftConfig.machinesRequirePower())
+            if (Machines.ENGINE_STEAM_HOBBY.isAvailable() && RailcraftConfig.machinesRequirePower())
                 placeEngine(world, 9, 1, 6, sbb);
         }
 
@@ -254,8 +254,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
                 xx,
                 yy,
                 zz,
-                RailcraftBlocks.getBlockMachineBeta(),
-                EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal());
+                Machines.ENGINE_STEAM_HOBBY.getBlock());
         TileEntity tile = WorldPlugin.getBlockTile(world, xx, yy, zz);
         if (tile instanceof TileEngineSteamHobby) {
             TileEngineSteamHobby engine = (TileEngineSteamHobby) tile;

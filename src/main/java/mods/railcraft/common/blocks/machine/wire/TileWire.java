@@ -25,6 +25,7 @@ import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager.ReducedBoundingBox;
 import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
@@ -50,12 +51,16 @@ public class TileWire extends TileMachineBase implements IElectricGrid {
         }
     }
 
+    static {
+        BoundingBoxManager.registerBoundingBox(Machines.WIRE, new TileWire.WireBoundingBox());
+    }
+
     private final ChargeHandler chargeHandler = new ChargeHandler(this, ChargeHandler.ConnectType.WIRE, 0.25);
     private AddonType addon = AddonType.NONE;
 
     @Override
     public IMachine getMachineType() {
-        return MachineWire.INSTANCE;
+        return Machines.WIRE;
     }
 
     @Override

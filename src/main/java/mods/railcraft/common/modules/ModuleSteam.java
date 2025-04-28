@@ -11,8 +11,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemGear.EnumGear;
@@ -30,14 +33,12 @@ public class ModuleSteam extends RailcraftModule {
     @Override
     public void initFirst() {
         // LiquidItems.getSteamBottle(1);
-        EnumMachineBeta beta = EnumMachineBeta.ENGINE_STEAM_HOBBY;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        Machine engine = Machines.ENGINE_STEAM_HOBBY;
+        if (engine.isAvailable()) {
+            Block block = RailcraftBlocks.getBlockEngine(EngineType.HOBBY);
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "NNN",
                         " C ",
                         "GPG",
@@ -52,14 +53,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.ENGINE_STEAM_LOW;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        engine = Machines.ENGINE_STEAM_LOW;
+        if (engine.isAvailable()) {
+            Block block = RailcraftBlocks.getBlockEngine(EngineType.LOW);
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "III",
                         " C ",
                         "GPG",
@@ -77,14 +76,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.ENGINE_STEAM_HIGH;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        engine = Machines.ENGINE_STEAM_HIGH;
+        if (engine.isAvailable()) {
+            Block block= RailcraftBlocks.getBlockEngine(EngineType.HIGH);
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "III",
                         " C ",
                         "GPG",
@@ -99,12 +96,11 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.BOILER_FIREBOX_SOLID;
+        EnumMachineBeta beta = EnumMachineBeta.BOILER_FIREBOX_SOLID;
         if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
             RailcraftBlocks.registerBlockMachineBeta();
             Block block = RailcraftBlocks.getBlockMachineBeta();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
                         beta.getItem(),
                         "BBB",
@@ -124,7 +120,6 @@ public class ModuleSteam extends RailcraftModule {
             RailcraftBlocks.registerBlockMachineBeta();
             Block block = RailcraftBlocks.getBlockMachineBeta();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
                         beta.getItem(),
                         "PBP",
@@ -148,7 +143,6 @@ public class ModuleSteam extends RailcraftModule {
             RailcraftBlocks.registerBlockMachineBeta();
             Block block = RailcraftBlocks.getBlockMachineBeta();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
                         beta.getItem(),
                         "P",
@@ -166,7 +160,6 @@ public class ModuleSteam extends RailcraftModule {
             RailcraftBlocks.registerBlockMachineBeta();
             Block block = RailcraftBlocks.getBlockMachineBeta();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
                         beta.getItem(),
                         "P",

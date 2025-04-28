@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.ItemBlockRailcraft;
-import mods.railcraft.common.blocks.machine.wire.MachineWire;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.blocks.machine.wire.TileWire.AddonType;
 import mods.railcraft.common.core.Railcraft;
@@ -149,8 +149,8 @@ public class BlockFrame extends Block implements IPostConnection {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
             float hitY, float hitZ) {
         ItemStack current = player.getCurrentEquippedItem();
-        if (current != null && InvTools.isItemEqualIgnoreNBT(current, MachineWire.INSTANCE.getItem()))
-            if (WorldPlugin.setBlock(world, x, y, z, MachineWire.INSTANCE.getBlock(), 0, 2)) {
+        if (current != null && InvTools.isItemEqualIgnoreNBT(current, Machines.WIRE.getItem()))
+            if (WorldPlugin.setBlock(world, x, y, z, Machines.WIRE.getBlock(), 0, 2)) {
                 TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
                 if (tile instanceof TileWire) {
                     TileWire wire = (TileWire) tile;

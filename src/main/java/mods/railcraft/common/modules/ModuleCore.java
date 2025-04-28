@@ -44,13 +44,13 @@ import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.client.sounds.SoundLimiterTicker;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.wire.MachineWire;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
 import mods.railcraft.common.carts.CartUtils;
@@ -379,7 +379,7 @@ public class ModuleCore extends RailcraftModule {
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
         machines.addAll(EnumSet.allOf(EnumMachineBeta.class));
         machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
-        machines.add(MachineWire.INSTANCE);
+        machines.add(Machines.WIRE);
         machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));
 
         for (IMachine machine : machines) {

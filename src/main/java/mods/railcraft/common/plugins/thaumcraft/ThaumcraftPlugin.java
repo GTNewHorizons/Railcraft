@@ -23,6 +23,7 @@ import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.aesthetics.glass.BlockStrengthGlass;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.ore.EnumOre;
@@ -236,9 +237,9 @@ public class ThaumcraftPlugin {
             addItemAspect(
                     EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem(),
                     steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(EnumMachineBeta.ENGINE_STEAM_HOBBY.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
-            addItemAspect(EnumMachineBeta.ENGINE_STEAM_LOW.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
-            addItemAspect(EnumMachineBeta.ENGINE_STEAM_HIGH.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.ENGINE_STEAM_HOBBY.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.ENGINE_STEAM_LOW.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.ENGINE_STEAM_HIGH.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
 
             addItemAspect(
                     EnumMachineAlpha.TANK_WATER.getItem(),

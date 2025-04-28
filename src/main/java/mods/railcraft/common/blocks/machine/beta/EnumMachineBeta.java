@@ -20,9 +20,6 @@ import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.modules.ModuleManager.Module;
@@ -43,9 +40,6 @@ public enum EnumMachineBeta implements IEnumMachine {
     BOILER_FIREBOX_SOLID(Module.STEAM, "boiler.firebox.solid", TileBoilerFireboxSolid.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
     BOILER_FIREBOX_FLUID(Module.STEAM, "boiler.firebox.liquid", TileBoilerFireboxFluid.class, 3, 1, 0, 0, 1, 1, 1, 1,
             2),
-    ENGINE_STEAM_HOBBY(Module.STEAM, "engine.steam.hobby", TileEngineSteamHobby.class, 1, 1, 0),
-    ENGINE_STEAM_LOW(Module.STEAM, "engine.steam.low", TileEngineSteamLow.class, 1, 1, 0),
-    ENGINE_STEAM_HIGH(Module.STEAM, "engine.steam.high", TileEngineSteamHigh.class, 1, 1, 0),
     SENTINEL(Module.CHUNK_LOADING, "anchor.sentinel", TileSentinel.class, 2, 1, 0, 0, 1, 1, 1, 1),
     VOID_CHEST(Module.TRANSPORT, "chest.void", TileChestVoid.class, 1, 1, 0),
     METALS_CHEST(Module.TRANSPORT, "chest.metals", TileChestMetals.class, 1, 1, 0),
@@ -74,9 +68,6 @@ public enum EnumMachineBeta implements IEnumMachine {
         creativeList.add(BOILER_FIREBOX_FLUID);
         creativeList.add(BOILER_TANK_LOW_PRESSURE);
         creativeList.add(BOILER_TANK_HIGH_PRESSURE);
-        creativeList.add(ENGINE_STEAM_HOBBY);
-        creativeList.add(ENGINE_STEAM_LOW);
-        creativeList.add(ENGINE_STEAM_HIGH);
         creativeList.add(SENTINEL);
         creativeList.add(VOID_CHEST);
         creativeList.add(METALS_CHEST);

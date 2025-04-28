@@ -10,9 +10,10 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.frame.BlockFrame;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.blocks.machine.wire.MachineWire;
 import mods.railcraft.common.items.ItemElectricMeter;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
@@ -92,8 +93,8 @@ public class ModuleElectricity extends RailcraftModule {
                 'R',
                 "blockRedstone");
 
-        MachineWire wire = MachineWire.INSTANCE;
-        if (wire.register()) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
+        Machine wire = Machines.WIRE;
+        if (wire.getBlock() != null) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
                 new ShapedOreRecipe(
                         wire.getItem(8),
                         "LPL",

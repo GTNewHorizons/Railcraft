@@ -16,8 +16,8 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -77,8 +77,8 @@ public class TileEngineSteamHobby extends TileEngineSteam
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.ENGINE_STEAM_HOBBY;
+    public IMachine getMachineType() {
+        return Machines.ENGINE_STEAM_HOBBY;
     }
 
     @Override

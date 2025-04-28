@@ -5,8 +5,8 @@
  */
 package mods.railcraft.common.blocks.machine.engine;
 
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.steam.Steam;
 
 /**
@@ -20,8 +20,8 @@ public class TileEngineSteamLow extends TileEngineSteam {
     public TileEngineSteamLow() {}
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.ENGINE_STEAM_LOW;
+    public IMachine getMachineType() {
+        return Machines.ENGINE_STEAM_LOW;
     }
 
     @Override

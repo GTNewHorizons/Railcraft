@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.IMachineProxy;
 
 /**
@@ -23,19 +24,19 @@ public class MachineProxyWire implements IMachineProxy {
 
     @Override
     public IMachine getMachine(int meta) {
-        return MachineWire.INSTANCE;
+        return Machines.WIRE;
     }
 
     @Override
     public List<? extends IMachine> getCreativeList() {
         ArrayList<IMachine> list = new ArrayList<IMachine>();
-        list.add(MachineWire.INSTANCE);
+        list.add(Machines.WIRE);
         return list;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
-        MachineWire.registerIcons(iconRegister);
+        Machines.WIRE.registerIcons(iconRegister);
     }
 }

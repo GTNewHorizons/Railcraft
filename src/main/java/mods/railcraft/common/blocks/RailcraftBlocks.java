@@ -12,11 +12,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.machine.BlockMachine;
+import mods.railcraft.common.blocks.machine.BlockMultiMachine;
 import mods.railcraft.common.blocks.machine.ItemMachine;
+import mods.railcraft.common.blocks.machine.ItemMultiMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
+import mods.railcraft.common.blocks.machine.engine.EngineType;
+import mods.railcraft.common.blocks.machine.engine.MachineProxyEngine;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
@@ -44,6 +48,9 @@ public class RailcraftBlocks {
     private static Block blockMachineAlpha;
     private static Block blockMachineBeta;
     private static Block blockMachineGamma;
+    private static Block blockEngineHobby;
+    private static Block blockEngineLow;
+    private static Block blockEngineHigh;
     private static Block blockMachineWire;
     private static Block blockMachineEpsilon;
     private static Block blockTrack;
@@ -95,9 +102,9 @@ public class RailcraftBlocks {
         if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineAlpha = new BlockMachine(0, new MachineProxyAlpha(), true, lightOpacity)
+            blockMachineAlpha = new BlockMultiMachine(0, new MachineProxyAlpha(), true, lightOpacity)
                     .setBlockName("railcraft.machine.alpha");
-            RailcraftRegistry.register(blockMachineAlpha, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineAlpha, ItemMultiMachine.class);
 
             for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
                 switch (type) {
@@ -135,9 +142,6 @@ public class RailcraftBlocks {
             int renderId = Railcraft.getProxy().getRenderId();
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_LOW.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HIGH.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.TANK_IRON_WALL.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.TANK_IRON_VALVE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.TANK_IRON_GAUGE.ordinal()] = 0;
@@ -149,9 +153,9 @@ public class RailcraftBlocks {
             lightOpacity[EnumMachineBeta.SENTINEL.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
-            blockMachineBeta = new BlockMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
+            blockMachineBeta = new BlockMultiMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.beta");
-            RailcraftRegistry.register(blockMachineBeta, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineBeta, ItemMultiMachine.class);
 
             for (EnumMachineBeta type : EnumMachineBeta.values()) {
                 switch (type) {
@@ -179,10 +183,10 @@ public class RailcraftBlocks {
             Arrays.fill(lightOpacity, 255);
             lightOpacity[EnumMachineGamma.FLUID_LOADER.ordinal()] = 0;
             lightOpacity[EnumMachineGamma.FLUID_UNLOADER.ordinal()] = 0;
-            blockMachineGamma = new BlockMachine(0, new MachineProxyGamma(), false, lightOpacity)
+            blockMachineGamma = new BlockMultiMachine(0, new MachineProxyGamma(), false, lightOpacity)
                     .setBlockName("railcraft.machine.gamma");
             blockMachineGamma.setCreativeTab(CreativeTabs.tabTransport);
-            RailcraftRegistry.register(blockMachineGamma, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineGamma, ItemMultiMachine.class);
 
             for (EnumMachineGamma type : EnumMachineGamma.values()) {
                 switch (type) {
@@ -200,13 +204,10 @@ public class RailcraftBlocks {
     }
 
     public static Block registerBlockMachineWire() {
-        if (blockMachineWire == null && RailcraftConfig.isBlockEnabled("machine.delta")) {
+        if (blockMachineWire == null) {
             int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[0] = 0;
-            blockMachineWire = new BlockMachine(renderId, new MachineProxyWire(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.delta");
+            blockMachineWire = new BlockMachine(renderId, new MachineProxyWire(), false, 0)
+                    .setBlockName("railcraft.wire");
             blockMachineWire.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
             RailcraftRegistry.register(blockMachineWire, ItemMachine.class);
             blockMachineWire.setHarvestLevel("pickaxe", 2);
@@ -218,13 +219,32 @@ public class RailcraftBlocks {
         return blockMachineWire;
     }
 
+    public static Block registerBlockEngine(EngineType engineType) {
+        Block engineBlock = getBlockEngine(engineType);
+        if (engineBlock == null) {
+            engineBlock = new BlockMachine(Railcraft.getProxy().getRenderId(), new MachineProxyEngine(engineType), false, 0)
+                    .setBlockName("railcraft.engine." + engineType.getName());
+            RailcraftRegistry.register(engineBlock, ItemMachine.class);
+            engineBlock.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return engineBlock;
+    }
+
+    public static Block getBlockEngine(EngineType engineType) {
+        return switch(engineType) {
+            case HOBBY -> blockEngineHobby;
+            case LOW -> blockEngineLow;
+            case HIGH -> blockEngineHigh;
+        };
+    }
+
     public static Block registerBlockMachineEpsilon() {
         if (blockMachineEpsilon == null && RailcraftConfig.isBlockEnabled("machine.epsilon")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineEpsilon = new BlockMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
+            blockMachineEpsilon = new BlockMultiMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
                     .setBlockName("railcraft.machine.epsilon");
-            RailcraftRegistry.register(blockMachineEpsilon, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineEpsilon, ItemMultiMachine.class);
 
             for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
                 switch (type) {
@@ -261,9 +281,9 @@ public class RailcraftBlocks {
             for (int i = 0; i < EnumMachineZeta.values().length; i++) {
                 lightOpacity[i] = 0;
             }
-            blockMachineZeta = new BlockMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
+            blockMachineZeta = new BlockMultiMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.zeta");
-            RailcraftRegistry.register(blockMachineZeta, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineZeta, ItemMultiMachine.class);
 
             for (EnumMachineZeta type : EnumMachineZeta.values()) {
                 switch (type) {
@@ -287,9 +307,9 @@ public class RailcraftBlocks {
             for (int i = 0; i < EnumMachineEta.values().length; i++) {
                 lightOpacity[i] = 0;
             }
-            blockMachineEta = new BlockMachine(renderId, new MachineProxyEta(), false, lightOpacity)
+            blockMachineEta = new BlockMultiMachine(renderId, new MachineProxyEta(), false, lightOpacity)
                     .setBlockName("railcraft.machine.eta");
-            RailcraftRegistry.register(blockMachineEta, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineEta, ItemMultiMachine.class);
 
             for (EnumMachineEta type : EnumMachineEta.values()) {
                 switch (type) {
