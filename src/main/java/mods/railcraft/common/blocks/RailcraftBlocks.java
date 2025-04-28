@@ -222,8 +222,11 @@ public class RailcraftBlocks {
     public static Block registerBlockEngine(EngineType engineType) {
         Block engineBlock = getBlockEngine(engineType);
         if (engineBlock == null) {
-            engineBlock = new BlockMachine(Railcraft.getProxy().getRenderId(), new MachineProxyEngine(engineType), false, 0)
-                    .setBlockName("railcraft.engine." + engineType.getName());
+            engineBlock = new BlockMachine(
+                    Railcraft.getProxy().getRenderId(),
+                    new MachineProxyEngine(engineType),
+                    false,
+                    0).setBlockName("railcraft.engine." + engineType.getName());
             RailcraftRegistry.register(engineBlock, ItemMachine.class);
             engineBlock.setHarvestLevel("pickaxe", 2, 0);
         }
@@ -231,7 +234,7 @@ public class RailcraftBlocks {
     }
 
     public static Block getBlockEngine(EngineType engineType) {
-        return switch(engineType) {
+        return switch (engineType) {
             case HOBBY -> blockEngineHobby;
             case LOW -> blockEngineLow;
             case HIGH -> blockEngineHigh;

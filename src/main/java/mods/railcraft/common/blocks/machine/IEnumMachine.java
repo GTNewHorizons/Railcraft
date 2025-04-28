@@ -7,6 +7,7 @@ package mods.railcraft.common.blocks.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>

@@ -1,14 +1,14 @@
 package mods.railcraft.common.blocks.machine;
 
-import mods.railcraft.common.blocks.ItemBlockRailcraft;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import mods.railcraft.common.blocks.ItemBlockRailcraft;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 
 public class ItemMachine extends ItemBlockRailcraft {
-    
+
     private final BlockMachine machineBlock;
 
     public ItemMachine(Block block) {
@@ -16,10 +16,12 @@ public class ItemMachine extends ItemBlockRailcraft {
         this.machineBlock = (BlockMachine) block;
         setUnlocalizedName("railcraft.machine");
     }
+
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return machineBlock.getMachineProxy().getMachine(stack.getItemDamage()).getTag();
     }
+
     @Override
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
         return machineBlock.getMachineProxy().getMachine(stack.getItemDamage()).getToolTip(stack, player, adv);

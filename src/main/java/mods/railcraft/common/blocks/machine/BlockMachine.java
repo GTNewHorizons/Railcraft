@@ -33,8 +33,10 @@ import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
 
 public class BlockMachine extends BlockContainer implements IPostConnection {
+
     private final IMachineProxy proxy;
     private final int renderId;
+
     public BlockMachine(int renderId, IMachineProxy proxy, boolean opaque, int opacity) {
         super(Material.rock);
         setResistance(4.5f);
@@ -47,7 +49,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
         lightOpacity = opaque ? 255 : 0;
     }
-    
+
     @Override
     public int getRenderType() {
         return renderId;

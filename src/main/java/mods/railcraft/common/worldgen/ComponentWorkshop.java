@@ -249,12 +249,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
 
         if (!sbb.isVecInside(xx, yy, zz)) return;
 
-        WorldPlugin.setBlock(
-                world,
-                xx,
-                yy,
-                zz,
-                Machines.ENGINE_STEAM_HOBBY.getBlock());
+        WorldPlugin.setBlock(world, xx, yy, zz, Machines.ENGINE_STEAM_HOBBY.getBlock());
         TileEntity tile = WorldPlugin.getBlockTile(world, xx, yy, zz);
         if (tile instanceof TileEngineSteamHobby) {
             TileEngineSteamHobby engine = (TileEngineSteamHobby) tile;

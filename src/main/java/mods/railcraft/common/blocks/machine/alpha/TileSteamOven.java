@@ -57,8 +57,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.ISteamUser;
 
-public class TileSteamOven extends TileMultiBlockInventory
-        implements ISidedInventory, ISteamUser, IHasWork {
+public class TileSteamOven extends TileMultiBlockInventory implements ISidedInventory, ISteamUser, IHasWork {
 
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 9;

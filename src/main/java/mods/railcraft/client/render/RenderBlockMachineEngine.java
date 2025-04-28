@@ -5,6 +5,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
 
 public class RenderBlockMachineEngine extends BlockRenderer {
+
     public RenderBlockMachineEngine(EngineType engineType, RenderPneumaticEngine renderEngine) {
         super(getEngine(engineType).getBlock());
         addBlockRenderer(0, new DoNothingRenderer());

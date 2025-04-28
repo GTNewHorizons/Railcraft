@@ -78,7 +78,7 @@ public class ModuleSteam extends RailcraftModule {
 
         engine = Machines.ENGINE_STEAM_HIGH;
         if (engine.isAvailable()) {
-            Block block= RailcraftBlocks.getBlockEngine(EngineType.HIGH);
+            Block block = RailcraftBlocks.getBlockEngine(EngineType.HIGH);
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
                         engine.getItem(),
