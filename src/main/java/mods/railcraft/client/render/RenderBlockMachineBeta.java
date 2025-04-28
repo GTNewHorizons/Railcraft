@@ -23,8 +23,6 @@ public class RenderBlockMachineBeta extends BlockRenderer {
         addBlockRenderer(EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal(), new RenderBoilerTank());
         addBlockRenderer(EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal(), new RenderBoilerTank());
 
-        addCombinedRenderer(EnumMachineBeta.SENTINEL.ordinal(), new RenderSentinel());
-
         addBlockRenderer(EnumMachineBeta.VOID_CHEST.ordinal(), new DoNothingRenderer());
         addItemRenderer(
                 EnumMachineBeta.VOID_CHEST.ordinal(),

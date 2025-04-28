@@ -10,12 +10,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemMinecart;
 
 import cpw.mods.fml.common.Optional;
-import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
 import mods.railcraft.common.blocks.signals.ItemSignalTuner;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -33,7 +32,7 @@ import mods.railcraft.common.items.RailcraftToolItems;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @Optional.Interface(iface = "forestry.api.storage.IBackpackDefinition", modid = "Forestry")
-public class TrackmanBackpack extends BaseBackpack implements IBackpackDefinition {
+public class TrackmanBackpack extends BaseBackpack {
 
     private static TrackmanBackpack instance;
 
@@ -74,7 +73,7 @@ public class TrackmanBackpack extends BaseBackpack implements IBackpackDefinitio
 
         addItem(EnumMachineAlpha.WORLD_ANCHOR.getItem());
         addItem(EnumMachineAlpha.PERSONAL_ANCHOR.getItem());
-        addItem(EnumMachineBeta.SENTINEL.getItem());
+        addItem(Machines.SENTINEL.getItem());
 
         addItem(RailcraftItem.rail);
         addItem(RailcraftItem.railbed);

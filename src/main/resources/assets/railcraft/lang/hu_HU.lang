@@ -663,7 +663,7 @@ tile.railcraft.machine.alpha.trade.station.name=Trade Station
 tile.railcraft.machine.alpha.turbine.name=Steam Turbine Housing
 tile.railcraft.machine.alpha.turbine.tip=Multi-Block: 3x2x2\n Generates Electricity from Steam\nOutputs water to the bottom\n Requires a Turbine Rotor
 
-tile.railcraft.machine.beta.anchor.sentinel.name=Anchor Sentinel
+tile.railcraft.machine.anchor.sentinel.name=Anchor Sentinel
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Liquid Fueled Boiler Firebox
 tile.railcraft.machine.beta.boiler.firebox.liquid.tip=Multi-Block: Variable Size, Bottom Layer\n Dimensions: 1x1, 2x2, 3x3
 tile.railcraft.machine.beta.boiler.firebox.solid.name=Solid Fueled Boiler Firebox

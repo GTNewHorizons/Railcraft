@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.beta;
+package mods.railcraft.common.blocks.machine.sentinel;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +13,8 @@ import net.minecraft.util.IIcon;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
@@ -25,8 +26,8 @@ import mods.railcraft.common.plugins.forge.ChatPlugin;
 public class TileSentinel extends TileMachineBase {
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineBeta.SENTINEL;
+    public IMachine getMachineType() {
+        return Machines.SENTINEL;
     }
 
     @Override

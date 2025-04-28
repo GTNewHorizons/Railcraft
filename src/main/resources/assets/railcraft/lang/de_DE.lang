@@ -751,7 +751,7 @@ tile.railcraft.machine.alpha.trade.station.name=Handelsstation
 tile.railcraft.machine.alpha.turbine.name=Dampfturbinengehäuse
 tile.railcraft.machine.alpha.turbine.tip=Multiblock: 3x2x2\n Generiert Elektrizität aus Dampf\nGibt unten Wasser ab\n Benötigt einen Turbinenrotor
 
-tile.railcraft.machine.beta.anchor.sentinel.name=Anker-Markierung
+tile.railcraft.machine.anchor.sentinel.name=Anker-Markierung
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Öl-Dampfkessel-Feuerbüchse
 tile.railcraft.machine.beta.boiler.firebox.liquid.tip=Multiblock: variable Größe, unterste Ebene\n Abmessung: 1x1, 2x2, 3x3
 tile.railcraft.machine.beta.boiler.firebox.solid.name=Kohle-Dampfkessel-Feuerbüchse

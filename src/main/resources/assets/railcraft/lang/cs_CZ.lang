@@ -703,7 +703,7 @@ tile.railcraft.machine.alpha.trade.station.name=Obchodní stanice
 tile.railcraft.machine.alpha.turbine.name=Kryt parní turbíny
 tile.railcraft.machine.alpha.turbine.tip=-Steam Turbine Housing-\n Multi-blok: 3x2x2\n Generuje elektřinu z páry\n Výstupní materiál je voda\n Vyžaduje Rotor turbíny
 
-tile.railcraft.machine.beta.anchor.sentinel.name=Strážní kotva
+tile.railcraft.machine.anchor.sentinel.name=Strážní kotva
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Hořák boileru na tekuté palivo
 tile.railcraft.machine.beta.boiler.firebox.liquid.tip=-Liquid Fueled Boiler Firebox-\n Multi-blok: Různé velikosti, spodní vrstva\n Rozměry: 1x1, 2x2, 3x3
 tile.railcraft.machine.beta.boiler.firebox.solid.name=Hořák boileru na pevné palivo

@@ -30,6 +30,7 @@ import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineBeta;
 import mods.railcraft.client.render.RenderBlockMachineEngine;
 import mods.railcraft.client.render.RenderBlockMachineEta;
+import mods.railcraft.client.render.RenderBlockMachineSentinel;
 import mods.railcraft.client.render.RenderBlockMachineZeta;
 import mods.railcraft.client.render.RenderBlockOre;
 import mods.railcraft.client.render.RenderBlockPost;
@@ -234,6 +235,7 @@ public class ClientProxy extends CommonProxy {
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HOBBY, RenderPneumaticEngine.renderHobby));
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.LOW, RenderPneumaticEngine.renderLow));
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HIGH, RenderPneumaticEngine.renderHigh));
+        registerBlockRenderer(new RenderBlockMachineSentinel());
         registerBlockRenderer(new RenderBlockWire());
         registerBlockRenderer(new RenderBlockMachineEta());
         registerBlockRenderer(new RenderBlockMachineZeta());

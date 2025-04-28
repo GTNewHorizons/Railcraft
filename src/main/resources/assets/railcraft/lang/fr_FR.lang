@@ -463,7 +463,7 @@ tile.railcraft.machine.alpha.tank.water.name=Revêtement de réservoir d'eau
 tile.railcraft.machine.alpha.trade.station.name=Station de commerce
 tile.railcraft.machine.alpha.turbine.name=Emplacement pour turbine à vapeur
 
-tile.railcraft.machine.beta.anchor.sentinel.name=Ancre sentinel
+tile.railcraft.machine.anchor.sentinel.name=Ancre sentinel
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Chambre à combustible liquide
 tile.railcraft.machine.beta.boiler.firebox.solid.name=Chambre à combustible solide
 tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Chaudière à haute pression

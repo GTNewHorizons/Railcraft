@@ -753,7 +753,7 @@ tile.railcraft.machine.alpha.trade.station.name=交易站
 tile.railcraft.machine.alpha.turbine.name=蒸氣渦輪機殼
 tile.railcraft.machine.alpha.turbine.tip=多重方塊: 3x2x2\n 利用蒸氣產生電力\n會在底部產出水分\n 需要一個渦輪轉子
 
-tile.railcraft.machine.beta.anchor.sentinel.name=錨哨兵
+tile.railcraft.machine.anchor.sentinel.name=錨哨兵
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=液體燃燒室
 tile.railcraft.machine.beta.boiler.firebox.liquid.tip=多重方塊: 大小可變, 位居底部\n 尺寸: 1x1, 2x2, 3x3
 tile.railcraft.machine.beta.boiler.firebox.solid.name=固體燃燒室

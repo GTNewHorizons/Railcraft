@@ -25,6 +25,7 @@ import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.gamma.MachineProxyGamma;
+import mods.railcraft.common.blocks.machine.sentinel.MachineProxySentinel;
 import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
@@ -53,6 +54,7 @@ public class RailcraftBlocks {
     private static Block blockEngineHigh;
     private static Block blockMachineWire;
     private static Block blockMachineEpsilon;
+    private static Block blockMachineSentinel;
     private static Block blockTrack;
     private static Block blockRailElevator;
     private static Block blockSignal;
@@ -150,7 +152,6 @@ public class RailcraftBlocks {
             lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.SENTINEL.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
             lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
             blockMachineBeta = new BlockMultiMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
@@ -158,15 +159,7 @@ public class RailcraftBlocks {
             RailcraftRegistry.register(blockMachineBeta, ItemMultiMachine.class);
 
             for (EnumMachineBeta type : EnumMachineBeta.values()) {
-                switch (type) {
-                    case SENTINEL:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    default:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
+                blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
             }
         }
         return blockMachineBeta;
@@ -174,6 +167,21 @@ public class RailcraftBlocks {
 
     public static Block getBlockMachineBeta() {
         return blockMachineBeta;
+    }
+
+    public static Block registerBlockMachineSentinel() {
+        if (blockMachineSentinel == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineSentinel = new BlockMachine(renderId, new MachineProxySentinel(), false, 255)
+                    .setBlockName("railcraft.sentinel");
+            RailcraftRegistry.register(blockMachineSentinel, ItemMachine.class);
+            blockMachineSentinel.setHarvestLevel("pickaxe", 3, 0);
+        }
+        return blockMachineSentinel;
+    }
+
+    public static Block getBlockMachineSentinel() {
+        return blockMachineSentinel;
     }
 
     public static Block registerBlockMachineGamma() {

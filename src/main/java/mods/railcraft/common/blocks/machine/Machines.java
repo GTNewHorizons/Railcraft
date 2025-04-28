@@ -7,24 +7,11 @@ import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
+import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class Machines {
-
-    public static final Machine WIRE = registerMachine(
-            Module.ELECTRICITY,
-            RailcraftBlocks.registerBlockMachineWire(),
-            TileWire.class,
-            "wire",
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0);
 
     public static final Machine ENGINE_STEAM_HOBBY = registerMachine(
             Module.STEAM,
@@ -49,6 +36,33 @@ public class Machines {
             "engine.steam.high",
             1,
             1,
+            0);
+    public static final Machine SENTINEL = registerMachine(
+            Module.CHUNK_LOADING,
+            RailcraftBlocks.registerBlockMachineSentinel(),
+            TileSentinel.class,
+            "anchor.sentinel",
+            2,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1);
+
+    public static final Machine WIRE = registerMachine(
+            Module.ELECTRICITY,
+            RailcraftBlocks.registerBlockMachineWire(),
+            TileWire.class,
+            "wire",
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
             0);
 
     public static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,

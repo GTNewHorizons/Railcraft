@@ -13,8 +13,9 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -96,11 +97,11 @@ public class ModuleChunkLoading extends RailcraftModule {
             RailcraftBlocks.registerBlockMachineAlpha();
         }
 
-        EnumMachineBeta beta = EnumMachineBeta.SENTINEL;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
+        Machine sentinel = Machines.SENTINEL;
+        if (sentinel.isAvailable()) {
             Block block = RailcraftBlocks.registerBlockMachineBeta();
             if (block != null) {
-                ItemStack stack = beta.getItem();
+                ItemStack stack = sentinel.getItem();
                 if (RailcraftConfig.canCraftAnchors()) {
                     CraftingPlugin.addShapedRecipe(
                             stack,

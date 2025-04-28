@@ -223,7 +223,7 @@ tile.railcraft.machine.alpha.tank.water.name=Deski Zbiornika Wody
 tile.railcraft.machine.alpha.turbine.name=Obudowa Turbiny Parowej
 tile.railcraft.machine.alpha.anchor.world.name=Kotwica Swiata
 
-tile.railcraft.machine.beta.anchor.sentinel.name=Słup Kotwica
+tile.railcraft.machine.anchor.sentinel.name=Słup Kotwica
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Palenisko Na Płyn
 tile.railcraft.machine.beta.boiler.firebox.solid.name=Palenisko Na Paliwo Stałe
 tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Bojler Wysokociśnieniowy

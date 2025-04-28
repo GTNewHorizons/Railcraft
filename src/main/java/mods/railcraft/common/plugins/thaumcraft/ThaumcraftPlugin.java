@@ -227,7 +227,7 @@ public class ThaumcraftPlugin {
             addItemAspect(EnumMachineAlpha.ADMIN_ANCHOR.getItem(), anchorAspects);
             addItemAspect(EnumMachineAlpha.PERSONAL_ANCHOR.getItem(), anchorAspects);
             addItemAspect(EnumMachineAlpha.WORLD_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(EnumMachineBeta.SENTINEL.getItem(), anchorAspects);
+            addItemAspect(Machines.SENTINEL.getItem(), anchorAspects);
 
             addItemAspect(EnumMachineBeta.BOILER_FIREBOX_SOLID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
             addItemAspect(EnumMachineBeta.BOILER_FIREBOX_FLUID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
