@@ -6,27 +6,36 @@
 package mods.railcraft.common.blocks;
 
 import java.util.Arrays;
+import java.util.TreeMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.machine.BlockMachine;
+import mods.railcraft.common.blocks.machine.BlockMultiMachine;
 import mods.railcraft.common.blocks.machine.ItemMachine;
+import mods.railcraft.common.blocks.machine.ItemMultiMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.delta.MachineProxyDelta;
+import mods.railcraft.common.blocks.machine.boiler.MachineProxyBoilerTank;
+import mods.railcraft.common.blocks.machine.boiler.MachineProxyFirebox;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
+import mods.railcraft.common.blocks.machine.chest.MachineProxyChestMetals;
+import mods.railcraft.common.blocks.machine.chest.MachineProxyChestVoid;
+import mods.railcraft.common.blocks.machine.engine.EngineType;
+import mods.railcraft.common.blocks.machine.engine.MachineProxyEngine;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.gamma.MachineProxyGamma;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyEta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyZeta;
+import mods.railcraft.common.blocks.machine.sentinel.MachineProxySentinel;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankGauge;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankValve;
+import mods.railcraft.common.blocks.machine.tank.MachineProxyTankWall;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.ItemSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
@@ -43,15 +52,25 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 public class RailcraftBlocks {
 
     private static Block blockMachineAlpha;
-    private static Block blockMachineBeta;
     private static Block blockMachineGamma;
-    private static Block blockMachineDelta;
+    private static TreeMap<TankMaterial, Block> tankWalls = new TreeMap<>();
+    private static TreeMap<TankMaterial, Block> tankGauges = new TreeMap<>();
+    private static TreeMap<TankMaterial, Block> tankValves = new TreeMap<>();
+    private static Block blockBoilerTankLowPressure;
+    private static Block blockBoilerTankHighPressure;
+    private static Block blockBoilerFireboxSolid;
+    private static Block blockBoilerFireboxLiquid;
+    private static Block blockEngineHobby;
+    private static Block blockEngineLow;
+    private static Block blockEngineHigh;
+    private static Block blockMachineWire;
     private static Block blockMachineEpsilon;
+    private static Block blockMachineSentinel;
+    private static Block blockMachineChestVoid;
+    private static Block blockMachineChestMetals;
     private static Block blockTrack;
     private static Block blockRailElevator;
     private static Block blockSignal;
-    private static Block blockMachineZeta;
-    private static Block blockMachineEta;
 
     public static void registerBlockTrack() {
         if (blockTrack == null && RailcraftConfig.isBlockEnabled("track")) {
@@ -96,9 +115,9 @@ public class RailcraftBlocks {
         if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineAlpha = new BlockMachine(0, new MachineProxyAlpha(), true, lightOpacity)
+            blockMachineAlpha = new BlockMultiMachine(0, new MachineProxyAlpha(), true, lightOpacity)
                     .setBlockName("railcraft.machine.alpha");
-            RailcraftRegistry.register(blockMachineAlpha, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineAlpha, ItemMultiMachine.class);
 
             for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
                 switch (type) {
@@ -130,47 +149,138 @@ public class RailcraftBlocks {
         return blockMachineAlpha;
     }
 
-    public static Block registerBlockMachineBeta() {
-        if (blockMachineBeta == null && RailcraftConfig.isBlockEnabled("machine.beta")) {
-
+    public static Block registerBlockTankWall(TankMaterial material) {
+        Block wall = getBlockTankWall(material);
+        if (wall == null) {
             int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_LOW.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HIGH.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.SENTINEL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
-            blockMachineBeta = new BlockMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.beta");
-            RailcraftRegistry.register(blockMachineBeta, ItemMachine.class);
-
-            for (EnumMachineBeta type : EnumMachineBeta.values()) {
-                switch (type) {
-                    case SENTINEL:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    default:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
+            wall = new BlockMachine(renderId, new MachineProxyTankWall(material), false, 0)
+                    .setBlockName("railcraft.tank.wall." + material.name);
+            RailcraftRegistry.register(wall, ItemMachine.class);
+            wall.setHarvestLevel("pickaxe", 2, 0);
+            tankWalls.put(material, wall);
         }
-        return blockMachineBeta;
+        return wall;
     }
 
-    public static Block getBlockMachineBeta() {
-        return blockMachineBeta;
+    public static Block getBlockTankWall(TankMaterial material) {
+        return tankWalls.get(material);
+    }
+
+    public static Block registerBlockTankGauge(TankMaterial material) {
+        Block gauge = getBlockTankGauge(material);
+        if (gauge == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            gauge = new BlockMachine(renderId, new MachineProxyTankGauge(material), false, 0)
+                    .setBlockName("railcraft.tank.gauge." + material.name);
+            RailcraftRegistry.register(gauge, ItemMachine.class);
+            gauge.setHarvestLevel("pickaxe", 2, 0);
+            tankGauges.put(material, gauge);
+        }
+        return gauge;
+    }
+
+    public static Block getBlockTankGauge(TankMaterial material) {
+        return tankGauges.get(material);
+    }
+
+    public static Block registerBlockTankValve(TankMaterial material) {
+        Block valve = getBlockTankValve(material);
+        if (valve == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            valve = new BlockMachine(renderId, new MachineProxyTankValve(material), false, 0)
+                    .setBlockName("railcraft.tank.valve." + material.name);
+            RailcraftRegistry.register(valve, ItemMachine.class);
+            valve.setHarvestLevel("pickaxe", 2, 0);
+            tankValves.put(material, valve);
+        }
+        return valve;
+    }
+
+    public static Block getBlockTankValve(TankMaterial material) {
+        return tankValves.get(material);
+    }
+
+    public static Block getBlockFirebox(FireboxType fireboxType) {
+        return switch (fireboxType) {
+            case SOLID -> blockBoilerFireboxSolid;
+            case LIQUID -> blockBoilerFireboxLiquid;
+        };
+    }
+
+    public static Block registerBlockFirebox(FireboxType fireboxType) {
+        Block firebox = getBlockFirebox(fireboxType);
+        if (firebox == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            firebox = new BlockMachine(renderId, new MachineProxyFirebox(fireboxType), true, 255)
+                    .setBlockName("railcraft.boiler.firebox." + fireboxType.getName());
+            RailcraftRegistry.register(firebox, ItemMachine.class);
+            firebox.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return firebox;
+    }
+
+    public static Block getBlockBoilerTank(TankPressure pressure) {
+        return switch (pressure) {
+            case LOW -> blockBoilerTankLowPressure;
+            case HIGH -> blockBoilerTankHighPressure;
+        };
+    }
+
+    public static Block registerBlockBoilerTank(TankPressure pressure) {
+        Block block = getBlockBoilerTank(pressure);
+        if (block == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            block = new BlockMachine(renderId, new MachineProxyBoilerTank(pressure), false, 0)
+                    .setBlockName("railcraft.boiler.tank." + pressure.getName());
+            RailcraftRegistry.register(block, ItemMachine.class);
+            block.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return block;
+    }
+
+    public static Block registerBlockMachineSentinel() {
+        if (blockMachineSentinel == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineSentinel = new BlockMachine(renderId, new MachineProxySentinel(), false, 255)
+                    .setBlockName("railcraft.sentinel");
+            RailcraftRegistry.register(blockMachineSentinel, ItemMachine.class);
+            blockMachineSentinel.setHarvestLevel("pickaxe", 3, 0);
+        }
+        return blockMachineSentinel;
+    }
+
+    public static Block getBlockMachineSentinel() {
+        return blockMachineSentinel;
+    }
+
+    public static Block registerBlockMachineChestVoid() {
+        if (blockMachineChestVoid == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineChestVoid = new BlockMachine(renderId, new MachineProxyChestVoid(), false, 0)
+                    .setBlockName("railcraft.chest.void");
+            RailcraftRegistry.register(blockMachineChestVoid, ItemMachine.class);
+            blockMachineChestVoid.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return blockMachineChestVoid;
+    }
+
+    public static Block getBlockMachineChestVoid() {
+        return blockMachineChestVoid;
+    }
+
+    public static Block registerBlockMachineChestMetals() {
+        if (blockMachineChestMetals == null) {
+            int renderId = Railcraft.getProxy().getRenderId();
+            blockMachineChestMetals = new BlockMachine(renderId, new MachineProxyChestMetals(), false, 0)
+                    .setBlockName("railcraft.chest.metals");
+            RailcraftRegistry.register(blockMachineChestMetals, ItemMachine.class);
+            blockMachineChestMetals.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return blockMachineChestMetals;
+    }
+
+    public static Block getBlockMachineChestMetals() {
+        return blockMachineChestMetals;
     }
 
     public static Block registerBlockMachineGamma() {
@@ -180,10 +290,10 @@ public class RailcraftBlocks {
             Arrays.fill(lightOpacity, 255);
             lightOpacity[EnumMachineGamma.FLUID_LOADER.ordinal()] = 0;
             lightOpacity[EnumMachineGamma.FLUID_UNLOADER.ordinal()] = 0;
-            blockMachineGamma = new BlockMachine(0, new MachineProxyGamma(), false, lightOpacity)
+            blockMachineGamma = new BlockMultiMachine(0, new MachineProxyGamma(), false, lightOpacity)
                     .setBlockName("railcraft.machine.gamma");
             blockMachineGamma.setCreativeTab(CreativeTabs.tabTransport);
-            RailcraftRegistry.register(blockMachineGamma, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineGamma, ItemMultiMachine.class);
 
             for (EnumMachineGamma type : EnumMachineGamma.values()) {
                 switch (type) {
@@ -200,40 +310,51 @@ public class RailcraftBlocks {
         return blockMachineGamma;
     }
 
-    public static Block registerBlockMachineDelta() {
-        if (blockMachineDelta == null && RailcraftConfig.isBlockEnabled("machine.delta")) {
+    public static Block registerBlockMachineWire() {
+        if (blockMachineWire == null) {
             int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineDelta.WIRE.ordinal()] = 0;
-            lightOpacity[EnumMachineDelta.CAGE.ordinal()] = 0;
-            blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.delta");
-            blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
-            RailcraftRegistry.register(blockMachineDelta, ItemMachine.class);
-
-            for (EnumMachineDelta type : EnumMachineDelta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineDelta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
+            blockMachineWire = new BlockMachine(renderId, new MachineProxyWire(), false, 0)
+                    .setBlockName("railcraft.wire");
+            blockMachineWire.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
+            RailcraftRegistry.register(blockMachineWire, ItemMachine.class);
+            blockMachineWire.setHarvestLevel("pickaxe", 2);
         }
-        return blockMachineDelta;
+        return blockMachineWire;
     }
 
-    public static Block getBlockMachineDelta() {
-        return blockMachineDelta;
+    public static Block getBlockMachineWire() {
+        return blockMachineWire;
+    }
+
+    public static Block registerBlockEngine(EngineType engineType) {
+        Block engineBlock = getBlockEngine(engineType);
+        if (engineBlock == null) {
+            engineBlock = new BlockMachine(
+                    Railcraft.getProxy().getRenderId(),
+                    new MachineProxyEngine(engineType),
+                    false,
+                    0).setBlockName("railcraft.engine." + engineType.getName());
+            RailcraftRegistry.register(engineBlock, ItemMachine.class);
+            engineBlock.setHarvestLevel("pickaxe", 2, 0);
+        }
+        return engineBlock;
+    }
+
+    public static Block getBlockEngine(EngineType engineType) {
+        return switch (engineType) {
+            case HOBBY -> blockEngineHobby;
+            case LOW -> blockEngineLow;
+            case HIGH -> blockEngineHigh;
+        };
     }
 
     public static Block registerBlockMachineEpsilon() {
         if (blockMachineEpsilon == null && RailcraftConfig.isBlockEnabled("machine.epsilon")) {
             int[] lightOpacity = new int[16];
             Arrays.fill(lightOpacity, 255);
-            blockMachineEpsilon = new BlockMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
+            blockMachineEpsilon = new BlockMultiMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
                     .setBlockName("railcraft.machine.epsilon");
-            RailcraftRegistry.register(blockMachineEpsilon, ItemMachine.class);
+            RailcraftRegistry.register(blockMachineEpsilon, ItemMultiMachine.class);
 
             for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
                 switch (type) {
@@ -260,57 +381,5 @@ public class RailcraftBlocks {
 
     public static Block getBlockSignal() {
         return blockSignal;
-    }
-
-    public static Block registerBlockMachineZeta() {
-        if (blockMachineZeta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineZeta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineZeta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineZeta = new BlockMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.zeta");
-            RailcraftRegistry.register(blockMachineZeta, ItemMachine.class);
-
-            for (EnumMachineZeta type : EnumMachineZeta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineZeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                }
-            }
-        }
-        return blockMachineZeta;
-    }
-
-    public static Block getBlockMachineZeta() {
-        return blockMachineZeta;
-    }
-
-    public static Block registerBlockMachineEta() {
-        if (blockMachineEta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineEta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineEta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineEta = new BlockMachine(renderId, new MachineProxyEta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.eta");
-            RailcraftRegistry.register(blockMachineEta, ItemMachine.class);
-
-            for (EnumMachineEta type : EnumMachineEta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineEta.setHarvestLevel("pickaxe", 4, type.ordinal());
-                }
-            }
-        }
-        return blockMachineEta;
-    }
-
-    public static Block getBlockMachineEta() {
-        return blockMachineEta;
     }
 }

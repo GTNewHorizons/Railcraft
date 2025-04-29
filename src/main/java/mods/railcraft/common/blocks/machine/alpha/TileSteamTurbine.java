@@ -23,7 +23,7 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFirebox;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankManager;
@@ -47,7 +47,7 @@ import mods.railcraft.common.util.steam.ISteamUser;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileSteamTurbine extends TileMultiBlock
-        implements IMultiEmitterDelegate, IFluidHandler, INeedsMaintenance, ISteamUser, IElectricGrid {
+        implements IMultiEmitterDelegate, INeedsMaintenance, ISteamUser, IElectricGrid {
 
     enum Texture {
 

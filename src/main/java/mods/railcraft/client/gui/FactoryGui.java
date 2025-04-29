@@ -24,10 +24,10 @@ import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteam;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
 import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
@@ -75,7 +75,7 @@ public class FactoryGui {
     public static GuiScreen build(EnumGui gui, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
         if (gui != EnumGui.ANVIL && obj == null) return null;
 
-        if (obj instanceof TileMultiBlock && !((TileMultiBlock) obj).isStructureValid()) return null;
+        if (obj instanceof TileMultiBlock multiObj && !multiObj.isStructureValid()) return null;
 
         try {
             switch (gui) {

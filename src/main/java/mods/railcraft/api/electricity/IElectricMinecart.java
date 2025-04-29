@@ -161,8 +161,8 @@ public interface IElectricMinecart {
             else if (type == Type.USER && charge < (capacity / 2.0) && clock % DRAW_INTERVAL == 0) {
                 ILinkageManager lm = CartTools.getLinkageManager(minecart.worldObj);
                 for (EntityMinecart cart : lm.getCartsInTrain(minecart)) {
-                    if (cart instanceof IElectricMinecart) {
-                        ChargeHandler ch = ((IElectricMinecart) cart).getChargeHandler();
+                    if (cart instanceof IElectricMinecart electricCart) {
+                        ChargeHandler ch = electricCart.getChargeHandler();
                         if (ch.getType() != Type.USER && ch.getCharge() > 0) {
                             charge += ch.removeCharge(capacity - charge);
                             break;

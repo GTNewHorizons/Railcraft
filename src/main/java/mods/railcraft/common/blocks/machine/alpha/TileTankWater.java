@@ -12,7 +12,6 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -47,7 +46,7 @@ import mods.railcraft.common.util.misc.ITileFilter;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileTankWater extends TileTank implements ISidedInventory {
+public class TileTankWater extends TileTank {
 
     private static final int OUTPUT_RATE = 40;
     private static final int TANK_CAPACITY = FluidHelper.BUCKET_VOLUME * 400;

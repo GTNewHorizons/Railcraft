@@ -7,8 +7,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IStatementParameter;
 import cpw.mods.fml.common.Optional;
-import mods.railcraft.common.blocks.machine.beta.TileEngine;
-import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
+import mods.railcraft.common.blocks.machine.engine.TileEngine;
+import mods.railcraft.common.blocks.machine.engine.TileEngine.EnergyStage;
 
 /**
  *

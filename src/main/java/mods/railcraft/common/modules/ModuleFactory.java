@@ -22,8 +22,9 @@ import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -184,7 +185,7 @@ public class ModuleFactory extends RailcraftModule {
                     recipe.addOutput(RailcraftItem.dust.getStack(ItemDust.EnumDust.OBSIDIAN), 0.25f);
                 }
 
-                if (EnumMachineAlpha.COKE_OVEN.isEnabled()) {
+                if (EnumMachineAlpha.COKE_OVEN.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(EnumMachineAlpha.COKE_OVEN.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Items.brick, 3), 1.0f);
@@ -196,7 +197,7 @@ public class ModuleFactory extends RailcraftModule {
                     recipe.addOutput(new ItemStack(Blocks.sand), 0.25f);
                 }
 
-                if (EnumMachineAlpha.BLAST_FURNACE.isEnabled()) {
+                if (EnumMachineAlpha.BLAST_FURNACE.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(EnumMachineAlpha.BLAST_FURNACE.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Blocks.nether_brick), 0.75f);
@@ -204,21 +205,21 @@ public class ModuleFactory extends RailcraftModule {
                     recipe.addOutput(new ItemStack(Items.blaze_powder), 0.05f);
                 }
 
-                if (EnumMachineAlpha.WORLD_ANCHOR.isEnabled()) {
+                if (EnumMachineAlpha.WORLD_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(EnumMachineAlpha.WORLD_ANCHOR.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Items.diamond), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
-                if (EnumMachineAlpha.PERSONAL_ANCHOR.isEnabled()) {
+                if (EnumMachineAlpha.PERSONAL_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(EnumMachineAlpha.PERSONAL_ANCHOR.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
-                if (EnumMachineAlpha.PASSIVE_ANCHOR.isEnabled()) {
+                if (EnumMachineAlpha.PASSIVE_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(EnumMachineAlpha.PASSIVE_ANCHOR.getItem(), true, false);
                     // recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
@@ -354,8 +355,8 @@ public class ModuleFactory extends RailcraftModule {
                     "craftingTableWood");
         } else RollingMachineCraftingManager.copyRecipesToWorkbench();
 
-        EnumMachineBeta metalsChest = EnumMachineBeta.METALS_CHEST;
-        if (metalsChest.register()) CraftingPlugin.addShapedRecipe(
+        Machine metalsChest = Machines.METALS_CHEST;
+        if (metalsChest.isAvailable()) CraftingPlugin.addShapedRecipe(
                 metalsChest.getItem(),
                 "GPG",
                 "PAP",
@@ -375,7 +376,7 @@ public class ModuleFactory extends RailcraftModule {
                 LootPlugin.addLootTool(type.getItem(), 1, 1, "steel.block");
 
                 /*
-                 * if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable()) RailcraftCraftingManager.blastFurnace.addRecipe(new
+                 * if (EnumMachineAlpha.BLAST_FURNACE.isAvailable()) RailcraftCraftingManager.blastFurnace.addRecipe(new
                  * ItemStack(Blocks.iron_block), false, false, 11520, EnumCube.STEEL_BLOCK.getItem());
                  */ }
 
@@ -434,7 +435,7 @@ public class ModuleFactory extends RailcraftModule {
     @Override
     public void initSecond() {
         if (ModuleManager.isModuleLoaded(ModuleManager.Module.STRUCTURES)) {
-            if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable() && EnumBrick.INFERNAL.getBlock() != null) {
+            if (EnumMachineAlpha.BLAST_FURNACE.isAvailable() && EnumBrick.INFERNAL.getBlock() != null) {
 
                 ItemStack stack = EnumMachineAlpha.BLAST_FURNACE.getItem(4);
                 CraftingPlugin.addShapedRecipe(
@@ -447,7 +448,7 @@ public class ModuleFactory extends RailcraftModule {
                         'P',
                         Items.magma_cream);
             }
-            if (EnumMachineAlpha.COKE_OVEN.isAvaliable() && EnumBrick.SANDY.getBlock() != null) {
+            if (EnumMachineAlpha.COKE_OVEN.isAvailable() && EnumBrick.SANDY.getBlock() != null) {
                 ItemStack stack = EnumMachineAlpha.COKE_OVEN.getItem();
                 CraftingPlugin.addShapedRecipe(
                         stack,
@@ -512,7 +513,7 @@ public class ModuleFactory extends RailcraftModule {
     public void postInit() {
         if (OreDictionary.getOres("blockSteel").isEmpty()) OreDictionary.registerOre("blockSteel", Blocks.iron_block);
 
-        if (!EnumMachineAlpha.BLAST_FURNACE.isAvaliable()) registerAltSteelFurnaceRecipe();
+        if (!EnumMachineAlpha.BLAST_FURNACE.isAvailable()) registerAltSteelFurnaceRecipe();
 
         List<ItemStack> logs = new ArrayList<ItemStack>(25);
         logs.addAll(OreDictionary.getOres("logWood"));

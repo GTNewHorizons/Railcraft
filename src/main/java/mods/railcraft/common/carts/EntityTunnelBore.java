@@ -54,7 +54,7 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
 
-public class EntityTunnelBore extends CartContainerBase implements IInventory, ILinkableCart {
+public class EntityTunnelBore extends CartContainerBase implements ILinkableCart {
 
     public static final float SPEED = 0.03F;
     public static final float LENGTH = 6.2f;

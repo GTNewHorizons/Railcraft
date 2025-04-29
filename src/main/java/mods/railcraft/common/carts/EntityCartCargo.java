@@ -16,7 +16,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.gui.EnumGui;
@@ -24,7 +23,7 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 
-public class EntityCartCargo extends EntityCartFiltered implements IItemCart {
+public class EntityCartCargo extends EntityCartFiltered {
 
     private static final byte SLOTS_FILLED_DATA_ID = 25;
 

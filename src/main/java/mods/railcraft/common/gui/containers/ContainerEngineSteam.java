@@ -14,7 +14,7 @@ import net.minecraft.inventory.Slot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteam;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;
 import mods.railcraft.common.gui.widgets.RFEnergyIndicator;

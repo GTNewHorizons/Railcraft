@@ -123,8 +123,7 @@ public abstract class CartTools {
     public static EntityMinecart placeCart(GameProfile owner, ItemStack cart, WorldServer world, int x, int y, int z) {
         if (cart == null) return null;
         cart = cart.copy();
-        if (cart.getItem() instanceof IMinecartItem) {
-            IMinecartItem mi = (IMinecartItem) cart.getItem();
+        if (cart.getItem() instanceof IMinecartItem mi) {
             return mi.placeCart(owner, cart, world, x, y, z);
         } else if (cart.getItem() instanceof ItemMinecart) try {
             boolean placed = cart.getItem()

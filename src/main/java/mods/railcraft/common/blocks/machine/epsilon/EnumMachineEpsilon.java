@@ -23,7 +23,6 @@ import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -72,11 +71,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
             return getBlock() != null;
         }
         return false;
-    }
-
-    @Override
-    public boolean isDepreciated() {
-        return module == null;
     }
 
     public void setTexture(IIcon[] tex) {
@@ -143,25 +137,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         return tile;
     }
 
-    public TileMachineBase getTileEntity() {
-        try {
-            return tile.newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
-    @Override
-    public ItemStack getItem() {
-        return getItem(1);
-    }
-
-    @Override
-    public ItemStack getItem(int qty) {
-        Block block = getBlock();
-        if (block == null) return null;
-        return new ItemStack(block, qty, ordinal());
-    }
-
     public Module getModule() {
         return module;
     }
@@ -169,12 +144,6 @@ public enum EnumMachineEpsilon implements IEnumMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineEpsilon();
-    }
-
-    @Override
-    public boolean isAvaliable() {
-        return ModuleManager.isModuleLoaded(getModule()) && getBlock() != null
-                && RailcraftConfig.isSubBlockEnabled(getTag());
     }
 
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {

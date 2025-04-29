@@ -37,7 +37,7 @@ import mods.railcraft.common.util.network.PacketBuilder;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TankManager extends ForwardingList<StandardTank> implements IFluidHandler, List<StandardTank> {
+public class TankManager extends ForwardingList<StandardTank> implements IFluidHandler {
 
     public static final ITileFilter TANK_FILTER = new ITileFilter() {
 

@@ -33,13 +33,10 @@ import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -776,8 +773,8 @@ public class RailcraftConfig {
         loadBlockProperty("residual.heat");
 
         loadBlockProperty("machine.alpha");
-        loadBlockProperty("machine.beta");
-        loadBlockProperty("machine.delta");
+        loadBlockProperty("machine.engine");
+        loadBlockProperty("machine.wire");
         loadBlockProperty("machine.gamma");
         loadBlockProperty("machine.epsilon");
         loadBlockProperty("machine.advtank");
@@ -848,27 +845,13 @@ public class RailcraftConfig {
             loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineBeta type : EnumMachineBeta.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
         for (EnumMachineGamma type : EnumMachineGamma.values()) {
             loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineDelta type : EnumMachineDelta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.WIRE.getTag());
 
         for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
-        for (EnumMachineZeta type : EnumMachineZeta.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
-        for (EnumMachineEta type : EnumMachineEta.values()) {
             loadBlockFeature(type.getTag());
         }
 

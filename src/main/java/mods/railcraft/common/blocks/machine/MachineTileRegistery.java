@@ -22,25 +22,15 @@ import mods.railcraft.common.blocks.machine.alpha.TileSteamTrapManual;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerTankHigh;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerTankLow;
-import mods.railcraft.common.blocks.machine.beta.TileChestMetals;
-import mods.railcraft.common.blocks.machine.beta.TileChestVoid;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHigh;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamLow;
-import mods.railcraft.common.blocks.machine.beta.TileSawmill;
-import mods.railcraft.common.blocks.machine.beta.TileSentinel;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronGauge;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
-import mods.railcraft.common.blocks.machine.beta.TileTankIronWall;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelGauge;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelValve;
-import mods.railcraft.common.blocks.machine.beta.TileTankSteelWall;
-import mods.railcraft.common.blocks.machine.delta.TileCage;
-import mods.railcraft.common.blocks.machine.delta.TileWire;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankHigh;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankLow;
+import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
+import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
 import mods.railcraft.common.blocks.machine.epsilon.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeeder;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeederAdmin;
@@ -59,9 +49,11 @@ import mods.railcraft.common.blocks.machine.gamma.TileItemUnloader;
 import mods.railcraft.common.blocks.machine.gamma.TileItemUnloaderAdvanced;
 import mods.railcraft.common.blocks.machine.gamma.TileRFLoader;
 import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
+import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
+import mods.railcraft.common.blocks.machine.tank.TileTankGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankWall;
+import mods.railcraft.common.blocks.machine.wire.TileWire;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -96,15 +88,11 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileBoilerFireboxFluid.class, "RCBoilerFireboxLiquidTile");
         GameRegistry.registerTileEntity(TileBoilerTankLow.class, "RCBoilerTankLowTile");
         GameRegistry.registerTileEntity(TileBoilerTankHigh.class, "RCBoilerTankHighTile");
-        GameRegistry.registerTileEntity(TileTankIronWall.class, "RCIronTankWallTile");
-        GameRegistry.registerTileEntity(TileTankIronGauge.class, "RCIronTankGaugeTile");
-        GameRegistry.registerTileEntity(TileTankIronValve.class, "RCIronTankValveTile");
-        GameRegistry.registerTileEntity(TileTankSteelWall.class, "RCSteelTankWallTile");
-        GameRegistry.registerTileEntity(TileTankSteelGauge.class, "RCSteelTankGaugeTile");
-        GameRegistry.registerTileEntity(TileTankSteelValve.class, "RCSteelTankValveTile");
+        GameRegistry.registerTileEntity(TileTankWall.class, "RCIronTankWallTile");
+        GameRegistry.registerTileEntity(TileTankGauge.class, "RCIronTankGaugeTile");
+        GameRegistry.registerTileEntity(TileTankValve.class, "RCIronTankValveTile");
         GameRegistry.registerTileEntity(TileChestVoid.class, "RCVoidChestTile");
         GameRegistry.registerTileEntity(TileChestMetals.class, "RCMetalsChestTile");
-        GameRegistry.registerTileEntity(TileSawmill.class, "RCSawmillTile");
 
         // Gamma
         GameRegistry.registerTileEntity(TileDispenserCart.class, "RCMinecartDispenserTile");
@@ -121,7 +109,6 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileRFUnloader.class, "RCUnloaderTileRF");
 
         // Delta
-        GameRegistry.registerTileEntity(TileCage.class, "RCCageTile");
         GameRegistry.registerTileEntity(TileWire.class, "RCWireTile");
 
         // Epsilon
@@ -131,10 +118,5 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileFluxTransformer.class, "RCFluxTransformerTile");
         GameRegistry.registerTileEntity(TileForceTrackEmitter.class, "RCForceTrackEmitterTile");
         GameRegistry.registerTileEntity(TileEngravingBench.class, "RCEngravingBenchTile");
-
-        // Advanced Tanks
-        GameRegistry.registerTileEntity(TileGenericMultiTankWall.class, "RCAdvTankWallTile");
-        GameRegistry.registerTileEntity(TileGenericMultiTankGauge.class, "RCAdvTankGaugeTile");
-        GameRegistry.registerTileEntity(TileGenericMultiTankValve.class, "RCAdvTankValveTile");
     }
 }

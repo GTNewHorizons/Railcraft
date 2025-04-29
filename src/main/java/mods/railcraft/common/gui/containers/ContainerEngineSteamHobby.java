@@ -12,7 +12,7 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.gui.slots.SlotFuel;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotWater;

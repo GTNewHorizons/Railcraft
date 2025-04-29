@@ -23,7 +23,6 @@ import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
-import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
@@ -75,11 +74,6 @@ public enum EnumMachineGamma implements IEnumMachine {
         this.tile = tile;
         this.tag = tag;
         this.extraIcons = extraIcons;
-    }
-
-    @Override
-    public boolean isDepreciated() {
-        return module == null;
     }
 
     public void setTexture(IIcon... tex) {
@@ -169,25 +163,6 @@ public enum EnumMachineGamma implements IEnumMachine {
     }
 
     @Override
-    public TileMachineBase getTileEntity() {
-        try {
-            return tile.newInstance();
-        } catch (Exception ex) {}
-        return null;
-    }
-
-    @Override
-    public ItemStack getItem() {
-        return getItem(1);
-    }
-
-    @Override
-    public ItemStack getItem(int qty) {
-        Block block = getBlock();
-        if (block == null) return null;
-        return new ItemStack(block, qty, ordinal());
-    }
-
     public Module getModule() {
         return module;
     }
@@ -195,15 +170,6 @@ public enum EnumMachineGamma implements IEnumMachine {
     @Override
     public Block getBlock() {
         return RailcraftBlocks.getBlockMachineGamma();
-    }
-
-    public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(getModule()) && RailcraftConfig.isSubBlockEnabled(getTag());
-    }
-
-    @Override
-    public boolean isAvaliable() {
-        return getBlock() != null && isEnabled();
     }
 
     public boolean register() {

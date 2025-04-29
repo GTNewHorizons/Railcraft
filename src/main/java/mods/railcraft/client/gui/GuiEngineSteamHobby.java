@@ -8,7 +8,7 @@ package mods.railcraft.client.gui;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerEngineSteamHobby;
 

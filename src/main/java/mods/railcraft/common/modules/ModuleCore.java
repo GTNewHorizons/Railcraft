@@ -43,12 +43,11 @@ import mods.railcraft.api.helpers.Helpers;
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.client.sounds.SoundLimiterTicker;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -359,7 +358,7 @@ public class ModuleCore extends RailcraftModule {
 
     @Override
     public void initSecond() {
-        if (RailcraftConfig.useCreosoteFurnaceRecipes() || !EnumMachineAlpha.COKE_OVEN.isAvaliable()) {
+        if (RailcraftConfig.useCreosoteFurnaceRecipes() || !EnumMachineAlpha.COKE_OVEN.isAvailable()) {
             FurnaceRecipes.smelting()
                     .func_151394_a(new ItemStack(Items.coal, 1, 0), FluidContainers.getCreosoteOilBottle(2), 0.0F);
             FurnaceRecipes.smelting()
@@ -375,15 +374,27 @@ public class ModuleCore extends RailcraftModule {
             if (type.isEnabled()) RailcraftRegistry.register(type.getItem());
         }
 
-        Set<IEnumMachine> machines = new HashSet<IEnumMachine>();
+        Set<IMachine> machines = new HashSet<IMachine>();
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
-        machines.addAll(EnumSet.allOf(EnumMachineBeta.class));
+        machines.addAll(Machines.tankWalls.values());
+        machines.addAll(Machines.tankGauges.values());
+        machines.addAll(Machines.tankValves.values());
+        machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
+        machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
+        machines.add(Machines.BOILER_FIREBOX_SOLID);
+        machines.add(Machines.BOILER_FIREBOX_LIQUID);
+        machines.add(Machines.ENGINE_STEAM_HOBBY);
+        machines.add(Machines.ENGINE_STEAM_LOW);
+        machines.add(Machines.ENGINE_STEAM_HIGH);
+        machines.add(Machines.SENTINEL);
+        machines.add(Machines.VOID_CHEST);
+        machines.add(Machines.METALS_CHEST);
         machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
-        machines.addAll(EnumSet.allOf(EnumMachineDelta.class));
+        machines.add(Machines.WIRE);
         machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));
 
-        for (IEnumMachine machine : machines) {
-            if (machine.isAvaliable()) RailcraftRegistry.register(machine.getItem());
+        for (IMachine machine : machines) {
+            if (machine.isAvailable()) RailcraftRegistry.register(machine.getItem());
         }
     }
 

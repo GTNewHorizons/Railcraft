@@ -32,7 +32,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineBlade;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
+        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.blade";
         if (!RailcraftConfig.isItemEnabled(tag)) return RailcraftItem.ingot.getStack(qty, ItemIngot.EnumIngot.STEEL);
@@ -56,7 +56,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineDisk;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
+        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.disk";
 
@@ -82,7 +82,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineRotor;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvaliable()) return null;
+        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.rotor";
 

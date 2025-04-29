@@ -11,10 +11,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.items.ItemGear.EnumGear;
 import mods.railcraft.common.items.ItemIngot;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
@@ -30,14 +33,12 @@ public class ModuleSteam extends RailcraftModule {
     @Override
     public void initFirst() {
         // LiquidItems.getSteamBottle(1);
-        EnumMachineBeta beta = EnumMachineBeta.ENGINE_STEAM_HOBBY;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        Machine engine = Machines.ENGINE_STEAM_HOBBY;
+        if (engine.isAvailable()) {
+            Block block = engine.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "NNN",
                         " C ",
                         "GPG",
@@ -52,14 +53,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.ENGINE_STEAM_LOW;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        engine = Machines.ENGINE_STEAM_LOW;
+        if (engine.isAvailable()) {
+            Block block = engine.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "III",
                         " C ",
                         "GPG",
@@ -77,14 +76,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.ENGINE_STEAM_HIGH;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        engine = Machines.ENGINE_STEAM_HIGH;
+        if (engine.isAvailable()) {
+            Block block = engine.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        engine.getItem(),
                         "III",
                         " C ",
                         "GPG",
@@ -99,14 +96,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.BOILER_FIREBOX_SOLID;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        Machine firebox = Machines.BOILER_FIREBOX_SOLID;
+        if (firebox.isAvailable()) {
+            Block block = firebox.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        firebox.getItem(),
                         "BBB",
                         "BCB",
                         "BFB",
@@ -119,14 +114,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.BOILER_FIREBOX_FLUID;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        firebox = Machines.BOILER_FIREBOX_LIQUID;
+        if (firebox.isAvailable()) {
+            Block block = firebox.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        firebox.getItem(),
                         "PBP",
                         "GCG",
                         "PFP",
@@ -143,14 +136,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.BOILER_TANK_LOW_PRESSURE;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        Machine boiler = Machines.BOILER_TANK_LOW_PRESSURE;
+        if (boiler.isAvailable()) {
+            Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.LOW);
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        boiler.getItem(),
                         "P",
                         "P",
                         'P',
@@ -161,14 +152,12 @@ public class ModuleSteam extends RailcraftModule {
             }
         }
 
-        beta = EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            RailcraftBlocks.registerBlockMachineBeta();
-            Block block = RailcraftBlocks.getBlockMachineBeta();
+        boiler = Machines.BOILER_TANK_HIGH_PRESSURE;
+        if (boiler.isAvailable()) {
+            Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.HIGH);
             if (block != null) {
-                ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(),
+                        boiler.getItem(),
                         "P",
                         "P",
                         'P',
@@ -187,7 +176,7 @@ public class ModuleSteam extends RailcraftModule {
     @Override
     public void initSecond() {
         EnumMachineAlpha alpha = EnumMachineAlpha.STEAM_TRAP_MANUAL;
-        if (alpha.isAvaliable()) {
+        if (alpha.isAvailable()) {
             ItemStack stack = alpha.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
@@ -203,7 +192,7 @@ public class ModuleSteam extends RailcraftModule {
         }
 
         alpha = EnumMachineAlpha.STEAM_TRAP_AUTO;
-        if (alpha.isAvaliable()) {
+        if (alpha.isAvailable()) {
             ItemStack stack = alpha.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
@@ -218,7 +207,7 @@ public class ModuleSteam extends RailcraftModule {
                     "dustRedstone",
                     'D',
                     new ItemStack(Blocks.dispenser));
-            if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvaliable()) {
+            if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvailable()) {
                 CraftingPlugin.addShapedRecipe(
                         stack,
                         "RTR",
@@ -233,9 +222,8 @@ public class ModuleSteam extends RailcraftModule {
 
     private ItemStack getTankItem() {
         ItemStack tank;
-        if (EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.isAvaliable())
-            tank = EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem();
-        else if (EnumMachineBeta.TANK_STEEL_WALL.isAvaliable()) tank = EnumMachineBeta.TANK_STEEL_WALL.getItem();
+        if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
+        else if (Tanks.getWall(TankMaterial.IRON).isAvailable()) tank = Tanks.getWall(TankMaterial.IRON).getItem();
         else tank = RailcraftItem.plate.getStack(1, EnumPlate.STEEL);
         if (tank == null) tank = RailcraftItem.ingot.getStack(1, ItemIngot.EnumIngot.STEEL);
         if (tank == null) tank = new ItemStack(Blocks.iron_block);

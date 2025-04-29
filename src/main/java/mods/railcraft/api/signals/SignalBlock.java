@@ -213,8 +213,8 @@ public abstract class SignalBlock extends AbstractPair {
 
     @Override
     public boolean isValidPair(WorldCoordinate otherCoord, TileEntity otherTile) {
-        if (otherTile instanceof ISignalBlockTile) {
-            SignalBlock signalBlock = ((ISignalBlockTile) otherTile).getSignalBlock();
+        if (otherTile instanceof ISignalBlockTile signalBlockTile) {
+            SignalBlock signalBlock = signalBlockTile.getSignalBlock();
             return signalBlock.isPairedWith(getCoords());
         }
         return false;

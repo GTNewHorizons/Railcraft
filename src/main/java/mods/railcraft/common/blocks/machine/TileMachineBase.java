@@ -33,7 +33,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
 
     private boolean checkedBlock = false;
 
-    public abstract IEnumMachine getMachineType();
+    public abstract IMachine getMachineType();
 
     @Override
     public String getLocalizationTag() {
@@ -45,7 +45,10 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
         if (getMachineType() == null) {
             return 0;
         }
-        return (short) getMachineType().ordinal();
+        if (getMachineType() instanceof IEnumMachine enumMachine) {
+            return (short) enumMachine.ordinal();
+        }
+        return 0;
     }
 
     public boolean canCreatureSpawn(EnumCreatureType type) {
@@ -117,7 +120,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
             checkedBlock = true;
 
             if (getBlockType() != null && getMachineType() != null) {
-                if (!getMachineType().isAvaliable()) {
+                if (!getMachineType().isAvailable()) {
                     worldObj.setBlockToAir(xCoord, yCoord, zCoord);
                     return;
                 }
@@ -137,8 +140,8 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
                     updateContainingBlockInfo();
                 }
                 int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-                if (getBlockType() != null && getClass()
-                        != ((BlockMachine) getBlockType()).getMachineProxy().getMachine(meta).getTileClass()) {
+                if (getBlockType() instanceof BlockMultiMachine blockType
+                        && getClass() != blockType.getMachineProxy().getMachine(meta).getTileClass()) {
                     worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
                     validate();
                     worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
@@ -152,7 +155,22 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
                             yCoord,
                             zCoord);
                     updateContainingBlockInfo();
-                }
+                } else if (getBlockType() instanceof BlockMachine blockType
+                        && getClass() != blockType.getMachineProxy().getMachine(meta).getTileClass()) {
+                            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
+                            validate();
+                            worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
+                            Game.log(
+                                    Level.INFO,
+                                    "Updating Machine Tile Metadata: {0} {1}->{2}, [{3}, {4}, {5}]",
+                                    getClass().getSimpleName(),
+                                    meta,
+                                    getId(),
+                                    xCoord,
+                                    yCoord,
+                                    zCoord);
+                            updateContainingBlockInfo();
+                        }
             }
         }
     }

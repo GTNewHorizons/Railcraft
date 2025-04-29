@@ -1,8 +1,3 @@
-/*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
- * with explicit written permission unless otherwise specified on the license page at
- * http://railcraft.info/wiki/info:license.
- */
 package mods.railcraft.common.blocks.machine;
 
 import java.util.ArrayList;
@@ -13,12 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
@@ -37,26 +30,22 @@ import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 
 public class BlockMachine extends BlockContainer implements IPostConnection {
 
     private final IMachineProxy proxy;
     private final int renderId;
-    private final int[] metaOpacity;
 
-    public BlockMachine(int renderId, IMachineProxy proxy, boolean opaque, int[] metaOpacity) {
+    public BlockMachine(int renderId, IMachineProxy proxy, boolean opaque, int opacity) {
         super(Material.rock);
-        setResistance(4.5F);
-        setHardness(2.0F);
+        setResistance(4.5f);
+        setHardness(2.0f);
         setStepSound(soundTypeStone);
         setTickRandomly(true);
         this.proxy = proxy;
         this.opaque = opaque;
         this.renderId = renderId;
-        this.metaOpacity = metaOpacity;
-
         setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
         lightOpacity = opaque ? 255 : 0;
     }
@@ -66,11 +55,6 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         return renderId;
     }
 
-    /**
-     * Returns the default ambient occlusion value based on block opacity
-     *
-     * @return
-     */
     @SideOnly(Side.CLIENT)
     @Override
     public float getAmbientOcclusionLightValue() {
@@ -81,9 +65,8 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         return proxy;
     }
 
-    public IEnumMachine getMachineType(World world, int x, int y, int z) {
-        int meta = WorldPlugin.getBlockMetadata(world, x, y, z);
-        return proxy.getMachine(meta);
+    public IMachine getMachineType(World world, int x, int y, int z) {
+        return proxy.getMachine(0);
     }
 
     @Override
@@ -102,7 +85,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return proxy.getMachine(meta).getTexture(side);
+        return proxy.getMachine(0).getTexture(side);
     }
 
     @Override
@@ -288,24 +271,8 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (IEnumMachine type : proxy.getCreativeList()) {
-            if (type.isAvaliable()) list.add(type.getItem());
-        }
-    }
-
-    @Override
     public final boolean isOpaqueCube() {
         return opaque;
-    }
-
-    @Override
-    public int getLightOpacity(IBlockAccess world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta >= 0 && meta < metaOpacity.length) {
-            return metaOpacity[meta];
-        }
-        return 255;
     }
 
     @Override

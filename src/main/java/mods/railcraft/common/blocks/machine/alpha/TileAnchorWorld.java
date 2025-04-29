@@ -36,7 +36,7 @@ import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.blocks.machine.beta.TileSentinel;
+import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.carts.ItemCartAnchor;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
