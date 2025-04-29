@@ -15,8 +15,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.common.blocks.machine.IComparatorValueProvider;
-import mods.railcraft.common.blocks.machine.IMachine;
-import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.TankManager;
@@ -30,7 +29,7 @@ import mods.railcraft.common.util.misc.MiscTools;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileTankIronValve extends TileTankBase implements IFluidHandler, IComparatorValueProvider {
+public class TileTankValve extends TileTankBase implements IFluidHandler, IComparatorValueProvider {
 
     private static final ITileFilter FLUID_OUTPUT_FILTER = new ITileFilter() {
 
@@ -49,7 +48,8 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
 
     private boolean previousStructureValidity;
 
-    public TileTankIronValve() {
+    public TileTankValve(TankMaterial material) {
+        super(material);
         fillTank.setHidden(true);
         tankManager.add(fillTank);
     }
@@ -75,8 +75,8 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
     }
 
     @Override
-    public IMachine getMachineType() {
-        return Machines.TANK_IRON_VALVE;
+    public Machine getMachineType() {
+        return Tanks.getValve(material);
     }
 
     @Override
@@ -89,9 +89,9 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
         if (isMaster) {
             TileEntity tileBelow = tileCache.getTileOnSide(ForgeDirection.DOWN);
 
-            TileTankIronValve valveBelow = null;
-            if (tileBelow instanceof TileTankIronValve) {
-                valveBelow = (TileTankIronValve) tileBelow;
+            TileTankValve valveBelow = null;
+            if (tileBelow instanceof TileTankValve) {
+                valveBelow = (TileTankValve) tileBelow;
                 if (valveBelow.isStructureValid() && valveBelow.getPatternMarker() == 'T') {
                     StandardTank tankBelow = valveBelow.getTankManager().get(0);
                     FluidStack liquid = tankBelow.getFluid();
@@ -126,8 +126,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
         }
 
         TileMultiBlock masterBlock = getMasterBlock();
-        if (masterBlock instanceof TileTankBase) {
-            TileTankBase masterTileTankBase = (TileTankBase) masterBlock;
+        if (masterBlock instanceof TileTankBase masterTileTankBase) {
             int compValue = masterTileTankBase.getComparatorValue();
             if (previousComparatorValue != compValue) {
                 previousComparatorValue = compValue;

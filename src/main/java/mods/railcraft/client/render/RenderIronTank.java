@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.tank.TileTankBase;
-import mods.railcraft.common.blocks.machine.tank.TileTankIronValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankValve;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.StandardTank;
@@ -80,8 +80,8 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float f) {
         if (!((TileMultiBlock) tile).isStructureValid()) return;
 
-        if (tile instanceof TileTankIronValve) {
-            TileTankIronValve valve = (TileTankIronValve) tile;
+        if (tile instanceof TileTankValve) {
+            TileTankValve valve = (TileTankValve) tile;
             StandardTank fillTank = valve.getFillTank();
             if (fillTank.renderData.fluid != null && !fillTank.renderData.fluid.isGaseous()
                     && fillTank.renderData.amount > 0) {

@@ -7,18 +7,21 @@ package mods.railcraft.common.blocks.machine.tank;
 
 import net.minecraft.util.IIcon;
 
-import mods.railcraft.common.blocks.machine.IMachine;
-import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.Machine;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileTankIronWall extends TileTankBase {
+public class TileTankWall extends TileTankBase {
+
+    public TileTankWall(TankMaterial material) {
+        super(material);
+    }
 
     @Override
-    public IMachine getMachineType() {
-        return Machines.TANK_IRON_WALL;
+    public Machine getMachineType() {
+        return Tanks.getWall(material);
     }
 
     @Override

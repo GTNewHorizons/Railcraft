@@ -25,6 +25,8 @@ import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ICartType;
@@ -241,12 +243,13 @@ public class ThaumcraftPlugin {
                     tankAspects.copy().add(Aspect.TREE, 2).add(Aspect.SLIME, 2));
 
             AspectList ironTankAspects = tankAspects.copy().add(Aspect.METAL, 2);
-            addItemAspect(Machines.TANK_IRON_GAUGE.getItem(), ironTankAspects);
-            addItemAspect(Machines.TANK_IRON_VALVE.getItem(), ironTankAspects);
-            addItemAspect(Machines.TANK_IRON_WALL.getItem(), ironTankAspects);
-            addItemAspect(Machines.TANK_STEEL_GAUGE.getItem(), ironTankAspects);
-            addItemAspect(Machines.TANK_STEEL_VALVE.getItem(), ironTankAspects);
-            addItemAspect(Machines.TANK_IRON_WALL.getItem(), ironTankAspects);
+            for (TankMaterial mat : TankMaterial.values()) {
+                if (mat.module.isEnabled()) {
+                    addItemAspect(Tanks.getWall(mat).getItem(), ironTankAspects);
+                    addItemAspect(Tanks.getValve(mat).getItem(), ironTankAspects);
+                    addItemAspect(Tanks.getGauge(mat).getItem(), ironTankAspects);
+                }
+            }
 
             AspectList detectorAspects = new AspectList().add(Aspect.SENSES, 4).add(Aspect.MECHANISM, 4);
             for (EnumDetector detector : EnumDetector.VALUES) {

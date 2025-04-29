@@ -5,20 +5,53 @@
  */
 package mods.railcraft.common.blocks.machine.tank;
 
+import java.util.HashSet;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public abstract class MetalTank {
+public class MetalTank {
 
-    public abstract String getTitle();
+    public final TankMaterial material;
+    public Block wall;
+    public HashSet<Block> sideBlocks = new HashSet<Block>();
 
-    public abstract boolean isTankBlock(Block block);
+    public MetalTank(TankMaterial material, Block wall, Block... otherBlocks) {
+        this.material = material;
+        this.wall = wall;
+        sideBlocks.add(wall);
+        for (Block block : otherBlocks) {
+            sideBlocks.add(block);
+        }
+    }
 
-    public abstract boolean isWallBlock(Block block);
+    public String getTitle() {
+        return LocalizationPlugin.translate("railcraft.gui.tank." + material.name);
+    };
 
-    public abstract float getResistance(Entity exploder);
+    public boolean isTankBlock(Block block) {
+        return sideBlocks.contains(block);
+    };
+
+    public boolean isWallBlock(Block block) {
+        return this.wall == block;
+    };
+
+    public float getResistance(Entity exploder) {
+        return material.explosionResistance;
+    };
+
+    public int capacityPerBlock() {
+        return material.capacityPerBlock;
+    }
+
+    public boolean isAvailable() {
+        return material.module.isEnabled() && Tanks.getWall(material) != null;
+    }
 }

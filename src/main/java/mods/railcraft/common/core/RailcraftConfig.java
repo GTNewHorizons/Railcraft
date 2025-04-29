@@ -37,8 +37,6 @@ import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -854,14 +852,6 @@ public class RailcraftConfig {
         loadBlockFeature(Machines.WIRE.getTag());
 
         for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
-        for (EnumMachineZeta type : EnumMachineZeta.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
-        for (EnumMachineEta type : EnumMachineEta.values()) {
             loadBlockFeature(type.getTag());
         }
 

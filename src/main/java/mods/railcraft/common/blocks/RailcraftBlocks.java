@@ -6,6 +6,7 @@
 package mods.railcraft.common.blocks;
 
 import java.util.Arrays;
+import java.util.TreeMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,10 +36,6 @@ import mods.railcraft.common.blocks.machine.tank.MachineProxyTankValve;
 import mods.railcraft.common.blocks.machine.tank.MachineProxyTankWall;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyEta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyZeta;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.ItemSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
@@ -56,12 +53,9 @@ public class RailcraftBlocks {
 
     private static Block blockMachineAlpha;
     private static Block blockMachineGamma;
-    private static Block blockTankWallIron;
-    private static Block blockTankGaugeIron;
-    private static Block blockTankValveIron;
-    private static Block blockTankWallSteel;
-    private static Block blockTankGaugeSteel;
-    private static Block blockTankValveSteel;
+    private static TreeMap<TankMaterial, Block> tankWalls = new TreeMap<>();
+    private static TreeMap<TankMaterial, Block> tankGauges = new TreeMap<>();
+    private static TreeMap<TankMaterial, Block> tankValves = new TreeMap<>();
     private static Block blockBoilerTankLowPressure;
     private static Block blockBoilerTankHighPressure;
     private static Block blockBoilerFireboxSolid;
@@ -77,8 +71,6 @@ public class RailcraftBlocks {
     private static Block blockTrack;
     private static Block blockRailElevator;
     private static Block blockSignal;
-    private static Block blockMachineZeta;
-    private static Block blockMachineEta;
 
     public static void registerBlockTrack() {
         if (blockTrack == null && RailcraftConfig.isBlockEnabled("track")) {
@@ -165,34 +157,30 @@ public class RailcraftBlocks {
                     .setBlockName("railcraft.tank.wall." + material.name);
             RailcraftRegistry.register(wall, ItemMachine.class);
             wall.setHarvestLevel("pickaxe", 2, 0);
+            tankWalls.put(material, wall);
         }
         return wall;
     }
 
     public static Block getBlockTankWall(TankMaterial material) {
-        return switch (material) {
-            case IRON -> blockTankWallIron;
-            case STEEL -> blockTankWallSteel;
-        };
+        return tankWalls.get(material);
     }
 
     public static Block registerBlockTankGauge(TankMaterial material) {
-        Block wall = getBlockTankGauge(material);
-        if (wall == null) {
+        Block gauge = getBlockTankGauge(material);
+        if (gauge == null) {
             int renderId = Railcraft.getProxy().getRenderId();
-            wall = new BlockMachine(renderId, new MachineProxyTankGauge(material), false, 0)
+            gauge = new BlockMachine(renderId, new MachineProxyTankGauge(material), false, 0)
                     .setBlockName("railcraft.tank.gauge." + material.name);
-            RailcraftRegistry.register(wall, ItemMachine.class);
-            wall.setHarvestLevel("pickaxe", 2, 0);
+            RailcraftRegistry.register(gauge, ItemMachine.class);
+            gauge.setHarvestLevel("pickaxe", 2, 0);
+            tankGauges.put(material, gauge);
         }
-        return wall;
+        return gauge;
     }
 
     public static Block getBlockTankGauge(TankMaterial material) {
-        return switch (material) {
-            case IRON -> blockTankGaugeIron;
-            case STEEL -> blockTankGaugeSteel;
-        };
+        return tankGauges.get(material);
     }
 
     public static Block registerBlockTankValve(TankMaterial material) {
@@ -203,15 +191,13 @@ public class RailcraftBlocks {
                     .setBlockName("railcraft.tank.valve." + material.name);
             RailcraftRegistry.register(valve, ItemMachine.class);
             valve.setHarvestLevel("pickaxe", 2, 0);
+            tankValves.put(material, valve);
         }
         return valve;
     }
 
     public static Block getBlockTankValve(TankMaterial material) {
-        return switch (material) {
-            case IRON -> blockTankValveIron;
-            case STEEL -> blockTankValveSteel;
-        };
+        return tankValves.get(material);
     }
 
     public static Block getBlockFirebox(FireboxType fireboxType) {
@@ -395,57 +381,5 @@ public class RailcraftBlocks {
 
     public static Block getBlockSignal() {
         return blockSignal;
-    }
-
-    public static Block registerBlockMachineZeta() {
-        if (blockMachineZeta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineZeta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineZeta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineZeta = new BlockMultiMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.zeta");
-            RailcraftRegistry.register(blockMachineZeta, ItemMultiMachine.class);
-
-            for (EnumMachineZeta type : EnumMachineZeta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineZeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                }
-            }
-        }
-        return blockMachineZeta;
-    }
-
-    public static Block getBlockMachineZeta() {
-        return blockMachineZeta;
-    }
-
-    public static Block registerBlockMachineEta() {
-        if (blockMachineEta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineEta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineEta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineEta = new BlockMultiMachine(renderId, new MachineProxyEta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.eta");
-            RailcraftRegistry.register(blockMachineEta, ItemMultiMachine.class);
-
-            for (EnumMachineEta type : EnumMachineEta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineEta.setHarvestLevel("pickaxe", 4, type.ordinal());
-                }
-            }
-        }
-        return blockMachineEta;
-    }
-
-    public static Block getBlockMachineEta() {
-        return blockMachineEta;
     }
 }

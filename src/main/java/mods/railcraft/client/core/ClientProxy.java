@@ -31,9 +31,7 @@ import mods.railcraft.client.render.RenderBlockFrame;
 import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineChest;
 import mods.railcraft.client.render.RenderBlockMachineEngine;
-import mods.railcraft.client.render.RenderBlockMachineEta;
 import mods.railcraft.client.render.RenderBlockMachineSentinel;
-import mods.railcraft.client.render.RenderBlockMachineZeta;
 import mods.railcraft.client.render.RenderBlockOre;
 import mods.railcraft.client.render.RenderBlockPost;
 import mods.railcraft.client.render.RenderBlockPostMetal;
@@ -82,16 +80,12 @@ import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
 import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
+import mods.railcraft.common.blocks.machine.tank.MetalTank;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
-import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
-import mods.railcraft.common.blocks.machine.tank.TileTankIronGauge;
-import mods.railcraft.common.blocks.machine.tank.TileTankIronValve;
-import mods.railcraft.common.blocks.machine.tank.TileTankIronWall;
-import mods.railcraft.common.blocks.machine.tank.TileTankSteelGauge;
-import mods.railcraft.common.blocks.machine.tank.TileTankSteelValve;
-import mods.railcraft.common.blocks.machine.tank.TileTankSteelWall;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
+import mods.railcraft.common.blocks.machine.tank.TileTankGauge;
+import mods.railcraft.common.blocks.machine.tank.TileTankValve;
+import mods.railcraft.common.blocks.machine.tank.TileTankWall;
 import mods.railcraft.common.blocks.signals.TileSignalFoundation;
 import mods.railcraft.common.blocks.tracks.TileTrackTESR;
 import mods.railcraft.common.carts.EntityLocomotive;
@@ -200,18 +194,9 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFluidLoader.class, fluidLoaderRenderer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileFluidUnloader.class, fluidLoaderRenderer);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankIronGauge.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankIronWall.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankIronValve.class, new RenderIronTank());
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankSteelGauge.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankSteelWall.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTankSteelValve.class, new RenderIronTank());
-
-        // Advanced tanks
-        ClientRegistry.bindTileEntitySpecialRenderer(TileGenericMultiTankGauge.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileGenericMultiTankWall.class, new RenderIronTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileGenericMultiTankValve.class, new RenderIronTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTankGauge.class, new RenderIronTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTankWall.class, new RenderIronTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTankValve.class, new RenderIronTank());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEngineSteamHobby.class, RenderPneumaticEngine.renderHobby);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEngineSteamLow.class, RenderPneumaticEngine.renderLow);
@@ -240,9 +225,12 @@ public class ClientProxy extends CommonProxy {
         if (RailcraftBlocks.getBlockElevator() != null) RenderingRegistry.registerBlockHandler(new RenderElevator());
 
         for (TankMaterial material : TankMaterial.values()) {
-            registerBlockRenderer(new RenderBlockTankWall(material));
-            registerBlockRenderer(new RenderBlockTankGauge(material));
-            registerBlockRenderer(new RenderBlockTankValve(material));
+            MetalTank tank = Tanks.getTank(material);
+            if (tank != null && tank.isAvailable()) {
+                registerBlockRenderer(new RenderBlockTankWall(material));
+                registerBlockRenderer(new RenderBlockTankGauge(material));
+                registerBlockRenderer(new RenderBlockTankValve(material));
+            }
         }
         registerBlockRenderer(new RenderBlockBoilerTank(TankPressure.LOW));
         registerBlockRenderer(new RenderBlockBoilerTank(TankPressure.HIGH));
@@ -263,8 +251,6 @@ public class ClientProxy extends CommonProxy {
                         "chest_metals.png",
                         TileChestMetals.class));
         registerBlockRenderer(new RenderBlockWire());
-        registerBlockRenderer(new RenderBlockMachineEta());
-        registerBlockRenderer(new RenderBlockMachineZeta());
         registerBlockRenderer(new RenderBlockSignal());
         registerBlockRenderer(RenderBlockPost.make());
         registerBlockRenderer(RenderBlockPostMetal.make(BlockPostMetal.post));

@@ -15,8 +15,7 @@ import net.minecraftforge.fluids.Fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.IMachine;
-import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Timer;
 
@@ -24,14 +23,18 @@ import mods.railcraft.common.util.misc.Timer;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class TileTankIronGauge extends TileTankBase {
+public class TileTankGauge extends TileTankBase {
 
     private int lightValue = 0;
     private final Timer timer = new Timer();
 
+    public TileTankGauge(TankMaterial material) {
+        super(material);
+    }
+
     @Override
-    public IMachine getMachineType() {
-        return Machines.TANK_IRON_GAUGE;
+    public Machine getMachineType() {
+        return Tanks.getGauge(material);
     }
 
     @Override

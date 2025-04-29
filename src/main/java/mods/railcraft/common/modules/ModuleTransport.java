@@ -14,6 +14,8 @@ import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.items.ItemMagnifyingGlass;
 import mods.railcraft.common.items.ItemNotepad;
@@ -60,8 +62,7 @@ public class ModuleTransport extends RailcraftModule {
                 'W',
                 "plankWood");
 
-        // initIronTank();
-        // initSteelTank();
+        Machines.initTanks();
 
         Machine voidChest = Machines.VOID_CHEST;
         if (voidChest.isAvailable()) CraftingPlugin.addShapedRecipe(
@@ -178,16 +179,11 @@ public class ModuleTransport extends RailcraftModule {
         EnumCart cart = EnumCart.TANK;
 
         if (cart.setup()) {
-            if (Machines.TANK_IRON_GAUGE.isAvailable()) {
-                CraftingPlugin.addShapedRecipe(
-                        cart.getCartItem(),
-                        "T",
-                        "M",
-                        'T',
-                        Machines.TANK_IRON_GAUGE.getItem(),
-                        'M',
-                        Items.minecart);
-                cart.setContents(getColorTank(Machines.TANK_IRON_GAUGE, EnumColor.WHITE, 1));
+            Machine ironGauge = Tanks.getGauge(TankMaterial.IRON);
+            if (ironGauge != null && ironGauge.isAvailable()) {
+                CraftingPlugin
+                        .addShapedRecipe(cart.getCartItem(), "T", "M", 'T', ironGauge.getItem(), 'M', Items.minecart);
+                cart.setContents(getColorTank(ironGauge, EnumColor.WHITE, 1));
             } else {
                 CraftingPlugin.addShapedRecipe(
                         cart.getCartItem(),
