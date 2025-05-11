@@ -20,6 +20,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -162,6 +163,18 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).isSideSolid(side);
         return true;
+    }
+
+    @Override
+    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+        player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
+        player.addExhaustion(0.025F);
+        if (willHarvest && !player.capabilities.isCreativeMode) {
+            dropBlockAsItem(world, x, y, z, 0, 0);
+        }
+        super.removedByPlayer(world, player, x, y, z, willHarvest);
+        // prevent blockHarvest call
+        return false;
     }
 
     @Override
