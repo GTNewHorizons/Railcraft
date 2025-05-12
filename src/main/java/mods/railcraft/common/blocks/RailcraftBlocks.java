@@ -41,6 +41,7 @@ import mods.railcraft.common.blocks.machine.rock_crusher.MachineProxyRockCrusher
 import mods.railcraft.common.blocks.machine.rolling_machine.MachineProxyRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.MachineProxySentinel;
 import mods.railcraft.common.blocks.machine.smoker.MachineProxySmoker;
+import mods.railcraft.common.blocks.machine.steam_oven.MachineProxySteamOven;
 import mods.railcraft.common.blocks.machine.steam_producer.MachineProxyAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.steam_trap.MachineProxySteamTrap;
 import mods.railcraft.common.blocks.machine.tank.MachineProxyTankGauge;
@@ -49,6 +50,7 @@ import mods.railcraft.common.blocks.machine.tank.MachineProxyTankWall;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank_water.MachineProxyTankWater;
 import mods.railcraft.common.blocks.machine.trade_station.MachineProxyTradeStation;
+import mods.railcraft.common.blocks.machine.turbine.MachineProxyTurbine;
 import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.ItemSignal;
@@ -66,6 +68,8 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 public class RailcraftBlocks {
 
     private static Block blockMachineAlpha;
+    private static Block blockMachineTurbine;
+    private static Block blockMachineSteamOven;
     private static Block blockMachineSmoker;
     private static Block blockMachineTradeStation;
     private static Block blockMachineCokeOven;
@@ -138,6 +142,33 @@ public class RailcraftBlocks {
 
     public static Block getBlockElevator() {
         return blockRailElevator;
+    }
+
+    public static Block registerBlockSteamOven() {
+        if (blockMachineSteamOven == null) {
+            blockMachineSteamOven = new BlockMachine(0, new MachineProxySteamOven(), true, 255)
+                    .setBlockName("steam_oven");
+            RailcraftRegistry.register(blockMachineSteamOven, ItemMachine.class);
+            blockMachineSteamOven.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineSteamOven;
+    }
+
+    public static Block getBlockSteamOven() {
+        return blockMachineSteamOven;
+    }
+
+    public static Block registerBlockTurbine() {
+        if (blockMachineTurbine == null) {
+            blockMachineTurbine = new BlockMachine(0, new MachineProxyTurbine(), true, 255).setBlockName("turbine");
+            RailcraftRegistry.register(blockMachineTurbine, ItemMachine.class);
+            blockMachineTurbine.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineTurbine;
+    }
+
+    public static Block getBlockTurbine() {
+        return blockMachineTurbine;
     }
 
     public static Block registerBlockSmoker() {

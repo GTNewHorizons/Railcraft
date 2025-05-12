@@ -86,9 +86,9 @@ public class ModuleFactory extends RailcraftModule {
                     COKE_COOK_TIME);
         }
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.STEAM_OVEN;
-        if (alpha.register()) CraftingPlugin.addShapedRecipe(
-                alpha.getItem(4),
+        Machine steamOven = Machines.STEAM_OVEN;
+        if (steamOven != null) CraftingPlugin.addShapedRecipe(
+                steamOven.getItem(4),
                 "SSS",
                 "SFS",
                 "SSS",
@@ -150,7 +150,7 @@ public class ModuleFactory extends RailcraftModule {
          */
         Machine rockCrusher = Machines.ROCK_CRUSHER;
         if (rockCrusher.getBlock() != null) {
-            ItemStack stack = alpha.getItem(4);
+            ItemStack stack = rockCrusher.getItem(4);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "PDP",
@@ -341,7 +341,7 @@ public class ModuleFactory extends RailcraftModule {
 
         Machine rollingMachine = Machines.ROLLING_MACHINE;
         if (rollingMachine != null) {
-            ItemStack stack = alpha.getItem();
+            ItemStack stack = rollingMachine.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "IPI",

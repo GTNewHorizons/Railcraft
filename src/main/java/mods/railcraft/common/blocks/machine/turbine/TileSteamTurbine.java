@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.turbine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,8 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox;
@@ -66,7 +67,7 @@ public class TileSteamTurbine extends TileMultiBlock
         }
 
         public IIcon getIcon() {
-            return EnumMachineAlpha.TURBINE.getTexture(index);
+            return Machines.TURBINE.getTexture(index);
         }
     }
 
@@ -129,8 +130,8 @@ public class TileSteamTurbine extends TileMultiBlock
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.TURBINE;
+    public IMachine getMachineType() {
+        return Machines.TURBINE;
     }
 
     @Override

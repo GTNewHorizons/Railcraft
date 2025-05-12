@@ -545,7 +545,7 @@ railcraft.gui.routing.type.public.tip=将导航任意列车.
 railcraft.gui.routing.type.public=共用铁路
 
 railcraft.gui.steam.boiler=§7蒸汽锅炉
-railcraft.gui.steam.oven=蒸汽炉
+railcraft.gui.steam_oven=蒸汽炉
 
 railcraft.gui.surveyor.abandon=信号勘测中止
 railcraft.gui.surveyor.begin=信号勘测开始
@@ -745,15 +745,15 @@ tile.railcraft.machine.rock_crusher.name=碎石机
 tile.railcraft.machine.rock_crusher.tip=多方块结构:3x2x2
 tile.railcraft.machine.rolling_machine.name=辊压机
 tile.railcraft.machine.smoker.name=发烟器
-tile.railcraft.machine.alpha.steam.oven.name=蒸汽炉
-tile.railcraft.machine.alpha.steam.oven.tip=多方块结构:2x2x2
+tile.railcraft.machine.steam_oven.name=蒸汽炉
+tile.railcraft.machine.steam_oven.tip=多方块结构:2x2x2
 tile.railcraft.machine.steam_trap.auto.name=自动蒸汽陷阱
 tile.railcraft.machine.steam_trap.name=手动蒸汽陷阱
 tile.railcraft.machine.tank_water.name=集水器壁板
 tile.railcraft.machine.tank_water.tip=多方块结构:3x3x3(中空)
 tile.railcraft.machine.trade_station.name=贸易站
-tile.railcraft.machine.alpha.turbine.name=蒸汽涡轮机壳
-tile.railcraft.machine.alpha.turbine.tip=多方块结构:3x2x2\n用蒸汽发电\n从底部输出水\n需要一个涡轮机转子
+tile.railcraft.machine.turbine.name=蒸汽涡轮机壳
+tile.railcraft.machine.turbine.tip=多方块结构:3x2x2\n用蒸汽发电\n从底部输出水\n需要一个涡轮机转子
 
 tile.railcraft.machine.anchor.sentinel.name=拱卫之锚
 tile.railcraft.machine.boiler.firebox.liquid.name=液态燃料燃烧室

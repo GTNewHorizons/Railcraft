@@ -10,8 +10,6 @@ import mods.railcraft.common.blocks.machine.alpha.TileAnchorAdmin;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorPassive;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorPersonal;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
-import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
-import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
@@ -45,6 +43,7 @@ import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.blocks.machine.smoker.TileSmoker;
+import mods.railcraft.common.blocks.machine.steam_oven.TileSteamOven;
 import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapAuto;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapManual;
@@ -53,6 +52,7 @@ import mods.railcraft.common.blocks.machine.tank.TileTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileTankWall;
 import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
 import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
+import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 
 /**

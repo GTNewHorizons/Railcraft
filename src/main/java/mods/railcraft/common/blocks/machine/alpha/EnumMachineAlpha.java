@@ -34,9 +34,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 public enum EnumMachineAlpha implements IEnumMachine {
 
     WORLD_ANCHOR(Module.CHUNK_LOADING, "anchor.world", TileAnchorWorld.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
-    TURBINE(Module.ELECTRICITY, "turbine", TileSteamTurbine.class, 3, 3, 2, 2, 2, 2, 6, 2, 0, 1, 3, 4, 5, 7),
     PERSONAL_ANCHOR(Module.CHUNK_LOADING, "anchor.personal", TileAnchorPersonal.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
-    STEAM_OVEN(Module.FACTORY, "steam.oven", TileSteamOven.class, 4, 2, 2, 2, 3, 3, 6, 3, 0, 1, 4, 5),
     ADMIN_ANCHOR(Module.CHUNK_LOADING, "anchor.admin", TileAnchorAdmin.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
     PASSIVE_ANCHOR(Module.CHUNK_LOADING, "anchor.passive", TileAnchorPassive.class, 3, 1, 0, 0, 1, 1, 1, 1, 2);
 
@@ -50,12 +48,10 @@ public enum EnumMachineAlpha implements IEnumMachine {
     private ToolTip tip;
 
     static {
-        creativeList.add(STEAM_OVEN);
         creativeList.add(WORLD_ANCHOR);
         creativeList.add(PERSONAL_ANCHOR);
         creativeList.add(PASSIVE_ANCHOR);
         creativeList.add(ADMIN_ANCHOR);
-        creativeList.add(TURBINE);
     }
 
     private EnumMachineAlpha(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {

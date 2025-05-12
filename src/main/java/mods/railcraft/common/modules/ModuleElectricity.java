@@ -12,7 +12,6 @@ import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.items.ItemElectricMeter;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
@@ -31,10 +30,10 @@ public class ModuleElectricity extends RailcraftModule {
         ItemElectricMeter.register();
         BlockFrame.registerBlock();
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.TURBINE;
-        if (alpha.register()) {
+        Machine turbine = Machines.TURBINE;
+        if (turbine != null) {
             CraftingPlugin.addShapedRecipe(
-                    alpha.getItem(3),
+                    turbine.getItem(3),
                     "BPB",
                     "P P",
                     "BPB",

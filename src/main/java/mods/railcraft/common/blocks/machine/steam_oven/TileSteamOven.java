@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.steam_oven;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -35,7 +36,8 @@ import net.minecraftforge.fluids.FluidTankInfo;
 
 import buildcraft.api.statements.IActionExternal;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.TileMultiBlockInventory;
@@ -90,7 +92,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements ISidedInve
     private boolean paused = false;
 
     public TileSteamOven() {
-        super("railcraft.gui.steam.oven", 18, patterns);
+        super("railcraft.gui.steam_oven", 18, patterns);
         tank = new FilteredTank(TANK_CAPACITY, Fluids.STEAM.get(), this);
         tankManager.add(tank);
     }
@@ -98,9 +100,8 @@ public class TileSteamOven extends TileMultiBlockInventory implements ISidedInve
     public static void placeSteamOven(World world, int x, int y, int z, List<ItemStack> input, List<ItemStack> output) {
         for (MultiBlockPattern pattern : TileSteamOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', EnumMachineAlpha.STEAM_OVEN.ordinal());
-            TileEntity tile = pattern
-                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            blockMapping.put('B', Block.getIdFromBlock(RailcraftBlocks.getBlockSteamOven()));
+            TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
             if (tile instanceof TileSteamOven) {
                 TileSteamOven master = (TileSteamOven) tile;
                 for (int slot = 0; slot < 9; slot++) {
@@ -115,8 +116,8 @@ public class TileSteamOven extends TileMultiBlockInventory implements ISidedInve
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.STEAM_OVEN;
+    public IMachine getMachineType() {
+        return Machines.STEAM_OVEN;
     }
 
     public TankManager getTankManager() {
@@ -438,7 +439,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements ISidedInve
         }
 
         public IIcon getIcon() {
-            return EnumMachineAlpha.STEAM_OVEN.getTexture(index);
+            return Machines.STEAM_OVEN.getTexture(index);
         }
     }
 }

@@ -148,7 +148,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
         Block block = WorldPlugin.getBlock(worldObj, x, y, z);
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata()) return false;
+                if (block == getBlockType()) return false;
                 break;
             case 'D': // Window
             case 'B': // Block
@@ -160,7 +160,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             case 'f': // Block
             case 'g': // Block
             case 'h': // Block
-                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata()) return false;
+                if (block != getBlockType()) return false;
                 break;
             case 'A': // Air
                 if (!worldObj.isAirBlock(x, y, z)) return false;

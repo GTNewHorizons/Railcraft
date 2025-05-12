@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
@@ -163,8 +162,6 @@ public class ModuleSteam extends RailcraftModule {
                         RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
             }
         }
-
-        EnumMachineAlpha.TURBINE.register();
     }
 
     @Override

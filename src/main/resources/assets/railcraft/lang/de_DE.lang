@@ -541,7 +541,7 @@ railcraft.gui.routing.type.public.tip=Kann von jedem Zug benutzt werden.
 railcraft.gui.routing.type.public=Öffentliches Gleis
 
 railcraft.gui.steam.boiler=§7 Dampfkessel
-railcraft.gui.steam.oven=Dampfofen
+railcraft.gui.steam_oven=Dampfofen
 
 railcraft.gui.surveyor.abandon=Signalblock-Anfrage abgebrochen
 railcraft.gui.surveyor.begin=Starte Signalblock-Anfrage
@@ -741,15 +741,15 @@ tile.railcraft.machine.rock_crusher.name=Steinbrecher
 tile.railcraft.machine.rock_crusher.tip=Multiblock: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Walzmaschine
 tile.railcraft.machine.smoker.name=Schornstein
-tile.railcraft.machine.alpha.steam.oven.name=Dampfkessel
-tile.railcraft.machine.alpha.steam.oven.tip=Multiblock: 2x2x2
+tile.railcraft.machine.steam_oven.name=Dampfkessel
+tile.railcraft.machine.steam_oven.tip=Multiblock: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Automatische Dampf-Falle
 tile.railcraft.machine.steam_trap.name=Manuelle Dampf-Falle
 tile.railcraft.machine.tank_water.name=Wassertankwand
 tile.railcraft.machine.tank_water.tip=Multiblock: 3x3x3 (Hohlraum)
 tile.railcraft.machine.trade_station.name=Handelsstation
-tile.railcraft.machine.alpha.turbine.name=Dampfturbinengehäuse
-tile.railcraft.machine.alpha.turbine.tip=Multiblock: 3x2x2\n Generiert Elektrizität aus Dampf\nGibt unten Wasser ab\n Benötigt einen Turbinenrotor
+tile.railcraft.machine.turbine.name=Dampfturbinengehäuse
+tile.railcraft.machine.turbine.tip=Multiblock: 3x2x2\n Generiert Elektrizität aus Dampf\nGibt unten Wasser ab\n Benötigt einen Turbinenrotor
 
 tile.railcraft.machine.anchor.sentinel.name=Anker-Markierung
 tile.railcraft.machine.boiler.firebox.liquid.name=Öl-Dampfkessel-Feuerbüchse

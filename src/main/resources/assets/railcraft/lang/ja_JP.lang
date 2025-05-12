@@ -126,7 +126,7 @@ tile.railcraft.machine.feed_station.name=フィードステーション
 tile.railcraft.machine.rock_crusher.name=破砕機
 tile.railcraft.machine.rolling_machine.name=圧延機
 tile.railcraft.machine.tank_water.name=水タンクの羽目板
-tile.railcraft.machine.alpha.turbine.name=蒸気タービンハウジング
+tile.railcraft.machine.turbine.name=蒸気タービンハウジング
 tile.railcraft.machine.alpha.anchor.world.name=ワールドアンカー
 
 tile.railcraft.machine.anchor.sentinel.name=アンカーセンチネル

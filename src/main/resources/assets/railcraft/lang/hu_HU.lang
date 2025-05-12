@@ -464,7 +464,7 @@ railcraft.gui.routing.type.public.tip=Minden mozdonyt képes irányítani.
 railcraft.gui.routing.type.public=Közforgalmi vasút
 
 railcraft.gui.steam.boiler=§7 Gőzkazán
-railcraft.gui.steam.oven=Gőzsütő
+railcraft.gui.steam_oven=Gőzsütő
 
 railcraft.gui.surveyor.abandon=Félbehagyott jelzés-blokk áttekintés
 railcraft.gui.surveyor.begin=A jelzés-blokk áttekintésének megkezdése
@@ -653,15 +653,15 @@ tile.railcraft.machine.rock_crusher.name=Rock Crusher
 tile.railcraft.machine.rock_crusher.tip=Multi-Block: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Rolling Machine
 tile.railcraft.machine.smoker.name=Smoker
-tile.railcraft.machine.alpha.steam.oven.name=Steam Oven
-tile.railcraft.machine.alpha.steam.oven.tip=Multi-Block: 2x2x2
+tile.railcraft.machine.steam_oven.name=Steam Oven
+tile.railcraft.machine.steam_oven.tip=Multi-Block: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Automated Steam Trap
 tile.railcraft.machine.steam_trap.name=Manual Steam Trap
 tile.railcraft.machine.tank_water.name=Water Tank Siding
 tile.railcraft.machine.tank_water.tip=Multi-Block: 3x3x3 (Hollow)
 tile.railcraft.machine.trade_station.name=Trade Station
-tile.railcraft.machine.alpha.turbine.name=Steam Turbine Housing
-tile.railcraft.machine.alpha.turbine.tip=Multi-Block: 3x2x2\n Generates Electricity from Steam\nOutputs water to the bottom\n Requires a Turbine Rotor
+tile.railcraft.machine.turbine.name=Steam Turbine Housing
+tile.railcraft.machine.turbine.tip=Multi-Block: 3x2x2\n Generates Electricity from Steam\nOutputs water to the bottom\n Requires a Turbine Rotor
 
 tile.railcraft.machine.anchor.sentinel.name=Anchor Sentinel
 tile.railcraft.machine.boiler.firebox.liquid.name=Liquid Fueled Boiler Firebox

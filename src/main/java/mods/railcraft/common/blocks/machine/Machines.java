@@ -32,6 +32,7 @@ import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.blocks.machine.smoker.TileSmoker;
+import mods.railcraft.common.blocks.machine.steam_oven.TileSteamOven;
 import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapAuto;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapManual;
@@ -43,6 +44,7 @@ import mods.railcraft.common.blocks.machine.tank.TileTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileTankWall;
 import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
 import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
+import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
@@ -52,6 +54,43 @@ public class Machines {
     public static final Map<TankMaterial, Machine> tankValves = new TreeMap<>();
     public static final Map<TankMaterial, Machine> tankGauges = new TreeMap<>();
 
+    public static Machine TURBINE = registerMachine(
+            Module.ELECTRICITY,
+            RailcraftBlocks.registerBlockTurbine(),
+            TileSteamTurbine.class,
+            "turbine",
+            3,
+            3,
+            2,
+            2,
+            2,
+            2,
+            6,
+            2,
+            0,
+            1,
+            3,
+            4,
+            5,
+            7);
+
+    public static Machine STEAM_OVEN = registerMachine(
+            Module.FACTORY,
+            RailcraftBlocks.registerBlockSteamOven(),
+            TileSteamOven.class,
+            "steam_oven",
+            4,
+            2,
+            2,
+            2,
+            3,
+            3,
+            6,
+            3,
+            0,
+            1,
+            4,
+            5);
     public static Machine SMOKER = registerMachine(
             Module.STRUCTURES,
             RailcraftBlocks.registerBlockSmoker(),

@@ -543,7 +543,7 @@ railcraft.gui.routing.type.public.tip=檢查任何經過的火車頭
 railcraft.gui.routing.type.public=公共鐵路
 
 railcraft.gui.steam.boiler=§7 蒸氣鍋爐
-railcraft.gui.steam.oven=蒸氣爐
+railcraft.gui.steam_oven=蒸氣爐
 
 railcraft.gui.surveyor.abandon=終止測量號誌區間
 railcraft.gui.surveyor.begin=開始號誌區間的測量
@@ -743,15 +743,15 @@ tile.railcraft.machine.rock_crusher.name=碎石機
 tile.railcraft.machine.rock_crusher.tip=多重方塊: 3x2x2
 tile.railcraft.machine.rolling_machine.name=滾壓機
 tile.railcraft.machine.smoker.name=發煙器
-tile.railcraft.machine.alpha.steam.oven.name=蒸氣爐
-tile.railcraft.machine.alpha.steam.oven.tip=多重方塊: 2x2x2
+tile.railcraft.machine.steam_oven.name=蒸氣爐
+tile.railcraft.machine.steam_oven.tip=多重方塊: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=自動蒸氣陷阱
 tile.railcraft.machine.steam_trap.name=手動蒸氣陷阱
 tile.railcraft.machine.tank_water.name=水塔方塊
 tile.railcraft.machine.tank_water.tip=多重方塊: 3x3x3 (中空)
 tile.railcraft.machine.trade_station.name=交易站
-tile.railcraft.machine.alpha.turbine.name=蒸氣渦輪機殼
-tile.railcraft.machine.alpha.turbine.tip=多重方塊: 3x2x2\n 利用蒸氣產生電力\n會在底部產出水分\n 需要一個渦輪轉子
+tile.railcraft.machine.turbine.name=蒸氣渦輪機殼
+tile.railcraft.machine.turbine.tip=多重方塊: 3x2x2\n 利用蒸氣產生電力\n會在底部產出水分\n 需要一個渦輪轉子
 
 tile.railcraft.machine.anchor.sentinel.name=錨哨兵
 tile.railcraft.machine.boiler.firebox.liquid.name=液體燃燒室

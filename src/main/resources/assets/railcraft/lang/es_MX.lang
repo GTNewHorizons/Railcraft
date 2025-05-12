@@ -407,7 +407,7 @@ railcraft.gui.routing.type.public.tip=Enrutará cualquier Locomotora.
 railcraft.gui.routing.type.public=Ferrocarril Público
 
 railcraft.gui.steam.boiler=§7 Caldera de Vapor
-railcraft.gui.steam.oven=Horno a Vapor
+railcraft.gui.steam_oven=Horno a Vapor
 
 railcraft.gui.surveyor.abandon=Inspección de Bloque de Señal abandonada
 railcraft.gui.surveyor.begin=Comenzando Estudio de Bloque de Señal
@@ -589,15 +589,15 @@ tile.railcraft.machine.rock_crusher.name=Trituradora de Rocas
 tile.railcraft.machine.rock_crusher.tip=Multi-Bloque: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Máquina de Laminación
 tile.railcraft.machine.smoker.name=Humeante
-tile.railcraft.machine.alpha.steam.oven.name=Horno a Vapor
-tile.railcraft.machine.alpha.steam.oven.tip=Multi-Bloque: 2x2x2
+tile.railcraft.machine.steam_oven.name=Horno a Vapor
+tile.railcraft.machine.steam_oven.tip=Multi-Bloque: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Purgador de Vapor Automatizado
 tile.railcraft.machine.steam_trap.name=Purgador de Vapor Manual
 tile.railcraft.machine.tank_water.name=Revestimiento para Tanque de Agua
 tile.railcraft.machine.tank_water.tip=Multi-Bloque: 3x3x3 (Hueco)
 tile.railcraft.machine.trade_station.name=Estación de Comercio
-tile.railcraft.machine.alpha.turbine.name=Cubierta para Turbina a Vapor
-tile.railcraft.machine.alpha.turbine.tip=Multi-Bloque: 3x2x2
+tile.railcraft.machine.turbine.name=Cubierta para Turbina a Vapor
+tile.railcraft.machine.turbine.tip=Multi-Bloque: 3x2x2
 
 tile.railcraft.machine.anchor.sentinel.name=Ancla Centinela
 tile.railcraft.machine.boiler.firebox.liquid.name=Caldera de Combustión a Líquidos

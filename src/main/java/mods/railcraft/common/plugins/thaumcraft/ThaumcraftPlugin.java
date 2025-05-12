@@ -23,6 +23,7 @@ import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.aesthetics.glass.BlockStrengthGlass;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
@@ -223,8 +224,14 @@ public class ThaumcraftPlugin {
             addItemAspect(
                     Machines.STEAM_TRAP_AUTO.getItem(),
                     steamAspects.copy().add(Aspect.TRAP, 4).add(Aspect.MIND, 2));
-            addItemAspect(EnumMachineAlpha.STEAM_OVEN.getItem(), steamAspects.copy().add(Aspect.FIRE, 3));
-            addItemAspect(EnumMachineAlpha.TURBINE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            Machine steamOven = Machines.STEAM_OVEN;
+            if (steamOven != null) {
+                addItemAspect(steamOven.getItem(), steamAspects.copy().add(Aspect.FIRE, 3));
+            }
+            Machine turbine = Machines.TURBINE;
+            if (turbine != null) {
+                addItemAspect(turbine.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            }
 
             addItemAspect(EnumMachineAlpha.ADMIN_ANCHOR.getItem(), anchorAspects);
             addItemAspect(EnumMachineAlpha.PERSONAL_ANCHOR.getItem(), anchorAspects);

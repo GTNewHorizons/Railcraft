@@ -8,7 +8,7 @@ package mods.railcraft.common.items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -32,7 +32,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineBlade;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
+        if (!Machines.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.blade";
         if (!RailcraftConfig.isItemEnabled(tag)) return RailcraftItem.ingot.getStack(qty, ItemIngot.EnumIngot.STEEL);
@@ -56,7 +56,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineDisk;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
+        if (!Machines.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.disk";
 
@@ -82,7 +82,7 @@ public class RailcraftPartItems {
         Item item = itemTurbineRotor;
         if (item != null) return new ItemStack(item, qty);
 
-        if (!EnumMachineAlpha.TURBINE.isAvailable()) return null;
+        if (!Machines.TURBINE.isAvailable()) return null;
 
         String tag = "railcraft.part.turbine.rotor";
 

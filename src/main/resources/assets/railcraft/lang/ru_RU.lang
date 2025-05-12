@@ -501,7 +501,7 @@ railcraft.gui.routing.type.public.tip=Будет направлять любой
 railcraft.gui.routing.type.public=Общественная железная дорога
 
 railcraft.gui.steam.boiler=§7 Паровой котёл
-railcraft.gui.steam.oven=Паровая печь
+railcraft.gui.steam_oven=Паровая печь
 
 railcraft.gui.surveyor.abandon=Обследование сигнального блока остановлено
 railcraft.gui.surveyor.begin=Обследование сигнального блока начато
@@ -697,15 +697,15 @@ tile.railcraft.machine.rock_crusher.name=Дробитель
 tile.railcraft.machine.rock_crusher.tip=Мульти-блок: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Прокатный стан
 tile.railcraft.machine.smoker.name=Дымогенератор
-tile.railcraft.machine.alpha.steam.oven.name=Паровая печь
-tile.railcraft.machine.alpha.steam.oven.tip=Мульти-блок: 2x2x2
+tile.railcraft.machine.steam_oven.name=Паровая печь
+tile.railcraft.machine.steam_oven.tip=Мульти-блок: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Автоматическая паровая ловушка
 tile.railcraft.machine.steam_trap.name=Ручная паровая ловушка
 tile.railcraft.machine.tank_water.name=Обшивка водонапорной башни
 tile.railcraft.machine.tank_water.tip=Мульти-блок: 3x3x3 (Полый)
 tile.railcraft.machine.trade_station.name=Торговая станция
-tile.railcraft.machine.alpha.turbine.name=Корпус паровой турбины
-tile.railcraft.machine.alpha.turbine.tip=Мульти-блок: 3x2x2\n Генерирует электричество из пара\nВыводит воду вниз\n Требуется ротор турбины
+tile.railcraft.machine.turbine.name=Корпус паровой турбины
+tile.railcraft.machine.turbine.tip=Мульти-блок: 3x2x2\n Генерирует электричество из пара\nВыводит воду вниз\n Требуется ротор турбины
 
 tile.railcraft.machine.anchor.sentinel.name=Мировой страж
 tile.railcraft.machine.boiler.firebox.liquid.name=Жидкотопливная камера сгорания

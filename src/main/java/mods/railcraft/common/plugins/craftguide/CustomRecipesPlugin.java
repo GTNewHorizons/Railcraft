@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.items.ItemTicketGold;
@@ -47,7 +47,7 @@ public class CustomRecipesPlugin implements RecipeProvider {
         RecipeTemplate template = generator.createRecipeTemplate(slots, null, "/gui/CraftGuideRecipe.png", 1, 1, 82, 1);
 
         // Rotor Repair
-        if (EnumMachineAlpha.TURBINE.isAvailable()) {
+        if (Machines.TURBINE.isAvailable()) {
             ItemStack[] rotorRepair = new ItemStack[10];
             rotorRepair[0] = RailcraftPartItems.getTurbineRotor();
             rotorRepair[0].setItemDamage(1);
