@@ -3,29 +3,27 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.steam_trap;
 
 import net.minecraft.util.IIcon;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public class TileSteamTrapAuto extends TileSteamTrap {
+public class TileSteamTrapManual extends TileSteamTrap {
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.STEAM_TRAP_AUTO;
+    public IMachine getMachineType() {
+        return Machines.STEAM_TRAP_MANUAL;
     }
 
     @Override
     public IIcon getIcon(int side) {
         if (direction.ordinal() == side) {
-            if (isJetting()) {
-                return getMachineType().getTexture(9);
-            }
             return getMachineType().getTexture(8);
         }
         if (side == 0 || side == 1) {
@@ -36,7 +34,7 @@ public class TileSteamTrapAuto extends TileSteamTrap {
 
     @Override
     protected void triggerCheck() {
-        if (!powered && canJet() && !getEntitiesInSteamArea().isEmpty()) {
+        if (powered) {
             jet();
         }
     }

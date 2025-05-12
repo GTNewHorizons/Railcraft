@@ -165,16 +165,13 @@ public class ModuleSteam extends RailcraftModule {
         }
 
         EnumMachineAlpha.TURBINE.register();
-
-        EnumMachineAlpha.STEAM_TRAP_MANUAL.register();
-        EnumMachineAlpha.STEAM_TRAP_AUTO.register();
     }
 
     @Override
     public void initSecond() {
-        EnumMachineAlpha alpha = EnumMachineAlpha.STEAM_TRAP_MANUAL;
-        if (alpha.isAvailable()) {
-            ItemStack stack = alpha.getItem();
+        Machine steamTrapManual = Machines.STEAM_TRAP_MANUAL;
+        if (steamTrapManual != null) {
+            ItemStack stack = steamTrapManual.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " G ",
@@ -188,9 +185,9 @@ public class ModuleSteam extends RailcraftModule {
                     new ItemStack(Blocks.dispenser));
         }
 
-        alpha = EnumMachineAlpha.STEAM_TRAP_AUTO;
-        if (alpha.isAvailable()) {
-            ItemStack stack = alpha.getItem();
+        Machine steamTrapAuto = Machines.STEAM_TRAP_AUTO;
+        if (steamTrapAuto != null) {
+            ItemStack stack = steamTrapAuto.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " G ",
@@ -204,15 +201,10 @@ public class ModuleSteam extends RailcraftModule {
                     "dustRedstone",
                     'D',
                     new ItemStack(Blocks.dispenser));
-            if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvailable()) {
-                CraftingPlugin.addShapedRecipe(
-                        stack,
-                        "RTR",
-                        'T',
-                        EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(),
-                        'R',
-                        "dustRedstone");
-                CraftingPlugin.addShapelessRecipe(EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(), stack);
+            if (Machines.STEAM_TRAP_MANUAL.isAvailable()) {
+                CraftingPlugin
+                        .addShapedRecipe(stack, "RTR", 'T', Machines.STEAM_TRAP_MANUAL.getItem(), 'R', "dustRedstone");
+                CraftingPlugin.addShapelessRecipe(Machines.STEAM_TRAP_MANUAL.getItem(), stack);
             }
         }
     }

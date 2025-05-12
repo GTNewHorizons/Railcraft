@@ -357,7 +357,7 @@ public class ModuleCore extends RailcraftModule {
 
     @Override
     public void initSecond() {
-        if (RailcraftConfig.useCreosoteFurnaceRecipes() || !EnumMachineAlpha.COKE_OVEN.isAvailable()) {
+        if (RailcraftConfig.useCreosoteFurnaceRecipes() || Machines.COKE_OVEN == null) {
             FurnaceRecipes.smelting()
                     .func_151394_a(new ItemStack(Items.coal, 1, 0), FluidContainers.getCreosoteOilBottle(2), 0.0F);
             FurnaceRecipes.smelting()
@@ -375,6 +375,14 @@ public class ModuleCore extends RailcraftModule {
 
         Set<IMachine> machines = new HashSet<IMachine>();
         machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
+        machines.add(Machines.COKE_OVEN);
+        machines.add(Machines.ROLLING_MACHINE);
+        machines.add(Machines.STEAM_TRAP_MANUAL);
+        machines.add(Machines.STEAM_TRAP_AUTO);
+        machines.add(Machines.FEED_STATION);
+        machines.add(Machines.BLAST_FURNACE);
+        machines.add(Machines.TANK_WATER);
+        machines.add(Machines.ROCK_CRUSHER);
         machines.addAll(Machines.tankWalls.values());
         machines.addAll(Machines.tankGauges.values());
         machines.addAll(Machines.tankValves.values());
@@ -392,7 +400,7 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.WIRE);
 
         for (IMachine machine : machines) {
-            if (machine.isAvailable()) RailcraftRegistry.register(machine.getItem());
+            if (machine != null && machine.isAvailable()) RailcraftRegistry.register(machine.getItem());
         }
     }
 

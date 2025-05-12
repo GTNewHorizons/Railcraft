@@ -3,13 +3,14 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.coke_oven;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -27,7 +28,8 @@ import net.minecraftforge.fluids.IFluidHandler;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.TileMultiBlockOven;
@@ -77,7 +79,7 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     private int finishedAt;
 
     public TileCokeOven() {
-        super("railcraft.gui.coke.oven", 4, patterns);
+        super("railcraft.gui.coke_oven", 4, patterns);
         tank = new StandardTank(TANK_CAPACITY, this);
         tankManager.add(tank);
     }
@@ -86,10 +88,10 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
             ItemStack output) {
         for (MultiBlockPattern pattern : TileCokeOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', EnumMachineAlpha.COKE_OVEN.ordinal());
-            blockMapping.put('W', EnumMachineAlpha.COKE_OVEN.ordinal());
-            TileEntity tile = pattern
-                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            Integer blockId = Block.getIdFromBlock(RailcraftBlocks.getBlockCokeOven());
+            blockMapping.put('B', blockId);
+            blockMapping.put('W', blockId);
+            TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
             if (tile instanceof TileCokeOven) {
                 TileCokeOven master = (TileCokeOven) tile;
                 master.tank.setFluid(Fluids.CREOSOTE.get(creosote));
@@ -101,8 +103,8 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.COKE_OVEN;
+    public IMachine getMachineType() {
+        return Machines.COKE_OVEN;
     }
 
     public TankManager getTankManager() {

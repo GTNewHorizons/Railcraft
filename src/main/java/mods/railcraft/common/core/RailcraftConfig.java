@@ -848,6 +848,7 @@ public class RailcraftConfig {
 
         loadBlockFeature(Machines.WIRE.getTag());
 
+        loadBlockFeature(Machines.FEED_STATION.getTag());
         loadBlockFeature(Machines.ELECTRIC_FEEDER.getTag());
         loadBlockFeature(Machines.ELECTRIC_FEEDER_ADMIN.getTag());
         loadBlockFeature(Machines.ADMIN_STEAM_PRODUCER.getTag());

@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.rock_crusher;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,8 @@ import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.TileMultiBlockInventory;
@@ -105,7 +106,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     private boolean paused = false;
 
     public TileRockCrusher() {
-        super(EnumMachineAlpha.ROCK_CRUSHER.getTag() + ".name", 18, patterns);
+        super(Machines.ROCK_CRUSHER.getTag() + ".name", 18, patterns);
 
         if (RailcraftConfig.machinesRequirePower())
             energyStorage = RedstoneFluxPlugin.createEnergyStorage(MAX_ENERGY, MAX_RECEIVE, KILLING_POWER_COST);
@@ -115,16 +116,17 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             List<ItemStack> output) {
         MultiBlockPattern pattern = TileRockCrusher.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-        blockMapping.put('B', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('D', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('a', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('b', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('c', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('d', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('e', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('f', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        blockMapping.put('h', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
-        TileEntity tile = pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+        Integer blockId = Block.getIdFromBlock(RailcraftBlocks.getBlockRockCrusher());
+        blockMapping.put('B', blockId);
+        blockMapping.put('D', blockId);
+        blockMapping.put('a', blockId);
+        blockMapping.put('b', blockId);
+        blockMapping.put('c', blockId);
+        blockMapping.put('d', blockId);
+        blockMapping.put('e', blockId);
+        blockMapping.put('f', blockId);
+        blockMapping.put('h', blockId);
+        TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
         if (tile instanceof TileRockCrusher) {
             TileRockCrusher master = (TileRockCrusher) tile;
             for (int slot = 0; slot < 9; slot++) {
@@ -137,8 +139,8 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.ROCK_CRUSHER;
+    public IMachine getMachineType() {
+        return Machines.ROCK_CRUSHER;
     }
 
     @Override

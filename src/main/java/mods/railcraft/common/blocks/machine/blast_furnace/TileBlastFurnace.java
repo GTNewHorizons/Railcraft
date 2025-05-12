@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.blast_furnace;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -29,7 +29,8 @@ import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.TileMultiBlockOven;
@@ -107,17 +108,17 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     private int finishedAt;
 
     public TileBlastFurnace() {
-        super("railcraft.gui.blast.furnace", 3, patterns);
+        super("railcraft.gui.blast_furnace", 3, patterns);
     }
 
     public static void placeBlastFurnace(World world, int x, int y, int z, ItemStack input, ItemStack output,
             ItemStack fuel) {
         for (MultiBlockPattern pattern : TileBlastFurnace.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', EnumMachineAlpha.BLAST_FURNACE.ordinal());
-            blockMapping.put('W', EnumMachineAlpha.BLAST_FURNACE.ordinal());
-            TileEntity tile = pattern
-                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            Integer blockId = Block.getIdFromBlock(Machines.BLAST_FURNACE.getBlock());
+            blockMapping.put('B', blockId);
+            blockMapping.put('W', blockId);
+            TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
             if (tile instanceof TileBlastFurnace) {
                 TileBlastFurnace master = (TileBlastFurnace) tile;
                 master.inv.setInventorySlotContents(TileBlastFurnace.SLOT_INPUT, input);
@@ -128,8 +129,8 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.BLAST_FURNACE;
+    public IMachine getMachineType() {
+        return Machines.BLAST_FURNACE;
     }
 
     @Override
@@ -146,15 +147,11 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         Block block = worldObj.getBlock(i, j, k);
         switch (mapPos) {
             case 'O':
-                if (block != RailcraftBlocks.getBlockMachineAlpha()
-                        || worldObj.getBlockMetadata(i, j, k) != getBlockMetadata())
-                    return true;
+                if (block != RailcraftBlocks.getBlockBlastFurnace()) return true;
                 break;
             case 'B':
             case 'W':
-                if (block == RailcraftBlocks.getBlockMachineAlpha()
-                        && worldObj.getBlockMetadata(i, j, k) == getBlockMetadata())
-                    return true;
+                if (block == RailcraftBlocks.getBlockBlastFurnace()) return true;
                 break;
             case 'A':
                 if (block.isAir(worldObj, i, j, k) || block.getMaterial() == Material.lava) return true;

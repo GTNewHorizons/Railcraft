@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.util.misc.Game;
 import uristqwerty.CraftGuide.api.ItemSlot;
@@ -46,7 +46,7 @@ public class RockCrusherPlugin implements RecipeProvider {
     @Override
     public void generateRecipes(RecipeGenerator generator) {
         if (Game.isGTNH) return;
-        ItemStack crafter = EnumMachineAlpha.ROCK_CRUSHER.getItem();
+        ItemStack crafter = Machines.ROCK_CRUSHER.getItem();
         if (crafter != null) {
             RecipeTemplate template = generator.createRecipeTemplate(
                     slots,

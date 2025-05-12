@@ -347,7 +347,7 @@ railcraft.gui.aspect.yellow.name=黃燈
 railcraft.gui.aura.disable=@s 監視關閉
 railcraft.gui.aura.enable=@s 開啟監視
 
-railcraft.gui.blast.furnace=§7 鼓風爐
+railcraft.gui.blast_furnace=§7 鼓風爐
 
 railcraft.gui.bore.ballast=鋪路材料
 railcraft.gui.bore.fuel=燃料
@@ -371,7 +371,7 @@ railcraft.gui.cart.undercutter.sides=側邊
 railcraft.gui.cart.undercutter.stock=存量
 railcraft.gui.cart.undercutter.under=底下
 
-railcraft.gui.coke.oven=焦炭爐
+railcraft.gui.coke_oven=焦炭爐
 
 railcraft.gui.detector.item.analog=類比
 railcraft.gui.detector.item.anything=隨意
@@ -420,7 +420,7 @@ railcraft.gui.engrave.unlock.success=成功!
 railcraft.gui.engrave.unlock=解鎖!
 railcraft.gui.engrave=雕刻
 
-railcraft.gui.feed.station.feed=飼料
+railcraft.gui.feed_station.feed=飼料
 
 railcraft.gui.filter=篩選
 railcraft.gui.filters.carts=車種
@@ -502,7 +502,7 @@ railcraft.gui.mag.glass.aspect=此號誌的狀態是 %s
 railcraft.gui.mag.glass.aspect.dual=此號誌上半部狀態為 %1$s ;下半部為 %2$s
 railcraft.gui.mag.glass.placedby=由 %2$s 放置的 %1$s
 
-railcraft.gui.rolling.machine.tip.craft=§e§o-點擊開始合成-
+railcraft.gui.rolling_machine.tip.craft=§e§o-點擊開始合成-
 
 railcraft.gui.routing.logic.blank=空白的路由表
 railcraft.gui.routing.logic.insufficient.operands=運算元不足
@@ -734,21 +734,21 @@ tile.railcraft.machine.alpha.anchor.admin.name=管理錨
 tile.railcraft.machine.alpha.anchor.passive.name=被動錨
 tile.railcraft.machine.alpha.anchor.personal.name=私人錨
 tile.railcraft.machine.alpha.anchor.world.name=世界錨
-tile.railcraft.machine.alpha.blast.furnace.name=鼓風爐方塊
-tile.railcraft.machine.alpha.blast.furnace.tip=多重方塊: 3x4x3 (中空)
-tile.railcraft.machine.alpha.coke.oven.name=焦炭爐方塊
-tile.railcraft.machine.alpha.coke.oven.tip=多重方塊: 3x3x3 (中空)
-tile.railcraft.machine.alpha.feed.station.name=自動餵食機
-tile.railcraft.machine.alpha.rock.crusher.name=碎石機
-tile.railcraft.machine.alpha.rock.crusher.tip=多重方塊: 3x2x2
-tile.railcraft.machine.alpha.rolling.machine.name=滾壓機
+tile.railcraft.machine.blast_furnace.name=鼓風爐方塊
+tile.railcraft.machine.blast_furnace.tip=多重方塊: 3x4x3 (中空)
+tile.railcraft.machine.coke_oven.name=焦炭爐方塊
+tile.railcraft.machine.coke_oven.tip=多重方塊: 3x3x3 (中空)
+tile.railcraft.machine.feed_station.name=自動餵食機
+tile.railcraft.machine.rock_crusher.name=碎石機
+tile.railcraft.machine.rock_crusher.tip=多重方塊: 3x2x2
+tile.railcraft.machine.rolling_machine.name=滾壓機
 tile.railcraft.machine.alpha.smoker.name=發煙器
 tile.railcraft.machine.alpha.steam.oven.name=蒸氣爐
 tile.railcraft.machine.alpha.steam.oven.tip=多重方塊: 2x2x2
-tile.railcraft.machine.alpha.steam.trap.auto.name=自動蒸氣陷阱
-tile.railcraft.machine.alpha.steam.trap.name=手動蒸氣陷阱
-tile.railcraft.machine.alpha.tank.water.name=水塔方塊
-tile.railcraft.machine.alpha.tank.water.tip=多重方塊: 3x3x3 (中空)
+tile.railcraft.machine.steam_trap.auto.name=自動蒸氣陷阱
+tile.railcraft.machine.steam_trap.name=手動蒸氣陷阱
+tile.railcraft.machine.tank_water.name=水塔方塊
+tile.railcraft.machine.tank_water.tip=多重方塊: 3x3x3 (中空)
 tile.railcraft.machine.alpha.trade.station.name=交易站
 tile.railcraft.machine.alpha.turbine.name=蒸氣渦輪機殼
 tile.railcraft.machine.alpha.turbine.tip=多重方塊: 3x2x2\n 利用蒸氣產生電力\n會在底部產出水分\n 需要一個渦輪轉子

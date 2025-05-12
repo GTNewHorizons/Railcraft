@@ -19,27 +19,34 @@ import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.ItemMultiMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
+import mods.railcraft.common.blocks.machine.blast_furnace.MachineProxyBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyBoilerTank;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyFirebox;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.chest.MachineProxyChestMetals;
 import mods.railcraft.common.blocks.machine.chest.MachineProxyChestVoid;
+import mods.railcraft.common.blocks.machine.coke_oven.MachineProxyCokeOven;
 import mods.railcraft.common.blocks.machine.electric_feeder.MachineProxyElectricFeeder;
 import mods.railcraft.common.blocks.machine.electric_feeder.MachineProxyElectricFeederAdmin;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.MachineProxyEngine;
 import mods.railcraft.common.blocks.machine.engraving_bench.MachineProxyEngravingBench;
+import mods.railcraft.common.blocks.machine.feed_station.MachineProxyFeedStation;
 import mods.railcraft.common.blocks.machine.flux_transformer.MachineProxyFluxTransformer;
 import mods.railcraft.common.blocks.machine.force_track_emitter.MachineProxyForceTrackEmitter;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.gamma.MachineProxyGamma;
+import mods.railcraft.common.blocks.machine.rock_crusher.MachineProxyRockCrusher;
+import mods.railcraft.common.blocks.machine.rolling_machine.MachineProxyRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.MachineProxySentinel;
 import mods.railcraft.common.blocks.machine.steam_producer.MachineProxyAdminSteamProducer;
+import mods.railcraft.common.blocks.machine.steam_trap.MachineProxySteamTrap;
 import mods.railcraft.common.blocks.machine.tank.MachineProxyTankGauge;
 import mods.railcraft.common.blocks.machine.tank.MachineProxyTankValve;
 import mods.railcraft.common.blocks.machine.tank.MachineProxyTankWall;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank_water.MachineProxyTankWater;
 import mods.railcraft.common.blocks.machine.wire.MachineProxyWire;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.ItemSignal;
@@ -57,6 +64,14 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 public class RailcraftBlocks {
 
     private static Block blockMachineAlpha;
+    private static Block blockMachineCokeOven;
+    private static Block blockMachineRollingMachine;
+    private static Block blockMachineSteamTrapManual;
+    private static Block blockMachineSteamTrapAuto;
+    private static Block blockMachineFeedStation;
+    private static Block blockMachineBlastFurnace;
+    private static Block blockMachineTankWater;
+    private static Block blockMachineRockCrusher;
     private static Block blockMachineGamma;
     private static Map<TankMaterial, Block> tankWalls = new TreeMap<>();
     private static Map<TankMaterial, Block> tankGauges = new TreeMap<>();
@@ -121,6 +136,104 @@ public class RailcraftBlocks {
         return blockRailElevator;
     }
 
+    public static Block registerBlockCokeOven() {
+        if (blockMachineCokeOven == null) {
+            blockMachineCokeOven = new BlockMachine(0, new MachineProxyCokeOven(), true, 255).setBlockName("coke_oven");
+            RailcraftRegistry.register(blockMachineCokeOven, ItemMachine.class);
+            blockMachineCokeOven.setHarvestLevel("pickaxe", 0);
+        }
+        return blockMachineCokeOven;
+    }
+
+    public static Block getBlockCokeOven() {
+        return blockMachineCokeOven;
+    }
+
+    public static Block registerBlockRollingMachine() {
+        if (blockMachineRollingMachine == null) {
+            blockMachineRollingMachine = new BlockMachine(0, new MachineProxyRollingMachine(), true, 255)
+                    .setBlockName("rolling_machine");
+            RailcraftRegistry.register(blockMachineRollingMachine, ItemMachine.class);
+            blockMachineRollingMachine.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineRollingMachine;
+    }
+
+    public static Block getBlockRollingMachine() {
+        return blockMachineRollingMachine;
+    }
+
+    public static Block registerBlockSteamTrap(boolean auto) {
+        Block steampTrap = getBlockSteamTrap(auto);
+        if (steampTrap == null) {
+            steampTrap = new BlockMachine(0, new MachineProxySteamTrap(auto), true, 255)
+                    .setBlockName("steam_trap" + (auto ? ".auto" : ""));
+            RailcraftRegistry.register(steampTrap, ItemMachine.class);
+            steampTrap.setHarvestLevel("pickaxe", 2);
+        }
+        return steampTrap;
+    }
+
+    public static Block getBlockSteamTrap(boolean auto) {
+        return auto ? blockMachineSteamTrapAuto : blockMachineSteamTrapManual;
+    }
+
+    public static Block registerBlockFeedStation() {
+        if (blockMachineFeedStation == null) {
+            blockMachineFeedStation = new BlockMachine(0, new MachineProxyFeedStation(), true, 255)
+                    .setBlockName("feed_station");
+            RailcraftRegistry.register(blockMachineFeedStation, ItemMachine.class);
+            blockMachineFeedStation.setHarvestLevel("axe", 1);
+        }
+        return blockMachineFeedStation;
+    }
+
+    public static Block getBlockFeedStation() {
+        return blockMachineFeedStation;
+    }
+
+    public static Block registerBlockBlastFurnace() {
+        if (blockMachineBlastFurnace == null) {
+            blockMachineBlastFurnace = new BlockMachine(0, new MachineProxyBlastFurnace(), true, 255)
+                    .setBlockName("blast_furnace");
+            RailcraftRegistry.register(blockMachineBlastFurnace, ItemMachine.class);
+            blockMachineBlastFurnace.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineBlastFurnace;
+    }
+
+    public static Block getBlockBlastFurnace() {
+        return blockMachineBlastFurnace;
+    }
+
+    public static Block registerBlockTankWater() {
+        if (blockMachineTankWater == null) {
+            blockMachineTankWater = new BlockMachine(0, new MachineProxyTankWater(), true, 255)
+                    .setBlockName("tank_water");
+            RailcraftRegistry.register(blockMachineTankWater, ItemMachine.class);
+            blockMachineTankWater.setHarvestLevel("axe", 0);
+        }
+        return blockMachineTankWater;
+    }
+
+    public static Block getBlockTankWater() {
+        return blockMachineTankWater;
+    }
+
+    public static Block registerBlockRockCrusher() {
+        if (blockMachineRockCrusher == null) {
+            blockMachineRockCrusher = new BlockMachine(0, new MachineProxyRockCrusher(), true, 255)
+                    .setBlockName("rock_crusher");
+            RailcraftRegistry.register(blockMachineRockCrusher, ItemMachine.class);
+            blockMachineRockCrusher.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineRockCrusher;
+    }
+
+    public static Block getBlockRockCrusher() {
+        return blockMachineRockCrusher;
+    }
+
     public static Block registerBlockMachineAlpha() {
         if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
             int[] lightOpacity = new int[16];
@@ -131,20 +244,10 @@ public class RailcraftBlocks {
 
             for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
                 switch (type) {
-                    case FEED_STATION:
-                        blockMachineAlpha.setHarvestLevel("axe", 1, type.ordinal());
-                        break;
-                    case TANK_WATER:
-                        blockMachineAlpha.setHarvestLevel("axe", 0, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
                     case WORLD_ANCHOR:
                     case PERSONAL_ANCHOR:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
                         // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    case COKE_OVEN:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 0, type.ordinal());
                         break;
                     default:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());

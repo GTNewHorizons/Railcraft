@@ -65,7 +65,7 @@ railcraft.gates.trigger.engine=Estágio do Motor
 railcraft.gates.trigger.fuel=Combustível em Baixo
 railcraft.gates.trigger.work=Tem Trabalho
 
-railcraft.gui.blast.furnace=§7 Alto-Forno
+railcraft.gui.blast_furnace=§7 Alto-Forno
 railcraft.gui.steam.boiler=§7 Caldeira
 railcraft.gui.bore.ballast=Balastro
 railcraft.gui.bore.fuel=Combustível
@@ -76,7 +76,7 @@ railcraft.gui.cart.track.relayer.pattern=Padrão
 railcraft.gui.cart.track.relayer.stock=Quantidade
 railcraft.gui.cart.undercutter.pattern=Padrão
 railcraft.gui.cart.undercutter.stock=Quantidade
-railcraft.gui.coke.oven=Forno de Coque
+railcraft.gui.coke_oven=Forno de Coque
 railcraft.gui.detector.item.anything=Qualquer
 railcraft.gui.detector.item.at_least=Pelo Menos
 railcraft.gui.detector.item.at_most=No Máximo
@@ -118,12 +118,12 @@ item.railcraft.fluid.creosote.refactory.name=Cápsula de Creosoto
 item.railcraft.fluid.creosote.wax.name=Cápsula de Creosoto
 fluid.steam=Vapor
 
-tile.railcraft.machine.alpha.blast.furnace.name=Tijolo de Alto-Forno
-tile.railcraft.machine.alpha.coke.oven.name=Tijolo de Forno de Coque
-tile.railcraft.machine.alpha.feed.station.name=Estação de Alimentação
-tile.railcraft.machine.alpha.rock.crusher.name=Esmagador de Pedras
-tile.railcraft.machine.alpha.rolling.machine.name=Máquina de Enrolar
-tile.railcraft.machine.alpha.tank.water.name=Bloco de Tanque de Água
+tile.railcraft.machine.blast_furnace.name=Tijolo de Alto-Forno
+tile.railcraft.machine.coke_oven.name=Tijolo de Forno de Coque
+tile.railcraft.machine.feed_station.name=Estação de Alimentação
+tile.railcraft.machine.rock_crusher.name=Esmagador de Pedras
+tile.railcraft.machine.rolling_machine.name=Máquina de Enrolar
+tile.railcraft.machine.tank_water.name=Bloco de Tanque de Água
 tile.railcraft.machine.alpha.turbine.name=Central da Turbina a Vapor
 tile.railcraft.machine.alpha.anchor.world.name=Ancorador
 

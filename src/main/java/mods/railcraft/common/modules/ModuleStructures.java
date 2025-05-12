@@ -28,6 +28,7 @@ import mods.railcraft.common.blocks.aesthetics.slab.BlockFactorySlab;
 import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockFactoryStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -67,8 +68,7 @@ public class ModuleStructures extends RailcraftModule {
             Block cube = BlockCube.getBlock();
             if (cube != null) {
                 ItemStack stack = cubeType.getItem();
-                if (ModuleManager.isModuleLoaded(Module.FACTORY) && RailcraftBlocks.getBlockMachineAlpha() != null
-                        && RailcraftConfig.isSubBlockEnabled(EnumMachineAlpha.ROLLING_MACHINE.getTag())) {
+                if (ModuleManager.isModuleLoaded(Module.FACTORY) && Machines.ROLLING_MACHINE.isAvailable()) {
                     stack.stackSize = 8;
                     CraftingPlugin.addShapedRecipe(
                             stack,

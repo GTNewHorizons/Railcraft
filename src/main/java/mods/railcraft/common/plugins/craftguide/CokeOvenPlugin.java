@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.RailcraftConstants;
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.LiquidSlot;
@@ -36,7 +36,7 @@ public class CokeOvenPlugin implements RecipeProvider {
 
     @Override
     public void generateRecipes(RecipeGenerator generator) {
-        ItemStack oven = EnumMachineAlpha.COKE_OVEN.getItem();
+        ItemStack oven = Machines.COKE_OVEN.getItem();
         if (oven != null) {
             RecipeTemplate template = generator.createRecipeTemplate(
                     slots,

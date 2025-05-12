@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
@@ -249,8 +249,7 @@ public enum EnumTrack {
                 : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED);
         Object railSpeed = RailcraftConfig.useOldRecipes() ? "ingotSteel"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.SPEED);
-        Object railReinforced = RailcraftConfig.useOldRecipes() || !EnumMachineAlpha.ROCK_CRUSHER.isAvailable()
-                ? "ingotSteel"
+        Object railReinforced = RailcraftConfig.useOldRecipes() || !Machines.ROCK_CRUSHER.isAvailable() ? "ingotSteel"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.REINFORCED);
         Object railElectric = RailcraftConfig.useOldRecipes() ? "ingotCopper"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.ELECTRIC);
@@ -260,7 +259,7 @@ public enum EnumTrack {
         Object stoneRailbed = RailcraftConfig.useOldRecipes() ? Blocks.stone_slab
                 : RailcraftItem.railbed.getRecipeObject(EnumRailbed.STONE);
         Object reinforcedRailbed = RailcraftConfig.useOldRecipes() || !RailcraftItem.rail.isEnabled()
-                || !EnumMachineAlpha.ROCK_CRUSHER.isAvailable() ? new ItemStack(Blocks.obsidian) : stoneRailbed;
+                || !Machines.ROCK_CRUSHER.isAvailable() ? new ItemStack(Blocks.obsidian) : stoneRailbed;
 
         ItemStack crowbar = ItemCrowbar.getItem();
 

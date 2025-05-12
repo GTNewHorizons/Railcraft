@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.rolling_machine;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,7 +24,8 @@ import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.EnumGui;
@@ -82,8 +83,8 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.ROLLING_MACHINE;
+    public IMachine getMachineType() {
+        return Machines.ROLLING_MACHINE;
     }
 
     @Override

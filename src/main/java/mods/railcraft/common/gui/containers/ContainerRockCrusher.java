@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.EnergyStorage;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
+import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;

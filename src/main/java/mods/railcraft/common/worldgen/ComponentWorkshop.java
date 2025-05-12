@@ -24,7 +24,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import mods.railcraft.api.tracks.ITrackReversable;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
@@ -175,15 +174,8 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 2, 3, 4, sbb);
 
         // machines
-        if (EnumMachineAlpha.ROLLING_MACHINE.isAvailable()) {
-            placeBlockAtCurrentPosition(
-                    world,
-                    RailcraftBlocks.getBlockMachineAlpha(),
-                    EnumMachineAlpha.ROLLING_MACHINE.ordinal(),
-                    9,
-                    1,
-                    5,
-                    sbb);
+        if (Machines.ROLLING_MACHINE.isAvailable()) {
+            placeBlockAtCurrentPosition(world, RailcraftBlocks.getBlockRollingMachine(), 0, 9, 1, 5, sbb);
             if (Machines.ENGINE_STEAM_HOBBY.isAvailable() && RailcraftConfig.machinesRequirePower())
                 placeEngine(world, 9, 1, 6, sbb);
         }

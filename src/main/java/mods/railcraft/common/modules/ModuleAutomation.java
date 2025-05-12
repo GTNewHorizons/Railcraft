@@ -17,6 +17,8 @@ import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.alpha.TamingInteractHandler;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
@@ -179,9 +181,9 @@ public class ModuleAutomation extends RailcraftModule {
         if (gamma.register())
             CraftingPlugin.addShapedRecipe(gamma.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.FEED_STATION;
-        if (alpha.register()) {
-            ItemStack stack = alpha.getItem();
+        Machine feedStation = Machines.FEED_STATION;
+        if (feedStation.isAvailable()) {
+            ItemStack stack = feedStation.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "PCP",
@@ -199,7 +201,7 @@ public class ModuleAutomation extends RailcraftModule {
             MinecraftForge.EVENT_BUS.register(new TamingInteractHandler());
         }
 
-        alpha = EnumMachineAlpha.TRADE_STATION;
+        EnumMachineAlpha alpha = EnumMachineAlpha.TRADE_STATION;
         if (alpha.register()) {
             ItemStack stack = alpha.getItem();
             CraftingPlugin.addShapedRecipe(

@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
@@ -49,9 +48,9 @@ public class ModuleTransport extends RailcraftModule {
                     Items.paper);
         }
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.TANK_WATER;
-        if (alpha.register()) CraftingPlugin.addShapedRecipe(
-                alpha.getItem(6),
+        Machine tank_water = Machines.TANK_WATER;
+        if (tank_water.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                tank_water.getItem(6),
                 "WWW",
                 "ISI",
                 "WWW",

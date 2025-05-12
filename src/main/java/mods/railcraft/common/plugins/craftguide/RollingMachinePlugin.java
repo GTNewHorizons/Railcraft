@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.RecipeGenerator;
 import uristqwerty.CraftGuide.api.RecipeProvider;
@@ -36,7 +36,7 @@ public class RollingMachinePlugin implements RecipeProvider {
 
     @Override
     public void generateRecipes(RecipeGenerator generator) {
-        ItemStack machine = EnumMachineAlpha.ROLLING_MACHINE.getItem();
+        ItemStack machine = Machines.ROLLING_MACHINE.getItem();
         if (machine != null) {
             RecipeTemplate template = generator
                     .createRecipeTemplate(slots, machine, "/gui/CraftGuideRecipe.png", 163, 1, 163, 61);

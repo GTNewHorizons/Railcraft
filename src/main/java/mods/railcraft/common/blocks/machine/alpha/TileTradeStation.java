@@ -25,8 +25,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMoveToBlock;
-import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIWatchBlock;
+import mods.railcraft.common.blocks.machine.ai.EntityAIMoveToBlock;
+import mods.railcraft.common.blocks.machine.ai.EntityAIWatchBlock;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.AIPlugin;

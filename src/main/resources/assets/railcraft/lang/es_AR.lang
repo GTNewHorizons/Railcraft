@@ -231,7 +231,7 @@ railcraft.gui.aspect.yellow.name=Amarillo
 railcraft.gui.aura.disable=@s Aura Apagada
 railcraft.gui.aura.enable=@s Aura Encendida
 
-railcraft.gui.blast.furnace=§7 Alto Horno
+railcraft.gui.blast_furnace=§7 Alto Horno
 
 railcraft.gui.bore.ballast=Lastre
 railcraft.gui.bore.fuel=Combustible
@@ -251,7 +251,7 @@ railcraft.gui.cart.undercutter.sides=Lados
 railcraft.gui.cart.undercutter.stock=S
 railcraft.gui.cart.undercutter.under=Debajo
 
-railcraft.gui.coke.oven=Horno de Coque
+railcraft.gui.coke_oven=Horno de Coque
 
 railcraft.gui.detector.item.analog=Análogo
 railcraft.gui.detector.item.anything=Cualquier Cosa
@@ -297,7 +297,7 @@ railcraft.gui.engrave.unlock.success=Éxito!
 railcraft.gui.engrave.unlock=Desbloqueado!
 railcraft.gui.engrave=Estampar
 
-railcraft.gui.feed.station.feed=Alimento
+railcraft.gui.feed_station.feed=Alimento
 
 railcraft.gui.filter=Filtro
 railcraft.gui.filters.carts=Carros
@@ -373,7 +373,7 @@ railcraft.gui.locomotive.tip.slot.ticket=Inserte Ticket
 
 railcraft.gui.mag.glass.placedby=%1$s fue colocado por %2$s
 
-railcraft.gui.rolling.machine.tip.craft=§e§o-Click para elavorar-
+railcraft.gui.rolling_machine.tip.craft=§e§o-Click para elavorar-
 
 railcraft.gui.routing.logic.blank=Mesa en Blanco
 railcraft.gui.routing.logic.insufficient.operands=Operandos Insuficientes
@@ -579,22 +579,22 @@ tile.railcraft.glass.name=Vidrio Fortalecido
 tile.railcraft.machine.alpha.anchor.admin.name=Ancla de Administrador
 tile.railcraft.machine.alpha.anchor.personal.name=Ancla Personal
 tile.railcraft.machine.alpha.anchor.world.name=Ancla de Mundo
-tile.railcraft.machine.alpha.blast.furnace.name=Ladrillos de Alto Horno
-tile.railcraft.machine.alpha.blast.furnace.tip=Multi-Bloque: 3x4x3 (Hueco)
-tile.railcraft.machine.alpha.coke.oven.name=Ladrillos para Horno de Coque
-tile.railcraft.machine.alpha.coke.oven.tip=Multi-Bloque: 3x3x3 (Hueco)
+tile.railcraft.machine.blast_furnace.name=Ladrillos de Alto Horno
+tile.railcraft.machine.blast_furnace.tip=Multi-Bloque: 3x4x3 (Hueco)
+tile.railcraft.machine.coke_oven.name=Ladrillos para Horno de Coque
+tile.railcraft.machine.coke_oven.tip=Multi-Bloque: 3x3x3 (Hueco)
 tile.railcraft.machine.engraving_bench.name=Banco de Grabado
-tile.railcraft.machine.alpha.feed.station.name=Estación de Alimentación
-tile.railcraft.machine.alpha.rock.crusher.name=Trituradora de Rocas
-tile.railcraft.machine.alpha.rock.crusher.tip=Multi-Bloque: 3x2x2
-tile.railcraft.machine.alpha.rolling.machine.name=Máquina de Laminación
+tile.railcraft.machine.feed_station.name=Estación de Alimentación
+tile.railcraft.machine.rock_crusher.name=Trituradora de Rocas
+tile.railcraft.machine.rock_crusher.tip=Multi-Bloque: 3x2x2
+tile.railcraft.machine.rolling_machine.name=Máquina de Laminación
 tile.railcraft.machine.alpha.smoker.name=Humeante
 tile.railcraft.machine.alpha.steam.oven.name=Horno a Vapor
 tile.railcraft.machine.alpha.steam.oven.tip=Multi-Bloque: 2x2x2
-tile.railcraft.machine.alpha.steam.trap.auto.name=Purgador de Vapor Automatizado
-tile.railcraft.machine.alpha.steam.trap.name=Purgador de Vapor Manual
-tile.railcraft.machine.alpha.tank.water.name=Revestimiento para Tanque de Agua
-tile.railcraft.machine.alpha.tank.water.tip=Multi-Bloque: 3x3x3 (Hueco)
+tile.railcraft.machine.steam_trap.auto.name=Purgador de Vapor Automatizado
+tile.railcraft.machine.steam_trap.name=Purgador de Vapor Manual
+tile.railcraft.machine.tank_water.name=Revestimiento para Tanque de Agua
+tile.railcraft.machine.tank_water.tip=Multi-Bloque: 3x3x3 (Hueco)
 tile.railcraft.machine.alpha.trade.station.name=Estación de Comercio
 tile.railcraft.machine.alpha.turbine.name=Cubierta para Turbina a Vapor
 tile.railcraft.machine.alpha.turbine.tip=Multi-Bloque: 3x2x2

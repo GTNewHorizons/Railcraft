@@ -12,16 +12,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.helpers.StructureHelper;
-import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
-import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
-import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
+import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
+import mods.railcraft.common.blocks.machine.coke_oven.TileCokeOven;
 import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
+import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.TileTankBase;
+import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
 
 /**
  *

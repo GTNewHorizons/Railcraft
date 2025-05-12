@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.feed_station;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -26,9 +26,10 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
-import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMateBreeding;
+import mods.railcraft.common.blocks.machine.ai.EntityAIMateBreeding;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -56,8 +57,8 @@ public class TileFeedStation extends TileMachineItem implements ITileExtraDataHa
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.FEED_STATION;
+    public IMachine getMachineType() {
+        return Machines.FEED_STATION;
     }
 
     @Override

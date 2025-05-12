@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -61,7 +60,7 @@ public class ModuleLocomotives extends RailcraftModule {
 
             ItemStack firebox;
             if (Machines.BOILER_FIREBOX_SOLID.isAvailable()) firebox = Machines.BOILER_FIREBOX_SOLID.getItem();
-            else if (EnumMachineAlpha.BLAST_FURNACE.isAvailable()) firebox = EnumMachineAlpha.BLAST_FURNACE.getItem();
+            else if (Machines.BLAST_FURNACE.isAvailable()) firebox = Machines.BLAST_FURNACE.getItem();
             else firebox = new ItemStack(Blocks.furnace);
 
             CraftingPlugin.addShapedRecipe(

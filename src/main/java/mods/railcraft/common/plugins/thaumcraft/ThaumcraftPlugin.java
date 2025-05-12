@@ -202,15 +202,17 @@ public class ThaumcraftPlugin {
                     new AspectList().add(Aspect.METAL, 8).add(Aspect.ORDER, 2).add(Aspect.MECHANISM, 4));
 
             addItemAspect(
-                    EnumMachineAlpha.ROLLING_MACHINE.getItem(),
+                    Machines.ROLLING_MACHINE.getItem(),
                     new AspectList().add(Aspect.CRAFT, 6).add(Aspect.MECHANISM, 2));
             addItemAspect(
-                    EnumMachineAlpha.ROCK_CRUSHER.getItem(),
+                    Machines.ROCK_CRUSHER.getItem(),
                     new AspectList().add(Aspect.CRAFT, 2).add(Aspect.MECHANISM, 4).add(Aspect.EARTH, 4)
                             .add(Aspect.EARTH, 4));
-            addItemAspect(
-                    EnumMachineAlpha.FEED_STATION.getItem(),
-                    new AspectList().add(Aspect.CROP, 4).add(Aspect.HUNGER, 4).add(Aspect.MECHANISM, 2));
+            if (Machines.FEED_STATION != null) {
+                addItemAspect(
+                        Machines.FEED_STATION.getItem(),
+                        new AspectList().add(Aspect.CROP, 4).add(Aspect.HUNGER, 4).add(Aspect.MECHANISM, 2));
+            }
             addItemAspect(
                     EnumMachineAlpha.SMOKER.getItem(),
                     new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
@@ -218,9 +220,9 @@ public class ThaumcraftPlugin {
                     EnumMachineAlpha.SMOKER.getItem(),
                     new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
 
-            addItemAspect(EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(), steamAspects.copy().add(Aspect.TRAP, 4));
+            addItemAspect(Machines.STEAM_TRAP_MANUAL.getItem(), steamAspects.copy().add(Aspect.TRAP, 4));
             addItemAspect(
-                    EnumMachineAlpha.STEAM_TRAP_AUTO.getItem(),
+                    Machines.STEAM_TRAP_AUTO.getItem(),
                     steamAspects.copy().add(Aspect.TRAP, 4).add(Aspect.MIND, 2));
             addItemAspect(EnumMachineAlpha.STEAM_OVEN.getItem(), steamAspects.copy().add(Aspect.FIRE, 3));
             addItemAspect(EnumMachineAlpha.TURBINE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
@@ -238,9 +240,7 @@ public class ThaumcraftPlugin {
             addItemAspect(Machines.ENGINE_STEAM_LOW.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
             addItemAspect(Machines.ENGINE_STEAM_HIGH.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
 
-            addItemAspect(
-                    EnumMachineAlpha.TANK_WATER.getItem(),
-                    tankAspects.copy().add(Aspect.TREE, 2).add(Aspect.SLIME, 2));
+            addItemAspect(Machines.TANK_WATER.getItem(), tankAspects.copy().add(Aspect.TREE, 2).add(Aspect.SLIME, 2));
 
             AspectList ironTankAspects = tankAspects.copy().add(Aspect.METAL, 2);
             for (TankMaterial mat : TankMaterial.values()) {

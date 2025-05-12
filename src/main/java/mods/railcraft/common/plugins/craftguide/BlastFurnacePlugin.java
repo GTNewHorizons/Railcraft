@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.RecipeGenerator;
 import uristqwerty.CraftGuide.api.RecipeProvider;
@@ -32,7 +32,7 @@ public class BlastFurnacePlugin implements RecipeProvider {
 
     @Override
     public void generateRecipes(RecipeGenerator generator) {
-        ItemStack furnace = EnumMachineAlpha.BLAST_FURNACE.getItem();
+        ItemStack furnace = Machines.BLAST_FURNACE.getItem();
         if (furnace != null) {
             RecipeTemplate template = generator
                     .createRecipeTemplate(slots, furnace, "/gui/CraftGuideRecipe.png", 1, 181, 82, 181);

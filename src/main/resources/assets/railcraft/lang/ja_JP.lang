@@ -67,7 +67,7 @@ railcraft.gates.trigger.engine=エンジンの状態
 railcraft.gates.trigger.fuel=燃料僅少
 railcraft.gates.trigger.work=稼働中
 
-railcraft.gui.blast.furnace=§7 高炉
+railcraft.gui.blast_furnace=§7 高炉
 railcraft.gui.steam.boiler=§7 ボイラー
 railcraft.gui.bore.ballast=バラスト
 railcraft.gui.bore.fuel=燃料
@@ -78,7 +78,7 @@ railcraft.gui.cart.track.relayer.pattern=パターン
 railcraft.gui.cart.track.relayer.stock=在庫
 railcraft.gui.cart.undercutter.pattern=パターン
 railcraft.gui.cart.undercutter.stock=在庫
-railcraft.gui.coke.oven=コークス炉
+railcraft.gui.coke_oven=コークス炉
 railcraft.gui.detector.item.anything=任意
 railcraft.gui.detector.item.at_least=最低
 railcraft.gui.detector.item.at_most=最大
@@ -120,12 +120,12 @@ item.railcraft.fluid.creosote.refactory.name=クレオソート入りカプセ�
 item.railcraft.fluid.creosote.wax.name=クレオソート入りカプセル
 fluid.steam=蒸気
 
-tile.railcraft.machine.alpha.blast.furnace.name=高炉用レンガ
-tile.railcraft.machine.alpha.coke.oven.name=コークス炉用レンガ
-tile.railcraft.machine.alpha.feed.station.name=フィードステーション
-tile.railcraft.machine.alpha.rock.crusher.name=破砕機
-tile.railcraft.machine.alpha.rolling.machine.name=圧延機
-tile.railcraft.machine.alpha.tank.water.name=水タンクの羽目板
+tile.railcraft.machine.blast_furnace.name=高炉用レンガ
+tile.railcraft.machine.coke_oven.name=コークス炉用レンガ
+tile.railcraft.machine.feed_station.name=フィードステーション
+tile.railcraft.machine.rock_crusher.name=破砕機
+tile.railcraft.machine.rolling_machine.name=圧延機
+tile.railcraft.machine.tank_water.name=水タンクの羽目板
 tile.railcraft.machine.alpha.turbine.name=蒸気タービンハウジング
 tile.railcraft.machine.alpha.anchor.world.name=ワールドアンカー
 
