@@ -95,8 +95,7 @@ public class ModuleLocomotives extends RailcraftModule {
     @Override
     public void initSecond() {
         if (EnumCart.LOCO_ELECTRIC.isEnabled()) {
-            Object feederUnit = Machines.ELECTRIC_FEEDER.isAvailable()
-                    ? Machines.ELECTRIC_FEEDER.getItem()
+            Object feederUnit = Machines.ELECTRIC_FEEDER.isAvailable() ? Machines.ELECTRIC_FEEDER.getItem()
                     : "blockCopper";
             ItemStack cartStack = EnumCart.LOCO_ELECTRIC.getCartItem();
             ItemLocomotive.setItemColorData(cartStack, EnumColor.YELLOW, EnumColor.BLACK);

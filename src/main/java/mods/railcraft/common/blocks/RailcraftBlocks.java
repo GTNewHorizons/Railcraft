@@ -359,12 +359,13 @@ public class RailcraftBlocks {
     }
 
     public static Block registerBlockElectricFeeder(boolean admin) {
-        Block blockFeeder = admin ? blockMachineElectricFeederAdmin : blockMachineElectricFeeder; 
+        Block blockFeeder = admin ? blockMachineElectricFeederAdmin : blockMachineElectricFeeder;
         if (blockFeeder == null) {
-            blockFeeder = new BlockMachine(0, admin ?
-                new MachineProxyElectricFeederAdmin() :
-                new MachineProxyElectricFeeder(), true, 255)
-                .setBlockName("railcraft.electric_feeder" + (admin ? ".admin" : ""));
+            blockFeeder = new BlockMachine(
+                    0,
+                    admin ? new MachineProxyElectricFeederAdmin() : new MachineProxyElectricFeeder(),
+                    true,
+                    255).setBlockName("railcraft.electric_feeder" + (admin ? ".admin" : ""));
             RailcraftRegistry.register(blockFeeder, ItemMachine.class);
             blockFeeder.setHarvestLevel("pickaxe", 2);
         }
@@ -392,7 +393,7 @@ public class RailcraftBlocks {
     public static Block registerBlockFluxTransformer() {
         if (blockMachineFluxTransformer == null) {
             blockMachineFluxTransformer = new BlockMachine(0, new MachineProxyFluxTransformer(), true, 255)
-                .setBlockName("railcraft.machine.flux_transformer");
+                    .setBlockName("railcraft.machine.flux_transformer");
             RailcraftRegistry.register(blockMachineFluxTransformer, ItemMachine.class);
             blockMachineFluxTransformer.setHarvestLevel("pickaxe", 2);
         }
@@ -406,7 +407,7 @@ public class RailcraftBlocks {
     public static Block registerBlockForceTrackEmitter() {
         if (blockMachineForceTrackEmitter == null) {
             blockMachineForceTrackEmitter = new BlockMachine(0, new MachineProxyForceTrackEmitter(), true, 255)
-                .setBlockName("railcraft.machine.force_track_emitter");
+                    .setBlockName("railcraft.machine.force_track_emitter");
             RailcraftRegistry.register(blockMachineForceTrackEmitter, ItemMachine.class);
             blockMachineForceTrackEmitter.setHarvestLevel("pickaxe", 2);
         }
@@ -420,7 +421,7 @@ public class RailcraftBlocks {
     public static Block registerBlockEngravingBench() {
         if (blockMachineEngravingBench == null) {
             blockMachineEngravingBench = new BlockMachine(0, new MachineProxyEngravingBench(), true, 255)
-                .setBlockName("railcraft.machine.engraving_bench");
+                    .setBlockName("railcraft.machine.engraving_bench");
             RailcraftRegistry.register(blockMachineEngravingBench, ItemMachine.class);
             blockMachineEngravingBench.setHarvestLevel("pickaxe", 0);
         }
