@@ -1,5 +1,6 @@
 package mods.railcraft.common.blocks.machine;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 import net.minecraft.block.Block;
@@ -17,6 +18,14 @@ import mods.railcraft.common.blocks.machine.engine.EngineType;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
+import mods.railcraft.common.blocks.machine.engraving_bench.TileEngravingBench;
+import mods.railcraft.common.blocks.machine.force_track_emitter.MachineForceTrackEmitter;
+import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEmitter;
+import mods.railcraft.common.blocks.machine.flux_transformer.MachineFluxTransformer;
+import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
+import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
+import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeeder;
+import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeederAdmin;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.blocks.machine.tank.MachineTank;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
@@ -29,9 +38,9 @@ import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class Machines {
 
-    public static final TreeMap<TankMaterial, Machine> tankWalls = new TreeMap<>();
-    public static final TreeMap<TankMaterial, Machine> tankValves = new TreeMap<>();
-    public static final TreeMap<TankMaterial, Machine> tankGauges = new TreeMap<>();
+    public static final Map<TankMaterial, Machine> tankWalls = new TreeMap<>();
+    public static final Map<TankMaterial, Machine> tankValves = new TreeMap<>();
+    public static final Map<TankMaterial, Machine> tankGauges = new TreeMap<>();
 
     public static final Machine BOILER_TANK_LOW_PRESSURE = registerMachine(
             Module.STEAM,
@@ -156,10 +165,64 @@ public class Machines {
             0,
             0);
 
+        public static final Machine ELECTRIC_FEEDER = registerMachine(
+                Module.ELECTRICITY,
+                RailcraftBlocks.registerBlockElectricFeeder(false),
+                TileElectricFeeder.class,
+                "electric_feeder", 1, 1, 0);
+
+        public static final Machine ELECTRIC_FEEDER_ADMIN = registerMachine(
+                Module.ELECTRICITY,
+                RailcraftBlocks.registerBlockElectricFeeder(true),
+                TileElectricFeederAdmin.class, "electric_feeder.admin",
+                2, 1, 0, 0, 0, 0, 0, 0, 1);
+        
+        public static final Machine ADMIN_STEAM_PRODUCER = registerMachine(
+                Module.STEAM,
+                RailcraftBlocks.registerBlockAdminSteamProducer(),
+                TileAdminSteamProducer.class,
+                "admin_steam_producer",
+                2, 1, 0, 0, 0, 0, 0, 0, 1);
+        
+        public static final Machine FORCE_TRACK_EMITTER = registerForceTrackEmitter("force_track_emitter");
+        
+        public static final Machine FLUX_TRANSFORMER = registerFluxTransformer("flux_transformer");
+
+        public static final Machine ENGRAVING_BENCH = registerMachine(
+                Module.EMBLEM,
+                RailcraftBlocks.registerBlockEngravingBench(),
+                TileEngravingBench.class,
+                "engraving_bench",
+                4, 1, 0, 1, 3, 3, 3, 3, 2);
+
     private static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
             String tag, int... textureInfo) {
         if (block != null) {
             return new Machine(module, block, tileClass, tag, textureInfo);
+        }
+        return null;
+    }
+
+    private static Machine registerFluxTransformer(String tag) {
+        Block block = RailcraftBlocks.registerBlockFluxTransformer();
+        if (block != null) {
+            return new MachineFluxTransformer(
+                Module.ELECTRICITY,
+                block,
+                TileFluxTransformer.class,
+                tag);
+        }
+        return null;
+    }
+
+    private static Machine registerForceTrackEmitter(String tag) {
+        Block block = RailcraftBlocks.registerBlockForceTrackEmitter();
+        if (block != null) {
+                return new MachineForceTrackEmitter(
+                        Module.ELECTRICITY,
+                        block,
+                        TileForceTrackEmitter.class,
+                        tag);
         }
         return null;
     }

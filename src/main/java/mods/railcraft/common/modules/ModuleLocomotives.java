@@ -12,7 +12,6 @@ import net.minecraft.item.crafting.IRecipe;
 
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -96,8 +95,8 @@ public class ModuleLocomotives extends RailcraftModule {
     @Override
     public void initSecond() {
         if (EnumCart.LOCO_ELECTRIC.isEnabled()) {
-            Object feederUnit = EnumMachineEpsilon.ELECTRIC_FEEDER.isAvailable()
-                    ? EnumMachineEpsilon.ELECTRIC_FEEDER.getItem()
+            Object feederUnit = Machines.ELECTRIC_FEEDER.isAvailable()
+                    ? Machines.ELECTRIC_FEEDER.getItem()
                     : "blockCopper";
             ItemStack cartStack = EnumCart.LOCO_ELECTRIC.getCartItem();
             ItemLocomotive.setItemColorData(cartStack, EnumColor.YELLOW, EnumColor.BLACK);

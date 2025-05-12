@@ -31,12 +31,12 @@ import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
-import mods.railcraft.common.blocks.machine.epsilon.TileAdminSteamProducer;
-import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeeder;
-import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeederAdmin;
-import mods.railcraft.common.blocks.machine.epsilon.TileEngravingBench;
-import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
-import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
+import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
+import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeeder;
+import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeederAdmin;
+import mods.railcraft.common.blocks.machine.engraving_bench.TileEngravingBench;
+import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
+import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEmitter;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
 import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
@@ -79,7 +79,6 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileSteamTrapAuto.class, "RCSteamTrapAutoTile");
         GameRegistry.registerTileEntity(TileAnchorPassive.class, "RCPassiveAnchorTile");
 
-        // Beta
         GameRegistry.registerTileEntity(TileSentinel.class, "RCAnchorSentinelTile");
         GameRegistry.registerTileEntity(TileEngineSteamHobby.class, "RCEngineSteamHobby");
         GameRegistry.registerTileEntity(TileEngineSteamLow.class, "RCEngineSteamLow");
@@ -108,10 +107,7 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileRFLoader.class, "RCLoaderTileRF");
         GameRegistry.registerTileEntity(TileRFUnloader.class, "RCUnloaderTileRF");
 
-        // Delta
         GameRegistry.registerTileEntity(TileWire.class, "RCWireTile");
-
-        // Epsilon
         GameRegistry.registerTileEntity(TileElectricFeeder.class, "RCElectricFeederTile");
         GameRegistry.registerTileEntity(TileElectricFeederAdmin.class, "RCElectricFeederAdminTile");
         GameRegistry.registerTileEntity(TileAdminSteamProducer.class, "RCAdminSteamProducerTile");

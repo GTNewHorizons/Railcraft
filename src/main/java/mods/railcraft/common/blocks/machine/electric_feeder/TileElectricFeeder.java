@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.epsilon;
+package mods.railcraft.common.blocks.machine.electric_feeder;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +13,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.Optional;
 import gregtech.api.interfaces.tileentity.IEnergyConnected;
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import mods.railcraft.common.plugins.ic2.ISinkDelegate;
@@ -38,8 +39,8 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     private boolean addedToIC2EnergyNet;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineEpsilon.ELECTRIC_FEEDER;
+    public IMachine getMachineType() {
+        return Machines.ELECTRIC_FEEDER;
     }
 
     @Override

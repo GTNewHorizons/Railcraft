@@ -1,4 +1,4 @@
-package mods.railcraft.common.blocks.machine.epsilon;
+package mods.railcraft.common.blocks.machine.steam_producer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,7 +16,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -68,8 +69,8 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineEpsilon.ADMIN_STEAM_PRODUCER;
+    public IMachine getMachineType() {
+        return Machines.ADMIN_STEAM_PRODUCER;
     }
 
     @Override

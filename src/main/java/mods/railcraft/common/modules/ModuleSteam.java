@@ -15,7 +15,6 @@ import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.items.ItemGear.EnumGear;
@@ -169,8 +168,6 @@ public class ModuleSteam extends RailcraftModule {
 
         EnumMachineAlpha.STEAM_TRAP_MANUAL.register();
         EnumMachineAlpha.STEAM_TRAP_AUTO.register();
-
-        EnumMachineEpsilon.ADMIN_STEAM_PRODUCER.register();
     }
 
     @Override

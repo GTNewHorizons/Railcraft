@@ -1,10 +1,11 @@
-package mods.railcraft.common.blocks.machine.epsilon;
+package mods.railcraft.common.blocks.machine.flux_transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -13,8 +14,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.util.misc.Game;
@@ -26,8 +27,8 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
     public static void placeFluxTransformer(World world, int x, int y, int z) {
         for (MultiBlockPattern pattern : TileFluxTransformer.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', EnumMachineEpsilon.FLUX_TRANSFORMER.ordinal());
-            pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineEpsilon(), blockMapping);
+            blockMapping.put('B', Block.getIdFromBlock(Machines.FLUX_TRANSFORMER.getBlock()));
+            pattern.placeStructureIds(world, x, y, z, blockMapping);
             return;
         }
     }
@@ -58,8 +59,8 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineEpsilon.FLUX_TRANSFORMER;
+    public IMachine getMachineType() {
+        return Machines.FLUX_TRANSFORMER;
     }
 
     @Override

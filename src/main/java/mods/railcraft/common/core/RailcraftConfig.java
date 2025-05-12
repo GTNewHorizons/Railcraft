@@ -35,7 +35,6 @@ import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -776,8 +775,6 @@ public class RailcraftConfig {
         loadBlockProperty("machine.engine");
         loadBlockProperty("machine.wire");
         loadBlockProperty("machine.gamma");
-        loadBlockProperty("machine.epsilon");
-        loadBlockProperty("machine.advtank");
 
         loadBlockProperty("ore");
 
@@ -851,9 +848,12 @@ public class RailcraftConfig {
 
         loadBlockFeature(Machines.WIRE.getTag());
 
-        for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.ELECTRIC_FEEDER.getTag());
+        loadBlockFeature(Machines.ELECTRIC_FEEDER_ADMIN.getTag());
+        loadBlockFeature(Machines.ADMIN_STEAM_PRODUCER.getTag());
+        loadBlockFeature(Machines.FORCE_TRACK_EMITTER.getTag());
+        loadBlockFeature(Machines.FLUX_TRANSFORMER.getTag());
+        loadBlockFeature(Machines.ENGRAVING_BENCH.getTag());
 
         for (EnumSignal type : EnumSignal.values()) {
             if (type.getModule() != null) loadBlockFeature(type.getTag());

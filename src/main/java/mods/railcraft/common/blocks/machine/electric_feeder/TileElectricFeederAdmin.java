@@ -1,4 +1,4 @@
-package mods.railcraft.common.blocks.machine.epsilon;
+package mods.railcraft.common.blocks.machine.electric_feeder;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,7 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
@@ -72,8 +73,8 @@ public class TileElectricFeederAdmin extends TileMachineBase implements IElectri
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineEpsilon.ELECTRIC_FEEDER_ADMIN;
+    public IMachine getMachineType() {
+        return Machines.ELECTRIC_FEEDER_ADMIN;
     }
 
     @Override

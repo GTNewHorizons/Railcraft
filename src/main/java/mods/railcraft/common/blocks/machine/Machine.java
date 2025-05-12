@@ -20,7 +20,7 @@ public class Machine implements IMachine {
     protected Class<? extends TileMachineBase> tile;
     protected String tag;
     private int[] textureInfo;
-    private IIcon[] texture;
+    protected IIcon[] texture;
     private ToolTip tip;
 
     public Machine(Module module, Block block, Class<? extends TileMachineBase> tile, String tag, int... textureInfo) {

@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.epsilon;
+package mods.railcraft.common.blocks.machine.engraving_bench;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -26,7 +26,8 @@ import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.emblems.EmblemToolsServer;
@@ -76,8 +77,8 @@ public class TileEngravingBench extends TileMachineItem
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineEpsilon.ENGRAVING_BENCH;
+    public IMachine getMachineType() {
+        return Machines.ENGRAVING_BENCH;
     }
 
     @Override

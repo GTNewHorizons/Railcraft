@@ -48,7 +48,6 @@ import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
@@ -391,7 +390,6 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.METALS_CHEST);
         machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
         machines.add(Machines.WIRE);
-        machines.addAll(EnumSet.allOf(EnumMachineEpsilon.class));
 
         for (IMachine machine : machines) {
             if (machine.isAvailable()) RailcraftRegistry.register(machine.getItem());

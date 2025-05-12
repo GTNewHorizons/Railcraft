@@ -1,0 +1,21 @@
+package mods.railcraft.common.blocks.machine.force_track_emitter;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.IMachineProxy;
+import mods.railcraft.common.blocks.machine.Machines;
+import net.minecraft.client.renderer.texture.IIconRegister;
+
+public class MachineProxyForceTrackEmitter implements IMachineProxy {
+    @Override
+    public IMachine getMachine(int meta) {
+        return Machines.FORCE_TRACK_EMITTER;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister) {
+        Machines.FORCE_TRACK_EMITTER.registerIcons(iconRegister);
+    }
+}

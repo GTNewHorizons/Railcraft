@@ -13,7 +13,6 @@ import mods.railcraft.common.blocks.frame.BlockFrame;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.items.ItemElectricMeter;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
@@ -53,9 +52,9 @@ public class ModuleElectricity extends RailcraftModule {
             // CraftingPlugin.addShapelessRecipe(rotor, RailcraftPartItems.getTurbineRotor());
         }
 
-        EnumMachineEpsilon epsilon = EnumMachineEpsilon.ELECTRIC_FEEDER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(),
+        Machine electric_feeder = Machines.ELECTRIC_FEEDER;
+        if (electric_feeder != null) CraftingPlugin.addShapedRecipe(
+                electric_feeder.getItem(),
                 "PCP",
                 "CCC",
                 "PCP",
@@ -64,12 +63,11 @@ public class ModuleElectricity extends RailcraftModule {
                 'C',
                 "ingotCopper");
 
-        epsilon = EnumMachineEpsilon.ELECTRIC_FEEDER_ADMIN;
-        epsilon.register();
+        electric_feeder = Machines.ELECTRIC_FEEDER_ADMIN;
 
-        epsilon = EnumMachineEpsilon.FORCE_TRACK_EMITTER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(),
+        Machine forceTrackEmitter = Machines.FORCE_TRACK_EMITTER;
+        if (forceTrackEmitter.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                forceTrackEmitter.getItem(),
                 "PCP",
                 "CDC",
                 "PCP",
@@ -80,9 +78,9 @@ public class ModuleElectricity extends RailcraftModule {
                 'C',
                 "ingotCopper");
 
-        epsilon = EnumMachineEpsilon.FLUX_TRANSFORMER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(2),
+        Machine fluxTransformer = Machines.FLUX_TRANSFORMER;
+        if (fluxTransformer.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                fluxTransformer.getItem(2),
                 "PGP",
                 "GRG",
                 "PGP",

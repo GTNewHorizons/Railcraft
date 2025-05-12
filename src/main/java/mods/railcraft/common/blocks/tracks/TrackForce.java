@@ -12,9 +12,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEmitter;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 
@@ -41,7 +40,7 @@ public class TrackForce extends TrackUnsupported {
     public void checkForEmitter() {
         EnumTrackMeta meta = EnumTrackMeta.fromMeta(tileEntity.getBlockMetadata());
         int y = getY() - 1;
-        Block emitterBlock = EnumMachineEpsilon.FORCE_TRACK_EMITTER.getBlock();
+        Block emitterBlock = Machines.FORCE_TRACK_EMITTER.getBlock();
         if (meta == EnumTrackMeta.NORTH_SOUTH) {
             if (isValidEmitterTile(emitter, ForgeDirection.NORTH, ForgeDirection.SOUTH)) return;
             else setEmitter(null);
