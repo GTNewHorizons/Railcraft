@@ -38,8 +38,6 @@ public enum EnumMachineAlpha implements IEnumMachine {
     PERSONAL_ANCHOR(Module.CHUNK_LOADING, "anchor.personal", TileAnchorPersonal.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
     STEAM_OVEN(Module.FACTORY, "steam.oven", TileSteamOven.class, 4, 2, 2, 2, 3, 3, 6, 3, 0, 1, 4, 5),
     ADMIN_ANCHOR(Module.CHUNK_LOADING, "anchor.admin", TileAnchorAdmin.class, 3, 1, 0, 0, 1, 1, 1, 1, 2),
-    SMOKER(Module.STRUCTURES, "smoker", TileSmoker.class, 3, 1, 0, 1, 2, 2, 2, 2),
-    TRADE_STATION(Module.AUTOMATION, "trade.station", TileTradeStation.class, 3, 1, 0, 0, 1, 1, 2, 1),
     PASSIVE_ANCHOR(Module.CHUNK_LOADING, "anchor.passive", TileAnchorPassive.class, 3, 1, 0, 0, 1, 1, 1, 1, 2);
 
     private final Module module;
@@ -53,13 +51,11 @@ public enum EnumMachineAlpha implements IEnumMachine {
 
     static {
         creativeList.add(STEAM_OVEN);
-        creativeList.add(TRADE_STATION);
         creativeList.add(WORLD_ANCHOR);
         creativeList.add(PERSONAL_ANCHOR);
         creativeList.add(PASSIVE_ANCHOR);
         creativeList.add(ADMIN_ANCHOR);
         creativeList.add(TURBINE);
-        creativeList.add(SMOKER);
     }
 
     private EnumMachineAlpha(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {

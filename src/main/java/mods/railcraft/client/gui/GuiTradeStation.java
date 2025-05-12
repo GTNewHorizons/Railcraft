@@ -5,7 +5,7 @@
  */
 package mods.railcraft.client.gui;
 
-import static mods.railcraft.common.blocks.machine.alpha.TileTradeStation.GuiPacketType.*;
+import static mods.railcraft.common.blocks.machine.trade_station.TileTradeStation.GuiPacketType.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -18,8 +18,8 @@ import net.minecraft.util.EnumChatFormatting;
 
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
-import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
-import mods.railcraft.common.blocks.machine.alpha.TileTradeStation.GuiPacketType;
+import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
+import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation.GuiPacketType;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.containers.ContainerTradeStation;
@@ -69,7 +69,7 @@ public class GuiTradeStation extends TileGui {
 
         GuiBetterButton[] dice = new GuiBetterButton[3];
 
-        ToolTip tip = ToolTip.buildToolTip("railcraft.gui.trade.station.dice.tip");
+        ToolTip tip = ToolTip.buildToolTip("railcraft.gui.trade_station.dice.tip");
         tip.get(0).format = EnumChatFormatting.YELLOW;
 
         for (int b = 0; b < 3; b++) {

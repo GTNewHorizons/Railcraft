@@ -579,7 +579,7 @@ railcraft.gui.track.locking.mode.lockdown=Sperr
 railcraft.gui.track.priming.fuse=Absicherung = @d ticks
 railcraft.gui.track.launcher.force=Kraft = @d
 
-railcraft.gui.trade.station.dice.tip=Zufälliger Handel
+railcraft.gui.trade_station.dice.tip=Zufälliger Handel
 
 railcraft.gui.tuner.abandon.chunk=Controller befindet sich in einem nichtgeladenen Chunk, Verbindung abgebrochen
 railcraft.gui.tuner.abandon.gone=Controller existiert nicht mehr, Verbindung abgebrochen
@@ -740,14 +740,14 @@ tile.railcraft.machine.feed_station.name=Futterstation
 tile.railcraft.machine.rock_crusher.name=Steinbrecher
 tile.railcraft.machine.rock_crusher.tip=Multiblock: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Walzmaschine
-tile.railcraft.machine.alpha.smoker.name=Schornstein
+tile.railcraft.machine.smoker.name=Schornstein
 tile.railcraft.machine.alpha.steam.oven.name=Dampfkessel
 tile.railcraft.machine.alpha.steam.oven.tip=Multiblock: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Automatische Dampf-Falle
 tile.railcraft.machine.steam_trap.name=Manuelle Dampf-Falle
 tile.railcraft.machine.tank_water.name=Wassertankwand
 tile.railcraft.machine.tank_water.tip=Multiblock: 3x3x3 (Hohlraum)
-tile.railcraft.machine.alpha.trade.station.name=Handelsstation
+tile.railcraft.machine.trade_station.name=Handelsstation
 tile.railcraft.machine.alpha.turbine.name=Dampfturbinengehäuse
 tile.railcraft.machine.alpha.turbine.tip=Multiblock: 3x2x2\n Generiert Elektrizität aus Dampf\nGibt unten Wasser ab\n Benötigt einen Turbinenrotor
 

@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.trade_station;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,7 +23,8 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.ai.EntityAIMoveToBlock;
 import mods.railcraft.common.blocks.machine.ai.EntityAIWatchBlock;
@@ -62,8 +63,8 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.TRADE_STATION;
+    public IMachine getMachineType() {
+        return Machines.TRADE_STATION;
     }
 
     @Override
@@ -104,24 +105,11 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
         List<EntityVillager> villagers = MiscTools
                 .getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 20);
         for (EntityVillager villager : villagers) {
+            AIPlugin.addAITask(villager, 9, new EntityAIWatchBlock(villager, getMachineType().getBlock(), 0, 4, 0.08F));
             AIPlugin.addAITask(
                     villager,
                     9,
-                    new EntityAIWatchBlock(
-                            villager,
-                            getMachineType().getBlock(),
-                            getMachineType().ordinal(),
-                            4,
-                            0.08F));
-            AIPlugin.addAITask(
-                    villager,
-                    9,
-                    new EntityAIMoveToBlock(
-                            villager,
-                            getMachineType().getBlock(),
-                            getMachineType().ordinal(),
-                            16,
-                            0.002F));
+                    new EntityAIMoveToBlock(villager, getMachineType().getBlock(), 0, 16, 0.002F));
         }
     }
 

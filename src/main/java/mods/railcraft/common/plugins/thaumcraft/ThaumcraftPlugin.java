@@ -213,12 +213,11 @@ public class ThaumcraftPlugin {
                         Machines.FEED_STATION.getItem(),
                         new AspectList().add(Aspect.CROP, 4).add(Aspect.HUNGER, 4).add(Aspect.MECHANISM, 2));
             }
-            addItemAspect(
-                    EnumMachineAlpha.SMOKER.getItem(),
-                    new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
-            addItemAspect(
-                    EnumMachineAlpha.SMOKER.getItem(),
-                    new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
+            if (Machines.SMOKER.isAvailable()) {
+                addItemAspect(
+                        Machines.SMOKER.getItem(),
+                        new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
+            }
 
             addItemAspect(Machines.STEAM_TRAP_MANUAL.getItem(), steamAspects.copy().add(Aspect.TRAP, 4));
             addItemAspect(

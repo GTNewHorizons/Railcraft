@@ -535,7 +535,7 @@ railcraft.gui.track.locking.mode.lockdown=Блокировка
 railcraft.gui.track.priming.fuse=Запал = @d тактов
 railcraft.gui.track.launcher.force=Сила = @d
 
-railcraft.gui.trade.station.dice.tip=Произвольная торговля
+railcraft.gui.trade_station.dice.tip=Произвольная торговля
 
 railcraft.gui.tuner.abandon.chunk=Контроллер не в загруженном чанке, соединение прервано
 railcraft.gui.tuner.abandon.gone=Контроллера больше не существует, соединение прервано
@@ -696,14 +696,14 @@ tile.railcraft.machine.feed_station.name=Станция кормления
 tile.railcraft.machine.rock_crusher.name=Дробитель
 tile.railcraft.machine.rock_crusher.tip=Мульти-блок: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Прокатный стан
-tile.railcraft.machine.alpha.smoker.name=Дымогенератор
+tile.railcraft.machine.smoker.name=Дымогенератор
 tile.railcraft.machine.alpha.steam.oven.name=Паровая печь
 tile.railcraft.machine.alpha.steam.oven.tip=Мульти-блок: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Автоматическая паровая ловушка
 tile.railcraft.machine.steam_trap.name=Ручная паровая ловушка
 tile.railcraft.machine.tank_water.name=Обшивка водонапорной башни
 tile.railcraft.machine.tank_water.tip=Мульти-блок: 3x3x3 (Полый)
-tile.railcraft.machine.alpha.trade.station.name=Торговая станция
+tile.railcraft.machine.trade_station.name=Торговая станция
 tile.railcraft.machine.alpha.turbine.name=Корпус паровой турбины
 tile.railcraft.machine.alpha.turbine.tip=Мульти-блок: 3x2x2\n Генерирует электричество из пара\nВыводит воду вниз\n Требуется ротор турбины
 

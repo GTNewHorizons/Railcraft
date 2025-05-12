@@ -19,7 +19,6 @@ import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.feed_station.TamingInteractHandler;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.carts.EnumCart;
@@ -201,9 +200,9 @@ public class ModuleAutomation extends RailcraftModule {
             MinecraftForge.EVENT_BUS.register(new TamingInteractHandler());
         }
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.TRADE_STATION;
-        if (alpha.register()) {
-            ItemStack stack = alpha.getItem();
+        Machine tradeStation = Machines.TRADE_STATION;
+        if (tradeStation != null) {
+            ItemStack stack = tradeStation.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "SGS",

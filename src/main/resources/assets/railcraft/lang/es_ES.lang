@@ -492,7 +492,7 @@ railcraft.gui.track.locking.mode.lockdown=Bloqueado
 railcraft.gui.track.priming.fuse=Detonador = @d ticks
 railcraft.gui.track.launcher.force=Fuerza = @d
 
-railcraft.gui.trade.station.dice.tip=Comercio al Azar
+railcraft.gui.trade_station.dice.tip=Comercio al Azar
 
 railcraft.gui.tuner.abandon.chunk=El controlador no está en un Chunk cargado, abandonando el acoplamiento
 railcraft.gui.tuner.abandon.gone=Controlador ya no existe, abandonando el acoplamiento
@@ -646,14 +646,14 @@ tile.railcraft.machine.feed_station.name=Estación de Alimentación
 tile.railcraft.machine.rock_crusher.name=Trituradora de Rocas
 tile.railcraft.machine.rock_crusher.tip=Multi-Bloque: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Máquina de Laminación
-tile.railcraft.machine.alpha.smoker.name=Ahumador
+tile.railcraft.machine.smoker.name=Ahumador
 tile.railcraft.machine.alpha.steam.oven.name=Horno a Vapor
 tile.railcraft.machine.alpha.steam.oven.tip=Multi-Bloque: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Deshumidificador Automatizado
 tile.railcraft.machine.steam_trap.name=Deshumidificador Manual
 tile.railcraft.machine.tank_water.name=Revestimiento para Tanque de Agua
 tile.railcraft.machine.tank_water.tip=Multi-Bloque: 3x3x3 (Hueco)
-tile.railcraft.machine.alpha.trade.station.name=Estación de Comercio
+tile.railcraft.machine.trade_station.name=Estación de Comercio
 tile.railcraft.machine.alpha.turbine.name=Cubierta para Turbina a Vapor
 tile.railcraft.machine.alpha.turbine.tip=Multi-Bloque: 3x2x2\n Genera electricidad con vapor\n Vierte agua por el fondo\n Requiere un Rotor de Turbina
 

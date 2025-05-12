@@ -531,7 +531,7 @@ railcraft.gui.track.locking.mode.lockdown=Uzamknutí
 railcraft.gui.track.priming.fuse=Pojistka = @d ticks
 railcraft.gui.track.launcher.force=Platnost = @d
 
-railcraft.gui.trade.station.dice.tip=Náhodný obchod
+railcraft.gui.trade_station.dice.tip=Náhodný obchod
 
 railcraft.gui.tuner.abandon.chunk=Kontroler není v načteném Chunku, párování zrušeno.
 railcraft.gui.tuner.abandon.gone=Kontroler již neexistuje, párování zrušeno.
@@ -692,14 +692,14 @@ tile.railcraft.machine.feed_station.name=Krmná stanice
 tile.railcraft.machine.rock_crusher.name=Drtič kamení
 tile.railcraft.machine.rock_crusher.tip=-Rock Crusher-\n Multi-blok: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Válcovací mašina
-tile.railcraft.machine.alpha.smoker.name=Kuřák
+tile.railcraft.machine.smoker.name=Kuřák
 tile.railcraft.machine.alpha.steam.oven.name=Parní trouba
 tile.railcraft.machine.alpha.steam.oven.tip=-Steam Oven-\n Multi-blok: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Automatický paromet
 tile.railcraft.machine.steam_trap.name=Manuální paromet
 tile.railcraft.machine.tank_water.name=Plášť vodní nádrže
 tile.railcraft.machine.tank_water.tip=-Water Tank Siding-\n Multi-blok: 3x3x3 (dutý)
-tile.railcraft.machine.alpha.trade.station.name=Obchodní stanice
+tile.railcraft.machine.trade_station.name=Obchodní stanice
 tile.railcraft.machine.alpha.turbine.name=Kryt parní turbíny
 tile.railcraft.machine.alpha.turbine.tip=-Steam Turbine Housing-\n Multi-blok: 3x2x2\n Generuje elektřinu z páry\n Výstupní materiál je voda\n Vyžaduje Rotor turbíny
 
@@ -1087,7 +1087,7 @@ tile.railcraft.machine.feed_station.tip=-Feed Station-
 tile.railcraft.machine.rolling_machine.tip=-Rolling Machine-\n vyrábí kolejnice, kovové tyče,\n recykluje koleje
 tile.railcraft.machine.steam_trap.auto.tip=-Automated Steam Trap-
 tile.railcraft.machine.steam_trap.tip=-Manual Steam Trap-
-tile.railcraft.machine.alpha.smoker.tip=-Smoker-\n pro vypnutí použij Rudit
-tile.railcraft.machine.alpha.trade.station.tip=-Trade Station-
+tile.railcraft.machine.smoker.tip=-Smoker-\n pro vypnutí použij Rudit
+tile.railcraft.machine.trade_station.tip=-Trade Station-
 tile.railcraft.track.force.tip=-Force Track-
 tile.railcraft.track.junction.tip=-Junction Track-\n Nebezpečí srážky vlaků

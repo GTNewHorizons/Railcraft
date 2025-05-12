@@ -498,7 +498,7 @@ railcraft.gui.track.locking.mode.lockdown=Lezárás
 railcraft.gui.track.priming.fuse=Egybeolvadás = @d másodperc
 railcraft.gui.track.launcher.force=Érvényesítés = @d
 
-railcraft.gui.trade.station.dice.tip=Véletlenszerű kereskedelem
+railcraft.gui.trade_station.dice.tip=Véletlenszerű kereskedelem
 
 railcraft.gui.tuner.abandon.chunk=Az irányító nem betöltött chunk-ban van, ezért a kapcsolat megszűnik
 railcraft.gui.tuner.abandon.gone=Az irányító már nem létezik, kapcsolat megszüntetése
@@ -652,14 +652,14 @@ tile.railcraft.machine.feed_station.name=Feed Station
 tile.railcraft.machine.rock_crusher.name=Rock Crusher
 tile.railcraft.machine.rock_crusher.tip=Multi-Block: 3x2x2
 tile.railcraft.machine.rolling_machine.name=Rolling Machine
-tile.railcraft.machine.alpha.smoker.name=Smoker
+tile.railcraft.machine.smoker.name=Smoker
 tile.railcraft.machine.alpha.steam.oven.name=Steam Oven
 tile.railcraft.machine.alpha.steam.oven.tip=Multi-Block: 2x2x2
 tile.railcraft.machine.steam_trap.auto.name=Automated Steam Trap
 tile.railcraft.machine.steam_trap.name=Manual Steam Trap
 tile.railcraft.machine.tank_water.name=Water Tank Siding
 tile.railcraft.machine.tank_water.tip=Multi-Block: 3x3x3 (Hollow)
-tile.railcraft.machine.alpha.trade.station.name=Trade Station
+tile.railcraft.machine.trade_station.name=Trade Station
 tile.railcraft.machine.alpha.turbine.name=Steam Turbine Housing
 tile.railcraft.machine.alpha.turbine.tip=Multi-Block: 3x2x2\n Generates Electricity from Steam\nOutputs water to the bottom\n Requires a Turbine Rotor
 

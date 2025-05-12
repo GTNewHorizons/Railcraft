@@ -8,7 +8,7 @@ package mods.railcraft.common.gui.containers;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 
-import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
+import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 

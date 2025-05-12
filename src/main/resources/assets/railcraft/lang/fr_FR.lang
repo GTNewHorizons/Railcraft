@@ -419,7 +419,7 @@ railcraft.gui.track.locking.mode.holding.train=Train retenu
 railcraft.gui.track.locking.mode.boarding=Embarquement
 railcraft.gui.track.locking.mode.boarding.train=Embarquement train
 railcraft.gui.track.priming.fuse=Fusible = @d tics
-railcraft.gui.trade.station.dice.tip=Commerce aléatoire
+railcraft.gui.trade_station.dice.tip=Commerce aléatoire
 railcraft.gui.tuner.start=Commencer le jumelage de %s avec un récepteur
 railcraft.gui.tuner.stop=Arrêté le jumelage de %s avec un récepteur
 railcraft.gui.tuner.success=%1$s jumelé avec succès à %2$s
@@ -455,12 +455,12 @@ tile.railcraft.machine.engraving_bench.name=Gravure banquette
 tile.railcraft.machine.feed_station.name=Station à nourriture
 tile.railcraft.machine.rock_crusher.name=Concasseur de roche
 tile.railcraft.machine.rolling_machine.name=Machine à roulage
-tile.railcraft.machine.alpha.smoker.name=Fumeur
+tile.railcraft.machine.smoker.name=Fumeur
 tile.railcraft.machine.alpha.steam.oven.name=Four à vapeur
 tile.railcraft.machine.steam_trap.name=Purgeur de vapeur manuel
 tile.railcraft.machine.steam_trap.auto.name=Purgeur de vapeur automatique
 tile.railcraft.machine.tank_water.name=Revêtement de réservoir d'eau
-tile.railcraft.machine.alpha.trade.station.name=Station de commerce
+tile.railcraft.machine.trade_station.name=Station de commerce
 tile.railcraft.machine.alpha.turbine.name=Emplacement pour turbine à vapeur
 
 tile.railcraft.machine.anchor.sentinel.name=Ancre sentinel

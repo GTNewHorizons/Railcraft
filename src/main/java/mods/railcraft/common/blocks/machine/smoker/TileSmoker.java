@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.smoker;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,7 +16,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
@@ -34,8 +35,8 @@ public class TileSmoker extends TileMachineBase {
     private boolean powered;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.SMOKER;
+    public IMachine getMachineType() {
+        return Machines.SMOKER;
     }
 
     @Override

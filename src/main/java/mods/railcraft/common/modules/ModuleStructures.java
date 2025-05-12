@@ -28,8 +28,8 @@ import mods.railcraft.common.blocks.aesthetics.slab.BlockFactorySlab;
 import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockFactoryStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -100,9 +100,9 @@ public class ModuleStructures extends RailcraftModule {
         }
 
         RailcraftBlocks.registerBlockMachineAlpha();
-        EnumMachineAlpha alpha = EnumMachineAlpha.SMOKER;
-        if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
-            ItemStack stack = alpha.getItem();
+        Machine smoker = Machines.SMOKER;
+        if (smoker.isAvailable()) {
+            ItemStack stack = smoker.getItem();
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " N ",

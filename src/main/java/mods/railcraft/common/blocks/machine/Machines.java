@@ -31,6 +31,7 @@ import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEm
 import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
+import mods.railcraft.common.blocks.machine.smoker.TileSmoker;
 import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapAuto;
 import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapManual;
@@ -41,6 +42,7 @@ import mods.railcraft.common.blocks.machine.tank.TileTankGauge;
 import mods.railcraft.common.blocks.machine.tank.TileTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileTankWall;
 import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
+import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
@@ -50,6 +52,33 @@ public class Machines {
     public static final Map<TankMaterial, Machine> tankValves = new TreeMap<>();
     public static final Map<TankMaterial, Machine> tankGauges = new TreeMap<>();
 
+    public static Machine SMOKER = registerMachine(
+            Module.STRUCTURES,
+            RailcraftBlocks.registerBlockSmoker(),
+            TileSmoker.class,
+            "smoker",
+            3,
+            1,
+            0,
+            1,
+            2,
+            2,
+            2,
+            2);
+
+    public static Machine TRADE_STATION = registerMachine(
+            Module.AUTOMATION,
+            RailcraftBlocks.registerBlockTradeStation(),
+            TileTradeStation.class,
+            "trade_station",
+            3,
+            1,
+            0,
+            0,
+            1,
+            1,
+            2,
+            1);
     public static Machine COKE_OVEN = registerMachine(
             Module.FACTORY,
             RailcraftBlocks.registerBlockCokeOven(),
