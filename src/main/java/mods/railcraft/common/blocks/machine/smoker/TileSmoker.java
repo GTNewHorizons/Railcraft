@@ -16,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -35,7 +35,7 @@ public class TileSmoker extends TileMachineBase {
     private boolean powered;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.SMOKER;
     }
 

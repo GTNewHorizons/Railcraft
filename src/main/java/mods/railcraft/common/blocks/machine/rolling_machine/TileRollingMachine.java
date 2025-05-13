@@ -24,7 +24,7 @@ import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -83,7 +83,7 @@ public class TileRollingMachine extends TileMachineBase implements IEnergyHandle
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ROLLING_MACHINE;
     }
 

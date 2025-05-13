@@ -18,7 +18,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -34,7 +34,7 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
     private TileEntity emitterDelegate;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ENERGY_UNLOADER;
     }
 

@@ -48,12 +48,12 @@ public class ModuleTrain extends RailcraftModule {
             ItemStack crowbar = ItemCrowbar.getItem();
             crowbar.setItemDamage(-1);
             CraftingPlugin.addShapedRecipe(
-                    trainDispenser.getItem(),
+                    trainDispenser.getItem(1),
                     "rcr",
                     "cdc",
                     "rcr",
                     'd',
-                    Machines.CART_DISPENSER.getItem(),
+                    Machines.CART_DISPENSER.getItem(1),
                     'c',
                     crowbar,
                     'r',

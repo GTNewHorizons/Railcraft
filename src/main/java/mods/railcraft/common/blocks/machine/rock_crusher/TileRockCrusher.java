@@ -33,7 +33,7 @@ import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -139,7 +139,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ROCK_CRUSHER;
     }
 

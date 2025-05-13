@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.fuel.FuelManager;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -68,7 +68,7 @@ public class TileBoilerFireboxFluid extends TileBoilerFirebox {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.BOILER_FIREBOX_LIQUID;
     }
 

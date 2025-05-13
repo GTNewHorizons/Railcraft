@@ -26,7 +26,7 @@ import buildcraft.api.statements.IActionExternal;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -77,7 +77,7 @@ public class TileEngravingBench extends TileMachineItem
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ENGRAVING_BENCH;
     }
 

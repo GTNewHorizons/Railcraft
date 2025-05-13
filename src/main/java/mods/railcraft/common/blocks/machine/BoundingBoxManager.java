@@ -17,34 +17,34 @@ import net.minecraft.world.World;
  */
 public class BoundingBoxManager {
 
-    private static final Map<IMachine, BoundingBox> collisionBoxes = new HashMap<IMachine, BoundingBox>();
-    private static final Map<IMachine, BoundingBox> selectionBoxes = new HashMap<IMachine, BoundingBox>();
+    private static final Map<Machine, BoundingBox> collisionBoxes = new HashMap<Machine, BoundingBox>();
+    private static final Map<Machine, BoundingBox> selectionBoxes = new HashMap<Machine, BoundingBox>();
     public static final BoundingBox DEFAULT = new BoundingBox();
 
     private BoundingBoxManager() {}
 
-    public static AxisAlignedBB getCollisionBox(World world, int x, int y, int z, IMachine machine) {
+    public static AxisAlignedBB getCollisionBox(World world, int x, int y, int z, Machine machine) {
         BoundingBox box = collisionBoxes.get(machine);
         if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
-    public static AxisAlignedBB getSelectionBox(World world, int x, int y, int z, IMachine machine) {
+    public static AxisAlignedBB getSelectionBox(World world, int x, int y, int z, Machine machine) {
         BoundingBox box = selectionBoxes.get(machine);
         if (box == null) box = DEFAULT;
         return box.getBox(world, x, y, z);
     }
 
-    public static void registerBoundingBox(IMachine machine, BoundingBox box) {
+    public static void registerBoundingBox(Machine machine, BoundingBox box) {
         registerCollisionBoundingBox(machine, box);
         registerSelectionBoundingBox(machine, box);
     }
 
-    public static void registerCollisionBoundingBox(IMachine machine, BoundingBox box) {
+    public static void registerCollisionBoundingBox(Machine machine, BoundingBox box) {
         collisionBoxes.put(machine, box);
     }
 
-    public static void registerSelectionBoundingBox(IMachine machine, BoundingBox box) {
+    public static void registerSelectionBoundingBox(Machine machine, BoundingBox box) {
         selectionBoxes.put(machine, box);
     }
 

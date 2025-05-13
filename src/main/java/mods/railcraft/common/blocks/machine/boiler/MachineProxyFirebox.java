@@ -1,7 +1,5 @@
 package mods.railcraft.common.blocks.machine.boiler;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-
 import mods.railcraft.common.blocks.machine.IMachineProxy;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
@@ -18,11 +16,6 @@ public class MachineProxyFirebox implements IMachineProxy {
     @Override
     public Machine getMachine() {
         return getMachine(fireboxType);
-    }
-
-    @Override
-    public void registerIcons(IIconRegister iconRegister) {
-        getMachine().registerIcons(iconRegister);
     }
 
     private Machine getMachine(FireboxType fireboxType) {

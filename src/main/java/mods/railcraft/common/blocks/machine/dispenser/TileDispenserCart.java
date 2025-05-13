@@ -24,7 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.carts.CartUtils;
@@ -48,7 +48,7 @@ public class TileDispenserCart extends TileMachineItem {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.CART_DISPENSER;
     }
 

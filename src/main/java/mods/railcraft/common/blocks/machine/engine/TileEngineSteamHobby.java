@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -76,7 +76,7 @@ public class TileEngineSteamHobby extends TileEngineSteam implements ISidedInven
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ENGINE_STEAM_HOBBY;
     }
 

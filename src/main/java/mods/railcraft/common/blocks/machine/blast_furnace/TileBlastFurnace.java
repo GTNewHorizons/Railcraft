@@ -29,7 +29,7 @@ import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -129,7 +129,7 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.BLAST_FURNACE;
     }
 

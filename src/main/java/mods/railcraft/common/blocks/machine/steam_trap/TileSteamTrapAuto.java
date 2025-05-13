@@ -7,7 +7,7 @@ package mods.railcraft.common.blocks.machine.steam_trap;
 
 import net.minecraft.util.IIcon;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 
 /**
@@ -17,7 +17,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class TileSteamTrapAuto extends TileSteamTrap {
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.STEAM_TRAP_AUTO;
     }
 

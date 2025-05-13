@@ -46,7 +46,7 @@ public class RockCrusherPlugin implements RecipeProvider {
     @Override
     public void generateRecipes(RecipeGenerator generator) {
         if (Game.isGTNH) return;
-        ItemStack crafter = Machines.ROCK_CRUSHER.getItem();
+        ItemStack crafter = Machines.ROCK_CRUSHER.getItem(1);
         if (crafter != null) {
             RecipeTemplate template = generator.createRecipeTemplate(
                     slots,

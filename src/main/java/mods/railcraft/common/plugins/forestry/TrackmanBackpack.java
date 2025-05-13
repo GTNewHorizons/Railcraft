@@ -70,9 +70,9 @@ public class TrackmanBackpack extends BaseBackpack {
         addItem(FluidContainers.getCreosoteOilRefactory());
         addItem(FluidContainers.getCreosoteOilWax());
 
-        addItem(Machines.WORLD_ANCHOR.getItem());
-        addItem(Machines.PERSONAL_ANCHOR.getItem());
-        addItem(Machines.SENTINEL.getItem());
+        addItem(Machines.WORLD_ANCHOR.getItem(1));
+        addItem(Machines.PERSONAL_ANCHOR.getItem(1));
+        addItem(Machines.SENTINEL.getItem(1));
 
         addItem(RailcraftItem.rail);
         addItem(RailcraftItem.railbed);

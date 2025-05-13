@@ -5,7 +5,7 @@
  */
 package mods.railcraft.common.blocks.machine.engine;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.steam.Steam;
 
@@ -20,7 +20,7 @@ public class TileEngineSteamHigh extends TileEngineSteam {
     public TileEngineSteamHigh() {}
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ENGINE_STEAM_HIGH;
     }
 

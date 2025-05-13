@@ -1,8 +1,5 @@
 package mods.railcraft.common.blocks.machine.boiler;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-
-import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.IMachineProxy;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
@@ -17,13 +14,8 @@ public class MachineProxyBoilerTank implements IMachineProxy {
     }
 
     @Override
-    public IMachine getMachine() {
+    public Machine getMachine() {
         return getMachine(pressure);
-    }
-
-    @Override
-    public void registerIcons(IIconRegister iconRegister) {
-        getMachine(this.pressure).registerIcons(iconRegister);
     }
 
     private Machine getMachine(TankPressure pressure) {

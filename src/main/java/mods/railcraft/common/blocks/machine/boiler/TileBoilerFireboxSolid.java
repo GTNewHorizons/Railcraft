@@ -17,7 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -94,7 +94,7 @@ public class TileBoilerFireboxSolid extends TileBoilerFirebox implements INeedsF
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.BOILER_FIREBOX_SOLID;
     }
 

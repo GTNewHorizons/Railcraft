@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
@@ -26,7 +26,7 @@ import mods.railcraft.common.plugins.forge.ChatPlugin;
 public class TileSentinel extends TileMachineBase {
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.SENTINEL;
     }
 

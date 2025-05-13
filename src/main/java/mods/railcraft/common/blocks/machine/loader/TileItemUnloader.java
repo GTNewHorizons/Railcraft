@@ -20,7 +20,7 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -66,7 +66,7 @@ public class TileItemUnloader extends TileLoaderItemBase {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ITEM_UNLOADER;
     }
 

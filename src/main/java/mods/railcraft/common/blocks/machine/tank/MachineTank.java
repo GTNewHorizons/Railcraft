@@ -19,7 +19,7 @@ public class MachineTank extends Machine {
     @Override
     public TileEntity getTileEntity() {
         try {
-            return getTileClass().getDeclaredConstructor(TankMaterial.class).newInstance(material);
+            return tile.getDeclaredConstructor(TankMaterial.class).newInstance(material);
         } catch (Exception ex) {}
         return null;
     }

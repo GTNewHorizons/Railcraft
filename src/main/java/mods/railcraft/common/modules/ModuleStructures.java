@@ -101,7 +101,7 @@ public class ModuleStructures extends RailcraftModule {
 
         Machine smoker = Machines.SMOKER;
         if (smoker.isAvailable()) {
-            ItemStack stack = smoker.getItem();
+            ItemStack stack = smoker.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " N ",

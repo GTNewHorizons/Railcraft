@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -73,7 +73,7 @@ public class TileElectricFeederAdmin extends TileMachineBase implements IElectri
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ELECTRIC_FEEDER_ADMIN;
     }
 

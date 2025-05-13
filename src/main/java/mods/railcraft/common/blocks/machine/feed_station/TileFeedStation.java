@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.ai.EntityAIMateBreeding;
@@ -57,7 +57,7 @@ public class TileFeedStation extends TileMachineItem implements ITileExtraDataHa
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.FEED_STATION;
     }
 

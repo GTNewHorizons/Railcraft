@@ -23,7 +23,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.ai.EntityAIMoveToBlock;
@@ -63,7 +63,7 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.TRADE_STATION;
     }
 

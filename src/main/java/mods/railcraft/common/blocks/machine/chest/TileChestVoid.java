@@ -7,7 +7,7 @@ package mods.railcraft.common.blocks.machine.chest;
 
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.misc.Game;
 
@@ -20,7 +20,7 @@ public class TileChestVoid extends TileChestRailcraft {
     private static final int TICK_PER_VOID = 8;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.VOID_CHEST;
     }
 

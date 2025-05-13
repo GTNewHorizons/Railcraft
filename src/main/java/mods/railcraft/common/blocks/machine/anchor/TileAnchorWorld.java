@@ -34,7 +34,7 @@ import com.google.common.collect.MapMaker;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
@@ -87,7 +87,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.WORLD_ANCHOR;
     }
 
@@ -229,7 +229,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     @Override
     public ArrayList<ItemStack> getDrops(int fortune) {
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-        ItemStack drop = getMachineType().getItem();
+        ItemStack drop = getMachineType().getItem(1);
         if (needsFuel() && hasFuel()) {
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setLong("fuel", fuel);

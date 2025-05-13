@@ -149,7 +149,7 @@ public class BlockFrame extends Block implements IPostConnection {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
             float hitY, float hitZ) {
         ItemStack current = player.getCurrentEquippedItem();
-        if (current != null && InvTools.isItemEqualIgnoreNBT(current, Machines.WIRE.getItem()))
+        if (current != null && InvTools.isItemEqualIgnoreNBT(current, Machines.WIRE.getItem(1)))
             if (WorldPlugin.setBlock(world, x, y, z, Machines.WIRE.getBlock(), 0, 2)) {
                 TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
                 if (tile instanceof TileWire wire) {

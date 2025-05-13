@@ -5,24 +5,11 @@
  */
 package mods.railcraft.common.blocks.machine;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public interface IMachineProxy {
 
-    IMachine getMachine();
-
-    default List<? extends IMachine> getCreativeList() {
-        List<IMachine> list = new ArrayList<IMachine>();
-        list.add(getMachine());
-        return list;
-    };
-
-    void registerIcons(IIconRegister iconRegister);
+    Machine getMachine();
 }

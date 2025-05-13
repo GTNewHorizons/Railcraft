@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.Optional;
 import gregtech.api.interfaces.tileentity.IEnergyConnected;
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
@@ -39,7 +39,7 @@ public class TileElectricFeeder extends TileMachineBase implements IElectricGrid
     private boolean addedToIC2EnergyNet;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ELECTRIC_FEEDER;
     }
 

@@ -42,7 +42,7 @@ import mods.railcraft.api.helpers.Helpers;
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.client.sounds.SoundLimiterTicker;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
@@ -370,7 +370,7 @@ public class ModuleCore extends RailcraftModule {
             if (type.isEnabled()) RailcraftRegistry.register(type.getItem());
         }
 
-        Set<IMachine> machines = new HashSet<IMachine>();
+        Set<Machine> machines = new HashSet<Machine>();
         machines.add(Machines.WORLD_ANCHOR);
         machines.add(Machines.PERSONAL_ANCHOR);
         machines.add(Machines.ADMIN_ANCHOR);
@@ -412,8 +412,8 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.RF_LOADER);
         machines.add(Machines.RF_UNLOADER);
 
-        for (IMachine machine : machines) {
-            if (machine != null && machine.isAvailable()) RailcraftRegistry.register(machine.getItem());
+        for (Machine machine : machines) {
+            if (machine != null && machine.isAvailable()) RailcraftRegistry.register(machine.getItem(1));
         }
     }
 

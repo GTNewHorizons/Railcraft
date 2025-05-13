@@ -27,7 +27,7 @@ import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.common.carts.EntityLocomotiveSteam;
@@ -66,7 +66,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.FLUID_LOADER;
     }
 

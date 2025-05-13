@@ -73,7 +73,7 @@ public class ModuleFactory extends RailcraftModule {
 
         Machine cokeOven = Machines.COKE_OVEN;
         if (cokeOven != null) {
-            ItemStack stack = cokeOven.getItem();
+            ItemStack stack = cokeOven.getItem(1);
             CraftingPlugin.addShapedRecipe(stack, "MBM", "BMB", "MBM", 'B', "ingotBrick", 'M', "sand");
 
             if (RailcraftToolItems.getCoalCoke() != null) RailcraftCraftingManager.cokeOven.addRecipe(
@@ -186,7 +186,7 @@ public class ModuleFactory extends RailcraftModule {
 
                 if (Machines.COKE_OVEN.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(Machines.COKE_OVEN.getItem(), true, false);
+                            .createNewRecipe(Machines.COKE_OVEN.getItem(1), true, false);
                     recipe.addOutput(new ItemStack(Items.brick, 3), 1.0f);
                     recipe.addOutput(new ItemStack(Items.brick), 0.5f);
                     recipe.addOutput(new ItemStack(Blocks.sand), 0.25f);
@@ -198,7 +198,7 @@ public class ModuleFactory extends RailcraftModule {
 
                 Machine blastFurnace = Machines.BLAST_FURNACE;
                 if (blastFurnace != null && blastFurnace.getBlock() != null) {
-                    recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(blastFurnace.getItem(), true, false);
+                    recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(blastFurnace.getItem(1), true, false);
                     recipe.addOutput(new ItemStack(Blocks.nether_brick), 0.75f);
                     recipe.addOutput(new ItemStack(Blocks.soul_sand), 0.75f);
                     recipe.addOutput(new ItemStack(Items.blaze_powder), 0.05f);
@@ -206,21 +206,21 @@ public class ModuleFactory extends RailcraftModule {
 
                 if (Machines.WORLD_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(Machines.WORLD_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.WORLD_ANCHOR.getItem(1), true, false);
                     recipe.addOutput(new ItemStack(Items.diamond), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
                 if (Machines.PERSONAL_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(Machines.PERSONAL_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.PERSONAL_ANCHOR.getItem(1), true, false);
                     recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
                 if (Machines.PASSIVE_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(Machines.PASSIVE_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.PASSIVE_ANCHOR.getItem(1), true, false);
                     // recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
                     addAnchorOutputs(recipe);
                 }
@@ -340,7 +340,7 @@ public class ModuleFactory extends RailcraftModule {
 
         Machine rollingMachine = Machines.ROLLING_MACHINE;
         if (rollingMachine != null) {
-            ItemStack stack = rollingMachine.getItem();
+            ItemStack stack = rollingMachine.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "IPI",
@@ -356,7 +356,7 @@ public class ModuleFactory extends RailcraftModule {
 
         Machine metalsChest = Machines.METALS_CHEST;
         if (metalsChest.isAvailable()) CraftingPlugin.addShapedRecipe(
-                metalsChest.getItem(),
+                metalsChest.getItem(1),
                 "GPG",
                 "PAP",
                 "GPG",
@@ -449,7 +449,7 @@ public class ModuleFactory extends RailcraftModule {
                         Items.magma_cream);
             }
             if (Machines.COKE_OVEN.isAvailable() && EnumBrick.SANDY.getBlock() != null) {
-                ItemStack stack = Machines.COKE_OVEN.getItem();
+                ItemStack stack = Machines.COKE_OVEN.getItem(1);
                 CraftingPlugin.addShapedRecipe(
                         stack,
                         " B ",

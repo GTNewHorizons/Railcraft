@@ -21,7 +21,7 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -229,7 +229,7 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.FORCE_TRACK_EMITTER;
     }
 

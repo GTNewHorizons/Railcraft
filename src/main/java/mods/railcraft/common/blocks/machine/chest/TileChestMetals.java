@@ -11,7 +11,7 @@ import java.util.Map;
 import net.minecraft.inventory.IInventory;
 
 import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.items.Metal;
 import mods.railcraft.common.util.inventory.filters.ComplexStackFilter;
@@ -135,7 +135,7 @@ public class TileChestMetals extends TileChestRailcraft {
     private Target target = Target.NUGGET_CONDENSE;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.METALS_CHEST;
     }
 

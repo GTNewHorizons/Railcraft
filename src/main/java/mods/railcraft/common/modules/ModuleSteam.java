@@ -36,7 +36,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = engine.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        engine.getItem(),
+                        engine.getItem(1),
                         "NNN",
                         " C ",
                         "GPG",
@@ -56,7 +56,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = engine.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        engine.getItem(),
+                        engine.getItem(1),
                         "III",
                         " C ",
                         "GPG",
@@ -79,7 +79,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = engine.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        engine.getItem(),
+                        engine.getItem(1),
                         "III",
                         " C ",
                         "GPG",
@@ -99,7 +99,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = firebox.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        firebox.getItem(),
+                        firebox.getItem(1),
                         "BBB",
                         "BCB",
                         "BFB",
@@ -117,7 +117,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = firebox.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        firebox.getItem(),
+                        firebox.getItem(1),
                         "PBP",
                         "GCG",
                         "PFP",
@@ -139,7 +139,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.LOW);
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        boiler.getItem(),
+                        boiler.getItem(1),
                         "P",
                         "P",
                         'P',
@@ -155,7 +155,7 @@ public class ModuleSteam extends RailcraftModule {
             Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.HIGH);
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
-                        boiler.getItem(),
+                        boiler.getItem(1),
                         "P",
                         "P",
                         'P',
@@ -168,7 +168,7 @@ public class ModuleSteam extends RailcraftModule {
     public void initSecond() {
         Machine steamTrapManual = Machines.STEAM_TRAP_MANUAL;
         if (steamTrapManual != null) {
-            ItemStack stack = steamTrapManual.getItem();
+            ItemStack stack = steamTrapManual.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " G ",
@@ -184,7 +184,7 @@ public class ModuleSteam extends RailcraftModule {
 
         Machine steamTrapAuto = Machines.STEAM_TRAP_AUTO;
         if (steamTrapAuto != null) {
-            ItemStack stack = steamTrapAuto.getItem();
+            ItemStack stack = steamTrapAuto.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     " G ",
@@ -200,16 +200,16 @@ public class ModuleSteam extends RailcraftModule {
                     new ItemStack(Blocks.dispenser));
             if (Machines.STEAM_TRAP_MANUAL.isAvailable()) {
                 CraftingPlugin
-                        .addShapedRecipe(stack, "RTR", 'T', Machines.STEAM_TRAP_MANUAL.getItem(), 'R', "dustRedstone");
-                CraftingPlugin.addShapelessRecipe(Machines.STEAM_TRAP_MANUAL.getItem(), stack);
+                        .addShapedRecipe(stack, "RTR", 'T', Machines.STEAM_TRAP_MANUAL.getItem(1), 'R', "dustRedstone");
+                CraftingPlugin.addShapelessRecipe(Machines.STEAM_TRAP_MANUAL.getItem(1), stack);
             }
         }
     }
 
     private ItemStack getTankItem() {
         ItemStack tank;
-        if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
-        else if (Tanks.getWall(TankMaterial.IRON).isAvailable()) tank = Tanks.getWall(TankMaterial.IRON).getItem();
+        if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem(1);
+        else if (Tanks.getWall(TankMaterial.IRON).isAvailable()) tank = Tanks.getWall(TankMaterial.IRON).getItem(1);
         else tank = RailcraftItem.plate.getStack(1, EnumPlate.STEEL);
         if (tank == null) tank = RailcraftItem.ingot.getStack(1, ItemIngot.EnumIngot.STEEL);
         if (tank == null) tank = new ItemStack(Blocks.iron_block);

@@ -45,7 +45,7 @@ public class ModuleRF extends RailcraftModule {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    rfLoader.getItem(),
+                    rfLoader.getItem(1),
                     "RLR",
                     "LRL",
                     "RDR",
@@ -62,7 +62,7 @@ public class ModuleRF extends RailcraftModule {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    rfUnloader.getItem(),
+                    rfUnloader.getItem(1),
                     "RDR",
                     "LRL",
                     "RLR",

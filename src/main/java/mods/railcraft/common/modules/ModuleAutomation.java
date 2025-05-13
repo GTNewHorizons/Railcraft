@@ -177,11 +177,11 @@ public class ModuleAutomation extends RailcraftModule {
 
         Machine cartDispenser = Machines.CART_DISPENSER;
         if (cartDispenser != null)
-            CraftingPlugin.addShapedRecipe(cartDispenser.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
+            CraftingPlugin.addShapedRecipe(cartDispenser.getItem(1), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
 
         Machine feedStation = Machines.FEED_STATION;
         if (feedStation.isAvailable()) {
-            ItemStack stack = feedStation.getItem();
+            ItemStack stack = feedStation.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "PCP",
@@ -201,7 +201,7 @@ public class ModuleAutomation extends RailcraftModule {
 
         Machine tradeStation = Machines.TRADE_STATION;
         if (tradeStation != null) {
-            ItemStack stack = tradeStation.getItem();
+            ItemStack stack = tradeStation.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "SGS",

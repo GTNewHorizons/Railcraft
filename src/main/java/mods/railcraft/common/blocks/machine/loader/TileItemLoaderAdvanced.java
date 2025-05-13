@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.util.misc.MiscTools;
 
@@ -28,7 +28,7 @@ public class TileItemLoaderAdvanced extends TileItemLoader {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ITEM_LOADER_ADVANCED;
     }
 

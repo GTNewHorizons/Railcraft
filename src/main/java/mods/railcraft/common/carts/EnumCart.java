@@ -103,7 +103,8 @@ public enum EnumCart implements ICartType {
     public ItemStack getContents() {
         switch (this) {
             case TANK:
-                if (Tanks.getGauge(TankMaterial.IRON).isAvailable()) return Tanks.getGauge(TankMaterial.IRON).getItem();
+                if (Tanks.getGauge(TankMaterial.IRON).isAvailable())
+                    return Tanks.getGauge(TankMaterial.IRON).getItem(1);
             default: {
                 if (contents == null) return null;
                 return contents.copy();

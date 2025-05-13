@@ -50,17 +50,17 @@ public class ModuleLocomotives extends RailcraftModule {
             paintLocomotive(cart.getCartItem());
 
             ItemStack tank;
-            if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem();
+            if (Machines.BOILER_TANK_HIGH_PRESSURE.isAvailable()) tank = Machines.BOILER_TANK_HIGH_PRESSURE.getItem(1);
             else if (Machines.BOILER_TANK_LOW_PRESSURE.isAvailable())
-                tank = Machines.BOILER_TANK_LOW_PRESSURE.getItem();
-            else if (Tanks.getWall(TankMaterial.IRON).isAvailable()) tank = Tanks.getWall(TankMaterial.IRON).getItem();
+                tank = Machines.BOILER_TANK_LOW_PRESSURE.getItem(1);
+            else if (Tanks.getWall(TankMaterial.IRON).isAvailable()) tank = Tanks.getWall(TankMaterial.IRON).getItem(1);
             else if (RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL) != null)
                 tank = RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL);
             else tank = new ItemStack(Items.iron_ingot);
 
             ItemStack firebox;
-            if (Machines.BOILER_FIREBOX_SOLID.isAvailable()) firebox = Machines.BOILER_FIREBOX_SOLID.getItem();
-            else if (Machines.BLAST_FURNACE.isAvailable()) firebox = Machines.BLAST_FURNACE.getItem();
+            if (Machines.BOILER_FIREBOX_SOLID.isAvailable()) firebox = Machines.BOILER_FIREBOX_SOLID.getItem(1);
+            else if (Machines.BLAST_FURNACE.isAvailable()) firebox = Machines.BLAST_FURNACE.getItem(1);
             else firebox = new ItemStack(Blocks.furnace);
 
             CraftingPlugin.addShapedRecipe(
@@ -94,7 +94,7 @@ public class ModuleLocomotives extends RailcraftModule {
     @Override
     public void initSecond() {
         if (EnumCart.LOCO_ELECTRIC.isEnabled()) {
-            Object feederUnit = Machines.ELECTRIC_FEEDER.isAvailable() ? Machines.ELECTRIC_FEEDER.getItem()
+            Object feederUnit = Machines.ELECTRIC_FEEDER.isAvailable() ? Machines.ELECTRIC_FEEDER.getItem(1)
                     : "blockCopper";
             ItemStack cartStack = EnumCart.LOCO_ELECTRIC.getCartItem();
             ItemLocomotive.setItemColorData(cartStack, EnumColor.YELLOW, EnumColor.BLACK);

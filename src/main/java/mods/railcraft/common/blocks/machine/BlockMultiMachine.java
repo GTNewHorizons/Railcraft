@@ -80,14 +80,14 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
         return proxy;
     }
 
-    public IMachine getMachineType(World world, int x, int y, int z) {
+    public Machine getMachineType(World world, int x, int y, int z) {
         return proxy.getMachine();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        proxy.registerIcons(iconRegister);
+        proxy.getMachine().registerIcons(iconRegister);
     }
 
     @Override
@@ -287,8 +287,9 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (IMachine type : proxy.getCreativeList()) {
-            if (type.isAvailable()) list.add(type.getItem());
+        Machine type = proxy.getMachine();
+        if (type.isAvailable()) {
+            list.add(type.getItem(1));
         }
     }
 

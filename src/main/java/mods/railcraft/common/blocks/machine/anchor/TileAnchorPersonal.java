@@ -9,7 +9,7 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -27,7 +27,7 @@ public class TileAnchorPersonal extends TileAnchorWorld {
     private long ticksSincePlayerLogged;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.PERSONAL_ANCHOR;
     }
 

@@ -7,7 +7,7 @@ package mods.railcraft.common.blocks.machine.boiler;
 
 import net.minecraft.util.IIcon;
 
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 
 /**
@@ -21,7 +21,7 @@ public class TileBoilerTankHigh extends TileBoilerTank {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.BOILER_TANK_HIGH_PRESSURE;
     }
 

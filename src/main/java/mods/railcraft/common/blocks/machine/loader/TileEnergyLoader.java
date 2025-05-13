@@ -20,7 +20,7 @@ import cpw.mods.fml.common.Optional;
 import gregtech.api.interfaces.tileentity.IEnergyConnected;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -43,7 +43,7 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
     private TileEntity sinkDelegate;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.ENERGY_LOADER;
     }
 

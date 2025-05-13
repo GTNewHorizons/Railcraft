@@ -1,7 +1,5 @@
 package mods.railcraft.common.blocks.machine.engine;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-
 import mods.railcraft.common.blocks.machine.IMachineProxy;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
@@ -21,10 +19,5 @@ public class MachineProxyEngine implements IMachineProxy {
             case LOW -> Machines.ENGINE_STEAM_LOW;
             case HIGH -> Machines.ENGINE_STEAM_HIGH;
         };
-    }
-
-    @Override
-    public void registerIcons(IIconRegister iconRegister) {
-        getMachine().registerIcons(iconRegister);
     }
 }

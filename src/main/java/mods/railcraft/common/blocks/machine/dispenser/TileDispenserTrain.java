@@ -19,7 +19,7 @@ import net.minecraft.world.WorldServer;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.api.core.items.IStackFilter;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.carts.ItemCartAnchor;
@@ -49,7 +49,7 @@ public class TileDispenserTrain extends TileDispenserCart {
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.TRAIN_DISPENSER;
     }
 

@@ -154,7 +154,7 @@ public class ModuleIC2 extends RailcraftModule {
         if (battery != null && machine != null) {
             Machine eLoader = Machines.ENERGY_LOADER;
             if (eLoader != null) Recipes.advRecipes.addRecipe(
-                    eLoader.getItem(),
+                    eLoader.getItem(1),
                     "BLB",
                     "BIB",
                     "BDB",
@@ -169,7 +169,7 @@ public class ModuleIC2 extends RailcraftModule {
 
             Machine eUnloader = Machines.ENERGY_UNLOADER;
             if (eUnloader != null) Recipes.advRecipes.addRecipe(
-                    eUnloader.getItem(),
+                    eUnloader.getItem(1),
                     "BDB",
                     "BIB",
                     "BLB",

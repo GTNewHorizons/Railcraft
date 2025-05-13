@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.electricity.IElectricGrid;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -59,7 +59,7 @@ public class TileFluxTransformer extends TileMultiBlock implements IElectricGrid
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.FLUX_TRANSFORMER;
     }
 

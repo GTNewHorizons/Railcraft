@@ -36,7 +36,7 @@ public class CokeOvenPlugin implements RecipeProvider {
 
     @Override
     public void generateRecipes(RecipeGenerator generator) {
-        ItemStack oven = Machines.COKE_OVEN.getItem();
+        ItemStack oven = Machines.COKE_OVEN.getItem(1);
         if (oven != null) {
             RecipeTemplate template = generator.createRecipeTemplate(
                     slots,

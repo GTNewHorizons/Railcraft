@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyReceiver;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EntityCartRF;
 import mods.railcraft.common.gui.EnumGui;
@@ -32,7 +32,7 @@ public class TileRFLoader extends TileRFLoaderBase implements IGuiReturnHandler,
     private boolean waitIfEmpty = true;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.RF_LOADER;
     }
 

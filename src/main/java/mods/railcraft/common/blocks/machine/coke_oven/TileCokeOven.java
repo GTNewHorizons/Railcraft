@@ -28,7 +28,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
@@ -103,7 +103,7 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     }
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.COKE_OVEN;
     }
 

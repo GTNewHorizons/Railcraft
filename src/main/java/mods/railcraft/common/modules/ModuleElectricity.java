@@ -53,7 +53,7 @@ public class ModuleElectricity extends RailcraftModule {
 
         Machine electric_feeder = Machines.ELECTRIC_FEEDER;
         if (electric_feeder != null) CraftingPlugin.addShapedRecipe(
-                electric_feeder.getItem(),
+                electric_feeder.getItem(1),
                 "PCP",
                 "CCC",
                 "PCP",
@@ -66,7 +66,7 @@ public class ModuleElectricity extends RailcraftModule {
 
         Machine forceTrackEmitter = Machines.FORCE_TRACK_EMITTER;
         if (forceTrackEmitter.getBlock() != null) CraftingPlugin.addShapedRecipe(
-                forceTrackEmitter.getItem(),
+                forceTrackEmitter.getItem(1),
                 "PCP",
                 "CDC",
                 "PCP",

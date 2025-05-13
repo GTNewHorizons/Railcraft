@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EntityCartRF;
 import mods.railcraft.common.gui.EnumGui;
@@ -34,7 +34,7 @@ public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider,
     private static final int AMOUNT_TO_PUSH_TO_TILES = 2000;
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.RF_UNLOADER;
     }
 

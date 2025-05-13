@@ -202,57 +202,57 @@ public class ThaumcraftPlugin {
                     new AspectList().add(Aspect.METAL, 8).add(Aspect.ORDER, 2).add(Aspect.MECHANISM, 4));
 
             addItemAspect(
-                    Machines.ROLLING_MACHINE.getItem(),
+                    Machines.ROLLING_MACHINE.getItem(1),
                     new AspectList().add(Aspect.CRAFT, 6).add(Aspect.MECHANISM, 2));
             addItemAspect(
-                    Machines.ROCK_CRUSHER.getItem(),
+                    Machines.ROCK_CRUSHER.getItem(1),
                     new AspectList().add(Aspect.CRAFT, 2).add(Aspect.MECHANISM, 4).add(Aspect.EARTH, 4)
                             .add(Aspect.EARTH, 4));
             if (Machines.FEED_STATION != null) {
                 addItemAspect(
-                        Machines.FEED_STATION.getItem(),
+                        Machines.FEED_STATION.getItem(1),
                         new AspectList().add(Aspect.CROP, 4).add(Aspect.HUNGER, 4).add(Aspect.MECHANISM, 2));
             }
             if (Machines.SMOKER.isAvailable()) {
                 addItemAspect(
-                        Machines.SMOKER.getItem(),
+                        Machines.SMOKER.getItem(1),
                         new AspectList().add(Aspect.FIRE, 4).add(Aspect.AIR, 4).add(Aspect.MECHANISM, 2));
             }
 
-            addItemAspect(Machines.STEAM_TRAP_MANUAL.getItem(), steamAspects.copy().add(Aspect.TRAP, 4));
+            addItemAspect(Machines.STEAM_TRAP_MANUAL.getItem(1), steamAspects.copy().add(Aspect.TRAP, 4));
             addItemAspect(
-                    Machines.STEAM_TRAP_AUTO.getItem(),
+                    Machines.STEAM_TRAP_AUTO.getItem(1),
                     steamAspects.copy().add(Aspect.TRAP, 4).add(Aspect.MIND, 2));
             Machine steamOven = Machines.STEAM_OVEN;
             if (steamOven != null) {
-                addItemAspect(steamOven.getItem(), steamAspects.copy().add(Aspect.FIRE, 3));
+                addItemAspect(steamOven.getItem(1), steamAspects.copy().add(Aspect.FIRE, 3));
             }
             Machine turbine = Machines.TURBINE;
             if (turbine != null) {
-                addItemAspect(turbine.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+                addItemAspect(turbine.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 4));
             }
 
-            addItemAspect(Machines.ADMIN_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(Machines.PERSONAL_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(Machines.WORLD_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(Machines.SENTINEL.getItem(), anchorAspects);
+            addItemAspect(Machines.ADMIN_ANCHOR.getItem(1), anchorAspects);
+            addItemAspect(Machines.PERSONAL_ANCHOR.getItem(1), anchorAspects);
+            addItemAspect(Machines.WORLD_ANCHOR.getItem(1), anchorAspects);
+            addItemAspect(Machines.SENTINEL.getItem(1), anchorAspects);
 
-            addItemAspect(Machines.BOILER_FIREBOX_SOLID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(Machines.BOILER_FIREBOX_LIQUID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(Machines.BOILER_TANK_LOW_PRESSURE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(Machines.BOILER_TANK_HIGH_PRESSURE.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));
-            addItemAspect(Machines.ENGINE_STEAM_HOBBY.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
-            addItemAspect(Machines.ENGINE_STEAM_LOW.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
-            addItemAspect(Machines.ENGINE_STEAM_HIGH.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.BOILER_FIREBOX_SOLID.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_FIREBOX_LIQUID.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_TANK_LOW_PRESSURE.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.BOILER_TANK_HIGH_PRESSURE.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 2));
+            addItemAspect(Machines.ENGINE_STEAM_HOBBY.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.ENGINE_STEAM_LOW.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 4));
+            addItemAspect(Machines.ENGINE_STEAM_HIGH.getItem(1), steamAspects.copy().add(Aspect.ENERGY, 4));
 
-            addItemAspect(Machines.TANK_WATER.getItem(), tankAspects.copy().add(Aspect.TREE, 2).add(Aspect.SLIME, 2));
+            addItemAspect(Machines.TANK_WATER.getItem(1), tankAspects.copy().add(Aspect.TREE, 2).add(Aspect.SLIME, 2));
 
             AspectList ironTankAspects = tankAspects.copy().add(Aspect.METAL, 2);
             for (TankMaterial mat : TankMaterial.values()) {
                 if (mat.module.isEnabled()) {
-                    addItemAspect(Tanks.getWall(mat).getItem(), ironTankAspects);
-                    addItemAspect(Tanks.getValve(mat).getItem(), ironTankAspects);
-                    addItemAspect(Tanks.getGauge(mat).getItem(), ironTankAspects);
+                    addItemAspect(Tanks.getWall(mat).getItem(1), ironTankAspects);
+                    addItemAspect(Tanks.getValve(mat).getItem(1), ironTankAspects);
+                    addItemAspect(Tanks.getGauge(mat).getItem(1), ironTankAspects);
                 }
             }
 

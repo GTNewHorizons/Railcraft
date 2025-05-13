@@ -20,7 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -47,7 +47,7 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
             ButtonState.values());
 
     @Override
-    public IMachine getMachineType() {
+    public Machine getMachineType() {
         return Machines.FLUID_UNLOADER;
     }
 
