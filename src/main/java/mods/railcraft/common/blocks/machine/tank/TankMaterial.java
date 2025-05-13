@@ -1,5 +1,8 @@
 package mods.railcraft.common.blocks.machine.tank;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
 import mods.railcraft.common.modules.ModuleManager.Module;
@@ -27,5 +30,12 @@ public enum TankMaterial {
         this.name = name;
         this.explosionResistance = explosionResistance;
         this.capacityPerBlock = capacityPerBlock;
+    }
+
+    public static final Map<String, TankMaterial> NAME_MAP = new HashMap<String, TankMaterial>();
+    static {
+        for (TankMaterial material : values()) {
+            NAME_MAP.put(material.name, material);
+        }
     }
 }

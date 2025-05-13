@@ -48,6 +48,12 @@ public class TileTankValve extends TileTankBase implements IFluidHandler, ICompa
 
     private boolean previousStructureValidity;
 
+    public TileTankValve() {
+        super();
+        fillTank.setHidden(true);
+        tankManager.add(fillTank);
+    }
+
     public TileTankValve(TankMaterial material) {
         super(material);
         fillTank.setHidden(true);

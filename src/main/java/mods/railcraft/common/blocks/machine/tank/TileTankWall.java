@@ -15,6 +15,10 @@ import mods.railcraft.common.blocks.machine.Machine;
  */
 public class TileTankWall extends TileTankBase {
 
+    public TileTankWall() {
+        super();
+    }
+
     public TileTankWall(TankMaterial material) {
         super(material);
     }

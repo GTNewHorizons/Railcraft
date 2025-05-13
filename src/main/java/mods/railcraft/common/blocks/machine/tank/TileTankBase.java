@@ -66,11 +66,15 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
     private int previousFluidColor;
     protected TankMaterial material;
 
-    protected TileTankBase(TankMaterial material) {
+    protected TileTankBase() {
         super(patterns);
-        this.material = material;
         inv = new StandaloneInventory(2, "gui.tank.iron", this);
         tankManager.add(tank);
+    }
+
+    protected TileTankBase(TankMaterial material) {
+        this();
+        this.material = material;
     }
 
     public static void placeMultiTank(World world, int x, int y, int z, int patternIndex, TankMaterial material,
@@ -481,6 +485,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         super.writeToNBT(data);
         tankManager.writeTanksToNBT(data);
         inv.writeToNBT("inv", data);
+        data.setString("material", material.name);
         data.setByte("color", (byte) color.ordinal());
     }
 
@@ -489,6 +494,7 @@ public abstract class TileTankBase extends TileMultiBlock implements ITankTile {
         super.readFromNBT(data);
         tankManager.readTanksFromNBT(data);
         inv.readFromNBT("inv", data);
+        material = TankMaterial.NAME_MAP.get(data.getString("material"));
         if (data.hasKey("color")) color = EnumColor.fromId(data.getByte("color"));
     }
 

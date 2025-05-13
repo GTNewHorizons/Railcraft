@@ -28,6 +28,10 @@ public class TileTankGauge extends TileTankBase {
     private int lightValue = 0;
     private final Timer timer = new Timer();
 
+    public TileTankGauge() {
+        super();
+    }
+
     public TileTankGauge(TankMaterial material) {
         super(material);
     }
