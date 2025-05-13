@@ -1,41 +1,32 @@
 package mods.railcraft.common.blocks.machine;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.TreeMap;
 
-import net.minecraft.block.Block;
-
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.anchor.MachineAnchor;
 import mods.railcraft.common.blocks.machine.anchor.TileAnchorAdmin;
 import mods.railcraft.common.blocks.machine.anchor.TileAnchorPassive;
 import mods.railcraft.common.blocks.machine.anchor.TileAnchorPersonal;
 import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
-import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
+import mods.railcraft.common.blocks.machine.blast_furnace.MachineBlastFurnace;
+import mods.railcraft.common.blocks.machine.boiler.MachineBoilerFirebox;
+import mods.railcraft.common.blocks.machine.boiler.MachineBoilerTank;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
-import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
-import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
-import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankHigh;
-import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankLow;
+import mods.railcraft.common.blocks.machine.chest.MachineChest;
 import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
 import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
-import mods.railcraft.common.blocks.machine.coke_oven.TileCokeOven;
+import mods.railcraft.common.blocks.machine.coke_oven.MachineCokeOven;
 import mods.railcraft.common.blocks.machine.dispenser.TileDispenserCart;
 import mods.railcraft.common.blocks.machine.dispenser.TileDispenserTrain;
-import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeeder;
-import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeederAdmin;
+import mods.railcraft.common.blocks.machine.electric_feeder.MachineElectricFeeder;
+import mods.railcraft.common.blocks.machine.electric_feeder.MachineElectricFeederAdmin;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHigh;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
-import mods.railcraft.common.blocks.machine.engine.TileEngineSteamLow;
-import mods.railcraft.common.blocks.machine.engraving_bench.TileEngravingBench;
-import mods.railcraft.common.blocks.machine.feed_station.TileFeedStation;
+import mods.railcraft.common.blocks.machine.engine.MachineSteamEngine;
+import mods.railcraft.common.blocks.machine.engraving_bench.MachineEngravingBench;
+import mods.railcraft.common.blocks.machine.feed_station.MachineFeedStation;
 import mods.railcraft.common.blocks.machine.flux_transformer.MachineFluxTransformer;
-import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
 import mods.railcraft.common.blocks.machine.force_track_emitter.MachineForceTrackEmitter;
-import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEmitter;
 import mods.railcraft.common.blocks.machine.loader.MachineItemLoader;
 import mods.railcraft.common.blocks.machine.loader.MachineItemUnloader;
 import mods.railcraft.common.blocks.machine.loader.MachineLiquidLoader;
@@ -44,637 +35,152 @@ import mods.railcraft.common.blocks.machine.loader.MachineRFLoader;
 import mods.railcraft.common.blocks.machine.loader.MachineSideLoader;
 import mods.railcraft.common.blocks.machine.loader.TileEnergyLoader;
 import mods.railcraft.common.blocks.machine.loader.TileEnergyUnloader;
-import mods.railcraft.common.blocks.machine.loader.TileFluidLoader;
-import mods.railcraft.common.blocks.machine.loader.TileFluidUnloader;
-import mods.railcraft.common.blocks.machine.loader.TileItemLoader;
 import mods.railcraft.common.blocks.machine.loader.TileItemLoaderAdvanced;
-import mods.railcraft.common.blocks.machine.loader.TileItemUnloader;
 import mods.railcraft.common.blocks.machine.loader.TileItemUnloaderAdvanced;
 import mods.railcraft.common.blocks.machine.loader.TileRFLoader;
 import mods.railcraft.common.blocks.machine.loader.TileRFUnloader;
-import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
-import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
-import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
-import mods.railcraft.common.blocks.machine.smoker.TileSmoker;
-import mods.railcraft.common.blocks.machine.steam_oven.TileSteamOven;
-import mods.railcraft.common.blocks.machine.steam_producer.TileAdminSteamProducer;
-import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapAuto;
-import mods.railcraft.common.blocks.machine.steam_trap.TileSteamTrapManual;
-import mods.railcraft.common.blocks.machine.tank.MachineTank;
+import mods.railcraft.common.blocks.machine.rock_crusher.MachineRockCrusher;
+import mods.railcraft.common.blocks.machine.rolling_machine.MachineRollingMachine;
+import mods.railcraft.common.blocks.machine.sentinel.MachineSentinel;
+import mods.railcraft.common.blocks.machine.smoker.MachineSmoker;
+import mods.railcraft.common.blocks.machine.steam_oven.MachineSteamOven;
+import mods.railcraft.common.blocks.machine.steam_producer.MachineAdminSteamProducer;
+import mods.railcraft.common.blocks.machine.steam_trap.MachineSteamTrapAuto;
+import mods.railcraft.common.blocks.machine.steam_trap.MachineSteamTrapManual;
+import mods.railcraft.common.blocks.machine.tank.MachineTankGauge;
+import mods.railcraft.common.blocks.machine.tank.MachineTankValve;
+import mods.railcraft.common.blocks.machine.tank.MachineTankWall;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
-import mods.railcraft.common.blocks.machine.tank.TileTankBase;
-import mods.railcraft.common.blocks.machine.tank.TileTankGauge;
-import mods.railcraft.common.blocks.machine.tank.TileTankValve;
-import mods.railcraft.common.blocks.machine.tank.TileTankWall;
-import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
-import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
-import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
-import mods.railcraft.common.blocks.machine.wire.TileWire;
+import mods.railcraft.common.blocks.machine.tank_water.MachineTankWater;
+import mods.railcraft.common.blocks.machine.trade_station.MachineTradeStation;
+import mods.railcraft.common.blocks.machine.turbine.MachineTurbine;
+import mods.railcraft.common.blocks.machine.wire.MachineWire;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.util.collections.ItemMap;
 
 public class Machines {
 
-    public static final Map<TankMaterial, Machine> tankWalls = new TreeMap<>();
-    public static final Map<TankMaterial, Machine> tankValves = new TreeMap<>();
-    public static final Map<TankMaterial, Machine> tankGauges = new TreeMap<>();
+    public static final Map<TankMaterial, Machine> tankWalls = createTankWalls();
+    public static final Map<TankMaterial, Machine> tankValves = createTankValves();
+    public static final Map<TankMaterial, Machine> tankGauges = createTankGauges();
 
-    public static Machine WORLD_ANCHOR = registerAnchor(
-            RailcraftBlocks.registerBlockAnchorWorld(),
+    public static final MachineAnchor WORLD_ANCHOR = new MachineAnchor(
             TileAnchorWorld.class,
             "world",
-            Optional.of(RailcraftConfig.anchorFuelWorld));
-    public static Machine PERSONAL_ANCHOR = registerAnchor(
-            RailcraftBlocks.registerBlockAnchorPersonal(),
+            3,
+            RailcraftConfig.anchorFuelWorld);
+    public static final MachineAnchor PERSONAL_ANCHOR = new MachineAnchor(
             TileAnchorPersonal.class,
             "personal",
-            Optional.of(RailcraftConfig.anchorFuelPersonal));
-    public static Machine ADMIN_ANCHOR = registerAnchor(
-            RailcraftBlocks.registerBlockAnchorAdmin(),
+            3,
+            RailcraftConfig.anchorFuelPersonal);
+    public static final MachineAnchor ADMIN_ANCHOR = new MachineAnchor(
             TileAnchorAdmin.class,
             "admin",
-            null);
-    public static Machine PASSIVE_ANCHOR = registerAnchor(
-            RailcraftBlocks.registerBlockAnchorPassive(),
+            2,
+            new ItemMap<Float>());
+    public static final MachineAnchor PASSIVE_ANCHOR = new MachineAnchor(
             TileAnchorPassive.class,
             "passive",
-            Optional.of(RailcraftConfig.anchorFuelPassive));
-    public static Machine TURBINE = registerMachine(
-            Module.ELECTRICITY,
-            RailcraftBlocks.registerBlockTurbine(),
-            TileSteamTurbine.class,
-            "turbine",
-            3,
-            3,
             2,
-            2,
-            2,
-            2,
-            6,
-            2,
-            0,
-            1,
-            3,
-            4,
-            5,
-            7);
+            RailcraftConfig.anchorFuelPassive);
+    public static final Machine SENTINEL = new MachineSentinel();
 
-    public static Machine STEAM_OVEN = registerMachine(
-            Module.FACTORY,
-            RailcraftBlocks.registerBlockSteamOven(),
-            TileSteamOven.class,
-            "steam_oven",
-            4,
-            2,
-            2,
-            2,
-            3,
-            3,
-            6,
-            3,
-            0,
-            1,
-            4,
-            5);
-    public static Machine SMOKER = registerMachine(
-            Module.STRUCTURES,
-            RailcraftBlocks.registerBlockSmoker(),
-            TileSmoker.class,
-            "smoker",
-            3,
-            1,
-            0,
-            1,
-            2,
-            2,
-            2,
-            2);
+    public static final Machine TURBINE = new MachineTurbine();
+    public static final Machine STEAM_OVEN = new MachineSteamOven();
+    public static final Machine SMOKER = new MachineSmoker();
+    public static final Machine TRADE_STATION = new MachineTradeStation();
+    public static final Machine COKE_OVEN = new MachineCokeOven();
+    public static final Machine ROLLING_MACHINE = new MachineRollingMachine();
+    public static final Machine STEAM_TRAP_MANUAL = new MachineSteamTrapManual();
+    public static final Machine STEAM_TRAP_AUTO = new MachineSteamTrapAuto();
+    public static final Machine FEED_STATION = new MachineFeedStation();
+    public static final Machine BLAST_FURNACE = new MachineBlastFurnace();
+    public static final Machine TANK_WATER = new MachineTankWater();
+    public static final Machine ROCK_CRUSHER = new MachineRockCrusher();
 
-    public static Machine TRADE_STATION = registerMachine(
-            Module.AUTOMATION,
-            RailcraftBlocks.registerBlockTradeStation(),
-            TileTradeStation.class,
-            "trade_station",
-            3,
-            1,
-            0,
-            0,
-            1,
-            1,
-            2,
-            1);
-    public static Machine COKE_OVEN = registerMachine(
-            Module.FACTORY,
-            RailcraftBlocks.registerBlockCokeOven(),
-            TileCokeOven.class,
-            "coke_oven",
-            3,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            1,
-            2);
-    public static Machine ROLLING_MACHINE = registerMachine(
-            Module.FACTORY,
-            RailcraftBlocks.registerBlockRollingMachine(),
-            TileRollingMachine.class,
-            "rolling_machine",
-            3,
-            1,
-            0,
-            1,
-            2,
-            2,
-            2,
-            2);
-    public static Machine STEAM_TRAP_MANUAL = registerMachine(
-            Module.EXTRAS,
-            RailcraftBlocks.registerBlockSteamTrap(false),
-            TileSteamTrapManual.class,
-            "steam_trap",
-            3,
-            1,
-            0,
-            2,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            2);
-    public static Machine STEAM_TRAP_AUTO = registerMachine(
-            Module.EXTRAS,
-            RailcraftBlocks.registerBlockSteamTrap(true),
-            TileSteamTrapAuto.class,
-            "steam_trap.auto",
-            4,
-            1,
-            0,
-            2,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            2,
-            3);
-    public static Machine FEED_STATION = registerMachine(
-            Module.AUTOMATION,
-            RailcraftBlocks.registerBlockFeedStation(),
-            TileFeedStation.class,
-            "feed_station",
-            2,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1);
+    public static final Machine BOILER_TANK_LOW_PRESSURE = new MachineBoilerTank(TankPressure.LOW);
+    public static final Machine BOILER_TANK_HIGH_PRESSURE = new MachineBoilerTank(TankPressure.HIGH);
+    public static final Machine BOILER_FIREBOX_SOLID = new MachineBoilerFirebox(FireboxType.SOLID);
+    public static final Machine BOILER_FIREBOX_LIQUID = new MachineBoilerFirebox(FireboxType.LIQUID);
 
-    public static Machine BLAST_FURNACE = registerMachine(
-            Module.FACTORY,
-            RailcraftBlocks.registerBlockBlastFurnace(),
-            TileBlastFurnace.class,
-            "blast_furnace",
-            3,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            1,
-            2);
+    public static final Machine ENGINE_STEAM_HOBBY = new MachineSteamEngine(EngineType.HOBBY);
+    public static final Machine ENGINE_STEAM_LOW = new MachineSteamEngine(EngineType.LOW);
+    public static final Machine ENGINE_STEAM_HIGH = new MachineSteamEngine(EngineType.HIGH);
 
-    public static Machine TANK_WATER = registerMachine(
+    public static final Machine VOID_CHEST = new MachineChest(TileChestVoid.class, "void");
+    public static final Machine METALS_CHEST = new MachineChest(TileChestMetals.class, "metals");
+
+    public static final Machine WIRE = new MachineWire();
+
+    public static final Machine ELECTRIC_FEEDER = new MachineElectricFeeder();
+    public static final Machine ELECTRIC_FEEDER_ADMIN = new MachineElectricFeederAdmin();
+
+    public static final Machine ADMIN_STEAM_PRODUCER = new MachineAdminSteamProducer();
+
+    public static final Machine FORCE_TRACK_EMITTER = new MachineForceTrackEmitter();
+    public static final Machine FLUX_TRANSFORMER = new MachineFluxTransformer();
+
+    public static final Machine ENGRAVING_BENCH = new MachineEngravingBench();
+
+    public static final Machine ITEM_LOADER = new MachineItemLoader();
+    public static final Machine ITEM_UNLOADER = new MachineItemUnloader();
+
+    public static final Machine ITEM_LOADER_ADVANCED = new MachineSideLoader(
             Module.TRANSPORT,
-            RailcraftBlocks.registerBlockTankWater(),
-            TileTankWater.class,
-            "tank_water",
-            2,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1);
-
-    public static final Machine ROCK_CRUSHER = registerMachine(
-            Module.FACTORY,
-            RailcraftBlocks.registerBlockRockCrusher(),
-            TileRockCrusher.class,
-            "rock_crusher",
-            4,
-            3,
-            3,
-            11,
-            3,
-            3,
-            7,
-            3,
-            7,
-            0,
-            1,
-            2,
-            4,
-            6,
-            8,
-            9,
-            10);
-
-    public static final Machine BOILER_TANK_LOW_PRESSURE = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockBoilerTank(TankPressure.LOW),
-            TileBoilerTankLow.class,
-            "boiler.tank.pressure.low",
-            2,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1);
-    public static final Machine BOILER_TANK_HIGH_PRESSURE = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockBoilerTank(TankPressure.HIGH),
-            TileBoilerTankHigh.class,
-            "boiler.tank.pressure.high",
-            2,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1);
-    public static final Machine BOILER_FIREBOX_SOLID = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockFirebox(FireboxType.SOLID),
-            TileBoilerFireboxSolid.class,
-            "boiler.firebox.solid",
-            3,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            2);
-    public static final Machine BOILER_FIREBOX_LIQUID = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockFirebox(FireboxType.LIQUID),
-            TileBoilerFireboxFluid.class,
-            "boiler.firebox.liquid",
-            3,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1,
-            2);
-    public static final Machine ENGINE_STEAM_HOBBY = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockEngine(EngineType.HOBBY),
-            TileEngineSteamHobby.class,
-            "engine.steam.hobby",
-            1,
-            1,
-            0);
-    public static final Machine ENGINE_STEAM_LOW = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockEngine(EngineType.LOW),
-            TileEngineSteamLow.class,
-            "engine.steam.low",
-            1,
-            1,
-            0);
-    public static final Machine ENGINE_STEAM_HIGH = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockEngine(EngineType.HIGH),
-            TileEngineSteamHigh.class,
-            "engine.steam.high",
-            1,
-            1,
-            0);
-    public static final Machine SENTINEL = registerMachine(
-            Module.CHUNK_LOADING,
-            RailcraftBlocks.registerBlockMachineSentinel(),
-            TileSentinel.class,
-            "anchor.sentinel",
-            2,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            1);
-
-    public static final Machine VOID_CHEST = registerMachine(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineChestVoid(),
-            TileChestVoid.class,
-            "chest.void",
-            1,
-            1,
-            0);
-    public static final Machine METALS_CHEST = registerMachine(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineChestMetals(),
-            TileChestMetals.class,
-            "chest.metals",
-            1,
-            1,
-            0);
-
-    public static final Machine WIRE = registerMachine(
-            Module.ELECTRICITY,
-            RailcraftBlocks.registerBlockMachineWire(),
-            TileWire.class,
-            "wire",
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0);
-
-    public static final Machine ELECTRIC_FEEDER = registerMachine(
-            Module.ELECTRICITY,
-            RailcraftBlocks.registerBlockElectricFeeder(false),
-            TileElectricFeeder.class,
-            "electric_feeder",
-            1,
-            1,
-            0);
-
-    public static final Machine ELECTRIC_FEEDER_ADMIN = registerMachine(
-            Module.ELECTRICITY,
-            RailcraftBlocks.registerBlockElectricFeeder(true),
-            TileElectricFeederAdmin.class,
-            "electric_feeder.admin",
-            2,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1);
-
-    public static final Machine ADMIN_STEAM_PRODUCER = registerMachine(
-            Module.STEAM,
-            RailcraftBlocks.registerBlockAdminSteamProducer(),
-            TileAdminSteamProducer.class,
-            "admin_steam_producer",
-            2,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1);
-
-    public static final Machine FORCE_TRACK_EMITTER = registerForceTrackEmitter("force_track_emitter");
-
-    public static final Machine FLUX_TRANSFORMER = registerFluxTransformer("flux_transformer");
-
-    public static final Machine ENGRAVING_BENCH = registerMachine(
-            Module.EMBLEM,
-            RailcraftBlocks.registerBlockEngravingBench(),
-            TileEngravingBench.class,
-            "engraving_bench",
-            4,
-            1,
-            0,
-            1,
-            3,
-            3,
-            3,
-            3,
-            2);
-
-    public static final Machine ITEM_LOADER = registerItemLoader(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineItemLoader.get(),
-            TileItemLoader.class,
-            "loader.item");
-    public static final Machine ITEM_UNLOADER = registerItemUnloader(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineItemUnloader.get(),
-            TileItemUnloader.class,
-            "unloader.item");
-
-    public static final Machine ITEM_LOADER_ADVANCED = registerDirectionalLoader(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineItemLoaderAdvanced.get(),
             TileItemLoaderAdvanced.class,
             "loader.item.advanced");
-    public static final Machine ITEM_UNLOADER_ADVANCED = registerDirectionalLoader(
+    public static final Machine ITEM_UNLOADER_ADVANCED = new MachineSideLoader(
             Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineItemUnloaderAdvanced.get(),
             TileItemUnloaderAdvanced.class,
             "unloader.item.advanced");
 
-    public static final MachineLiquidLoader FLUID_LOADER = registerLiquidLoader(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineLiquidLoader(),
-            TileFluidLoader.class,
-            "loader.liquid");
-    public static final MachineLiquidUnloader FLUID_UNLOADER = registerLiquidUnloader(
-            Module.TRANSPORT,
-            RailcraftBlocks.registerBlockMachineLiquidUnloader(),
-            TileFluidUnloader.class,
-            "unloader.liquid");
+    public static final MachineLiquidLoader FLUID_LOADER = new MachineLiquidLoader();
+    public static final MachineLiquidUnloader FLUID_UNLOADER = new MachineLiquidUnloader();
 
-    public static final Machine ENERGY_LOADER = registerDirectionalLoader(
+    public static final Machine ENERGY_LOADER = new MachineSideLoader(
             Module.IC2,
-            RailcraftBlocks.registerBlockMachineEnergyLoader.get(),
             TileEnergyLoader.class,
             "loader.energy");
-    public static final Machine ENERGY_UNLOADER = registerDirectionalLoader(
+    public static final Machine ENERGY_UNLOADER = new MachineSideLoader(
             Module.IC2,
-            RailcraftBlocks.registerBlockMachineEnergyUnloader.get(),
             TileEnergyUnloader.class,
             "unloader.energy");
 
-    public static final Machine CART_DISPENSER = registerDirectionalLoader(
+    public static final Machine CART_DISPENSER = new MachineSideLoader(
             Module.AUTOMATION,
-            RailcraftBlocks.registerBlockMachineDispenserCart.get(),
             TileDispenserCart.class,
             "dispenser.cart");
-    public static final Machine TRAIN_DISPENSER = registerDirectionalLoader(
+    public static final Machine TRAIN_DISPENSER = new MachineSideLoader(
             Module.TRAIN,
-            RailcraftBlocks.registerBlockMachineDispenserTrain.get(),
             TileDispenserTrain.class,
             "dispenser.train");
 
-    public static final Machine RF_LOADER = registerRFLoader(
-            Module.REDSTONE_FLUX,
-            RailcraftBlocks.registerBlockMachineRFLoader.get(),
-            TileRFLoader.class,
-            "loader.rf");
-    public static final Machine RF_UNLOADER = registerRFUnloader(
-            Module.REDSTONE_FLUX,
-            RailcraftBlocks.registerBlockMachineRFUnloader.get(),
-            TileRFUnloader.class,
-            "unloader.rf");
+    public static final Machine RF_LOADER = new MachineRFLoader(TileRFLoader.class, "loader.rf");
+    public static final Machine RF_UNLOADER = new MachineRFLoader(TileRFUnloader.class, "unloader.rf");
 
-    private static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
-            String tag, int... textureInfo) {
-        if (block != null) {
-            return new Machine(module, block, tileClass, tag, textureInfo);
+    private static Map<TankMaterial, Machine> createTankWalls() {
+        Map<TankMaterial, Machine> map = new TreeMap<TankMaterial, Machine>();
+        for (TankMaterial material : TankMaterial.values()) {
+            map.put(material, new MachineTankWall(material));
         }
-        return null;
+        return map;
     }
 
-    private static Machine registerItemLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
-        return block != null ? new MachineItemLoader(module, block, tile, tag) : null;
-    }
-
-    private static Machine registerItemUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
-        return block != null ? new MachineItemUnloader(module, block, tile, tag) : null;
-    }
-
-    private static MachineLiquidLoader registerLiquidLoader(Module module, Block block,
-            Class<? extends TileMachineBase> tile, String tag) {
-        return block != null ? new MachineLiquidLoader(module, block, tile, tag) : null;
-    }
-
-    private static MachineLiquidUnloader registerLiquidUnloader(Module module, Block block,
-            Class<? extends TileMachineBase> tile, String tag) {
-        return block != null ? new MachineLiquidUnloader(module, block, tile, tag) : null;
-    }
-
-    private static Machine registerDirectionalLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
-        return (block != null) ? new MachineSideLoader(module, block, tile, tag) : null;
-    }
-
-    private static Machine registerRFLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
-        return block != null ? new MachineRFLoader(module, block, tile, tag) : null;
-    }
-
-    private static Machine registerRFUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
-        return (block != null) ? new MachineRFLoader(module, block, tile, tag) : null;
-    }
-
-    private static Machine registerAnchor(Block block, Class<? extends TileMachineBase> tile, String subtag,
-            Optional<ItemMap<Float>> fuelMap) {
-        if (block != null) {
-            return new MachineAnchor(block, tile, "anchor." + subtag, fuelMap, 3, 1, 0, 0, 1, 1, 1, 1, 2);
+    private static Map<TankMaterial, Machine> createTankGauges() {
+        Map<TankMaterial, Machine> map = new TreeMap<TankMaterial, Machine>();
+        for (TankMaterial material : TankMaterial.values()) {
+            map.put(material, new MachineTankGauge(material));
         }
-        return null;
+        return map;
     }
 
-    private static Machine registerFluxTransformer(String tag) {
-        Block block = RailcraftBlocks.registerBlockFluxTransformer();
-        if (block != null) {
-            return new MachineFluxTransformer(Module.ELECTRICITY, block, TileFluxTransformer.class, tag);
+    private static Map<TankMaterial, Machine> createTankValves() {
+        Map<TankMaterial, Machine> map = new TreeMap<TankMaterial, Machine>();
+        for (TankMaterial material : TankMaterial.values()) {
+            map.put(material, new MachineTankValve(material));
         }
-        return null;
-    }
-
-    private static Machine registerForceTrackEmitter(String tag) {
-        Block block = RailcraftBlocks.registerBlockForceTrackEmitter();
-        if (block != null) {
-            return new MachineForceTrackEmitter(Module.ELECTRICITY, block, TileForceTrackEmitter.class, tag);
-        }
-        return null;
-    }
-
-    public static void initTanks() {
-        for (TankMaterial mat : TankMaterial.values()) {
-            if (mat.module.isEnabled()) {
-                tankWalls.put(mat, registerTankWall(mat));
-                tankValves.put(mat, registerTankValve(mat));
-                tankGauges.put(mat, registerTankGauge(mat));
-            }
-        }
-    }
-
-    private static MachineTank registerMachineTank(Block block, TankMaterial material,
-            Class<? extends TileTankBase> tileClass, String tag, int... textureInfo) {
-        if (block != null) {
-            return new MachineTank(material.module, material, block, tileClass, tag, textureInfo);
-        }
-        return null;
-    }
-
-    private static Machine registerTankWall(TankMaterial material) {
-        return registerMachineTank(
-                RailcraftBlocks.registerBlockTankWall(material),
-                material,
-                TileTankWall.class,
-                "tank." + material.name + ".wall",
-                2,
-                1,
-                0,
-                0,
-                1,
-                1,
-                1,
-                1);
-    }
-
-    private static Machine registerTankGauge(TankMaterial material) {
-        return registerMachineTank(
-                RailcraftBlocks.registerBlockTankGauge(material),
-                material,
-                TileTankGauge.class,
-                "tank." + material.name + ".gauge",
-                1,
-                5,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                1,
-                2,
-                3,
-                4);
-    }
-
-    private static Machine registerTankValve(TankMaterial material) {
-        return registerMachineTank(
-                RailcraftBlocks.registerBlockTankValve(material),
-                material,
-                TileTankValve.class,
-                "tank." + material.name + ".valve",
-                4,
-                1,
-                0,
-                0,
-                1,
-                1,
-                1,
-                1,
-                2,
-                3);
+        return map;
     }
 }

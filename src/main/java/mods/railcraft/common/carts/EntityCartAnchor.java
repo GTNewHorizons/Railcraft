@@ -27,7 +27,6 @@ import org.apache.logging.log4j.Level;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.api.carts.IMinecart;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -303,7 +302,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public Block func_145820_n() {
-        return RailcraftBlocks.getBlockAnchorWorld();
+        return Machines.WORLD_ANCHOR.getBlock();
     }
 
     @Override

@@ -32,7 +32,6 @@ import cofh.api.energy.IEnergyHandler;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -116,7 +115,7 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             List<ItemStack> output) {
         MultiBlockPattern pattern = TileRockCrusher.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-        Integer blockId = Block.getIdFromBlock(RailcraftBlocks.getBlockRockCrusher());
+        Integer blockId = Block.getIdFromBlock(Machines.ROCK_CRUSHER.getBlock());
         blockMapping.put('B', blockId);
         blockMapping.put('D', blockId);
         blockMapping.put('a', blockId);

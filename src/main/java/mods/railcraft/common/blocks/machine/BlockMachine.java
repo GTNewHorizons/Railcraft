@@ -34,10 +34,10 @@ import mods.railcraft.common.util.misc.Game;
 
 public class BlockMachine extends BlockContainer implements IPostConnection {
 
-    private final IMachineProxy proxy;
+    private final MachineProxy proxy;
     private final int renderId;
 
-    public BlockMachine(int renderId, IMachineProxy proxy, boolean opaque, int opacity) {
+    public BlockMachine(int renderId, MachineProxy proxy, boolean opaque, int opacity) {
         super(Material.rock);
         setResistance(4.5f);
         setHardness(2.0f);
@@ -61,7 +61,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         return 1;
     }
 
-    public IMachineProxy getMachineProxy() {
+    public MachineProxy getMachineProxy() {
         return proxy;
     }
 

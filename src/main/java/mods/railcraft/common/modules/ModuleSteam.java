@@ -10,10 +10,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.items.ItemGear.EnumGear;
@@ -136,7 +134,7 @@ public class ModuleSteam extends RailcraftModule {
 
         Machine boiler = Machines.BOILER_TANK_LOW_PRESSURE;
         if (boiler.isAvailable()) {
-            Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.LOW);
+            Block block = boiler.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
                         boiler.getItem(1),
@@ -152,7 +150,7 @@ public class ModuleSteam extends RailcraftModule {
 
         boiler = Machines.BOILER_TANK_HIGH_PRESSURE;
         if (boiler.isAvailable()) {
-            Block block = RailcraftBlocks.getBlockBoilerTank(TankPressure.HIGH);
+            Block block = boiler.getBlock();
             if (block != null) {
                 CraftingPlugin.addShapedRecipe(
                         boiler.getItem(1),

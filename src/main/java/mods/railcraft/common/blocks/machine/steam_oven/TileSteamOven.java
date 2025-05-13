@@ -35,7 +35,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
 import buildcraft.api.statements.IActionExternal;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -100,7 +99,7 @@ public class TileSteamOven extends TileMultiBlockInventory implements ISidedInve
     public static void placeSteamOven(World world, int x, int y, int z, List<ItemStack> input, List<ItemStack> output) {
         for (MultiBlockPattern pattern : TileSteamOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', Block.getIdFromBlock(RailcraftBlocks.getBlockSteamOven()));
+            blockMapping.put('B', Block.getIdFromBlock(Machines.STEAM_OVEN.getBlock()));
             TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
             if (tile instanceof TileSteamOven) {
                 TileSteamOven master = (TileSteamOven) tile;

@@ -22,7 +22,6 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.tracks.ITrackReversable;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -175,7 +174,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
 
         // machines
         if (Machines.ROLLING_MACHINE.isAvailable()) {
-            placeBlockAtCurrentPosition(world, RailcraftBlocks.getBlockRollingMachine(), 0, 9, 1, 5, sbb);
+            placeBlockAtCurrentPosition(world, Machines.ROLLING_MACHINE.getBlock(), 0, 9, 1, 5, sbb);
             if (Machines.ENGINE_STEAM_HOBBY.isAvailable() && RailcraftConfig.machinesRequirePower())
                 placeEngine(world, 9, 1, 6, sbb);
         }

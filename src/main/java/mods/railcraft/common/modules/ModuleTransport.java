@@ -60,8 +60,6 @@ public class ModuleTransport extends RailcraftModule {
                 'W',
                 "plankWood");
 
-        Machines.initTanks();
-
         Machine voidChest = Machines.VOID_CHEST;
         if (voidChest.isAvailable()) CraftingPlugin.addShapedRecipe(
                 voidChest.getItem(1),

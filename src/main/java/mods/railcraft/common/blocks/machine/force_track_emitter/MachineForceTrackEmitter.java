@@ -8,15 +8,22 @@ import net.minecraft.util.IIcon;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.Machine;
-import mods.railcraft.common.blocks.machine.TileMachineBase;
+import mods.railcraft.common.blocks.machine.MachineProxy;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class MachineForceTrackEmitter extends Machine {
 
-    public MachineForceTrackEmitter(Module module, Block block, Class<? extends TileMachineBase> tile, String tag,
-            int... textureInfo) {
-        super(module, block, tile, tag, textureInfo);
+    public MachineForceTrackEmitter() {
+        super(Module.ELECTRICITY, TileForceTrackEmitter.class, "force_track_emitter");
+    }
+
+    @Override
+    public Block createBlock(MachineProxy proxy) {
+        Block forceTrackEmitter = new BlockMachine(0, proxy, true, 255).setBlockName("railcraft." + tag);
+        forceTrackEmitter.setHarvestLevel("pickaxe", 2);
+        return forceTrackEmitter;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package mods.railcraft.client.render;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machines;
 
 public class RenderBlockMachineSentinel extends BlockRenderer {
 
     public RenderBlockMachineSentinel() {
-        super(RailcraftBlocks.getBlockMachineSentinel());
+        super(Machines.SENTINEL.getBlock());
         addCombinedRenderer(0, new RenderSentinel());
     }
 }

@@ -8,15 +8,22 @@ import net.minecraft.util.IIcon;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.Machine;
-import mods.railcraft.common.blocks.machine.TileMachineBase;
+import mods.railcraft.common.blocks.machine.MachineProxy;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class MachineFluxTransformer extends Machine {
 
-    public MachineFluxTransformer(Module module, Block block, Class<? extends TileMachineBase> tile, String tag,
-            int... textureInfo) {
-        super(module, block, tile, tag, textureInfo);
+    public MachineFluxTransformer() {
+        super(Module.ELECTRICITY, TileFluxTransformer.class, "flux_transformer");
+    }
+
+    @Override
+    public Block createBlock(MachineProxy proxy) {
+        Block fluxTrafo = new BlockMachine(0, proxy, true, 255).setBlockName("railcraft." + tag);
+        fluxTrafo.setHarvestLevel("pickaxe", 2);
+        return fluxTrafo;
     }
 
     @Override

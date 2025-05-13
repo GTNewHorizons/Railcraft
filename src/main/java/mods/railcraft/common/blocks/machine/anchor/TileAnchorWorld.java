@@ -34,7 +34,6 @@ import com.google.common.collect.MapMaker;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
@@ -87,7 +86,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     }
 
     @Override
-    public Machine getMachineType() {
+    public MachineAnchor getMachineType() {
         return Machines.WORLD_ANCHOR;
     }
 
@@ -357,7 +356,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
 
     @Override
     public ItemMap<Float> getFuelMap() {
-        return RailcraftConfig.anchorFuelWorld;
+        return getMachineType().fuelMap();
     }
 
     protected boolean meetsTicketRequirements() {

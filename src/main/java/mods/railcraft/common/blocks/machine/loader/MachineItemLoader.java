@@ -7,14 +7,22 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
+import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.Machine;
-import mods.railcraft.common.blocks.machine.TileMachineBase;
+import mods.railcraft.common.blocks.machine.MachineProxy;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class MachineItemLoader extends Machine {
 
-    public MachineItemLoader(Module module, Block block, Class<? extends TileMachineBase> tile, String tag) {
-        super(module, block, tile, tag);
+    public MachineItemLoader() {
+        super(Module.TRANSPORT, TileItemLoader.class, "loader.item");
+    }
+
+    @Override
+    public Block createBlock(MachineProxy proxy) {
+        Block itemLoader = new BlockMachine(0, proxy, false, 255).setBlockName("railcraft." + tag);
+        itemLoader.setHarvestLevel("pickaxe", 2);
+        return itemLoader;
     }
 
     @Override

@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.Machines;
 
 public class RenderSentinel implements ICombinedRenderer {
 
@@ -31,7 +31,7 @@ public class RenderSentinel implements ICombinedRenderer {
     public void renderItem(RenderBlocks renderblocks, ItemStack item, ItemRenderType renderType) {
         float pix = RenderTools.PIXEL;
 
-        Block block = RailcraftBlocks.getBlockMachineSentinel();
+        Block block = Machines.SENTINEL.getBlock();
 
         block.setBlockBounds(4 * pix, 0, 4 * pix, 12 * pix, 1, 12 * pix);
         RenderTools.renderBlockOnInventory(renderblocks, block, 0, 1);

@@ -28,7 +28,6 @@ import net.minecraft.world.World;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -147,11 +146,11 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         Block block = worldObj.getBlock(i, j, k);
         switch (mapPos) {
             case 'O':
-                if (block != RailcraftBlocks.getBlockBlastFurnace()) return true;
+                if (block != getMachineType().getBlock()) return true;
                 break;
             case 'B':
             case 'W':
-                if (block == RailcraftBlocks.getBlockBlastFurnace()) return true;
+                if (block == getMachineType().getBlock()) return true;
                 break;
             case 'A':
                 if (block.isAir(worldObj, i, j, k) || block.getMaterial() == Material.lava) return true;

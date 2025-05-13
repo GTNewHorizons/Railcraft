@@ -69,6 +69,7 @@ import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
 import mods.railcraft.common.blocks.aesthetics.post.BlockPostMetal;
 import mods.railcraft.common.blocks.aesthetics.post.TilePostEmblem;
 import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerTank.TankPressure;
 import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
@@ -241,13 +242,10 @@ public class ClientProxy extends CommonProxy {
         registerBlockRenderer(new RenderBlockMachineEngine(EngineType.HIGH, RenderPneumaticEngine.renderHigh));
         registerBlockRenderer(new RenderBlockMachineSentinel());
         registerBlockRenderer(
-                new RenderBlockMachineChest(
-                        RailcraftBlocks.getBlockMachineChestVoid(),
-                        "chest_void.png",
-                        TileChestVoid.class));
+                new RenderBlockMachineChest(Machines.VOID_CHEST.getBlock(), "chest_void.png", TileChestVoid.class));
         registerBlockRenderer(
                 new RenderBlockMachineChest(
-                        RailcraftBlocks.getBlockMachineChestMetals(),
+                        Machines.METALS_CHEST.getBlock(),
                         "chest_metals.png",
                         TileChestMetals.class));
         registerBlockRenderer(new RenderBlockWire());

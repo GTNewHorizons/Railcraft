@@ -5,8 +5,10 @@
  */
 package mods.railcraft.common.modules;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.block.BlockDispenser;
@@ -42,6 +44,7 @@ import mods.railcraft.api.helpers.Helpers;
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.client.sounds.SoundLimiterTicker;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
+import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
@@ -332,6 +335,65 @@ public class ModuleCore extends RailcraftModule {
         }
 
         MachineTileRegistery.registerTileEntities();
+
+        List<Machine> machines = new ArrayList<Machine>();
+        machines.add(Machines.WORLD_ANCHOR);
+        machines.add(Machines.PERSONAL_ANCHOR);
+        machines.add(Machines.ADMIN_ANCHOR);
+        machines.add(Machines.PASSIVE_ANCHOR);
+        machines.add(Machines.SENTINEL);
+        machines.add(Machines.TURBINE);
+        machines.add(Machines.STEAM_OVEN);
+        machines.add(Machines.SMOKER);
+        machines.add(Machines.TRADE_STATION);
+        machines.add(Machines.COKE_OVEN);
+        machines.add(Machines.ROLLING_MACHINE);
+        machines.add(Machines.STEAM_TRAP_MANUAL);
+        machines.add(Machines.STEAM_TRAP_AUTO);
+        machines.add(Machines.FEED_STATION);
+        machines.add(Machines.BLAST_FURNACE);
+        machines.add(Machines.TANK_WATER);
+        machines.add(Machines.ROCK_CRUSHER);
+        machines.addAll(Machines.tankWalls.values());
+        machines.addAll(Machines.tankGauges.values());
+        machines.addAll(Machines.tankValves.values());
+        machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
+        machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
+        machines.add(Machines.BOILER_FIREBOX_SOLID);
+        machines.add(Machines.BOILER_FIREBOX_LIQUID);
+        machines.add(Machines.ENGINE_STEAM_HOBBY);
+        machines.add(Machines.ENGINE_STEAM_LOW);
+        machines.add(Machines.ENGINE_STEAM_HIGH);
+        machines.add(Machines.VOID_CHEST);
+        machines.add(Machines.METALS_CHEST);
+
+        machines.add(Machines.WIRE);
+
+        machines.add(Machines.ELECTRIC_FEEDER);
+        machines.add(Machines.ELECTRIC_FEEDER_ADMIN);
+        machines.add(Machines.ADMIN_STEAM_PRODUCER);
+        machines.add(Machines.FORCE_TRACK_EMITTER);
+        machines.add(Machines.FLUX_TRANSFORMER);
+        machines.add(Machines.ENGRAVING_BENCH);
+
+        machines.add(Machines.ITEM_LOADER);
+        machines.add(Machines.ITEM_UNLOADER);
+        machines.add(Machines.ITEM_LOADER_ADVANCED);
+        machines.add(Machines.ITEM_UNLOADER_ADVANCED);
+        machines.add(Machines.FLUID_LOADER);
+        machines.add(Machines.FLUID_UNLOADER);
+        machines.add(Machines.ENERGY_LOADER);
+        machines.add(Machines.ENERGY_UNLOADER);
+        machines.add(Machines.CART_DISPENSER);
+        machines.add(Machines.TRAIN_DISPENSER);
+        machines.add(Machines.RF_LOADER);
+        machines.add(Machines.RF_UNLOADER);
+
+        for (Machine machine : machines) {
+            if (machine != null && machine.isAvailable()) {
+                RailcraftRegistry.register(machine.getBlock(), ItemMachine.class);
+            } ;
+        }
     }
 
     private void replaceVanillaCart(EnumCart cartType, Item original, String entityTag, int entityId) {
@@ -368,52 +430,6 @@ public class ModuleCore extends RailcraftModule {
 
         for (EnumCube type : EnumCube.values()) {
             if (type.isEnabled()) RailcraftRegistry.register(type.getItem());
-        }
-
-        Set<Machine> machines = new HashSet<Machine>();
-        machines.add(Machines.WORLD_ANCHOR);
-        machines.add(Machines.PERSONAL_ANCHOR);
-        machines.add(Machines.ADMIN_ANCHOR);
-        machines.add(Machines.PASSIVE_ANCHOR);
-        machines.add(Machines.COKE_OVEN);
-        machines.add(Machines.ROLLING_MACHINE);
-        machines.add(Machines.STEAM_TRAP_MANUAL);
-        machines.add(Machines.STEAM_TRAP_AUTO);
-        machines.add(Machines.FEED_STATION);
-        machines.add(Machines.BLAST_FURNACE);
-        machines.add(Machines.TANK_WATER);
-        machines.add(Machines.ROCK_CRUSHER);
-        machines.addAll(Machines.tankWalls.values());
-        machines.addAll(Machines.tankGauges.values());
-        machines.addAll(Machines.tankValves.values());
-        machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
-        machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
-        machines.add(Machines.BOILER_FIREBOX_SOLID);
-        machines.add(Machines.BOILER_FIREBOX_LIQUID);
-        machines.add(Machines.ENGINE_STEAM_HOBBY);
-        machines.add(Machines.ENGINE_STEAM_LOW);
-        machines.add(Machines.ENGINE_STEAM_HIGH);
-        machines.add(Machines.SENTINEL);
-        machines.add(Machines.VOID_CHEST);
-        machines.add(Machines.METALS_CHEST);
-
-        machines.add(Machines.WIRE);
-
-        machines.add(Machines.ITEM_LOADER);
-        machines.add(Machines.ITEM_UNLOADER);
-        machines.add(Machines.ITEM_LOADER_ADVANCED);
-        machines.add(Machines.ITEM_UNLOADER_ADVANCED);
-        machines.add(Machines.FLUID_LOADER);
-        machines.add(Machines.FLUID_UNLOADER);
-        machines.add(Machines.ENERGY_LOADER);
-        machines.add(Machines.ENERGY_UNLOADER);
-        machines.add(Machines.CART_DISPENSER);
-        machines.add(Machines.TRAIN_DISPENSER);
-        machines.add(Machines.RF_LOADER);
-        machines.add(Machines.RF_UNLOADER);
-
-        for (Machine machine : machines) {
-            if (machine != null && machine.isAvailable()) RailcraftRegistry.register(machine.getItem(1));
         }
     }
 

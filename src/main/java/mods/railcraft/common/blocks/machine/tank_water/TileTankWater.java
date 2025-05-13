@@ -25,7 +25,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -102,7 +101,7 @@ public class TileTankWater extends TileTank {
     public static void placeWaterTank(World world, int x, int y, int z, int water) {
         for (MultiBlockPattern pattern : TileTankWater.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            blockMapping.put('B', Block.getIdFromBlock(RailcraftBlocks.getBlockTankWater()));
+            blockMapping.put('B', Block.getIdFromBlock(Machines.TANK_WATER.getBlock()));
             TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
             if (tile instanceof TileTankWater) {
                 TileTankWater master = (TileTankWater) tile;

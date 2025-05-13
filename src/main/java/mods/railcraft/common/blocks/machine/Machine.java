@@ -15,7 +15,7 @@ import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
-public class Machine {
+public abstract class Machine {
 
     protected Block block;
     protected Module module;
@@ -25,13 +25,16 @@ public class Machine {
     protected IIcon[] texture;
     protected ToolTip tip;
 
-    public Machine(Module module, Block block, Class<? extends TileMachineBase> tile, String tag, int... textureInfo) {
+    public Machine(Module module, Class<? extends TileMachineBase> tile, String tag, int... textureInfo) {
         this.module = module;
-        this.block = block;
         this.tile = tile;
         this.tag = tag;
         this.textureInfo = textureInfo;
+        MachineProxy proxy = new MachineProxy(this);
+        this.block = createBlock(proxy);
     }
+
+    protected abstract Block createBlock(MachineProxy proxy);
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {

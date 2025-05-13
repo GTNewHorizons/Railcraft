@@ -7,12 +7,9 @@ package mods.railcraft.common.blocks.machine.anchor;
 
 import net.minecraftforge.common.ForgeChunkManager;
 
-import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.util.collections.ItemMap;
 
 /**
  * Created by Terpo on 2/24/2015.
@@ -20,13 +17,8 @@ import mods.railcraft.common.util.collections.ItemMap;
 public class TileAnchorPassive extends TileAnchorWorld {
 
     @Override
-    public Machine getMachineType() {
+    public MachineAnchor getMachineType() {
         return Machines.PASSIVE_ANCHOR;
-    }
-
-    @Override
-    public ItemMap<Float> getFuelMap() {
-        return RailcraftConfig.anchorFuelPassive;
     }
 
     @Override

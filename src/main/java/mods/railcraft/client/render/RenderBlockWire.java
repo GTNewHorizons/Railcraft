@@ -21,8 +21,8 @@ import mods.railcraft.api.electricity.GridTools;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.frame.BlockFrame;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
 import mods.railcraft.common.blocks.machine.wire.TileWire.AddonType;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -38,7 +38,7 @@ public class RenderBlockWire extends BlockRenderer {
     private final RenderBlockFrame renderFrame;
 
     public RenderBlockWire() {
-        super(RailcraftBlocks.getBlockMachineWire());
+        super(Machines.WIRE.getBlock());
         if (BlockFrame.getBlock() != null) renderFrame = new RenderBlockFrame();
         else renderFrame = null;
     }

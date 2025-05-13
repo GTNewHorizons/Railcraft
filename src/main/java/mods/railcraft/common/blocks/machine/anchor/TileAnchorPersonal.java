@@ -9,13 +9,10 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
-import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
-import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.util.collections.ItemMap;
 import mods.railcraft.common.util.misc.Game;
 
 /**
@@ -27,7 +24,7 @@ public class TileAnchorPersonal extends TileAnchorWorld {
     private long ticksSincePlayerLogged;
 
     @Override
-    public Machine getMachineType() {
+    public MachineAnchor getMachineType() {
         return Machines.PERSONAL_ANCHOR;
     }
 
@@ -38,11 +35,6 @@ public class TileAnchorPersonal extends TileAnchorWorld {
                 PlayerPlugin.getUsername(worldObj, getOwner()),
                 worldObj,
                 Type.NORMAL);
-    }
-
-    @Override
-    public ItemMap<Float> getFuelMap() {
-        return RailcraftConfig.anchorFuelPersonal;
     }
 
     @Override

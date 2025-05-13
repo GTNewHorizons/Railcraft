@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.blocks.machine.anchor;
 
-import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 
 /**
@@ -15,7 +14,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class TileAnchorAdmin extends TileAnchorWorld {
 
     @Override
-    public Machine getMachineType() {
+    public MachineAnchor getMachineType() {
         return Machines.ADMIN_ANCHOR;
     }
 

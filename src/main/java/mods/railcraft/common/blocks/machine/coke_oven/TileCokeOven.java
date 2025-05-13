@@ -27,7 +27,6 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -88,7 +87,7 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
             ItemStack output) {
         for (MultiBlockPattern pattern : TileCokeOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
-            Integer blockId = Block.getIdFromBlock(RailcraftBlocks.getBlockCokeOven());
+            Integer blockId = Block.getIdFromBlock(Machines.COKE_OVEN.getBlock());
             blockMapping.put('B', blockId);
             blockMapping.put('W', blockId);
             TileEntity tile = pattern.placeStructureIds(world, x, y, z, blockMapping);
