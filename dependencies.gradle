@@ -16,7 +16,7 @@ dependencies {
         exclude group: 'com.github.GTNewHorizons', module: 'Railcraft'
     }
     
-    runtimeOnly("com.github.GTNewHorizons:Baubles:1.0.4:dev") // for Thaumcraft
+    runtimeOnly("com.github.GTNewHorizons:Baubles-Expanded:2.1.7-GTNH:dev") // for Thaumcraft
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.40-GTNH:dev")
 
     compileOnlyApi("com.github.GTNewHorizons:Angelica:1.0.0-beta41:api")
