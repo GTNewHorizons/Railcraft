@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.MachineProxy;
+import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.modules.ModuleManager.Module;
 
 public class MachineWire extends Machine {
@@ -15,7 +16,8 @@ public class MachineWire extends Machine {
 
     @Override
     public Block createBlock(MachineProxy proxy) {
-        Block wireBlock = new BlockMachine(0, proxy, false, 0).setBlockName("railcraft." + tag);
+        int renderId = Railcraft.getProxy().getRenderId();
+        Block wireBlock = new BlockMachine(renderId, proxy, false, 0).setBlockName("railcraft." + tag);
         wireBlock.setHarvestLevel("pickaxe", 2);
         return wireBlock;
     }

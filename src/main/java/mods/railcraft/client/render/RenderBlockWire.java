@@ -61,8 +61,8 @@ public class RenderBlockWire extends BlockRenderer {
 
         for (ForgeDirection dir : search) {
             TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, dir);
-            if (tile instanceof IElectricGrid
-                    && ((IElectricGrid) tile).getChargeHandler().getType() == ConnectType.BLOCK)
+            if (tile instanceof IElectricGrid iElectricGrid
+                    && iElectricGrid.getChargeHandler().getType() == ConnectType.BLOCK)
                 plugCons.add(dir);
         }
 
