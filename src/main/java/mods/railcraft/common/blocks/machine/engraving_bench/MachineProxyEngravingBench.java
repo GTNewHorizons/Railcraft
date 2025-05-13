@@ -11,7 +11,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class MachineProxyEngravingBench implements IMachineProxy {
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return Machines.ENGRAVING_BENCH;
     }
 

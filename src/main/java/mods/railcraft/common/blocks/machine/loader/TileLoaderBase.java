@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;

@@ -15,7 +15,7 @@ public class MachineProxySteamTrap implements IMachineProxy {
     }
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return auto ? Machines.STEAM_TRAP_AUTO : Machines.STEAM_TRAP_MANUAL;
     }
 

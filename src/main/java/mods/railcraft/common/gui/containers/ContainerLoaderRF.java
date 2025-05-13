@@ -10,7 +10,7 @@ import net.minecraft.inventory.ICrafting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.gamma.TileRFLoaderBase;
+import mods.railcraft.common.blocks.machine.loader.TileRFLoaderBase;
 import mods.railcraft.common.gui.widgets.IndicatorWidget;
 import mods.railcraft.common.gui.widgets.RFEnergyIndicator;
 import mods.railcraft.common.util.network.PacketBuilder;

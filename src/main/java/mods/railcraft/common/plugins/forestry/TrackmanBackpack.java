@@ -81,7 +81,6 @@ public class TrackmanBackpack extends BaseBackpack {
         addItem(RailcraftItem.circuit);
         addItem(RailcraftItem.signalLabel);
 
-        addItem(RailcraftBlocks.getBlockMachineGamma());
         addItem(RailcraftBlocks.getBlockElevator());
         addItem(RailcraftBlocks.getBlockSignal());
         addItem(BlockDetector.getBlock());

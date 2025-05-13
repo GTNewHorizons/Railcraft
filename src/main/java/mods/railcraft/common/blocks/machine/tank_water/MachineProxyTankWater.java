@@ -11,7 +11,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class MachineProxyTankWater implements IMachineProxy {
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return Machines.TANK_WATER;
     }
 

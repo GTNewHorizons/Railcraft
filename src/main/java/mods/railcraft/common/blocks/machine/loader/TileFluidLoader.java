@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,7 +27,8 @@ import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.common.carts.EntityLocomotiveSteam;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -65,8 +66,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.FLUID_LOADER;
+    public IMachine getMachineType() {
+        return Machines.FLUID_LOADER;
     }
 
     public MultiButtonController<ButtonState> getStateController() {

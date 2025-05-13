@@ -12,7 +12,7 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderEnergyBase;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderEnergyBase;
 import mods.railcraft.common.gui.slots.SlotEnergy;
 import mods.railcraft.common.gui.slots.SlotUpgrade;
 import mods.railcraft.common.util.network.PacketBuilder;

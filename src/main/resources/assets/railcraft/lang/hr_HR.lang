@@ -276,16 +276,16 @@ tile.railcraft.machine.tank.iron.gauge.name=Mjerilo Željeznog Spremnika
 tile.railcraft.machine.tank.iron.valve.name=Ventil Željeznog Spremnika
 tile.railcraft.machine.tank.iron.wall.name=Zid Željeznog Spremnika
 
-tile.railcraft.machine.gamma.dispenser.cart.name=Izbacivač Vagona
-tile.railcraft.machine.gamma.dispenser.train.name=Izbacivač Train
-tile.railcraft.machine.gamma.loader.energy.name=Utovarivač Energije
-tile.railcraft.machine.gamma.loader.item.advanced.name=Napredni Utovarivač Stvari
-tile.railcraft.machine.gamma.loader.item.name=Utovarivač Stvari
-tile.railcraft.machine.gamma.loader.liquid.name=Utovarivač Tekućina
-tile.railcraft.machine.gamma.unloader.energy.name=Istovarivač
-tile.railcraft.machine.gamma.unloader.item.advanced.name=Napredni Istovarivač Stvari
-tile.railcraft.machine.gamma.unloader.item.name=Istovarivač Stvari
-tile.railcraft.machine.gamma.unloader.liquid.name=Istovarivač Tekućina
+tile.railcraft.machine.dispenser.cart.name=Izbacivač Vagona
+tile.railcraft.machine.dispenser.train.name=Izbacivač Train
+tile.railcraft.machine.loader.energy.name=Utovarivač Energije
+tile.railcraft.machine.loader.item.advanced.name=Napredni Utovarivač Stvari
+tile.railcraft.machine.loader.item.name=Utovarivač Stvari
+tile.railcraft.machine.loader.liquid.name=Utovarivač Tekućina
+tile.railcraft.machine.unloader.energy.name=Istovarivač
+tile.railcraft.machine.unloader.item.advanced.name=Napredni Istovarivač Stvari
+tile.railcraft.machine.unloader.item.name=Istovarivač Stvari
+tile.railcraft.machine.unloader.liquid.name=Istovarivač Tekućina
 
 item.railcraft.nugget.iron.name=Grumen Željeza
 item.railcraft.nugget.steel.name=Grumen Čelika

@@ -7,7 +7,7 @@ package mods.railcraft.client.gui;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
+import mods.railcraft.common.blocks.machine.dispenser.TileDispenserCart;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerDispenserCart;
 

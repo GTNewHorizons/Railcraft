@@ -22,6 +22,8 @@ import mods.railcraft.common.blocks.machine.boiler.TileBoilerTankLow;
 import mods.railcraft.common.blocks.machine.chest.TileChestMetals;
 import mods.railcraft.common.blocks.machine.chest.TileChestVoid;
 import mods.railcraft.common.blocks.machine.coke_oven.TileCokeOven;
+import mods.railcraft.common.blocks.machine.dispenser.TileDispenserCart;
+import mods.railcraft.common.blocks.machine.dispenser.TileDispenserTrain;
 import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeeder;
 import mods.railcraft.common.blocks.machine.electric_feeder.TileElectricFeederAdmin;
 import mods.railcraft.common.blocks.machine.engine.EngineType;
@@ -34,6 +36,22 @@ import mods.railcraft.common.blocks.machine.flux_transformer.MachineFluxTransfor
 import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
 import mods.railcraft.common.blocks.machine.force_track_emitter.MachineForceTrackEmitter;
 import mods.railcraft.common.blocks.machine.force_track_emitter.TileForceTrackEmitter;
+import mods.railcraft.common.blocks.machine.loader.MachineItemLoader;
+import mods.railcraft.common.blocks.machine.loader.MachineItemUnloader;
+import mods.railcraft.common.blocks.machine.loader.MachineLiquidLoader;
+import mods.railcraft.common.blocks.machine.loader.MachineLiquidUnloader;
+import mods.railcraft.common.blocks.machine.loader.MachineRFLoader;
+import mods.railcraft.common.blocks.machine.loader.MachineSideLoader;
+import mods.railcraft.common.blocks.machine.loader.TileEnergyLoader;
+import mods.railcraft.common.blocks.machine.loader.TileEnergyUnloader;
+import mods.railcraft.common.blocks.machine.loader.TileFluidLoader;
+import mods.railcraft.common.blocks.machine.loader.TileFluidUnloader;
+import mods.railcraft.common.blocks.machine.loader.TileItemLoader;
+import mods.railcraft.common.blocks.machine.loader.TileItemLoaderAdvanced;
+import mods.railcraft.common.blocks.machine.loader.TileItemUnloader;
+import mods.railcraft.common.blocks.machine.loader.TileItemUnloaderAdvanced;
+import mods.railcraft.common.blocks.machine.loader.TileRFLoader;
+import mods.railcraft.common.blocks.machine.loader.TileRFUnloader;
 import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
@@ -455,12 +473,103 @@ public class Machines {
             3,
             2);
 
+    public static final Machine ITEM_LOADER = registerItemLoader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineItemLoader.get(),
+            TileItemLoader.class,
+            "loader.item");
+    public static final Machine ITEM_UNLOADER = registerItemUnloader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineItemUnloader.get(),
+            TileItemUnloader.class,
+            "unloader.item");
+
+    public static final Machine ITEM_LOADER_ADVANCED = registerDirectionalLoader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineItemLoaderAdvanced.get(),
+            TileItemLoaderAdvanced.class,
+            "loader.item.advanced");
+    public static final Machine ITEM_UNLOADER_ADVANCED = registerDirectionalLoader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineItemUnloaderAdvanced.get(),
+            TileItemUnloaderAdvanced.class,
+            "unloader.item.advanced");
+
+    public static final MachineLiquidLoader FLUID_LOADER = registerLiquidLoader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineLiquidLoader(),
+            TileFluidLoader.class,
+            "loader.liquid");
+    public static final MachineLiquidUnloader FLUID_UNLOADER = registerLiquidUnloader(
+            Module.TRANSPORT,
+            RailcraftBlocks.registerBlockMachineLiquidUnloader(),
+            TileFluidUnloader.class,
+            "unloader.liquid");
+
+    public static final Machine ENERGY_LOADER = registerDirectionalLoader(
+            Module.IC2,
+            RailcraftBlocks.registerBlockMachineEnergyLoader.get(),
+            TileEnergyLoader.class,
+            "loader.energy");
+    public static final Machine ENERGY_UNLOADER = registerDirectionalLoader(
+            Module.IC2,
+            RailcraftBlocks.registerBlockMachineEnergyUnloader.get(),
+            TileEnergyUnloader.class,
+            "unloader.energy");
+
+    public static final Machine CART_DISPENSER = registerDirectionalLoader(
+            Module.AUTOMATION,
+            RailcraftBlocks.registerBlockMachineDispenserCart.get(),
+            TileDispenserCart.class,
+            "dispenser.cart");
+    public static final Machine TRAIN_DISPENSER = registerDirectionalLoader(
+            Module.TRAIN,
+            RailcraftBlocks.registerBlockMachineDispenserTrain.get(),
+            TileDispenserTrain.class,
+            "dispenser.train");
+
+public static final Machine RF_LOADER = registerRFLoader(Module.REDSTONE_FLUX, RailcraftBlocks.registerBlockMachineRFLoader.get(), TileRFLoader.class, "loader.rf");
+public static final Machine RF_UNLOADER = registerRFUnloader(Module.REDSTONE_FLUX, RailcraftBlocks.registerBlockMachineRFUnloader.get(), TileRFUnloader.class, "unloader.rf");
+
     private static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
             String tag, int... textureInfo) {
         if (block != null) {
             return new Machine(module, block, tileClass, tag, textureInfo);
         }
         return null;
+    }
+
+    private static Machine registerItemLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
+        return block != null ? new MachineItemLoader(module, block, tile, tag) : null;
+    }
+
+    private static Machine registerItemUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
+        return block != null ? new MachineItemUnloader(module, block, tile, tag) : null;
+    }
+
+    private static MachineLiquidLoader registerLiquidLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
+        return block != null ? new MachineLiquidLoader(module, block, tile, tag) : null;
+    }
+
+    private static MachineLiquidUnloader registerLiquidUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
+        return block != null ? new MachineLiquidUnloader(module, block, tile, tag) : null;
+    }
+
+    private static Machine registerDirectionalLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
+        return (block != null) ? new MachineSideLoader(module, block, tile, tag) : null;
+    }
+
+    private static Machine registerRFLoader(Module module, Block block, Class<? extends TileMachineBase> tile, String tag) {
+        return block != null ? new MachineRFLoader(module, block, tile, tag) : null;
+    }
+
+        private static Machine registerRFUnloader(Module module, Block block, Class<? extends TileMachineBase> tile, String tag) {
+        return (block != null) ? new MachineRFLoader(module, block, tile, tag) : null;
     }
 
     private static Machine registerAnchor(Block block, Class<? extends TileMachineBase> tile, String subtag,

@@ -9,7 +9,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class MachineProxyAnchorPersonal implements IMachineProxy {
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return Machines.PERSONAL_ANCHOR;
     }
 

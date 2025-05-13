@@ -281,16 +281,16 @@ tile.railcraft.machine.tank.iron.gauge.name=Merilo Gvozdenog Rezervoara
 tile.railcraft.machine.tank.iron.valve.name=Ventil Gvozdenog Rezervoara
 tile.railcraft.machine.tank.iron.wall.name=Zid Gvozdenog Rezervoara
 
-tile.railcraft.machine.gamma.dispenser.cart.name=Dispenzor Vagona
-tile.railcraft.machine.gamma.dispenser.train.name=Dispenzor Voza
-tile.railcraft.machine.gamma.loader.energy.name=Utorivač Energije
-tile.railcraft.machine.gamma.loader.item.advanced.name=Napredni Utorivač Predmeta
-tile.railcraft.machine.gamma.loader.item.name=Utorivač Predmeta
-tile.railcraft.machine.gamma.loader.liquid.name=Utorivač Likvida
-tile.railcraft.machine.gamma.unloader.energy.name=Istorivač Energije
-tile.railcraft.machine.gamma.unloader.item.advanced.name=Napredni Istorivač Predmeta
-tile.railcraft.machine.gamma.unloader.item.name=Istorivač Predmeta
-tile.railcraft.machine.gamma.unloader.liquid.name=Istorivač Likvida
+tile.railcraft.machine.dispenser.cart.name=Dispenzor Vagona
+tile.railcraft.machine.dispenser.train.name=Dispenzor Voza
+tile.railcraft.machine.loader.energy.name=Utorivač Energije
+tile.railcraft.machine.loader.item.advanced.name=Napredni Utorivač Predmeta
+tile.railcraft.machine.loader.item.name=Utorivač Predmeta
+tile.railcraft.machine.loader.liquid.name=Utorivač Likvida
+tile.railcraft.machine.unloader.energy.name=Istorivač Energije
+tile.railcraft.machine.unloader.item.advanced.name=Napredni Istorivač Predmeta
+tile.railcraft.machine.unloader.item.name=Istorivač Predmeta
+tile.railcraft.machine.unloader.liquid.name=Istorivač Likvida
 
 item.railcraft.nugget.iron.name=Gvozdeni Grumen
 item.railcraft.nugget.steel.name=Čelični Grumen

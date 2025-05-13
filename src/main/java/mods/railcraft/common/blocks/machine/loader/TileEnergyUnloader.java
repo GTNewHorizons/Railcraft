@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,7 +18,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.ic2.IEmitterDelegate;
@@ -33,8 +34,8 @@ public class TileEnergyUnloader extends TileLoaderEnergyBase implements IEmitter
     private TileEntity emitterDelegate;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.ENERGY_UNLOADER;
+    public IMachine getMachineType() {
+        return Machines.ENERGY_UNLOADER;
     }
 
     @Override

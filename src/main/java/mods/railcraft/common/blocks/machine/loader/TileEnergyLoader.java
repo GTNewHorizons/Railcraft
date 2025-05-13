@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,7 +20,8 @@ import cpw.mods.fml.common.Optional;
 import gregtech.api.interfaces.tileentity.IEnergyConnected;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.ic2.ISinkDelegate;
@@ -42,8 +43,8 @@ public class TileEnergyLoader extends TileLoaderEnergyBase
     private TileEntity sinkDelegate;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.ENERGY_LOADER;
+    public IMachine getMachineType() {
+        return Machines.ENERGY_LOADER;
     }
 
     @Override

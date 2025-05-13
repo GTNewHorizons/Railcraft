@@ -15,10 +15,10 @@ import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.Loader;
 import ic2.api.recipe.Recipes;
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
@@ -47,7 +47,6 @@ public class ModuleIC2 extends RailcraftModule {
     @Override
     public void initFirst() {
         BlockDetector.registerBlock();
-        RailcraftBlocks.registerBlockMachineGamma();
 
         if (RailcraftConfig.isItemEnabled("ic2.upgrade.lapotron")) {
             lapotronUpgrade = new ItemRailcraft().setUnlocalizedName("railcraft.upgrade.lapotron").setMaxStackSize(9);
@@ -153,8 +152,9 @@ public class ModuleIC2 extends RailcraftModule {
         else detector = new ItemStack(Blocks.stone_pressure_plate);
 
         if (battery != null && machine != null) {
-            if (EnumMachineGamma.ENERGY_LOADER.isAvailable()) Recipes.advRecipes.addRecipe(
-                    EnumMachineGamma.ENERGY_LOADER.getItem(),
+            Machine eLoader = Machines.ENERGY_LOADER;
+            if (eLoader != null) Recipes.advRecipes.addRecipe(
+                    eLoader.getItem(),
                     "BLB",
                     "BIB",
                     "BDB",
@@ -167,8 +167,9 @@ public class ModuleIC2 extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            if (EnumMachineGamma.ENERGY_UNLOADER.isAvailable()) Recipes.advRecipes.addRecipe(
-                    EnumMachineGamma.ENERGY_UNLOADER.getItem(),
+            Machine eUnloader = Machines.ENERGY_UNLOADER;
+            if (eUnloader != null) Recipes.advRecipes.addRecipe(
+                    eUnloader.getItem(),
                     "BDB",
                     "BIB",
                     "BLB",

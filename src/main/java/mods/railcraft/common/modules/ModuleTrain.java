@@ -11,7 +11,8 @@ import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
@@ -38,23 +39,21 @@ public class ModuleTrain extends RailcraftModule {
                     EnumDetector.TRAIN.getItem(),
                     new Object[] { "XXX", "XPX", "XXX", 'X', Blocks.nether_brick, 'P', Blocks.stone_pressure_plate, });
         }
-
-        EnumMachineGamma.DISPENSER_TRAIN.register();
     }
 
     @Override
     public void initSecond() {
-        EnumMachineGamma type = EnumMachineGamma.DISPENSER_TRAIN;
-        if (type.isAvailable() && EnumMachineGamma.DISPENSER_CART.isAvailable()) {
+        Machine trainDispenser = Machines.TRAIN_DISPENSER;
+        if (trainDispenser.isAvailable()) {
             ItemStack crowbar = ItemCrowbar.getItem();
             crowbar.setItemDamage(-1);
             CraftingPlugin.addShapedRecipe(
-                    type.getItem(),
+                    trainDispenser.getItem(),
                     "rcr",
                     "cdc",
                     "rcr",
                     'd',
-                    EnumMachineGamma.DISPENSER_CART.getItem(),
+                    Machines.CART_DISPENSER.getItem(),
                     'c',
                     crowbar,
                     'r',

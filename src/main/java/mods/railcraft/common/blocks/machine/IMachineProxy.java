@@ -16,11 +16,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
  */
 public interface IMachineProxy {
 
-    IMachine getMachine(int meta);
+    IMachine getMachine();
 
     default List<? extends IMachine> getCreativeList() {
         List<IMachine> list = new ArrayList<IMachine>();
-        list.add(getMachine(0));
+        list.add(getMachine());
         return list;
     };
 

@@ -14,7 +14,7 @@ public class MachineProxyTankGauge implements IMachineProxy {
     }
 
     @Override
-    public Machine getMachine(int meta) {
+    public Machine getMachine() {
         return Tanks.getGauge(material);
     }
 

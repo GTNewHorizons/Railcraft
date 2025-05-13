@@ -17,7 +17,7 @@ public class MachineProxyBoilerTank implements IMachineProxy {
     }
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return getMachine(pressure);
     }
 

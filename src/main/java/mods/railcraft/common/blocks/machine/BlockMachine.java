@@ -66,7 +66,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     }
 
     public IMachine getMachineType(World world, int x, int y, int z) {
-        return proxy.getMachine(0);
+        return proxy.getMachine();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return proxy.getMachine(0).getTexture(side);
+        return proxy.getMachine().getTexture(side);
     }
 
     @Override
@@ -249,7 +249,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return proxy.getMachine(meta).getTileEntity();
+        return proxy.getMachine().getTileEntity();
     }
 
     @Override

@@ -42,12 +42,6 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
 
     @Override
     public final short getId() {
-        if (getMachineType() == null) {
-            return 0;
-        }
-        if (getMachineType() instanceof IEnumMachine enumMachine) {
-            return (short) enumMachine.ordinal();
-        }
         return 0;
     }
 
@@ -141,7 +135,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
                 }
                 int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
                 if (getBlockType() instanceof BlockMultiMachine blockType
-                        && getClass() != blockType.getMachineProxy().getMachine(meta).getTileClass()) {
+                        && getClass() != blockType.getMachineProxy().getMachine().getTileClass()) {
                     worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
                     validate();
                     worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
@@ -156,7 +150,7 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
                             zCoord);
                     updateContainingBlockInfo();
                 } else if (getBlockType() instanceof BlockMachine blockType
-                        && getClass() != blockType.getMachineProxy().getMachine(meta).getTileClass()) {
+                        && getClass() != blockType.getMachineProxy().getMachine().getTileClass()) {
                             worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
                             validate();
                             worldObj.setTileEntity(xCoord, yCoord, zCoord, this);

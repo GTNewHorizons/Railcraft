@@ -20,7 +20,7 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class MachineProxyWire implements IMachineProxy {
 
     @Override
-    public IMachine getMachine(int meta) {
+    public IMachine getMachine() {
         return Machines.WIRE;
     }
 

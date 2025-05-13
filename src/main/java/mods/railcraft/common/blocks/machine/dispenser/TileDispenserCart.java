@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.dispenser;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,7 +24,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -47,8 +48,8 @@ public class TileDispenserCart extends TileMachineItem {
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.DISPENSER_CART;
+    public IMachine getMachineType() {
+        return Machines.CART_DISPENSER;
     }
 
     @Override

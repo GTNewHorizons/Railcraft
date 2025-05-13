@@ -14,7 +14,7 @@ public class MachineProxyTankValve implements IMachineProxy {
     }
 
     @Override
-    public Machine getMachine(int meta) {
+    public Machine getMachine() {
         return Tanks.getValve(material);
     }
 

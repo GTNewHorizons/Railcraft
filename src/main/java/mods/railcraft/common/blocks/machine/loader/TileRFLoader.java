@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,7 +17,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyReceiver;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EntityCartRF;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -31,8 +32,8 @@ public class TileRFLoader extends TileRFLoaderBase implements IGuiReturnHandler,
     private boolean waitIfEmpty = true;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.RF_LOADER;
+    public IMachine getMachineType() {
+        return Machines.RF_LOADER;
     }
 
     @Override

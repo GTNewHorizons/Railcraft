@@ -4,10 +4,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.items.ItemIngot;
 import mods.railcraft.common.items.RailcraftItem;
@@ -23,7 +23,6 @@ public class ModuleRF extends RailcraftModule {
     @Override
     public void initFirst() {
         BlockDetector.registerBlock();
-        RailcraftBlocks.registerBlockMachineGamma();
 
         EnumCart cart = EnumCart.REDSTONE_FLUX;
         if (cart.setup()) {
@@ -41,12 +40,12 @@ public class ModuleRF extends RailcraftModule {
                     Items.minecart);
         }
 
-        EnumMachineGamma gamma = EnumMachineGamma.RF_LOADER;
-        if (gamma.register()) {
+        Machine rfLoader = Machines.RF_LOADER;
+        if (rfLoader != null) {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    gamma.getItem(),
+                    rfLoader.getItem(),
                     "RLR",
                     "LRL",
                     "RDR",
@@ -58,12 +57,12 @@ public class ModuleRF extends RailcraftModule {
                     "blockLead");
         }
 
-        gamma = EnumMachineGamma.RF_UNLOADER;
-        if (gamma.register()) {
+        Machine rfUnloader = Machines.RF_UNLOADER;
+        if (rfUnloader != null) {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    gamma.getItem(),
+                    rfUnloader.getItem(),
                     "RDR",
                     "LRL",
                     "RLR",

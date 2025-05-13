@@ -37,7 +37,6 @@ import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
-import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 
 public class BlockMultiMachine extends BlockContainer implements IPostConnection {
@@ -82,8 +81,7 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
     }
 
     public IMachine getMachineType(World world, int x, int y, int z) {
-        int meta = WorldPlugin.getBlockMetadata(world, x, y, z);
-        return proxy.getMachine(meta);
+        return proxy.getMachine();
     }
 
     @Override
@@ -102,7 +100,7 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return proxy.getMachine(meta).getTexture(side);
+        return proxy.getMachine().getTexture(side);
     }
 
     @Override
@@ -115,7 +113,7 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
     @Override
     public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).recolourBlock(colour);
+        if (tile instanceof TileMachineBase tileRecolor) return tileRecolor.recolourBlock(colour);
         return false;
     }
 
@@ -266,7 +264,7 @@ public class BlockMultiMachine extends BlockContainer implements IPostConnection
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return proxy.getMachine(meta).getTileEntity();
+        return proxy.getMachine().getTileEntity();
     }
 
     @Override

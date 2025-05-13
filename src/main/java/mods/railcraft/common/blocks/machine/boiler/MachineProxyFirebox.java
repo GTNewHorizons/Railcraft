@@ -16,13 +16,13 @@ public class MachineProxyFirebox implements IMachineProxy {
     }
 
     @Override
-    public Machine getMachine(int meta) {
+    public Machine getMachine() {
         return getMachine(fireboxType);
     }
 
     @Override
     public void registerIcons(IIconRegister iconRegister) {
-        getMachine(0).registerIcons(iconRegister);
+        getMachine().registerIcons(iconRegister);
     }
 
     private Machine getMachine(FireboxType fireboxType) {

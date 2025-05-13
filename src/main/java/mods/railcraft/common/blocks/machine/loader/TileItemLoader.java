@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +20,8 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.inventory.AdjacentInventoryCache;
@@ -54,8 +55,8 @@ public class TileItemLoader extends TileLoaderItemBase {
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.ITEM_LOADER;
+    public IMachine getMachineType() {
+        return Machines.ITEM_LOADER;
     }
 
     @Override

@@ -20,7 +20,6 @@ import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.feed_station.TamingInteractHandler;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ItemBoreHeadDiamond;
 import mods.railcraft.common.carts.ItemBoreHeadIron;
@@ -176,9 +175,9 @@ public class ModuleAutomation extends RailcraftModule {
                     Blocks.stone_pressure_plate);
         }
 
-        EnumMachineGamma gamma = EnumMachineGamma.DISPENSER_CART;
-        if (gamma.register())
-            CraftingPlugin.addShapedRecipe(gamma.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
+        Machine cartDispenser = Machines.CART_DISPENSER;
+        if (cartDispenser != null)
+            CraftingPlugin.addShapedRecipe(cartDispenser.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
 
         Machine feedStation = Machines.FEED_STATION;
         if (feedStation.isAvailable()) {

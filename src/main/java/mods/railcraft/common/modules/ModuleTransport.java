@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.carts.EnumCart;
@@ -74,8 +73,8 @@ public class ModuleTransport extends RailcraftModule {
                 'P',
                 new ItemStack(Items.ender_pearl));
 
-        EnumMachineGamma itemLoader = EnumMachineGamma.ITEM_LOADER;
-        if (itemLoader.register()) {
+        Machine itemLoader = Machines.ITEM_LOADER;
+        if (itemLoader != null) {
             ItemStack stack = itemLoader.getItem();
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
@@ -91,9 +90,9 @@ public class ModuleTransport extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            itemLoader = EnumMachineGamma.ITEM_LOADER_ADVANCED;
-            if (itemLoader.register()) CraftingPlugin.addShapedRecipe(
-                    itemLoader.getItem(),
+            Machine itemLoaderAdv = Machines.ITEM_LOADER_ADVANCED;
+            if (itemLoaderAdv != null) CraftingPlugin.addShapedRecipe(
+                    itemLoaderAdv.getItem(),
                     "IRI",
                     "RLR",
                     "ISI",
@@ -107,8 +106,8 @@ public class ModuleTransport extends RailcraftModule {
                     stack);
         }
 
-        EnumMachineGamma itemUnloader = EnumMachineGamma.ITEM_UNLOADER;
-        if (itemUnloader.register()) {
+        Machine itemUnloader = Machines.ITEM_UNLOADER;
+        if (itemUnloader != null) {
             ItemStack stack = itemUnloader.getItem();
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
@@ -124,9 +123,9 @@ public class ModuleTransport extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            itemUnloader = EnumMachineGamma.ITEM_UNLOADER_ADVANCED;
-            if (itemUnloader.register()) CraftingPlugin.addShapedRecipe(
-                    itemUnloader.getItem(),
+            Machine itemUnloaderAdv = Machines.ITEM_UNLOADER_ADVANCED;
+            if (itemUnloaderAdv != null) CraftingPlugin.addShapedRecipe(
+                    itemUnloaderAdv.getItem(),
                     "IRI",
                     "RLR",
                     "ISI",
@@ -140,9 +139,9 @@ public class ModuleTransport extends RailcraftModule {
                     stack);
         }
 
-        EnumMachineGamma liquidLoader = EnumMachineGamma.FLUID_LOADER;
+        Machine liquidLoader = Machines.FLUID_LOADER;
 
-        if (liquidLoader.register()) {
+        if (liquidLoader != null) {
             ItemStack detector = EnumDetector.TANK.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
@@ -158,8 +157,8 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
-        EnumMachineGamma liquidUnloader = EnumMachineGamma.FLUID_UNLOADER;
-        if (liquidUnloader.register()) {
+        Machine liquidUnloader = Machines.FLUID_UNLOADER;
+        if (liquidUnloader != null) {
             ItemStack detector = EnumDetector.TANK.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(

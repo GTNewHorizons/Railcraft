@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.gamma;
+package mods.railcraft.common.blocks.machine.loader;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,7 +17,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.Optional;
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EntityCartRF;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -33,8 +34,8 @@ public class TileRFUnloader extends TileRFLoaderBase implements IEnergyProvider,
     private static final int AMOUNT_TO_PUSH_TO_TILES = 2000;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineGamma.RF_UNLOADER;
+    public IMachine getMachineType() {
+        return Machines.RF_UNLOADER;
     }
 
     @Override

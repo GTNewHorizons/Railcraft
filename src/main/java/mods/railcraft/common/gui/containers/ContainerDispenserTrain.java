@@ -11,7 +11,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
+import mods.railcraft.common.blocks.machine.dispenser.TileDispenserTrain;
 import mods.railcraft.common.gui.slots.SlotMinecart;
 import mods.railcraft.common.gui.slots.SlotMinecartFilter;
 

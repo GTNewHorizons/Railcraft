@@ -19,11 +19,11 @@ public class ItemMachine extends ItemBlockRailcraft {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return machineBlock.getMachineProxy().getMachine(stack.getItemDamage()).getTag();
+        return machineBlock.getMachineProxy().getMachine().getTag();
     }
 
     @Override
     public ToolTip getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-        return machineBlock.getMachineProxy().getMachine(stack.getItemDamage()).getToolTip(stack, player, adv);
+        return machineBlock.getMachineProxy().getMachine().getToolTip(stack, player, adv);
     }
 }

@@ -34,7 +34,6 @@ import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -772,7 +771,6 @@ public class RailcraftConfig {
 
         loadBlockProperty("machine.engine");
         loadBlockProperty("machine.wire");
-        loadBlockProperty("machine.gamma");
 
         loadBlockProperty("ore");
 
@@ -836,10 +834,6 @@ public class RailcraftConfig {
             if (!type.isDepecriated()) loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineGamma type : EnumMachineGamma.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
         loadBlockFeature(Machines.WIRE.getTag());
 
         loadBlockFeature(Machines.WORLD_ANCHOR.getTag());
@@ -865,6 +859,21 @@ public class RailcraftConfig {
         loadBlockFeature(Machines.FORCE_TRACK_EMITTER.getTag());
         loadBlockFeature(Machines.FLUX_TRANSFORMER.getTag());
         loadBlockFeature(Machines.ENGRAVING_BENCH.getTag());
+
+        loadBlockFeature(Machines.ITEM_LOADER.getTag());
+        loadBlockFeature(Machines.ITEM_UNLOADER.getTag());
+
+        loadBlockFeature(Machines.ITEM_LOADER_ADVANCED.getTag());
+        loadBlockFeature(Machines.ITEM_UNLOADER_ADVANCED.getTag());
+
+        loadBlockFeature(Machines.FLUID_LOADER.getTag());
+        loadBlockFeature(Machines.FLUID_UNLOADER.getTag());
+
+        loadBlockFeature(Machines.ENERGY_LOADER.getTag());
+        loadBlockFeature(Machines.ENERGY_UNLOADER.getTag());
+        
+        loadBlockFeature(Machines.CART_DISPENSER.getTag());
+        loadBlockFeature(Machines.TRAIN_DISPENSER.getTag());
 
         for (EnumSignal type : EnumSignal.values()) {
             if (type.getModule() != null) loadBlockFeature(type.getTag());

@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.modules;
 
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -47,7 +46,6 @@ import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
 import mods.railcraft.common.carts.CartUtils;
@@ -398,8 +396,21 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.SENTINEL);
         machines.add(Machines.VOID_CHEST);
         machines.add(Machines.METALS_CHEST);
-        machines.addAll(EnumSet.allOf(EnumMachineGamma.class));
+
         machines.add(Machines.WIRE);
+
+        machines.add(Machines.ITEM_LOADER);
+        machines.add(Machines.ITEM_UNLOADER);
+        machines.add(Machines.ITEM_LOADER_ADVANCED);
+        machines.add(Machines.ITEM_UNLOADER_ADVANCED);
+        machines.add(Machines.FLUID_LOADER);
+        machines.add(Machines.FLUID_UNLOADER);
+        machines.add(Machines.ENERGY_LOADER);
+        machines.add(Machines.ENERGY_UNLOADER);
+        machines.add(Machines.CART_DISPENSER);
+        machines.add(Machines.TRAIN_DISPENSER);
+        machines.add(Machines.RF_LOADER);
+        machines.add(Machines.RF_UNLOADER);
 
         for (IMachine machine : machines) {
             if (machine != null && machine.isAvailable()) RailcraftRegistry.register(machine.getItem());
