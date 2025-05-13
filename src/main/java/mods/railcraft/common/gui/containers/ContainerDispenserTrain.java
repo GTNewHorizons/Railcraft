@@ -18,7 +18,6 @@ import mods.railcraft.common.gui.slots.SlotMinecartFilter;
 public class ContainerDispenserTrain extends RailcraftContainer {
 
     public TileDispenserTrain tile;
-    private Slot minecart;
 
     public ContainerDispenserTrain(InventoryPlayer playerInv, TileDispenserTrain tile) {
         super(tile);
@@ -30,7 +29,7 @@ public class ContainerDispenserTrain extends RailcraftContainer {
 
         for (int i = 0; i < 2; i++) {
             for (int k = 0; k < 9; k++) {
-                addSlot(minecart = new SlotMinecart(tile, k + i * 9, 8 + k * 18, 67 + i * 18));
+                addSlot(new SlotMinecart(tile, k + i * 9, 8 + k * 18, 67 + i * 18));
             }
         }
 

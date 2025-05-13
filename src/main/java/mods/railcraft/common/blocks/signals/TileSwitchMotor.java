@@ -22,10 +22,9 @@ import mods.railcraft.api.tracks.ITrackSwitch;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 public class TileSwitchMotor extends TileSwitchSecured
-        implements IAspectActionManager, IGuiReturnHandler, IReceiverTile {
+        implements IAspectActionManager, IReceiverTile {
 
     private final SimpleSignalReceiver receiver = new SimpleSignalReceiver(getLocalizationTag(), this);
     private boolean[] switchOnAspects = new boolean[SignalAspect.values().length];

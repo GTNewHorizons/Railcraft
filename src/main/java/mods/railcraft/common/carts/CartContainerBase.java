@@ -134,6 +134,8 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
                 case EAST_NORTH_CORNER:
                     if (prevPosZ > posZ) return ForgeDirection.NORTH;
                     else return ForgeDirection.EAST;
+                default:
+                    return ForgeDirection.UNKNOWN;
             }
         }
         return ForgeDirection.UNKNOWN;

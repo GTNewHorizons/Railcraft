@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -53,7 +54,7 @@ public class EntityAIMateBreeding extends EntityAIBase {
             return false;
         }
 
-        List nearbyEntites = theAnimal.worldObj
+        List<Entity> nearbyEntites = theAnimal.worldObj
                 .getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
         if (nearbyEntites.size() > MAX_ANIMALS) {
             return false;
@@ -155,10 +156,10 @@ public class EntityAIMateBreeding extends EntityAIBase {
      */
     private EntityAnimal getNearbyMate() {
         float var1 = 8.0F;
-        List var2 = this.theWorld.getEntitiesWithinAABB(
+        List<Entity> var2 = this.theWorld.getEntitiesWithinAABB(
                 this.theAnimal.getClass(),
                 this.theAnimal.boundingBox.expand((double) var1, (double) var1, (double) var1));
-        Iterator entity = var2.iterator();
+        Iterator<Entity> entity = var2.iterator();
         EntityAnimal target;
 
         do {

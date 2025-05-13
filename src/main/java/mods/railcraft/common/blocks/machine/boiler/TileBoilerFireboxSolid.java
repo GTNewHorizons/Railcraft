@@ -68,8 +68,6 @@ public class TileBoilerFireboxSolid extends TileBoilerFirebox implements INeedsF
 
     private static final int SLOT_BURN = 2;
     private static final int SLOT_FUEL_A = 3;
-    private static final int SLOT_FUEL_B = 4;
-    private static final int SLOT_FUEL_C = 5;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 6);
     private static final IStackFilter NOT_FUEL = new InvertedStackFilter(StackFilter.FUEL);
     private IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);

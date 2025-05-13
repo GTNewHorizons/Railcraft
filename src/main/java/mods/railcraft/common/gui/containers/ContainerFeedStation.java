@@ -14,12 +14,11 @@ import mods.railcraft.common.gui.slots.SlotFeed;
 public class ContainerFeedStation extends RailcraftContainer {
 
     public TileFeedStation tile;
-    private Slot feed;
 
     public ContainerFeedStation(InventoryPlayer inventoryplayer, TileFeedStation tile) {
         super(tile);
         this.tile = tile;
-        addSlot(feed = new SlotFeed(tile, 0, 60, 24));
+        addSlot(new SlotFeed(tile, 0, 60, 24));
         for (int i = 0; i < 3; i++) {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 58 + i * 18));

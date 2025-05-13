@@ -20,7 +20,7 @@ import mods.railcraft.common.util.network.PacketBuilder;
 public class ContainerEnergyLoader extends RailcraftContainer {
 
     private TileLoaderEnergyBase device;
-    private int lastEnergy, lastTransferRate;
+    private int lastEnergy;
     private short lastStorage, lastLapo;
 
     public ContainerEnergyLoader(InventoryPlayer inventoryplayer, TileLoaderEnergyBase device) {
@@ -77,7 +77,6 @@ public class ContainerEnergyLoader extends RailcraftContainer {
         lastEnergy = (int) device.getEnergy();
         lastStorage = device.storageUpgrades;
         lastLapo = device.lapotronUpgrades;
-        lastTransferRate = device.transferRate;
     }
 
     @Override

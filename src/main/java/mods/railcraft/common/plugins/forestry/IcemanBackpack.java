@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import cpw.mods.fml.common.Optional;
-import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
@@ -24,7 +23,7 @@ import mods.railcraft.common.util.inventory.StandaloneInventory;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @Optional.Interface(iface = "forestry.api.storage.IBackpackDefinition", modid = "Forestry")
-public class IcemanBackpack extends BaseBackpack implements IBackpackDefinition {
+public class IcemanBackpack extends BaseBackpack {
 
     private static IcemanBackpack instance;
     private static final ItemStack SNOWBALL = new ItemStack(Items.snowball);

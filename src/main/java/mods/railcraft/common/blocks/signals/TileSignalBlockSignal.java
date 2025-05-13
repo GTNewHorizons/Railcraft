@@ -22,7 +22,7 @@ import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.api.signals.SimpleSignalController;
 import mods.railcraft.common.util.misc.Game;
 
-public class TileSignalBlockSignal extends TileSignalBase implements IControllerTile, ISignalTile, ISignalBlockTile {
+public class TileSignalBlockSignal extends TileSignalBase implements IControllerTile, ISignalBlockTile {
 
     private final SimpleSignalController controller = new SimpleSignalController(getLocalizationTag(), this);
     private final SignalBlock signalBlock = new SignalBlockSimple(getLocalizationTag(), this);

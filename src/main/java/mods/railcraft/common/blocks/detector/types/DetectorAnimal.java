@@ -26,9 +26,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import mods.railcraft.common.blocks.detector.Detector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.gui.EnumGui;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
 
-public class DetectorAnimal extends Detector implements IGuiReturnHandler {
+public class DetectorAnimal extends Detector {
 
     public boolean chicken = true;
     public boolean cow = true;

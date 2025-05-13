@@ -6,12 +6,10 @@
 package mods.railcraft.common.core;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +57,6 @@ public class RailcraftConfig {
     // private static final String COMMENT_PREFIX = "\n\n # ";
     public static final String NO_MOB_SPAWN_ON_THIS_BLOCK_LANG = "item.nomobspawnsonthisblock.tip";
     private static final String CAT_ANCHORS = "anchors";
-    private static final String CAT_AURAS = "auras";
     private static final String CAT_ENCHANTMENTS = "enchantments";
     private static final String CAT_LOOT = "loot";
     private static final String CAT_WORLD_GEN = "worldgen";
@@ -1294,21 +1291,6 @@ public class RailcraftConfig {
         entitiesExcludedFromHighSpeedExplosions.add(entityName);
     }
 
-    private static List<Integer> getIntegerList(String cat, String tag, int maxEntries) {
-        Property prop = configMain.get(cat, tag, "");
-        String value = prop.getString();
-        if (value.equals("")) return Collections.EMPTY_LIST;
-        String[] tokens = value.split(",");
-        List<Integer> list = new ArrayList<Integer>(maxEntries);
-        int count = 0;
-        for (String token : tokens) {
-            list.add(Integer.valueOf(token));
-            count++;
-            if (count >= maxEntries) break;
-        }
-        return list;
-    }
-
     private static boolean get(String tag, boolean defaultValue, String comment) {
         return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
@@ -1334,10 +1316,6 @@ public class RailcraftConfig {
     private static boolean get(Configuration config, String cat, String tag, boolean defaultValue) {
         Property prop = config.get(cat, tag, defaultValue);
         return prop.getBoolean(defaultValue);
-    }
-
-    private static int get(String tag, int defaultValue, String comment) {
-        return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
 
     private static int get(String cat, String tag, int defaultValue) {
@@ -1411,10 +1389,6 @@ public class RailcraftConfig {
             return defaultValue;
         }
         return parsed;
-    }
-
-    private static Property get(String tag, String defaultValue, String comment) {
-        return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
 
     private static Property get(String cat, String tag, String defaultValue, String comment) {

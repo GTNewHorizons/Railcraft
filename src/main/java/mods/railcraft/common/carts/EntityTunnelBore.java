@@ -107,11 +107,6 @@ public class EntityTunnelBore extends CartContainerBase implements ILinkableCart
     private int fuel;
     private boolean hasInit;
     private EntityTunnelBorePart[] partArray;
-    private EntityTunnelBorePart partHead1;
-    private EntityTunnelBorePart partHead2;
-    private EntityTunnelBorePart partBody;
-    private EntityTunnelBorePart partTail1;
-    private EntityTunnelBorePart partTail2;
 
     public EntityTunnelBore(World world, double i, double j, double k) {
         this(world, i, j, k, ForgeDirection.SOUTH);
@@ -121,11 +116,11 @@ public class EntityTunnelBore extends CartContainerBase implements ILinkableCart
         super(world);
         partArray = new EntityTunnelBorePart[] {
                 // ------------------------------------- width, height, forwardOffset, sideOffset
-                partHead1 = new EntityTunnelBorePart(this, "head1", 1.9F, 2.6F, 2F, -0.6F),
-                partHead2 = new EntityTunnelBorePart(this, "head2", 1.9F, 2.6F, 2F, 0.6F),
-                partBody = new EntityTunnelBorePart(this, "body", 2.0F, 1.9F, 0.6F),
-                partTail1 = new EntityTunnelBorePart(this, "tail1", 1.6F, 1.4F, -1F),
-                partTail2 = new EntityTunnelBorePart(this, "tail2", 1.6F, 1.4F, -2.2F), };
+                new EntityTunnelBorePart(this, "head1", 1.9F, 2.6F, 2F, -0.6F),
+                new EntityTunnelBorePart(this, "head2", 1.9F, 2.6F, 2F, 0.6F),
+                new EntityTunnelBorePart(this, "body", 2.0F, 1.9F, 0.6F),
+                new EntityTunnelBorePart(this, "tail1", 1.6F, 1.4F, -1F),
+                new EntityTunnelBorePart(this, "tail2", 1.6F, 1.4F, -2.2F), };
         hasInit = true;
         setPosition(i, j + (double) yOffset, k);
         motionX = 0.0D;

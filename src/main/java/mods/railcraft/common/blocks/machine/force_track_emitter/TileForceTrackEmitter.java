@@ -71,6 +71,9 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
                 case EXTENDED:
                     emitter.extended();
                     break;
+                case HALTED:
+                case RETRACTED:
+                    break;
             }
         }
     }

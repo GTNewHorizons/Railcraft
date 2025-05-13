@@ -37,7 +37,6 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 public class TileEnergyLoader extends TileLoaderEnergyBase
         implements ISinkDelegate, IGuiReturnHandler, IEnergyConnected {
 
-    private static final short[] INPUT_LEVELS = { 512, 2048 };
     private boolean waitTillFull = false;
     private boolean waitIfEmpty = true;
     private TileEntity sinkDelegate;

@@ -18,12 +18,11 @@ import mods.railcraft.common.blocks.signals.ISecure;
 import mods.railcraft.common.gui.buttons.LockButtonState;
 import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public abstract class DetectorSecured extends Detector implements IGuiReturnHandler, ISecure<LockButtonState> {
+public abstract class DetectorSecured extends Detector implements ISecure<LockButtonState> {
 
     private final MultiButtonController<LockButtonState> lockController = new MultiButtonController(
             0,

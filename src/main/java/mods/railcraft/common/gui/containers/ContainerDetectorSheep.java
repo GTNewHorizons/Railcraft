@@ -15,13 +15,10 @@ import mods.railcraft.common.blocks.detector.types.DetectorSheep;
 import mods.railcraft.common.gui.slots.SlotWoolFilter;
 
 public class ContainerDetectorSheep extends RailcraftContainer {
-
-    private final TileDetector tile;
     private final DetectorSheep detector;
 
     public ContainerDetectorSheep(InventoryPlayer inventoryplayer, TileDetector tile) {
         super(((DetectorSheep) tile.getDetector()).getFilters());
-        this.tile = tile;
         this.detector = (DetectorSheep) tile.getDetector();
         addSlot(new SlotWoolFilter(detector.getFilters(), 0, 60, 24));
 

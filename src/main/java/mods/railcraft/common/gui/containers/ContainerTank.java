@@ -20,7 +20,6 @@ import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 public class ContainerTank extends RailcraftContainer {
 
     private ITankTile tile;
-    private Slot input;
 
     public ContainerTank(InventoryPlayer inventoryplayer, ITankTile tile) {
         super(tile.getInventory());
@@ -31,7 +30,7 @@ public class ContainerTank extends RailcraftContainer {
             addWidget(new FluidGaugeWidget(tank, 35, 23, 176, 0, 48, 47));
         }
 
-        addSlot(input = tile.getInputSlot(tile.getInventory(), 0, 116, 21));
+        addSlot(tile.getInputSlot(tile.getInventory(), 0, 116, 21));
         addSlot(new SlotOutput(tile.getInventory(), 1, 116, 56));
         for (int i = 0; i < 3; i++) {
             for (int k = 0; k < 9; k++) {

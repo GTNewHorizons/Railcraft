@@ -85,5 +85,4 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
     }
 
     private static final double DRAG_FACTOR = 0.99;
-    private static final double PUSH_FACTOR = 0.1D;
 }

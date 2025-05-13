@@ -156,7 +156,7 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
         tank.renderData.color = color;
     }
 
-    public void updateGuiData(Container container, List crafters, int tankIndex) {
+    public void updateGuiData(Container container, List<ICrafting> crafters, int tankIndex) {
         StandardTank tank = tanks.get(tankIndex);
         FluidStack fluidStack = tank.getFluid();
         int color = tank.getColor();
@@ -303,11 +303,6 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
             int used = tank.fill(side.getOpposite(), available, true);
             if (used > 0) drain(tankIndex, used, true);
         }
-    }
-
-    private boolean tankAcceptsFluid(StandardTank tank, FluidStack fluidStack) {
-        if (fluidStack == null) return false;
-        return tank.fill(fluidStack, false) > 0;
     }
 
     private boolean tankCanDrain(StandardTank tank) {

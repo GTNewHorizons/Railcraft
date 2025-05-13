@@ -7,6 +7,7 @@ package mods.railcraft.common.blocks.machine.ai;
 
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -31,7 +32,7 @@ public class EntityAIDespawn extends EntityAIBase {
         double chance = ADULT_DESPAWN_CHANCE;
         if (theAnimal.isChild()) chance = CHILD_DESPAWN_CHANCE;
         if (theAnimal.getRNG().nextDouble() > chance) return false;
-        List nearbyEntites = theAnimal.worldObj
+        List<Entity> nearbyEntites = theAnimal.worldObj
                 .getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
         return nearbyEntites.size() > MAX_ANIMALS;
     }

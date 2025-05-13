@@ -40,7 +40,6 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.gui.slots.SlotWaterOrEmpty;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
 
@@ -88,9 +87,6 @@ public class TileTankWater extends TileTank {
                         { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' } }, };
         patterns.add(new MultiBlockPattern(map, 2, 1, 2));
     }
-
-    private IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
-    private IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1);
 
     public TileTankWater() {
         super("railcraft.gui.tank.water", 2, patterns);

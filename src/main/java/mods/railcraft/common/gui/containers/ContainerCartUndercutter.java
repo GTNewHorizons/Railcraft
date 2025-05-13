@@ -15,15 +15,11 @@ import mods.railcraft.common.gui.slots.SlotBlockFilter;
 import mods.railcraft.common.gui.slots.SlotLinked;
 
 public class ContainerCartUndercutter extends RailcraftContainer {
-
-    private EntityCartUndercutter cart;
     private Slot under;
     private Slot side;
 
     public ContainerCartUndercutter(InventoryPlayer inventoryplayer, EntityCartUndercutter cart) {
         super(cart);
-        this.cart = cart;
-
         addSlot(new SlotBlockFilter(cart.getPattern(), 0, 17, 45));
         addSlot(new SlotBlockFilter(cart.getPattern(), 1, 35, 45));
         addSlot(new SlotBlockFilter(cart.getPattern(), 2, 17, 87));

@@ -47,7 +47,6 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     private static final int SLOT_FUEL_B = 4;
     private static final int SLOT_FUEL_C = 5;
     private static final int SLOT_TICKET = 6;
-    private static final int SLOT_DESTINATION = 7;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 7);
     private static final byte FIRE_ASPECT_DATA_ID = 30;
     private static final byte WATER_ASPECT_DATA_ID = 31;

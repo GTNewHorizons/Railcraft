@@ -66,8 +66,6 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 3);
     private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final IInventory invFuel = new InventoryMapper(this, SLOT_FUEL, 1);
-    private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
-    private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1);
     private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(this, tileCache, new ITileFilter() {
 
         @Override

@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.World;
 
@@ -154,7 +155,7 @@ public class EntityCartGift extends EntityCartTNTWood {
         addGift(RailcraftToolItems.getSteelBoots(), armorChance);
 
         for (int meta = 0; meta <= 32767; ++meta) {
-            List effects = PotionHelper.getPotionEffects(meta, false);
+            List<PotionEffect> effects = PotionHelper.getPotionEffects(meta, false);
 
             if (effects != null && !effects.isEmpty()) potions.add(meta);
         }

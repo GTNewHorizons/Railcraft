@@ -15,7 +15,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.OrderedLoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -36,7 +35,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ChunkManager
-        implements LoadingCallback, OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
+        implements OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
     private static ChunkManager instance;
 
@@ -193,9 +192,7 @@ public class ChunkManager
         for (Ticket ticket : tickets) {
             Entity entity = ticket.getEntity();
             if (entity == null) {
-                int x = ticket.getModData().getInteger("xCoord");
                 int y = ticket.getModData().getInteger("yCoord");
-                int z = ticket.getModData().getInteger("zCoord");
                 String type = ticket.getModData().getString("type");
 
                 if (y >= 0) {

@@ -91,14 +91,14 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).colorMultiplier();
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.colorMultiplier();
         return super.colorMultiplier(world, x, y, z);
     }
 
     @Override
     public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).recolourBlock(colour);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.recolourBlock(colour);
         return false;
     }
 
@@ -111,21 +111,21 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2,
             float u3) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).blockActivated(player, side);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.blockActivated(player, side);
         return false;
     }
 
     @Override
     public boolean rotateBlock(World world, int x, int y, int z, ForgeDirection axis) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).rotateBlock(axis);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.rotateBlock(axis);
         return false;
     }
 
     @Override
     public ForgeDirection[] getValidRotations(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getValidRotations();
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getValidRotations();
         return super.getValidRotations(world, x, y, z);
     }
 
@@ -133,7 +133,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public void randomDisplayTick(World world, int i, int j, int k, Random random) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).randomDisplayTick(random);
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.randomDisplayTick(random);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).isSideSolid(side);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.isSideSolid(side);
         return true;
     }
 
@@ -163,20 +163,20 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getDrops(fortune);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getDrops(fortune);
         return super.getDrops(world, x, y, z, metadata, fortune);
     }
 
     public ArrayList<ItemStack> getBlockDroppedSilkTouch(World world, int x, int y, int z, int metadata, int fortune) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getBlockDroppedSilkTouch(fortune);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getBlockDroppedSilkTouch(fortune);
         return super.getDrops(world, x, y, z, metadata, fortune);
     }
 
     @Override
     public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).canSilkHarvest(player);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.canSilkHarvest(player);
         return false;
     }
 
@@ -194,34 +194,34 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public int isProvidingWeakPower(IBlockAccess world, int i, int j, int k, int side) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase)
-            return ((TileMachineBase) tile).isPoweringTo(side) ? PowerPlugin.FULL_POWER : PowerPlugin.NO_POWER;
+        if (tile instanceof TileMachineBase tileMachineBase)
+            return tileMachineBase.isPoweringTo(side) ? PowerPlugin.FULL_POWER : PowerPlugin.NO_POWER;
         return PowerPlugin.NO_POWER;
     }
 
     @Override
     public boolean canConnectRedstone(IBlockAccess world, int i, int j, int k, int dir) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).canConnectRedstone(dir);
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.canConnectRedstone(dir);
         return false;
     }
 
     public void initFromItem(World world, int i, int j, int k, ItemStack stack) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).initFromItem(stack);
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.initFromItem(stack);
     }
 
     @Override
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).onBlockPlacedBy(entityliving, stack);
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.onBlockPlacedBy(entityliving, stack);
     }
 
     @Override
     public void onNeighborBlockChange(World world, int i, int j, int k, Block block) {
         try {
             TileEntity tile = world.getTileEntity(i, j, k);
-            if (tile instanceof TileMachineBase) ((TileMachineBase) tile).onNeighborBlockChange(block);
+            if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.onNeighborBlockChange(block);
         } catch (StackOverflowError error) {
             Game.logThrowable(Level.ERROR, "Stack Overflow Error in BlockMachine.onNeighborBlockChange()", 10, error);
             if (Game.IS_DEBUG) throw error;
@@ -231,13 +231,13 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public void onBlockAdded(World world, int i, int j, int k) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).onBlockAdded();
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.onBlockAdded();
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) ((TileMachineBase) tile).onBlockRemoval();
+        if (tile instanceof TileMachineBase tileMachineBase) tileMachineBase.onBlockRemoval();
         // world.notifyBlocksOfNeighborChange(x + 1, y, z, blockID);
         // world.notifyBlocksOfNeighborChange(x - 1, y, z, blockID);
         // world.notifyBlocksOfNeighborChange(x, y, z + 1, blockID);
@@ -261,7 +261,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         if (y < 0) return 0;
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getLightValue();
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getLightValue();
         return 0;
     }
 
@@ -279,7 +279,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     public float getExplosionResistance(Entity exploder, World world, int x, int y, int z, double srcX, double srcY,
             double srcZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getResistance(exploder) * 3f / 5f;
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getResistance(exploder) * 3f / 5f;
         return super.getExplosionResistance(exploder, world, x, y, z, minX, minY, minZ);
     }
 
@@ -293,7 +293,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
         if (RailcraftConfig.cannotMobsSpawnOnMechanism) return false;
         else {
             TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).canCreatureSpawn(type);
+            if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.canCreatureSpawn(type);
             return super.canCreatureSpawn(type, world, x, y, z);
         }
     }
@@ -301,7 +301,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getHardness();
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.getHardness();
         return super.getBlockHardness(world, x, y, z);
     }
 
@@ -317,15 +317,15 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof IComparatorValueProvider)
-            return ((IComparatorValueProvider) tile).getComparatorInputOverride(world, x, y, z, side);
+        if (tile instanceof IComparatorValueProvider iComparatorValueProvider)
+            return iComparatorValueProvider.getComparatorInputOverride(world, x, y, z, side);
         return 0;
     }
 
     @Override
     public ConnectStyle connectsToPost(IBlockAccess world, int x, int y, int z, ForgeDirection side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).connectsToPost(side);
+        if (tile instanceof TileMachineBase tileMachineBase) return tileMachineBase.connectsToPost(side);
         return ConnectStyle.NONE;
     }
 

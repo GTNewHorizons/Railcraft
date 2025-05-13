@@ -147,8 +147,9 @@ public abstract class TileSwitchBase extends TileSignalFoundation implements ISw
             case WEST:
             case EAST_WEST:
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     @Override

@@ -12,7 +12,6 @@ import java.util.Map;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,7 +40,6 @@ import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 
 public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, ISidedInventory {
@@ -56,8 +54,6 @@ public class TileCokeOven extends TileMultiBlockOven implements IFluidHandler, I
     private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final TankManager tankManager = new TankManager();
     private final StandardTank tank;
-    private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
-    private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 2, false);
 
     static {
         char[][][] map = {

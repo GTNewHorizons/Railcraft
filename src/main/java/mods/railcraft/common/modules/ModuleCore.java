@@ -227,9 +227,9 @@ public class ModuleCore extends RailcraftModule {
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.furnace")) testSet.add(Items.furnace_minecart);
 
         // MiscTools.addShapelessRecipe(new ItemStack(Item.coal, 20), Block.dirt);
-        Iterator it = CraftingManager.getInstance().getRecipeList().iterator();
+        Iterator<IRecipe> it = CraftingManager.getInstance().getRecipeList().iterator();
         while (it.hasNext()) {
-            IRecipe r = (IRecipe) it.next();
+            IRecipe r = it.next();
             ItemStack output = null;
             try {
                 output = r.getRecipeOutput();

@@ -17,14 +17,13 @@ import mods.railcraft.common.gui.slots.SlotMinecartFilter;
 public class ContainerDetectorAdvanced extends RailcraftContainer {
 
     private DetectorAdvanced detector;
-    private Slot filterSlots;
 
     public ContainerDetectorAdvanced(InventoryPlayer inventoryplayer, TileDetector tile) {
         super(((DetectorAdvanced) tile.getDetector()).getFilters());
         this.detector = (DetectorAdvanced) tile.getDetector();
 
         for (int i = 0; i < detector.getFilters().getSizeInventory(); i++) {
-            addSlot(filterSlots = new SlotMinecartFilter(detector.getFilters(), i, 8 + i * 18, 24));
+            addSlot(new SlotMinecartFilter(detector.getFilters(), i, 8 + i * 18, 24));
         }
 
         for (int i = 0; i < 3; i++) {

@@ -28,7 +28,6 @@ import uristqwerty.CraftGuide.api.SlotType;
  */
 public class RockCrusherPlugin implements RecipeProvider {
 
-    private static final int RATIO = 10000;
     private final ItemSlot[] slots = new ItemSlot[11];
 
     public RockCrusherPlugin() {

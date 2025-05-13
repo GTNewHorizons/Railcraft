@@ -17,14 +17,12 @@ import mods.railcraft.common.gui.widgets.IndicatorWidget;
 
 public class ContainerLocomotiveElectric extends ContainerLocomotive {
 
-    private final EntityLocomotiveElectric loco;
     private final IElectricMinecart.ChargeHandler chargeHandler;
     private final ChargeIndicator chargeIndicator;
     private double lastCharge;
 
     private ContainerLocomotiveElectric(InventoryPlayer playerInv, EntityLocomotiveElectric loco) {
         super(playerInv, loco, 161);
-        this.loco = loco;
         this.chargeHandler = loco.getChargeHandler();
         this.chargeIndicator = new ChargeIndicator(EntityLocomotiveElectric.MAX_CHARGE);
     }

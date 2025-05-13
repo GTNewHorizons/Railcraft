@@ -443,16 +443,6 @@ public class LinkageManager implements ILinkageManager {
         return Train.getTrain(cart).size();
     }
 
-    private int numLinkedCarts(EntityMinecart prev, EntityMinecart next) {
-        int count = 1;
-        EntityMinecart linkA = getLinkedCartA(next);
-        EntityMinecart linkB = getLinkedCartB(next);
-
-        if (linkA != null && linkA != prev) count += numLinkedCarts(next, linkA);
-        if (linkB != null && linkB != prev) count += numLinkedCarts(next, linkB);
-        return count;
-    }
-
     @Override
     public Iterable<EntityMinecart> getCartsInTrain(EntityMinecart cart) {
         return Train.getTrain(cart);
