@@ -15,6 +15,7 @@ import mods.railcraft.common.blocks.detector.types.DetectorLocomotive;
 import mods.railcraft.common.gui.slots.SlotColorFilter;
 
 public class ContainerDetectorLocomotive extends RailcraftContainer {
+
     private final DetectorLocomotive detector;
 
     public ContainerDetectorLocomotive(InventoryPlayer inventoryplayer, TileDetector tile) {

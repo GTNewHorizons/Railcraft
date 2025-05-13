@@ -13,6 +13,7 @@ import mods.railcraft.common.gui.slots.SlotLinked;
 import mods.railcraft.common.gui.slots.SlotTrackFilter;
 
 public class ContainerCartTrackRelayer extends RailcraftContainer {
+
     private Slot track;
 
     public ContainerCartTrackRelayer(InventoryPlayer inventoryplayer, EntityCartTrackRelayer cart) {

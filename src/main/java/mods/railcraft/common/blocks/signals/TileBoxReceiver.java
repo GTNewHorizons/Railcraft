@@ -27,8 +27,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 
-public class TileBoxReceiver extends TileBoxActionManager
-        implements IReceiverTile, IAspectProvider {
+public class TileBoxReceiver extends TileBoxActionManager implements IReceiverTile, IAspectProvider {
 
     private static final int FORCED_UPDATE = 512;
     private final SimpleSignalReceiver receiver = new SimpleSignalReceiver(getLocalizationTag(), this);

@@ -13,6 +13,7 @@ import mods.railcraft.common.gui.slots.SlotFilter;
 import mods.railcraft.common.gui.slots.SlotLinked;
 
 public class ContainerCartCargo extends RailcraftContainer {
+
     public ContainerCartCargo(InventoryPlayer inventoryplayer, EntityCartCargo cart) {
         super(cart);
 

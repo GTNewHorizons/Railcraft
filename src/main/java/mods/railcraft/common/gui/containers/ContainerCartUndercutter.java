@@ -15,6 +15,7 @@ import mods.railcraft.common.gui.slots.SlotBlockFilter;
 import mods.railcraft.common.gui.slots.SlotLinked;
 
 public class ContainerCartUndercutter extends RailcraftContainer {
+
     private Slot under;
     private Slot side;
 

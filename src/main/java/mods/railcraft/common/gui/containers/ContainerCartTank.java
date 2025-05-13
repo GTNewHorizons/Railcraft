@@ -15,6 +15,7 @@ import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 
 public class ContainerCartTank extends RailcraftContainer {
+
     public ContainerCartTank(InventoryPlayer inventoryplayer, EntityCartTank cart) {
         super(cart);
 

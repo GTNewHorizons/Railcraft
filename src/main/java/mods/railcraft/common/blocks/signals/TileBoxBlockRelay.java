@@ -29,8 +29,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 
-public class TileBoxBlockRelay extends TileBoxActionManager
-        implements ISignalBlockTile, IAspectProvider {
+public class TileBoxBlockRelay extends TileBoxActionManager implements ISignalBlockTile, IAspectProvider {
 
     private final SimpleSignalController controller = new SimpleSignalController(getLocalizationTag(), this);
     private final SignalBlock signalBlock = new SignalBlockRelay(getLocalizationTag(), this);

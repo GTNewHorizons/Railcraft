@@ -34,8 +34,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class ChunkManager
-        implements OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
+public class ChunkManager implements OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
     private static ChunkManager instance;
 

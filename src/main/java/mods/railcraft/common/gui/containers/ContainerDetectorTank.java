@@ -15,6 +15,7 @@ import mods.railcraft.common.blocks.detector.types.DetectorTank;
 import mods.railcraft.common.gui.slots.SlotFluidFilter;
 
 public class ContainerDetectorTank extends RailcraftContainer {
+
     private final DetectorTank detector;
 
     public ContainerDetectorTank(InventoryPlayer inventoryplayer, TileDetector tile) {
