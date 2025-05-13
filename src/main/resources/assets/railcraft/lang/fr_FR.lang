@@ -446,9 +446,9 @@ railcraft.keybind.loco.whistle=Clé sifflet de locomotive
 railcraft.locomotive.model.steam.solid.default.name=Défaut Solide
 railcraft.locomotive.model.steam.magic.default.name=Défaut Magique
 
-tile.railcraft.machine.alpha.anchor.admin.name=Ancre des administrateur
-tile.railcraft.machine.alpha.anchor.personal.name=Ancre personnelle
-tile.railcraft.machine.alpha.anchor.world.name=Ancre mondiale
+tile.railcraft.machine.anchor.admin.name=Ancre des administrateur
+tile.railcraft.machine.anchor.personal.name=Ancre personnelle
+tile.railcraft.machine.anchor.world.name=Ancre mondiale
 tile.railcraft.machine.blast_furnace.name=Brique de haut fourneau
 tile.railcraft.machine.coke_oven.name=Brique de four à coke
 tile.railcraft.machine.engraving_bench.name=Gravure banquette

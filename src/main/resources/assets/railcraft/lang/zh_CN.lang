@@ -732,10 +732,10 @@ tile.railcraft.frame.tip=用于将轨道放置在分路线缆上
 
 tile.railcraft.glass.name=强化玻璃
 
-tile.railcraft.machine.alpha.anchor.admin.name=管理员锚
-tile.railcraft.machine.alpha.anchor.passive.name=被动锚
-tile.railcraft.machine.alpha.anchor.personal.name=个人锚
-tile.railcraft.machine.alpha.anchor.world.name=世界锚
+tile.railcraft.machine.anchor.admin.name=管理员锚
+tile.railcraft.machine.anchor.passive.name=被动锚
+tile.railcraft.machine.anchor.personal.name=个人锚
+tile.railcraft.machine.anchor.world.name=世界锚
 tile.railcraft.machine.blast_furnace.name=高级焦炉砖块
 tile.railcraft.machine.blast_furnace.tip=多方块结构:3x4x3(中空)
 tile.railcraft.machine.coke_oven.name=焦炉砖块

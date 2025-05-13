@@ -3,9 +3,10 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.anchor;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 
 /**
  *
@@ -14,8 +15,8 @@ import mods.railcraft.common.blocks.machine.IEnumMachine;
 public class TileAnchorAdmin extends TileAnchorWorld {
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.ADMIN_ANCHOR;
+    public IMachine getMachineType() {
+        return Machines.ADMIN_ANCHOR;
     }
 
     @Override

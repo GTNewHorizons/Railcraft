@@ -24,7 +24,6 @@ import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -205,23 +204,23 @@ public class ModuleFactory extends RailcraftModule {
                     recipe.addOutput(new ItemStack(Items.blaze_powder), 0.05f);
                 }
 
-                if (EnumMachineAlpha.WORLD_ANCHOR.isAvailable()) {
+                if (Machines.WORLD_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(EnumMachineAlpha.WORLD_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.WORLD_ANCHOR.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Items.diamond), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
-                if (EnumMachineAlpha.PERSONAL_ANCHOR.isAvailable()) {
+                if (Machines.PERSONAL_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(EnumMachineAlpha.PERSONAL_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.PERSONAL_ANCHOR.getItem(), true, false);
                     recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
                     addAnchorOutputs(recipe);
                 }
 
-                if (EnumMachineAlpha.PASSIVE_ANCHOR.isAvailable()) {
+                if (Machines.PASSIVE_ANCHOR.isAvailable()) {
                     recipe = RailcraftCraftingManager.rockCrusher
-                            .createNewRecipe(EnumMachineAlpha.PASSIVE_ANCHOR.getItem(), true, false);
+                            .createNewRecipe(Machines.PASSIVE_ANCHOR.getItem(), true, false);
                     // recipe.addOutput(new ItemStack(Items.emerald), 0.5f);
                     addAnchorOutputs(recipe);
                 }

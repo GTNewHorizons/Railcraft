@@ -17,8 +17,10 @@ import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.BlockMultiMachine;
 import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.ItemMultiMachine;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
+import mods.railcraft.common.blocks.machine.anchor.MachineProxyAnchorAdmin;
+import mods.railcraft.common.blocks.machine.anchor.MachineProxyAnchorPassive;
+import mods.railcraft.common.blocks.machine.anchor.MachineProxyAnchorPersonal;
+import mods.railcraft.common.blocks.machine.anchor.MachineProxyAnchorWorld;
 import mods.railcraft.common.blocks.machine.blast_furnace.MachineProxyBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyBoilerTank;
 import mods.railcraft.common.blocks.machine.boiler.MachineProxyFirebox;
@@ -67,7 +69,10 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 public class RailcraftBlocks {
 
-    private static Block blockMachineAlpha;
+    private static Block blockMachineAnchorWorld;
+    private static Block blockMachineAnchorPersonal;
+    private static Block blockMachineAnchorAdmin;
+    private static Block blockMachineAnchorPassive;
     private static Block blockMachineTurbine;
     private static Block blockMachineSteamOven;
     private static Block blockMachineSmoker;
@@ -156,6 +161,62 @@ public class RailcraftBlocks {
 
     public static Block getBlockSteamOven() {
         return blockMachineSteamOven;
+    }
+
+    public static Block registerBlockAnchorWorld() {
+        if (blockMachineAnchorWorld == null) {
+            blockMachineAnchorWorld = new BlockMachine(0, new MachineProxyAnchorWorld(), true, 255)
+                    .setBlockName("anchor.world");
+            RailcraftRegistry.register(blockMachineAnchorWorld, ItemMachine.class);
+            blockMachineAnchorWorld.setHarvestLevel("pickaxe", 3);
+        }
+        return blockMachineAnchorWorld;
+    }
+
+    public static Block getBlockAnchorWorld() {
+        return blockMachineAnchorWorld;
+    }
+
+    public static Block registerBlockAnchorPersonal() {
+        if (blockMachineAnchorPersonal == null) {
+            blockMachineAnchorPersonal = new BlockMachine(0, new MachineProxyAnchorPersonal(), true, 255)
+                    .setBlockName("anchor.personal");
+            RailcraftRegistry.register(blockMachineAnchorPersonal, ItemMachine.class);
+            blockMachineAnchorPersonal.setHarvestLevel("pickaxe", 3);
+        }
+        return blockMachineAnchorPersonal;
+    }
+
+    public static Block getBlockAnchorPersonal() {
+        return blockMachineAnchorPersonal;
+    }
+
+    public static Block registerBlockAnchorAdmin() {
+        if (blockMachineAnchorAdmin == null) {
+            blockMachineAnchorAdmin = new BlockMachine(0, new MachineProxyAnchorAdmin(), true, 255)
+                    .setBlockName("anchor.admin");
+            RailcraftRegistry.register(blockMachineAnchorAdmin, ItemMachine.class);
+            blockMachineAnchorAdmin.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineAnchorAdmin;
+    }
+
+    public static Block getBlockAnchorAdmin() {
+        return blockMachineAnchorAdmin;
+    }
+
+    public static Block registerBlockAnchorPassive() {
+        if (blockMachineAnchorPassive == null) {
+            blockMachineAnchorPassive = new BlockMachine(0, new MachineProxyAnchorPassive(), true, 255)
+                    .setBlockName("anchor.passive");
+            RailcraftRegistry.register(blockMachineAnchorPassive, ItemMachine.class);
+            blockMachineAnchorPassive.setHarvestLevel("pickaxe", 2);
+        }
+        return blockMachineAnchorPassive;
+    }
+
+    public static Block getBlockAnchorPassive() {
+        return blockMachineAnchorPassive;
     }
 
     public static Block registerBlockTurbine() {
@@ -294,34 +355,6 @@ public class RailcraftBlocks {
 
     public static Block getBlockRockCrusher() {
         return blockMachineRockCrusher;
-    }
-
-    public static Block registerBlockMachineAlpha() {
-        if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            blockMachineAlpha = new BlockMultiMachine(0, new MachineProxyAlpha(), true, lightOpacity)
-                    .setBlockName("railcraft.machine.alpha");
-            RailcraftRegistry.register(blockMachineAlpha, ItemMultiMachine.class);
-
-            for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
-                switch (type) {
-                    case WORLD_ANCHOR:
-                    case PERSONAL_ANCHOR:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    default:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineAlpha;
-    }
-
-    public static Block getBlockMachineAlpha() {
-        return blockMachineAlpha;
     }
 
     public static Block registerBlockTankWall(TankMaterial material) {

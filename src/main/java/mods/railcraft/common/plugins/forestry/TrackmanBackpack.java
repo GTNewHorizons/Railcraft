@@ -14,7 +14,6 @@ import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
 import mods.railcraft.common.blocks.signals.ItemSignalTuner;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -71,8 +70,8 @@ public class TrackmanBackpack extends BaseBackpack {
         addItem(FluidContainers.getCreosoteOilRefactory());
         addItem(FluidContainers.getCreosoteOilWax());
 
-        addItem(EnumMachineAlpha.WORLD_ANCHOR.getItem());
-        addItem(EnumMachineAlpha.PERSONAL_ANCHOR.getItem());
+        addItem(Machines.WORLD_ANCHOR.getItem());
+        addItem(Machines.PERSONAL_ANCHOR.getItem());
         addItem(Machines.SENTINEL.getItem());
 
         addItem(RailcraftItem.rail);

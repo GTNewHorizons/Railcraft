@@ -3,11 +3,12 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.anchor;
 
 import net.minecraftforge.common.ForgeChunkManager;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
@@ -19,8 +20,8 @@ import mods.railcraft.common.util.collections.ItemMap;
 public class TileAnchorPassive extends TileAnchorWorld {
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.PASSIVE_ANCHOR;
+    public IMachine getMachineType() {
+        return Machines.PASSIVE_ANCHOR;
     }
 
     @Override

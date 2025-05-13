@@ -28,7 +28,7 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -303,18 +303,18 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public Block func_145820_n() {
-        return RailcraftBlocks.getBlockMachineAlpha();
+        return RailcraftBlocks.getBlockAnchorWorld();
     }
 
     @Override
     public int getDisplayTileData() {
-        return EnumMachineAlpha.WORLD_ANCHOR.ordinal();
+        return 0;
     }
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.WORLD_ANCHOR.getTexture(6);
-        return EnumMachineAlpha.WORLD_ANCHOR.getTexture(side);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return Machines.WORLD_ANCHOR.getTexture(6);
+        return Machines.WORLD_ANCHOR.getTexture(side);
     }
 
     @Override

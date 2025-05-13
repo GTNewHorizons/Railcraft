@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Level;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
 import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;

@@ -6,10 +6,10 @@
 package mods.railcraft.common.blocks.machine;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorAdmin;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorPassive;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorPersonal;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorAdmin;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorPassive;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorPersonal;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
 import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;

@@ -205,12 +205,12 @@ fluid.steam=Stoom
 tile.railcraft.machine.blast_furnace.name=Bakstenen Hoogoven
 tile.railcraft.machine.coke_oven.name=Bakstenen Cokesoven
 tile.railcraft.machine.feed_station.name=Voedingsstation
-tile.railcraft.machine.alpha.anchor.personal.name=Persoonlijk wereldanker
+tile.railcraft.machine.anchor.personal.name=Persoonlijk wereldanker
 tile.railcraft.machine.rock_crusher.name=Stenen Pers
 tile.railcraft.machine.rolling_machine.name=Rollermachine
 tile.railcraft.machine.tank_water.name=Watertank Versterking
 tile.railcraft.machine.turbine.name=Stoomturbine Compartiment
-tile.railcraft.machine.alpha.anchor.world.name=Wereldanker
+tile.railcraft.machine.anchor.world.name=Wereldanker
 
 tile.railcraft.machine.anchor.sentinel.name=Wereldanker Bewaker
 tile.railcraft.machine.boiler.firebox.liquid.name=Vloeistof Gedreven Boiler

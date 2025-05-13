@@ -21,7 +21,7 @@ public class Machine implements IMachine {
     protected String tag;
     private int[] textureInfo;
     protected IIcon[] texture;
-    private ToolTip tip;
+    protected ToolTip tip;
 
     public Machine(Module module, Block block, Class<? extends TileMachineBase> tile, String tag, int... textureInfo) {
         this.module = module;

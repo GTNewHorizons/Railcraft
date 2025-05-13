@@ -1,11 +1,17 @@
 package mods.railcraft.common.blocks.machine;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import net.minecraft.block.Block;
 
 import mods.railcraft.common.blocks.RailcraftBlocks;
+import mods.railcraft.common.blocks.machine.anchor.MachineAnchor;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorAdmin;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorPassive;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorPersonal;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
 import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFirebox.FireboxType;
 import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
@@ -46,7 +52,9 @@ import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
 import mods.railcraft.common.blocks.machine.trade_station.TileTradeStation;
 import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
 import mods.railcraft.common.blocks.machine.wire.TileWire;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager.Module;
+import mods.railcraft.common.util.collections.ItemMap;
 
 public class Machines {
 
@@ -54,6 +62,26 @@ public class Machines {
     public static final Map<TankMaterial, Machine> tankValves = new TreeMap<>();
     public static final Map<TankMaterial, Machine> tankGauges = new TreeMap<>();
 
+    public static Machine WORLD_ANCHOR = registerAnchor(
+            RailcraftBlocks.registerBlockAnchorWorld(),
+            TileAnchorWorld.class,
+            "world",
+            Optional.of(RailcraftConfig.anchorFuelWorld));
+    public static Machine PERSONAL_ANCHOR = registerAnchor(
+            RailcraftBlocks.registerBlockAnchorPersonal(),
+            TileAnchorPersonal.class,
+            "personal",
+            Optional.of(RailcraftConfig.anchorFuelPersonal));
+    public static Machine ADMIN_ANCHOR = registerAnchor(
+            RailcraftBlocks.registerBlockAnchorAdmin(),
+            TileAnchorAdmin.class,
+            "admin",
+            null);
+    public static Machine PASSIVE_ANCHOR = registerAnchor(
+            RailcraftBlocks.registerBlockAnchorPassive(),
+            TileAnchorPassive.class,
+            "passive",
+            Optional.of(RailcraftConfig.anchorFuelPassive));
     public static Machine TURBINE = registerMachine(
             Module.ELECTRICITY,
             RailcraftBlocks.registerBlockTurbine(),
@@ -431,6 +459,14 @@ public class Machines {
             String tag, int... textureInfo) {
         if (block != null) {
             return new Machine(module, block, tileClass, tag, textureInfo);
+        }
+        return null;
+    }
+
+    private static Machine registerAnchor(Block block, Class<? extends TileMachineBase> tile, String subtag,
+            Optional<ItemMap<Float>> fuelMap) {
+        if (block != null) {
+            return new MachineAnchor(block, tile, "anchor." + subtag, fuelMap, 3, 1, 0, 0, 1, 1, 1, 1, 2);
         }
         return null;
     }

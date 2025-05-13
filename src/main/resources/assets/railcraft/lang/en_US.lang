@@ -750,11 +750,10 @@ tile.railcraft.frame.tip=Use to place Track on Shunting Wire
 
 tile.railcraft.glass.name=Strengthened Glass
 
-tile.railcraft.machine.alpha.name=Machine
-tile.railcraft.machine.alpha.anchor.admin.name=Admin Anchor
-tile.railcraft.machine.alpha.anchor.passive.name=Passive Anchor
-tile.railcraft.machine.alpha.anchor.personal.name=Personal Anchor
-tile.railcraft.machine.alpha.anchor.world.name=World Anchor
+tile.railcraft.machine.anchor.admin.name=Admin Anchor
+tile.railcraft.machine.anchor.passive.name=Passive Anchor
+tile.railcraft.machine.anchor.personal.name=Personal Anchor
+tile.railcraft.machine.anchor.world.name=World Anchor
 tile.railcraft.machine.blast_furnace.name=Advanced Coke Oven Brick
 tile.railcraft.machine.blast_furnace.tip=Multi-Block: 3x4x3 (Hollow)
 tile.railcraft.machine.coke_oven.name=Coke Oven Brick

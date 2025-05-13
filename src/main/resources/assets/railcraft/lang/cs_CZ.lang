@@ -680,10 +680,10 @@ tile.railcraft.frame.tip=-Wire Support Frame-\n Použij k položení kolejí na 
 
 tile.railcraft.glass.name=Tvrzené sklo
 
-tile.railcraft.machine.alpha.anchor.admin.name=Kotva správce
-tile.railcraft.machine.alpha.anchor.passive.name=Pasivní kotva
-tile.railcraft.machine.alpha.anchor.personal.name=Osobní kotva
-tile.railcraft.machine.alpha.anchor.world.name=Světová kotva
+tile.railcraft.machine.anchor.admin.name=Kotva správce
+tile.railcraft.machine.anchor.passive.name=Pasivní kotva
+tile.railcraft.machine.anchor.personal.name=Osobní kotva
+tile.railcraft.machine.anchor.world.name=Světová kotva
 tile.railcraft.machine.blast_furnace.name=Cihlová vysoká pec
 tile.railcraft.machine.blast_furnace.tip=Multi-blok: 3x4x3 (dutý)
 tile.railcraft.machine.coke_oven.name=Cihlová koksovací pec

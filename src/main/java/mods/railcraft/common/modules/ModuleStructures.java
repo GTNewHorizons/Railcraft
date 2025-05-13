@@ -99,7 +99,6 @@ public class ModuleStructures extends RailcraftModule {
             }
         }
 
-        RailcraftBlocks.registerBlockMachineAlpha();
         Machine smoker = Machines.SMOKER;
         if (smoker.isAvailable()) {
             ItemStack stack = smoker.getItem();

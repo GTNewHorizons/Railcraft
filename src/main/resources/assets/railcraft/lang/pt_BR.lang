@@ -120,7 +120,7 @@ tile.railcraft.machine.feed_station.name=Estação de Alimentação
 tile.railcraft.machine.rock_crusher.name=Esmagador de Pedras
 tile.railcraft.machine.rolling_machine.name=Máquina Roladora
 tile.railcraft.machine.tank_water.name=Parede do Tanque de Água
-tile.railcraft.machine.alpha.anchor.world.name=Âncora Mundial
+tile.railcraft.machine.anchor.world.name=Âncora Mundial
 
 tile.railcraft.machine.boiler.firebox.liquid.name=Forno para Liquidos
 tile.railcraft.machine.boiler.firebox.solid.name=Forno para Sólidos

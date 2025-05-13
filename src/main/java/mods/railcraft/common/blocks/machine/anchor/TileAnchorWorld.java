@@ -3,7 +3,7 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.anchor;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -34,7 +34,8 @@ import com.google.common.collect.MapMaker;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.sentinel.TileSentinel;
 import mods.railcraft.common.carts.ItemCartAnchor;
@@ -86,8 +87,8 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     }
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.WORLD_ANCHOR;
+    public IMachine getMachineType() {
+        return Machines.WORLD_ANCHOR;
     }
 
     @Override

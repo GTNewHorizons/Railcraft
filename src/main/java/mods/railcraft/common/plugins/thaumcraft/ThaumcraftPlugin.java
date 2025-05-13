@@ -25,7 +25,6 @@ import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.blocks.ore.EnumOre;
@@ -233,9 +232,9 @@ public class ThaumcraftPlugin {
                 addItemAspect(turbine.getItem(), steamAspects.copy().add(Aspect.ENERGY, 4));
             }
 
-            addItemAspect(EnumMachineAlpha.ADMIN_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(EnumMachineAlpha.PERSONAL_ANCHOR.getItem(), anchorAspects);
-            addItemAspect(EnumMachineAlpha.WORLD_ANCHOR.getItem(), anchorAspects);
+            addItemAspect(Machines.ADMIN_ANCHOR.getItem(), anchorAspects);
+            addItemAspect(Machines.PERSONAL_ANCHOR.getItem(), anchorAspects);
+            addItemAspect(Machines.WORLD_ANCHOR.getItem(), anchorAspects);
             addItemAspect(Machines.SENTINEL.getItem(), anchorAspects);
 
             addItemAspect(Machines.BOILER_FIREBOX_SOLID.getItem(), steamAspects.copy().add(Aspect.ENERGY, 2));

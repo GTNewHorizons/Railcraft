@@ -47,7 +47,6 @@ import mods.railcraft.common.blocks.machine.IMachine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
@@ -374,7 +373,10 @@ public class ModuleCore extends RailcraftModule {
         }
 
         Set<IMachine> machines = new HashSet<IMachine>();
-        machines.addAll(EnumSet.allOf(EnumMachineAlpha.class));
+        machines.add(Machines.WORLD_ANCHOR);
+        machines.add(Machines.PERSONAL_ANCHOR);
+        machines.add(Machines.ADMIN_ANCHOR);
+        machines.add(Machines.PASSIVE_ANCHOR);
         machines.add(Machines.COKE_OVEN);
         machines.add(Machines.ROLLING_MACHINE);
         machines.add(Machines.STEAM_TRAP_MANUAL);

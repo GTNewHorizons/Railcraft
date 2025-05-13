@@ -684,10 +684,10 @@ tile.railcraft.frame.tip=Используйте для размещения пу
 
 tile.railcraft.glass.name=Армированное стекло
 
-tile.railcraft.machine.alpha.anchor.admin.name=Якорь администратора
-tile.railcraft.machine.alpha.anchor.passive.name=Пассивный якорь
-tile.railcraft.machine.alpha.anchor.personal.name=Личный якорь
-tile.railcraft.machine.alpha.anchor.world.name=Мировой якорь
+tile.railcraft.machine.anchor.admin.name=Якорь администратора
+tile.railcraft.machine.anchor.passive.name=Пассивный якорь
+tile.railcraft.machine.anchor.personal.name=Личный якорь
+tile.railcraft.machine.anchor.world.name=Мировой якорь
 tile.railcraft.machine.blast_furnace.name=Доменный кирпич
 tile.railcraft.machine.blast_furnace.tip=Мульти-блок: 3x4x3 (Полый)
 tile.railcraft.machine.coke_oven.name=Кирпич коксовой печи

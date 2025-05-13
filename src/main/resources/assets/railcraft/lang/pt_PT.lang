@@ -125,7 +125,7 @@ tile.railcraft.machine.rock_crusher.name=Esmagador de Pedras
 tile.railcraft.machine.rolling_machine.name=Máquina de Enrolar
 tile.railcraft.machine.tank_water.name=Bloco de Tanque de Água
 tile.railcraft.machine.turbine.name=Central da Turbina a Vapor
-tile.railcraft.machine.alpha.anchor.world.name=Ancorador
+tile.railcraft.machine.anchor.world.name=Ancorador
 
 tile.railcraft.machine.anchor.sentinel.name=Ancorador Sentinela
 tile.railcraft.machine.boiler.firebox.liquid.name=Caldeira de Líquidos

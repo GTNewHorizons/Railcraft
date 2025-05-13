@@ -34,7 +34,6 @@ import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
 import mods.railcraft.common.blocks.machine.Machines;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
@@ -771,7 +770,6 @@ public class RailcraftConfig {
         loadBlockProperty("glass");
         loadBlockProperty("residual.heat");
 
-        loadBlockProperty("machine.alpha");
         loadBlockProperty("machine.engine");
         loadBlockProperty("machine.wire");
         loadBlockProperty("machine.gamma");
@@ -838,17 +836,29 @@ public class RailcraftConfig {
             if (!type.isDepecriated()) loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
-            loadBlockFeature(type.getTag());
-        }
-
         for (EnumMachineGamma type : EnumMachineGamma.values()) {
             loadBlockFeature(type.getTag());
         }
 
         loadBlockFeature(Machines.WIRE.getTag());
 
+        loadBlockFeature(Machines.WORLD_ANCHOR.getTag());
+        loadBlockFeature(Machines.PERSONAL_ANCHOR.getTag());
+        loadBlockFeature(Machines.ADMIN_ANCHOR.getTag());
+        loadBlockFeature(Machines.PASSIVE_ANCHOR.getTag());
+        loadBlockFeature(Machines.TURBINE.getTag());
+        loadBlockFeature(Machines.STEAM_OVEN.getTag());
+        loadBlockFeature(Machines.SMOKER.getTag());
+        loadBlockFeature(Machines.TRADE_STATION.getTag());
+        loadBlockFeature(Machines.COKE_OVEN.getTag());
+        loadBlockFeature(Machines.ROLLING_MACHINE.getTag());
+        loadBlockFeature(Machines.STEAM_TRAP_MANUAL.getTag());
+        loadBlockFeature(Machines.STEAM_TRAP_AUTO.getTag());
         loadBlockFeature(Machines.FEED_STATION.getTag());
+        loadBlockFeature(Machines.BLAST_FURNACE.getTag());
+        loadBlockFeature(Machines.TANK_WATER.getTag());
+        loadBlockFeature(Machines.ROCK_CRUSHER.getTag());
+
         loadBlockFeature(Machines.ELECTRIC_FEEDER.getTag());
         loadBlockFeature(Machines.ELECTRIC_FEEDER_ADMIN.getTag());
         loadBlockFeature(Machines.ADMIN_STEAM_PRODUCER.getTag());

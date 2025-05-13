@@ -728,10 +728,10 @@ tile.railcraft.frame.tip=Verwende es, um Schienen auf Rangierkabeln zu platziere
 
 tile.railcraft.glass.name=Gestärktes Glas
 
-tile.railcraft.machine.alpha.anchor.admin.name=Admin-Anker
-tile.railcraft.machine.alpha.anchor.passive.name=Passivanker
-tile.railcraft.machine.alpha.anchor.personal.name=Persönlicher Anker
-tile.railcraft.machine.alpha.anchor.world.name=Weltanker
+tile.railcraft.machine.anchor.admin.name=Admin-Anker
+tile.railcraft.machine.anchor.passive.name=Passivanker
+tile.railcraft.machine.anchor.personal.name=Persönlicher Anker
+tile.railcraft.machine.anchor.world.name=Weltanker
 tile.railcraft.machine.blast_furnace.name=Kokerei II Ziegel
 tile.railcraft.machine.blast_furnace.tip=Multiblock: 3x4x3 (Hohlraum)
 tile.railcraft.machine.coke_oven.name=Kokerei

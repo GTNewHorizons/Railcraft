@@ -3,13 +3,14 @@
  * with explicit written permission unless otherwise specified on the license page at
  * http://railcraft.info/wiki/info:license.
  */
-package mods.railcraft.common.blocks.machine.alpha;
+package mods.railcraft.common.blocks.machine.anchor;
 
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
-import mods.railcraft.common.blocks.machine.IEnumMachine;
+import mods.railcraft.common.blocks.machine.IMachine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -26,8 +27,8 @@ public class TileAnchorPersonal extends TileAnchorWorld {
     private long ticksSincePlayerLogged;
 
     @Override
-    public IEnumMachine getMachineType() {
-        return EnumMachineAlpha.PERSONAL_ANCHOR;
+    public IMachine getMachineType() {
+        return Machines.PERSONAL_ANCHOR;
     }
 
     @Override

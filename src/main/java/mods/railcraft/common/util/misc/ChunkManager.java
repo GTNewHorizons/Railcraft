@@ -26,8 +26,8 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
 import mods.railcraft.common.carts.EntityCartAnchor;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -199,8 +199,8 @@ public class ChunkManager
                 String type = ticket.getModData().getString("type");
 
                 if (y >= 0) {
-                    if (type.equals(EnumMachineAlpha.ADMIN_ANCHOR.getTag())) adminTickets.add(ticket);
-                    else if (type.equals(EnumMachineAlpha.WORLD_ANCHOR.getTag())) worldTickets.add(ticket);
+                    if (type.equals(Machines.ADMIN_ANCHOR.getTag())) adminTickets.add(ticket);
+                    else if (type.equals(Machines.WORLD_ANCHOR.getTag())) worldTickets.add(ticket);
                     else if (type.isEmpty()) worldTickets.add(ticket);
                 }
             } else {

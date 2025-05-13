@@ -730,10 +730,10 @@ tile.railcraft.frame.tip=用來將鐵軌放在分流導線上
 
 tile.railcraft.glass.name=強化玻璃
 
-tile.railcraft.machine.alpha.anchor.admin.name=管理錨
-tile.railcraft.machine.alpha.anchor.passive.name=被動錨
-tile.railcraft.machine.alpha.anchor.personal.name=私人錨
-tile.railcraft.machine.alpha.anchor.world.name=世界錨
+tile.railcraft.machine.anchor.admin.name=管理錨
+tile.railcraft.machine.anchor.passive.name=被動錨
+tile.railcraft.machine.anchor.personal.name=私人錨
+tile.railcraft.machine.anchor.world.name=世界錨
 tile.railcraft.machine.blast_furnace.name=鼓風爐方塊
 tile.railcraft.machine.blast_furnace.tip=多重方塊: 3x4x3 (中空)
 tile.railcraft.machine.coke_oven.name=焦炭爐方塊
