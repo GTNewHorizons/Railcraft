@@ -26,7 +26,7 @@ public class MachineRFLoader extends Machine {
         texture = new IIcon[9];
         Arrays.fill(texture, emitterSide);
         texture[6] = iconRegister.registerIcon("railcraft:" + Machines.RF_LOADER.getTag() + ".side.unpowered");
-        texture[3] = texture[7] = iconRegister.registerIcon("railcarft:" + tag + ".facing");
+        texture[3] = texture[7] = iconRegister.registerIcon("railcraft:" + tag + ".facing");
         texture[8] = iconRegister.registerIcon("railcraft:" + tag + ".facing.unpowered");
     }
 }
