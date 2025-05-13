@@ -78,7 +78,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public IIcon getIcon(IBlockAccess world, int i, int j, int k, int side) {
         TileEntity tile = world.getTileEntity(i, j, k);
-        if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getIcon(side);
+        if (tile instanceof TileMachineBase tileMachine) return tileMachine.getIcon(side);
         int meta = world.getBlockMetadata(i, j, k);
         return getIcon(side, meta);
     }
