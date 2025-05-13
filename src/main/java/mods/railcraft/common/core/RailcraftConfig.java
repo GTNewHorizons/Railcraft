@@ -871,7 +871,7 @@ public class RailcraftConfig {
 
         loadBlockFeature(Machines.ENERGY_LOADER.getTag());
         loadBlockFeature(Machines.ENERGY_UNLOADER.getTag());
-        
+
         loadBlockFeature(Machines.CART_DISPENSER.getTag());
         loadBlockFeature(Machines.TRAIN_DISPENSER.getTag());
 

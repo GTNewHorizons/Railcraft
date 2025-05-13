@@ -528,8 +528,16 @@ public class Machines {
             TileDispenserTrain.class,
             "dispenser.train");
 
-public static final Machine RF_LOADER = registerRFLoader(Module.REDSTONE_FLUX, RailcraftBlocks.registerBlockMachineRFLoader.get(), TileRFLoader.class, "loader.rf");
-public static final Machine RF_UNLOADER = registerRFUnloader(Module.REDSTONE_FLUX, RailcraftBlocks.registerBlockMachineRFUnloader.get(), TileRFUnloader.class, "unloader.rf");
+    public static final Machine RF_LOADER = registerRFLoader(
+            Module.REDSTONE_FLUX,
+            RailcraftBlocks.registerBlockMachineRFLoader.get(),
+            TileRFLoader.class,
+            "loader.rf");
+    public static final Machine RF_UNLOADER = registerRFUnloader(
+            Module.REDSTONE_FLUX,
+            RailcraftBlocks.registerBlockMachineRFUnloader.get(),
+            TileRFUnloader.class,
+            "unloader.rf");
 
     private static Machine registerMachine(Module module, Block block, Class<? extends TileMachineBase> tileClass,
             String tag, int... textureInfo) {
@@ -549,13 +557,13 @@ public static final Machine RF_UNLOADER = registerRFUnloader(Module.REDSTONE_FLU
         return block != null ? new MachineItemUnloader(module, block, tile, tag) : null;
     }
 
-    private static MachineLiquidLoader registerLiquidLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
+    private static MachineLiquidLoader registerLiquidLoader(Module module, Block block,
+            Class<? extends TileMachineBase> tile, String tag) {
         return block != null ? new MachineLiquidLoader(module, block, tile, tag) : null;
     }
 
-    private static MachineLiquidUnloader registerLiquidUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
-            String tag) {
+    private static MachineLiquidUnloader registerLiquidUnloader(Module module, Block block,
+            Class<? extends TileMachineBase> tile, String tag) {
         return block != null ? new MachineLiquidUnloader(module, block, tile, tag) : null;
     }
 
@@ -564,11 +572,13 @@ public static final Machine RF_UNLOADER = registerRFUnloader(Module.REDSTONE_FLU
         return (block != null) ? new MachineSideLoader(module, block, tile, tag) : null;
     }
 
-    private static Machine registerRFLoader(Module module, Block block, Class<? extends TileMachineBase> tile, String tag) {
+    private static Machine registerRFLoader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
         return block != null ? new MachineRFLoader(module, block, tile, tag) : null;
     }
 
-        private static Machine registerRFUnloader(Module module, Block block, Class<? extends TileMachineBase> tile, String tag) {
+    private static Machine registerRFUnloader(Module module, Block block, Class<? extends TileMachineBase> tile,
+            String tag) {
         return (block != null) ? new MachineRFLoader(module, block, tile, tag) : null;
     }
 

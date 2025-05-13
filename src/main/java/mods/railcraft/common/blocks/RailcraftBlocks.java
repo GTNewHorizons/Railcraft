@@ -94,7 +94,7 @@ public class RailcraftBlocks {
     private static Block blockMachineBlastFurnace;
     private static Block blockMachineTankWater;
     private static Block blockMachineRockCrusher;
-    
+
     private static Block blockMachineItemLoader;
     private static Block blockMachineItemUnloader;
 
@@ -556,11 +556,15 @@ public class RailcraftBlocks {
             blockMachineDispenserTrain,
             new MachineProxyDispenserTrain(),
             "railcraft.dispenser.train");
-    
+
     public static Supplier<Block> registerBlockMachineRFLoader = registerLoaderHandler(
-        blockMachineRFLoader, new MachineProxyRFLoader(), "railcraft.loader.rf");
+            blockMachineRFLoader,
+            new MachineProxyRFLoader(),
+            "railcraft.loader.rf");
     public static Supplier<Block> registerBlockMachineRFUnloader = registerLoaderHandler(
-        blockMachineRFUnloader, new MachineProxyRFUnloader(), "railcraft.unloader.rf");
+            blockMachineRFUnloader,
+            new MachineProxyRFUnloader(),
+            "railcraft.unloader.rf");
 
     private static Supplier<Block> registerLoaderHandler(Block block, IMachineProxy proxy, String id) {
         return () -> {
