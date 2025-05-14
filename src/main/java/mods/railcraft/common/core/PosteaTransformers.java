@@ -1,14 +1,16 @@
 package mods.railcraft.common.core;
 
+import net.minecraft.block.Block;
+
 import com.gtnewhorizons.postea.api.BlockReplacementManager;
 import com.gtnewhorizons.postea.api.ItemStackReplacementManager;
 import com.gtnewhorizons.postea.utility.BlockConversionInfo;
 
 import cpw.mods.fml.common.FMLLog;
 import mods.railcraft.common.blocks.machine.Machines;
-import net.minecraft.block.Block;
 
 public class PosteaTransformers {
+
     public static void registerTransformers() {
         FMLLog.info("Registering block transformers");
         BlockReplacementManager.addBlockReplacement("Railcraft:machine.delta", (tag, world) -> {
@@ -20,7 +22,7 @@ public class PosteaTransformers {
             return conversion;
         });
         ItemStackReplacementManager.addItemReplacement("Railcraft:machine.delta", (nbt) -> {
-        //    IDExtenderCompat.setItemStackID(nbt, Item.getIdFromItem(Machines.WIRE.getItem(1).getItem()));
+            // IDExtenderCompat.setItemStackID(nbt, Item.getIdFromItem(Machines.WIRE.getItem(1).getItem()));
             return nbt;
         });
     }
