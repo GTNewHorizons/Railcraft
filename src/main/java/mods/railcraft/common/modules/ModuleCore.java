@@ -62,6 +62,7 @@ import mods.railcraft.common.carts.Train;
 import mods.railcraft.common.carts.TrainTransferHelper;
 import mods.railcraft.common.commands.CommandAdmin;
 import mods.railcraft.common.commands.CommandDebug;
+import mods.railcraft.common.core.PosteaTransformers;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.BucketHandler;
@@ -446,6 +447,7 @@ public class ModuleCore extends RailcraftModule {
         addLiquidFuels();
 
         FluidHelper.nerfWaterBottle();
+        PosteaTransformers.registerTransformers();
 
         // ----------------------------------------------
         // Boiler Test Setup
