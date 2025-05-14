@@ -219,11 +219,11 @@ public abstract class TileMultiBlock extends TileMachineBase {
         Block block = WorldPlugin.getBlock(worldObj, x, y, z);
         switch (mapPos) {
             case 'O': // Other
-                if (block == getBlockType() && worldObj.getBlockMetadata(x, y, z) == getBlockMetadata()) return false;
+                if (block == getBlockType()) return false;
                 break;
             case 'W': // Window
             case 'B': // Block
-                if (block != getBlockType() || worldObj.getBlockMetadata(x, y, z) != getBlockMetadata()) return false;
+                if (block != getBlockType()) return false;
                 break;
             case 'A': // Air
                 if (!worldObj.isAirBlock(x, y, z)) return false;
