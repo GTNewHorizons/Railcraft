@@ -1,10 +1,12 @@
 package mods.railcraft.common.core;
 
-import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
-import com.gtnewhorizons.postea.api.BlockReplacementManager;
+import org.apache.logging.log4j.Level;
+
 import com.gtnewhorizons.postea.api.ItemStackReplacementManager;
-import com.gtnewhorizons.postea.utility.BlockConversionInfo;
+import com.gtnewhorizons.postea.api.TileEntityReplacementManager;
+import com.gtnewhorizons.postea.utility.BlockInfo;
 
 import cpw.mods.fml.common.FMLLog;
 import mods.railcraft.common.blocks.machine.Machines;
@@ -12,17 +14,12 @@ import mods.railcraft.common.blocks.machine.Machines;
 public class PosteaTransformers {
 
     public static void registerTransformers() {
-        FMLLog.info("Registering block transformers");
-        BlockReplacementManager.addBlockReplacement("Railcraft:machine.delta", (tag, world) -> {
-            FMLLog.info("Replacing wire block");
-            BlockConversionInfo conversion = new BlockConversionInfo();
-            conversion.blockName = "railcraft.wire";
-            conversion.blockID = Block.getIdFromBlock(Machines.WIRE.getBlock());
-            conversion.metadata = 0;
-            return conversion;
-        });
+        FMLLog.log(Railcraft.MOD_ID, Level.DEBUG, "Registering block transformers");
+        TileEntityReplacementManager.tileEntityTransformer(
+                "RCWireTile",
+                (tag, world) -> { return new BlockInfo(Machines.WIRE.getBlock(), 0); });
         ItemStackReplacementManager.addItemReplacement("Railcraft:machine.delta", (nbt) -> {
-            // IDExtenderCompat.setItemStackID(nbt, Item.getIdFromItem(Machines.WIRE.getItem(1).getItem()));
+            nbt.setShort("id", (short) Item.getIdFromItem(Machines.WIRE.getItem(1).getItem()));
             return nbt;
         });
     }
