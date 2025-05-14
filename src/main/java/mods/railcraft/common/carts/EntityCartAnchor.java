@@ -12,7 +12,6 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -27,8 +26,7 @@ import org.apache.logging.log4j.Level;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.api.carts.IMinecart;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -39,7 +37,6 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.collections.ItemMap;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.ChunkManager;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.IAnchor;
@@ -50,7 +47,6 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
     public static final byte TICKET_FLAG = 6;
     private static final byte ANCHOR_RADIUS = 2;
     private static final byte MAX_CHUNKS = 25;
-    private final IInventory invWrapper = new InventoryMapper(this);
     protected Ticket ticket;
     private Set<ChunkCoordIntPair> chunks;
     private long anchorFuel;
@@ -303,18 +299,18 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
     @Override
     public Block func_145820_n() {
-        return RailcraftBlocks.getBlockMachineAlpha();
+        return Machines.WORLD_ANCHOR.getBlock();
     }
 
     @Override
     public int getDisplayTileData() {
-        return EnumMachineAlpha.WORLD_ANCHOR.ordinal();
+        return 0;
     }
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.WORLD_ANCHOR.getTexture(6);
-        return EnumMachineAlpha.WORLD_ANCHOR.getTexture(side);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return Machines.WORLD_ANCHOR.getTexture(6);
+        return Machines.WORLD_ANCHOR.getTexture(side);
     }
 
     @Override

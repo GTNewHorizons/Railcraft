@@ -8,7 +8,7 @@ package mods.railcraft.client.gui;
 import net.minecraft.entity.player.InventoryPlayer;
 
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
+import mods.railcraft.common.blocks.machine.loader.TileFluidLoader;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerFluidLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;

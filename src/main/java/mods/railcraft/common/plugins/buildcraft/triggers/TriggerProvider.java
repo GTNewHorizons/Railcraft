@@ -11,7 +11,7 @@ import buildcraft.api.statements.ITriggerExternal;
 import buildcraft.api.statements.ITriggerInternal;
 import buildcraft.api.statements.ITriggerProvider;
 import cpw.mods.fml.common.Optional;
-import mods.railcraft.common.blocks.machine.beta.TileEngine;
+import mods.railcraft.common.blocks.machine.engine.TileEngine;
 
 /**
  *

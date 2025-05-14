@@ -82,8 +82,6 @@ public enum EnumBlockMaterial implements IDerivedBlock {
     private Block source;
     private int sourceMeta = 0;
     private String oreTag = null;
-    private String toolClass = "pickaxe";
-    private int toolLevel = 0;
 
     public static void initialize() {
         if (!needsInit) return;
@@ -153,7 +151,6 @@ public enum EnumBlockMaterial implements IDerivedBlock {
         CREOSOTE.sourceMeta = EnumCube.CREOSOTE_BLOCK.ordinal();
 
         SNOW.source = Blocks.snow;
-        SNOW.toolClass = "shovel";
         ICE.source = Blocks.ice;
         PACKED_ICE.source = Blocks.packed_ice;
 

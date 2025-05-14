@@ -17,9 +17,9 @@ import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.TamingInteractHandler;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.feed_station.TamingInteractHandler;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ItemBoreHeadDiamond;
 import mods.railcraft.common.carts.ItemBoreHeadIron;
@@ -175,13 +175,13 @@ public class ModuleAutomation extends RailcraftModule {
                     Blocks.stone_pressure_plate);
         }
 
-        EnumMachineGamma gamma = EnumMachineGamma.DISPENSER_CART;
-        if (gamma.register())
-            CraftingPlugin.addShapedRecipe(gamma.getItem(), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
+        Machine cartDispenser = Machines.CART_DISPENSER;
+        if (cartDispenser != null)
+            CraftingPlugin.addShapedRecipe(cartDispenser.getItem(1), "ML", 'M', Items.minecart, 'L', Blocks.dispenser);
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.FEED_STATION;
-        if (alpha.register()) {
-            ItemStack stack = alpha.getItem();
+        Machine feedStation = Machines.FEED_STATION;
+        if (feedStation.isAvailable()) {
+            ItemStack stack = feedStation.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "PCP",
@@ -199,9 +199,9 @@ public class ModuleAutomation extends RailcraftModule {
             MinecraftForge.EVENT_BUS.register(new TamingInteractHandler());
         }
 
-        alpha = EnumMachineAlpha.TRADE_STATION;
-        if (alpha.register()) {
-            ItemStack stack = alpha.getItem();
+        Machine tradeStation = Machines.TRADE_STATION;
+        if (tradeStation != null) {
+            ItemStack stack = tradeStation.getItem(1);
             CraftingPlugin.addShapedRecipe(
                     stack,
                     "SGS",

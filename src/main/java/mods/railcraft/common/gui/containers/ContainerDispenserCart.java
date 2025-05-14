@@ -11,18 +11,17 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.api.core.items.IMinecartItem;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
+import mods.railcraft.common.blocks.machine.dispenser.TileDispenserCart;
 import mods.railcraft.common.gui.slots.SlotMinecart;
 
 public class ContainerDispenserCart extends RailcraftContainer {
 
     public TileDispenserCart tile;
-    private Slot cartSlot;
 
     public ContainerDispenserCart(InventoryPlayer inventoryplayer, TileDispenserCart tile) {
         super(tile);
         this.tile = tile;
-        addSlot(cartSlot = new SlotDispenserCart(tile, 0, 62, 24));
+        addSlot(new SlotDispenserCart(tile, 0, 62, 24));
         addSlot(new SlotDispenserCart(tile, 1, 80, 24));
         addSlot(new SlotDispenserCart(tile, 2, 98, 24));
 

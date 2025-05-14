@@ -15,7 +15,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.OrderedLoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -26,8 +25,8 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.anchor.TileAnchorWorld;
 import mods.railcraft.common.carts.EntityCartAnchor;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -35,8 +34,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
-public class ChunkManager
-        implements LoadingCallback, OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
+public class ChunkManager implements OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
     private static ChunkManager instance;
 
@@ -193,14 +191,12 @@ public class ChunkManager
         for (Ticket ticket : tickets) {
             Entity entity = ticket.getEntity();
             if (entity == null) {
-                int x = ticket.getModData().getInteger("xCoord");
                 int y = ticket.getModData().getInteger("yCoord");
-                int z = ticket.getModData().getInteger("zCoord");
                 String type = ticket.getModData().getString("type");
 
                 if (y >= 0) {
-                    if (type.equals(EnumMachineAlpha.ADMIN_ANCHOR.getTag())) adminTickets.add(ticket);
-                    else if (type.equals(EnumMachineAlpha.WORLD_ANCHOR.getTag())) worldTickets.add(ticket);
+                    if (type.equals(Machines.ADMIN_ANCHOR.getTag())) adminTickets.add(ticket);
+                    else if (type.equals(Machines.WORLD_ANCHOR.getTag())) worldTickets.add(ticket);
                     else if (type.isEmpty()) worldTickets.add(ticket);
                 }
             } else {

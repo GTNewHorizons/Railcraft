@@ -17,11 +17,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.mojang.authlib.GameProfile;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.util.misc.Game;
 
-public class ItemTunnelBore extends ItemCart implements IMinecartItem {
+public class ItemTunnelBore extends ItemCart {
 
     public ItemTunnelBore() {
         super(EnumCart.BORE);

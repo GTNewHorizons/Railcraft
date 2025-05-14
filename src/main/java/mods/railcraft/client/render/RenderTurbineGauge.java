@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
-import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
+import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
 
 public class RenderTurbineGauge extends TileEntitySpecialRenderer {
 

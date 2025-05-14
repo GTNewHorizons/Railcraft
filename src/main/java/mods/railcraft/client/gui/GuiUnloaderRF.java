@@ -13,7 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
-import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
+import mods.railcraft.common.blocks.machine.loader.TileRFUnloader;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerLoaderRF;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;

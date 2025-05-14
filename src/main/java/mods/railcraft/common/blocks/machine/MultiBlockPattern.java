@@ -128,4 +128,39 @@ public class MultiBlockPattern {
         }
         return master;
     }
+
+    public TileEntity placeStructureIds(World world, int xCoord, int yCoord, int zCoord,
+            Map<Character, Integer> blockMapping) {
+        int xWidth = getPatternWidthX();
+        int zWidth = getPatternWidthZ();
+        int height = getPatternHeight();
+
+        int xOffset = xCoord - getMasterOffsetX();
+        int yOffset = yCoord - getMasterOffsetY();
+        int zOffset = zCoord - getMasterOffsetZ();
+
+        TileEntity master = null;
+
+        for (byte px = 0; px < xWidth; px++) {
+            for (byte py = 0; py < height; py++) {
+                for (byte pz = 0; pz < zWidth; pz++) {
+
+                    char marker = getPatternMarker(px, py, pz);
+
+                    Integer blockId = blockMapping.get(marker);
+                    if (blockId == null) continue;
+
+                    int x = px + xOffset;
+                    int y = py + yOffset;
+                    int z = pz + zOffset;
+
+                    world.setBlock(x, y, z, Block.getBlockById(blockId), 0, 3);
+
+                    if (px == getMasterOffsetX() && py == getMasterOffsetY() && pz == getMasterOffsetZ())
+                        master = world.getTileEntity(x, y, z);
+                }
+            }
+        }
+        return master;
+    }
 }

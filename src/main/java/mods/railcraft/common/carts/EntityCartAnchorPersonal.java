@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -71,7 +71,7 @@ public class EntityCartAnchorPersonal extends EntityCartAnchor {
 
     @Override
     public int getDisplayTileData() {
-        return EnumMachineAlpha.PERSONAL_ANCHOR.ordinal();
+        return 0;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class EntityCartAnchorPersonal extends EntityCartAnchor {
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.PERSONAL_ANCHOR.getTexture(6);
-        return EnumMachineAlpha.PERSONAL_ANCHOR.getTexture(side);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return Machines.PERSONAL_ANCHOR.getTexture(6);
+        return Machines.PERSONAL_ANCHOR.getTexture(side);
     }
 }

@@ -5,8 +5,6 @@
  */
 package mods.railcraft.common.items;
 
-import static mods.railcraft.common.items.ItemTicket.getOwner;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -79,8 +79,9 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
             case STONE_PLATFORM:
             case METAL_PLATFORM_UNPAINTED:
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     @Override

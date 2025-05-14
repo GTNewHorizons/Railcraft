@@ -10,9 +10,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import mods.railcraft.common.blocks.detector.EnumDetector;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.items.ItemMagnifyingGlass;
 import mods.railcraft.common.items.ItemNotepad;
@@ -46,9 +47,9 @@ public class ModuleTransport extends RailcraftModule {
                     Items.paper);
         }
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.TANK_WATER;
-        if (alpha.register()) CraftingPlugin.addShapedRecipe(
-                alpha.getItem(6),
+        Machine tank_water = Machines.TANK_WATER;
+        if (tank_water.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                tank_water.getItem(6),
                 "WWW",
                 "ISI",
                 "WWW",
@@ -59,12 +60,9 @@ public class ModuleTransport extends RailcraftModule {
                 'W',
                 "plankWood");
 
-        // initIronTank();
-        // initSteelTank();
-
-        EnumMachineBeta voidChest = EnumMachineBeta.VOID_CHEST;
-        if (voidChest.register()) CraftingPlugin.addShapedRecipe(
-                voidChest.getItem(),
+        Machine voidChest = Machines.VOID_CHEST;
+        if (voidChest.isAvailable()) CraftingPlugin.addShapedRecipe(
+                voidChest.getItem(1),
                 "OOO",
                 "OPO",
                 "OOO",
@@ -73,9 +71,9 @@ public class ModuleTransport extends RailcraftModule {
                 'P',
                 new ItemStack(Items.ender_pearl));
 
-        EnumMachineGamma itemLoader = EnumMachineGamma.ITEM_LOADER;
-        if (itemLoader.register()) {
-            ItemStack stack = itemLoader.getItem();
+        Machine itemLoader = Machines.ITEM_LOADER;
+        if (itemLoader != null) {
+            ItemStack stack = itemLoader.getItem(1);
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
@@ -90,9 +88,9 @@ public class ModuleTransport extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            itemLoader = EnumMachineGamma.ITEM_LOADER_ADVANCED;
-            if (itemLoader.register()) CraftingPlugin.addShapedRecipe(
-                    itemLoader.getItem(),
+            Machine itemLoaderAdv = Machines.ITEM_LOADER_ADVANCED;
+            if (itemLoaderAdv != null) CraftingPlugin.addShapedRecipe(
+                    itemLoaderAdv.getItem(1),
                     "IRI",
                     "RLR",
                     "ISI",
@@ -106,9 +104,9 @@ public class ModuleTransport extends RailcraftModule {
                     stack);
         }
 
-        EnumMachineGamma itemUnloader = EnumMachineGamma.ITEM_UNLOADER;
-        if (itemUnloader.register()) {
-            ItemStack stack = itemUnloader.getItem();
+        Machine itemUnloader = Machines.ITEM_UNLOADER;
+        if (itemUnloader != null) {
+            ItemStack stack = itemUnloader.getItem(1);
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
@@ -123,9 +121,9 @@ public class ModuleTransport extends RailcraftModule {
                     'L',
                     new ItemStack(Blocks.hopper));
 
-            itemUnloader = EnumMachineGamma.ITEM_UNLOADER_ADVANCED;
-            if (itemUnloader.register()) CraftingPlugin.addShapedRecipe(
-                    itemUnloader.getItem(),
+            Machine itemUnloaderAdv = Machines.ITEM_UNLOADER_ADVANCED;
+            if (itemUnloaderAdv != null) CraftingPlugin.addShapedRecipe(
+                    itemUnloaderAdv.getItem(1),
                     "IRI",
                     "RLR",
                     "ISI",
@@ -139,13 +137,13 @@ public class ModuleTransport extends RailcraftModule {
                     stack);
         }
 
-        EnumMachineGamma liquidLoader = EnumMachineGamma.FLUID_LOADER;
+        Machine liquidLoader = Machines.FLUID_LOADER;
 
-        if (liquidLoader.register()) {
+        if (liquidLoader != null) {
             ItemStack detector = EnumDetector.TANK.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    liquidLoader.getItem(),
+                    liquidLoader.getItem(1),
                     "GLG",
                     "G G",
                     "GDG",
@@ -157,12 +155,12 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
-        EnumMachineGamma liquidUnloader = EnumMachineGamma.FLUID_UNLOADER;
-        if (liquidUnloader.register()) {
+        Machine liquidUnloader = Machines.FLUID_UNLOADER;
+        if (liquidUnloader != null) {
             ItemStack detector = EnumDetector.TANK.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    liquidUnloader.getItem(),
+                    liquidUnloader.getItem(1),
                     "GDG",
                     "G G",
                     "GLG",
@@ -174,28 +172,14 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
-        // EnumMachineDelta delta = EnumMachineDelta.CAGE;
-        // if (delta.register())
-        // CraftingPlugin.addShapedOreRecipe(alpha.getItem(6),
-        // "III",
-        // "IWI",
-        // "PPP",
-        // 'I', new ItemStack(Block.fenceIron),
-        // 'W', new ItemStack(Item.wheat),
-        // 'P', ItemPlate.getPlate(ItemPlate.EnumPlate.STEEL));
         EnumCart cart = EnumCart.TANK;
 
         if (cart.setup()) {
-            if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable()) {
-                CraftingPlugin.addShapedRecipe(
-                        cart.getCartItem(),
-                        "T",
-                        "M",
-                        'T',
-                        EnumMachineBeta.TANK_IRON_GAUGE.getItem(),
-                        'M',
-                        Items.minecart);
-                cart.setContents(getColorTank(EnumMachineBeta.TANK_IRON_GAUGE, EnumColor.WHITE, 1));
+            Machine ironGauge = Tanks.getGauge(TankMaterial.IRON);
+            if (ironGauge != null && ironGauge.isAvailable()) {
+                CraftingPlugin
+                        .addShapedRecipe(cart.getCartItem(), "T", "M", 'T', ironGauge.getItem(1), 'M', Items.minecart);
+                cart.setContents(getColorTank(ironGauge, EnumColor.WHITE, 1));
             } else {
                 CraftingPlugin.addShapedRecipe(
                         cart.getCartItem(),
@@ -222,41 +206,8 @@ public class ModuleTransport extends RailcraftModule {
         }
     }
 
-    private void addColorRecipes(EnumMachineBeta type) {
-        for (EnumColor color : EnumColor.VALUES) {
-            ItemStack output = getColorTank(type, color, 8);
-            CraftingPlugin.addShapedRecipe(output, "OOO", "ODO", "OOO", 'O', type.getItem(), 'D', color.getDye());
-        }
-    }
-
-    private ItemStack getColorTank(EnumMachineBeta type, EnumColor color, int qty) {
+    private ItemStack getColorTank(Machine type, EnumColor color, int qty) {
         ItemStack stack = type.getItem(qty);
         return InvTools.setItemColor(stack, color);
     }
-
-    private boolean defineTank(EnumMachineBeta type, Object... recipe) {
-        if (type.register()) {
-            addColorRecipes(type);
-            CraftingPlugin.addShapedRecipe(getColorTank(type, EnumColor.WHITE, 8), recipe);
-            return true;
-        }
-        return false;
-    }
-
-    /*
-     * private boolean defineIronTank(EnumMachineBeta type, Object... recipe) { if (defineTank(type, recipe)) {
-     * RailcraftCraftingManager.blastFurnace.addRecipe(type.getItem(), true, false, 640,
-     * RailcraftItem.nugget.getStack(4, ItemNugget.EnumNugget.STEEL)); return true; } return false; } private void
-     * initIronTank() { defineIronTank(EnumMachineBeta.TANK_IRON_WALL, "PP", "PP", 'P',
-     * RailcraftItem.plate.getRecipeObject(EnumPlate.IRON)); defineIronTank(EnumMachineBeta.TANK_IRON_GAUGE, "GPG",
-     * "PGP", "GPG", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON), 'G', "paneGlassColorless");
-     * defineIronTank(EnumMachineBeta.TANK_IRON_VALVE, "GPG", "PLP", "GPG", 'P',
-     * RailcraftItem.plate.getRecipeObject(EnumPlate.IRON), 'L', new ItemStack(Blocks.lever), 'G', new
-     * ItemStack(Blocks.iron_bars)); } private void initSteelTank() { defineTank(EnumMachineBeta.TANK_STEEL_WALL, "PP",
-     * "PP", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL)); defineTank(EnumMachineBeta.TANK_STEEL_GAUGE,
-     * "GPG", "PGP", "GPG", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL), 'G', "paneGlassColorless");
-     * defineTank(EnumMachineBeta.TANK_STEEL_VALVE, "GPG", "PLP", "GPG", 'P',
-     * RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL), 'L', new ItemStack(Blocks.lever), 'G', new
-     * ItemStack(Blocks.iron_bars)); }
-     */
 }

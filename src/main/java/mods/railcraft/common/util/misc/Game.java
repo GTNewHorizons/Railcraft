@@ -102,12 +102,12 @@ public class Game {
         log(Level.DEBUG, msg, args);
     }
 
-    public static void logErrorAPI(String mod, Throwable error, Class... classFiles) {
+    public static void logErrorAPI(String mod, Throwable error, Class<?>... classFiles) {
         StringBuilder msg = new StringBuilder(mod);
         msg.append(" API error, please update your mods. Error: ").append(error);
         logThrowable(Level.ERROR, msg.toString(), 2, error);
 
-        for (Class classFile : classFiles) {
+        for (Class<?> classFile : classFiles) {
             if (classFile != null) {
                 msg = new StringBuilder(mod);
                 msg.append(" API error: ").append(classFile.getSimpleName()).append(" is loaded from ")

@@ -398,6 +398,8 @@ public abstract class EntityLocomotive extends CartContainerBase
                     boolean highSpeed = getEntityData().getBoolean("HighSpeed");
                     if (highSpeed) force *= HS_FORCE_BONUS;
                     break;
+                default:
+                    break;
             }
             double yaw = rotationYaw * Math.PI / 180D;
             motionX += Math.cos(yaw) * force;
@@ -405,7 +407,7 @@ public abstract class EntityLocomotive extends CartContainerBase
         }
 
         if (speed != LocoSpeed.MAX) {
-            float limit = 0.4f;
+            float limit;
             switch (speed) {
                 case SLOWEST:
                 case REVERSE:
@@ -417,6 +419,8 @@ public abstract class EntityLocomotive extends CartContainerBase
                 case SLOW:
                     limit = 0.3f;
                     break;
+                default:
+                    limit = 0.4f;
             }
             motionX = Math.copySign(Math.min(Math.abs(motionX), limit), motionX);
             motionZ = Math.copySign(Math.min(Math.abs(motionZ), limit), motionZ);
@@ -508,7 +512,6 @@ public abstract class EntityLocomotive extends CartContainerBase
         if (!(entity instanceof EntityLocomotive)) return false;
         EntityLocomotive otherLoco = (EntityLocomotive) entity;
         if (getUniqueID() == entity.getUniqueID()) return false;
-        LinkageManager lm = LinkageManager.instance();
         if (Train.areInSameTrain(this, otherLoco)) return false;
         return cartVelocityIsGreaterThan(0.2f) && otherLoco.cartVelocityIsGreaterThan(0.2f)
                 && (Math.abs(motionX - entity.motionX) > 0.3f || Math.abs(motionZ - entity.motionZ) > 0.3f);

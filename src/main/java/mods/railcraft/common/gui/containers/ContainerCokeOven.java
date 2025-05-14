@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
+import mods.railcraft.common.blocks.machine.coke_oven.TileCokeOven;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.gui.slots.SlotFluidContainerEmpty;
 import mods.railcraft.common.gui.slots.SlotOutput;

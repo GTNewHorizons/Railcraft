@@ -11,7 +11,7 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
+import mods.railcraft.common.blocks.machine.loader.TileFluidLoader;
 import mods.railcraft.common.gui.slots.SlotFluidContainerFilled;
 import mods.railcraft.common.gui.slots.SlotFluidFilter;
 import mods.railcraft.common.gui.slots.SlotMinecartFilter;

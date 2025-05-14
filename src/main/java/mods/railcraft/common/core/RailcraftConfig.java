@@ -6,12 +6,10 @@
 package mods.railcraft.common.core;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -33,13 +31,7 @@ import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
@@ -65,7 +57,6 @@ public class RailcraftConfig {
     // private static final String COMMENT_PREFIX = "\n\n # ";
     public static final String NO_MOB_SPAWN_ON_THIS_BLOCK_LANG = "item.nomobspawnsonthisblock.tip";
     private static final String CAT_ANCHORS = "anchors";
-    private static final String CAT_AURAS = "auras";
     private static final String CAT_ENCHANTMENTS = "enchantments";
     private static final String CAT_LOOT = "loot";
     private static final String CAT_WORLD_GEN = "worldgen";
@@ -775,12 +766,8 @@ public class RailcraftConfig {
         loadBlockProperty("glass");
         loadBlockProperty("residual.heat");
 
-        loadBlockProperty("machine.alpha");
-        loadBlockProperty("machine.beta");
-        loadBlockProperty("machine.delta");
-        loadBlockProperty("machine.gamma");
-        loadBlockProperty("machine.epsilon");
-        loadBlockProperty("machine.advtank");
+        loadBlockProperty("machine.engine");
+        loadBlockProperty("machine.wire");
 
         loadBlockProperty("ore");
 
@@ -844,33 +831,46 @@ public class RailcraftConfig {
             if (!type.isDepecriated()) loadBlockFeature(type.getTag());
         }
 
-        for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.WIRE.getTag());
 
-        for (EnumMachineBeta type : EnumMachineBeta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.WORLD_ANCHOR.getTag());
+        loadBlockFeature(Machines.PERSONAL_ANCHOR.getTag());
+        loadBlockFeature(Machines.ADMIN_ANCHOR.getTag());
+        loadBlockFeature(Machines.PASSIVE_ANCHOR.getTag());
+        loadBlockFeature(Machines.TURBINE.getTag());
+        loadBlockFeature(Machines.STEAM_OVEN.getTag());
+        loadBlockFeature(Machines.SMOKER.getTag());
+        loadBlockFeature(Machines.TRADE_STATION.getTag());
+        loadBlockFeature(Machines.COKE_OVEN.getTag());
+        loadBlockFeature(Machines.ROLLING_MACHINE.getTag());
+        loadBlockFeature(Machines.STEAM_TRAP_MANUAL.getTag());
+        loadBlockFeature(Machines.STEAM_TRAP_AUTO.getTag());
+        loadBlockFeature(Machines.FEED_STATION.getTag());
+        loadBlockFeature(Machines.BLAST_FURNACE.getTag());
+        loadBlockFeature(Machines.TANK_WATER.getTag());
+        loadBlockFeature(Machines.ROCK_CRUSHER.getTag());
 
-        for (EnumMachineGamma type : EnumMachineGamma.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.ELECTRIC_FEEDER.getTag());
+        loadBlockFeature(Machines.ELECTRIC_FEEDER_ADMIN.getTag());
+        loadBlockFeature(Machines.ADMIN_STEAM_PRODUCER.getTag());
+        loadBlockFeature(Machines.FORCE_TRACK_EMITTER.getTag());
+        loadBlockFeature(Machines.FLUX_TRANSFORMER.getTag());
+        loadBlockFeature(Machines.ENGRAVING_BENCH.getTag());
 
-        for (EnumMachineDelta type : EnumMachineDelta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.ITEM_LOADER.getTag());
+        loadBlockFeature(Machines.ITEM_UNLOADER.getTag());
 
-        for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.ITEM_LOADER_ADVANCED.getTag());
+        loadBlockFeature(Machines.ITEM_UNLOADER_ADVANCED.getTag());
 
-        for (EnumMachineZeta type : EnumMachineZeta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.FLUID_LOADER.getTag());
+        loadBlockFeature(Machines.FLUID_UNLOADER.getTag());
 
-        for (EnumMachineEta type : EnumMachineEta.values()) {
-            loadBlockFeature(type.getTag());
-        }
+        loadBlockFeature(Machines.ENERGY_LOADER.getTag());
+        loadBlockFeature(Machines.ENERGY_UNLOADER.getTag());
+
+        loadBlockFeature(Machines.CART_DISPENSER.getTag());
+        loadBlockFeature(Machines.TRAIN_DISPENSER.getTag());
 
         for (EnumSignal type : EnumSignal.values()) {
             if (type.getModule() != null) loadBlockFeature(type.getTag());
@@ -1291,21 +1291,6 @@ public class RailcraftConfig {
         entitiesExcludedFromHighSpeedExplosions.add(entityName);
     }
 
-    private static List<Integer> getIntegerList(String cat, String tag, int maxEntries) {
-        Property prop = configMain.get(cat, tag, "");
-        String value = prop.getString();
-        if (value.equals("")) return Collections.EMPTY_LIST;
-        String[] tokens = value.split(",");
-        List<Integer> list = new ArrayList<Integer>(maxEntries);
-        int count = 0;
-        for (String token : tokens) {
-            list.add(Integer.valueOf(token));
-            count++;
-            if (count >= maxEntries) break;
-        }
-        return list;
-    }
-
     private static boolean get(String tag, boolean defaultValue, String comment) {
         return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
@@ -1331,10 +1316,6 @@ public class RailcraftConfig {
     private static boolean get(Configuration config, String cat, String tag, boolean defaultValue) {
         Property prop = config.get(cat, tag, defaultValue);
         return prop.getBoolean(defaultValue);
-    }
-
-    private static int get(String tag, int defaultValue, String comment) {
-        return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
 
     private static int get(String cat, String tag, int defaultValue) {
@@ -1408,10 +1389,6 @@ public class RailcraftConfig {
             return defaultValue;
         }
         return parsed;
-    }
-
-    private static Property get(String tag, String defaultValue, String comment) {
-        return get(Configuration.CATEGORY_GENERAL, tag, defaultValue, comment);
     }
 
     private static Property get(String cat, String tag, String defaultValue, String comment) {

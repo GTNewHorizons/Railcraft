@@ -13,13 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import mods.railcraft.api.signals.SignalAspect;
-import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public abstract class TileBoxActionManager extends TileBoxSecured implements IAspectActionManager, IGuiReturnHandler {
+public abstract class TileBoxActionManager extends TileBoxSecured {
 
     private final boolean[] powerOnAspects = new boolean[SignalAspect.values().length];
 

@@ -10,7 +10,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import cpw.mods.fml.common.Optional;
-import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.common.plugins.thaumcraft.ResearchItemRC;
 import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import mods.railcraft.common.util.misc.Game;
@@ -26,7 +25,7 @@ import thaumcraft.api.research.ResearchPage;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @Optional.Interface(iface = "forestry.api.storage.IBackpackDefinition", modid = "Forestry")
-public class ApothecariesBackpack extends BaseBackpack implements IBackpackDefinition {
+public class ApothecariesBackpack extends BaseBackpack {
 
     private static ApothecariesBackpack instance;
 

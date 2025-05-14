@@ -9,11 +9,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.client.gui.buttons.GuiOverlayMultiButton;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase.EnumRedstoneMode;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase.EnumTransferMode;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase.MatchMetadataMode;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase.MatchNBTMode;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderItemBase;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderItemBase.EnumRedstoneMode;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderItemBase.EnumTransferMode;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderItemBase.MatchMetadataMode;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderItemBase.MatchNBTMode;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerItemLoader;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;

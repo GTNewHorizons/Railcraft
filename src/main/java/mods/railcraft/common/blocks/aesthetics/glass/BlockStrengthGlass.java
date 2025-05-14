@@ -120,7 +120,7 @@ public class BlockStrengthGlass extends BlockGlass {
         if (side <= 1) return icons[0];
         int meta = world.getBlockMetadata(x, y, z);
 
-        EnumSet neighbors = EnumSet.noneOf(Neighbors.class);
+        EnumSet<Neighbors> neighbors = EnumSet.noneOf(Neighbors.class);
 
         if (WorldPlugin.getBlock(world, x, y + 1, z) == this && world.getBlockMetadata(x, y + 1, z) == meta)
             neighbors.add(Neighbors.TOP);

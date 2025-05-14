@@ -60,14 +60,16 @@ public class PacketPairRequest extends RailcraftPacket {
 
         switch (packetType) {
             case CONTROLLER_REQUEST:
-                if (tile instanceof IControllerTile) pairing = ((IControllerTile) tile).getController();
+                if (tile instanceof IControllerTile iControllerTile) pairing = iControllerTile.getController();
                 break;
             case RECEIVER_REQUEST:
-                if (tile instanceof IReceiverTile) pairing = ((IReceiverTile) tile).getReceiver();
+                if (tile instanceof IReceiverTile iReceiverTile) pairing = iReceiverTile.getReceiver();
                 break;
             case SIGNAL_REQUEST:
-                if (tile instanceof ISignalBlockTile) pairing = ((ISignalBlockTile) tile).getSignalBlock();
+                if (tile instanceof ISignalBlockTile iSignalBlockTile) pairing = iSignalBlockTile.getSignalBlock();
                 break;
+            default:
+                return;
         }
         if (pairing != null && player != null) {
             PacketPairUpdate pkt = new PacketPairUpdate(pairing);

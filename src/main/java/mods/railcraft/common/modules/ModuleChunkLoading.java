@@ -12,9 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -31,12 +30,11 @@ public class ModuleChunkLoading extends RailcraftModule {
         ForgeChunkManager.setForcedChunkLoadingCallback(Railcraft.getMod(), ChunkManager.getInstance());
         MinecraftForge.EVENT_BUS.register(ChunkManager.getInstance());
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.WORLD_ANCHOR;
-        if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
-            Block block = RailcraftBlocks.registerBlockMachineAlpha();
-            if (block != null && RailcraftConfig.canCraftAnchors()) {
+        Machine worldAnchor = Machines.WORLD_ANCHOR;
+        if (worldAnchor != null) {
+            if (worldAnchor.getBlock() != null && RailcraftConfig.canCraftAnchors()) {
                 CraftingPlugin.addShapedRecipe(
-                        alpha.getItem(),
+                        worldAnchor.getItem(1),
                         "gog",
                         "dpd",
                         "gog",
@@ -51,12 +49,11 @@ public class ModuleChunkLoading extends RailcraftModule {
             }
         }
 
-        alpha = EnumMachineAlpha.PERSONAL_ANCHOR;
-        if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
-            Block block = RailcraftBlocks.registerBlockMachineAlpha();
-            if (block != null && RailcraftConfig.canCraftPersonalAnchors()) {
+        Machine personalAnchor = Machines.PERSONAL_ANCHOR;
+        if (personalAnchor != null) {
+            if (personalAnchor.getBlock() != null && RailcraftConfig.canCraftPersonalAnchors()) {
                 CraftingPlugin.addShapedRecipe(
-                        alpha.getItem(),
+                        personalAnchor.getItem(1),
                         "gog",
                         "dpd",
                         "gog",
@@ -71,12 +68,11 @@ public class ModuleChunkLoading extends RailcraftModule {
             }
         }
 
-        alpha = EnumMachineAlpha.PASSIVE_ANCHOR;
-        if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
-            Block block = RailcraftBlocks.registerBlockMachineAlpha();
-            if (block != null && RailcraftConfig.canCraftPassiveAnchors()) {
+        Machine passiveAnchor = Machines.PASSIVE_ANCHOR;
+        if (passiveAnchor != null) {
+            if (passiveAnchor.getBlock() != null && RailcraftConfig.canCraftPassiveAnchors()) {
                 CraftingPlugin.addShapedRecipe(
-                        alpha.getItem(),
+                        passiveAnchor.getItem(1),
                         "gog",
                         "dpd",
                         "gog",
@@ -90,17 +86,11 @@ public class ModuleChunkLoading extends RailcraftModule {
                         new ItemStack(Blocks.obsidian));
             }
         }
-
-        alpha = EnumMachineAlpha.ADMIN_ANCHOR;
-        if (RailcraftConfig.isSubBlockEnabled(alpha.getTag())) {
-            RailcraftBlocks.registerBlockMachineAlpha();
-        }
-
-        EnumMachineBeta beta = EnumMachineBeta.SENTINEL;
-        if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
-            Block block = RailcraftBlocks.registerBlockMachineBeta();
+        Machine sentinel = Machines.SENTINEL;
+        if (sentinel.isAvailable()) {
+            Block block = sentinel.getBlock();
             if (block != null) {
-                ItemStack stack = beta.getItem();
+                ItemStack stack = sentinel.getItem(1);
                 if (RailcraftConfig.canCraftAnchors()) {
                     CraftingPlugin.addShapedRecipe(
                             stack,
@@ -119,8 +109,8 @@ public class ModuleChunkLoading extends RailcraftModule {
 
         // Define Anchor Cart
         EnumCart cart = EnumCart.ANCHOR;
-        if (EnumMachineAlpha.WORLD_ANCHOR.isAvaliable() && cart.setup()) {
-            ItemStack anchor = EnumMachineAlpha.WORLD_ANCHOR.getItem();
+        if (Machines.WORLD_ANCHOR.isAvailable() && cart.setup()) {
+            ItemStack anchor = Machines.WORLD_ANCHOR.getItem(1);
             if (RailcraftConfig.canCraftAnchors()) {
                 CraftingPlugin.addShapedRecipe(cart.getCartItem(), "A", "M", 'A', anchor, 'M', Items.minecart);
                 CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
@@ -130,8 +120,8 @@ public class ModuleChunkLoading extends RailcraftModule {
 
         // Define Personal Anchor Cart
         cart = EnumCart.ANCHOR_PERSONAL;
-        if (EnumMachineAlpha.PERSONAL_ANCHOR.isAvaliable() && cart.setup()) {
-            ItemStack anchor = EnumMachineAlpha.PERSONAL_ANCHOR.getItem();
+        if (Machines.PERSONAL_ANCHOR.isAvailable() && cart.setup()) {
+            ItemStack anchor = Machines.PERSONAL_ANCHOR.getItem(1);
             if (RailcraftConfig.canCraftPersonalAnchors()) {
                 CraftingPlugin.addShapedRecipe(cart.getCartItem(), "A", "M", 'A', anchor, 'M', Items.minecart);
                 CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
@@ -141,8 +131,8 @@ public class ModuleChunkLoading extends RailcraftModule {
 
         // Define Admin Anchor Cart
         cart = EnumCart.ANCHOR_ADMIN;
-        if (EnumMachineAlpha.ADMIN_ANCHOR.isAvaliable() && cart.setup()) {
-            ItemStack anchor = EnumMachineAlpha.ADMIN_ANCHOR.getItem();
+        if (Machines.ADMIN_ANCHOR.isAvailable() && cart.setup()) {
+            ItemStack anchor = Machines.ADMIN_ANCHOR.getItem(1);
             cart.setContents(anchor);
         }
     }

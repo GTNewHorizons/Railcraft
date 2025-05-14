@@ -141,12 +141,10 @@ public class RoutingLogic {
 
     private abstract class ParsedCondition extends Condition {
 
-        public final String keyword, line, value;
+        public final String value;
         public final boolean isRegex;
 
         private ParsedCondition(String keyword, boolean supportsRegex, String line) throws RoutingLogicException {
-            this.keyword = keyword;
-            this.line = line;
             String keywordMatch = keyword + REGEX_SYMBOL + "?=";
             if (!line.matches(keywordMatch + ".*"))
                 throw new RoutingLogicException("railcraft.gui.routing.logic.unrecognized.keyword", line);

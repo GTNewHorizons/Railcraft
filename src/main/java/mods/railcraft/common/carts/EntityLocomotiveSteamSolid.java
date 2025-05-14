@@ -15,7 +15,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -32,14 +31,13 @@ import mods.railcraft.common.util.steam.SolidFuelProvider;
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
-public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements ISidedInventory, IItemCart {
+public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements ISidedInventory {
 
     private static final int SLOT_BURN = 2;
     private static final int SLOT_FUEL_A = 3;
     private static final int SLOT_FUEL_B = 4;
     private static final int SLOT_FUEL_C = 5;
     private static final int SLOT_TICKET = 6;
-    private static final int SLOT_DESTINATION = 7;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 7);
     private final IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);
     private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);

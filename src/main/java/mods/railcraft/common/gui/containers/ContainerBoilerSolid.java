@@ -11,7 +11,7 @@ import net.minecraft.inventory.Slot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.gui.slots.SlotFuel;
 import mods.railcraft.common.gui.slots.SlotOutput;
@@ -22,9 +22,6 @@ import mods.railcraft.common.gui.widgets.IndicatorWidget;
 public class ContainerBoilerSolid extends RailcraftContainer {
 
     private TileBoilerFireboxSolid tile;
-    private Slot fuel;
-    private Slot input;
-    private Slot output;
     private double lastBurnTime;
     private double lastItemBurnTime;
     private double lastHeat;
@@ -39,9 +36,9 @@ public class ContainerBoilerSolid extends RailcraftContainer {
 
         addWidget(new IndicatorWidget(tile.boiler.heatIndicator, 40, 25, 176, 61, 6, 43));
 
-        addSlot(input = new SlotWater(tile, 0, 143, 21));
-        addSlot(output = new SlotOutput(tile, 1, 143, 56));
-        addSlot(fuel = new SlotFuel(tile, 2, 62, 39));
+        addSlot(new SlotWater(tile, 0, 143, 21));
+        addSlot(new SlotOutput(tile, 1, 143, 56));
+        addSlot(new SlotFuel(tile, 2, 62, 39));
         addSlot(new SlotFuel(tile, 3, 89, 20));
         addSlot(new SlotFuel(tile, 4, 89, 38));
         addSlot(new SlotFuel(tile, 5, 89, 56));

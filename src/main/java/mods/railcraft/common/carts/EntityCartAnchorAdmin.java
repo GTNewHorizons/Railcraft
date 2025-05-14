@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
@@ -39,7 +39,7 @@ public class EntityCartAnchorAdmin extends EntityCartAnchor {
 
     @Override
     public int getDisplayTileData() {
-        return EnumMachineAlpha.ADMIN_ANCHOR.ordinal();
+        return 0;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EntityCartAnchorAdmin extends EntityCartAnchor {
 
     @Override
     public IIcon getBlockTextureOnSide(int side) {
-        if (side < 2 && !getFlag(TICKET_FLAG)) return EnumMachineAlpha.ADMIN_ANCHOR.getTexture(6);
-        return EnumMachineAlpha.ADMIN_ANCHOR.getTexture(side);
+        if (side < 2 && !getFlag(TICKET_FLAG)) return Machines.ADMIN_ANCHOR.getTexture(6);
+        return Machines.ADMIN_ANCHOR.getTexture(side);
     }
 }

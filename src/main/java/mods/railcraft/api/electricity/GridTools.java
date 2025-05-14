@@ -49,10 +49,10 @@ public class GridTools {
     public static IElectricGrid getGridObjectAt(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile == null) return null;
-        if (tile instanceof IElectricGrid) return (IElectricGrid) tile;
-        if (tile instanceof ITrackTile) {
-            ITrackInstance track = ((ITrackTile) tile).getTrackInstance();
-            if (track instanceof IElectricGrid) return (IElectricGrid) track;
+        if (tile instanceof IElectricGrid electricTile) return electricTile;
+        if (tile instanceof ITrackTile iTrack) {
+            ITrackInstance track = iTrack.getTrackInstance();
+            if (track instanceof IElectricGrid eTrack) return eTrack;
         }
         return null;
     }

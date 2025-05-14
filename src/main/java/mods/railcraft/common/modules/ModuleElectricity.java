@@ -10,9 +10,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.frame.BlockFrame;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
+import mods.railcraft.common.blocks.machine.Machine;
+import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.items.ItemElectricMeter;
 import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
@@ -31,10 +30,10 @@ public class ModuleElectricity extends RailcraftModule {
         ItemElectricMeter.register();
         BlockFrame.registerBlock();
 
-        EnumMachineAlpha alpha = EnumMachineAlpha.TURBINE;
-        if (alpha.register()) {
+        Machine turbine = Machines.TURBINE;
+        if (turbine != null) {
             CraftingPlugin.addShapedRecipe(
-                    alpha.getItem(3),
+                    turbine.getItem(3),
                     "BPB",
                     "P P",
                     "BPB",
@@ -52,9 +51,9 @@ public class ModuleElectricity extends RailcraftModule {
             // CraftingPlugin.addShapelessRecipe(rotor, RailcraftPartItems.getTurbineRotor());
         }
 
-        EnumMachineEpsilon epsilon = EnumMachineEpsilon.ELECTRIC_FEEDER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(),
+        Machine electric_feeder = Machines.ELECTRIC_FEEDER;
+        if (electric_feeder != null) CraftingPlugin.addShapedRecipe(
+                electric_feeder.getItem(1),
                 "PCP",
                 "CCC",
                 "PCP",
@@ -63,12 +62,11 @@ public class ModuleElectricity extends RailcraftModule {
                 'C',
                 "ingotCopper");
 
-        epsilon = EnumMachineEpsilon.ELECTRIC_FEEDER_ADMIN;
-        epsilon.register();
+        electric_feeder = Machines.ELECTRIC_FEEDER_ADMIN;
 
-        epsilon = EnumMachineEpsilon.FORCE_TRACK_EMITTER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(),
+        Machine forceTrackEmitter = Machines.FORCE_TRACK_EMITTER;
+        if (forceTrackEmitter.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                forceTrackEmitter.getItem(1),
                 "PCP",
                 "CDC",
                 "PCP",
@@ -79,9 +77,9 @@ public class ModuleElectricity extends RailcraftModule {
                 'C',
                 "ingotCopper");
 
-        epsilon = EnumMachineEpsilon.FLUX_TRANSFORMER;
-        if (epsilon.register()) CraftingPlugin.addShapedRecipe(
-                epsilon.getItem(2),
+        Machine fluxTransformer = Machines.FLUX_TRANSFORMER;
+        if (fluxTransformer.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                fluxTransformer.getItem(2),
                 "PGP",
                 "GRG",
                 "PGP",
@@ -92,10 +90,10 @@ public class ModuleElectricity extends RailcraftModule {
                 'R',
                 "blockRedstone");
 
-        EnumMachineDelta delta = EnumMachineDelta.WIRE;
-        if (delta.register()) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
+        Machine wire = Machines.WIRE;
+        if (wire.getBlock() != null) RailcraftCraftingManager.rollingMachine.getRecipeList().add(
                 new ShapedOreRecipe(
-                        delta.getItem(8),
+                        wire.getItem(8),
                         "LPL",
                         "PCP",
                         "LPL",

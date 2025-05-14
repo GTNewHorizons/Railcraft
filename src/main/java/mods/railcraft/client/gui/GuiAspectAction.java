@@ -143,9 +143,9 @@ public class GuiAspectAction extends GuiContainerRailcraft {
 
     @Override
     public void onGuiClosed() {
-        if (changed && actionManager instanceof IGuiReturnHandler && canChange()) {
+        if (changed && actionManager instanceof IGuiReturnHandler guiReturnHandler && canChange()) {
             prepareForPacket();
-            PacketGuiReturn pkt = new PacketGuiReturn((IGuiReturnHandler) actionManager);
+            PacketGuiReturn pkt = new PacketGuiReturn(guiReturnHandler);
             PacketDispatcher.sendToServer(pkt);
         }
     }

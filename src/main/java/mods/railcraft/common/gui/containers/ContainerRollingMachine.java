@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.EnergyStorage;
-import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
+import mods.railcraft.common.blocks.machine.rolling_machine.TileRollingMachine;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotUnshiftable;
 import mods.railcraft.common.gui.slots.SlotUntouchable;
@@ -46,7 +46,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
             public void setInventorySlotContents(int slot, ItemStack stack) {
                 super.setInventorySlotContents(slot, stack);
                 if (stack != null && Game.isNotHost(tile.getWorldObj())) InvTools
-                        .addItemToolTip(stack, LocalizationPlugin.translate("railcraft.gui.rolling.machine.tip.craft"));
+                        .addItemToolTip(stack, LocalizationPlugin.translate("railcraft.gui.rolling_machine.tip.craft"));
             }
         };
 

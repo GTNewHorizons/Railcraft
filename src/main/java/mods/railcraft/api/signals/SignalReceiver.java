@@ -47,8 +47,8 @@ public abstract class SignalReceiver extends AbstractPair {
 
     @Override
     public boolean isValidPair(WorldCoordinate otherCoord, TileEntity otherTile) {
-        if (otherTile instanceof IControllerTile) {
-            SignalController controller = ((IControllerTile) otherTile).getController();
+        if (otherTile instanceof IControllerTile controllerTile) {
+            SignalController controller = controllerTile.getController();
             return controller.isPairedWith(getCoords());
         }
         return false;

@@ -20,9 +20,6 @@ import mods.railcraft.common.gui.slots.SlotTrack;
 public class ContainerBore extends RailcraftContainer {
 
     private EntityTunnelBore bore;
-    private Slot ballast;
-    private Slot fuel;
-    private Slot track;
     private int lastBurnTime;
     private int lastFuel;
 
@@ -33,15 +30,15 @@ public class ContainerBore extends RailcraftContainer {
         addSlot(new SlotBore(bore, 0, 17, 36));
 
         for (int i = 0; i < 6; i++) {
-            addSlot(fuel = new SlotFuel(bore, i + 1, 62 + i * 18, 36));
+            addSlot(new SlotFuel(bore, i + 1, 62 + i * 18, 36));
         }
 
         for (int i = 0; i < 9; i++) {
-            addSlot(ballast = new SlotBallast(bore, i + 7, 8 + i * 18, 72));
+            addSlot(new SlotBallast(bore, i + 7, 8 + i * 18, 72));
         }
 
         for (int i = 0; i < 9; i++) {
-            addSlot(track = new SlotTrack(bore, i + 16, 8 + i * 18, 108));
+            addSlot(new SlotTrack(bore, i + 16, 8 + i * 18, 108));
         }
 
         for (int i = 0; i < 3; i++) {
@@ -94,45 +91,4 @@ public class ContainerBore extends RailcraftContainer {
                 break;
         }
     }
-
-    // @Override
-    // public ItemStack transferStackInSlot(EntityPlayer player, int i) {
-    // ItemStack stackCopy = null;
-    // Slot slot = (Slot) inventorySlots.get(i);
-    // if (slot != null && slot.getHasStack()) {
-    // ItemStack stack = slot.getStack();
-    // stackCopy = stack.copy();
-    // if (i < 25) {
-    // if (!mergeItemStack(stack, 25, inventorySlots.size(), true)) {
-    // return null;
-    // }
-    // } else {
-    // if (SlotBore.canPlaceItem(stack)) {
-    // if (!mergeItemStack(stack, 0, 1, false)) {
-    // return null;
-    // }
-    // } else if (fuel.isItemValid(stack)) {
-    // if (!mergeItemStack(stack, 1, 7, false)) {
-    // return null;
-    // }
-    // } else if (ballast.isItemValid(stack)) {
-    // if (!mergeItemStack(stack, 7, 16, false)) {
-    // return null;
-    // }
-    // } else if (track.isItemValid(stack)) {
-    // if (!mergeItemStack(stack, 16, 25, false)) {
-    // return null;
-    // }
-    // } else {
-    // return null;
-    // }
-    // }
-    // if (stack.stackSize == 0) {
-    // slot.putStack(null);
-    // } else {
-    // slot.onSlotChanged();
-    // }
-    // }
-    // return stackCopy;
-    // }
 }

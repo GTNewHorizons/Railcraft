@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -38,7 +39,7 @@ import mods.railcraft.common.util.network.IGuiReturnHandler;
 
 public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered, IGuiReturnHandler {
 
-    public static final Set<Class> excludedEntities = new HashSet<Class>();
+    public static final Set<Class<? extends Entity>> excludedEntities = new HashSet<Class<? extends Entity>>();
     public static final byte MIN_AREA = 1;
     public static final byte MAX_AREA = 5;
     private boolean powered = false;
@@ -94,7 +95,7 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
             AxisAlignedBB box = AxisAlignedBB
                     .getBoundingBox(getX(), getY(), getZ(), getX() + 1, getY() + 1, getZ() + 1);
             box = box.expand(a, a, a);
-            List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, box);
+            List<EntityLivingBase> entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, box);
 
             if (entities.size() > 0) {
                 EntityLivingBase entity = (EntityLivingBase) entities.get(MiscTools.getRand().nextInt(entities.size()));

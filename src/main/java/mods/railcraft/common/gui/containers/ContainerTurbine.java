@@ -11,20 +11,19 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.machine.alpha.TileSteamTurbine;
+import mods.railcraft.common.blocks.machine.turbine.TileSteamTurbine;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.items.RailcraftPartItems;
 
 public class ContainerTurbine extends RailcraftContainer {
 
     public TileSteamTurbine tile;
-    private Slot rotor;
     private int lastOutput;
 
     public ContainerTurbine(InventoryPlayer inventoryplayer, TileSteamTurbine tile) {
         super(tile.getInventory());
         this.tile = tile;
-        addSlot(rotor = new SlotTurbine(tile.getInventory(), 0, 60, 24));
+        addSlot(new SlotTurbine(tile.getInventory(), 0, 60, 24));
         for (int i = 0; i < 3; i++) {
             for (int k = 0; k < 9; k++) {
                 addSlot(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 58 + i * 18));

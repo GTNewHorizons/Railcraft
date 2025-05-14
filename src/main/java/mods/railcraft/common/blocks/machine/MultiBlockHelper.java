@@ -12,15 +12,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
 import mods.railcraft.api.helpers.StructureHelper;
-import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
-import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
-import mods.railcraft.common.blocks.machine.alpha.TileSteamOven;
-import mods.railcraft.common.blocks.machine.alpha.TileTankWater;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
-import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
-import mods.railcraft.common.blocks.machine.beta.TileTankBase;
-import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
+import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxFluid;
+import mods.railcraft.common.blocks.machine.boiler.TileBoilerFireboxSolid;
+import mods.railcraft.common.blocks.machine.coke_oven.TileCokeOven;
+import mods.railcraft.common.blocks.machine.flux_transformer.TileFluxTransformer;
+import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
+import mods.railcraft.common.blocks.machine.steam_oven.TileSteamOven;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.TileTankBase;
+import mods.railcraft.common.blocks.machine.tank_water.TileTankWater;
 
 /**
  *
@@ -67,18 +68,9 @@ public class MultiBlockHelper implements StructureHelper {
     }
 
     @Override
-    public void placeIronTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
-        TileTankBase.placeIronTank(world, x, y, z, patternIndex, fluid);
-    }
-
-    @Override
-    public void placeSteelTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
-        TileTankBase.placeSteelTank(world, x, y, z, patternIndex, fluid);
-    }
-
-    @Override
-    public void placeAdvancedTank(World world, int x, int y, int z, int patternIndex, FluidStack fluid) {
-        TileTankBase.placeAdvancedTank(world, x, y, z, patternIndex, fluid);
+    public void placeMultiTank(World world, int x, int y, int z, int patternIndex, TankMaterial material,
+            FluidStack fluid) {
+        TileTankBase.placeMultiTank(world, x, y, z, patternIndex, material, fluid);
     }
 
     @Override

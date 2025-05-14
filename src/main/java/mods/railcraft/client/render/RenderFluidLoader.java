@@ -13,9 +13,9 @@ import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
 
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderFluidBase;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.loader.TileFluidLoader;
+import mods.railcraft.common.blocks.machine.loader.TileLoaderFluidBase;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 
 /**
@@ -37,7 +37,7 @@ public class RenderFluidLoader extends TileEntitySpecialRenderer {
         backDrop.maxY = 0.99f;
         backDrop.maxZ = 0.989f;
 
-        pipe.texture = EnumMachineGamma.pipeTexture;
+        pipe.texture = Machines.FLUID_LOADER.pipeTexture;
 
         pipe.minX = PIPE_OFFSET;
         pipe.minZ = PIPE_OFFSET;

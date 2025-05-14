@@ -7,7 +7,7 @@ package mods.railcraft.client.gui;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
-import mods.railcraft.common.blocks.machine.alpha.TileRockCrusher;
+import mods.railcraft.common.blocks.machine.rock_crusher.TileRockCrusher;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerRockCrusher;
 

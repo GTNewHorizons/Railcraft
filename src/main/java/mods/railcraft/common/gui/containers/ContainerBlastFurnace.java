@@ -13,7 +13,7 @@ import net.minecraft.inventory.SlotFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
+import mods.railcraft.common.blocks.machine.blast_furnace.TileBlastFurnace;
 import mods.railcraft.common.gui.slots.SlotStackFilter;
 import mods.railcraft.common.util.network.PacketBuilder;
 

@@ -7,7 +7,7 @@ package mods.railcraft.client.gui;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
-import mods.railcraft.common.blocks.machine.alpha.TileFeedStation;
+import mods.railcraft.common.blocks.machine.feed_station.TileFeedStation;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerFeedStation;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -15,7 +15,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 public class GuiFeedStation extends TileGui {
 
     private final String label;
-    private final String feed = LocalizationPlugin.translate("railcraft.gui.feed.station.feed");
+    private final String feed = LocalizationPlugin.translate("railcraft.gui.feed_station.feed");
 
     public GuiFeedStation(InventoryPlayer playerInv, TileFeedStation tile) {
         super(

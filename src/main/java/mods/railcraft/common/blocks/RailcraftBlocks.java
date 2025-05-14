@@ -5,28 +5,9 @@
  */
 package mods.railcraft.common.blocks;
 
-import java.util.Arrays;
-
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-import mods.railcraft.common.blocks.machine.BlockMachine;
-import mods.railcraft.common.blocks.machine.ItemMachine;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.alpha.MachineProxyAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.beta.MachineProxyBeta;
-import mods.railcraft.common.blocks.machine.delta.EnumMachineDelta;
-import mods.railcraft.common.blocks.machine.delta.MachineProxyDelta;
-import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
-import mods.railcraft.common.blocks.machine.epsilon.MachineProxyEpsilon;
-import mods.railcraft.common.blocks.machine.gamma.EnumMachineGamma;
-import mods.railcraft.common.blocks.machine.gamma.MachineProxyGamma;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
-import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyEta;
-import mods.railcraft.common.blocks.machine.zeta.MachineProxyZeta;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.ItemSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
@@ -37,21 +18,13 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemRail.EnumRail;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
-import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 
 public class RailcraftBlocks {
 
-    private static Block blockMachineAlpha;
-    private static Block blockMachineBeta;
-    private static Block blockMachineGamma;
-    private static Block blockMachineDelta;
-    private static Block blockMachineEpsilon;
     private static Block blockTrack;
     private static Block blockRailElevator;
     private static Block blockSignal;
-    private static Block blockMachineZeta;
-    private static Block blockMachineEta;
 
     public static void registerBlockTrack() {
         if (blockTrack == null && RailcraftConfig.isBlockEnabled("track")) {
@@ -92,164 +65,6 @@ public class RailcraftBlocks {
         return blockRailElevator;
     }
 
-    public static Block registerBlockMachineAlpha() {
-        if (blockMachineAlpha == null && RailcraftConfig.isBlockEnabled("machine.alpha")) {
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            blockMachineAlpha = new BlockMachine(0, new MachineProxyAlpha(), true, lightOpacity)
-                    .setBlockName("railcraft.machine.alpha");
-            RailcraftRegistry.register(blockMachineAlpha, ItemMachine.class);
-
-            for (EnumMachineAlpha type : EnumMachineAlpha.values()) {
-                switch (type) {
-                    case FEED_STATION:
-                        blockMachineAlpha.setHarvestLevel("axe", 1, type.ordinal());
-                        break;
-                    case TANK_WATER:
-                        blockMachineAlpha.setHarvestLevel("axe", 0, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    case WORLD_ANCHOR:
-                    case PERSONAL_ANCHOR:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    case COKE_OVEN:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 0, type.ordinal());
-                        break;
-                    default:
-                        blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineAlpha;
-    }
-
-    public static Block getBlockMachineAlpha() {
-        return blockMachineAlpha;
-    }
-
-    public static Block registerBlockMachineBeta() {
-        if (blockMachineBeta == null && RailcraftConfig.isBlockEnabled("machine.beta")) {
-
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_LOW.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.ENGINE_STEAM_HIGH.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_IRON_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_WALL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_VALVE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.TANK_STEEL_GAUGE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.SENTINEL.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.VOID_CHEST.ordinal()] = 0;
-            lightOpacity[EnumMachineBeta.METALS_CHEST.ordinal()] = 0;
-            blockMachineBeta = new BlockMachine(renderId, new MachineProxyBeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.beta");
-            RailcraftRegistry.register(blockMachineBeta, ItemMachine.class);
-
-            for (EnumMachineBeta type : EnumMachineBeta.values()) {
-                switch (type) {
-                    case SENTINEL:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                        break;
-                    default:
-                        blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineBeta;
-    }
-
-    public static Block getBlockMachineBeta() {
-        return blockMachineBeta;
-    }
-
-    public static Block registerBlockMachineGamma() {
-        if (blockMachineGamma == null && RailcraftConfig.isBlockEnabled("machine.gamma")) {
-
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineGamma.FLUID_LOADER.ordinal()] = 0;
-            lightOpacity[EnumMachineGamma.FLUID_UNLOADER.ordinal()] = 0;
-            blockMachineGamma = new BlockMachine(0, new MachineProxyGamma(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.gamma");
-            blockMachineGamma.setCreativeTab(CreativeTabs.tabTransport);
-            RailcraftRegistry.register(blockMachineGamma, ItemMachine.class);
-
-            for (EnumMachineGamma type : EnumMachineGamma.values()) {
-                switch (type) {
-                    default:
-                        blockMachineGamma.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineGamma.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineGamma;
-    }
-
-    public static Block getBlockMachineGamma() {
-        return blockMachineGamma;
-    }
-
-    public static Block registerBlockMachineDelta() {
-        if (blockMachineDelta == null && RailcraftConfig.isBlockEnabled("machine.delta")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            lightOpacity[EnumMachineDelta.WIRE.ordinal()] = 0;
-            lightOpacity[EnumMachineDelta.CAGE.ordinal()] = 0;
-            blockMachineDelta = new BlockMachine(renderId, new MachineProxyDelta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.delta");
-            blockMachineDelta.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
-            RailcraftRegistry.register(blockMachineDelta, ItemMachine.class);
-
-            for (EnumMachineDelta type : EnumMachineDelta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineDelta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineDelta;
-    }
-
-    public static Block getBlockMachineDelta() {
-        return blockMachineDelta;
-    }
-
-    public static Block registerBlockMachineEpsilon() {
-        if (blockMachineEpsilon == null && RailcraftConfig.isBlockEnabled("machine.epsilon")) {
-            int[] lightOpacity = new int[16];
-            Arrays.fill(lightOpacity, 255);
-            blockMachineEpsilon = new BlockMachine(0, new MachineProxyEpsilon(), true, lightOpacity)
-                    .setBlockName("railcraft.machine.epsilon");
-            RailcraftRegistry.register(blockMachineEpsilon, ItemMachine.class);
-
-            for (EnumMachineEpsilon type : EnumMachineEpsilon.values()) {
-                switch (type) {
-                    default:
-                        blockMachineEpsilon.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        // blockMachineEpsilon.setHarvestLevel("crowbar", 0, type.ordinal());
-                }
-            }
-        }
-        return blockMachineEpsilon;
-    }
-
-    public static Block getBlockMachineEpsilon() {
-        return blockMachineEpsilon;
-    }
-
     public static void registerBlockSignal() {
         if (blockSignal == null && RailcraftConfig.isBlockEnabled("signal")) {
             int renderId = Railcraft.getProxy().getRenderId();
@@ -260,57 +75,5 @@ public class RailcraftBlocks {
 
     public static Block getBlockSignal() {
         return blockSignal;
-    }
-
-    public static Block registerBlockMachineZeta() {
-        if (blockMachineZeta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineZeta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineZeta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineZeta = new BlockMachine(renderId, new MachineProxyZeta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.zeta");
-            RailcraftRegistry.register(blockMachineZeta, ItemMachine.class);
-
-            for (EnumMachineZeta type : EnumMachineZeta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineZeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                }
-            }
-        }
-        return blockMachineZeta;
-    }
-
-    public static Block getBlockMachineZeta() {
-        return blockMachineZeta;
-    }
-
-    public static Block registerBlockMachineEta() {
-        if (blockMachineEta == null && RailcraftConfig.isBlockEnabled("machine.advtank")) {
-            int renderId = Railcraft.getProxy().getRenderId();
-            int[] lightOpacity = new int[EnumMachineEta.values().length];
-            Arrays.fill(lightOpacity, 255);
-            for (int i = 0; i < EnumMachineEta.values().length; i++) {
-                lightOpacity[i] = 0;
-            }
-            blockMachineEta = new BlockMachine(renderId, new MachineProxyEta(), false, lightOpacity)
-                    .setBlockName("railcraft.machine.eta");
-            RailcraftRegistry.register(blockMachineEta, ItemMachine.class);
-
-            for (EnumMachineEta type : EnumMachineEta.values()) {
-                switch (type) {
-                    default:
-                        blockMachineEta.setHarvestLevel("pickaxe", 4, type.ordinal());
-                }
-            }
-        }
-        return blockMachineEta;
-    }
-
-    public static Block getBlockMachineEta() {
-        return blockMachineEta;
     }
 }

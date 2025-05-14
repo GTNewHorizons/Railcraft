@@ -18,7 +18,8 @@ import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
+import mods.railcraft.common.blocks.machine.tank.Tanks;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
@@ -102,7 +103,8 @@ public enum EnumCart implements ICartType {
     public ItemStack getContents() {
         switch (this) {
             case TANK:
-                if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable()) return EnumMachineBeta.TANK_IRON_GAUGE.getItem();
+                if (Tanks.getGauge(TankMaterial.IRON).isAvailable())
+                    return Tanks.getGauge(TankMaterial.IRON).getItem(1);
             default: {
                 if (contents == null) return null;
                 return contents.copy();

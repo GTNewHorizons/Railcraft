@@ -138,8 +138,8 @@ public class ItemStackMap<V> implements Map<ItemStack, V> {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ItemStackMap) {
-            return map.equals(((ItemStackMap) o).map);
+        if (o instanceof ItemStackMap itemStackMap) {
+            return map.equals(itemStackMap.map);
         }
         return false;
     }

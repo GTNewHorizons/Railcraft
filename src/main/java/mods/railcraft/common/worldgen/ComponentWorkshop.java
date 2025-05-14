@@ -22,10 +22,8 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.api.tracks.ITrackReversable;
-import mods.railcraft.common.blocks.RailcraftBlocks;
-import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
-import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
-import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.Machines;
+import mods.railcraft.common.blocks.machine.engine.TileEngineSteamHobby;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
 import mods.railcraft.common.blocks.tracks.TileTrack;
@@ -175,16 +173,9 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
         placeBlockAtCurrentPosition(world, Blocks.torch, 0, 2, 3, 4, sbb);
 
         // machines
-        if (EnumMachineAlpha.ROLLING_MACHINE.isAvaliable()) {
-            placeBlockAtCurrentPosition(
-                    world,
-                    RailcraftBlocks.getBlockMachineAlpha(),
-                    EnumMachineAlpha.ROLLING_MACHINE.ordinal(),
-                    9,
-                    1,
-                    5,
-                    sbb);
-            if (EnumMachineBeta.ENGINE_STEAM_HOBBY.isAvaliable() && RailcraftConfig.machinesRequirePower())
+        if (Machines.ROLLING_MACHINE.isAvailable()) {
+            placeBlockAtCurrentPosition(world, Machines.ROLLING_MACHINE.getBlock(), 0, 9, 1, 5, sbb);
+            if (Machines.ENGINE_STEAM_HOBBY.isAvailable() && RailcraftConfig.machinesRequirePower())
                 placeEngine(world, 9, 1, 6, sbb);
         }
 
@@ -249,13 +240,7 @@ public class ComponentWorkshop extends StructureVillagePieces.Village {
 
         if (!sbb.isVecInside(xx, yy, zz)) return;
 
-        WorldPlugin.setBlock(
-                world,
-                xx,
-                yy,
-                zz,
-                RailcraftBlocks.getBlockMachineBeta(),
-                EnumMachineBeta.ENGINE_STEAM_HOBBY.ordinal());
+        WorldPlugin.setBlock(world, xx, yy, zz, Machines.ENGINE_STEAM_HOBBY.getBlock());
         TileEntity tile = WorldPlugin.getBlockTile(world, xx, yy, zz);
         if (tile instanceof TileEngineSteamHobby) {
             TileEngineSteamHobby engine = (TileEngineSteamHobby) tile;
