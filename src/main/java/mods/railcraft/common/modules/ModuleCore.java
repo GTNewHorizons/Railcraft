@@ -49,6 +49,7 @@ import mods.railcraft.common.blocks.machine.Machine;
 import mods.railcraft.common.blocks.machine.MachineTileRegistery;
 import mods.railcraft.common.blocks.machine.Machines;
 import mods.railcraft.common.blocks.machine.MultiBlockHelper;
+import mods.railcraft.common.blocks.machine.tank.TankMaterial;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.tracks.BlockTrack;
 import mods.railcraft.common.carts.CartUtils;
@@ -354,9 +355,11 @@ public class ModuleCore extends RailcraftModule {
         machines.add(Machines.BLAST_FURNACE);
         machines.add(Machines.TANK_WATER);
         machines.add(Machines.ROCK_CRUSHER);
-        machines.addAll(Machines.tankWalls.values());
-        machines.addAll(Machines.tankGauges.values());
-        machines.addAll(Machines.tankValves.values());
+        for (TankMaterial material : TankMaterial.values()) {
+            machines.add(Machines.tankWalls.get(material));
+            machines.add(Machines.tankGauges.get(material));
+            machines.add(Machines.tankValves.get(material));
+        }
         machines.add(Machines.BOILER_TANK_LOW_PRESSURE);
         machines.add(Machines.BOILER_TANK_HIGH_PRESSURE);
         machines.add(Machines.BOILER_FIREBOX_SOLID);
