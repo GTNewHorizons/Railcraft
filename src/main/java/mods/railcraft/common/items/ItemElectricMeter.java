@@ -100,7 +100,7 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
         return returnValue;
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         public void onEntityInteract(EntityInteractEvent event) {
