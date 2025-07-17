@@ -2,7 +2,6 @@ package mods.railcraft.common.items.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraftforge.common.MinecraftForge;
 
 import mods.railcraft.common.core.RailcraftConfig;
 
@@ -23,7 +22,7 @@ public class RailcraftEnchantments {
                 20,
                 EntityCreeper.class,
                 3f);
-        MinecraftForge.EVENT_BUS.register(((EnchantmentDamageRailcraft) implosion).handler);
+        ((EnchantmentDamageRailcraft) implosion).registerEventHandler();
         destruction = new EnchantmentDestruction(RailcraftConfig.destructionID(), 1);
     }
 }

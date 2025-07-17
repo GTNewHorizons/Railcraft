@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -16,7 +17,6 @@ public class EnchantmentDamageRailcraft extends EnchantmentCrowbar {
     private final Class<? extends EntityLivingBase> targetType;
     private final float damageBonusPerLevel;
     private WeakReference<Entity> target;
-    public EventHandler handler;
 
     public EnchantmentDamageRailcraft(String tag, int id, int weight, int baseEnchantability, int levelEnchantability,
             int thresholdEnchantability, Class<? extends EntityLivingBase> targetType, float damageBonusPerLevel) {
@@ -26,7 +26,6 @@ public class EnchantmentDamageRailcraft extends EnchantmentCrowbar {
         this.thresholdEnchantability = thresholdEnchantability;
         this.targetType = targetType;
         this.damageBonusPerLevel = damageBonusPerLevel;
-        this.handler = new EventHandler();
     }
 
     @Override
@@ -56,6 +55,10 @@ public class EnchantmentDamageRailcraft extends EnchantmentCrowbar {
     @Override
     public boolean canApplyTogether(Enchantment enchantment) {
         return !(enchantment instanceof EnchantmentDamageRailcraft);
+    }
+
+    public void registerEventHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public class EventHandler {

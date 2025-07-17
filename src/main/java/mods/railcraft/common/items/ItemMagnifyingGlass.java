@@ -120,7 +120,7 @@ public class ItemMagnifyingGlass extends ItemRailcraft implements IActivationBlo
         return returnValue;
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         public void onEntityInteract(EntityInteractEvent event) {
