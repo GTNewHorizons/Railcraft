@@ -5,10 +5,7 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,6 +53,12 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
     protected final FilteredTank tankWater;
     protected final FilteredTank tankSteam;
     private boolean explode = false;
+
+    private static final ForgeDirection[] LIQUID_OUTPUTS_1 = { ForgeDirection.DOWN, ForgeDirection.NORTH,
+            ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST };
+    private static final Map<Integer, ForgeDirection[]> LIQUID_OUTPUTS_2 = new HashMap<>();
+    private static final Map<Integer, ForgeDirection[]> LIQUID_OUTPUTS_3 = new HashMap<>();
+    private static final byte X_SHIFT = 2;
 
     static {
         fireboxBlocks.add(EnumMachineBeta.BOILER_FIREBOX_SOLID.ordinal());
@@ -126,7 +129,7 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
             }
         }
 
-        return new BoilerPattern(map, width * width * tankHeight, ticks, heat, capacity, offset, offset);
+        return new BoilerPattern(map, width, width * width * tankHeight, ticks, heat, capacity, offset, offset);
     }
 
     @Override
@@ -141,6 +144,11 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
 
     public void explode() {
         explode = true;
+    }
+
+    public int getTankTier() {
+        MultiBlockPattern pattern = getPattern();
+        return ((BoilerPattern) pattern).tier;
     }
 
     public int getNumTanks() {
@@ -183,12 +191,54 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
                 StandardTank tank = mBlock.tankManager.get(TANK_STEAM);
                 FluidStack steam = tank.getFluid();
                 if (steam != null && (!mBlock.boiler.isBoiling() || steam.amount >= tank.getCapacity() / 2))
-                    mBlock.tankManager.outputLiquid(
-                            tileCache,
-                            getOutputFilter(),
-                            ForgeDirection.VALID_DIRECTIONS,
-                            TANK_STEAM,
-                            TRANSFER_RATE);
+                    mBlock.tankManager
+                            .outputLiquid(tileCache, getOutputFilter(), getOutputSides(), TANK_STEAM, TRANSFER_RATE);
+            }
+        }
+    }
+
+    private ForgeDirection[] getOutputSides() {
+        return switch (getTankTier()) {
+            case 2 -> LIQUID_OUTPUTS_2.get((getPatternPositionX() << X_SHIFT) | getPatternPositionZ());
+            case 3 -> LIQUID_OUTPUTS_3.get((getPatternPositionX() << X_SHIFT) | getPatternPositionZ());
+            default -> LIQUID_OUTPUTS_1;
+        };
+    }
+
+    static {
+        ArrayList<ForgeDirection> outputSide = new ArrayList<>();
+
+        // 2x2 boiler
+        for (byte x = 1; x <= 2; x++) {
+            for (byte z = 1; z <= 2; z++) {
+
+                if (x == 1) outputSide.add(ForgeDirection.WEST);
+                if (x == 2) outputSide.add(ForgeDirection.EAST);
+
+                if (z == 1) outputSide.add(ForgeDirection.NORTH);
+                if (z == 2) outputSide.add(ForgeDirection.SOUTH);
+
+                outputSide.add(ForgeDirection.DOWN);
+
+                LIQUID_OUTPUTS_2.put((x << X_SHIFT) | z, outputSide.toArray(new ForgeDirection[0]));
+                outputSide.clear();
+            }
+        }
+
+        // 3x3x3 boiler
+        for (byte x = 1; x <= 3; x++) {
+            for (byte z = 1; z <= 3; z++) {
+
+                if (x == 1) outputSide.add(ForgeDirection.WEST);
+                if (x == 3) outputSide.add(ForgeDirection.EAST);
+
+                if (z == 1) outputSide.add(ForgeDirection.NORTH);
+                if (z == 3) outputSide.add(ForgeDirection.SOUTH);
+
+                outputSide.add(ForgeDirection.DOWN);
+
+                LIQUID_OUTPUTS_3.put((x << X_SHIFT) | z, outputSide.toArray(new ForgeDirection[0]));
+                outputSide.clear();
             }
         }
     }
@@ -296,14 +346,16 @@ public abstract class TileBoiler extends TileMultiBlock implements IFluidHandler
 
     public static class BoilerPattern extends MultiBlockPattern {
 
+        public final int tier;
         public final int numTanks;
         public final int ticksPerCycle;
         public final float maxHeat;
         public final int steamCapacity;
 
-        public BoilerPattern(char[][][] pattern, int tanks, int ticks, float heat, int capacity, int xOffset,
+        public BoilerPattern(char[][][] pattern, int tier, int tanks, int ticks, float heat, int capacity, int xOffset,
                 int yOffset) {
             super(pattern, xOffset, 1, yOffset);
+            this.tier = tier;
             numTanks = tanks;
             ticksPerCycle = ticks;
             this.maxHeat = heat;
