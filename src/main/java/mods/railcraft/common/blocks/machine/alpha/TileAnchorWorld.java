@@ -9,9 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -28,8 +26,6 @@ import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
 import org.apache.logging.log4j.Level;
-
-import com.google.common.collect.MapMaker;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
@@ -57,8 +53,6 @@ import mods.railcraft.common.util.misc.IAnchor;
  */
 public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedInventory {
 
-    private static final Map<UUID, Ticket> tickets = new MapMaker().makeMap();
-    private static final Map<EntityPlayer, WorldCoordinate> sentinelPairingMap = new MapMaker().weakKeys().makeMap();
     private static final int SENTINEL_CHECK = 128;
     private static final byte MAX_CHUNKS = 25;
     private static final byte FUEL_CYCLE = 9;
@@ -99,18 +93,19 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     @Override
     public boolean blockActivated(EntityPlayer player, int side) {
         ItemStack current = player.getCurrentEquippedItem();
-        if (current != null && current.getItem() instanceof IToolCrowbar) {
-            IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
+        if (current != null && current.getItem() instanceof IToolCrowbar crowbar) {
             if (crowbar.canWhack(player, current, xCoord, yCoord, zCoord)) {
                 if (Game.isHost(worldObj)) {
-                    WorldCoordinate target = sentinelPairingMap.get(player);
-                    if (target == null) setTarget(this, player);
-                    else if (worldObj.provider.dimensionId != target.dimension) ChatPlugin.sendLocalizedChatFromServer(
-                            player,
-                            "railcraft.gui.anchor.pair.fail.dimension",
-                            getLocalizationTag());
-                    else if (new WorldCoordinate(this).equals(target)) {
-                        removeTarget(player);
+                    WorldCoordinate target = Railcraft.proxy.getTicketManager().getTarget(player);
+                    if (target == null) {
+                        Railcraft.proxy.getTicketManager().setTarget(this, player);
+                    } else if (worldObj.provider.dimensionId != target.dimension) {
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player,
+                                "railcraft.gui.anchor.pair.fail.dimension",
+                                getLocalizationTag());
+                    } else if (new WorldCoordinate(this).equals(target)) {
+                        Railcraft.proxy.getTicketManager().removeTarget(player);
                         ChatPlugin.sendLocalizedChatFromServer(
                                 player,
                                 "railcraft.gui.anchor.pair.cancel",
@@ -122,19 +117,6 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
             }
         }
         return super.blockActivated(player, side);
-    }
-
-    public static WorldCoordinate getTarget(EntityPlayer player) {
-        return sentinelPairingMap.get(player);
-    }
-
-    public static void setTarget(RailcraftTileEntity tile, EntityPlayer player) {
-        sentinelPairingMap.put(player, new WorldCoordinate(tile));
-        ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.anchor.pair.start", tile.getLocalizationTag());
-    }
-
-    public static void removeTarget(EntityPlayer player) {
-        sentinelPairingMap.remove(player);
     }
 
     @Override
@@ -198,7 +180,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
 
             requestTicket();
             sendUpdateToClient();
-            removeTarget(player);
+            Railcraft.proxy.getTicketManager().removeTarget(player);
             ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.gui.anchor.pair.success", getLocalizationTag());
             return true;
         }
@@ -379,7 +361,7 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     }
 
     public Ticket getTicket() {
-        return tickets.get(getUUID());
+        return Railcraft.proxy.getTicketManager().tickets.get(getUUID());
     }
 
     public void setTicket(Ticket t) {
@@ -394,12 +376,12 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
                     }
                     ForgeChunkManager.releaseTicket(ticket);
                 }
-                tickets.remove(getUUID());
+                Railcraft.proxy.getTicketManager().tickets.remove(getUUID());
             }
             changed = true;
         }
         hasTicket = t != null;
-        if (hasTicket) tickets.put(getUUID(), t);
+        if (hasTicket) Railcraft.proxy.getTicketManager().tickets.put(getUUID(), t);
         if (changed) sendUpdateToClient();
     }
 
