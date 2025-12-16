@@ -60,8 +60,11 @@ public class TileTankWater extends TileTank implements ISidedInventory {
     private static final int SLOT_INPUT = 0;
     private static final int SLOT_OUTPUT = 1;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 2);
-    private static final ForgeDirection[] LIQUID_OUTPUTS = { ForgeDirection.DOWN, ForgeDirection.EAST,
-            ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH };
+
+    private static final Map<Integer, ForgeDirection[]> LIQUID_OUTPUTS = new HashMap<>();
+    private static final byte X_SHIFT = 4;
+    private static final byte Y_SHIFT = 2;
+
     private static final ITileFilter LIQUID_OUTPUT_FILTER = new ITileFilter() {
 
         @Override
@@ -181,7 +184,41 @@ public class TileTankWater extends TileTank implements ISidedInventory {
             }
 
             TankManager tMan = getTankManager();
-            if (tMan != null) tMan.outputLiquid(tileCache, LIQUID_OUTPUT_FILTER, LIQUID_OUTPUTS, 0, OUTPUT_RATE);
+            if (tMan != null) tMan.outputLiquid(tileCache, LIQUID_OUTPUT_FILTER, getOutputSides(), 0, OUTPUT_RATE);
+        }
+    }
+
+    private ForgeDirection[] getOutputSides() {
+        return LIQUID_OUTPUTS
+                .get((getPatternPositionX() << X_SHIFT) | (getPatternPositionY() << Y_SHIFT) | getPatternPositionZ());
+    }
+
+    static {
+        // Precompute all directions each TE can output to
+        // values 1 - 3 are the pattern positions of the TEs in the structure
+        ArrayList<ForgeDirection> outputSide = new ArrayList<>();
+        for (byte y = 1; y <= 3; y++) {
+            for (byte x = 1; x <= 3; x++) {
+                for (byte z = 1; z <= 3; z++) {
+
+                    if (x == 1) outputSide.add(ForgeDirection.WEST);
+                    if (x == 3) outputSide.add(ForgeDirection.EAST);
+
+                    if (y == 1) outputSide.add(ForgeDirection.DOWN);
+
+                    if (z == 1) outputSide.add(ForgeDirection.NORTH);
+                    if (z == 3) outputSide.add(ForgeDirection.SOUTH);
+
+                    if (!outputSide.isEmpty()) {
+                        LIQUID_OUTPUTS
+                                .put((x << X_SHIFT) | (y << Y_SHIFT) | z, outputSide.toArray(new ForgeDirection[0]));
+                        outputSide.clear();
+                    }
+                    // Top center block doesn't have defined direction
+                    else LIQUID_OUTPUTS
+                            .put((x << X_SHIFT) | (y << Y_SHIFT) | z, new ForgeDirection[] { ForgeDirection.UNKNOWN });
+                }
+            }
         }
     }
 
