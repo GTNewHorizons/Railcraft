@@ -11,7 +11,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
+import mods.railcraft.common.util.misc.TicketManager;
+
 public class CommonProxy {
+
+    private TicketManager ticketManager = null;
 
     public World getClientWorld() {
         return null;
@@ -48,5 +54,17 @@ public class CommonProxy {
 
     public String getCurrentLanguage() {
         return "en_US";
+    }
+
+    public void onServerAboutToStart(FMLServerAboutToStartEvent event) {
+        ticketManager = new TicketManager();
+    }
+
+    public void onServerStopped(FMLServerStoppedEvent event) {
+        ticketManager = null;
+    }
+
+    public TicketManager getTicketManager() {
+        return ticketManager;
     }
 }

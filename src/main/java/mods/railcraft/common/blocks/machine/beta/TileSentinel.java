@@ -16,6 +16,7 @@ import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 
 /**
@@ -40,14 +41,16 @@ public class TileSentinel extends TileMachineBase {
         if (current != null && current.getItem() instanceof IToolCrowbar) {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
             if (crowbar.canWhack(player, current, xCoord, yCoord, zCoord)) {
-                WorldCoordinate target = TileAnchorWorld.getTarget(player);
-                if (target == null) TileAnchorWorld.setTarget(this, player);
-                else if (worldObj.provider.dimensionId != target.dimension) ChatPlugin.sendLocalizedChatFromServer(
-                        player,
-                        "railcraft.gui.anchor.pair.fail.dimension",
-                        getLocalizationTag());
-                else if (new WorldCoordinate(this).equals(target)) {
-                    TileAnchorWorld.removeTarget(player);
+                WorldCoordinate target = Railcraft.proxy.getTicketManager().getTarget(player);
+                if (target == null) {
+                    Railcraft.proxy.getTicketManager().setTarget(this, player);
+                } else if (worldObj.provider.dimensionId != target.dimension) {
+                    ChatPlugin.sendLocalizedChatFromServer(
+                            player,
+                            "railcraft.gui.anchor.pair.fail.dimension",
+                            getLocalizationTag());
+                } else if (new WorldCoordinate(this).equals(target)) {
+                    Railcraft.proxy.getTicketManager().removeTarget(player);
                     ChatPlugin.sendLocalizedChatFromServer(
                             player,
                             "railcraft.gui.anchor.pair.cancel",
