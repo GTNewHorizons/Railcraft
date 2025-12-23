@@ -69,9 +69,6 @@ public class FirestoneTickHandler {
         for (Object o : event.world.getLoadedEntityList()) {
             if (o instanceof EntityItem ei) {
                 ItemStack stack = ei.getEntityItem();
-                if (stack == null) {
-                    continue;
-                }
                 if (shouldBurn(stack)) {
                     Random rnd = event.world.rand;
                     spawnFireEntity(rnd, ei);
@@ -81,15 +78,15 @@ public class FirestoneTickHandler {
 
     }
 
-    private boolean spawnFireEntity(Random rnd, Entity item) {
-        int x = (int) Math.round(item.posX) - 5 + rnd.nextInt(12);
-        int y = (int) Math.round(item.posY) - 5 + rnd.nextInt(12);
-        int z = (int) Math.round(item.posZ) - 5 + rnd.nextInt(12);
+    private boolean spawnFireEntity(Random rnd, Entity entity) {
+        int x = (int) Math.round(entity.posX) - 5 + rnd.nextInt(12);
+        int y = (int) Math.round(entity.posY) - 5 + rnd.nextInt(12);
+        int z = (int) Math.round(entity.posZ) - 5 + rnd.nextInt(12);
 
         if (y < 1) y = 1;
-        if (y > item.worldObj.getActualHeight()) y = item.worldObj.getActualHeight() - 2;
+        if (y > entity.worldObj.getActualHeight()) y = entity.worldObj.getActualHeight() - 2;
 
-        if (canBurn(item.worldObj, x, y, z)) return item.worldObj.setBlock(x, y, z, Blocks.fire);
+        if (canBurn(entity.worldObj, x, y, z)) return entity.worldObj.setBlock(x, y, z, Blocks.fire);
         return false;
     }
 
