@@ -70,8 +70,7 @@ public class FirestoneTickHandler {
             if (o instanceof EntityItem ei) {
                 ItemStack stack = ei.getEntityItem();
                 if (shouldBurn(stack)) {
-                    Random rnd = event.world.rand;
-                    spawnFireEntity(rnd, ei);
+                    spawnFireEntity(event.world.rand, ei);
                 }
             }
         }
