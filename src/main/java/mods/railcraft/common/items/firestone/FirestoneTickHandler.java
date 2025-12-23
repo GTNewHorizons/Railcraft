@@ -33,8 +33,7 @@ public class FirestoneTickHandler {
     private int clock;
 
     private boolean shouldBurn(ItemStack stack) {
-        if (stack == null || stack.getItem() == null)
-            return false;
+        if (stack == null || stack.getItem() == null) return false;
         if (stack.getItem() instanceof IItemFirestoneBurning) {
             IItemFirestoneBurning burning = (IItemFirestoneBurning) stack.getItem();
             return burning.shouldBurn(stack);
@@ -44,14 +43,11 @@ public class FirestoneTickHandler {
 
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent event) {
-        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks)
-            return;
+        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks) return;
         clock++;
-        if (clock % 4 != 0)
-            return;
+        if (clock % 4 != 0) return;
         EntityPlayer player = (EntityPlayer) event.player;
-        if (player.openContainer != player.inventoryContainer)
-            return;
+        if (player.openContainer != player.inventoryContainer) return;
         for (ItemStack stack : player.inventory.mainInventory) {
             if (shouldBurn(stack)) {
                 boolean spawnedFire = false;
@@ -66,8 +62,7 @@ public class FirestoneTickHandler {
 
     @SubscribeEvent
     public void tick(TickEvent.WorldTickEvent event) {
-        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks)
-            return;
+        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks) return;
         if (clock % 4 != 0) {
             return;
         }
@@ -91,13 +86,10 @@ public class FirestoneTickHandler {
         int y = (int) Math.round(item.posY) - 5 + rnd.nextInt(12);
         int z = (int) Math.round(item.posZ) - 5 + rnd.nextInt(12);
 
-        if (y < 1)
-            y = 1;
-        if (y > item.worldObj.getActualHeight())
-            y = item.worldObj.getActualHeight() - 2;
+        if (y < 1) y = 1;
+        if (y > item.worldObj.getActualHeight()) y = item.worldObj.getActualHeight() - 2;
 
-        if (canBurn(item.worldObj, x, y, z))
-            return item.worldObj.setBlock(x, y, z, Blocks.fire);
+        if (canBurn(item.worldObj, x, y, z)) return item.worldObj.setBlock(x, y, z, Blocks.fire);
         return false;
     }
 
@@ -106,16 +98,14 @@ public class FirestoneTickHandler {
     }
 
     private boolean canBurn(World world, int x, int y, int z) {
-        if (world.getBlock(x, y, z) != Blocks.air)
-            return false;
+        if (world.getBlock(x, y, z) != Blocks.air) return false;
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
             int sx = MiscTools.getXOnSide(x, side);
             int sy = MiscTools.getYOnSide(y, side);
             int sz = MiscTools.getZOnSide(z, side);
             if (!world.isAirBlock(sx, sy, sz)) {
                 Block block = WorldPlugin.getBlock(world, sx, sy, sz);
-                if (block != Blocks.fire)
-                    return true;
+                if (block != Blocks.fire) return true;
             }
         }
         return false;
