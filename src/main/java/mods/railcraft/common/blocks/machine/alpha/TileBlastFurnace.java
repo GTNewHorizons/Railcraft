@@ -36,12 +36,9 @@ import mods.railcraft.common.blocks.machine.TileMultiBlockOven;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.FuelPlugin;
-import mods.railcraft.common.util.inventory.AdjacentInventoryCache;
 import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.inventory.InventorySorter;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.misc.ITileFilter;
 
 public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInventory {
 
@@ -65,18 +62,8 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     private static final int FUEL_PER_TICK = 5;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 3);
     private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
-    private final IInventory invFuel = new InventoryMapper(this, SLOT_FUEL, 1);
     private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
     private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1);
-    private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(this, tileCache, new ITileFilter() {
-
-        @Override
-        public boolean matches(TileEntity tile) {
-            if (tile instanceof TileBlastFurnace) return false;
-            if (tile instanceof IInventory) return ((IInventory) tile).getSizeInventory() >= 27;
-            return false;
-        }
-    }, InventorySorter.SIZE_DECENDING);
 
     static {
         char[][][] map = {
@@ -211,10 +198,6 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         super.updateEntity();
 
         if (Game.isNotHost(getWorld())) return;
-
-        TileBlastFurnace mBlock = (TileBlastFurnace) getMasterBlock();
-
-        if (mBlock != null) InvTools.moveOneItem(invCache.getAdjacentInventories(), mBlock.invFuel, FUEL_FILTER);
 
         if (isMaster()) {
             boolean wasBurning = isBurning();
