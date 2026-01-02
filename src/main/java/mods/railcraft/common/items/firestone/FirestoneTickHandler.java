@@ -66,7 +66,7 @@ public class FirestoneTickHandler {
         if (clock % 4 != 0) {
             return;
         }
-        for (Object o : event.world.getLoadedEntityList()) {
+        for (Object o : event.world.loadedEntityList) {
             if (o instanceof EntityItem ei) {
                 ItemStack stack = ei.getEntityItem();
                 if (shouldBurn(stack)) {
