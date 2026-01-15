@@ -8,6 +8,8 @@ package mods.railcraft.common.items.firestone;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -58,17 +60,37 @@ public class FirestoneTickHandler {
         }
     }
 
-    private boolean spawnFire(EntityPlayer player) {
-        Random rnd = player.getRNG();
-        int x = (int) Math.round(player.posX) - 5 + rnd.nextInt(12);
-        int y = (int) Math.round(player.posY) - 5 + rnd.nextInt(12);
-        int z = (int) Math.round(player.posZ) - 5 + rnd.nextInt(12);
+    @SubscribeEvent
+    public void tick(TickEvent.WorldTickEvent event) {
+        if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks) return;
+        if (clock % 4 != 0) {
+            return;
+        }
+        for (Object o : event.world.loadedEntityList) {
+            if (o instanceof EntityItem ei) {
+                ItemStack stack = ei.getEntityItem();
+                if (shouldBurn(stack)) {
+                    spawnFireEntity(event.world.rand, ei);
+                }
+            }
+        }
+
+    }
+
+    private boolean spawnFireEntity(Random rnd, Entity entity) {
+        int x = (int) Math.round(entity.posX) - 5 + rnd.nextInt(12);
+        int y = (int) Math.round(entity.posY) - 5 + rnd.nextInt(12);
+        int z = (int) Math.round(entity.posZ) - 5 + rnd.nextInt(12);
 
         if (y < 1) y = 1;
-        if (y > player.worldObj.getActualHeight()) y = player.worldObj.getActualHeight() - 2;
+        if (y > entity.worldObj.getActualHeight()) y = entity.worldObj.getActualHeight() - 2;
 
-        if (canBurn(player.worldObj, x, y, z)) return player.worldObj.setBlock(x, y, z, Blocks.fire);
+        if (canBurn(entity.worldObj, x, y, z)) return entity.worldObj.setBlock(x, y, z, Blocks.fire);
         return false;
+    }
+
+    private boolean spawnFire(EntityPlayer player) {
+        return spawnFireEntity(player.getRNG(), player);
     }
 
     private boolean canBurn(World world, int x, int y, int z) {
