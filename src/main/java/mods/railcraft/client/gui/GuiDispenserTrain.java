@@ -10,6 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerDispenserTrain;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class GuiDispenserTrain extends TileGui {
 
@@ -22,7 +23,7 @@ public class GuiDispenserTrain extends TileGui {
                 RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_dispenser_train.png");
         xSize = 176;
         ySize = 198;
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override
@@ -30,7 +31,8 @@ public class GuiDispenserTrain extends TileGui {
         int sWidth = fontRendererObj.getStringWidth(label);
         int sPos = xSize / 2 - sWidth / 2;
         fontRendererObj.drawString(label, sPos, 6, 0x404040);
-        fontRendererObj.drawString("Pattern", 10, 20, 0x404040);
-        fontRendererObj.drawString("Buffer", 10, 56, 0x404040);
+        fontRendererObj
+                .drawString(LocalizationPlugin.translate("railcraft.gui.cart.track.relayer.pattern"), 10, 20, 0x404040);
+        fontRendererObj.drawString(LocalizationPlugin.translate("railcraft.gui.item.loader.buffer"), 10, 56, 0x404040);
     }
 }

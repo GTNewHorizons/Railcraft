@@ -20,7 +20,7 @@ public class GuiTrackEmbarking extends GuiBasic {
     TrackEmbarking track;
 
     public GuiTrackEmbarking(TrackEmbarking t) {
-        super(((TileTrack) t.getTile()).getName());
+        super(LocalizationPlugin.translateGuiTitle((TileTrack) t.getTile()));
         track = t;
         if (track != null) {
             radius = track.getArea();

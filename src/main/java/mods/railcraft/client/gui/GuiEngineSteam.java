@@ -14,7 +14,8 @@ import mods.railcraft.common.gui.containers.ContainerEngineSteam;
 
 public class GuiEngineSteam extends TileGui {
 
-    private static final String OUTPUT = "%d RF";
+    private static final String OUTPUT_KEY = "railcraft.gui.engine.output";
+    private static final String OUTPUT_FALLBACK = "%d RF";
     private final TileEngineSteam tile;
 
     public GuiEngineSteam(InventoryPlayer inv, TileEngineSteam tile) {
@@ -27,8 +28,10 @@ public class GuiEngineSteam extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, tile.getName(), 6);
-        fontRendererObj.drawString(String.format(OUTPUT, Math.round(tile.getCurrentOutput())), 120, 40, 0x404040);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
+        String outputFormat = StatCollector.translateToLocal(OUTPUT_KEY);
+        if (OUTPUT_KEY.equals(outputFormat)) outputFormat = OUTPUT_FALLBACK;
+        fontRendererObj.drawString(String.format(outputFormat, Math.round(tile.getCurrentOutput())), 120, 40, 0x404040);
         fontRendererObj
                 .drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
     }

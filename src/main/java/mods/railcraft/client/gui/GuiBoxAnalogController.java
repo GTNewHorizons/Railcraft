@@ -30,7 +30,11 @@ public class GuiBoxAnalogController extends GuiBasic {
             SignalAspect.class);
 
     public GuiBoxAnalogController(TileBoxAnalogController tile) {
-        super(tile.getName(), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic_large.png", 176, 113);
+        super(
+                LocalizationPlugin.translateGuiTitle(tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic_large.png",
+                176,
+                113);
         this.tile = tile;
         for (Map.Entry<SignalAspect, BitSet> entry : tile.aspects.entrySet()) {
             aspects.put(entry.getKey(), (BitSet) entry.getValue().clone());

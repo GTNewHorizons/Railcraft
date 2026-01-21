@@ -24,7 +24,7 @@ public class GuiDetectorSheep extends TileGui {
         xSize = 176;
         ySize = 140;
 
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override
