@@ -11,12 +11,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.StatCollector;
 
+import mods.railcraft.common.blocks.RailcraftTileEntity;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class LocalizationPlugin {
 
     public static final String ENGLISH = "en_US";
+    private static final String GUI_TITLE_COLOR_TAG = "railcraft.gui.color.title";
 
     public static String translate(String tag) {
         return StatCollector.translateToLocal(tag).replace("\\n", "\n").replace("@", "%").replace("\\%", "@");
@@ -34,6 +37,20 @@ public class LocalizationPlugin {
 
     public static boolean hasTag(String tag) {
         return StatCollector.canTranslate(tag);
+    }
+
+    public static String translateGuiTitle(Entity entity) {
+        return getGuiTitlePrefix() + entity.getCommandSenderName();
+    }
+
+    public static String translateGuiTitle(RailcraftTileEntity tile) {
+        return getGuiTitlePrefix() + tile.getName();
+    }
+
+    public static String getGuiTitlePrefix() {
+        String translated = StatCollector.translateToLocal(GUI_TITLE_COLOR_TAG);
+        if (!GUI_TITLE_COLOR_TAG.equals(translated)) return translated;
+        return "";
     }
 
     public static String getEntityLocalizationTag(Entity entity) {

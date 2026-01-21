@@ -24,7 +24,7 @@ public class GuiDetectorLocomotive extends TileGui {
         xSize = 176;
         ySize = 170;
 
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override
