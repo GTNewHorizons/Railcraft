@@ -311,6 +311,11 @@ public class BlockTrack extends BlockRailBase implements IPostConnection {
     }
 
     @Override
+    public int isProvidingStrongPower(IBlockAccess worldIn, int x, int y, int z, int side) {
+        return side == 1 ? this.isProvidingWeakPower(worldIn, x, y, z, side) : 0;
+    }
+
+    @Override
     public void onMinecartPass(World world, EntityMinecart cart, int x, int y, int z) {
         TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
         if (tile instanceof TileTrack) ((TileTrack) tile).getTrackInstance().onMinecartPass(cart);
