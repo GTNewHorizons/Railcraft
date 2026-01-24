@@ -22,7 +22,7 @@ public class GuiDetectorAdvanced extends TileGui {
                 RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_detector_advanced.png");
         xSize = 176;
         ySize = 140;
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class GuiTrackPriming extends GuiBasic {
     TrackPriming track;
 
     public GuiTrackPriming(TrackPriming t) {
-        super(((TileTrack) t.getTile()).getName());
+        super(LocalizationPlugin.translateGuiTitle((TileTrack) t.getTile()));
         track = t;
         fuse = track.getFuse();
     }

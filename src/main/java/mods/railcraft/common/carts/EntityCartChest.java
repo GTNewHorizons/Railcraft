@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.FluidItemHelper;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 
 public class EntityCartChest extends CartContainerBase implements IItemCart {
@@ -86,7 +87,7 @@ public class EntityCartChest extends CartContainerBase implements IItemCart {
 
     @Override
     public String getInventoryName() {
-        return "Chest Cart";
+        return LocalizationPlugin.getGuiTitlePrefix() + "Chest Cart";
     }
 
     @Override
