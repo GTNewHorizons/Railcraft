@@ -215,6 +215,7 @@ public class TileSteamTurbine extends TileMultiBlock
             IC2Plugin.addTileToNet(emitterDelegate);
         } catch (Throwable error) {
             Game.logErrorAPI("IndustrialCraft", error);
+            emitterDelegate = null;
         }
     }
 

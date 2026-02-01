@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyTile;
@@ -62,10 +63,8 @@ public class IC2Plugin {
         return null;
     }
 
+    @Optional.Method(modid = "IC2")
     public static void addTileToNet(TileEntity tile) {
-        if (!isModInstalled()) {
-            return;
-        }
         try {
             if (tile instanceof IEnergyTile) MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) tile));
         } catch (Throwable error) {
@@ -73,10 +72,8 @@ public class IC2Plugin {
         }
     }
 
+    @Optional.Method(modid = "IC2")
     public static void removeTileFromNet(TileEntity tile) {
-        if (!isModInstalled()) {
-            return;
-        }
         try {
             if (tile instanceof IEnergyTile)
                 MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) tile));
@@ -85,10 +82,8 @@ public class IC2Plugin {
         }
     }
 
+    @Optional.Method(modid = "IC2")
     public static boolean isEnergyItem(ItemStack stack) {
-        if (!isModInstalled()) {
-            return false;
-        }
         try {
             return stack != null && stack.getItem() instanceof IElectricItem;
         } catch (Throwable error) {
@@ -101,10 +96,8 @@ public class IC2Plugin {
      * @param stack
      * @return energy used
      */
+    @Optional.Method(modid = "IC2")
     public static double chargeItem(ItemStack stack, double energy, int tier) {
-        if (!isModInstalled()) {
-            return 0;
-        }
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem && energy > 0)
                 return ElectricItem.manager.charge(stack, energy, tier, false, false);
@@ -118,10 +111,8 @@ public class IC2Plugin {
      * @param stack
      * @return energy received
      */
+    @Optional.Method(modid = "IC2")
     public static double dischargeItem(ItemStack stack, double energyNeeded, int tier) {
-        if (!isModInstalled()) {
-            return 0;
-        }
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem
                     && ((IElectricItem) stack.getItem()).canProvideEnergy(stack))
@@ -132,10 +123,8 @@ public class IC2Plugin {
         return 0;
     }
 
+    @Optional.Method(modid = "IC2")
     public static boolean canCharge(ItemStack stack, int tier) {
-        if (!isModInstalled()) {
-            return false;
-        }
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem) {
                 IElectricItem battery = (IElectricItem) stack.getItem();
@@ -147,10 +136,8 @@ public class IC2Plugin {
         return false;
     }
 
+    @Optional.Method(modid = "IC2")
     public static boolean canDischarge(ItemStack stack, int tier) {
-        if (!isModInstalled()) {
-            return false;
-        }
         try {
             if (stack != null && stack.getItem() instanceof IElectricItem) {
                 IElectricItem battery = (IElectricItem) stack.getItem();
@@ -162,10 +149,8 @@ public class IC2Plugin {
         return false;
     }
 
+    @Optional.Method(modid = "IC2")
     public static void addMaceratorRecipe(ItemStack input, ItemStack output) {
-        if (!isModInstalled()) {
-            return;
-        }
         if (isDreamCraftInstalled()) {
             return;
         }
@@ -176,10 +161,8 @@ public class IC2Plugin {
         }
     }
 
+    @Optional.Method(modid = "IC2")
     public static void removeMaceratorRecipes(ItemStack... items) {
-        if (!isModInstalled()) {
-            return;
-        }
         if (isDreamCraftInstalled()) {
             return;
         }
@@ -196,30 +179,24 @@ public class IC2Plugin {
         }
     }
 
+    @Optional.Method(modid = "IC2")
     private static boolean doesRecipeRequire(IRecipeInput input, ItemStack... items) {
-        if (!isModInstalled()) {
-            return false;
-        }
         for (ItemStack stack : input.getInputs()) {
             if (InvTools.isItemEqual(stack, items)) return true;
         }
         return false;
     }
 
+    @Optional.Method(modid = "IC2")
     private static boolean doesRecipeProduce(RecipeOutput recipe, ItemStack... items) {
-        if (!isModInstalled()) {
-            return false;
-        }
         for (ItemStack output : recipe.items) {
             if (InvTools.isItemEqual(output, items)) return true;
         }
         return false;
     }
 
+    @Optional.Method(modid = "IC2")
     public static void removeMaceratorDustRecipes(ItemStack... items) {
-        if (!isModInstalled()) {
-            return;
-        }
         if (isDreamCraftInstalled()) {
             return;
         }
@@ -244,9 +221,6 @@ public class IC2Plugin {
     }
 
     public static void nerfSyntheticCoal() {
-        if (!isModInstalled()) {
-            return;
-        }
         for (IRecipe recipe : (List<IRecipe>) CraftingManager.getInstance().getRecipeList()) {
             try {
                 ItemStack output = recipe.getRecipeOutput();
