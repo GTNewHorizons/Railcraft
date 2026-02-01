@@ -86,13 +86,13 @@ public class ItemCart extends ItemMinecart implements IMinecartItem {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
-        super.addInformation(stack, player, info, adv);
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
+        super.addInformation(stack, player, tooltip, adv);
         ToolTip tip = ToolTip.buildToolTip(stack.getUnlocalizedName() + ".tip");
-        if (tip != null) info.addAll(tip.convertToStrings());
+        if (tip != null) tooltip.addAll(tip.convertToStrings());
         ItemStack filter = EntityCartFiltered.getFilterFromCartItem(stack);
         if (filter != null) {
-            info.add(
+            tooltip.add(
                     EnumChatFormatting.BLUE + LocalizationPlugin.translate("railcraft.gui.filter")
                             + ": "
                             + filter.getDisplayName());

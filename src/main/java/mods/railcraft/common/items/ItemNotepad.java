@@ -126,7 +126,7 @@ public class ItemNotepad extends ItemRailcraft {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
         String contentString;
         EnumMap<Contents, NBTTagCompound> contents = getContents(stack);
         if (contents.isEmpty()) {
@@ -138,15 +138,15 @@ public class ItemNotepad extends ItemRailcraft {
             }
             contentString = StringUtils.join(contentTypes, ", ");
         }
-        info.add(LocalizationPlugin.translate("item.railcraft.tool.notepad.tip.contents", contentString));
+        tooltip.add(LocalizationPlugin.translate("item.railcraft.tool.notepad.tip.contents", contentString));
 
         PasteMode pasteMode = getPasteMode(stack);
-        info.add(
+        tooltip.add(
                 LocalizationPlugin.translate(
                         "item.railcraft.tool.notepad.tip.mode",
                         EnumChatFormatting.DARK_PURPLE + pasteMode.toString()));
 
-        super.addInformation(stack, player, info, adv);
+        super.addInformation(stack, player, tooltip, adv);
     }
 
     @Override
