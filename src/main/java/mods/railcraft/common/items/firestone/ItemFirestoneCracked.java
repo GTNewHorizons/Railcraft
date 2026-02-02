@@ -64,11 +64,11 @@ public class ItemFirestoneCracked extends ItemFirestoneRefined implements IItemF
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
         String tipTag = getUnlocalizedName() + ".tip.charged";
         if (stack.getItemDamage() >= stack.getMaxDamage() - 5) tipTag = getUnlocalizedName() + ".tip.empty";
         ToolTip tip = ToolTip.buildToolTip(tipTag);
-        if (tip != null) info.addAll(tip.convertToStrings());
+        if (tip != null) tooltip.addAll(tip.convertToStrings());
     }
 
     @Override

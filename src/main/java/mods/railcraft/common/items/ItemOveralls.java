@@ -83,10 +83,10 @@ public class ItemOveralls extends ItemArmor implements ISafetyPants, IHazardProt
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
-        super.addInformation(stack, player, info, adv);
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
+        super.addInformation(stack, player, tooltip, adv);
         ToolTip tip = ToolTip.buildToolTip(stack.getUnlocalizedName() + ".tip");
-        if (tip != null) info.addAll(tip.convertToStrings());
+        if (tip != null) tooltip.addAll(tip.convertToStrings());
     }
 
     @Override
