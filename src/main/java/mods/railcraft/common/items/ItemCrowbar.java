@@ -226,8 +226,8 @@ public class ItemCrowbar extends ItemTool implements IToolCrowbar, IBoxable, ITo
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean advInfo) {
-        info.add(LocalizationPlugin.translate("item.railcraft.tool.crowbar.tip"));
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advInfo) {
+        tooltip.add(LocalizationPlugin.translate("item.railcraft.tool.crowbar.tip"));
     }
 
     private void removeAndDrop(World world, int x, int y, int z, Block block, EntityLivingBase entity, ItemStack stack,

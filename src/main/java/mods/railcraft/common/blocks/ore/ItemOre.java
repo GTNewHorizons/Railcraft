@@ -49,12 +49,12 @@ public class ItemOre extends ItemBlock implements IItemFirestoneBurning {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
-        super.addInformation(stack, player, info, adv);
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
+        super.addInformation(stack, player, tooltip, adv);
         String tipTag = EnumOre.fromMeta(stack.getItemDamage()).getTag() + ".tip";
         if (LocalizationPlugin.hasTag(tipTag)) {
             ToolTip tip = ToolTip.buildToolTip(tipTag);
-            info.addAll(tip.convertToStrings());
+            tooltip.addAll(tip.convertToStrings());
         }
     }
 
