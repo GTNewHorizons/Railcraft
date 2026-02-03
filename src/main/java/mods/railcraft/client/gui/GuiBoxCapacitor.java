@@ -21,7 +21,7 @@ public class GuiBoxCapacitor extends GuiBasic {
     private GuiMultiButton stateMode;
 
     public GuiBoxCapacitor(TileBoxCapacitor tile) {
-        super(tile.getName());
+        super(LocalizationPlugin.translateGuiTitle(tile));
         this.tile = tile;
         this.ticksToPower = tile.ticksToPower;
     }

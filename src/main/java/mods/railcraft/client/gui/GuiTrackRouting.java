@@ -94,7 +94,7 @@ public class GuiTrackRouting extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, track.getName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
         fontRendererObj
                 .drawString(LocalizationPlugin.translate("railcraft.gui.routing.track.slot.label"), 64, 29, 0x404040);
         fontRendererObj

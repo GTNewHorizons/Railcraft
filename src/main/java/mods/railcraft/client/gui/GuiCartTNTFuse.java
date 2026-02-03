@@ -20,7 +20,7 @@ public class GuiCartTNTFuse extends GuiBasic {
     CartExplosiveBase cart;
 
     public GuiCartTNTFuse(CartExplosiveBase c) {
-        super(c.getCommandSenderName());
+        super(LocalizationPlugin.translateGuiTitle(c));
         cart = c;
         if (cart != null) fuse = cart.getFuse();
     }
