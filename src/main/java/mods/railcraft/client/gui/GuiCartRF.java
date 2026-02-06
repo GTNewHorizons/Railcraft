@@ -21,6 +21,6 @@ public class GuiCartRF extends EntityGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, cart.getCommandSenderName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
     }
 }

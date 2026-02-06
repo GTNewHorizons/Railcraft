@@ -64,7 +64,7 @@ public class GuiLoaderItem extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, tile.getName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
         fontRendererObj.drawString(FILTER_LABEL, 18, 16, 0x404040);
         fontRendererObj.drawString(CART_FILTER_LABEL, 75, 16, 0x404040);
         fontRendererObj.drawString(BUFFER_LABEL, 126, 16, 0x404040);

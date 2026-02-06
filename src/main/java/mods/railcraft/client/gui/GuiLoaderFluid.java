@@ -44,9 +44,9 @@ public class GuiLoaderFluid extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        int sWidth = fontRendererObj.getStringWidth(tile.getName());
+        int sWidth = fontRendererObj.getStringWidth(getGuiTitle());
         int sPos = xSize / 2 - sWidth / 2;
-        fontRendererObj.drawString(tile.getName(), sPos, 6, 0x404040);
+        fontRendererObj.drawString(getGuiTitle(), sPos, 6, 0x404040);
         fontRendererObj.drawString(FILTER_LABEL, 62, 25, 0x404040);
     }
 

@@ -26,7 +26,7 @@ public class GuiCartUndercutter extends EntityGui {
                 cart,
                 new ContainerCartUndercutter(inv, cart),
                 RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_cart_undercutter.png");
-        label = cart.getCommandSenderName();
+        label = getGuiTitle();
         ySize = 205;
     }
 

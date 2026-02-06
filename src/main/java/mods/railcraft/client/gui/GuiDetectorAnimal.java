@@ -15,6 +15,7 @@ import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.detector.types.DetectorAnimal;
 import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
@@ -25,7 +26,11 @@ public class GuiDetectorAnimal extends GuiBasic {
     private final DetectorAnimal detector;
 
     protected GuiDetectorAnimal(TileDetector tile) {
-        super(tile.getName(), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_long.png", 256, 88);
+        super(
+                LocalizationPlugin.translateGuiTitle(tile),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_long.png",
+                256,
+                88);
         this.tile = tile;
         this.detector = (DetectorAnimal) tile.getDetector();
     }

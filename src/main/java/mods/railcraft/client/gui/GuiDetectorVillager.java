@@ -33,7 +33,11 @@ public class GuiDetectorVillager extends GuiBasic {
     private final RevolvingList<Integer> professions = new RevolvingList<Integer>();
 
     public GuiDetectorVillager(TileDetector t) {
-        super(t.getName(), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_detector_villager.png", 176, 105);
+        super(
+                LocalizationPlugin.translateGuiTitle(t),
+                RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_detector_villager.png",
+                176,
+                105);
         this.tile = t;
         this.detector = (DetectorVillager) tile.getDetector();
         villager = new EntityVillager(tile.getWorld());
