@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import mods.railcraft.common.util.misc.Game;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,6 +18,7 @@ import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 /**
  *
