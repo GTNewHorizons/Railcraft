@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.blocks.machine.beta;
 
+import mods.railcraft.common.util.misc.Game;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,30 +42,32 @@ public class TileSentinel extends TileMachineBase {
         if (current != null && current.getItem() instanceof IToolCrowbar) {
             IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
             if (crowbar.canWhack(player, current, xCoord, yCoord, zCoord)) {
-                WorldCoordinate target = Railcraft.proxy.getTicketManager().getTarget(player);
-                if (target == null) {
-                    Railcraft.proxy.getTicketManager().setTarget(this, player);
-                } else if (worldObj.provider.dimensionId != target.dimension) {
-                    ChatPlugin.sendLocalizedChatFromServer(
-                            player,
-                            "railcraft.gui.anchor.pair.fail.dimension",
-                            getLocalizationTag());
-                } else if (new WorldCoordinate(this).equals(target)) {
-                    Railcraft.proxy.getTicketManager().removeTarget(player);
-                    ChatPlugin.sendLocalizedChatFromServer(
-                            player,
-                            "railcraft.gui.anchor.pair.cancel",
-                            getLocalizationTag());
-                } else {
-                    TileEntity tile = TileAnchorWorld.getTargetAt(player, this, target);
-                    if (tile instanceof TileAnchorWorld)
-                        ((TileAnchorWorld) tile).setSentinel(player, new WorldCoordinate(this));
-                    else if (tile != null) ChatPlugin.sendLocalizedChatFromServer(
-                            player,
-                            "railcraft.gui.anchor.pair.fail.invalid",
-                            getLocalizationTag());
+                if (Game.isHost(worldObj)) {
+                    WorldCoordinate target = Railcraft.proxy.getTicketManager().getTarget(player);
+                    if (target == null) {
+                        Railcraft.proxy.getTicketManager().setTarget(this, player);
+                    } else if (worldObj.provider.dimensionId != target.dimension) {
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player,
+                                "railcraft.gui.anchor.pair.fail.dimension",
+                                getLocalizationTag());
+                    } else if (new WorldCoordinate(this).equals(target)) {
+                        Railcraft.proxy.getTicketManager().removeTarget(player);
+                        ChatPlugin.sendLocalizedChatFromServer(
+                                player,
+                                "railcraft.gui.anchor.pair.cancel",
+                                getLocalizationTag());
+                    } else {
+                        TileEntity tile = TileAnchorWorld.getTargetAt(player, this, target);
+                        if (tile instanceof TileAnchorWorld)
+                            ((TileAnchorWorld) tile).setSentinel(player, new WorldCoordinate(this));
+                        else if (tile != null) ChatPlugin.sendLocalizedChatFromServer(
+                                player,
+                                "railcraft.gui.anchor.pair.fail.invalid",
+                                getLocalizationTag());
+                    }
+                    crowbar.onWhack(player, current, xCoord, yCoord, zCoord);
                 }
-                crowbar.onWhack(player, current, xCoord, yCoord, zCoord);
                 return true;
             }
         }
