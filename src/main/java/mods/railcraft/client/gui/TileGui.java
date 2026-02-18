@@ -7,6 +7,7 @@ package mods.railcraft.client.gui;
 
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.gui.containers.RailcraftContainer;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *
@@ -19,6 +20,10 @@ public abstract class TileGui extends GuiContainerRailcraft {
     public TileGui(RailcraftTileEntity tile, RailcraftContainer container, String texture) {
         super(container, texture);
         this.tile = tile;
+    }
+
+    protected String getGuiTitle() {
+        return LocalizationPlugin.translateGuiTitle(tile);
     }
 
     // @Override

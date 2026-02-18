@@ -8,6 +8,7 @@ package mods.railcraft.client.gui;
 import net.minecraft.entity.Entity;
 
 import mods.railcraft.common.gui.containers.RailcraftContainer;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
  *
@@ -20,6 +21,10 @@ public abstract class EntityGui extends GuiContainerRailcraft {
     public EntityGui(Entity entity, RailcraftContainer container, String texture) {
         super(container, texture);
         this.entity = entity;
+    }
+
+    protected String getGuiTitle() {
+        return LocalizationPlugin.translateGuiTitle(entity);
     }
 
     // @Override

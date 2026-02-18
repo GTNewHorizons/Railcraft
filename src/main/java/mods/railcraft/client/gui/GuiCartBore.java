@@ -29,7 +29,7 @@ public class GuiCartBore extends EntityGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, cart.getCommandSenderName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
         fontRendererObj.drawString(HEAD, 13, 26, 0x404040);
         fontRendererObj.drawString(FUEL, 64, 26, 0x404040);
         fontRendererObj.drawString(BALLAST, 10, 62, 0x404040);

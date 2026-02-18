@@ -39,7 +39,7 @@ public class GuiDetectorItem extends TileGui {
         this.detector = (DetectorItem) tile.getDetector();
         xSize = 176;
         ySize = 166;
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override

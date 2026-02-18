@@ -21,7 +21,7 @@ public class GuiBoxController extends GuiBasic {
     private SignalAspect poweredAspect;
 
     public GuiBoxController(TileBoxController t) {
-        super(t.getName());
+        super(LocalizationPlugin.translateGuiTitle(t));
         tile = t;
         defaultAspect = t.defaultAspect;
         poweredAspect = t.poweredAspect;
