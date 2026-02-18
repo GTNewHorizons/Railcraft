@@ -95,13 +95,13 @@ public class ItemLocomotive extends ItemCart {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
-        super.addInformation(stack, player, info, adv);
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
+        super.addInformation(stack, player, tooltip, adv);
 
         GameProfile owner = getOwner(stack);
         if (owner.getName() != null && !owner.getName().equals("[Unknown]")) {
             String format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.owner");
-            info.add(String.format(format, owner.getName()));
+            tooltip.add(String.format(format, owner.getName()));
         }
 
         String model = getModel(stack);
@@ -110,26 +110,26 @@ public class ItemLocomotive extends ItemCart {
         if (renderer != null) modelName = renderer.getDisplayName();
         else modelName = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.model.default");
         String format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.model");
-        info.add(String.format(format, modelName));
+        tooltip.add(String.format(format, modelName));
 
         EnumColor primary = getPrimaryColor(stack);
         format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.primary");
-        info.add(String.format(format, primary.getTranslatedName()));
+        tooltip.add(String.format(format, primary.getTranslatedName()));
 
         EnumColor secondary = getSecondaryColor(stack);
         format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.secondary");
-        info.add(String.format(format, secondary.getTranslatedName()));
+        tooltip.add(String.format(format, secondary.getTranslatedName()));
 
         float whistle = getWhistlePitch(stack);
         format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.whistle");
-        info.add(String.format(format, whistle < 0 ? "???" : String.format("%.2f", whistle)));
+        tooltip.add(String.format(format, whistle < 0 ? "???" : String.format("%.2f", whistle)));
 
         String emblemIdent = getEmblem(stack);
         if (emblemIdent != null && !emblemIdent.isEmpty() && EmblemToolsClient.packageManager != null) {
             Emblem emblem = EmblemToolsClient.packageManager.getEmblem(emblemIdent);
             if (emblem != null) {
                 format = LocalizationPlugin.translate("railcraft.gui.locomotive.tip.item.emblem");
-                info.add(String.format(format, emblem.displayName));
+                tooltip.add(String.format(format, emblem.displayName));
             }
         }
     }

@@ -70,7 +70,7 @@ public class ItemPost extends ItemBlock {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean adv) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean adv) {
         if (stack.getItemDamage() == EnumPost.EMBLEM.ordinal() && stack.hasTagCompound()) {
             NBTTagCompound nbt = stack.getTagCompound();
             NBTTagString emblemIdent = (NBTTagString) nbt.getTag("emblem");
@@ -78,7 +78,7 @@ public class ItemPost extends ItemBlock {
             if (emblemIdent == null || EmblemToolsClient.packageManager == null) return;
 
             Emblem emblem = EmblemToolsClient.packageManager.getEmblem(emblemIdent.func_150285_a_());
-            if (emblem != null) info.add(EnumChatFormatting.GRAY + emblem.displayName);
+            if (emblem != null) tooltip.add(EnumChatFormatting.GRAY + emblem.displayName);
         }
     }
 }

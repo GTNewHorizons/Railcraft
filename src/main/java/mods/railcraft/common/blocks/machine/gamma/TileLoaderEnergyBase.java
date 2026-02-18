@@ -141,7 +141,9 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
         if (Game.isNotHost(getWorld())) return;
 
         if (!addedToIC2EnergyNet) {
-            IC2Plugin.addTileToNet(getIC2Delegate());
+            if (IC2Plugin.isModInstalled()) {
+                IC2Plugin.addTileToNet(getIC2Delegate());
+            }
             addedToIC2EnergyNet = true;
         }
 

@@ -32,7 +32,9 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.api.crafting.IRockCrusherRecipe;
@@ -200,50 +202,44 @@ public final class Railcraft {
     public void fingerprintError(FMLFingerprintViolationEvent event) {
         if (Game.isObfuscated()) {
             Game.logErrorFingerprint(MOD_ID);
-            // FMLCommonHandler.instance().exitJava(1, false);
             throw new RuntimeException("Invalid Fingerprint");
         }
     }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        // Game.log(Level.FINE, "Pre-Init Phase");
-
         Game.isGTNH = Loader.isModLoaded("dreamcraft");
-
         configFolder = new File(event.getModConfigurationDirectory(), "railcraft");
         RailcraftConfig.preInit();
-
         PacketHandler.init();
-
         StackFilter.initialize();
-
         ModuleManager.preInit();
-
         proxy.preInitClient();
-
         FMLInterModComms.sendMessage("OpenBlocks", "donateUrl", "http://www.railcraft.info/donate/");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        // Game.log(Level.FINE, "Init Phase");
-
         ModuleManager.init();
-
         FMLCommonHandler.instance().bus().register(new BlinkTick());
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        // Game.log(Level.FINE, "Post-Init Phase");
         ModuleManager.postInit();
-
         proxy.initClient();
-
         CraftGuidePlugin.init();
-
         RailcraftConfig.postInit();
+    }
+
+    @Mod.EventHandler
+    public void onServerAboutToStart(FMLServerAboutToStartEvent event) {
+        proxy.onServerAboutToStart(event);
+    }
+
+    @Mod.EventHandler
+    public void onServerStopped(FMLServerStoppedEvent event) {
+        proxy.onServerStopped(event);
     }
 
     @Mod.EventHandler

@@ -255,11 +255,11 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection direction) {
-        List<FluidTankInfo> info = new ArrayList<FluidTankInfo>(size());
+        List<FluidTankInfo> tooltip = new ArrayList<FluidTankInfo>(size());
         for (StandardTank tank : this) {
-            if (!tank.isHidden()) info.add(tank.getInfo());
+            if (!tank.isHidden()) tooltip.add(tank.getInfo());
         }
-        return info.toArray(new FluidTankInfo[info.size()]);
+        return tooltip.toArray(new FluidTankInfo[tooltip.size()]);
     }
 
     public FluidTankInfo[] getTankInfo() {
@@ -282,6 +282,7 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
     public void outputLiquid(AdjacentTileCache cache, ITileFilter filter, ForgeDirection[] sides, int tankIndex,
             int amount) {
         for (ForgeDirection side : sides) {
+            if (side == ForgeDirection.UNKNOWN) continue;
             TileEntity tile = cache.getTileOnSide(side);
             if (!filter.matches(tile)) continue;
             IFluidHandler tank = getTankFromTile(tile);
