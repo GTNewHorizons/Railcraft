@@ -840,7 +840,7 @@ public class RailcraftConfig {
             loadBlockFeature(type.getTag());
         }
 
-        for (EnumOre type : EnumOre.values()) {
+        for (EnumOre type : EnumOre.VALUES) {
             if (!type.isDepecriated()) loadBlockFeature(type.getTag());
         }
 

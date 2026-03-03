@@ -79,7 +79,7 @@ public class BlockOre extends Block {
 
             EntityTunnelBore.addMineableBlock(instance);
 
-            for (EnumOre ore : EnumOre.values()) {
+            for (EnumOre ore : EnumOre.VALUES) {
                 ForestryPlugin.addBackpackItem("miner", ore.getItem());
 
                 switch (ore) {
@@ -134,7 +134,7 @@ public class BlockOre extends Block {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (EnumOre ore : EnumOre.values()) {
+        for (EnumOre ore : EnumOre.VALUES) {
             if (!ore.isDepecriated() && ore.isEnabled()) list.add(ore.getItem());
         }
     }

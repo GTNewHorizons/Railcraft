@@ -33,7 +33,7 @@ public class ItemOre extends ItemBlock implements IItemFirestoneBurning {
 
     @Override
     public IIcon getIconFromDamage(int meta) {
-        return EnumOre.values()[meta].getTexture(meta);
+        return EnumOre.VALUES[meta].getTexture(meta);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class ItemOre extends ItemBlock implements IItemFirestoneBurning {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int damage = stack.getItemDamage();
-        if (damage < 0 || damage >= EnumOre.values().length) return "";
-        return EnumOre.values()[damage].getTag();
+        if (damage < 0 || damage >= EnumOre.VALUES.length) return "";
+        return EnumOre.VALUES[damage].getTag();
     }
 
     @Override
