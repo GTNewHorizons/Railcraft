@@ -24,7 +24,7 @@ public enum EnumOre {
     DARK_EMERALD("dark.emerald"),
     DARK_LAPIS("dark.lapis"),
     FIRESTONE("firestone"),
-    WATERSTONE("waterstone"),
+    WATERSTONE("waterstone", true),
     POOR_IRON("poor.iron"),
     POOR_GOLD("poor.gold"),
     POOR_COPPER("poor.copper"),
@@ -34,14 +34,16 @@ public enum EnumOre {
     public static final EnumOre[] VALUES = values();
     private IIcon texture;
     private final String tag;
-    private boolean depreciated;
+    private final boolean depreciated;
 
-    static {
-        WATERSTONE.depreciated = true;
+    EnumOre(String tag) {
+        this.tag = tag;
+        this.depreciated = false;
     }
 
-    private EnumOre(String tag) {
+    EnumOre(String tag, boolean depreciated) {
         this.tag = tag;
+        this.depreciated = depreciated;
     }
 
     public ItemStack getItem() {
@@ -74,7 +76,7 @@ public enum EnumOre {
     }
 
     public static EnumOre fromMeta(int meta) {
-        if (meta < 0 || meta >= values().length) return SULFUR;
-        return values()[meta];
+        if (meta < 0 || meta >= VALUES.length) return SULFUR;
+        return VALUES[meta];
     }
 }
