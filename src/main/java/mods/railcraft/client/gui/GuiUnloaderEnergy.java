@@ -31,7 +31,7 @@ public class GuiUnloaderEnergy extends TileGui {
                 new ContainerEnergyLoader(inv, tile),
                 RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_energy_loader.png");
         this.tile = tile;
-        label = tile.getName();
+        label = getGuiTitle();
     }
 
     @Override
@@ -55,14 +55,13 @@ public class GuiUnloaderEnergy extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        int sWidth = fontRendererObj.getStringWidth(tile.getName());
+        int sWidth = fontRendererObj.getStringWidth(getGuiTitle());
         int sPos = xSize / 2 - sWidth / 2;
         fontRendererObj.drawString(label, sPos, 6, 0x404040);
 
-        fontRendererObj.drawString(Integer.toString((int) tile.getEnergy()), 30, 55, 0x404040);
-
-        String capacity = "/" + tile.getCapacity();
-        fontRendererObj.drawString(capacity, 28, 65, 0x404040);
+        String colorPrefix = LocalizationPlugin.getGuiTitlePrefix();
+        fontRendererObj.drawString(colorPrefix + Integer.toString((int) tile.getEnergy()), 28, 55, 0x404040);
+        fontRendererObj.drawString(colorPrefix + "/" + tile.getCapacity(), 28, 65, 0x404040);
 
         fontRendererObj.drawString(
                 LocalizationPlugin.translate("railcraft.gui.ic2.energy.rate", tile.getTransferRate()),

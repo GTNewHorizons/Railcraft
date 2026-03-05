@@ -69,7 +69,7 @@ public class GuiLoaderRF extends TileGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, tile.getName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
     }
 
     @Override

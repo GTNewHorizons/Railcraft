@@ -21,7 +21,7 @@ public class GuiDetectorTrain extends GuiBasic {
     private final DetectorTrain detector;
 
     public GuiDetectorTrain(TileDetector t) {
-        super(t.getName());
+        super(LocalizationPlugin.translateGuiTitle(t));
         this.tile = t;
         this.detector = (DetectorTrain) tile.getDetector();
         if (tile != null) trainSize = detector.getTrainSize();

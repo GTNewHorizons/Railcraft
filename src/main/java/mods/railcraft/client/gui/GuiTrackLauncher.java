@@ -21,7 +21,7 @@ public class GuiTrackLauncher extends GuiBasic {
     TrackLauncher track;
 
     public GuiTrackLauncher(TrackLauncher t) {
-        super(((TileTrack) t.getTile()).getName());
+        super(LocalizationPlugin.translateGuiTitle((TileTrack) t.getTile()));
         track = t;
         if (track != null) force = track.getLaunchForce();
     }

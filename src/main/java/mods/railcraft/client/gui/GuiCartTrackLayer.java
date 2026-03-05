@@ -17,7 +17,7 @@ public class GuiCartTrackLayer extends EntityGui {
                 cart,
                 new ContainerCartTrackLayer(inventoryPlayer, cart),
                 RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_cart_track_layer.png");
-        label = cart.getCommandSenderName();
+        label = getGuiTitle();
     }
 
     @Override

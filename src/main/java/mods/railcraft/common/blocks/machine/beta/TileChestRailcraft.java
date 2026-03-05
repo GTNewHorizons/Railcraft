@@ -23,6 +23,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import mods.railcraft.common.blocks.machine.TileMachineItem;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
@@ -74,6 +75,11 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         else if (isCatOnChest()) return false;
         if (Game.isHost(worldObj)) player.displayGUIChest((IInventory) this);
         return true;
+    }
+
+    @Override
+    public String getInventoryName() {
+        return LocalizationPlugin.translateGuiTitle(this);
     }
 
     private boolean isCatOnChest() {

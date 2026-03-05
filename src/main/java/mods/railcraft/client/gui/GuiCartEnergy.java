@@ -10,6 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import mods.railcraft.common.carts.IIC2EnergyCart;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.containers.ContainerCartEnergy;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class GuiCartEnergy extends EntityGui {
 
@@ -25,15 +26,20 @@ public class GuiCartEnergy extends EntityGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String entityName = device.getName();
+        String entityName = getGuiTitle();
         int sWidth = fontRendererObj.getStringWidth(entityName);
         int sPos = xSize / 2 - sWidth / 2;
         fontRendererObj.drawString(entityName, sPos, 6, 0x404040);
-        fontRendererObj.drawString("Power Level:", 80, 25, 0x404040);
-        fontRendererObj.drawString(Integer.toString((int) device.getEnergy()), 115, 35, 0x404040);
+        String colorPrefix = LocalizationPlugin.getGuiTitlePrefix();
+        fontRendererObj.drawString(
+                colorPrefix + LocalizationPlugin.translate("railcraft.gui.energy.cart.power.label"),
+                80,
+                25,
+                0x404040);
+        fontRendererObj.drawString(colorPrefix + Integer.toString((int) device.getEnergy()), 115, 35, 0x404040);
 
         String capacity = "/" + device.getCapacity();
-        fontRendererObj.drawString(capacity, 115, 45, 0x404040);
+        fontRendererObj.drawString(colorPrefix + capacity, 115, 45, 0x404040);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class GuiCartAnchor extends EntityGui {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String label = cartAnchor.getCommandSenderName();
+        String label = getGuiTitle();
         int sWidth = fontRendererObj.getStringWidth(label);
         int sPos = xSize / 2 - sWidth / 2;
         fontRendererObj.drawString(label, sPos, 6, 0x404040);
