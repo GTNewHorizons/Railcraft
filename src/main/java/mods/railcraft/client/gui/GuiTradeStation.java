@@ -44,7 +44,7 @@ public class GuiTradeStation extends TileGui {
 
         this.tile = tile;
 
-        label = tile.getName();
+        label = getGuiTitle();
 
         villager = new EntityVillager(tile.getWorld());
 

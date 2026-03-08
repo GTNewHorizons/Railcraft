@@ -28,7 +28,7 @@ public class GuiBlastFurnace extends TileGui {
      */
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        GuiTools.drawCenteredString(fontRendererObj, tile.getName(), 6);
+        GuiTools.drawCenteredString(fontRendererObj, getGuiTitle(), 6);
         this.fontRendererObj
                 .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
