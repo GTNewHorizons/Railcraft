@@ -443,7 +443,9 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
         ySentinel = data.readInt();
         zSentinel = data.readInt();
 
-        setupChunks();
+        if (Game.isHost(worldObj)) {
+            setupChunks();
+        }
     }
 
     @Override
