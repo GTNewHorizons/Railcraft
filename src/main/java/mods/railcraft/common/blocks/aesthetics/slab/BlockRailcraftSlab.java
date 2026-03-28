@@ -15,6 +15,7 @@ import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -359,6 +360,11 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
             if (tile.isTopSlab()) return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return !RailcraftConfig.cannotMobsSpawnOnDecorBlocks;
     }
 
     @Override
