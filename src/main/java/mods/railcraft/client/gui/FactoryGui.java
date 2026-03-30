@@ -16,6 +16,7 @@ import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
 import mods.railcraft.common.blocks.machine.alpha.TileFeedStation;
@@ -133,6 +134,8 @@ public class FactoryGui {
                     return new GuiTradeStation(inv, (TileTradeStation) obj);
                 case WORLD_ANCHOR:
                     return new GuiWorldAnchor(inv, (TileAnchorWorld) obj);
+                case ANCHOR_PROVIDER:
+                    return new GuiAnchorProvider(inv, (TileAnchorProvider) obj);
                 case ENGINE_STEAM:
                     return new GuiEngineSteam(inv, (TileEngineSteam) obj);
                 case ENGINE_HOBBY:

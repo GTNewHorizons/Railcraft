@@ -27,16 +27,21 @@ import net.minecraftforge.common.ForgeChunkManager.Type;
 
 import org.apache.logging.log4j.Level;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldServer;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.beta.TileSentinel;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.carts.ItemCartAnchor;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.items.ItemLinkedEnderPearl;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
@@ -259,6 +264,10 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
                     if (stack == null || stack.stackSize <= 0) {
                         setInventorySlotContents(0, null);
                         releaseTicket();
+                    } else if (stack.getItem() instanceof ItemLinkedEnderPearl) {
+                        if (!tryDrawFuelFromProvider(stack)) {
+                            releaseTicket();
+                        }
                     } else if (getFuelMap().containsKey(stack)) {
                         decrStackSize(0, 1);
                         fuel = (long) (getFuelMap().get(stack) * RailcraftConstants.TICKS_PER_HOUR);
@@ -330,6 +339,33 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
                 forceChunkLoading(chunkTicket);
             }
         }
+    }
+
+    protected boolean tryDrawFuelFromProvider(ItemStack linkedPearl) {
+        if (!ItemLinkedEnderPearl.isLinked(linkedPearl)) return false;
+
+        NBTTagCompound nbt = linkedPearl.getTagCompound();
+        int px = nbt.getInteger(ItemLinkedEnderPearl.NBT_PROVIDER_X);
+        int py = nbt.getInteger(ItemLinkedEnderPearl.NBT_PROVIDER_Y);
+        int pz = nbt.getInteger(ItemLinkedEnderPearl.NBT_PROVIDER_Z);
+        int pDim = nbt.getInteger(ItemLinkedEnderPearl.NBT_PROVIDER_DIM);
+
+        WorldServer providerWorld = MinecraftServer.getServer().worldServerForDimension(pDim);
+        if (providerWorld == null) return false;
+        if (!providerWorld.blockExists(px, py, pz)) return false;
+
+        TileEntity te = providerWorld.getTileEntity(px, py, pz);
+        if (!(te instanceof TileAnchorProvider)) return false;
+
+        TileAnchorProvider provider = (TileAnchorProvider) te;
+        ItemStack providerFuel = provider.getStackInSlot(0);
+        if (providerFuel == null || providerFuel.stackSize <= 0) return false;
+        if (!getFuelMap().containsKey(providerFuel)) return false;
+
+        float hours = getFuelMap().get(providerFuel);
+        provider.decrStackSize(0, 1);
+        fuel = (long) (hours * RailcraftConstants.TICKS_PER_HOUR);
+        return true;
     }
 
     public boolean needsFuel() {

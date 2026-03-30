@@ -44,6 +44,7 @@ import mods.railcraft.common.blocks.machine.delta.TileWire;
 import mods.railcraft.common.blocks.machine.epsilon.TileAdminSteamProducer;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeeder;
 import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeederAdmin;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.blocks.machine.epsilon.TileEngravingBench;
 import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
 import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
@@ -131,6 +132,7 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileFluxTransformer.class, "RCFluxTransformerTile");
         GameRegistry.registerTileEntity(TileForceTrackEmitter.class, "RCForceTrackEmitterTile");
         GameRegistry.registerTileEntity(TileEngravingBench.class, "RCEngravingBenchTile");
+        GameRegistry.registerTileEntity(TileAnchorProvider.class, "RCAnchorProviderTile");
 
         // Advanced Tanks
         GameRegistry.registerTileEntity(TileGenericMultiTankWall.class, "RCAdvTankWallTile");

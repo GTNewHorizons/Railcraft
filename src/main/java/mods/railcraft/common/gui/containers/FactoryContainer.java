@@ -15,6 +15,7 @@ import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.machine.ITankTile;
 import mods.railcraft.common.blocks.machine.TileMultiBlock;
 import mods.railcraft.common.blocks.machine.alpha.TileAnchorWorld;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
 import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
 import mods.railcraft.common.blocks.machine.alpha.TileFeedStation;
@@ -117,6 +118,8 @@ public class FactoryContainer {
                     return new ContainerTradeStation(inv, (TileTradeStation) obj);
                 case WORLD_ANCHOR:
                     return new ContainerAnchor(inv, (TileAnchorWorld) obj);
+                case ANCHOR_PROVIDER:
+                    return new ContainerAnchorProvider(inv, (TileAnchorProvider) obj);
                 case ENGINE_STEAM:
                     return new ContainerEngineSteam(inv, (TileEngineSteam) obj);
                 case ENGINE_HOBBY:

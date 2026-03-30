@@ -824,6 +824,14 @@ tile.railcraft.machine.epsilon.flux.transformer.name=Flux Transformer
 tile.railcraft.machine.epsilon.flux.transformer.tip=Multi-Block: 2x2x2\n Converts Redstone Flux to Railcraft Charge\n 80% Efficiency
 tile.railcraft.machine.epsilon.force.track.emitter.name=Force Track Emitter
 tile.railcraft.machine.epsilon.force.track.emitter.tip=Projects energy-based tracks
+tile.railcraft.machine.epsilon.anchor.provider.name=Anchor Provider
+tile.railcraft.machine.epsilon.anchor.provider.tip=Centralized fuel source for Anchors
+
+item.railcraft.linked.ender.pearl.name=Linked Ender Pearl
+railcraft.linked.ender.pearl.action.link=Linked to Anchor Provider at %d, %d, %d in dimension %d
+railcraft.linked.ender.pearl.action.unlink=Unlinked
+railcraft.linked.ender.pearl.info.linked=Linked: %d, %d, %d in dimension %d
+railcraft.linked.ender.pearl.info.unlinked=Unlinked. Must be connected to Anchor Provider
 
 tile.railcraft.machine.gamma.name=Machine
 tile.railcraft.machine.gamma.dispenser.cart.name=Cart Dispenser
