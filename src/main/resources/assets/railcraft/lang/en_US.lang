@@ -825,7 +825,7 @@ tile.railcraft.machine.epsilon.flux.transformer.tip=Multi-Block: 2x2x2\n Convert
 tile.railcraft.machine.epsilon.force.track.emitter.name=Force Track Emitter
 tile.railcraft.machine.epsilon.force.track.emitter.tip=Projects energy-based tracks
 tile.railcraft.machine.epsilon.anchor.provider.name=Anchor Provider
-tile.railcraft.machine.epsilon.anchor.provider.tip=Centralized fuel source for Anchors
+tile.railcraft.machine.epsilon.anchor.provider.tip=Centralized fuel source for Anchors\nDoesn't load chunks by itself
 
 item.railcraft.linked.ender.pearl.name=Linked Ender Pearl
 railcraft.linked.ender.pearl.action.link=Linked to Anchor Provider at %d, %d, %d in dimension %d
