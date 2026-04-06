@@ -81,6 +81,11 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
 
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        return getPickBlock(target, world, x, y, z);
+    }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileStair) return new ItemStack(this, 1, ((TileStair) tile).getStair().ordinal());
         return null;
