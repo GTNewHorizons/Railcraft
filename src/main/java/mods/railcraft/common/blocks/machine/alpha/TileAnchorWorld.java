@@ -18,17 +18,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
 import org.apache.logging.log4j.Level;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.WorldServer;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
@@ -41,9 +40,9 @@ import mods.railcraft.common.carts.ItemCartAnchor;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.common.items.ItemLinkedEnderPearl;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
+import mods.railcraft.common.items.ItemLinkedEnderPearl;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;

@@ -1,17 +1,18 @@
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
-import mods.railcraft.common.plugins.forge.ChatPlugin;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
+import mods.railcraft.common.plugins.forge.ChatPlugin;
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 public class ItemLinkedEnderPearl extends ItemRailcraft {
 
@@ -57,7 +58,13 @@ public class ItemLinkedEnderPearl extends ItemRailcraft {
         nbt.setInteger(NBT_PROVIDER_Y, y);
         nbt.setInteger(NBT_PROVIDER_Z, z);
         nbt.setInteger(NBT_PROVIDER_DIM, world.provider.dimensionId);
-        ChatPlugin.sendLocalizedChatFromServer(player, "railcraft.linked.ender.pearl.action.link", x, y, z, world.provider.dimensionId);
+        ChatPlugin.sendLocalizedChatFromServer(
+                player,
+                "railcraft.linked.ender.pearl.action.link",
+                x,
+                y,
+                z,
+                world.provider.dimensionId);
         return true;
     }
 
