@@ -271,6 +271,7 @@ public final class Railcraft {
                 else if (mapping.name.equals("Railcraft:tile.railcraft.block.anvil") && BlockRCAnvil.getBlock() != null)
                     remap(BlockRCAnvil.getBlock(), mapping);
                 else if (mapping.name.equals("Railcraft:tile.railcraft.hidden")) mapping.ignore();
+                else if (mapping.name.equals("Railcraft:tile.railcraft.residual.heat")) mapping.ignore();
                 else if (mapping.name.equals("Railcraft:tile.railcraft.stonelamp"))
                     remap(BlockLantern.getBlockStone(), mapping);
             } else if (mapping.type == GameRegistry.Type.ITEM) {
@@ -290,6 +291,7 @@ public final class Railcraft {
                 else if (mapping.name.equals("Railcraft:tile.railcraft.block.anvil") && BlockRCAnvil.getBlock() != null)
                     remap(Item.getItemFromBlock(BlockRCAnvil.getBlock()), mapping);
                 else if (mapping.name.equals("Railcraft:tile.railcraft.hidden")) mapping.ignore();
+                else if (mapping.name.equals("Railcraft:tile.railcraft.residual.heat")) mapping.ignore();
                 else if (mapping.name.equals("Railcraft:tile.railcraft.stonelamp"))
                     remap(Item.getItemFromBlock(BlockLantern.getBlockStone()), mapping);
             }
