@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -67,7 +66,7 @@ public class ContainerEngineSteamHobby extends RailcraftContainer {
         crafter.sendProgressBarUpdate(this, 11, (int) Math.round(tile.boiler.currentItemBurnTime));
         crafter.sendProgressBarUpdate(this, 12, (int) Math.round(tile.currentOutput * 100));
         crafter.sendProgressBarUpdate(this, 13, (int) Math.round(tile.boiler.getHeat()));
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 14, tile.energy);
+        PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 14, tile.energy);
     }
 
     @Override
@@ -92,7 +91,7 @@ public class ContainerEngineSteamHobby extends RailcraftContainer {
                 crafter.sendProgressBarUpdate(this, 13, (int) Math.round(tile.boiler.getHeat()));
 
             if (this.lastEnergy != tile.energy)
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 15, tile.energy);
+                PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 15, tile.energy);
         }
 
         this.lastBurnTime = tile.boiler.burnTime;

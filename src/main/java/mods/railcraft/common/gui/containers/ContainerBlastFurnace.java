@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -47,9 +46,8 @@ public class ContainerBlastFurnace extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting player) {
         super.addCraftingToCrafters(player);
         player.sendProgressBarUpdate(this, 0, furnace.getCookTime());
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 1, furnace.burnTime);
-        PacketBuilder.instance()
-                .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
+        PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 1, furnace.burnTime);
+        PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 2, furnace.currentItemBurnTime);
     }
 
     /**
@@ -65,10 +63,10 @@ public class ContainerBlastFurnace extends RailcraftContainer {
             if (lastCookTime != furnace.getCookTime()) player.sendProgressBarUpdate(this, 0, furnace.getCookTime());
 
             if (lastBurnTime != furnace.burnTime)
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 1, furnace.burnTime);
+                PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 1, furnace.burnTime);
 
-            if (lastItemBurnTime != furnace.currentItemBurnTime) PacketBuilder.instance()
-                    .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
+            if (lastItemBurnTime != furnace.currentItemBurnTime)
+                PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 2, furnace.currentItemBurnTime);
         }
 
         lastCookTime = furnace.getCookTime();

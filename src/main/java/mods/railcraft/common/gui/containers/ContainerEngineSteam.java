@@ -6,7 +6,6 @@
 package mods.railcraft.common.gui.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -51,7 +50,7 @@ public class ContainerEngineSteam extends RailcraftContainer {
         super.addCraftingToCrafters(crafter);
         tile.getTankManager().initGuiData(this, crafter, 0);
 
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 12, tile.energy);
+        PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 12, tile.energy);
         crafter.sendProgressBarUpdate(this, 14, Math.round(tile.currentOutput * 100));
     }
 
@@ -64,7 +63,7 @@ public class ContainerEngineSteam extends RailcraftContainer {
             ICrafting crafter = (ICrafting) this.crafters.get(var1);
 
             if (this.lastEnergy != tile.energy)
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 13, tile.energy);
+                PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 13, tile.energy);
 
             if (this.lastOutput != tile.currentOutput)
                 crafter.sendProgressBarUpdate(this, 14, Math.round(tile.currentOutput * 100));

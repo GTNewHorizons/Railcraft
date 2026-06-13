@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ICrafting;
 
 import cpw.mods.fml.relauncher.Side;
@@ -31,7 +30,7 @@ public class ContainerCartRF extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting crafter) {
         super.addCraftingToCrafters(crafter);
 
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 0, cart.getRF());
+        PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 0, cart.getRF());
     }
 
     @Override
@@ -42,7 +41,7 @@ public class ContainerCartRF extends RailcraftContainer {
             ICrafting crafter = (ICrafting) crafters.get(var1);
 
             if (lastEnergy != cart.getRF())
-                PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) crafter, windowId, 0, cart.getRF());
+                PacketBuilder.instance().sendGuiIntegerPacket(crafter, windowId, 0, cart.getRF());
         }
 
         this.lastEnergy = cart.getRF();
