@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -40,7 +39,7 @@ public class ContainerCartEnergy extends RailcraftContainer {
     @Override
     public void addCraftingToCrafters(ICrafting player) {
         super.addCraftingToCrafters(player);
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) cart.getEnergy());
+        PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 0, (int) cart.getEnergy());
     }
 
     /**
@@ -53,8 +52,8 @@ public class ContainerCartEnergy extends RailcraftContainer {
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting player = (ICrafting) crafters.get(i);
 
-            if (lastEnergy != cart.getEnergy()) PacketBuilder.instance()
-                    .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) cart.getEnergy());
+            if (lastEnergy != cart.getEnergy())
+                PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 0, (int) cart.getEnergy());
         }
 
         lastEnergy = (int) cart.getEnergy();

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,7 +31,6 @@ import mods.railcraft.common.plugins.forge.NBTPlugin;
 import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
 import mods.railcraft.common.util.misc.AdjacentTileCache;
 import mods.railcraft.common.util.misc.ITileFilter;
-import mods.railcraft.common.util.network.PacketBuilder;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -47,6 +45,8 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
         }
     };
     private static final byte NETWORK_DATA = 3;
+    private static final int EXTENDED_NETWORK_DATA = 2;
+    private static final int EXTENDED_NETWORK_DATA_BASE = 256;
     private final List<StandardTank> tanks = new ArrayList<StandardTank>();
 
     public TankManager() {}
@@ -142,29 +142,20 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
             fluidAmount = fluidStack.amount;
         }
 
-        player.sendProgressBarUpdate(container, tankIndex * NETWORK_DATA + 0, fluidId);
-        PacketBuilder.instance().sendGuiIntegerPacket(
-                (EntityPlayerMP) player,
-                container.windowId,
-                tankIndex * NETWORK_DATA + 1,
-                fluidAmount);
-        PacketBuilder.instance()
-                .sendGuiIntegerPacket((EntityPlayerMP) player, container.windowId, tankIndex * NETWORK_DATA + 2, color);
+        sendFluidGuiData(container, player, tankIndex, fluidId, fluidAmount, color);
 
         tank.renderData.fluid = tank.getFluidType();
         tank.renderData.amount = fluidAmount;
         tank.renderData.color = color;
     }
 
-    public void updateGuiData(Container container, List crafters, int tankIndex) {
+    public void updateGuiData(Container container, List<ICrafting> crafters, int tankIndex) {
         StandardTank tank = tanks.get(tankIndex);
         FluidStack fluidStack = tank.getFluid();
         int color = tank.getColor();
         int pColor = tank.renderData.color;
 
-        for (Object crafter1 : crafters) {
-            ICrafting crafter = (ICrafting) crafter1;
-            EntityPlayerMP player = (EntityPlayerMP) crafter1;
+        for (ICrafting crafter : crafters) {
             if (fluidStack == null ^ tank.renderData.fluid == null) {
                 int fluidId = -1;
                 int fluidAmount = 0;
@@ -172,21 +163,28 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
                     fluidId = FluidHelper.getFluidId(fluidStack);
                     fluidAmount = fluidStack.amount;
                 }
-                crafter.sendProgressBarUpdate(container, tankIndex * NETWORK_DATA + 0, fluidId);
-                PacketBuilder.instance()
-                        .sendGuiIntegerPacket(player, container.windowId, tankIndex * NETWORK_DATA + 1, fluidAmount);
+                sendFluidGuiData(container, crafter, tankIndex, fluidId, fluidAmount, color);
             } else if (fluidStack != null && tank.renderData.fluid != null) {
                 if (fluidStack.getFluid() != tank.renderData.fluid) crafter.sendProgressBarUpdate(
                         container,
-                        tankIndex * NETWORK_DATA + 0,
+                        getFluidMessageId(tankIndex),
                         FluidHelper.getFluidId(fluidStack));
-                if (fluidStack.amount != tank.renderData.amount) PacketBuilder.instance().sendGuiIntegerPacket(
-                        player,
-                        container.windowId,
-                        tankIndex * NETWORK_DATA + 1,
-                        fluidStack.amount);
-                if (color != pColor) PacketBuilder.instance()
-                        .sendGuiIntegerPacket(player, container.windowId, tankIndex * NETWORK_DATA + 2, color);
+                if (fluidStack.amount != tank.renderData.amount) {
+                    sendSplitInt(
+                            container,
+                            crafter,
+                            getAmountMessageId(tankIndex),
+                            getAmountHighMessageId(tankIndex),
+                            fluidStack.amount);
+                }
+                if (color != pColor) {
+                    sendSplitInt(
+                            container,
+                            crafter,
+                            getColorMessageId(tankIndex),
+                            getColorHighMessageId(tankIndex),
+                            color);
+                }
             }
         }
 
@@ -196,21 +194,85 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
     }
 
     public void processGuiUpdate(int messageId, int data) {
-        int tankIndex = messageId / NETWORK_DATA;
+        if (messageId >= EXTENDED_NETWORK_DATA_BASE) {
+            int tankIndex = (messageId - EXTENDED_NETWORK_DATA_BASE) / EXTENDED_NETWORK_DATA;
+            if (tankIndex >= tanks.size()) return;
 
+            StandardTank tank = tanks.get(tankIndex);
+            switch ((messageId - EXTENDED_NETWORK_DATA_BASE) % EXTENDED_NETWORK_DATA) {
+                case 0:
+                    tank.renderData.amount = mergeHighWord(tank.renderData.amount, data);
+                    break;
+                case 1:
+                    tank.renderData.color = mergeHighWord(tank.renderData.color, data);
+                    break;
+            }
+            return;
+        }
+
+        int tankIndex = messageId / NETWORK_DATA;
         if (tankIndex >= tanks.size()) return;
+
         StandardTank tank = tanks.get(tankIndex);
         switch (messageId % NETWORK_DATA) {
             case 0:
-                tank.renderData.fluid = FluidRegistry.getFluid(data);
+                tank.renderData.fluid = data < 0 ? null : FluidRegistry.getFluid(data);
                 break;
             case 1:
-                tank.renderData.amount = data;
+                tank.renderData.amount = mergeLowWord(tank.renderData.amount, data);
                 break;
             case 2:
-                tank.renderData.color = data;
+                tank.renderData.color = mergeLowWord(tank.renderData.color, data);
                 break;
         }
+    }
+
+    private void sendFluidGuiData(Container container, ICrafting crafter, int tankIndex, int fluidId, int fluidAmount,
+            int color) {
+        crafter.sendProgressBarUpdate(container, getFluidMessageId(tankIndex), fluidId);
+        sendSplitInt(container, crafter, getAmountMessageId(tankIndex), getAmountHighMessageId(tankIndex), fluidAmount);
+        sendSplitInt(container, crafter, getColorMessageId(tankIndex), getColorHighMessageId(tankIndex), color);
+    }
+
+    private void sendSplitInt(Container container, ICrafting crafter, int lowMessageId, int highMessageId, int value) {
+        crafter.sendProgressBarUpdate(container, lowMessageId, getLowWord(value));
+        crafter.sendProgressBarUpdate(container, highMessageId, getHighWord(value));
+    }
+
+    private static int getFluidMessageId(int tankIndex) {
+        return tankIndex * NETWORK_DATA;
+    }
+
+    private static int getAmountMessageId(int tankIndex) {
+        return tankIndex * NETWORK_DATA + 1;
+    }
+
+    private static int getColorMessageId(int tankIndex) {
+        return tankIndex * NETWORK_DATA + 2;
+    }
+
+    private static int getAmountHighMessageId(int tankIndex) {
+        return EXTENDED_NETWORK_DATA_BASE + tankIndex * EXTENDED_NETWORK_DATA;
+    }
+
+    private static int getColorHighMessageId(int tankIndex) {
+        return EXTENDED_NETWORK_DATA_BASE + tankIndex * EXTENDED_NETWORK_DATA + 1;
+    }
+
+    private static int getLowWord(int value) {
+        return value & 0xFFFF;
+    }
+
+    private static int getHighWord(int value) {
+        return value >>> 16;
+    }
+
+    private static int mergeLowWord(int value, int lowWord) {
+        return (value & 0xFFFF0000) | (lowWord & 0xFFFF);
+    }
+
+    private static int mergeHighWord(int value, int highWord) {
+        return ((highWord & 0xFFFF) << 16) | (value & 0xFFFF);
     }
 
     @Override

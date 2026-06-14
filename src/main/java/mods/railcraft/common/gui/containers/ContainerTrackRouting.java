@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -59,8 +58,7 @@ public class ContainerTrackRouting extends RailcraftContainer {
         icrafting.sendProgressBarUpdate(this, 2, canLock ? 1 : 0);
 
         String username = track.getOwner().getName();
-        if (username != null)
-            PacketBuilder.instance().sendGuiStringPacket((EntityPlayerMP) icrafting, windowId, 0, username);
+        if (username != null) PacketBuilder.instance().sendGuiStringPacket(icrafting, windowId, 0, username);
     }
 
     @Override

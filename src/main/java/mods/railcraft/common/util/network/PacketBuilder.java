@@ -6,6 +6,7 @@
 package mods.railcraft.common.util.network;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.world.WorldServer;
 
 import mods.railcraft.api.signals.AbstractPair;
@@ -68,14 +69,32 @@ public class PacketBuilder implements ISignalPacketBuilder {
         PacketDispatcher.sendToPlayer(pkt, player);
     }
 
+    public void sendGuiIntegerPacket(ICrafting crafter, int windowId, int key, int value) {
+        if (crafter instanceof EntityPlayerMP player) {
+            sendGuiIntegerPacket(player, windowId, key, value);
+        }
+    }
+
     public void sendGuiStringPacket(EntityPlayerMP player, int windowId, int key, String value) {
         PacketGuiString pkt = new PacketGuiString(windowId, key, value);
         PacketDispatcher.sendToPlayer(pkt, player);
     }
 
+    public void sendGuiStringPacket(ICrafting crafter, int windowId, int key, String value) {
+        if (crafter instanceof EntityPlayerMP player) {
+            sendGuiStringPacket(player, windowId, key, value);
+        }
+    }
+
     public void sendGuiWidgetPacket(EntityPlayerMP player, int windowId, int widgetId, byte[] data) {
         PacketGuiWidget pkt = new PacketGuiWidget(windowId, widgetId, data);
         PacketDispatcher.sendToPlayer(pkt, player);
+    }
+
+    public void sendGuiWidgetPacket(ICrafting crafter, int windowId, int widgetId, byte[] data) {
+        if (crafter instanceof EntityPlayerMP player) {
+            sendGuiWidgetPacket(player, windowId, widgetId, data);
+        }
     }
 
     public void sendGoldenTicketGuiPacket(EntityPlayerMP player) {
