@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.items.firestone;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -66,18 +67,27 @@ public class FirestoneTickHandler {
         if (clock % 4 != 0) {
             return;
         }
+        LinkedList<int[]> fireBlocks = new LinkedList<>();
         for (Object o : event.world.loadedEntityList) {
             if (o instanceof EntityItem ei) {
                 ItemStack stack = ei.getEntityItem();
                 if (shouldBurn(stack)) {
-                    spawnFireEntity(event.world.rand, ei);
+                    int[] pos = spawnFireEntity(event.world.rand, ei);
+                    if (pos != null) {
+                        fireBlocks.add(pos);
+                    }
                 }
             }
         }
 
+        while (!fireBlocks.isEmpty()) {
+            int[] pos = fireBlocks.poll();
+            event.world.setBlock(pos[0], pos[1], pos[2], Blocks.fire);
+        }
+
     }
 
-    private boolean spawnFireEntity(Random rnd, Entity entity) {
+    private int[] spawnFireEntity(Random rnd, Entity entity) {
         int x = (int) Math.round(entity.posX) - 5 + rnd.nextInt(12);
         int y = (int) Math.round(entity.posY) - 5 + rnd.nextInt(12);
         int z = (int) Math.round(entity.posZ) - 5 + rnd.nextInt(12);
@@ -85,12 +95,15 @@ public class FirestoneTickHandler {
         if (y < 1) y = 1;
         if (y > entity.worldObj.getActualHeight()) y = entity.worldObj.getActualHeight() - 2;
 
-        if (canBurn(entity.worldObj, x, y, z)) return entity.worldObj.setBlock(x, y, z, Blocks.fire);
-        return false;
+        if (canBurn(entity.worldObj, x, y, z)) return new int[] { x, y, z };
+        return null;
     }
 
     private boolean spawnFire(EntityPlayer player) {
-        return spawnFireEntity(player.getRNG(), player);
+        int[] pos = spawnFireEntity(player.getRNG(), player);
+        if (pos == null) return false;
+        player.worldObj.setBlock(pos[0], pos[1], pos[2], Blocks.fire);
+        return true;
     }
 
     private boolean canBurn(World world, int x, int y, int z) {
