@@ -46,7 +46,7 @@ public class FirestoneTickHandler {
         if (event.side == Side.CLIENT || !RailcraftConfig.firestoneIgnitesBlocks) return;
         clock++;
         if (clock % 4 != 0) return;
-        EntityPlayer player = (EntityPlayer) event.player;
+        EntityPlayer player = event.player;
         if (player.openContainer != player.inventoryContainer) return;
         for (ItemStack stack : player.inventory.mainInventory) {
             if (shouldBurn(stack)) {
@@ -94,12 +94,13 @@ public class FirestoneTickHandler {
     }
 
     private boolean canBurn(World world, int x, int y, int z) {
+        if (!world.blockExists(x, y, z)) return false;
         if (world.getBlock(x, y, z) != Blocks.air) return false;
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {
             int sx = MiscTools.getXOnSide(x, side);
             int sy = MiscTools.getYOnSide(y, side);
             int sz = MiscTools.getZOnSide(z, side);
-            if (!world.isAirBlock(sx, sy, sz)) {
+            if (world.blockExists(sx, sy, sz) && !world.isAirBlock(sx, sy, sz)) {
                 Block block = WorldPlugin.getBlock(world, sx, sy, sz);
                 if (block != Blocks.fire) return true;
             }
