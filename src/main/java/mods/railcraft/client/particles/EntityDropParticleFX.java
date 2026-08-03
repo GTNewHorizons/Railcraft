@@ -41,8 +41,8 @@ public class EntityDropParticleFX extends EntityFX {
 
     /**
      * Cheap ground emulation that avoids the block-by-block collision resolution of Entity.moveEntity and its
-     * associated AxisAlignedBB allocations. The drop's terminal velocity can exceed one block per tick, so the
-     * landing surface is detected by sweeping the vertical path.
+     * associated AxisAlignedBB allocations. The drop's terminal velocity can exceed one block per tick, so the landing
+     * surface is detected by sweeping the vertical path.
      */
     @Override
     public void moveEntity(double x, double y, double z) {

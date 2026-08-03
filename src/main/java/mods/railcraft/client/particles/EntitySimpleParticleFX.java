@@ -51,11 +51,10 @@ public class EntitySimpleParticleFX extends EntityFX {
         this.posX += x;
         this.posY += y;
         this.posZ += z;
-        this.onGround = this.groundCollision
-                && this.worldObj.getBlock(
-                        MathHelper.floor_double(this.posX),
-                        MathHelper.floor_double(this.posY - 0.1D - 1.0E-4D),
-                        MathHelper.floor_double(this.posZ)).getMaterial().blocksMovement();
+        this.onGround = this.groundCollision && this.worldObj.getBlock(
+                MathHelper.floor_double(this.posX),
+                MathHelper.floor_double(this.posY - 0.1D - 1.0E-4D),
+                MathHelper.floor_double(this.posZ)).getMaterial().blocksMovement();
     }
 
     /**
