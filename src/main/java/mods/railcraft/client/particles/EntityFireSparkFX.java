@@ -7,7 +7,7 @@ package mods.railcraft.client.particles;
 
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
@@ -23,6 +23,7 @@ public class EntityFireSparkFX extends EntityFX {
     private final float lavaParticleScale;
     private final double endX, endY, endZ;
     private final double maxDist;
+    private final double dirX, dirY, dirZ;
 
     public EntityFireSparkFX(World world, double x, double y, double z, double endX, double endY, double endZ) {
         super(world, x, y, z, 0, 0, 0);
@@ -31,7 +32,17 @@ public class EntityFireSparkFX extends EntityFX {
         this.endZ = endZ;
 
         maxDist = getDistanceSq(endX, endY, endZ);
-        calculateVector(maxDist);
+        double dx = x - endX;
+        double dy = y - endY;
+        double dz = z - endZ;
+        double length = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+        if (length > 0.0D) {
+            this.dirX = dx / length;
+            this.dirY = dy / length;
+            this.dirZ = dz / length;
+        } else {
+            this.dirX = this.dirY = this.dirZ = 0.0D;
+        }
 
         multipleParticleScaleBy(0.5f);
 
@@ -44,16 +55,9 @@ public class EntityFireSparkFX extends EntityFX {
     }
 
     private void calculateVector(double dist) {
-        Vec3 endPoint = Vec3.createVectorHelper(endX, endY, endZ);
-        Vec3 vecParticle = Vec3.createVectorHelper(posX, posY, posZ);
-
-        Vec3 vel = vecParticle.subtract(endPoint);
-        vel = vel.normalize();
-
-        float velScale = 0.1f;
-        this.motionX = vel.xCoord * velScale;
-        this.motionY = vel.yCoord * velScale + 0.2 * (dist / maxDist);
-        this.motionZ = vel.zCoord * velScale;
+        this.motionX = this.dirX * 0.1f;
+        this.motionY = this.dirY * 0.1f + 0.2 * (dist / maxDist);
+        this.motionZ = this.dirZ * 0.1f;
     }
 
     @Override
