@@ -23,7 +23,6 @@ public class EntityFireSparkFX extends EntityFX {
     private final float lavaParticleScale;
     private final double endX, endY, endZ;
     private final double maxDist;
-    private final double dirX, dirY, dirZ;
 
     public EntityFireSparkFX(World world, double x, double y, double z, double endX, double endY, double endZ) {
         super(world, x, y, z, 0, 0, 0);
@@ -32,17 +31,7 @@ public class EntityFireSparkFX extends EntityFX {
         this.endZ = endZ;
 
         maxDist = getDistanceSq(endX, endY, endZ);
-        double dx = x - endX;
-        double dy = y - endY;
-        double dz = z - endZ;
-        double length = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
-        if (length > 0.0D) {
-            this.dirX = dx / length;
-            this.dirY = dy / length;
-            this.dirZ = dz / length;
-        } else {
-            this.dirX = this.dirY = this.dirZ = 0.0D;
-        }
+        calculateVector(maxDist);
 
         multipleParticleScaleBy(0.5f);
 
@@ -55,9 +44,15 @@ public class EntityFireSparkFX extends EntityFX {
     }
 
     private void calculateVector(double dist) {
-        this.motionX = this.dirX * 0.1f;
-        this.motionY = this.dirY * 0.1f + 0.2 * (dist / maxDist);
-        this.motionZ = this.dirZ * 0.1f;
+        double dx = posX - endX;
+        double dy = posY - endY;
+        double dz = posZ - endZ;
+        double length = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+        if (length <= 0.0D) return;
+        double velScale = 0.1f / length;
+        this.motionX = dx * velScale;
+        this.motionY = dy * velScale + 0.2 * (dist / maxDist);
+        this.motionZ = dz * velScale;
     }
 
     @Override
