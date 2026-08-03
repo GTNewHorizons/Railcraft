@@ -7,7 +7,7 @@ package mods.railcraft.client.particles;
 
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
@@ -44,16 +44,15 @@ public class EntityFireSparkFX extends EntityFX {
     }
 
     private void calculateVector(double dist) {
-        Vec3 endPoint = Vec3.createVectorHelper(endX, endY, endZ);
-        Vec3 vecParticle = Vec3.createVectorHelper(posX, posY, posZ);
-
-        Vec3 vel = vecParticle.subtract(endPoint);
-        vel = vel.normalize();
-
-        float velScale = 0.1f;
-        this.motionX = vel.xCoord * velScale;
-        this.motionY = vel.yCoord * velScale + 0.2 * (dist / maxDist);
-        this.motionZ = vel.zCoord * velScale;
+        double dx = posX - endX;
+        double dy = posY - endY;
+        double dz = posZ - endZ;
+        double length = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+        if (length <= 0.0D) return;
+        double velScale = 0.1f / length;
+        this.motionX = dx * velScale;
+        this.motionY = dy * velScale + 0.2 * (dist / maxDist);
+        this.motionZ = dz * velScale;
     }
 
     @Override
