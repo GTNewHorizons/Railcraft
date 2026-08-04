@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -48,7 +47,7 @@ public class ContainerEnergyLoader extends RailcraftContainer {
     @Override
     public void addCraftingToCrafters(ICrafting player) {
         super.addCraftingToCrafters(player);
-        PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
+        PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 0, (int) device.getEnergy());
         player.sendProgressBarUpdate(this, 1, device.storageUpgrades);
         player.sendProgressBarUpdate(this, 2, device.lapotronUpgrades);
         player.sendProgressBarUpdate(this, 3, device.transferRate);
@@ -64,8 +63,8 @@ public class ContainerEnergyLoader extends RailcraftContainer {
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting player = (ICrafting) crafters.get(i);
 
-            if (lastEnergy != device.getEnergy()) PacketBuilder.instance()
-                    .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
+            if (lastEnergy != device.getEnergy())
+                PacketBuilder.instance().sendGuiIntegerPacket(player, windowId, 0, (int) device.getEnergy());
 
             if (lastStorage != device.storageUpgrades) player.sendProgressBarUpdate(this, 1, device.storageUpgrades);
 

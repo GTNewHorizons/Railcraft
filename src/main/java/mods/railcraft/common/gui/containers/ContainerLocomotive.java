@@ -5,7 +5,6 @@
  */
 package mods.railcraft.common.gui.containers;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -88,7 +87,7 @@ public class ContainerLocomotive extends RailcraftContainer {
         icrafting.sendProgressBarUpdate(this, 13, PlayerPlugin.isOwnerOrOp(loco.getOwner(), playerInv.player) ? 1 : 0);
 
         String oName = loco.getOwner().getName();
-        if (oName != null) PacketBuilder.instance().sendGuiStringPacket((EntityPlayerMP) icrafting, windowId, 0, oName);
+        if (oName != null) PacketBuilder.instance().sendGuiStringPacket(icrafting, windowId, 0, oName);
     }
 
     @Override

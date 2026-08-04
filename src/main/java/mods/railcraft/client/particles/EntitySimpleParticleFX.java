@@ -6,6 +6,7 @@
 package mods.railcraft.client.particles;
 
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 /**
@@ -15,6 +16,7 @@ import net.minecraft.world.World;
 public class EntitySimpleParticleFX extends EntityFX {
 
     public double gravity = 0.004D;
+    private boolean groundCollision;
 
     public EntitySimpleParticleFX(World par1World, double x, double y, double z) {
         this(par1World, x, y, z, 0, 0, 0, 3f);
@@ -37,6 +39,25 @@ public class EntitySimpleParticleFX extends EntityFX {
     }
 
     /**
+     * Enables a cheap ground collision emulation that avoids the block-by-block collision resolution of
+     * Entity.moveEntity and its associated AxisAlignedBB allocations.
+     */
+    protected void setGroundCollision(boolean flag) {
+        this.groundCollision = flag;
+    }
+
+    @Override
+    public void moveEntity(double x, double y, double z) {
+        this.posX += x;
+        this.posY += y;
+        this.posZ += z;
+        this.onGround = this.groundCollision && this.worldObj.getBlock(
+                MathHelper.floor_double(this.posX),
+                MathHelper.floor_double(this.posY - 0.1D - 1.0E-4D),
+                MathHelper.floor_double(this.posZ)).getMaterial().blocksMovement();
+    }
+
+    /**
      * Called to update the entity's position/logic.
      */
     @Override
@@ -51,7 +72,7 @@ public class EntitySimpleParticleFX extends EntityFX {
         this.motionY += gravity;
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
 
-        if (this.posY == this.prevPosY) {
+        if (this.onGround) {
             this.motionX *= 1.1D;
             this.motionZ *= 1.1D;
         }

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -80,7 +79,7 @@ public abstract class RailcraftContainer extends Container {
     public void sendUpdateToClient() {}
 
     public void sendWidgetDataToClient(Widget widget, ICrafting player, byte[] data) {
-        PacketBuilder.instance().sendGuiWidgetPacket((EntityPlayerMP) player, windowId, widgets.indexOf(widget), data);
+        PacketBuilder.instance().sendGuiWidgetPacket(player, windowId, widgets.indexOf(widget), data);
     }
 
     public void handleWidgetClientData(int widgetId, DataInputStream data) throws IOException {

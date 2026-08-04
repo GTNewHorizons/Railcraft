@@ -6,7 +6,6 @@
 package mods.railcraft.common.gui.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ICrafting;
 
 import cpw.mods.fml.relauncher.Side;
@@ -37,8 +36,7 @@ public class ContainerAspectAction extends RailcraftContainer {
         icrafting.sendProgressBarUpdate(this, 1, PlayerPlugin.isOwnerOrOp(actionManager.getOwner(), player) ? 1 : 0);
 
         String username = actionManager.getOwner().getName();
-        if (username != null)
-            PacketBuilder.instance().sendGuiStringPacket((EntityPlayerMP) icrafting, windowId, 0, username);
+        if (username != null) PacketBuilder.instance().sendGuiStringPacket(icrafting, windowId, 0, username);
     }
 
     @Override

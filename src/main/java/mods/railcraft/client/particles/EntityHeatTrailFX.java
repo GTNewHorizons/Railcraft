@@ -8,7 +8,7 @@ package mods.railcraft.client.particles;
 import java.util.Random;
 
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
@@ -24,6 +24,7 @@ import mods.railcraft.common.util.effects.EffectManager.IEffectSource;
 public class EntityHeatTrailFX extends EntityFX {
 
     private static Random colorRand = new Random();
+    private static final int VECTOR_UPDATE_INTERVAL = 8;
     private final IEffectSource source;
 
     public EntityHeatTrailFX(World world, double x, double y, double z, long colorSeed, IEffectSource source) {
@@ -42,22 +43,21 @@ public class EntityHeatTrailFX extends EntityFX {
         this.particleRed *= varient;
         this.particleGreen *= varient;
         this.particleBlue *= varient;
-        this.particleMaxAge = 2000;
+        this.particleMaxAge = 200;
         this.noClip = true;
         this.setParticleTextureIndex((int) (Math.random() * 8.0D));
     }
 
     private void calculateVector() {
-        Vec3 endPoint = Vec3.createVectorHelper(source.getX(), source.getY(), source.getZ());
-        Vec3 vecParticle = Vec3.createVectorHelper(posX, posY, posZ);
-
-        Vec3 vel = vecParticle.subtract(endPoint);
-        vel = vel.normalize();
-
-        float velScale = 0.1f;
-        this.motionX = vel.xCoord * velScale;
-        this.motionY = vel.yCoord * velScale;
-        this.motionZ = vel.zCoord * velScale;
+        double dx = posX - source.getX();
+        double dy = posY - source.getY();
+        double dz = posZ - source.getZ();
+        double length = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+        if (length <= 0.0D) return;
+        double velScale = 0.1f / length;
+        this.motionX = dx * velScale;
+        this.motionY = dy * velScale;
+        this.motionZ = dz * velScale;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class EntityHeatTrailFX extends EntityFX {
             return;
         }
 
-        if (source instanceof EffectSourceEntity) {
+        if (source instanceof EffectSourceEntity && this.particleAge % VECTOR_UPDATE_INTERVAL == 0) {
             calculateVector();
         }
 
