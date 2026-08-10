@@ -49,8 +49,8 @@ public enum EnumPost {
     }
 
     public static EnumPost fromId(int id) {
-        if (id < 0 || id >= EnumPost.values().length) id = 0;
-        return EnumPost.values()[id];
+        if (id < 0 || id >= EnumPost.VALUES.length) id = 0;
+        return EnumPost.VALUES[id];
     }
 
     public String getTag() {
