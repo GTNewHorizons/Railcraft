@@ -28,6 +28,7 @@ import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
 import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
@@ -133,6 +134,8 @@ public class FactoryGui {
                     return new GuiTradeStation(inv, (TileTradeStation) obj);
                 case WORLD_ANCHOR:
                     return new GuiWorldAnchor(inv, (TileAnchorWorld) obj);
+                case ANCHOR_PROVIDER:
+                    return new GuiAnchorProvider(inv, (TileAnchorProvider) obj);
                 case ENGINE_STEAM:
                     return new GuiEngineSteam(inv, (TileEngineSteam) obj);
                 case ENGINE_HOBBY:
