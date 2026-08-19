@@ -85,7 +85,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        for (EnumPost post : EnumPost.values()) {
+        for (EnumPost post : EnumPost.VALUES) {
             if (post == EnumPost.EMBLEM) continue;
             list.add(post.getItem());
         }

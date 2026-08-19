@@ -1,25 +1,25 @@
 // Add your dependencies here
 
 dependencies {
-    compileOnly("com.github.GTNewHorizons:BuildCraft:7.1.61:dev")
+    compileOnly("com.github.GTNewHorizons:BuildCraft:7.1.63:dev")
     implementation("net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev")
     implementation("thaumcraft:Thaumcraft:1.7.10-4.2.3.5:dev")
     implementation("curse.maven:cofh-lib-220333:2388748")
-    compileOnly("com.github.GTNewHorizons:ForestryMC:4.11.27:dev") { transitive = false }
+    compileOnly("com.github.GTNewHorizons:ForestryMC:4.11.32:dev") { transitive = false }
     compileOnly("curse.maven:craftguide-75557:2459320")
-    compileOnly("com.github.GTNewHorizons:Mobs-Info:0.5.17-GTNH:dev")
-    compileOnly('com.github.GTNewHorizons:GT5-Unofficial:5.09.52.616:dev') {
+    compileOnly("com.github.GTNewHorizons:Mobs-Info:0.5.20-GTNH:dev")
+    compileOnly('com.github.GTNewHorizons:GT5-Unofficial:5.09.54.73:dev') {
         exclude group: 'com.github.GTNewHorizons', module: 'Railcraft'
     }
-    compileOnly("com.github.GTNewHorizons:Irontanks:1.4.6:dev");
+    compileOnly("com.github.GTNewHorizons:Irontanks:1.4.7:dev");
     compileOnly("secondderivative.irontankminecarts:IronTankMinecarts:1.0.5:dev") {
         exclude group: 'com.github.GTNewHorizons', module: 'Railcraft'
     }
     
     runtimeOnly("com.github.GTNewHorizons:Baubles-Expanded:2.2.21-GTNH:dev") // for Thaumcraft
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.104-GTNH:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.118-GTNH:dev")
 
-    compileOnlyApi("com.github.GTNewHorizons:Angelica:2.1.42:api")
+    compileOnlyApi("com.github.GTNewHorizons:Angelica:2.1.60:api")
     compileOnly("org.jetbrains:annotations:26.0.2")
 
     devOnlyNonPublishable("com.github.GTNewHorizons:WDMla:2.8.1:dev")
