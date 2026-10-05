@@ -804,7 +804,7 @@ tile.railcraft.machine.beta.tank.iron.wall.tip=Multi-Block: Variable Size, Hollo
 tile.railcraft.machine.beta.tank.steel.gauge.name=Steel Tank Gauge
 tile.railcraft.machine.beta.tank.steel.gauge.tip=Multi-Block: Variable Size, Hollow\n Heights: 4, 5, 6, 7, 8\n Diameters: 3, 5, 7, 9\n Has 32 buckets capacity per block
 tile.railcraft.machine.beta.tank.steel.valve.name=Steel Tank Valve
-tile.railcraft.machine.beta.tank.steel.valve.tip=Multi-Block: Must be in bottom\n two layers to output liquid.\n Has 32 buckets capacity per block
+tile.railcraft.machine.beta.tank.steel.valve.tip=Multi-Block: Must be in bottom\n two layers to output liquid.\n Has 32 buckets capacity per block \nAuto-Output from bottom side \nAuto-Output rate is 1000L/t
 tile.railcraft.machine.beta.tank.steel.wall.name=Steel Tank Wall
 tile.railcraft.machine.beta.tank.steel.wall.tip=Multi-Block: Variable Size, Hollow\n Heights: 4, 5, 6, 7, 8\n Diameters: 3, 5, 7, 9\n Has 32 buckets capacity per block
 
