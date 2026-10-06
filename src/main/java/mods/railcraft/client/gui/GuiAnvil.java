@@ -26,6 +26,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.containers.ContainerAnvil;
 
 @SideOnly(Side.CLIENT)
@@ -77,6 +78,11 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         GL11.glDisable(GL11.GL_LIGHTING);
         this.fontRendererObj.drawString(I18n.format("container.repair"), 60, 6, 4210752);
+        boolean modernStyle = RailcraftConfig.useModernAnvilGui();
+
+        if (modernStyle) {
+            this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 0x404040);
+        }
 
         if (this.repairContainer.maximumCost > 0) {
             int k = 8453920;
@@ -92,24 +98,35 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
             else if (!this.repairContainer.getSlot(2).canTakeStack(this.playerInv.player)) k = 16736352;
 
             if (flag) {
-                int l = -16777216 | (k & 16579836) >> 2 | k & -16777216;
-                int i1 = this.xSize - 8 - this.fontRendererObj.getStringWidth(s);
-                byte b0 = 67;
-
-                if (this.fontRendererObj.getUnicodeFlag()) {
-                    drawRect(i1 - 3, b0 - 2, this.xSize - 7, b0 + 10, -16777216);
-                    drawRect(i1 - 2, b0 - 1, this.xSize - 8, b0 + 9, -12895429);
-                } else {
-                    this.fontRendererObj.drawString(s, i1, b0 + 1, l);
-                    this.fontRendererObj.drawString(s, i1 + 1, b0, l);
-                    this.fontRendererObj.drawString(s, i1 + 1, b0 + 1, l);
-                }
-
-                this.fontRendererObj.drawString(s, i1, b0, k);
+                if (modernStyle) drawModernCost(s, k);
+                else drawLegacyCost(s, k);
             }
         }
 
         GL11.glEnable(GL11.GL_LIGHTING);
+    }
+
+    private void drawModernCost(String s, int color) {
+        int x = this.xSize - 10 - this.fontRendererObj.getStringWidth(s);
+        drawRect(x - 2, 67, this.xSize - 8, 79, 0x4F000000);
+        this.fontRendererObj.drawStringWithShadow(s, x, 69, color);
+    }
+
+    private void drawLegacyCost(String s, int color) {
+        int outlineColor = -16777216 | (color & 16579836) >> 2 | color & -16777216;
+        int x = this.xSize - 8 - this.fontRendererObj.getStringWidth(s);
+        int y = 67;
+
+        if (this.fontRendererObj.getUnicodeFlag()) {
+            drawRect(x - 3, y - 2, this.xSize - 7, y + 10, -16777216);
+            drawRect(x - 2, y - 1, this.xSize - 8, y + 9, -12895429);
+        } else {
+            this.fontRendererObj.drawString(s, x, y + 1, outlineColor);
+            this.fontRendererObj.drawString(s, x + 1, y, outlineColor);
+            this.fontRendererObj.drawString(s, x + 1, y + 1, outlineColor);
+        }
+
+        this.fontRendererObj.drawString(s, x, y, color);
     }
 
     /**
