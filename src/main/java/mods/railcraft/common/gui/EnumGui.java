@@ -71,6 +71,7 @@ public enum EnumGui {
     BOILER_SOLID(true),
     BOILER_LIQUID(true),
     TURBINE(true),
+    ANCHOR_PROVIDER(true),
     ANVIL(true);
 
     private static final EnumGui[] VALUES = values();
