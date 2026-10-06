@@ -137,6 +137,7 @@ public class RailcraftConfig {
     private static float fuelPerSteamMultiplier = Steam.FUEL_PER_BOILER_CYCLE;
     private static float steamLocomotiveEfficiencyMultiplier = 3;
     private static boolean allowTankStacking;
+    private static boolean modernAnvilGui;
     private static Configuration configMain;
     private static Configuration configBlock;
     private static Configuration configItems;
@@ -318,6 +319,12 @@ public class RailcraftConfig {
                 "allow.stacking",
                 true,
                 "Change to '{t}=false' to disable the stacking of Iron Tanks");
+
+        modernAnvilGui = get(
+                CAT_TWEAKS_BLOCKS + ".anvil",
+                "modernGui",
+                false,
+                "If set to '{t}=true' the Steel Anvil GUI uses the modern vanilla anvil style (Inventory label and a translucent box behind the repair cost)");
 
         SignalTools.printSignalDebug = get(
                 CAT_TWEAKS_BLOCKS + ".signals",
@@ -1184,6 +1191,10 @@ public class RailcraftConfig {
 
     public static boolean allowTankStacking() {
         return allowTankStacking;
+    }
+
+    public static boolean useModernAnvilGui() {
+        return modernAnvilGui;
     }
 
     public static boolean isTrackingAuraEnabled() {
