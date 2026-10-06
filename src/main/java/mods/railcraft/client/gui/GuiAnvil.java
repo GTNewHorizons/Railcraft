@@ -81,7 +81,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
         boolean modernStyle = RailcraftConfig.useModernAnvilGui();
 
         if (modernStyle) {
-            this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
+            this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 0x404040);
         }
 
         if (this.repairContainer.maximumCost > 0) {
