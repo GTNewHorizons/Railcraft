@@ -9,7 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
@@ -144,15 +143,11 @@ public class RenderBlockLamp extends BlockRenderer {
         int sy = MiscTools.getYOnSide(y, side);
         int sz = MiscTools.getZOnSide(z, side);
         if (world.isSideSolid(sx, sy, sz, side.getOpposite(), false)) return true;
+        Block block = WorldPlugin.getBlock(world, sx, sy, sz);
         if (side == ForgeDirection.DOWN) {
             if (World.doesBlockHaveSolidTopSurface(world, sx, sy, sz)) return true;
-            if (world instanceof ChunkCache) {
-                Block block = WorldPlugin.getBlock(world, sx, sy, sz);
-                if (block != null && block.canPlaceTorchOnTop(Minecraft.getMinecraft().theWorld, sx, sy, sz))
-                    return true;
-            }
+            if (block != null && block.canPlaceTorchOnTop(Minecraft.getMinecraft().theWorld, sx, sy, sz)) return true;
         }
-        Block block = WorldPlugin.getBlock(world, sx, sy, sz);
         if (block instanceof BlockPostBase) return true;
         return false;
     }
