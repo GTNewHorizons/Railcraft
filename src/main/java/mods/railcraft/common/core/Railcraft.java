@@ -61,13 +61,13 @@ import mods.railcraft.common.util.network.PacketHandler;
         name = "Railcraft",
         version = Railcraft.VERSION,
         acceptedMinecraftVersions = "[1.7.10,1.8)",
-        dependencies = "required-after:Forge@[10.13.4.1614,);" + "after:BuildCraft|Core[6.1.7,);"
+        dependencies = "required-after:Forge@[10.13.4.1614,);" + "after:BuildCraft|Core@[6.1.7,);"
                 + "after:BuildCraft|Energy;"
                 + "after:BuildCraft|Builders;"
                 + "after:BuildCraft|Factory;"
-                + "after:BuildCraftAPI|statements[1.0,);"
-                + "after:BuildCraftAPI|transport[1.0,);"
-                + "after:Forestry[3,);"
+                + "after:BuildCraftAPI|statements@[1.0,);"
+                + "after:BuildCraftAPI|transport@[1.0,);"
+                + "after:Forestry@[3,);"
                 + "after:Thaumcraft;"
                 + "after:IC2@[2.2,)")
 public final class Railcraft {
