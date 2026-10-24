@@ -139,7 +139,9 @@ public abstract class TrackInstanceBase implements ITrackInstance {
             return;
         }
 
-        if (blockChanged != null && blockChanged.canProvidePower()
+        // Our track block always reports canProvidePower, ignore it to avoid infinite reshaping loops between tracks
+        if (blockChanged != null && blockChanged != getBlock()
+                && blockChanged.canProvidePower()
                 && isFlexibleRail()
                 && RailTools.countAdjecentTracks(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord)
                         == 3)

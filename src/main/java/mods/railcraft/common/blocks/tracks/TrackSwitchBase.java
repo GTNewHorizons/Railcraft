@@ -181,7 +181,9 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
                 ii++;
                 mirrored = false; // East
             }
-            if (TrackTools.isRailBlockAt(getWorld(), ii, y, z)) {
+            // Switches determine their own meta, overriding it causes infinite neighbor update loops
+            if (TrackTools.isRailBlockAt(getWorld(), ii, y, z)
+                    && !(TrackTools.getTrackInstanceAt(getWorld(), ii, y, z) instanceof TrackSwitchBase)) {
                 int otherMeta = getWorld().getBlockMetadata(ii, y, z);
                 if (otherMeta == EnumTrackMeta.NORTH_SOUTH.ordinal())
                     getWorld().setBlockMetadataWithNotify(ii, y, z, EnumTrackMeta.EAST_WEST.ordinal(), 3);
