@@ -27,6 +27,7 @@ import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
+import mods.railcraft.common.blocks.machine.epsilon.TileAnchorProvider;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
 import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
 import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
@@ -117,6 +118,8 @@ public class FactoryContainer {
                     return new ContainerTradeStation(inv, (TileTradeStation) obj);
                 case WORLD_ANCHOR:
                     return new ContainerAnchor(inv, (TileAnchorWorld) obj);
+                case ANCHOR_PROVIDER:
+                    return new ContainerAnchorProvider(inv, (TileAnchorProvider) obj);
                 case ENGINE_STEAM:
                     return new ContainerEngineSteam(inv, (TileEngineSteam) obj);
                 case ENGINE_HOBBY:
