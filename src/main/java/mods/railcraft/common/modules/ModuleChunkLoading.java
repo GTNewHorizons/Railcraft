@@ -15,10 +15,13 @@ import net.minecraftforge.common.MinecraftForge;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.blocks.machine.epsilon.EnumMachineEpsilon;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
+import mods.railcraft.common.items.ItemLinkedEnderPearl;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.ChunkManager;
 
 /**
@@ -116,6 +119,14 @@ public class ModuleChunkLoading extends RailcraftModule {
                 }
             }
         }
+
+        EnumMachineEpsilon eps = EnumMachineEpsilon.ANCHOR_PROVIDER;
+        if (RailcraftConfig.isSubBlockEnabled(eps.getTag())) {
+            RailcraftBlocks.registerBlockMachineEpsilon();
+        }
+
+        ItemLinkedEnderPearl linkedPearl = new ItemLinkedEnderPearl();
+        RailcraftRegistry.register(linkedPearl);
 
         // Define Anchor Cart
         EnumCart cart = EnumCart.ANCHOR;

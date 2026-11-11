@@ -15,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.slots.SlotStackFilter;
+import mods.railcraft.common.items.ItemLinkedEnderPearl;
 import mods.railcraft.common.util.misc.IAnchor;
 
 public class ContainerAnchor extends RailcraftContainer {
@@ -30,7 +31,7 @@ public class ContainerAnchor extends RailcraftContainer {
 
             @Override
             public boolean matches(ItemStack stack) {
-                return anchor.getFuelMap().containsKey(stack);
+                return anchor.getFuelMap().containsKey(stack) || stack.getItem() instanceof ItemLinkedEnderPearl;
             }
         }, anchor, 0, 60, 24));
 

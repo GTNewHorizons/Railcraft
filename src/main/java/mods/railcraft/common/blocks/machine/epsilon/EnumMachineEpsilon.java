@@ -39,7 +39,8 @@ public enum EnumMachineEpsilon implements IEnumMachine {
     ADMIN_STEAM_PRODUCER(Module.STEAM, "admin.steam.producer", TileAdminSteamProducer.class, 2, 1, 0, 0, 0, 0, 0, 0, 1),
     FORCE_TRACK_EMITTER(Module.ELECTRICITY, "force.track.emitter", TileForceTrackEmitter.class),
     FLUX_TRANSFORMER(Module.ELECTRICITY, "flux.transformer", TileFluxTransformer.class),
-    ENGRAVING_BENCH(Module.EMBLEM, "engraving.bench", TileEngravingBench.class, 4, 1, 0, 1, 3, 3, 3, 3, 2);
+    ENGRAVING_BENCH(Module.EMBLEM, "engraving.bench", TileEngravingBench.class, 4, 1, 0, 1, 3, 3, 3, 3, 2),
+    ANCHOR_PROVIDER(Module.CHUNK_LOADING, "anchor.provider", TileAnchorProvider.class, 2, 1, 0, 0, 1, 1, 1, 1);
 
     private final Module module;
     private final String tag;
@@ -57,6 +58,7 @@ public enum EnumMachineEpsilon implements IEnumMachine {
         creativeList.add(FORCE_TRACK_EMITTER);
         creativeList.add(ADMIN_STEAM_PRODUCER);
         creativeList.add(ENGRAVING_BENCH);
+        creativeList.add(ANCHOR_PROVIDER);
     }
 
     private EnumMachineEpsilon(Module module, String tag, Class<? extends TileMachineBase> tile, int... textureInfo) {
